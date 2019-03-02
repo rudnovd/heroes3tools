@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 0,
+    "Name": "Dirt"
+  },
+  {
+    "Id": 1,
+    "Name": "Sand"
+  },
+  {
+    "Id": 2,
+    "Name": "Grass"
+  },
+  {
+    "Id": 3,
+    "Name": "Snow"
+  },
+  {
+    "Id": 4,
+    "Name": "Swamp"
+  },
+  {
+    "Id": 5,
+    "Name": "Rough"
+  },
+  {
+    "Id": 6,
+    "Name": "Subterranean"
+  },
+  {
+    "Id": 7,
+    "Name": "Lava"
+  },
+  {
+    "Id": 8,
+    "Name": "Highlands"
+  }
+]

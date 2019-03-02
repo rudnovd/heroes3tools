@@ -1,0 +1,747 @@
+[
+  {
+    "id": 0,
+    "specialtySkill": "Archery",
+    "name": "Оррин"
+  },
+  {
+    "id": 1,
+    "name": "Валеска",
+    "specialtyUnit": [ 2, 3 ]
+  },
+  {
+    "id": 2,
+    "name": "Эдрик",
+    "specialtyUnit": [ 4, 5 ]
+  },
+  {
+    "id": 3,
+    "name": "Сильвия"
+  },
+  {
+    "id": 4,
+    "name": "Лорд Хаарт"
+  },
+  {
+    "id": 5,
+    "name": "Сорша",
+    "specialtyUnit": [ 6, 7 ]
+  },
+  {
+    "id": 6,
+    "name": "Кристиан",
+    "specialtyUnit": [ 158 ]
+  },
+  {
+    "id": 7,
+    "name": "Турис",
+    "specialtyUnit": [ 10, 11 ]
+  },
+  {
+    "id": 8,
+    "name": "Рион"
+  },
+  {
+    "specialtySpell": "Bless",
+    "id": 9,
+    "name": "Адель"
+  },
+  {
+    "specialtySpell": "Weakness",
+    "id": 10,
+    "name": "Катберт"
+  },
+  {
+    "id": 11,
+    "name": "Аделаида",
+    "specialtySpell": "FrostRing"
+  },
+  {
+    "id": 12,
+    "name": "Инхам",
+    "specialtyUnit": [ 8, 9 ]
+  },
+  {
+    "id": 13,
+    "name": "Саня"
+  },
+  {
+    "specialtySpell": "Prayer",
+    "id": 14,
+    "name": "Лоинс"
+  },
+  {
+    "id": 15,
+    "name": "Каитлин"
+  },
+  {
+    "specialtySkill": "Armorer",
+    "id": 16,
+    "name": "Мефала"
+  },
+  {
+    "id": 17,
+    "name": "Уфретин",
+    "specialtyUnit": [ 16, 17 ]
+  },
+  {
+    "id": 18,
+    "name": "Енова"
+  },
+  {
+    "id": 19,
+    "name": "Риланд",
+    "specialtyUnit": [ 22, 23 ]
+  },
+  {
+    "id": 20,
+    "name": "Торгрим"
+  },
+  {
+    "id": 21,
+    "name": "Ивор",
+    "specialtyUnit": [ 18, 19 ]
+  },
+  {
+    "id": 22,
+    "name": "Кланси",
+    "specialtyUnit": [ 24, 25 ]
+  },
+  {
+    "id": 23,
+    "name": "Киррь"
+  },
+  {
+    "specialtySpell": "Slayer",
+    "id": 24,
+    "name": "Корониус"
+  },
+  {
+    "id": 25,
+    "name": "Уланд"
+  },
+  {
+    "id": 26,
+    "name": "Эллезар"
+  },
+  {
+    "id": 27,
+    "name": "Джем"
+  },
+  {
+    "id": 28,
+    "name": "Мальком"
+  },
+  {
+    "id": 29,
+    "name": "Мелодиа"
+  },
+  {
+    "id": 30,
+    "name": "Алагар",
+    "specialtySpell": "IceBolt"
+  },
+  {
+    "id": 31,
+    "name": "Аерис",
+    "specialtyUnit": [ 20, 21 ]
+  },
+  {
+    "id": 32,
+    "name": "Пигедрам",
+    "specialtyUnit": [ 30, 31 ]
+  },
+  {
+    "id": 33,
+    "name": "Тан",
+    "specialtyUnit": [ 36, 37 ]
+  },
+  {
+    "id": 34,
+    "name": "Жосефина",
+    "specialtyUnit": [ 32, 33 ]
+  },
+  {
+    "specialtySkill": "Armorer",
+    "id": 35,
+    "name": "Нила"
+  },
+  {
+    "id": 36,
+    "name": "Торосар",
+    "specialtyUnit": [ 158 ]
+  },
+  {
+    "id": 37,
+    "name": "Фафнер",
+    "specialtyUnit": [ 38, 39 ]
+  },
+  {
+    "id": 38,
+    "name": "Ризза"
+  },
+  {
+    "id": 39,
+    "name": "Иона",
+    "specialtyUnit": [ 36, 37 ]
+  },
+  {
+    "id": 40,
+    "name": "Астрал"
+  },
+  {
+    "id": 41,
+    "name": "Халон"
+  },
+  {
+    "id": 42,
+    "name": "Серена"
+  },
+  {
+    "id": 43,
+    "name": "Даремиф"
+  },
+  {
+    "id": 44,
+    "name": "Теодор",
+    "specialtyUnit": [ 34, 35 ]
+  },
+  {
+    "id": 45,
+    "name": "Солмир",
+    "specialtySpell": "ChainLightning"
+  },
+  {
+    "id": 46,
+    "name": "Кира"
+  },
+  {
+    "id": 47,
+    "name": "Аин"
+  },
+  {
+    "id": 48,
+    "name": "Фиона",
+    "specialtyUnit": [ 74, 75 ]
+  },
+  {
+    "id": 49,
+    "name": "Рашка",
+    "specialtyUnit": [ 80, 81 ]
+  },
+  {
+    "id": 50,
+    "name": "Мариус",
+    "specialtyUnit": [ 76, 77 ]
+  },
+  {
+    "id": 51,
+    "name": "Игнат",
+    "specialtyUnit": [ 70, 71 ]
+  },
+  {
+    "id": 52,
+    "name": "Октавия"
+  },
+  {
+    "id": 53,
+    "name": "Калх",
+    "specialtyUnit": [ 72, 73 ]
+  },
+  {
+    "id": 54,
+    "name": "Пир",
+    "specialtyUnit": [ 158 ]
+  },
+  {
+    "id": 55,
+    "name": "Нимус",
+    "specialtyUnit": [ 78, 79 ]
+  },
+  {
+    "id": 56,
+    "name": "Айден"
+  },
+  {
+    "id": 57,
+    "name": "Ксирон",
+    "specialtySpell": "Inferno"
+  },
+  {
+    "id": 58,
+    "name": "Аксис"
+  },
+  {
+    "specialtySpell": "Weakness",
+    "id": 59,
+    "name": "Олема"
+  },
+  {
+    "id": 60,
+    "name": "Калид"
+  },
+  {
+    "specialtySpell": "Bloodlust",
+    "id": 61,
+    "name": "Аш"
+  },
+  {
+    "id": 62,
+    "name": "Зидар",
+    "specialtySkill": "Sorcery"
+  },
+  {
+    "id": 63,
+    "name": "Ксарфакс",
+    "specialtySpell": "Fireball"
+  },
+  {
+    "id": 64,
+    "name": "Стракер",
+    "specialtyUnit": [ 44, 45 ]
+  },
+  {
+    "id": 65,
+    "name": "Вокиал",
+    "specialtyUnit": [ 48, 49 ]
+  },
+  {
+    "id": 66,
+    "name": "Моандор",
+    "specialtyUnit": [ 50, 51 ]
+  },
+  {
+    "id": 67,
+    "name": "Чарна",
+    "specialtyUnit": [ 46, 47 ]
+  },
+  {
+    "id": 68,
+    "name": "Тамика",
+    "specialtyUnit": [ 52, 53 ]
+  },
+  {
+    "id": 69,
+    "name": "Исра"
+  },
+  {
+    "id": 70,
+    "name": "Клавиус"
+  },
+  {
+    "id": 71,
+    "name": "Галтран",
+    "specialtyUnit": [ 42, 43 ]
+  },
+  {
+    "id": 72,
+    "name": "Септиенна",
+    "specialtySpell": "DestroyUndead"
+  },
+  {
+    "id": 73,
+    "name": "Аислин",
+    "specialtySpell": "MeteorShower"
+  },
+  {
+    "id": 74,
+    "name": "Сандро",
+    "specialtySkill": "Sorcery"
+  },
+  {
+    "id": 75,
+    "name": "Нимбус"
+  },
+  {
+    "id": 76,
+    "name": "Тант"
+  },
+  {
+    "specialtySpell": "StoneSkin",
+    "id": 77,
+    "name": "Кси"
+  },
+  {
+    "id": 78,
+    "name": "Видомина"
+  },
+  {
+    "id": 79,
+    "name": "Нагаш"
+  },
+  {
+    "id": 80,
+    "name": "Лорелей",
+    "specialtyUnit": [ 58, 59 ]
+  },
+  {
+    "id": 81,
+    "name": "Арлаш",
+    "specialtyUnit": [ 158 ]
+  },
+  {
+    "id": 82,
+    "name": "Дас",
+    "specialtyUnit": [ 64, 65 ]
+  },
+  {
+    "id": 83,
+    "name": "Аджит",
+    "specialtyUnit": [ 60, 61 ]
+  },
+  {
+    "id": 84,
+    "name": "Дамакон"
+  },
+  {
+    "id": 85,
+    "name": "Гуннар"
+  },
+  {
+    "id": 86,
+    "name": "Синка",
+    "specialtyUnit": [ 66, 67 ]
+  },
+  {
+    "id": 87,
+    "name": "Шакти",
+    "specialtyUnit": [ 56, 57 ]
+  },
+  {
+    "id": 88,
+    "name": "Аламар"
+  },
+  {
+    "id": 89,
+    "name": "Жаегар"
+  },
+  {
+    "id": 90,
+    "name": "Малекит",
+    "specialtySkill": "Sorcery"
+  },
+  {
+    "id": 91,
+    "name": "Жеддит"
+  },
+  {
+    "id": 92,
+    "name": "Геон"
+  },
+  {
+    "id": 93,
+    "name": "Деемер",
+    "specialtySpell": "MeteorShower"
+  },
+  {
+    "id": 94,
+    "name": "Сепхинороф"
+  },
+  {
+    "specialtySpell": "StoneSkin",
+    "id": 95,
+    "name": "Дарксторн"
+  }
+  ,
+  {
+    "id": 96,
+    "name": "Йог",
+    "specialtyUnit": [ 108, 109 ]
+  },
+  {
+    "id": 97,
+    "name": "Гурниссон",
+    "specialtyUnit": [ 158 ]
+  },
+  {
+    "id": 98,
+    "name": "Жабаркас",
+    "specialtyUnit": [ 102, 103 ]
+  },
+  {
+    "id": 99,
+    "name": "Шива",
+    "specialtyUnit": [ 106, 107 ]
+  },
+  {
+    "id": 100,
+    "name": "Гретчин",
+    "specialtyUnit": [ 98, 99 ]
+  },
+  {
+    "id": 101,
+    "name": "Креллион",
+    "specialtyUnit": [ 104, 105 ]
+  },
+  {
+    "specialtySkill": "Offense",
+    "id": 102,
+    "name": "Крэг Хэк"
+  },
+  {
+    "id": 103,
+    "name": "Тираксор",
+    "specialtyUnit": [ 100, 101 ]
+  },
+  {
+    "id": 104,
+    "name": "Гирд",
+    "specialtySkill": "Sorcery"
+  },
+  {
+    "id": 105,
+    "name": "Вей",
+    "specialtyUnit": [ 104, 105 ]
+  },
+  {
+    "id": 106,
+    "name": "Десса"
+  },
+  {
+    "id": 107,
+    "name": "Терек"
+  },
+  {
+    "specialtySpell": "Precision",
+    "id": 108,
+    "name": "Зубин"
+  },
+  {
+    "specialtySkill": "Offense",
+    "id": 109,
+    "name": "Гундула"
+  },
+  {
+    "id": 110,
+    "name": "Орис"
+  },
+  {
+    "id": 111,
+    "name": "Сауруг"
+  },
+  {
+    "id": 112,
+    "name": "Брон",
+    "specialtyUnit": [ 90, 91 ]
+  },
+  {
+    "id": 113,
+    "name": "Дракон",
+    "specialtyUnit": [ 84, 85 ]
+  },
+  {
+    "id": 114,
+    "name": "Вистан",
+    "specialtyUnit": [ 86, 87 ]
+  },
+  {
+    "specialtySkill": "Armorer",
+    "id": 115,
+    "name": "Тазар"
+  },
+  {
+    "id": 116,
+    "name": "Алкин",
+    "specialtyUnit": [ 92, 93 ]
+  },
+  {
+    "id": 117,
+    "name": "Корбак",
+    "specialtyUnit": [ 88, 89 ]
+  },
+  {
+    "id": 118,
+    "name": "Гервульф",
+    "specialtyUnit": [ 158 ]
+  },
+  {
+    "id": 119,
+    "name": "Брохильд",
+    "specialtyUnit": [ 94, 95 ]
+  },
+  {
+    "specialtySpell": "Weakness",
+    "id": 120,
+    "name": "Мирланда"
+  },
+  {
+    "id": 121,
+    "name": "Розик"
+  },
+  {
+    "id": 122,
+    "name": "Вой"
+  },
+  {
+    "id": 123,
+    "name": "Вердиш"
+  },
+  {
+    "specialtySpell": "StoneSkin",
+    "id": 124,
+    "name": "Мерист"
+  },
+  {
+    "id": 125,
+    "name": "Стиг",
+    "specialtySkill": "Sorcery"
+  },
+  {
+    "id": 126,
+    "name": "Андра"
+  },
+  {
+    "id": 127,
+    "name": "Тива"
+  },
+  {
+    "id": 128,
+    "name": "Пасис",
+    "specialtyUnit": [ 122, 123 ]
+  },
+  {
+    "id": 129,
+    "name": "Тунар",
+    "specialtyUnit": [ 120, 121 ]
+  },
+  {
+    "id": 130,
+    "name": "Игнисса",
+    "specialtyUnit": [ 118, 119 ]
+  },
+  {
+    "id": 131,
+    "name": "Лакус",
+    "specialtyUnit": [ 116, 117 ]
+  },
+  {
+    "id": 132,
+    "name": "Монер",
+    "specialtyUnit": [ 122, 123 ]
+  },
+  {
+    "id": 133,
+    "name": "Эрдамон",
+    "specialtyUnit": [ 120, 121 ]
+  },
+  {
+    "id": 134,
+    "name": "Фьюр",
+    "specialtyUnit": [ 118, 119 ]
+  },
+  {
+    "id": 135,
+    "name": "Кальт",
+    "specialtyUnit": [ 116, 117 ]
+  },
+  {
+    "id": 136,
+    "name": "Луна",
+    "specialtySpell": "FireWall"
+  },
+  {
+    "id": 137,
+    "name": "Брисса"
+  },
+  {
+    "id": 138,
+    "name": "Циель",
+    "specialtySpell": "MagicArrow"
+  },
+  {
+    "specialtySpell": "StoneSkin",
+    "id": 139,
+    "name": "Лабета"
+  },
+  {
+    "specialtySpell": "Bloodlust",
+    "id": 140,
+    "name": "Интеус"
+  },
+  {
+    "specialtySpell": "DisruptingRay",
+    "id": 141,
+    "name": "Аэнаин"
+  },
+  {
+    "id": 142,
+    "name": "Джелар"
+  },
+  {
+    "id": 143,
+    "name": "Гриндан"
+  },
+  {
+    "id": 143,
+    "name": "Cassiopeia",
+    "specialtyUnit": [ 141, 141 ]
+  },
+  {
+    "id": 144,
+    "name": "Corkes",
+    "specialtySkill": "Offense"
+  },
+  {
+    "id": 145,
+    "name": "Jeremy",
+    "specialtyUnit": [ 159 ]
+  },
+  {
+    "id": 146,
+    "name": "Illor",
+    "specialtyUnit": [ 148, 149 ]
+  },
+  {
+    "id": 147,
+    "name": "Derek",
+    "specialtyUnit": [ 143, 144 ]
+  },
+  {
+    "id": 148,
+    "name": "Leena"
+  },
+  {
+    "id": 149,
+    "name": "Anabel",
+    "specialtyUnit": [ 145, 146, 147 ]
+  },
+  {
+    "id": 150,
+    "name": "Miriam"
+  },
+  {
+    "id": 151,
+    "name": "Casmetra",
+    "specialtyUnit": [ 150, 151 ]
+  },
+  {
+    "id": 152,
+    "name": "Eovacius"
+  },
+  {
+    "id": 153,
+    "name": "Spint",
+    "specialtySkill": "Sorcery"
+  },
+  {
+    "id": 154,
+    "name": "Andal"
+  },
+  {
+    "id": 155,
+    "name": "Manfred",
+    "specialtySpell": "Fireball"
+  },
+  {
+    "id": 156,
+    "name": "Zilare"
+  },
+  {
+    "id": 157,
+    "name": "Astra"
+  },
+  {
+    "id": 157,
+    "name": "Dargem"
+  }
+]

@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), 
+       local('OpenSans-Regular'), 
+       url('./assets/fonts/open-sans-v15-cyrillic_cyrillic-ext_latin-regular.woff2') format('woff2'), 
+       url('./assets/fonts/open-sans-v15-cyrillic_cyrillic-ext_latin-regular.woff') format('woff');
+}
+
+#app {
+  font-family: "Open Sans";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
