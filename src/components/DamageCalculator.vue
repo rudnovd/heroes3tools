@@ -185,20 +185,20 @@
         //- Calculate attacker damage
         b-row.mt-3(v-if='data.attacker.unit')
           //- Text
-          b-col.ml-auto(cols='3' sm='2' md='3' lg='2' xl='2')
+          b-col.text-right
             strong Damage:
           //- Damage value
-          b-col(cols='5' sm='3' md='5' lg='4' xl='3')
-            strong {{ data.attacker.minDamage }} - {{data.attacker.maxDamage}}
+          p.text-left.mr-3
+            strong {{ data.attacker.minDamage }} — {{data.attacker.maxDamage}} (~ {{ data.attacker.averageDamage }})
 
         //- Calculate attacker kills
         b-row.mt-2(v-if='data.attacker.unit')
           //- Text
-          b-col.ml-auto(cols='3' sm='2' md='3' lg='2' xl='2')
+          b-col.text-right
             strong Kills:
           //- Kills value
-          b-col(cols='5' sm='3' md='5' lg='4' xl='3')
-            strong 0
+          p.text-left.mr-3
+            strong {{ data.attacker.minKills }} — {{ data.attacker.maxKills }} (~ {{ data.attacker.averageKills }})
 
       //- Defender col
       b-col.border-top.mt-5.mt-sm-5.mt-md-0.mt-lg-0.mt-xl-0(cols='12' sm='12' md='6' lg='6' xl='6')
@@ -381,20 +381,20 @@
         //- Calculate defender damage
         b-row.mt-3(v-if='data.defender.unit')
           //- Text
-          b-col.ml-auto(cols='3' sm='2' md='3' lg='2' xl='2')
+          b-col.text-right
             strong Damage:
           //- Damage value
-          b-col(cols='5' sm='3' md='5' lg='4' xl='3')
-            strong {{ data.defender.minDamage }} - {{data.defender.maxDamage}}
+          p.text-left.mr-3
+            strong {{ data.defender.minDamage }} — {{data.defender.maxDamage}} (~ {{ data.defender.averageDamage }})
 
         //- Calculate defender kills
         b-row.mt-2(v-if='data.defender.unit')
           //- Text
-          b-col.ml-auto(cols='3' sm='2' md='3' lg='2' xl='2')
+          b-col.text-right
             strong Kills:
           //- Kills value
-          b-col(cols='5' sm='3' md='5' lg='4' xl='3')
-            strong 0
+          p.text-left.mr-3
+            strong {{ data.defender.minKills }} — {{data.defender.maxKills}} (~ {{ data.defender.averageKills }})
 
     //- Pick attacker unit modal
     b-modal(
@@ -575,7 +575,11 @@ export default {
           },
           minDamage: 0,
           maxDamage: 0,
-          returnDamage: 0,
+          averageDamage: 0,
+
+          minKills: 0,
+          maxKills: 0,
+          averageKills: 0,
 
           attackBuffs: [],
           defenseBuffs: [],
@@ -612,7 +616,11 @@ export default {
           },
           minDamage: 0,
           maxDamage: 0,
-          returnDamage: 0,
+          averageDamage: 0,
+
+          minKills: 0,
+          maxKills: 0,
+          averageKills: 0,
 
           attackBuffs: [],
           defenseBuffs: [],
@@ -646,6 +654,7 @@ export default {
       this.data.defender.search.text = null
       this.data.defender.search.foundUnits = []
 
+      this.calculateAttackerDamage()
       this.calculateDefenderDamage()
 
       this.$refs.selectDefenderModal.hide()
@@ -687,12 +696,66 @@ export default {
 
     // Calculation
     calculateAttackerDamage () {
-      this.data.attacker.minDamage = this.data.attacker.unit.stats.minDamage * this.data.attacker.unitsCount
-      this.data.attacker.maxDamage = this.data.attacker.unit.stats.maxDamage * this.data.attacker.unitsCount
+      if (this.data.attacker.unit && this.data.defender.unit) {
+        let minDamage = 0
+        let maxDamage = 0
+
+        let attackerAttack = this.data.attacker.unit.stats.attack
+        let defenderDefense = this.data.defender.unit.stats.defense
+
+        // If ATTACKER attack > DEFENDER defense
+        // Then base formula:
+        // ATTACKER units count * ATTACKER unit damage * (1 + 0.05 * (ATTACKER attack - DEFENDER defense))
+
+        // Else if ATTACKER attack < DEFENDER defense
+        // Then base formula:
+        // ATTACKER units count * ATTACKER unit damage * (1 - 0.025 * (DEFENDER defense - ATTACKER attack))
+        if (attackerAttack > defenderDefense) {
+          minDamage = this.data.attacker.unitsCount * this.data.attacker.unit.stats.minDamage * (1 + 0.05 * (attackerAttack - defenderDefense))
+          maxDamage = this.data.attacker.unitsCount * this.data.attacker.unit.stats.maxDamage * (1 + 0.05 * (attackerAttack - defenderDefense))
+        } else if (attackerAttack < defenderDefense) {
+          minDamage = this.data.attacker.unitsCount * this.data.attacker.unit.stats.minDamage * (1 - 0.025 * (defenderDefense - attackerAttack))
+          maxDamage = this.data.attacker.unitsCount * this.data.attacker.unit.stats.maxDamage * (1 - 0.025 * (defenderDefense - attackerAttack))
+        }
+        this.data.attacker.minDamage = Math.floor(minDamage)
+        this.data.attacker.maxDamage = Math.floor(maxDamage)
+        this.data.attacker.averageDamage = Math.floor((this.data.attacker.minDamage + this.data.attacker.maxDamage) / 2)
+
+        this.data.attacker.minKills = Math.floor(this.data.attacker.minDamage / this.data.defender.unit.stats.health)
+        this.data.attacker.maxKills = Math.floor(this.data.attacker.maxDamage / this.data.defender.unit.stats.health)
+        this.data.attacker.averageKills = Math.floor(this.data.attacker.averageDamage / this.data.defender.unit.stats.health)
+      }
     },
     calculateDefenderDamage () {
-      this.data.defender.minDamage = this.data.defender.unit.stats.minDamage * this.data.defender.unitsCount
-      this.data.defender.maxDamage = this.data.defender.unit.stats.maxDamage * this.data.defender.unitsCount
+      if (this.data.attacker.unit && this.data.defender.unit) {
+        let minDamage = 0
+        let maxDamage = 0
+
+        let attackerDefense = this.data.attacker.unit.stats.defense
+        let defenderAttack = this.data.defender.unit.stats.attack
+
+        // If DEFENDER attack > ATTACKER defense
+        // Then base formula:
+        // DEFENDER units count * DEFENDER unit damage * (1 + 0.05 * (DEFENDER attack - ATTACKER defense))
+
+        // Else if DEFENDER attack < ATTACKER defense
+        // Then base formula:
+        // DEFENDER units count * DEFENDER unit damage * (1 - 0.025 * (ATTACKER defense - DEFENDER attack))
+        if (defenderAttack > attackerDefense) {
+          minDamage = this.data.defender.unitsCount * this.data.defender.unit.stats.minDamage * (1 + 0.05 * (defenderAttack - attackerDefense))
+          maxDamage = this.data.defender.unitsCount * this.data.defender.unit.stats.maxDamage * (1 + 0.05 * (defenderAttack - attackerDefense))
+        } else if (defenderAttack < attackerDefense) {
+          minDamage = this.data.defender.unitsCount * this.data.defender.unit.stats.minDamage * (1 - 0.025 * (attackerDefense - defenderAttack))
+          maxDamage = this.data.defender.unitsCount * this.data.defender.unit.stats.maxDamage * (1 - 0.025 * (attackerDefense - defenderAttack))
+        }
+        this.data.defender.minDamage = Math.floor(minDamage)
+        this.data.defender.maxDamage = Math.floor(maxDamage)
+        this.data.defender.averageDamage = Math.floor((this.data.defender.minDamage + this.data.defender.maxDamage) / 2)
+
+        this.data.defender.minKills = Math.floor(this.data.defender.minDamage / this.data.attacker.unit.stats.health)
+        this.data.defender.maxKills = Math.floor(this.data.defender.maxDamage / this.data.attacker.unit.stats.health)
+        this.data.defender.averageKills = Math.floor(this.data.defender.averageDamage / this.data.attacker.unit.stats.health)
+      }
     },
 
     jsonToData () {
