@@ -11,9 +11,9 @@
           b-col(cols='12')
             h4 Attacker
 
-        //- Pick attacker unit image and units count
+        //- Pick ATTACKER unit image and units count
         b-row
-          //- Pick attacker unit image
+          //- Pick ATTACKER unit image
           b-col(cols='3' sm='3' md='3' lg='3' xl='3')
             b-button(variant='link' @click='selectAttackerModalShow()')
               img(v-if='data.attacker.unit' :src='require(`@/assets/images/${data.attacker.unit.id}.gif`)')
@@ -29,10 +29,10 @@
                   size='sm'
                   min=1
                   max=999
-                  @input='calculateAttackerDamage()'
+                  @input='calculate()'
                 )
 
-          //- Pick attacker unit button
+          //- Pick ATTACKER unit button
           b-col(cols='9' sm='9' md='9' lg='9' xl='9')
             b-button.green-btn(size='sm' block @click='selectAttackerModalShow()')
               template(v-if='data.attacker.unit')
@@ -41,7 +41,7 @@
               template(v-else)
                 | Pick
 
-            //- Choose attacker hero
+            //- Choose ATTACKER hero
             b-row.mt-3()
               b-col(cols='12')
                 v-select(
@@ -51,10 +51,10 @@
                   placeholder='Hero'
                 )
 
-        //- Inputs attacker level and stats
+        //- Inputs ATTACKER level and stats
         b-row.mt-2()
 
-          //- Input attacker level
+          //- Input ATTACKER level
           b-col(
             v-if='data.attacker.hero.hero'
             cols='4' sm='3' md='3' lg='3' xl='2'
@@ -68,10 +68,10 @@
                 size='sm'
                 min=1
                 max=99
-                @input='calculateAttackerDamage(); calculateDefenderDamage();'
+                @input='calculate()'
               )
 
-          //- Input attacker attack
+          //- Input ATTACKER attack
           b-col(
             v-if='data.attacker.hero.hero'
             cols='4' sm='3' md='3' lg='3' xl='2'
@@ -85,10 +85,10 @@
                 size='sm'
                 min=0
                 max=99
-                @input='calculateAttackerDamage()'
+                @input='calculate()'
               )
 
-          //- Input attacker defense
+          //- Input ATTACKER defense
           b-col(
             v-if='data.attacker.hero.hero'
             cols='4' sm='3', md='3', lg='3', xl='2'
@@ -101,7 +101,7 @@
                 size='sm'
                 min=0
                 max=99
-                @input='calculateAttackerDamage(); calculateDefenderDamage();'
+                @input='calculate()'
               )
 
         //- Select skills
@@ -118,7 +118,7 @@
                 v-model='data.attacker.hero.skills.offenseLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateAttackerDamage();'
+                @input='calculate();'
               )
 
             //- Text
@@ -130,7 +130,7 @@
                 v-model='data.attacker.hero.skills.airLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateAttackerDamage();'
+                @input='calculate();'
               )
 
           //- Armorer and Fire select
@@ -144,7 +144,7 @@
                 v-model='data.attacker.hero.skills.armorerLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateAttackerDamage(); calculateDefenderDamage();'
+                @input='calculate();'
               )
 
             //- Text
@@ -156,7 +156,7 @@
                 v-model='data.attacker.hero.skills.fireLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateAttackerDamage(); calculateDefenderDamage();'
+                @input='calculate()'
               )
 
           //- Archery and Earth select
@@ -170,7 +170,7 @@
                 v-model='data.attacker.hero.skills.archeryLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateAttackerDamage();'
+                @input='calculate();'
               )
 
             //- Text
@@ -182,7 +182,7 @@
                 v-model='data.attacker.hero.skills.earthLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateAttackerDamage(); calculateDefenderDamage()'
+                @input='calculate(); calculate()'
               )
 
           //- Artillery and Water select
@@ -196,7 +196,7 @@
                 v-model='data.attacker.hero.skills.artilleryLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateAttackerDamage();'
+                @input='calculate();'
               )
 
             //- Text
@@ -208,39 +208,47 @@
                 v-model='data.attacker.hero.skills.waterLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateAttackerDamage(); calculateDefenderDamage();'
+                @input='calculate()'
               )
 
         //- Spells select
         b-row.mt-2(v-if='data.attacker.hero.hero')
           //- Attacker attack buffs checkboxes
           b-col(cols='6' sm='6' md='4' lg='3' xl='3')
-            b-form-checkbox-group(
-              stacked
-              v-model='data.attacker.attackBuffs'
-              :options='data.spells.attackBuffs'
-              @input='calculateAttackerDamage(); calculateDefenderDamage();'
-            )
+            b-form-group
+              b-form-checkbox(
+                v-for='(value, index) in data.spells.attackBuffs'
+                :key='value'
+                :checked='data.attacker.effects.includes(value)'
+                @change='pushAttackerSpells(value)'
+              ) {{ value }}
 
           //- Attacker defense buffs checkboxes
           b-col(cols='6' sm='5' md='4' lg='3' xl='3' offset='0' offset-sm='1' offset-md='0' offset-lg='0' offset-xl='0')
-            b-form-checkbox-group(
-              stacked
-              v-model='data.attacker.defenseBuffs'
-              :options='data.spells.defenseBuffs'
-              @input='calculateAttackerDamage(); calculateDefenderDamage();'
-            )
+            b-form-group
+              b-form-checkbox(
+                v-for='(value, index) in data.spells.defenseBuffs'
+                :key='value'
+                :checked='data.attacker.effects.includes(value)'
+                @change='pushAttackerSpells(value)'
+              ) {{ value }}
 
           //- Attacker attack debuffs checkboxes
           b-col.mt-3.mt-sm-3.mt-md-0.mt-lg-0.mt-xl-0(cols='6' sm='6' md='4' lg='3' xl='3')
-            b-form-checkbox-group(
-              stacked
-              v-model='data.attacker.attackDebuffs'
-              :options='data.spells.attackDebuffs'
-              @input='calculateAttackerDamage(); calculateDefenderDamage();'
-            )
+            b-form-group
+              b-form-checkbox(
+                v-for='(value, index) in data.spells.attackDebuffs'
+                :key='value'
+                :checked='data.attacker.effects.includes(value)'
+                @change='pushAttackerSpells(value)'
+              ) {{ value }}
 
-        //- Calculate attacker damage
+        //- Show ATTACKER unit effects
+        b-row
+          b-col.mt-3.mt-sm-3.mt-md-2.mt-lg-2.mt-xl-2(v-if='data.attacker.effects.length > 0' cols='7' sm='7' md='8' lg='6' xl='12')
+            small Effects: {{ data.attacker.effects }}
+
+        //- Calculate ATTACKER damage
         b-row.mt-3(v-if='data.attacker.unit && data.defender.unit')
           //- Text
           b-col.text-right
@@ -252,7 +260,7 @@
             strong(v-else)
               | {{ data.attacker.minDamage }}
 
-        //- Calculate attacker kills
+        //- Calculate ATTACKER kills
         b-row.mt-2(v-if='data.attacker.unit && data.defender.unit')
           //- Text
           b-col.text-right
@@ -271,10 +279,10 @@
           b-col(cols='12')
             h4 Defender
 
-        //- Pick defender unit image and units count
+        //- Pick DEFENDER unit image and units count
         b-row.mr-0.mr-sm-0.mr-md-2.mr-lg-0.mr-xl-0
 
-          //- Pick defender unit button
+          //- Pick DEFENDER unit button
           b-col(cols='9' sm='9' md='9' lg='9' xl='9')
             b-button(size='sm' variant='danger' block @click='selectDefenderModalShow()')
               template(v-if='data.defender.unit')
@@ -283,7 +291,7 @@
               template(v-else)
                 | Pick
 
-            //- Choose defender hero
+            //- Choose DEFENDER hero
             b-row.mt-3()
               b-col(cols='12')
                 v-select(
@@ -293,7 +301,7 @@
                   placeholder='Hero'
                 )
 
-          //- Pick defender unit image
+          //- Pick DEFENDER unit image
           b-col(cols='3' sm='3' md='3' lg='3' xl='3')
             b-button(variant='link' @click='selectDefenderModalShow()')
               img(v-if='data.defender.unit' :src='require(`@/assets/images/${data.defender.unit.id}.gif`)')
@@ -309,13 +317,13 @@
                   size='sm'
                   min=1
                   max=999
-                  @input='calculateDefenderDamage(); calculateAttackerDamage();'
+                  @input='calculate()'
                 )
 
-        //- Inputs defender level and stats
+        //- Inputs DEFENDER level and stats
         b-row.mt-2()
 
-          //- Input defender level
+          //- Input DEFENDER level
           b-col(
             v-if='data.defender.hero.hero'
             cols='4' sm='3' md='3' lg='3' xl='2'
@@ -328,10 +336,10 @@
                 size='sm'
                 min=1
                 max=99
-                @input='calculateDefenderDamage(); calculateAttackerDamage();'
+                @input='calculate()'
               )
 
-          //- Input defender attack
+          //- Input DEFENDER attack
           b-col(
             v-if='data.defender.hero.hero'
             cols='4' sm='3' md='3' lg='3' xl='2'
@@ -345,10 +353,10 @@
                 size='sm'
                 min=0
                 max=99
-                @input='calculateDefenderDamage(); calculateAttackerDamage();'
+                @input='calculate()'
               )
 
-          //- Input defender defense
+          //- Input DEFENDER defense
           b-col(
             v-if='data.defender.hero.hero'
             cols='4' sm='3', md='3', lg='3', xl='2'
@@ -361,7 +369,7 @@
                 size='sm'
                 min=0
                 max=99
-                @input='calculateDefenderDamage(); calculateAttackerDamage();'
+                @input='calculate()'
               )
 
         //- Select skills
@@ -378,7 +386,7 @@
                 v-model='data.defender.hero.skills.offenseLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateDefenderDamage();'
+                @input='calculate();'
               )
 
             //- Text
@@ -390,7 +398,7 @@
                 v-model='data.defender.hero.skills.airLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateDefenderDamage(); calculateAttackerDamage();'
+                @input='calculate()'
               )
 
           //- Armorer and Fire select
@@ -404,7 +412,7 @@
                 v-model='data.defender.hero.skills.armorerLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateDefenderDamage(); calculateAttackerDamage();'
+                @input='calculate()'
               )
 
             //- Text
@@ -416,7 +424,7 @@
                 v-model='data.defender.hero.skills.fireLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateDefenderDamage(); calculateAttackerDamage();'
+                @input='calculate()'
               )
 
           //- Archery and Earth select
@@ -430,7 +438,7 @@
                 v-model='data.defender.hero.skills.archeryLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateDefenderDamage(); calculateAttackerDamage();'
+                @input='calculate()'
               )
 
             //- Text
@@ -442,7 +450,7 @@
                 v-model='data.defender.hero.skills.earthLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateDefenderDamage(); calculateAttackerDamage();'
+                @input='calculate()'
               )
 
           //- Artillery and Water select
@@ -456,7 +464,7 @@
                 v-model='data.defender.hero.skills.artilleryLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateDefenderDamage(); calculateAttackerDamage();'
+                @input='calculate()'
               )
 
             //- Text
@@ -468,39 +476,47 @@
                 v-model='data.defender.hero.skills.waterLevel'
                 :options='data.skillsOptions'
                 size='sm'
-                @input='calculateDefenderDamage(); calculateAttackerDamage();'
+                @input='calculate()'
               )
 
         //- Spells select
         b-row.mt-2(v-if='data.defender.hero.hero')
-          //- Defender attack buffs checkboxes
+          //- DEFENDER attack buffs checkboxes
           b-col(cols='6' sm='6' md='4' lg='3' xl='3')
-            b-form-checkbox-group(
-              stacked
-              v-model='data.defender.attackBuffs'
-              :options='data.spells.attackBuffs'
-              @input='calculateDefenderDamage(); calculateAttackerDamage();'
-            )
+            b-form-group
+              b-form-checkbox(
+                v-for='(value, index) in data.spells.attackBuffs'
+                :key='value'
+                :checked='data.defender.effects.includes(value)'
+                @change='pushDefenderSpells(value)'
+              ) {{ value }}
 
-          //- Defender defense buffs checkboxes
+          //- DEFENDER defense buffs checkboxes
           b-col(cols='6' sm='5' md='4' lg='3' xl='3' offset='0' offset-sm='1' offset-md='0' offset-lg='0' offset-xl='0')
-            b-form-checkbox-group(
-              stacked
-              v-model='data.defender.defenseBuffs'
-              :options='data.spells.defenseBuffs'
-              @input='calculateDefenderDamage(); calculateAttackerDamage();'
-            )
+            b-form-group
+              b-form-checkbox(
+                v-for='(value, index) in data.spells.defenseBuffs'
+                :key='value'
+                :checked='data.defender.effects.includes(value)'
+                @change='pushDefenderSpells(value)'
+              ) {{ value }}
 
-          //- Defender attack debuffs checkboxes
+          //- DEFENDER attack debuffs checkboxes
           b-col.mt-3.mt-sm-3.mt-md-0.mt-lg-0.mt-xl-0(cols='6' sm='6' md='4' lg='3' xl='3')
-            b-form-checkbox-group(
-              stacked
-              v-model='data.defender.attackDebuffs'
-              :options='data.spells.attackDebuffs'
-              @input='calculateDefenderDamage(); calculateAttackerDamage();'
-            )
+            b-form-group
+              b-form-checkbox(
+                v-for='(value, index) in data.spells.attackDebuffs'
+                :key='value'
+                :checked='data.defender.effects.includes(value)'
+                @change='pushDefenderSpells(value)'
+              ) {{ value }}
 
-        //- Calculate defender damage
+        //- Show DEFENDER unit effects
+        b-row
+          b-col.mt-3.mt-sm-3.mt-md-2.mt-lg-2.mt-xl-2(v-if='data.defender.effects.length > 0' cols='7' sm='7' md='8' lg='6' xl='12')
+            small Effects: {{ data.defender.effects }}
+
+        //- Calculate DEFENDER damage
         b-row.mt-3(v-if='data.defender.unit && data.attacker.unit')
           //- Text
           b-col.text-right
@@ -512,7 +528,7 @@
             strong(v-else)
               | {{ data.defender.minDamage }}
 
-        //- Calculate defender kills
+        //- Calculate DEFENDER kills
         b-row.mt-2(v-if='data.defender.unit && data.attacker.unit')
           //- Text
           b-col.text-right
@@ -524,7 +540,7 @@
             strong(v-else)
               | {{ data.defender.minKills }}
 
-    //- Pick attacker unit modal
+    //- Pick ATTACKER unit modal
     b-modal(
       title='Pick attacker unit'
       ref='selectAttackerModal'
@@ -577,7 +593,7 @@
           )
             img(:src='require(`@/assets/images/${unit.id}.gif`)' @click='selectAttacker(unit)')
 
-    //- Pick defender unit modal
+    //- Pick DEFENDER unit modal
     b-modal(
       title='Pick defender unit'
       ref='selectDefenderModal'
@@ -675,7 +691,7 @@ export default {
         spells: {
           attackBuffs: ['Bless', 'Bloodlust', 'Frenzy', 'Prayer', 'Precision', 'Slayer'],
           defenseBuffs: ['Shield', 'Stone Skin', 'Air Shield'],
-          attackDebuffs: ['Curse', 'Weakness', 'Dis. ray'],
+          attackDebuffs: ['Curse', 'Weakness', 'Disrupting Ray'],
           defenseDebuffs: []
         },
 
@@ -708,6 +724,9 @@ export default {
           minKills: 0,
           maxKills: 0,
           averageKills: 0,
+
+          // Maximum effects - 3
+          effects: [],
 
           attackBuffs: [],
           defenseBuffs: [],
@@ -750,6 +769,9 @@ export default {
           maxKills: 0,
           averageKills: 0,
 
+          // Maximum effects - 3
+          effects: [],
+
           attackBuffs: [],
           defenseBuffs: [],
           attackDebuffs: [],
@@ -772,8 +794,7 @@ export default {
       this.data.attacker.search.text = null
       this.data.attacker.search.foundUnits = []
 
-      this.calculateAttackerDamage()
-      this.calculateDefenderDamage()
+      this.calculate()
 
       this.$refs.selectAttackerModal.hide()
     },
@@ -783,8 +804,7 @@ export default {
       this.data.defender.search.text = null
       this.data.defender.search.foundUnits = []
 
-      this.calculateAttackerDamage()
-      this.calculateDefenderDamage()
+      this.calculate()
 
       this.$refs.selectDefenderModal.hide()
     },
@@ -823,14 +843,70 @@ export default {
       }
     },
 
-    // Calculation
-    calculateAttackerDamage () {
-      if (this.data.attacker.unit && this.data.defender.unit) {
-        let minDamage = 0
-        let maxDamage = 0
+    pushAttackerSpells (spell) {
+      if (this.data.attacker.effects.includes(spell)) {
+        this.data.attacker.effects.splice(this.data.attacker.effects.indexOf(spell), 1) // Remove effect from array for checkbox
+      } else {
+        // Maximum effects on unit = 3
+        if (this.data.attacker.effects.length === 3) {
+          this.data.attacker.effects.shift()
+        }
+        this.data.attacker.effects.push(spell)
+      }
 
-        let attackerAttack = this.data.attacker.unit.stats.attack + parseInt(this.data.attacker.hero.attack)
-        let defenderDefense = this.data.defender.unit.stats.defense + parseInt(this.data.defender.hero.defense)
+      this.calculate()
+    },
+    pushDefenderSpells (spell) {
+      if (this.data.defender.effects.includes(spell)) {
+        this.data.defender.effects.splice(this.data.defender.effects.indexOf(spell), 1) // Remove effect from array for checkbox
+      } else {
+        // Maximum effects on unit = 3
+        if (this.data.defender.effects.length === 3) {
+          this.data.defender.effects.shift()
+        }
+        this.data.defender.effects.push(spell)
+      }
+
+      this.calculate()
+    },
+
+    // Calculation
+    calculate () {
+      if (this.data.attacker.unit && this.data.defender.unit) {
+        // Init units stats, damages and total damages
+        let attackerAttack = this.data.attacker.unit.stats.attack
+        let attackerDefense = this.data.attacker.unit.stats.defense
+        let attackerMinDamage = this.data.attacker.unit.stats.minDamage
+        let attackerMaxDamage = this.data.attacker.unit.stats.maxDamage
+
+        let attackerTotalMinDamage = 0
+        let attackerTotalMaxDamage = 0
+
+        let defenderAttack = this.data.defender.unit.stats.attack
+        let defenderDefense = this.data.defender.unit.stats.defense
+        let defenderMinDamage = this.data.defender.unit.stats.minDamage
+        let defenderMaxDamage = this.data.defender.unit.stats.maxDamage
+
+        let defenderTotalMinDamage = 0
+        let defenderTotalMaxDamage = 0
+
+        // Modificate units stats
+        const modifedStats = this.calculateStatsModification(attackerAttack, attackerDefense, defenderAttack, defenderDefense)
+        attackerAttack = modifedStats.attackerAttack
+        attackerDefense = modifedStats.attackerDefense
+        defenderAttack = modifedStats.defenderAttack
+        defenderDefense = modifedStats.defenderDefense
+
+        // Modificate units min/max damages
+        const modifedDamages = this.calculateDamagesModification(attackerMinDamage, attackerMaxDamage, defenderMinDamage, defenderMaxDamage)
+        attackerMinDamage = modifedDamages.attackerMinDamage
+        attackerMaxDamage = modifedDamages.attackerMaxDamage
+        defenderMinDamage = modifedDamages.defenderMinDamage
+        defenderMaxDamage = modifedDamages.defenderMaxDamage
+
+        // Calculate damages
+
+        // For ATTACKER
 
         // If ATTACKER attack > DEFENDER defense
         // Then base formula:
@@ -839,54 +915,33 @@ export default {
         // Else if ATTACKER attack < DEFENDER defense
         // Then base formula:
         // ATTACKER units count * ATTACKER unit damage * (1 - 0.025 * (DEFENDER defense - ATTACKER attack))
+
+        // Calculate damage with stats modificators
         if (attackerAttack > defenderDefense || attackerAttack === defenderDefense) {
           // Max attack cap = 3
-          if (0.05 * (attackerAttack - defenderDefense) <= 3) {
-            minDamage = this.data.attacker.unitsCount * this.data.attacker.unit.stats.minDamage * (1 + 0.05 * (attackerAttack - defenderDefense))
-            maxDamage = this.data.attacker.unitsCount * this.data.attacker.unit.stats.maxDamage * (1 + 0.05 * (attackerAttack - defenderDefense))
+          const cap = 0.05 * (attackerAttack - defenderDefense)
+
+          if (cap <= 3) {
+            attackerTotalMinDamage = this.data.attacker.unitsCount * attackerMinDamage * (1 + cap)
+            attackerTotalMaxDamage = this.data.attacker.unitsCount * attackerMaxDamage * (1 + cap)
           } else {
-            minDamage = this.data.attacker.unitsCount * this.data.attacker.unit.stats.minDamage * (1 + 3)
-            maxDamage = this.data.attacker.unitsCount * this.data.attacker.unit.stats.maxDamage * (1 + 3)
+            attackerTotalMinDamage = this.data.attacker.unitsCount * attackerMinDamage * (1 + 3)
+            attackerTotalMaxDamage = this.data.attacker.unitsCount * attackerMaxDamage * (1 + 3)
           }
         } else if (attackerAttack < defenderDefense) {
           // Max attack cap = 0.7
-          if (0.025 * (defenderDefense - attackerAttack) <= 0.7) {
-            minDamage = this.data.attacker.unitsCount * this.data.attacker.unit.stats.minDamage * (1 - 0.025 * (defenderDefense - attackerAttack))
-            maxDamage = this.data.attacker.unitsCount * this.data.attacker.unit.stats.maxDamage * (1 - 0.025 * (defenderDefense - attackerAttack))
+          const cap = 0.025 * (defenderDefense - attackerAttack)
+
+          if (cap <= 0.7) {
+            attackerTotalMinDamage = this.data.attacker.unitsCount * attackerMinDamage * (1 - cap)
+            attackerTotalMaxDamage = this.data.attacker.unitsCount * attackerMaxDamage * (1 - cap)
           } else {
-            minDamage = this.data.attacker.unitsCount * this.data.attacker.unit.stats.minDamage * (1 - 0.7)
-            maxDamage = this.data.attacker.unitsCount * this.data.attacker.unit.stats.maxDamage * (1 - 0.7)
+            attackerTotalMinDamage = this.data.attacker.unitsCount * attackerMinDamage * (1 - 0.7)
+            attackerTotalMaxDamage = this.data.attacker.unitsCount * attackerMaxDamage * (1 - 0.7)
           }
         }
 
-        // Offense skill bonus
-        if (this.data.attacker.hero.skills.offenseLevel > 0) {
-          minDamage += (minDamage / 10) * this.data.attacker.hero.skills.offenseLevel
-          maxDamage += (maxDamage / 10) * this.data.attacker.hero.skills.offenseLevel
-        }
-
-        // Armorer skill bonus
-        if (this.data.defender.hero.skills.armorerLevel > 0) {
-          minDamage -= (minDamage * 5 / 100) * this.data.defender.hero.skills.armorerLevel
-          maxDamage -= (maxDamage * 5 / 100) * this.data.defender.hero.skills.armorerLevel
-        }
-
-        this.data.attacker.minDamage = Math.floor(minDamage)
-        this.data.attacker.maxDamage = Math.floor(maxDamage)
-        this.data.attacker.averageDamage = Math.floor((this.data.attacker.minDamage + this.data.attacker.maxDamage) / 2)
-
-        this.data.attacker.minKills = Math.floor(this.data.attacker.minDamage / this.data.defender.unit.stats.health)
-        this.data.attacker.maxKills = Math.floor(this.data.attacker.maxDamage / this.data.defender.unit.stats.health)
-        this.data.attacker.averageKills = Math.floor(this.data.attacker.averageDamage / this.data.defender.unit.stats.health)
-      }
-    },
-    calculateDefenderDamage () {
-      if (this.data.attacker.unit && this.data.defender.unit) {
-        let minDamage = 0
-        let maxDamage = 0
-
-        let attackerDefense = this.data.attacker.unit.stats.defense + parseInt(this.data.attacker.hero.defense)
-        let defenderAttack = this.data.defender.unit.stats.attack + parseInt(this.data.defender.hero.attack)
+        // For DEFENDER
 
         // If DEFENDER attack > ATTACKER defense
         // Then base formula:
@@ -898,37 +953,40 @@ export default {
         if (defenderAttack > attackerDefense || defenderAttack === attackerDefense) {
           // Max attack cap = 3
           if (0.025 * (defenderAttack - attackerDefense) <= 3) {
-            minDamage = this.data.defender.unitsCount * this.data.defender.unit.stats.minDamage * (1 + 0.05 * (defenderAttack - attackerDefense))
-            maxDamage = this.data.defender.unitsCount * this.data.defender.unit.stats.maxDamage * (1 + 0.05 * (defenderAttack - attackerDefense))
+            defenderTotalMinDamage = this.data.defender.unitsCount * defenderMinDamage * (1 + 0.05 * (defenderAttack - attackerDefense))
+            defenderTotalMaxDamage = this.data.defender.unitsCount * defenderMaxDamage * (1 + 0.05 * (defenderAttack - attackerDefense))
           } else {
-            minDamage = this.data.defender.unitsCount * this.data.defender.unit.stats.minDamage * (1 + 3)
-            maxDamage = this.data.defender.unitsCount * this.data.defender.unit.stats.maxDamage * (1 + 3)
+            defenderTotalMinDamage = this.data.defender.unitsCount * defenderMinDamage * (1 + 3)
+            defenderTotalMaxDamage = this.data.defender.unitsCount * defenderMaxDamage * (1 + 3)
           }
         } else if (defenderAttack < attackerDefense) {
           // Max attack cap = 0.7
           if (0.025 * (attackerDefense - defenderAttack) <= 0.7) {
-            minDamage = this.data.defender.unitsCount * this.data.defender.unit.stats.minDamage * (1 - 0.025 * (attackerDefense - defenderAttack))
-            maxDamage = this.data.defender.unitsCount * this.data.defender.unit.stats.maxDamage * (1 - 0.025 * (attackerDefense - defenderAttack))
+            defenderTotalMinDamage = this.data.defender.unitsCount * defenderMinDamage * (1 - 0.025 * (attackerDefense - defenderAttack))
+            defenderTotalMaxDamage = this.data.defender.unitsCount * defenderMaxDamage * (1 - 0.025 * (attackerDefense - defenderAttack))
           } else {
-            minDamage = this.data.defender.unitsCount * this.data.defender.unit.stats.minDamage * (1 - 0.7)
-            maxDamage = this.data.defender.unitsCount * this.data.defender.unit.stats.maxDamage * (1 - 0.7)
+            defenderTotalMinDamage = this.data.defender.unitsCount * defenderMinDamage * (1 - 0.7)
+            defenderTotalMaxDamage = this.data.defender.unitsCount * defenderMaxDamage * (1 - 0.7)
           }
         }
 
-        // Offense skill bonus
-        if (this.data.defender.hero.skills.offenseLevel > 0) {
-          minDamage += (minDamage / 10) * this.data.defender.hero.skills.offenseLevel
-          maxDamage += (maxDamage / 10) * this.data.defender.hero.skills.offenseLevel
-        }
+        // Modificate total damages
+        const modifedTotalDamages = this.calculateTotalDamagesModification(attackerTotalMinDamage, attackerTotalMaxDamage, defenderTotalMinDamage, defenderTotalMaxDamage)
+        attackerTotalMinDamage = modifedTotalDamages.attackerTotalMinDamage
+        attackerTotalMaxDamage = modifedTotalDamages.attackerTotalMaxDamage
+        defenderTotalMinDamage = modifedTotalDamages.defenderTotalMinDamage
+        defenderTotalMaxDamage = modifedTotalDamages.defenderTotalMaxDamage
 
-        // Armorer skill bonus
-        if (this.data.attacker.hero.skills.armorerLevel > 0) {
-          minDamage -= (minDamage * 5 / 100) * this.data.attacker.hero.skills.armorerLevel
-          maxDamage -= (maxDamage * 5 / 100) * this.data.attacker.hero.skills.armorerLevel
-        }
+        // Transform total damages
+        this.data.attacker.minDamage = Math.floor(attackerTotalMinDamage)
+        this.data.attacker.maxDamage = Math.floor(attackerTotalMaxDamage)
+        this.data.attacker.averageDamage = Math.floor((this.data.attacker.minDamage + this.data.attacker.maxDamage) / 2)
+        this.data.attacker.minKills = Math.floor(this.data.attacker.minDamage / this.data.defender.unit.stats.health)
+        this.data.attacker.maxKills = Math.floor(this.data.attacker.maxDamage / this.data.defender.unit.stats.health)
+        this.data.attacker.averageKills = Math.floor(this.data.attacker.averageDamage / this.data.defender.unit.stats.health)
 
-        this.data.defender.minDamage = Math.floor(minDamage)
-        this.data.defender.maxDamage = Math.floor(maxDamage)
+        this.data.defender.minDamage = Math.floor(defenderTotalMinDamage)
+        this.data.defender.maxDamage = Math.floor(defenderTotalMaxDamage)
         this.data.defender.averageDamage = Math.floor((this.data.defender.minDamage + this.data.defender.maxDamage) / 2)
 
         this.data.defender.minKills = Math.floor(this.data.defender.minDamage / this.data.attacker.unit.stats.health)
@@ -936,7 +994,296 @@ export default {
         this.data.defender.averageKills = Math.floor(this.data.defender.averageDamage / this.data.attacker.unit.stats.health)
       }
     },
+    calculateStatsModification (attackerAttack, attackerDefense, defenderAttack, defenderDefense) {
+      attackerAttack += parseInt(this.data.attacker.hero.attack)
+      attackerDefense += parseInt(this.data.attacker.hero.defense)
 
+      defenderAttack += parseInt(this.data.defender.hero.attack)
+      defenderDefense += parseInt(this.data.defender.hero.defense)
+
+      const attackerAir = this.data.attacker.hero.skills.airLevel
+      const attackerFire = this.data.attacker.hero.skills.fireLevel
+      const attackerEarth = this.data.attacker.hero.skills.earthLevel
+      const attackerWater = this.data.attacker.hero.skills.waterLevel
+
+      const defenderAir = this.data.defender.hero.skills.airLevel
+      const defenderFire = this.data.defender.hero.skills.fireLevel
+      const defenderEarth = this.data.defender.hero.skills.earthLevel
+      const defenderWater = this.data.defender.hero.skills.waterLevel
+
+      if (this.data.attacker.effects.length > 0) {
+        const effects = this.data.attacker.effects
+
+        // ATTACKER stats buffs
+
+        // Bloodlust spell
+        if (effects.includes('Bloodlust')) {
+          if (attackerFire < 2) attackerAttack += 3
+          else if (attackerFire > 1) attackerAttack += 6
+        }
+
+        // Frenzy spell
+        if (effects.includes('Frenzy')) {
+          if (attackerFire < 2) attackerAttack += attackerDefense
+          else if (attackerFire === 2) attackerAttack += attackerDefense * 1.5
+          else if (attackerFire === 3) attackerAttack += attackerDefense * 2
+          attackerDefense = 0
+        }
+
+        // need Slayer spell here
+
+        // Prayer spell
+        if (effects.includes('Prayer')) {
+          if (attackerWater < 2) {
+            attackerAttack += 2
+            attackerDefense += 2
+          } else if (attackerWater > 1) {
+            attackerAttack += 4
+            attackerDefense += 4
+          }
+        }
+
+        // Precision spell
+        if (effects.includes('Precision') && this.data.attacker.unit.ranged) {
+          if (attackerAir < 2) attackerAttack += 3
+          else if (attackerAir > 1) attackerAttack += 6
+        }
+
+        // Stone skin spell
+        if (effects.includes('Stone Skin')) {
+          if (attackerEarth < 2) attackerDefense += 3
+          else if (attackerEarth > 1) attackerDefense += 6
+        }
+
+        // ATTACKER stats debuffs
+
+        // Weakness spell
+        if (effects.includes('Weakness')) {
+          if (defenderWater < 2) attackerAttack -= 3
+          else if (defenderWater > 1) attackerAttack -= 6
+        }
+
+        // Disrupting Ray spell
+        if (effects.includes('Disrupting Ray')) {
+          if (defenderAir < 2) attackerDefense -= 3
+          else if (defenderAir === 2) attackerDefense -= 4
+          else if (defenderAir === 3) attackerDefense -= 5
+        }
+      }
+
+      if (this.data.defender.effects.length > 0) {
+        const effects = this.data.attacker.effects
+
+        // DEFENDER stats buffs
+
+        // Bloodlust spell
+        if (effects.includes('Bloodlust')) {
+          if (defenderFire < 2) defenderAttack += 3
+          else if (defenderFire > 1) defenderAttack += 6
+        }
+
+        // Frenzy spell
+        if (effects.includes('Frenzy')) {
+          if (defenderFire < 2) defenderAttack += defenderDefense
+          else if (defenderFire === 2) defenderAttack += defenderDefense * 1.5
+          else if (defenderFire === 3) defenderAttack += defenderDefense * 2
+          defenderDefense = 0
+        }
+
+        // need Slayer spell here
+
+        // Prayer spell
+        if (effects.includes('Prayer')) {
+          if (defenderWater < 2) {
+            defenderAttack += 2
+            defenderDefense += 2
+          } else if (defenderWater > 1) {
+            defenderAttack += 4
+            defenderDefense += 4
+          }
+        }
+
+        // Precision spell
+        if (effects.includes('Precision') && this.data.defender.unit.ranged) {
+          if (defenderAir < 2) defenderAttack += 3
+          else if (defenderAir > 1) defenderAttack += 6
+        }
+
+        // Stone skin spell
+        if (effects.includes('Stone Skin')) {
+          if (defenderEarth < 2) defenderDefense += 3
+          else if (defenderEarth > 1) defenderDefense += 6
+        }
+
+        // ATTACKER stats debuffs
+
+        // Weakness spell
+        if (effects.includes('Weakness')) {
+          if (attackerWater < 2) defenderAttack -= 3
+          else if (attackerWater > 1) defenderAttack -= 6
+        }
+
+        // Disrupting Ray spell
+        if (effects.includes('Disrupting Ray')) {
+          if (attackerAir < 2) defenderDefense -= 3
+          else if (attackerAir === 2) defenderDefense -= 4
+          else if (attackerAir === 3) defenderDefense -= 5
+        }
+
+        // Curse spell
+        if (effects.includes('Curse')) {
+          if (attackerFire < 2) this.data.defender.unit.stats.maxDamage = this.data.defender.unit.stats.minDamage
+          else if (attackerFire > 1) {
+            this.data.defender.unit.stats.minDamage = this.data.defender.unit.stats.minDamage * 0.8 - 1
+            this.data.defender.unit.stats.maxDamage = this.data.defender.unit.stats.minDamage
+          }
+        }
+      }
+      return { attackerAttack, attackerDefense, defenderAttack, defenderDefense }
+    },
+    calculateDamagesModification (attackerMinDamage, attackerMaxDamage, defenderMinDamage, defenderMaxDamage) {
+      // const attackerAir = this.data.attacker.hero.skills.airLevel
+      const attackerFire = this.data.attacker.hero.skills.fireLevel
+      // const attackerEarth = this.data.attacker.hero.skills.earthLevel
+      const attackerWater = this.data.attacker.hero.skills.waterLevel
+
+      // const defenderAir = this.data.defender.hero.skills.airLevel
+      const defenderFire = this.data.defender.hero.skills.fireLevel
+      // const defenderEarth = this.data.defender.hero.skills.earthLevel
+      const defenderWater = this.data.defender.hero.skills.waterLevel
+
+      // For ATTACKER
+      if (this.data.attacker.effects.length > 0) {
+        const effects = this.data.attacker.effects
+
+        // Bless spell
+        if (effects.includes('Bless')) {
+          if (attackerWater < 2) attackerMinDamage = attackerMaxDamage
+          else if (attackerWater > 1) attackerMinDamage = attackerMaxDamage + 1
+        }
+
+        // Curse spell
+        if (this.data.attacker.effects.includes('Curse')) {
+          if (defenderFire < 2) attackerMaxDamage = attackerMinDamage
+          else if (defenderFire > 1) {
+            attackerMinDamage = attackerMinDamage * 0.8 - 1
+            attackerMaxDamage = attackerMinDamage
+          }
+        }
+      }
+
+      // For DEFENDER
+      if (this.data.defender.effects.length > 0) {
+        const effects = this.data.defender.effects
+
+        // Bless spell
+        if (effects.includes('Bless')) {
+          if (defenderWater < 2) defenderMinDamage = defenderMaxDamage
+          else if (defenderWater > 1) defenderMinDamage = defenderMaxDamage + 1
+        }
+
+        // Curse spell
+        if (this.data.attacker.effects.includes('Curse')) {
+          if (attackerFire < 2) defenderMaxDamage = defenderMinDamage
+          else if (attackerFire > 1) {
+            defenderMinDamage = defenderMinDamage * 0.8 - 1
+            defenderMaxDamage = defenderMinDamage
+          }
+        }
+      }
+      return { attackerMinDamage, attackerMaxDamage, defenderMinDamage, defenderMaxDamage }
+    },
+    calculateTotalDamagesModification (attackerTotalMinDamage, attackerTotalMaxDamage, defenderTotalMinDamage, defenderTotalMaxDamage) {
+      // For ATTACKER
+
+      // Offense ATTACKER skill bonus
+      if (this.data.attacker.hero.skills.offenseLevel > 0 && !this.data.attacker.unit.ranged) {
+        attackerTotalMinDamage += (attackerTotalMinDamage * 0.1) * this.data.attacker.hero.skills.offenseLevel
+        attackerTotalMaxDamage += (attackerTotalMaxDamage * 0.1) * this.data.attacker.hero.skills.offenseLevel
+      }
+
+      // Armorer ATTACKER skill bonus
+      if (this.data.attacker.hero.skills.armorerLevel > 0) {
+        defenderTotalMinDamage -= (defenderTotalMinDamage * 0.05) * this.data.attacker.hero.skills.armorerLevel
+        defenderTotalMaxDamage -= (defenderTotalMaxDamage * 0.05) * this.data.attacker.hero.skills.armorerLevel
+      }
+
+      // Archery ATTACKER skill bonus
+      if (this.data.attacker.hero.skills.archeryLevel > 0 && this.data.attacker.unit.ranged) {
+        let bonus = 0
+        if (this.data.attacker.hero.skills.archeryLevel === 1) bonus = 0.1
+        if (this.data.attacker.hero.skills.archeryLevel === 2) bonus = 0.25
+        if (this.data.attacker.hero.skills.archeryLevel === 3) bonus = 0.5
+
+        attackerTotalMinDamage += attackerTotalMinDamage * bonus
+        attackerTotalMaxDamage += attackerTotalMaxDamage * bonus
+      }
+
+      // Artillery ATTACKER skill bonus (for ballista and cannon only)
+      if (this.data.attacker.hero.skills.artilleryLevel > 0 && (this.data.attacker.unit.id === 158 || this.data.attacker.unit.id === 159)) {
+        if (this.data.attacker.hero.skills.artilleryLevel === 3) {
+          attackerTotalMinDamage *= 2
+          attackerTotalMaxDamage *= 2
+        }
+      }
+
+      // ATTACKER shield spell
+      if (this.data.attacker.effects.includes('Shield')) {
+        if (this.data.attacker.hero.skills.earthLevel < 2) {
+          defenderTotalMinDamage -= defenderTotalMinDamage * 0.15
+          defenderTotalMaxDamage -= defenderTotalMaxDamage * 0.15
+        } else if (this.data.attacker.hero.skills.earthLevel > 1) {
+          defenderTotalMinDamage -= defenderTotalMinDamage * 0.3
+          defenderTotalMaxDamage -= defenderTotalMaxDamage * 0.3
+        }
+      }
+
+      // For DEFENDER
+
+      // Offense DEFENDER skill bonus
+      if (this.data.defender.hero.skills.offenseLevel > 0 && !this.data.defender.unit.ranged) {
+        defenderTotalMinDamage += (attackerTotalMinDamage * 0.1) * this.data.defender.hero.skills.offenseLevel
+        defenderTotalMaxDamage += (attackerTotalMaxDamage * 0.1) * this.data.defender.hero.skills.offenseLevel
+      }
+
+      // Armorer DEFENDER skill bonus
+      if (this.data.defender.hero.skills.armorerLevel > 0) {
+        attackerTotalMinDamage -= (defenderTotalMinDamage * 0.05) * this.data.defender.hero.skills.armorerLevel
+        attackerTotalMaxDamage -= (defenderTotalMaxDamage * 0.05) * this.data.defender.hero.skills.armorerLevel
+      }
+
+      // Archery DEFENDER skill bonus
+      if (this.data.defender.hero.skills.archeryLevel > 0 && this.data.attacker.unit.ranged) {
+        let bonus = 0
+        if (this.data.defender.hero.skills.archeryLevel === 1) bonus = 0.1
+        if (this.data.defender.hero.skills.archeryLevel === 2) bonus = 0.25
+        if (this.data.defender.hero.skills.archeryLevel === 3) bonus = 0.5
+
+        defenderTotalMinDamage += attackerTotalMinDamage * bonus
+        defenderTotalMaxDamage += attackerTotalMaxDamage * bonus
+      }
+
+      // Artillery DEFENDER skill bonus (for ballista and cannon only)
+      if (this.data.defender.hero.skills.artilleryLevel > 0 && (this.data.defender.unit.id === 158 || this.data.defender.unit.id === 159)) {
+        if (this.data.defender.hero.skills.artilleryLevel === 3) {
+          defenderTotalMinDamage *= 2
+          defenderTotalMaxDamage *= 2
+        }
+      }
+
+      // DEFENDER shield spell
+      if (this.data.defender.effects.includes('Shield')) {
+        if (this.data.defender.hero.skills.earthLevel < 2) {
+          attackerTotalMinDamage -= attackerTotalMinDamage * 0.15
+          attackerTotalMaxDamage -= attackerTotalMaxDamage * 0.15
+        } else if (this.data.defender.hero.skills.earthLevel > 1) {
+          attackerTotalMinDamage -= attackerTotalMinDamage * 0.3
+          attackerTotalMaxDamage -= attackerTotalMaxDamage * 0.3
+        }
+      }
+
+      return { attackerTotalMinDamage, attackerTotalMaxDamage, defenderTotalMinDamage, defenderTotalMaxDamage }
+    },
     jsonToData () {
       // Castle
       for (let i = 0; i < 14; i++) {
@@ -1010,7 +1357,7 @@ export default {
 }
 
 .green-btn {
-  background-color: $a-light-green;
+  background-color: $custom-light-green;
   color: black;
 }
 </style>
