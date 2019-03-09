@@ -1030,7 +1030,15 @@ export default {
           attackerDefense = 0
         }
 
-        // need Slayer spell here
+        // Slayer spell
+        if (effects.includes('Slayer')) {
+          let units = [26, 27, 54, 55, 68, 69, 96, 97, 110, 111, 137, 138, 139, 140]
+          if (attackerFire === 2) units.push(12, 13, 82, 83)
+          else if (attackerFire === 3) units.push(40, 41, 124, 125, 154, 155)
+
+          // If DEFENDER unit in slayer units list
+          if (units.includes(this.data.defender.unit.id)) attackerAttack += 8
+        }
 
         // Prayer spell
         if (effects.includes('Prayer')) {
@@ -1072,7 +1080,7 @@ export default {
       }
 
       if (this.data.defender.effects.length > 0) {
-        const effects = this.data.attacker.effects
+        const effects = this.data.defender.effects
 
         // DEFENDER stats buffs
 
@@ -1090,7 +1098,15 @@ export default {
           defenderDefense = 0
         }
 
-        // need Slayer spell here
+        // Slayer spell
+        if (effects.includes('Slayer')) {
+          let units = [26, 27, 54, 55, 68, 69, 96, 97, 110, 111, 137, 138, 139, 140]
+          if (attackerFire === 2) units.push(12, 13, 82, 83)
+          else if (attackerFire === 3) units.push(40, 41, 124, 125, 154, 155)
+
+          // If ATTACKER unit in slayer units list
+          if (units.includes(this.data.attacker.unit.id)) defenderAttack += 8
+        }
 
         // Prayer spell
         if (effects.includes('Prayer')) {
