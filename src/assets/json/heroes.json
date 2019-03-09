@@ -1,8 +1,8 @@
 [
   {
     "id": 0,
-    "specialtySkill": "Archery",
-    "name": "Оррин"
+    "name": "Оррин",
+    "specialtySkill": "archery"
   },
   {
     "id": 1,
@@ -42,19 +42,19 @@
     "name": "Рион"
   },
   {
-    "specialtySpell": "Bless",
+    "specialtySpell": "bless",
     "id": 9,
     "name": "Адель"
   },
   {
-    "specialtySpell": "Weakness",
+    "specialtySpell": "weakness",
     "id": 10,
     "name": "Катберт"
   },
   {
     "id": 11,
     "name": "Аделаида",
-    "specialtySpell": "FrostRing"
+    "specialtySpell": "frost ring"
   },
   {
     "id": 12,
@@ -66,7 +66,7 @@
     "name": "Саня"
   },
   {
-    "specialtySpell": "Prayer",
+    "specialtySpell": "prayer",
     "id": 14,
     "name": "Лоинс"
   },
@@ -75,7 +75,7 @@
     "name": "Каитлин"
   },
   {
-    "specialtySkill": "Armorer",
+    "specialtySkill": "armorer",
     "id": 16,
     "name": "Мефала"
   },
@@ -112,7 +112,7 @@
     "name": "Киррь"
   },
   {
-    "specialtySpell": "Slayer",
+    "specialtySpell": "slayer",
     "id": 24,
     "name": "Корониус"
   },
@@ -139,7 +139,7 @@
   {
     "id": 30,
     "name": "Алагар",
-    "specialtySpell": "IceBolt"
+    "specialtySpell": "ice bolt"
   },
   {
     "id": 31,
@@ -162,7 +162,7 @@
     "specialtyUnit": [ 32, 33 ]
   },
   {
-    "specialtySkill": "Armorer",
+    "specialtySkill": "armorer",
     "id": 35,
     "name": "Нила"
   },
@@ -209,7 +209,7 @@
   {
     "id": 45,
     "name": "Солмир",
-    "specialtySpell": "ChainLightning"
+    "specialtySpell": "chain lightning"
   },
   {
     "id": 46,
@@ -265,14 +265,14 @@
   {
     "id": 57,
     "name": "Ксирон",
-    "specialtySpell": "Inferno"
+    "specialtySpell": "inferno"
   },
   {
     "id": 58,
     "name": "Аксис"
   },
   {
-    "specialtySpell": "Weakness",
+    "specialtySpell": "weakness",
     "id": 59,
     "name": "Олема"
   },
@@ -281,19 +281,19 @@
     "name": "Калид"
   },
   {
-    "specialtySpell": "Bloodlust",
+    "specialtySpell": "bloodlust",
     "id": 61,
     "name": "Аш"
   },
   {
     "id": 62,
     "name": "Зидар",
-    "specialtySkill": "Sorcery"
+    "specialtySkill": "sorcery"
   },
   {
     "id": 63,
     "name": "Ксарфакс",
-    "specialtySpell": "Fireball"
+    "specialtySpell": "fireball"
   },
   {
     "id": 64,
@@ -336,17 +336,17 @@
   {
     "id": 72,
     "name": "Септиенна",
-    "specialtySpell": "DestroyUndead"
+    "specialtySpell": "destroy undead"
   },
   {
     "id": 73,
     "name": "Аислин",
-    "specialtySpell": "MeteorShower"
+    "specialtySpell": "meteor shower"
   },
   {
     "id": 74,
     "name": "Сандро",
-    "specialtySkill": "Sorcery"
+    "specialtySkill": "sorcery"
   },
   {
     "id": 75,
@@ -357,7 +357,7 @@
     "name": "Тант"
   },
   {
-    "specialtySpell": "StoneSkin",
+    "specialtySpell": "stone skin",
     "id": 77,
     "name": "Кси"
   },
@@ -418,7 +418,7 @@
   {
     "id": 90,
     "name": "Малекит",
-    "specialtySkill": "Sorcery"
+    "specialtySkill": "sorcery"
   },
   {
     "id": 91,
@@ -431,14 +431,14 @@
   {
     "id": 93,
     "name": "Деемер",
-    "specialtySpell": "MeteorShower"
+    "specialtySpell": "meteor shower"
   },
   {
     "id": 94,
     "name": "Сепхинороф"
   },
   {
-    "specialtySpell": "StoneSkin",
+    "specialtySpell": "stone skin",
     "id": 95,
     "name": "Дарксторн"
   }
@@ -474,9 +474,9 @@
     "specialtyUnit": [ 104, 105 ]
   },
   {
-    "specialtySkill": "Offense",
     "id": 102,
-    "name": "Крэг Хэк"
+    "name": "Крэг Хэк",
+    "specialtySkill": "offense"
   },
   {
     "id": 103,
@@ -486,7 +486,7 @@
   {
     "id": 104,
     "name": "Гирд",
-    "specialtySkill": "Sorcery"
+    "specialtySkill": "sorcery"
   },
   {
     "id": 105,
@@ -502,12 +502,12 @@
     "name": "Терек"
   },
   {
-    "specialtySpell": "Precision",
+    "specialtySpell": "precision",
     "id": 108,
     "name": "Зубин"
   },
   {
-    "specialtySkill": "Offense",
+    "specialtySkill": "offense",
     "id": 109,
     "name": "Гундула"
   },
@@ -535,7 +535,7 @@
     "specialtyUnit": [ 86, 87 ]
   },
   {
-    "specialtySkill": "Armorer",
+    "specialtySkill": "armorer",
     "id": 115,
     "name": "Тазар"
   },
@@ -560,7 +560,7 @@
     "specialtyUnit": [ 94, 95 ]
   },
   {
-    "specialtySpell": "Weakness",
+    "specialtySpell": "weakness",
     "id": 120,
     "name": "Мирланда"
   },
@@ -577,14 +577,14 @@
     "name": "Вердиш"
   },
   {
-    "specialtySpell": "StoneSkin",
+    "specialtySpell": "stone skin",
     "id": 124,
     "name": "Мерист"
   },
   {
     "id": 125,
     "name": "Стиг",
-    "specialtySkill": "Sorcery"
+    "specialtySkill": "sorcery"
   },
   {
     "id": 126,
@@ -637,7 +637,7 @@
   {
     "id": 136,
     "name": "Луна",
-    "specialtySpell": "FireWall"
+    "specialtySpell": "fire wall"
   },
   {
     "id": 137,
@@ -646,20 +646,20 @@
   {
     "id": 138,
     "name": "Циель",
-    "specialtySpell": "MagicArrow"
+    "specialtySpell": "magic arrow"
   },
   {
-    "specialtySpell": "StoneSkin",
+    "specialtySpell": "stone skin",
     "id": 139,
     "name": "Лабета"
   },
   {
-    "specialtySpell": "Bloodlust",
+    "specialtySpell": "bloodlust",
     "id": 140,
     "name": "Интеус"
   },
   {
-    "specialtySpell": "DisruptingRay",
+    "specialtySpell": "disrupting ray",
     "id": 141,
     "name": "Аэнаин"
   },
@@ -679,7 +679,7 @@
   {
     "id": 144,
     "name": "Corkes",
-    "specialtySkill": "Offense"
+    "specialtySkill": "offense"
   },
   {
     "id": 145,
@@ -721,7 +721,7 @@
   {
     "id": 153,
     "name": "Spint",
-    "specialtySkill": "Sorcery"
+    "specialtySkill": "sorcery"
   },
   {
     "id": 154,
@@ -730,7 +730,7 @@
   {
     "id": 155,
     "name": "Manfred",
-    "specialtySpell": "Fireball"
+    "specialtySpell": "fireball"
   },
   {
     "id": 156,
