@@ -1369,6 +1369,7 @@ export default {
 @import '@/css/colors.scss';
 
 .calculator {
+  min-height: 80vh;
   box-shadow: 0 0 5px #AAA;
 }
 
