@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 import App from '@/App.vue'
 
-import store from '@/states/store.js'
+import store from '@/store'
 
 import BootstrapVue from 'bootstrap-vue'
 
