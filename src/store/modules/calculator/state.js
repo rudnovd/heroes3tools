@@ -1,4 +1,6 @@
 export default {
+  heroes: [],
+
   attacker: {
     unit: null
   },

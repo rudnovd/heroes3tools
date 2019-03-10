@@ -16,7 +16,7 @@
           //- Pick ATTACKER unit image
           b-col(cols='3' sm='3' md='3' lg='3' xl='3')
             b-button(variant='link' @click='pickAttackerModalShow()')
-              img(v-if='data.attacker.unit' :src='require(`@/assets/images/${data.attacker.unit.id}.gif`)')
+              img(v-if='data.attacker.unit' :src='unitsImages[data.attacker.unit.id].src')
               font-awesome-icon.fa-4x(v-else icon='question-circle' style='color: #00CB31')
 
             //- Attacker units count
@@ -294,7 +294,7 @@
           //- Pick DEFENDER unit image
           b-col(cols='3' sm='3' md='3' lg='3' xl='3')
             b-button(variant='link' @click='pickDefenderModalShow()')
-              img(v-if='data.defender.unit' :src='require(`@/assets/images/${data.defender.unit.id}.gif`)')
+              img(v-if='data.defender.unit' :src='unitsImages[data.defender.unit.id].src')
               font-awesome-icon.fa-4x(v-else icon='question-circle' style='color: #DC3545')
 
             //- Defender units count
@@ -538,6 +538,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import selectHero from '@/components/damageCalculator/selectHero.vue'
 
 import pickUnitModal from '@/components/damageCalculator/pickUnitModal.vue'
@@ -552,7 +554,13 @@ export default {
     document.title = 'Damage calculator'
   },
   mounted () {
-    this.setUnitsImages()
+    this.$store.dispatch('calculator/getUnitsImages')
+    this.$store.dispatch('calculator/getHeroes')
+  },
+  computed: {
+    ...mapState({
+      unitsImages: state => state.calculator.images.units
+    })
   },
   data () {
     return {
@@ -664,9 +672,6 @@ export default {
     }
   },
   methods: {
-    setUnitsImages () {
-      this.$store.dispatch('calculator/setUnitsImages')
-    },
     selectHero (side, hero) {
       if (side === 'attacker') this.data.attacker.hero.hero = hero
       else if (side === 'defender') this.data.defender.hero.hero = hero
@@ -866,6 +871,19 @@ export default {
       const defenderEarth = this.data.defender.hero.skills.earthLevel
       const defenderWater = this.data.defender.hero.skills.waterLevel
 
+      // ATTACKER hero unit specialty bonus1
+      if (attackerHero) {
+        if (attackerHero.specialtyUnit !== undefined) {
+          if (attackerHero.specialtyUnit.includes(this.data.attacker.unit.id)) {
+            attackerAttack *= 1 + this.data.attacker.hero.level / this.data.attacker.unit.level * 0.05
+            attackerDefense *= 1 + this.data.attacker.hero.level / this.data.attacker.unit.level * 0.05
+
+            attackerAttack = Math.ceil(attackerAttack)
+            attackerDefense = Math.ceil(attackerDefense)
+          }
+        }
+      }
+
       if (this.data.attacker.effects.length > 0) {
         const effects = this.data.attacker.effects
 
@@ -979,10 +997,23 @@ export default {
         }
       }
 
+      // DEFENDER stats buffs
+
+      // DEFENDER hero unit specialty bonus
+      if (defenderHero) {
+        if (defenderHero.specialtyUnit !== undefined) {
+          if (defenderHero.specialtyUnit.includes(this.data.defender.unit.id)) {
+            defenderAttack *= 1 + this.data.defender.hero.level / this.data.defender.unit.level * 0.05
+            defenderDefense *= 1 + this.data.defender.hero.level / this.data.defender.unit.level * 0.05
+
+            defenderAttack = Math.ceil(defenderAttack)
+            defenderDefense = Math.ceil(defenderDefense)
+          }
+        }
+      }
+
       if (this.data.defender.effects.length > 0) {
         const effects = this.data.defender.effects
-
-        // DEFENDER stats buffs
 
         // Bloodlust spell
         if (effects.includes('Bloodlust')) {
