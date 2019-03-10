@@ -15,7 +15,7 @@
         b-row
           //- Pick ATTACKER unit image
           b-col(cols='3' sm='3' md='3' lg='3' xl='3')
-            b-button(variant='link' @click='selectAttackerModalShow()')
+            b-button(variant='link' @click='pickAttackerModalShow()')
               img(v-if='data.attacker.unit' :src='require(`@/assets/images/${data.attacker.unit.id}.gif`)')
               font-awesome-icon.fa-4x(v-else icon='question-circle' style='color: #00CB31')
 
@@ -34,7 +34,7 @@
 
           //- Pick ATTACKER unit button
           b-col(cols='9' sm='9' md='9' lg='9' xl='9')
-            b-button.green-btn(size='sm' block @click='selectAttackerModalShow()')
+            b-button.green-btn(size='sm' block @click='pickAttackerModalShow()')
               template(v-if='data.attacker.unit')
                 strong
                   | {{ data.attacker.unit.name }}
@@ -279,7 +279,7 @@
 
           //- Pick DEFENDER unit button
           b-col(cols='9' sm='9' md='9' lg='9' xl='9')
-            b-button(size='sm' variant='danger' block @click='selectDefenderModalShow()')
+            b-button(size='sm' variant='danger' block @click='pickDefenderModalShow()')
               template(v-if='data.defender.unit')
                 strong
                   | {{ data.defender.unit.name }}
@@ -293,7 +293,7 @@
 
           //- Pick DEFENDER unit image
           b-col(cols='3' sm='3' md='3' lg='3' xl='3')
-            b-button(variant='link' @click='selectDefenderModalShow()')
+            b-button(variant='link' @click='pickDefenderModalShow()')
               img(v-if='data.defender.unit' :src='require(`@/assets/images/${data.defender.unit.id}.gif`)')
               font-awesome-icon.fa-4x(v-else icon='question-circle' style='color: #DC3545')
 
@@ -531,146 +531,32 @@
               | {{ data.defender.minKills }}
 
     //- Pick ATTACKER unit modal
-    b-modal(
-      title='Pick attacker unit'
-      ref='selectAttackerModal'
-      size='xl'
-      no-close-on-backdrop=true
-      ok-disabled=true
-      cancel-disabled=true
-      hide-footer=true
-    )
-      //- Modal content
-      b-row(align-v='center')
-
-        //- Search unit
-        b-col.ml-2.mr-auto.mb-3(cols='5' sm='5' md='5' lg='4' xl='3')
-          b-form-input(
-            v-model='data.attacker.search.text'
-            type='text'
-            placeholder='Angel'
-            @input='searchAttackerUnit()'
-          )
-        //- Clear unit
-        b-col.mr-2.mr-sm-4.mr-md-4.mr-lg-5.mr-xl-5(cols='3' sm='2' md='2' lg='1' xl='1')
-          b-btn(
-            variant='danger'
-            @click='data.attacker.unit = null; selectAttackerModalHide()'
-          ) Clear
-
-        //- Show if search
-        b-col(v-if='this.data.attacker.search.text' cols='12')
-          b-btn(
-            variant='link'
-            size='sm'
-            v-for='(unit, index) in data.attacker.search.foundUnits'
-            :key='unit.id'
-          )
-            img(:src='require(`@/assets/images/${unit.id}.gif`)' @click='selectAttacker(unit)')
-
-        //- Show if not search
-        b-col(
-          v-else
-          cols='12'
-          v-for='(castle, index) in Object.keys(data.units.list)'
-          :key='castle.id'
-        )
-          b-btn(
-            variant='link'
-            size='sm'
-            v-for='(unit, number) in data.units.list[castle]'
-            :key='unit.id'
-          )
-            img(:src='require(`@/assets/images/${unit.id}.gif`)' @click='selectAttacker(unit)')
+    pick-unit-modal(side='attacker' refString='attackerModal' @sendUnit='selectUnit("attacker", $event)')
 
     //- Pick DEFENDER unit modal
-    b-modal(
-      title='Pick defender unit'
-      ref='selectDefenderModal'
-      size='xl'
-      no-close-on-backdrop=true
-      ok-disabled=true
-      cancel-disabled=true
-      hide-footer=true
-    )
-      //- Modal content
-      b-row(align-v='center')
-
-        //- Search unit
-        b-col.ml-2.mr-auto.mb-3(cols='5' sm='5' md='5' lg='4' xl='3')
-          b-form-input(
-            v-model='data.defender.search.text'
-            type='text'
-            placeholder='Angel'
-            @input='searchDefenderUnit()'
-          )
-        //- Clear unit
-        b-col.mr-2.mr-sm-4.mr-md-4.mr-lg-5.mr-xl-5(cols='3' sm='2' md='2' lg='1' xl='1')
-          b-btn(
-            variant='danger'
-            @click='data.defender.unit = null; selectDefenderModalHide()'
-          ) Clear
-
-        //- Show if search
-        b-col(v-if='this.data.defender.search.text' cols='12')
-          b-btn(
-            variant='link'
-            size='sm'
-            v-for='(unit, index) in data.defender.search.foundUnits'
-            :key='unit.id'
-          )
-            img(:src='require(`@/assets/images/${unit.id}.gif`)' @click='selectDefender(unit)')
-
-        //- Show if not search
-        b-col(
-          v-else
-          cols='12'
-          v-for='(castle, index) in Object.keys(data.units.list)'
-          :key='castle.id'
-        )
-          b-btn(
-            variant='link'
-            size='sm'
-            v-for='(unit, number) in data.units.list[castle]'
-            :key='unit.id'
-          )
-            img(:src='require(`@/assets/images/${unit.id}.gif`)' @click='selectDefender(unit)')
+    pick-unit-modal(side='defender' refString='defenderModal' @sendUnit='selectUnit("defender", $event)')
 </template>
 
 <script>
-import unitsJson from '@/assets/json/units.json'
-
 import selectHero from '@/components/damageCalculator/selectHero.vue'
+
+import pickUnitModal from '@/components/damageCalculator/pickUnitModal.vue'
 
 export default {
   name: 'DamageCalculator',
   components: {
-    'select-hero': selectHero
+    'select-hero': selectHero,
+    'pick-unit-modal': pickUnitModal
   },
   beforeCreate () {
     document.title = 'Damage calculator'
   },
   mounted () {
-    this.jsonToData()
+    this.setUnitsImages()
   },
   data () {
     return {
       data: {
-        units: {
-          list: {
-            castle: [],
-            rampart: [],
-            tower: [],
-            inferno: [],
-            necropolis: [],
-            dungeon: [],
-            stronghold: [],
-            fortress: [],
-            conflux: [],
-            cove: [],
-            neutral: []
-          }
-        },
 
         skillsOptions: [
           { text: 'None', value: 0 },
@@ -778,6 +664,9 @@ export default {
     }
   },
   methods: {
+    setUnitsImages () {
+      this.$store.dispatch('calculator/setUnitsImages')
+    },
     selectHero (side, hero) {
       if (side === 'attacker') this.data.attacker.hero.hero = hero
       else if (side === 'defender') this.data.defender.hero.hero = hero
@@ -785,33 +674,17 @@ export default {
       this.calculate()
     },
     // Select unit
-    selectAttacker (unit) {
-      this.data.attacker.unit = unit
-
-      this.data.attacker.search.text = null
-      this.data.attacker.search.foundUnits = []
-
+    selectUnit (side, unit) {
+      if (side === 'attacker') this.data.attacker.unit = unit
+      else if (side === 'defender') this.data.defender.unit = unit
       this.calculate()
-
-      this.$refs.selectAttackerModal.hide()
     },
-    selectDefender (unit) {
-      this.data.defender.unit = unit
-
-      this.data.defender.search.text = null
-      this.data.defender.search.foundUnits = []
-
-      this.calculate()
-
-      this.$refs.selectDefenderModal.hide()
-    },
-
     // Show modal
-    selectAttackerModalShow () {
-      this.$refs.selectAttackerModal.show()
+    pickAttackerModalShow () {
+      this.$root.$emit('attackerModal')
     },
-    selectDefenderModalShow () {
-      this.$refs.selectDefenderModal.show()
+    pickDefenderModalShow () {
+      this.$root.$emit('defenderModal')
     },
 
     // Hide modals
@@ -820,24 +693,6 @@ export default {
     },
     selectDefenderModalHide () {
       this.$refs.selectDefenderModal.hide()
-    },
-
-    // Search units
-    searchAttackerUnit () {
-      this.data.attacker.search.foundUnits = []
-      for (let i = 0; i < unitsJson.length; i++) {
-        if (unitsJson[i].name.indexOf(this.data.attacker.search.text) !== -1 || unitsJson[i].name.toLowerCase().indexOf(this.data.attacker.search.text) !== -1) {
-          this.data.attacker.search.foundUnits.push(unitsJson[i])
-        }
-      }
-    },
-    searchDefenderUnit () {
-      this.data.defender.search.foundUnits = []
-      for (let i = 0; i < unitsJson.length; i++) {
-        if (unitsJson[i].name.indexOf(this.data.defender.search.text) !== -1 || unitsJson[i].name.toLowerCase().indexOf(this.data.defender.search.text) !== -1) {
-          this.data.defender.search.foundUnits.push(unitsJson[i])
-        }
-      }
     },
 
     pushAttackerSpells (spell) {
@@ -1474,67 +1329,6 @@ export default {
       }
 
       return { attackerTotalMinDamage, attackerTotalMaxDamage, defenderTotalMinDamage, defenderTotalMaxDamage }
-    },
-    jsonToData () {
-      // Castle
-      for (let i = 0; i < 14; i++) {
-        this.data.units.list.castle.push(unitsJson[i])
-      }
-
-      // Rampart
-      for (let i = 14; i < 28; i++) {
-        this.data.units.list.rampart.push(unitsJson[i])
-      }
-
-      // Tower
-      for (let i = 28; i < 42; i++) {
-        this.data.units.list.tower.push(unitsJson[i])
-      }
-
-      // Necropolis
-      for (let i = 42; i < 56; i++) {
-        this.data.units.list.necropolis.push(unitsJson[i])
-      }
-
-      // Dungeon
-      for (let i = 56; i < 70; i++) {
-        this.data.units.list.dungeon.push(unitsJson[i])
-      }
-
-      // Inferno
-      for (let i = 70; i < 84; i++) {
-        this.data.units.list.inferno.push(unitsJson[i])
-      }
-
-      // Stronghold
-      for (let i = 84; i < 98; i++) {
-        this.data.units.list.stronghold.push(unitsJson[i])
-      }
-
-      // Fortress
-      for (let i = 98; i < 112; i++) {
-        this.data.units.list.fortress.push(unitsJson[i])
-      }
-
-      // Conflux
-      for (let i = 112; i < 126; i++) {
-        this.data.units.list.conflux.push(unitsJson[i])
-      }
-
-      // Cove
-      for (let i = 141; i < 156; i++) {
-        this.data.units.list.cove.push(unitsJson[i])
-      }
-
-      // Neutral
-      for (let i = 126; i < 141; i++) {
-        this.data.units.list.neutral.push(unitsJson[i])
-      }
-
-      // Neutral
-      for (let i = 156; i < 161; i++) {
-        this.data.units.list.neutral.push(unitsJson[i])
-      }
     }
   }
 }
