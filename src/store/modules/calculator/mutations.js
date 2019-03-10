@@ -1,8 +1,12 @@
+import heroesJson from '@/assets/json/heroes.json'
+
 export default {
-  SET_UNITS_IMAGES (state) {
+  GET_UNITS_IMAGES (state) {
     for (let i = 0; i <= 160; i++) {
       state.images.units.push({ id: i, src: require(`@/assets/images/${i}.gif`) })
-      state.attacker.unit = 'biba'
     }
+  },
+  GET_HEROES (state) {
+    state.heroes = heroesJson
   }
 }

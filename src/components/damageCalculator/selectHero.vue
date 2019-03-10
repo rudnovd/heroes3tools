@@ -1,25 +1,27 @@
 <template lang='pug'>
 v-select(
-  v-model='data.hero'
-  :options='data.heroes'
+  v-model='hero'
+  :options='heroes'
   label='name'
   placeholder='Hero'
-  @input='sendHero(data.hero)'
+  @input='sendHero(hero)'
 )
 </template>
 
 <script>
-import heroesJson from '@/assets/json/heroes.json'
+import { mapState } from 'vuex'
 
 export default {
   name: 'selectHero',
   data () {
     return {
-      data: {
-        heroes: heroesJson,
-        hero: null
-      }
+      hero: null
     }
+  },
+  computed: {
+    ...mapState({
+      heroes: state => state.calculator.heroes
+    })
   },
   methods: {
     sendHero (hero) {
