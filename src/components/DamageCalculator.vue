@@ -2,7 +2,6 @@
 b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
 
   b-row
-
     //- Attacker col
     b-col.attacker.border-top.border-right(cols='12' sm='12' md='6' lg='6' xl='6')
 
@@ -258,7 +257,7 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
         b-col.text-right
           strong Kills:
         //- Kills value
-        p.text-left.mr-2
+        p.text-left.mr-3
           strong(v-if='data.attacker.minKills !== data.attacker.maxKills')
             | {{ data.attacker.minKills }} — {{ data.attacker.maxKills }} (~ {{ data.attacker.averageKills }})
           strong(v-else)
@@ -314,7 +313,7 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
               )
 
       //- Inputs DEFENDER level and stats
-      b-row.mt-2(v-if='data.attacker.hero.hero')
+      b-row.mt-2(v-if='data.defender.hero.hero')
 
         //- Input DEFENDER level
         b-col(cols='auto' sm='2' md='3' lg='2' xl='2')
@@ -523,7 +522,7 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
           strong Kills:
         //- Kills value
         p.text-left.mr-3
-          strong(v-if='data.defender.minDamage !== data.defender.maxDamage')
+          strong(v-if='data.defender.minKills !== data.defender.maxKills')
             | {{ data.defender.minKills }} — {{data.defender.maxKills}} (~ {{ data.defender.averageKills }})
           strong(v-else)
             | {{ data.defender.minKills }}
@@ -531,6 +530,27 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
         p.text-left.mr-3(v-if='data.defender.unit.hits > 1')
           strong
             | x{{ data.defender.unit.hits }}
+
+  //- Bottom panel
+  b-row.p-2.border-top
+
+    //- Swap button
+    b-col.text-left.ml-auto.mr-auto.mr-md-3.mr-lg-3.mr-xl-3(cols='auto' sm='2' md='1' lg='1' xl='1')
+      b-button(v-if='this.data.attacker.unit && this.data.defender.unit' variant='link' size='sm' @click='swapSides()')
+        font-awesome-icon.fa-2x(icon='sync' style='color: #DC3545')
+
+    //- Terrain text
+    b-col(cols='auto' sm='2' md='2' lg='1' xl='1' offset='0' offset-sm='4' offset-md='0' offset-lg='2' offset-xl='2').text-right
+      label.mt-1 Terrain:
+
+    //- Terrain select
+    b-col(cols='auto' sm='4' md='3' lg='2' xl='2')
+      b-form-select(
+        v-model='data.terrain'
+        :options='data.terrainOptions'
+        value-field='id'
+        text-field='name'
+        size='sm')
 
   //- Pick ATTACKER unit modal
   pick-unit-modal(side='attacker' refString='attackerModal' @sendUnit='selectUnit("attacker", $event)')
@@ -545,6 +565,8 @@ import { mapState } from 'vuex'
 import selectHero from '@/components/damageCalculator/selectHero.vue'
 
 import pickUnitModal from '@/components/damageCalculator/pickUnitModal.vue'
+
+import terrainsJson from '@/assets/json/terrains.json'
 
 export default {
   name: 'DamageCalculator',
@@ -581,6 +603,9 @@ export default {
           attackDebuffs: ['Curse', 'Weakness', 'Disrupting Ray'],
           defenseDebuffs: []
         },
+
+        terrain: null,
+        terrainOptions: terrainsJson,
 
         attacker: {
           unit: null,
@@ -1362,6 +1387,11 @@ export default {
       }
 
       return { attackerTotalMinDamage, attackerTotalMaxDamage, defenderTotalMinDamage, defenderTotalMaxDamage }
+    },
+    swapSides () {
+      let tmp = this.data.attacker
+      this.data.attacker = this.data.defender
+      this.data.defender = tmp
     }
   }
 }
@@ -1387,5 +1417,12 @@ export default {
 .green-btn {
   background-color: $custom-light-green;
   color: black;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
 }
 </style>

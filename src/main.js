@@ -14,7 +14,7 @@ import vSelect from 'vue-select'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 
-import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
+import { faQuestionCircle, faSync } from '@fortawesome/free-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -24,7 +24,7 @@ Vue.use(BootstrapVue)
 
 Vue.component('v-select', vSelect)
 
-library.add(faQuestionCircle)
+library.add(faQuestionCircle, faSync)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
