@@ -1,38 +1,38 @@
 [
   {
-    "Id": 0,
-    "Name": "Dirt"
+    "id": 0,
+    "name": "Dirt"
   },
   {
-    "Id": 1,
-    "Name": "Sand"
+    "id": 1,
+    "name": "Sand"
   },
   {
-    "Id": 2,
-    "Name": "Grass"
+    "id": 2,
+    "name": "Grass"
   },
   {
-    "Id": 3,
-    "Name": "Snow"
+    "id": 3,
+    "name": "Snow"
   },
   {
-    "Id": 4,
-    "Name": "Swamp"
+    "id": 4,
+    "name": "Swamp"
   },
   {
-    "Id": 5,
-    "Name": "Rough"
+    "id": 5,
+    "name": "Rough"
   },
   {
-    "Id": 6,
-    "Name": "Subterranean"
+    "id": 6,
+    "name": "Subterranean"
   },
   {
-    "Id": 7,
-    "Name": "Lava"
+    "id": 7,
+    "name": "Lava"
   },
   {
-    "Id": 8,
-    "Name": "Highlands"
+    "id": 8,
+    "name": "Highlands"
   }
 ]
