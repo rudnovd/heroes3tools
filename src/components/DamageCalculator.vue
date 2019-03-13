@@ -568,6 +568,8 @@ import pickUnitModal from '@/components/damageCalculator/pickUnitModal.vue'
 
 import terrainsJson from '@/assets/json/terrains.json'
 
+import unitsHatesJson from '@/assets/json/unitsHates.json'
+
 export default {
   name: 'DamageCalculator',
   components: {
@@ -606,6 +608,8 @@ export default {
 
         terrain: null,
         terrainOptions: terrainsJson,
+
+        unitsHates: unitsHatesJson,
 
         attacker: {
           unit: null,
@@ -860,6 +864,13 @@ export default {
         attackerTotalMaxDamage = modifedTotalDamages.attackerTotalMaxDamage
         defenderTotalMinDamage = modifedTotalDamages.defenderTotalMinDamage
         defenderTotalMaxDamage = modifedTotalDamages.defenderTotalMaxDamage
+
+        // Units hates damage modificators
+        const unitsHatesTotalDamages = this.calculateWithHates(attackerTotalMinDamage, attackerTotalMaxDamage, defenderTotalMinDamage, defenderTotalMaxDamage)
+        attackerTotalMinDamage = unitsHatesTotalDamages.attackerTotalMinDamage
+        attackerTotalMaxDamage = unitsHatesTotalDamages.attackerTotalMaxDamage
+        defenderTotalMinDamage = unitsHatesTotalDamages.defenderTotalMinDamage
+        defenderTotalMaxDamage = unitsHatesTotalDamages.defenderTotalMaxDamage
 
         // Transform total damages
         this.data.attacker.minDamage = Math.floor(attackerTotalMinDamage)
@@ -1384,6 +1395,27 @@ export default {
           attackerTotalMinDamage -= attackerTotalMinDamage * 0.3
           attackerTotalMaxDamage -= attackerTotalMaxDamage * 0.3
         }
+      }
+
+      return { attackerTotalMinDamage, attackerTotalMaxDamage, defenderTotalMinDamage, defenderTotalMaxDamage }
+    },
+    calculateWithHates (attackerTotalMinDamage, attackerTotalMaxDamage, defenderTotalMinDamage, defenderTotalMaxDamage) {
+      const attackerUnit = this.data.attacker.unit
+      const defenderUnit = this.data.defender.unit
+
+      let hates = false
+
+      for (let i = 0; i < this.data.unitsHates.length; i++) {
+        if (this.data.unitsHates[i].id === attackerUnit.id && this.data.unitsHates[i].hate.includes(defenderUnit.id)) {
+          hates = true
+        }
+      }
+
+      if (hates === true) {
+        attackerTotalMinDamage *= 1.5
+        attackerTotalMaxDamage *= 1.5
+        defenderTotalMinDamage *= 1.5
+        defenderTotalMaxDamage *= 1.5
       }
 
       return { attackerTotalMinDamage, attackerTotalMaxDamage, defenderTotalMinDamage, defenderTotalMaxDamage }
