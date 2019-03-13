@@ -550,7 +550,11 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
         :options='data.terrainOptions'
         value-field='id'
         text-field='name'
-        size='sm')
+        size='sm'
+        @input='calculate()'
+      )
+        template(slot='first')
+          option(:value='null') Don't care
 
   //- Pick ATTACKER unit modal
   pick-unit-modal(side='attacker' refString='attackerModal' @sendUnit='selectUnit("attacker", $event)')
@@ -895,6 +899,17 @@ export default {
 
       defenderAttack += parseInt(this.data.defender.hero.attack)
       defenderDefense += parseInt(this.data.defender.hero.defense)
+
+      if (this.data.terrain) {
+        if (this.data.attacker.unit.nativeTerrainId === this.data.terrain) {
+          attackerAttack++
+          attackerDefense++
+        }
+        if (this.data.defender.unit.nativeTerrainId === this.data.terrain) {
+          defenderAttack++
+          defenderDefense++
+        }
+      }
 
       const attackerHero = this.data.attacker.hero.hero
       const defenderHero = this.data.defender.hero.hero
