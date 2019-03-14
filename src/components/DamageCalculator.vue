@@ -18,7 +18,7 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
           b-row
             b-col(cols='12')
               b-button.mb-1(variant='link' size='sm' @click='pickAttackerModalShow()')
-                img.border.border-dark(v-if='data.attacker.unit' :src='unitsImages[data.attacker.unit.id].src')
+                img.border.border-dark(v-if='attacker.unit.id' :src='unitsImages[attacker.unit.id].src')
                 font-awesome-icon.fa-4x(v-else icon='question-circle' style='color: #00CB31')
 
           //- Attacker units count
@@ -46,156 +46,11 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
           //- Choose ATTACKER hero
           b-row.mt-3
             b-col(cols='12')
-              select-hero(@sendHero='selectHero("attacker", $event)')
+              select-hero(side='attacker')
 
-      //- Inputs ATTACKER level and stats
-      b-row.mt-2(v-if='data.attacker.hero.hero')
+      select-hero-stats.mt-2(side='attacker')
 
-        //- Input ATTACKER level
-        b-col(cols='auto' sm='2' md='3' lg='2' xl='2' offset='2' offset-sm='3' offset-md='3' offset-lg='3' offset-xl='3')
-          b-form-group(label='Level')
-            b-form-input(
-              v-model='data.attacker.hero.level'
-              type='number'
-              :disabled='!data.attacker.hero.hero'
-              size='sm'
-              min=1
-              max=99
-              @input='calculate()'
-            )
-
-        //- Input ATTACKER attack
-        b-col.ml-auto(cols='auto' sm='2' md='3' lg='2' xl='2' offset='0' offset-sm='3' offset-md='3' offset-lg='3' offset-xl='3')
-          b-form-group(label='Attack')
-            b-form-input(
-              v-model='data.attacker.hero.attack'
-              type='number'
-              :disabled='!data.attacker.hero.hero'
-              size='sm'
-              min=0
-              max=99
-              @input='calculate()'
-            )
-
-        //- Input ATTACKER defense
-        b-col(cols='auto' sm='2', md='3', lg='2', xl='2')
-          b-form-group(label='Defense')
-            b-form-input(
-              v-model='data.attacker.hero.defense'
-              type='number'
-              :disabled='!data.attacker.hero.hero'
-              size='sm'
-              min=0
-              max=99
-              @input='calculate()'
-            )
-
-      //- Select skills
-      template(v-if='data.attacker.hero.hero')
-
-        //- Offense and Air select
-        b-row.mt-3
-          //- Text
-          b-col(cols='2' sm='2' md='2' lg='2' xl='2')
-            p.mt-1 Offense
-          //- Select offense level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.attacker.hero.skills.offenseLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate();'
-            )
-
-          //- Text
-          b-col.text-truncate(cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
-            p.mt-1 Air
-          //- Select air level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.attacker.hero.skills.airLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate();'
-            )
-
-        //- Armorer and Fire select
-        b-row.mt-1
-          //- Text
-          b-col.text-truncate(cols='2' sm='2' md='2' lg='2' xl='2')
-            p.mt-1 Armorer
-          //- Select armorer level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.attacker.hero.skills.armorerLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate();'
-            )
-
-          //- Text
-          b-col.text-truncate(cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
-            p.mt-1 Fire
-          //- Select fire level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.attacker.hero.skills.fireLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate()'
-            )
-
-        //- Archery and Earth select
-        b-row.mt-1
-          //- Text
-          b-col.text-truncate(cols='2' sm='2' md='2' lg='2' xl='2')
-            p.mt-1 Archery
-          //- Select archery level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.attacker.hero.skills.archeryLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate();'
-            )
-
-          //- Text
-          b-col.text-truncate(cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
-            p.mt-1 Earth
-          //- Select earth level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.attacker.hero.skills.earthLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate(); calculate()'
-            )
-
-        //- Artillery and Water select
-        b-row.mt-1
-          //- Text
-          b-col.text-truncate(cols='2' sm='2' md='2' lg='2' xl='2')
-            p.mt-1 Artillery
-          //- Select artillery level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.attacker.hero.skills.artilleryLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate();'
-            )
-
-          //- Text
-          b-col.text-truncate(cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
-            p.mt-1 Water
-          //- Select water level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.attacker.hero.skills.waterLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate()'
-            )
+      select-hero-skills.mt-3(side='attacker')
 
       //- Spells select
       b-row.mt-2(v-if='data.attacker.hero.hero')
@@ -289,14 +144,14 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
           //- Choose DEFENDER hero
           b-row.mt-3
             b-col(cols='12')
-              select-hero(@sendHero='selectHero("defender", $event)')
+              select-hero(side='defender')
 
         //- Pick DEFENDER unit image
         b-col.text-right(cols='3' sm='3' md='4' lg='3' xl='3')
           b-row
             b-col(cols='12')
               b-button.mb-1(variant='link' size='sm' @click='pickDefenderModalShow()')
-                img.border.border-dark(v-if='data.defender.unit' :src='unitsImages[data.defender.unit.id].src')
+                img.border.border-dark(v-if='defender.unit.id' :src='unitsImages[defender.unit.id].src')
                 font-awesome-icon.fa-4x(v-else icon='question-circle' style='color: #DC3545')
 
           //- Defender units count
@@ -312,154 +167,12 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
                 @input='calculate()'
               )
 
-      //- Inputs DEFENDER level and stats
-      b-row.mt-2(v-if='data.defender.hero.hero')
+      select-hero-stats.mt-2(side='defender')
 
-        //- Input DEFENDER level
-        b-col(cols='auto' sm='2' md='3' lg='2' xl='2')
-          b-form-group(label='Level')
-            b-form-input(
-              v-model='data.defender.hero.level'
-              type='number'
-              :disabled='!data.defender.hero.hero'
-              size='sm'
-              min=1
-              max=99
-              @input='calculate()'
-            )
-
-        //- Input DEFENDER attack
-        b-col(cols='auto' sm='2' md='3' lg='2' xl='2' offset='0' offset-sm='3' offset-md='0' offset-lg='3' offset-xl='3')
-          b-form-group(label='Attack')
-            b-form-input(
-              v-model='data.defender.hero.attack'
-              type='number'
-              :disabled='!data.defender.hero.hero'
-              size='sm'
-              min=0
-              max=99
-              @input='calculate()'
-            )
-
-        //- Input DEFENDER defense
-        b-col(cols='auto' sm='2' md='3' lg='2' xl='2')
-          b-form-group(label='Defense')
-            b-form-input(
-              v-model='data.defender.hero.defense'
-              type='number'
-              :disabled='!data.defender.hero.hero'
-              size='sm'
-              min=0
-              max=99
-              @input='calculate()'
-            )
+      select-hero-skills.mt-3(side='defender')
 
       //- Select skills
       template(v-if='data.defender.hero.hero')
-
-        //- Offense and Air select
-        b-row.mt-3
-          //- Text
-          b-col(cols='2' sm='2' md='2' lg='2' xl='2')
-            p.mt-1 Offense
-          //- Select offense level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.defender.hero.skills.offenseLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate();'
-            )
-
-          //- Text
-          b-col.text-truncate(cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
-            p.mt-1 Air
-          //- Select air level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.defender.hero.skills.airLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate()'
-            )
-
-        //- Armorer and Fire select
-        b-row.mt-1
-          //- Text
-          b-col.text-truncate(cols='2' sm='2' md='2' lg='2' xl='2')
-            p.mt-1 Armorer
-          //- Select armorer level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.defender.hero.skills.armorerLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate()'
-            )
-
-          //- Text
-          b-col.text-truncate(cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
-            p.mt-1 Fire
-          //- Select fire level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.defender.hero.skills.fireLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate()'
-            )
-
-        //- Archery and Earth select
-        b-row.mt-1
-          //- Text
-          b-col.text-truncate(cols='2' sm='2' md='2' lg='2' xl='2')
-            p.mt-1 Archery
-          //- Select archery level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.defender.hero.skills.archeryLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate()'
-            )
-
-          //- Text
-          b-col.text-truncate(cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
-            p.mt-1 Earth
-          //- Select earth level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.defender.hero.skills.earthLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate()'
-            )
-
-        //- Artillery and Water select
-        b-row.mt-1
-          //- Text
-          b-col.text-truncate(cols='2' sm='2' md='2' lg='2' xl='2')
-            p.mt-1 Artillery
-          //- Select artillery level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.defender.hero.skills.artilleryLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate()'
-            )
-
-          //- Text
-          b-col.text-truncate(cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
-            p.mt-1 Water
-          //- Select water level
-          b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-            b-form-select(
-              v-model='data.defender.hero.skills.waterLevel'
-              :options='data.skillsOptions'
-              size='sm'
-              @input='calculate()'
-            )
 
       //- Spells select
       b-row.mt-2(v-if='data.defender.hero.hero')
@@ -564,11 +277,15 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 import selectHero from '@/components/damageCalculator/selectHero.vue'
 
+import selectHeroStats from '@/components/damageCalculator/selectHeroStats.vue'
+
 import pickUnitModal from '@/components/damageCalculator/pickUnitModal.vue'
+
+import selectHeroSkills from '@/components/damageCalculator/selectHeroSkills.vue'
 
 import terrainsJson from '@/assets/json/terrains.json'
 
@@ -578,30 +295,23 @@ export default {
   name: 'DamageCalculator',
   components: {
     'select-hero': selectHero,
-    'pick-unit-modal': pickUnitModal
+    'select-hero-stats': selectHeroStats,
+    'pick-unit-modal': pickUnitModal,
+    'select-hero-skills': selectHeroSkills
   },
   beforeCreate () {
     document.title = 'Damage calculator'
   },
-  mounted () {
-    this.$store.dispatch('calculator/getUnitsImages')
-    this.$store.dispatch('calculator/getHeroes')
-  },
   computed: {
-    ...mapState({
-      unitsImages: state => state.calculator.images.units
+    ...mapGetters({
+      attacker: 'calculator/getAttacker',
+      defender: 'calculator/getDefender',
+      unitsImages: 'calculator/getUnitsImages'
     })
   },
   data () {
     return {
       data: {
-
-        skillsOptions: [
-          { text: 'None', value: 0 },
-          { text: 'Basic', value: 1 },
-          { text: 'Advanced', value: 2 },
-          { text: 'Expert', value: 3 }
-        ],
 
         spells: {
           attackBuffs: ['Bless', 'Bloodlust', 'Frenzy', 'Prayer', 'Precision', 'Slayer'],
@@ -706,19 +416,16 @@ export default {
       }
     }
   },
+  mounted () {
+    this.getUnitsImages()
+    this.getHeroes()
+  },
   methods: {
-    selectHero (side, hero) {
-      if (side === 'attacker') this.data.attacker.hero.hero = hero
-      else if (side === 'defender') this.data.defender.hero.hero = hero
-
-      this.calculate()
-    },
-    // Select unit
-    selectUnit (side, unit) {
-      if (side === 'attacker') this.data.attacker.unit = unit
-      else if (side === 'defender') this.data.defender.unit = unit
-      this.calculate()
-    },
+    ...mapActions({
+      swapHeroes: 'calculator/swapHeroes',
+      getUnitsImages: 'calculator/getUnitsImages',
+      getHeroes: 'calculator/getHeroes'
+    }),
     // Show modal
     pickAttackerModalShow () {
       this.$root.$emit('attackerModal')
