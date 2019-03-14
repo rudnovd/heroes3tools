@@ -12,5 +12,5 @@ export default new Vuex.Store({
   modules: {
     calculator
   },
-  strict: debug
+  strict: true
 })
