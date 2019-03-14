@@ -1,33 +1,36 @@
 <template lang='pug'>
-v-select(
+multiselect(
   v-model='hero'
   :options='heroes'
-  label='name'
-  placeholder='Hero'
-  @input='sendHero(hero)'
+  :searchable='true',
+  label='name',
+  placeholder='Pick hero'
+  @input='setHero({ side, hero })'
 )
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'selectHero',
+  props: {
+    side: String
+  },
   data () {
     return {
       hero: null
     }
   },
   computed: {
-    ...mapState({
-      heroes: state => state.calculator.heroes
+    ...mapGetters({
+      heroes: 'calculator/getHeroes'
     })
   },
   methods: {
-    sendHero (hero) {
-      this.$emit('sendHero', hero)
-    }
+    ...mapActions({
+      setHero: 'calculator/setHero'
+    })
   }
 }
-
 </script>
