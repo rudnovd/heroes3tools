@@ -10,23 +10,11 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import 'bootstrap-vue/dist/bootstrap-vue.min.css'
 
-import vSelect from 'vue-select'
-
-import { library } from '@fortawesome/fontawesome-svg-core'
-
-import { faQuestionCircle, faSync } from '@fortawesome/free-solid-svg-icons'
-
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import '@/components/globals'
 
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue)
-
-Vue.component('v-select', vSelect)
-
-library.add(faQuestionCircle, faSync)
-
-Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 new Vue({
   store,
