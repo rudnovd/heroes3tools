@@ -33,7 +33,7 @@ b-modal(
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 import unitsJson from '@/assets/json/units.json'
 
@@ -53,8 +53,8 @@ export default {
     this.jsonToData()
   },
   computed: {
-    ...mapState({
-      unitsImages: state => state.calculator.images.units
+    ...mapGetters({
+      unitsImages: 'calculator/getUnitsImages'
     })
   },
   data () {
@@ -86,8 +86,13 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      setAttackerUnit: 'calculator/setAttackerUnit',
+      setDefenderUnit: 'calculator/setDefenderUnit'
+    }),
     selectUnit (unit) {
-      this.$emit('sendUnit', unit)
+      if (this.side === 'attacker') this.setAttackerUnit(unit)
+      else if (this.side === 'defender') this.setDefenderUnit(unit)
       this.hideModal(this.refString)
 
       this.clearSearch()
