@@ -6,7 +6,7 @@ export default {
       id: null,
       name: null,
       level: null,
-      count: null,
+      count: 1,
       nativeTerrain: null,
       magicImmunity: null,
       spellsVulnerability: null,
@@ -19,15 +19,15 @@ export default {
         maxDamage: null,
         health: null
       },
-      effects: null
+      effects: []
     },
 
     hero: {
       id: null,
       name: null,
-      specialtySkill: null,
-      specialtyUnit: null,
-      specialtySpell: null,
+      specialtySkill: '',
+      specialtyUnit: '',
+      specialtySpell: '',
 
       level: 1,
       attack: 0,
@@ -71,7 +71,7 @@ export default {
         maxDamage: null,
         health: null
       },
-      effects: null
+      effects: []
     },
 
     hero: {
@@ -105,7 +105,12 @@ export default {
     totalAverageKills: null
   },
 
+  terrain: null,
+
   images: {
-    units: []
-  }
+    units: [],
+    heroes: []
+  },
+
+  calculate: false
 }
