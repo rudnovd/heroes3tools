@@ -2,6 +2,9 @@ export default {
   getUnitsImages: state => {
     return state.images.units
   },
+  getHeroesImages: state => {
+    return state.images.heroes
+  },
   getHeroes: state => {
     return state.heroes
   },
@@ -18,5 +21,16 @@ export default {
   },
   getDefenderHero: state => {
     return state.defender.hero
+  },
+
+  getAttackerUnit: state => {
+    return state.attacker.unit
+  },
+  getDefenderUnit: state => {
+    return state.defender.unit
+  },
+
+  getCalculationStatus: state => {
+    return state.calculate
   }
 }
