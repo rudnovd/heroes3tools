@@ -10,7 +10,7 @@
       "maxDamage": 3,
       "health": 10
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 1,
@@ -23,7 +23,7 @@
       "maxDamage": 3,
       "health": 10
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 2,
@@ -36,7 +36,7 @@
       "maxDamage": 3,
       "health": 10
     },
-    "nativeTerrainId": 2,
+    "nativeTerrain": 2,
     "ranged": true
   },
   {
@@ -50,7 +50,7 @@
       "maxDamage": 3,
       "health": 10
     },
-    "nativeTerrainId": 2,
+    "nativeTerrain": 2,
     "ranged": true,
     "hits": 2
   },
@@ -65,7 +65,7 @@
       "maxDamage": 6,
       "health": 25
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 5,
@@ -78,7 +78,7 @@
       "maxDamage": 6,
       "health": 25
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 6,
@@ -91,7 +91,7 @@
       "maxDamage": 9,
       "health": 35
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 7,
@@ -104,7 +104,7 @@
       "maxDamage": 10,
       "health": 35
     },
-    "nativeTerrainId": 2,
+    "nativeTerrain": 2,
     "hits": 2
   },
   {
@@ -118,7 +118,7 @@
       "maxDamage": 12,
       "health": 30
     },
-    "nativeTerrainId": 2,
+    "nativeTerrain": 2,
     "ranged": true
   },
   {
@@ -132,7 +132,7 @@
       "maxDamage": 12,
       "health": 30
     },
-    "nativeTerrainId": 2,
+    "nativeTerrain": 2,
     "ranged": true
   },
   {
@@ -146,7 +146,7 @@
       "maxDamage": 25,
       "health": 100
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 11,
@@ -159,7 +159,7 @@
       "maxDamage": 25,
       "health": 100
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 12,
@@ -172,7 +172,7 @@
       "maxDamage": 50,
       "health": 200
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 13,
@@ -185,7 +185,7 @@
       "maxDamage": 50,
       "health": 250
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 14,
@@ -198,7 +198,7 @@
       "maxDamage": 3,
       "health": 8
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 15,
@@ -211,7 +211,7 @@
       "maxDamage": 3,
       "health": 10
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 16,
@@ -224,7 +224,7 @@
       "maxDamage": 4,
       "health": 20
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 17,
@@ -237,7 +237,7 @@
       "maxDamage": 4,
       "health": 20
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 18,
@@ -250,7 +250,7 @@
       "maxDamage": 5,
       "health": 15
     },
-    "nativeTerrainId": 2,
+    "nativeTerrain": 2,
     "ranged": true
   },
   {
@@ -264,7 +264,7 @@
       "maxDamage": 5,
       "health": 15
     },
-    "nativeTerrainId": 2,
+    "nativeTerrain": 2,
     "ranged": true,
     "hits": 2
   },
@@ -279,7 +279,7 @@
       "maxDamage": 9,
       "health": 30
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 21,
@@ -292,7 +292,7 @@
       "maxDamage": 9,
       "health": 30
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 22,
@@ -305,7 +305,7 @@
       "maxDamage": 14,
       "health": 55
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 23,
@@ -318,7 +318,7 @@
       "maxDamage": 14,
       "health": 65
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 24,
@@ -331,7 +331,7 @@
       "maxDamage": 22,
       "health": 90
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 25,
@@ -344,7 +344,7 @@
       "maxDamage": 22,
       "health": 110
     },
-    "nativeTerrainId": 2
+    "nativeTerrain": 2
   },
   {
     "id": 26,
@@ -357,7 +357,7 @@
       "maxDamage": 50,
       "health": 180
     },
-    "nativeTerrainId": 2,
+    "nativeTerrain": 2,
     "spellsImmunityLevel": 3
   },
   {
@@ -371,7 +371,7 @@
       "maxDamage": 50,
       "health": 250
     },
-    "nativeTerrainId": 2,
+    "nativeTerrain": 2,
     "spellsImmunityLevel": 4
   },
   {
@@ -385,7 +385,7 @@
       "maxDamage": 2,
       "health": 4
     },
-    "nativeTerrainId": 3
+    "nativeTerrain": 3
   },
   {
     "id": 29,
@@ -398,7 +398,7 @@
       "maxDamage": 2,
       "health": 4
     },
-    "nativeTerrainId": 3,
+    "nativeTerrain": 3,
     "ranged": true
   },
   {
@@ -412,7 +412,7 @@
       "maxDamage": 3,
       "health": 16
     },
-    "nativeTerrainId": 3
+    "nativeTerrain": 3
   },
   {
     "id": 31,
@@ -425,7 +425,7 @@
       "maxDamage": 3,
       "health": 16
     },
-    "nativeTerrainId": 3
+    "nativeTerrain": 3
   },
   {
     "id": 32,
@@ -438,7 +438,7 @@
       "maxDamage": 5,
       "health": 30
     },
-    "nativeTerrainId": 3
+    "nativeTerrain": 3
   },
   {
     "id": 33,
@@ -451,7 +451,7 @@
       "maxDamage": 5,
       "health": 35
     },
-    "nativeTerrainId": 3
+    "nativeTerrain": 3
   },
   {
     "id": 34,
@@ -464,7 +464,7 @@
       "maxDamage": 9,
       "health": 25
     },
-    "nativeTerrainId": 3,
+    "nativeTerrain": 3,
     "ranged": true
   },
   {
@@ -478,7 +478,7 @@
       "maxDamage": 9,
       "health": 30
     },
-    "nativeTerrainId": 3,
+    "nativeTerrain": 3,
     "ranged": true
   },
   {
@@ -492,7 +492,7 @@
       "maxDamage": 16,
       "health": 40
     },
-    "nativeTerrainId": 3
+    "nativeTerrain": 3
   },
   {
     "id": 37,
@@ -505,7 +505,7 @@
       "maxDamage": 16,
       "health": 40
     },
-    "nativeTerrainId": 3
+    "nativeTerrain": 3
   },
   {
     "id": 38,
@@ -518,7 +518,7 @@
       "maxDamage": 20,
       "health": 110
     },
-    "nativeTerrainId": 3
+    "nativeTerrain": 3
   },
   {
     "id": 39,
@@ -531,7 +531,7 @@
       "maxDamage": 30,
       "health": 110
     },
-    "nativeTerrainId": 3
+    "nativeTerrain": 3
   },
   {
     "id": 40,
@@ -544,7 +544,7 @@
       "maxDamage": 60,
       "health": 150
     },
-    "nativeTerrainId": 3
+    "nativeTerrain": 3
   },
   {
     "id": 41,
@@ -557,7 +557,7 @@
       "maxDamage": 60,
       "health": 300
     },
-    "nativeTerrainId": 3,
+    "nativeTerrain": 3,
     "ranged": true
   },
   {
@@ -571,7 +571,7 @@
       "maxDamage": 3,
       "health": 6
     },
-    "nativeTerrainId": 0,
+    "nativeTerrain": 0,
     "undead": true
   },
   {
@@ -585,7 +585,7 @@
       "maxDamage": 3,
       "health": 6
     },
-    "nativeTerrainId": 0,
+    "nativeTerrain": 0,
     "undead": true
   },
   {
@@ -599,7 +599,7 @@
       "maxDamage": 3,
       "health": 15
     },
-    "nativeTerrainId": 0,
+    "nativeTerrain": 0,
     "undead": true
   },
   {
@@ -613,7 +613,7 @@
       "maxDamage": 3,
       "health": 20
     },
-    "nativeTerrainId": 0,
+    "nativeTerrain": 0,
     "undead": true
   },
   {
@@ -627,7 +627,7 @@
       "maxDamage": 5,
       "health": 18
     },
-    "nativeTerrainId": 0,
+    "nativeTerrain": 0,
     "undead": true
   },
   {
@@ -641,7 +641,7 @@
       "maxDamage": 5,
       "health": 18
     },
-    "nativeTerrainId": 0,
+    "nativeTerrain": 0,
     "undead": true
   },
   {
@@ -655,7 +655,7 @@
       "maxDamage": 8,
       "health": 30
     },
-    "nativeTerrainId": 0,
+    "nativeTerrain": 0,
     "undead": true
   },
   {
@@ -669,7 +669,7 @@
       "maxDamage": 8,
       "health": 40
     },
-    "nativeTerrainId": 0,
+    "nativeTerrain": 0,
     "undead": true
   },
   {
@@ -683,7 +683,7 @@
       "maxDamage": 13,
       "health": 30
     },
-    "nativeTerrainId": 0,
+    "nativeTerrain": 0,
     "ranged": true,
     "undead": true
   },
@@ -698,7 +698,7 @@
       "maxDamage": 15,
       "health": 40
     },
-    "nativeTerrainId": 0,
+    "nativeTerrain": 0,
     "ranged": true,
     "undead": true
   },
@@ -713,7 +713,7 @@
       "maxDamage": 30,
       "health": 120
     },
-    "nativeTerrainId": 0,
+    "nativeTerrain": 0,
     "undead": true
   },
   {
@@ -727,7 +727,7 @@
       "maxDamage": 30,
       "health": 120
     },
-    "nativeTerrainId": 0,
+    "nativeTerrain": 0,
     "undead": true
   },
   {
@@ -741,7 +741,7 @@
       "maxDamage": 50,
       "health": 150
     },
-    "nativeTerrainId": 0,
+    "nativeTerrain": 0,
     "undead": true
   },
   {
@@ -755,7 +755,7 @@
       "maxDamage": 50,
       "health": 200
     },
-    "nativeTerrainId": 0,
+    "nativeTerrain": 0,
     "undead": true
   },
   {
@@ -769,7 +769,7 @@
       "maxDamage": 3,
       "health": 5
     },
-    "nativeTerrainId": 6
+    "nativeTerrain": 6
   },
   {
     "id": 57,
@@ -782,7 +782,7 @@
       "maxDamage": 3,
       "health": 6
     },
-    "nativeTerrainId": 6
+    "nativeTerrain": 6
   },
   {
     "id": 58,
@@ -795,7 +795,7 @@
       "maxDamage": 4,
       "health": 14
     },
-    "nativeTerrainId": 6
+    "nativeTerrain": 6
   },
   {
     "id": 59,
@@ -808,7 +808,7 @@
       "maxDamage": 4,
       "health": 14
     },
-    "nativeTerrainId": 6
+    "nativeTerrain": 6
   },
   {
     "id": 60,
@@ -821,7 +821,7 @@
       "maxDamage": 5,
       "health": 22
     },
-    "nativeTerrainId": 6,
+    "nativeTerrain": 6,
     "ranged": true
   },
   {
@@ -835,7 +835,7 @@
       "maxDamage": 5,
       "health": 22
     },
-    "nativeTerrainId": 6,
+    "nativeTerrain": 6,
     "ranged": true
   },
   {
@@ -849,7 +849,7 @@
       "maxDamage": 8,
       "health": 25
     },
-    "nativeTerrainId": 6,
+    "nativeTerrain": 6,
     "ranged": true
   },
   {
@@ -863,7 +863,7 @@
       "maxDamage": 8,
       "health": 30
     },
-    "nativeTerrainId": 6,
+    "nativeTerrain": 6,
     "ranged": true
   },
   {
@@ -877,7 +877,7 @@
       "maxDamage": 20,
       "health": 50
     },
-    "nativeTerrainId": 6
+    "nativeTerrain": 6
   },
   {
     "id": 65,
@@ -890,7 +890,7 @@
       "maxDamage": 20,
       "health": 50
     },
-    "nativeTerrainId": 6
+    "nativeTerrain": 6
   },
   {
     "id": 66,
@@ -903,7 +903,7 @@
       "maxDamage": 20,
       "health": 80
     },
-    "nativeTerrainId": 6
+    "nativeTerrain": 6
   },
   {
     "id": 67,
@@ -916,7 +916,7 @@
       "maxDamage": 20,
       "health": 80
     },
-    "nativeTerrainId": 6
+    "nativeTerrain": 6
   },
   {
     "id": 68,
@@ -929,7 +929,7 @@
       "maxDamage": 50,
       "health": 180
     },
-    "nativeTerrainId": 6,
+    "nativeTerrain": 6,
     "spellsImmunityLevel": 3
   },
   {
@@ -943,7 +943,7 @@
       "maxDamage": 50,
       "health": 300
     },
-    "nativeTerrainId": 6,
+    "nativeTerrain": 6,
     "spellsImmunityLevel": 5
   },
   {
@@ -957,7 +957,7 @@
       "maxDamage": 2,
       "health": 4
     },
-    "nativeTerrainId": 7
+    "nativeTerrain": 7
   },
   {
     "id": 71,
@@ -970,7 +970,7 @@
       "maxDamage": 2,
       "health": 4
     },
-    "nativeTerrainId": 7
+    "nativeTerrain": 7
   },
   {
     "id": 72,
@@ -983,7 +983,7 @@
       "maxDamage": 4,
       "health": 13
     },
-    "nativeTerrainId": 7,
+    "nativeTerrain": 7,
     "ranged": true
   },
   {
@@ -997,7 +997,7 @@
       "maxDamage": 4,
       "health": 13
     },
-    "nativeTerrainId": 7,
+    "nativeTerrain": 7,
     "ranged": true
   },
   {
@@ -1011,7 +1011,7 @@
       "maxDamage": 7,
       "health": 25
     },
-    "nativeTerrainId": 7
+    "nativeTerrain": 7
   },
   {
     "id": 75,
@@ -1024,7 +1024,7 @@
       "maxDamage": 7,
       "health": 25
     },
-    "nativeTerrainId": 7
+    "nativeTerrain": 7
   },
   {
     "id": 76,
@@ -1037,7 +1037,7 @@
       "maxDamage": 9,
       "health": 35
     },
-    "nativeTerrainId": 7
+    "nativeTerrain": 7
   },
   {
     "id": 77,
@@ -1050,7 +1050,7 @@
       "maxDamage": 9,
       "health": 40
     },
-    "nativeTerrainId": 7
+    "nativeTerrain": 7
   },
   {
     "id": 78,
@@ -1063,7 +1063,7 @@
       "maxDamage": 17,
       "health": 45
     },
-    "nativeTerrainId": 7
+    "nativeTerrain": 7
   },
   {
     "id": 79,
@@ -1076,7 +1076,7 @@
       "maxDamage": 17,
       "health": 45
     },
-    "nativeTerrainId": 7
+    "nativeTerrain": 7
   },
   {
     "id": 80,
@@ -1089,7 +1089,7 @@
       "maxDamage": 24,
       "health": 90
     },
-    "nativeTerrainId": 7,
+    "nativeTerrain": 7,
     "magicImmunity": "FireMagic"
   },
   {
@@ -1103,7 +1103,7 @@
       "maxDamage": 24,
       "health": 90
     },
-    "nativeTerrainId": 7,
+    "nativeTerrain": 7,
     "magicImmunity": "FireMagic"
   },
   {
@@ -1117,7 +1117,7 @@
       "maxDamage": 40,
       "health": 160
     },
-    "nativeTerrainId": 7
+    "nativeTerrain": 7
   },
   {
     "id": 83,
@@ -1130,7 +1130,7 @@
       "maxDamage": 40,
       "health": 200
     },
-    "nativeTerrainId": 7
+    "nativeTerrain": 7
   },
   {
     "id": 84,
@@ -1143,7 +1143,7 @@
       "maxDamage": 3,
       "health": 6
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 85,
@@ -1156,7 +1156,7 @@
       "maxDamage": 3,
       "health": 6
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 86,
@@ -1169,7 +1169,7 @@
       "maxDamage": 3,
       "health": 14
     },
-    "nativeTerrainId": 4,
+    "nativeTerrain": 4,
     "ranged": true
   },
   {
@@ -1183,7 +1183,7 @@
       "maxDamage": 5,
       "health": 15
     },
-    "nativeTerrainId": 4,
+    "nativeTerrain": 4,
     "ranged": true
   },
   {
@@ -1197,7 +1197,7 @@
       "maxDamage": 5,
       "health": 20
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 89,
@@ -1210,7 +1210,7 @@
       "maxDamage": 5,
       "health": 20
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 90,
@@ -1223,7 +1223,7 @@
       "maxDamage": 10,
       "health": 35
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 91,
@@ -1236,7 +1236,7 @@
       "maxDamage": 10,
       "health": 40
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 92,
@@ -1249,7 +1249,7 @@
       "maxDamage": 16,
       "health": 70
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 93,
@@ -1262,7 +1262,7 @@
       "maxDamage": 16,
       "health": 70
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 94,
@@ -1275,7 +1275,7 @@
       "maxDamage": 18,
       "health": 70
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 95,
@@ -1288,7 +1288,7 @@
       "maxDamage": 22,
       "health": 70
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 96,
@@ -1301,7 +1301,7 @@
       "maxDamage": 45,
       "health": 175
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 97,
@@ -1314,7 +1314,7 @@
       "maxDamage": 45,
       "health": 250
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 98,
@@ -1327,7 +1327,7 @@
       "maxDamage": 2,
       "health": 5
     },
-    "nativeTerrainId": 5
+    "nativeTerrain": 5
   },
   {
     "id": 99,
@@ -1340,7 +1340,7 @@
       "maxDamage": 2,
       "health": 5
     },
-    "nativeTerrainId": 5
+    "nativeTerrain": 5
   },
   {
     "id": 100,
@@ -1353,7 +1353,7 @@
       "maxDamage": 4,
       "health": 10
     },
-    "nativeTerrainId": 5
+    "nativeTerrain": 5
   },
   {
     "id": 101,
@@ -1366,7 +1366,7 @@
       "maxDamage": 4,
       "health": 10
     },
-    "nativeTerrainId": 5,
+    "nativeTerrain": 5,
     "hits": 2
   },
   {
@@ -1380,7 +1380,7 @@
       "maxDamage": 5,
       "health": 15
     },
-    "nativeTerrainId": 5,
+    "nativeTerrain": 5,
     "ranged": true
   },
   {
@@ -1394,7 +1394,7 @@
       "maxDamage": 5,
       "health": 20
     },
-    "nativeTerrainId": 5,
+    "nativeTerrain": 5,
     "ranged": true
   },
   {
@@ -1408,7 +1408,7 @@
       "maxDamage": 12,
       "health": 40
     },
-    "nativeTerrainId": 5
+    "nativeTerrain": 5
   },
   {
     "id": 105,
@@ -1421,7 +1421,7 @@
       "maxDamage": 12,
       "health": 60
     },
-    "nativeTerrainId": 5
+    "nativeTerrain": 5
   },
   {
     "id": 106,
@@ -1434,7 +1434,7 @@
       "maxDamage": 15,
       "health": 60
     },
-    "nativeTerrainId": 5
+    "nativeTerrain": 5
   },
   {
     "id": 107,
@@ -1447,7 +1447,7 @@
       "maxDamage": 15,
       "health": 60
     },
-    "nativeTerrainId": 5
+    "nativeTerrain": 5
   },
   {
     "id": 108,
@@ -1460,7 +1460,7 @@
       "maxDamage": 20,
       "health": 70
     },
-    "nativeTerrainId": 5,
+    "nativeTerrain": 5,
     "ranged": true
   },
   {
@@ -1474,7 +1474,7 @@
       "maxDamage": 20,
       "health": 70
     },
-    "nativeTerrainId": 5,
+    "nativeTerrain": 5,
     "ranged": true
   },
   {
@@ -1488,7 +1488,7 @@
       "maxDamage": 50,
       "health": 160
     },
-    "nativeTerrainId": 5
+    "nativeTerrain": 5
   },
   {
     "id": 111,
@@ -1501,7 +1501,7 @@
       "maxDamage": 50,
       "health": 300
     },
-    "nativeTerrainId": 5
+    "nativeTerrain": 5
   },
   {
     "id": 112,
@@ -1514,7 +1514,7 @@
       "maxDamage": 2,
       "health": 3
     },
-    "nativeTerrainId": 8
+    "nativeTerrain": 8
   },
   {
     "id": 113,
@@ -1527,7 +1527,7 @@
       "maxDamage": 3,
       "health": 3
     },
-    "nativeTerrainId": 8
+    "nativeTerrain": 8
   },
   {
     "id": 114,
@@ -1540,7 +1540,7 @@
       "maxDamage": 8,
       "health": 25
     },
-    "nativeTerrainId": 8,
+    "nativeTerrain": 8,
     "spellsVulnerability": [
       "LightningBolt",
       "ChainLightning",
@@ -1561,7 +1561,7 @@
       "maxDamage": 8,
       "health": 25
     },
-    "nativeTerrainId": 8,
+    "nativeTerrain": 8,
     "ranged": true,
     "spellsVulnerability": [
       "LightningBolt",
@@ -1583,7 +1583,7 @@
       "maxDamage": 7,
       "health": 30
     },
-    "nativeTerrainId": 8,
+    "nativeTerrain": 8,
     "spellsVulnerability": [
       "Inferno",
       "Fireball",
@@ -1605,7 +1605,7 @@
       "maxDamage": 7,
       "health": 30
     },
-    "nativeTerrainId": 8,
+    "nativeTerrain": 8,
     "ranged": true,
     "spellsVulnerability": [
       "Inferno",
@@ -1628,7 +1628,7 @@
       "maxDamage": 6,
       "health": 35
     },
-    "nativeTerrainId": 8,
+    "nativeTerrain": 8,
     "spellsVulnerability": [
       "IceBolt",
       "FrostRing"
@@ -1646,7 +1646,7 @@
       "maxDamage": 6,
       "health": 35
     },
-    "nativeTerrainId": 8,
+    "nativeTerrain": 8,
     "spellsVulnerability": [
       "IceBolt",
       "FrostRing"
@@ -1664,7 +1664,7 @@
       "maxDamage": 8,
       "health": 40
     },
-    "nativeTerrainId": 8,
+    "nativeTerrain": 8,
     "spellsVulnerability": [
       "MeteorShower"
     ],
@@ -1685,7 +1685,7 @@
       "maxDamage": 10,
       "health": 40
     },
-    "nativeTerrainId": 8,
+    "nativeTerrain": 8,
     "spellsVulnerability": [
       "MeteorShower"
     ],
@@ -1706,7 +1706,7 @@
       "maxDamage": 20,
       "health": 75
     },
-    "nativeTerrainId": 8
+    "nativeTerrain": 8
   },
   {
     "id": 123,
@@ -1719,7 +1719,7 @@
       "maxDamage": 25,
       "health": 80
     },
-    "nativeTerrainId": 8,
+    "nativeTerrain": 8,
     "spellsImmunityLevel": 5
   },
   {
@@ -1733,7 +1733,7 @@
       "maxDamage": 40,
       "health": 150
     },
-    "nativeTerrainId": 8,
+    "nativeTerrain": 8,
     "magicImmunity": "FireMagic"
   },
   {
@@ -1747,7 +1747,7 @@
       "maxDamage": 40,
       "health": 200
     },
-    "nativeTerrainId": 8,
+    "nativeTerrain": 8,
     "magicImmunity": "FireMagic"
   },
   {
@@ -1945,7 +1945,7 @@
       "maxDamage": 2,
       "health": 4
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 142,
@@ -1958,7 +1958,7 @@
       "maxDamage": 3,
       "health": 4
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 143,
@@ -1971,7 +1971,7 @@
       "maxDamage": 4,
       "health": 15
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 144,
@@ -1984,7 +1984,7 @@
       "maxDamage": 4,
       "health": 15
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 145,
@@ -1998,7 +1998,7 @@
       "health": 15
     },
     "ranged": true,
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 146,
@@ -2012,7 +2012,7 @@
       "health": 15
     },
     "ranged": true,
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 147,
@@ -2026,7 +2026,7 @@
       "health": 15
     },
     "ranged": true,
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 148,
@@ -2039,7 +2039,7 @@
       "maxDamage": 9,
       "health": 30
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 149,
@@ -2052,7 +2052,7 @@
       "maxDamage": 10,
       "health": 30
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 150,
@@ -2066,7 +2066,7 @@
       "health": 35
     },
     "ranged": true,
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 151,
@@ -2080,7 +2080,7 @@
       "health": 35
     },
     "ranged": true,
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 152,
@@ -2093,7 +2093,7 @@
       "maxDamage": 22,
       "health": 80
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 153,
@@ -2106,7 +2106,7 @@
       "maxDamage": 22,
       "health": 90
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 154,
@@ -2119,7 +2119,7 @@
       "maxDamage": 55,
       "health": 180
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
   {
     "id": 155,
@@ -2132,7 +2132,7 @@
       "maxDamage": 55,
       "health": 300
     },
-    "nativeTerrainId": 4
+    "nativeTerrain": 4
   },
 
   {
