@@ -11,6 +11,9 @@ export default {
   getUnits ({ commit }) {
     commit('GET_UNITS')
   },
+  getTerrains ({ commit }) {
+    commit('GET_TERRAINS')
+  },
 
   setHero ({ commit }, { side, hero }) {
     if (side === 'attacker') {
@@ -96,6 +99,12 @@ export default {
     } else if (side === 'defender') {
       commit('SET_DEFENDER_UNIT_RESULT_DAMAGE', unit)
     }
+  },
+
+  setTerrain ({ commit }, terrain) {
+    commit('SET_TERRAIN', terrain)
+
+    commit('CALCULATE_START')
   },
 
   startCalculate ({ commit }) {
