@@ -14,10 +14,8 @@ export default {
 
   setHero ({ commit }, { side, hero }) {
     if (side === 'attacker') {
-      commit('CLEAR_ATTACKER_HERO')
       commit('SET_ATTACKER_HERO', hero)
     } else if (side === 'defender') {
-      commit('CLEAR_DEFENDER_HERO')
       commit('SET_DEFENDER_HERO', hero)
     }
 
@@ -25,55 +23,79 @@ export default {
   },
 
   setHeroLevel ({ commit }, { side, level }) {
-    if (side === 'attacker') commit('SET_ATTACKER_HERO_LEVEL', level)
-    else if (side === 'defender') commit('SET_DEFENDER_HERO_LEVEL', level)
+    if (side === 'attacker') {
+      commit('SET_ATTACKER_HERO_LEVEL', level)
+    } else if (side === 'defender') {
+      commit('SET_DEFENDER_HERO_LEVEL', level)
+    }
 
     commit('CALCULATE_START')
   },
   setHeroAttack ({ commit }, { side, attack }) {
-    if (side === 'attacker') commit('SET_ATTACKER_HERO_ATTACK', attack)
-    else if (side === 'defender') commit('SET_DEFENDER_HERO_ATTACK', attack)
+    if (side === 'attacker') {
+      commit('SET_ATTACKER_HERO_ATTACK', attack)
+    } else if (side === 'defender') {
+      commit('SET_DEFENDER_HERO_ATTACK', attack)
+    }
 
     commit('CALCULATE_START')
   },
   setHeroDefense ({ commit }, { side, defense }) {
-    if (side === 'attacker') commit('SET_ATTACKER_HERO_DEFENSE', defense)
-    else if (side === 'defender') commit('SET_DEFENDER_HERO_DEFENSE', defense)
+    if (side === 'attacker') {
+      commit('SET_ATTACKER_HERO_DEFENSE', defense)
+    } else if (side === 'defender') {
+      commit('SET_DEFENDER_HERO_DEFENSE', defense)
+    }
 
     commit('CALCULATE_START')
   },
 
   setHeroSkill ({ commit }, { side, skill, level }) {
-    if (side === 'attacker') commit('SET_ATTACKER_HERO_SKILL', { skill, level })
-    else if (side === 'defender') commit('SET_DEFENDER_HERO_SKILL', { skill, level })
+    if (side === 'attacker') {
+      commit('SET_ATTACKER_HERO_SKILL', { skill, level })
+    } else if (side === 'defender') {
+      commit('SET_DEFENDER_HERO_SKILL', { skill, level })
+    }
 
     commit('CALCULATE_START')
   },
 
   setUnitEffect ({ commit }, { side, effects }) {
-    if (side === 'attacker') commit('SET_ATTACKER_UNIT_EFFECT', effects)
-    else if (side === 'defender') commit('SET_DEFENDER_UNIT_EFFECT', effects)
+    if (side === 'attacker') {
+      commit('SET_ATTACKER_UNIT_EFFECT', effects)
+    } else if (side === 'defender') {
+      commit('SET_DEFENDER_UNIT_EFFECT', effects)
+    }
 
     commit('CALCULATE_START')
   },
 
   setUnit ({ commit }, { side, unit }) {
-    if (side === 'attacker') commit('SET_ATTACKER_UNIT', unit)
-    else if (side === 'defender') commit('SET_DEFENDER_UNIT', unit)
+    if (side === 'attacker') {
+      commit('SET_ATTACKER_UNIT', unit)
+    } else if (side === 'defender') {
+      commit('SET_DEFENDER_UNIT', unit)
+    }
 
     commit('CALCULATE_START')
   },
 
   setUnitsCount ({ commit }, { side, count }) {
-    if (side === 'attacker') commit('SET_ATTACKER_UNITS_COUNT', count)
-    else if (side === 'defender') commit('SET_DEFENDER_UNITS_COUNT', count)
+    if (side === 'attacker') {
+      commit('SET_ATTACKER_UNITS_COUNT', count)
+    } else if (side === 'defender') {
+      commit('SET_DEFENDER_UNITS_COUNT', count)
+    }
 
     commit('CALCULATE_START')
   },
 
   setResultDamage ({ commit }, { side, unit }) {
-    if (side === 'attacker') commit('SET_ATTACKER_UNIT_RESULT_DAMAGE', unit)
-    else if (side === 'defender') commit('SET_DEFENDER_UNIT_RESULT_DAMAGE', unit)
+    if (side === 'attacker') {
+      commit('SET_ATTACKER_UNIT_RESULT_DAMAGE', unit)
+    } else if (side === 'defender') {
+      commit('SET_DEFENDER_UNIT_RESULT_DAMAGE', unit)
+    }
   },
 
   startCalculate ({ commit }) {
