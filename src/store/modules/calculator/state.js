@@ -1,6 +1,10 @@
 export default {
   heroes: [],
   units: [],
+  terrains: [],
+
+  terrain: null,
+  calculate: false,
 
   attacker: {
     unit: {
@@ -106,12 +110,8 @@ export default {
     totalAverageKills: null
   },
 
-  terrain: null,
-
   images: {
     units: [],
     heroes: []
-  },
-
-  calculate: false
+  }
 }

@@ -11,6 +11,9 @@ export default {
   getUnits: state => {
     return state.units
   },
+  getTerrains: state => {
+    return state.terrains
+  },
 
   getAttacker: state => {
     return state.attacker

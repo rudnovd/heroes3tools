@@ -3,7 +3,6 @@ b-modal(
   :title='`Pick ${side} unit`'
   :ref='refString'
   size='xl'
-  no-close-on-backdrop=true
   ok-disabled=true
   cancel-disabled=true
   hide-footer=true

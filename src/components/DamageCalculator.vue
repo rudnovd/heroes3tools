@@ -93,30 +93,7 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
 
       calculated-damage.mt-3(side='defender')
 
-  //- Bottom panel
-  b-row.p-2.border-top
-
-    //- Swap button
-    b-col.text-left.ml-auto.mr-auto.mr-md-3.mr-lg-3.mr-xl-3(cols='auto' sm='2' md='1' lg='1' xl='1')
-      b-button(v-if='attacker.unit && defender.unit' variant='link' size='sm' @click='swapSides()')
-        font-awesome-icon.fa-2x(icon='sync' style='color: #DC3545')
-
-    //- Terrain text
-    b-col(cols='auto' sm='2' md='2' lg='1' xl='1' offset='0' offset-sm='4' offset-md='0' offset-lg='2' offset-xl='2').text-right
-      label.mt-1 Terrain:
-
-    //- Terrain select
-    b-col(cols='auto' sm='4' md='3' lg='2' xl='2')
-      b-form-select(
-        v-model='terrain'
-        :options='terrainOptions'
-        value-field='id'
-        text-field='name'
-        size='sm'
-        @input='startCalculate()'
-      )
-        template(slot='first')
-          option(:value='null') Don't care
+  bottom-panel
 
   //- Pick ATTACKER unit modal
   pick-unit-modal(side='attacker' refString='attackerModal' @sendUnit='selectUnit("attacker", $event)')
@@ -142,7 +119,7 @@ import calculatedDamage from '@/components/damageCalculator/calculatedDamage.vue
 
 import selectUnitsCount from '@/components/damageCalculator/selectUnitsCount.vue'
 
-import terrainsJson from '@/assets/json/terrains.json'
+import bottomPanel from '@/components/damageCalculator/bottomPanel.vue'
 
 import unitsHatesJson from '@/assets/json/unitsHates.json'
 
@@ -155,7 +132,8 @@ export default {
     'select-hero-skills': selectHeroSkills,
     'select-unit-effects': selectUnitEffects,
     'calculated-damage': calculatedDamage,
-    'select-units-count': selectUnitsCount
+    'select-units-count': selectUnitsCount,
+    'bottom-panel': bottomPanel
   },
   beforeCreate () {
     document.title = 'Damage calculator'
@@ -171,7 +149,6 @@ export default {
   data () {
     return {
       terrain: null,
-      terrainOptions: terrainsJson,
 
       unitsHates: unitsHatesJson,
 
@@ -192,6 +169,7 @@ export default {
     this.getHeroes()
     this.getUnitsImages()
     this.getHeroesImages()
+    this.getTerrains()
   },
   watch: {
     calculate () {
@@ -351,7 +329,8 @@ export default {
       endCalculate: 'calculator/endCalculate',
       setResultDamage: 'calculator/setResultDamage',
       setUnitsCount: 'calculator/setUnitsCount',
-      swapSides: 'calculator/swapSides'
+      swapSides: 'calculator/swapSides',
+      getTerrains: 'calculator/getTerrains'
     }),
     // Show modal
     pickAttackerModalShow () {
