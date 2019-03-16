@@ -8,6 +8,9 @@ export default {
   getHeroes: state => {
     return state.heroes
   },
+  getUnits: state => {
+    return state.units
+  },
 
   getAttacker: state => {
     return state.attacker

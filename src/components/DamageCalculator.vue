@@ -201,8 +201,9 @@ export default {
     }
   },
   mounted () {
-    this.getUnitsImages()
+    this.getUnits()
     this.getHeroes()
+    this.getUnitsImages()
     this.getHeroesImages()
   },
   watch: {
@@ -354,10 +355,11 @@ export default {
   },
   methods: {
     ...mapActions({
-      swapHeroes: 'calculator/swapHeroes',
+      getUnits: 'calculator/getUnits',
+      getHeroes: 'calculator/getHeroes',
       getUnitsImages: 'calculator/getUnitsImages',
       getHeroesImages: 'calculator/getHeroesImages',
-      getHeroes: 'calculator/getHeroes',
+      swapHeroes: 'calculator/swapHeroes',
       startCalculate: 'calculator/startCalculate',
       endCalculate: 'calculator/endCalculate',
       setResultDamage: 'calculator/setResultDamage',
