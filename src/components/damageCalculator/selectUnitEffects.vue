@@ -1,34 +1,16 @@
 <template lang='pug'>
 b-row(v-if='this[side].id')
-  //- Attacker attack buffs checkboxes
   b-col(cols='4' sm='4' md='4' lg='3' xl='3')
     b-form-group
-      b-form-checkbox(
-        v-for='effect in spells.attackBuffs'
-        :key='effect'
-        :checked='effects.includes(effect)'
-        @input='pushSpell(side, effect)'
-      ) {{ effect }}
+      b-form-checkbox-group(v-model='effects' :options='attackBuffs')
 
-  //- Attacker defense buffs checkboxes
   b-col(cols='4' sm='4' md='4' lg='3' xl='3')
     b-form-group
-      b-form-checkbox(
-        v-for='effect in spells.defenseBuffs'
-        :key='effect'
-        :checked='effects.includes(effect)'
-        @input='pushSpell(side, effect)'
-      ) {{ effect }}
+      b-form-checkbox-group(v-model='effects' :options='defenseBuffs')
 
-  //- Attacker attack debuffs checkboxes
   b-col(cols='4' sm='4' md='4' lg='3' xl='3')
     b-form-group
-      b-form-checkbox(
-        v-for='effect in spells.attackDebuffs'
-        :key='effect'
-        :checked='effects.includes(effect)'
-        @input='pushSpell(side, effect)'
-      ) {{ effect }}
+      b-form-checkbox-group(v-model='effects' :options='attackDebuffs')
 </template>
 
 <script>
@@ -43,33 +25,38 @@ export default {
     ...mapGetters({
       attacker: 'calculator/getAttackerHero',
       defender: 'calculator/getDefenderHero'
-    })
+    }),
+    effects: {
+      get () {
+        if (this.side === 'attacker') {
+          return this.$store.state.calculator.attacker.unit.effects
+        } else if (this.side === 'defender') {
+          return this.$store.state.calculator.defender.unit.effects
+        } else {
+          return null
+        }
+      },
+      set (value) {
+        if (this.$store.state.calculator[this.side].unit.effects !== value) {
+          this.setUnitEffect({
+            side: this.side,
+            effects: value
+          })
+        }
+      }
+    }
   },
   data () {
     return {
-      spells: {
-        attackBuffs: ['Bless', 'Bloodlust', 'Frenzy', 'Prayer', 'Precision', 'Slayer'],
-        defenseBuffs: ['Shield', 'Stone Skin', 'Air Shield'],
-        attackDebuffs: ['Curse', 'Weakness', 'Disrupting Ray'],
-        defenseDebuffs: []
-      },
-      effects: []
+      attackBuffs: ['Bless', 'Bloodlust', 'Frenzy', 'Prayer', 'Precision', 'Slayer'],
+      defenseBuffs: ['Shield', 'Stone Skin', 'Air Shield'],
+      attackDebuffs: ['Curse', 'Weakness', 'Disrupting Ray']
     }
   },
   methods: {
     ...mapActions({
-      setUnitEffect: 'calculator/setUnitEffect',
-      removeUnitEffect: 'calculator/removeUnitEffect'
-    }),
-    pushSpell (side, effect) {
-      if (this.effects.includes(effect)) {
-        this.effects.splice(this.effects.indexOf(effect), 1)
-        this.removeUnitEffect({ side, effect })
-      } else {
-        this.effects.push(effect)
-        this.setUnitEffect({ side, effect })
-      }
-    }
+      setUnitEffect: 'calculator/setUnitEffect'
+    })
   }
 }
 </script>
