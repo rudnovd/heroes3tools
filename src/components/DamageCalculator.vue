@@ -22,17 +22,9 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
                 font-awesome-icon.fa-4x(v-else icon='question-circle' style='color: #00CB31')
 
           //- Attacker units count
-          b-row(v-if='attacker.unit')
-            b-col.ml-2(cols='auto' sm='8' md='9' lg='9' xl='8')
-              b-form-input(
-                v-model='localAttacker.unit.count'
-                type='number'
-                :disabled='!attacker.unit'
-                size='sm'
-                min=1
-                max=999
-                @input='setUnitsCount({ side: "attacker", count: localAttacker.unit.count })'
-              )
+          b-row
+            b-col(class='ml-2' cols='auto' sm='8' md='9' lg='9' xl='8')
+              select-units-count(side="attacker")
 
         //- Pick ATTACKER unit button
         b-col(cols='9' sm='9' md='8' lg='9' xl='9')
@@ -78,7 +70,7 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
           //- Choose DEFENDER hero
           b-row.mt-3
             b-col(cols='12')
-              select-hero(side='defender')
+              select-hero(side="defender")
 
         //- Pick DEFENDER unit image
         b-col.text-right(cols='3' sm='3' md='4' lg='3' xl='3')
@@ -91,15 +83,7 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
           //- Defender units count
           b-row.float-right(v-if='defender.unit')
             b-col(cols='auto' sm='11' md='11' lg='11' xl='11')
-              b-form-input(
-                v-model='localDefender.unit.count'
-                type='number'
-                :disabled='!defender.unit'
-                size='sm'
-                min=1
-                max=999
-                @input='setUnitsCount({ side: "defender", count: localDefender.unit.count })'
-              )
+              select-units-count(side='defender')
 
       select-hero-stats.mt-2(side='defender')
 
@@ -156,6 +140,8 @@ import selectUnitEffects from '@/components/damageCalculator/selectUnitEffects.v
 
 import calculatedDamage from '@/components/damageCalculator/calculatedDamage.vue'
 
+import selectUnitsCount from '@/components/damageCalculator/selectUnitsCount.vue'
+
 import terrainsJson from '@/assets/json/terrains.json'
 
 import unitsHatesJson from '@/assets/json/unitsHates.json'
@@ -168,7 +154,8 @@ export default {
     'pick-unit-modal': pickUnitModal,
     'select-hero-skills': selectHeroSkills,
     'select-unit-effects': selectUnitEffects,
-    'calculated-damage': calculatedDamage
+    'calculated-damage': calculatedDamage,
+    'select-units-count': selectUnitsCount
   },
   beforeCreate () {
     document.title = 'Damage calculator'
