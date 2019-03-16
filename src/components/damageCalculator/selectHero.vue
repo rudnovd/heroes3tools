@@ -2,20 +2,24 @@
 multiselect(
   placeholder='Pick hero',
   v-model='hero',
+  label='name',
+  selectLabel='',
+  deselectLabel='',
   :value='hero',
   :options='heroes',
   :searchable='true',
   :allow-empty='false',
-  label='name',
+  :clear-on-select='false',
+  :maxHeight='480'
 )
-  template(slot="singleLabel", slot-scope="props" v-if='hero.id')
-    img.option__image(:src='heroesImages[hero.id].src')
-    span.option__desc
-      span.option__title.ml-3 {{ props.option.name[0] }}
-  template(slot="option", slot-scope="props")
-    img.option__image(:src='heroesImages[props.option.id].src')
-    span.option__desc
-      span.option__title  {{ props.option.name[0] }}
+  template(v-if='hero.id' slot='singleLabel', slot-scope='props')
+    img(:src='heroesImages[hero.id].src')
+    span(class='multiselect__selected ml-1')
+      | {{ props.option.name[0] }}
+  template(slot='option', slot-scope='props')
+    img(:src='heroesImages[props.option.id].src')
+    span(class='ml-1')
+      | {{ props.option.name[0] }}
 </template>
 
 <script>
@@ -42,7 +46,10 @@ export default {
         }
       },
       set (value) {
-        this.setHero({ side: this.side, hero: value })
+        this.setHero({
+          side: this.side,
+          hero: value
+        })
       }
     }
   },
@@ -53,3 +60,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.multiselect {
+  font-size: 1.125rem;
+  .multiselect__selected {
+    font-size: 1.125rem;
+  }
+}
+</style>
