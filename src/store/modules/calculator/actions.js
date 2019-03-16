@@ -8,6 +8,9 @@ export default {
   getHeroes ({ commit }) {
     commit('GET_HEROES')
   },
+  getUnits ({ commit }) {
+    commit('GET_UNITS')
+  },
 
   setHero ({ commit }, { side, hero }) {
     if (side === 'attacker') {

@@ -1,5 +1,6 @@
 export default {
   heroes: [],
+  units: [],
 
   attacker: {
     unit: {
