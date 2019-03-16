@@ -50,15 +50,9 @@ export default {
     commit('CALCULATE_START')
   },
 
-  setUnitEffect ({ commit }, { side, effect }) {
-    if (side === 'attacker') commit('SET_ATTACKER_UNIT_EFFECT', effect)
-    else if (side === 'defender') commit('SET_DEFENDER_UNIT_EFFECT', effect)
-
-    commit('CALCULATE_START')
-  },
-  removeUnitEffect ({ commit }, { side, effect }) {
-    if (side === 'attacker') commit('REMOVE_ATTACKER_UNIT_EFFECT', effect)
-    else if (side === 'defender') commit('REMOVE_DEFENDER_UNIT_EFFECT', effect)
+  setUnitEffect ({ commit }, { side, effects }) {
+    if (side === 'attacker') commit('SET_ATTACKER_UNIT_EFFECT', effects)
+    else if (side === 'defender') commit('SET_DEFENDER_UNIT_EFFECT', effects)
 
     commit('CALCULATE_START')
   },
