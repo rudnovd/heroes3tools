@@ -34,15 +34,15 @@ export default {
       attack: 0,
       defense: 0,
 
-      archery: null,
-      armorer: null,
-      offense: null,
-      artillery: null,
+      archery: 0,
+      armorer: 0,
+      offense: 0,
+      artillery: 0,
 
-      air: null,
-      fire: null,
-      earth: null,
-      water: null
+      air: 0,
+      fire: 0,
+      earth: 0,
+      water: 0
     },
 
     totalMinDamage: null,
@@ -59,7 +59,7 @@ export default {
       id: null,
       name: null,
       level: null,
-      count: null,
+      count: 1,
       nativeTerrain: null,
       magicImmunity: null,
       spellsVulnerability: null,
@@ -86,15 +86,15 @@ export default {
       attack: 0,
       defense: 0,
 
-      archery: null,
-      armorer: null,
-      offense: null,
-      artillery: null,
+      archery: 0,
+      armorer: 0,
+      offense: 0,
+      artillery: 0,
 
-      air: null,
-      fire: null,
-      earth: null,
-      water: null
+      air: 0,
+      fire: 0,
+      earth: 0,
+      water: 0
     },
 
     totalMinDamage: null,

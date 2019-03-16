@@ -121,17 +121,6 @@ export default {
     state.attacker.hero.specialtySkill = ''
     state.attacker.hero.specialtyUnit = ''
     state.attacker.hero.specialtySpell = ''
-    state.attacker.hero.level = 1
-    state.attacker.hero.attack = 0
-    state.attacker.hero.defense = 0
-    state.attacker.hero.archery = null
-    state.attacker.hero.armorer = null
-    state.attacker.hero.offense = null
-    state.attacker.hero.artillery = null
-    state.attacker.hero.air = null
-    state.attacker.hero.fire = null
-    state.attacker.hero.earth = null
-    state.attacker.hero.water = null
   },
   CLEAR_DEFENDER_HERO (state) {
     state.defender.hero.id = null
@@ -139,17 +128,6 @@ export default {
     state.defender.hero.specialtySkill = ''
     state.defender.hero.specialtyUnit = ''
     state.defender.hero.specialtySpell = ''
-    state.defender.hero.level = 1
-    state.defender.hero.attack = 0
-    state.defender.hero.defense = 0
-    state.defender.hero.archery = null
-    state.defender.hero.armorer = null
-    state.defender.hero.offense = null
-    state.defender.hero.artillery = null
-    state.defender.hero.air = null
-    state.defender.hero.fire = null
-    state.defender.hero.earth = null
-    state.defender.hero.water = null
   },
 
   CALCULATE_START (state) {
