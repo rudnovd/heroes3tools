@@ -1,5 +1,7 @@
 import heroesJson from '@/assets/json/heroes.json'
 
+import unitsJson from '@/assets/json/units.json'
+
 export default {
   GET_UNITS_IMAGES (state) {
     for (let i = 0; i <= 160; i++) {
@@ -13,6 +15,9 @@ export default {
   },
   GET_HEROES (state) {
     state.heroes = heroesJson
+  },
+  GET_UNITS (state) {
+    state.units = unitsJson
   },
 
   SET_ATTACKER_HERO (state, hero) {
