@@ -73,11 +73,11 @@ export default {
     state.defender.hero[skill] = level
   },
 
-  SET_ATTACKER_UNIT_EFFECT (state, effect) {
-    state.attacker.unit.effects.push(effect)
+  SET_ATTACKER_UNIT_EFFECT (state, effects) {
+    state.attacker.unit.effects = effects
   },
-  SET_DEFENDER_UNIT_EFFECT (state, effect) {
-    state.defender.unit.effects.push(effect)
+  SET_DEFENDER_UNIT_EFFECT (state, effects) {
+    state.defender.unit.effects = effects
   },
   REMOVE_ATTACKER_UNIT_EFFECT (state, effect) {
     state.attacker.unit.effects.splice(state.attacker.unit.effects.indexOf(effect), 1)
