@@ -24,25 +24,44 @@ export default {
     state.attacker.hero.id = hero.id
     state.attacker.hero.name = hero.name
 
-    state.attacker.hero.specialtySkill = ''
-    state.attacker.hero.specialtyUnit = ''
-    state.attacker.hero.specialtySpell = ''
+    if (hero.specialtySkill) {
+      state.attacker.hero.specialtySkill = hero.specialtySkill
+    } else {
+      state.attacker.hero.specialtySkill = ''
+    }
 
-    if (hero.specialtySkill) state.attacker.hero.specialtySkill = hero.specialtySkill
-    if (hero.specialtyUnit) state.attacker.hero.specialtyUnit = hero.specialtyUnit
-    if (hero.specialtySpell) state.attacker.hero.specialtySpell = hero.specialtySpell
+    if (hero.specialtyUnit) {
+      state.attacker.hero.specialtyUnit = hero.specialtyUnit
+    } else {
+      state.attacker.hero.specialtyUnit = ''
+    }
+
+    if (hero.specialtySpell) {
+      state.attacker.hero.specialtySpell = hero.specialtySpell
+    } else {
+      state.attacker.hero.specialtySpell = ''
+    }
   },
   SET_DEFENDER_HERO (state, hero) {
     state.defender.hero.id = hero.id
     state.defender.hero.name = hero.name
 
-    state.defender.hero.specialtySkill = ''
-    state.defender.hero.specialtyUnit = ''
-    state.defender.hero.specialtySpell = ''
+    if (hero.specialtySkill) {
+      state.defender.hero.specialtySkill = hero.specialtySkill
+    } else {
+      state.defender.hero.specialtySkill = ''
+    }
 
-    if (hero.specialtySkill) state.defender.hero.specialtySkill = hero.specialtySkill
-    if (hero.specialtyUnit) state.defender.hero.specialtyUnit = hero.specialtyUnit
-    if (hero.specialtySpell) state.defender.hero.specialtySpell = hero.specialtySpell
+    if (hero.specialtyUnit) {
+      state.defender.hero.specialtyUnit = hero.specialtyUnit
+    } else {
+      state.defender.hero.specialtyUnit = ''
+    }
+    if (hero.specialtySpell) {
+      state.defender.hero.specialtySpell = hero.specialtySpell
+    } else {
+      state.defender.hero.specialtySpell = ''
+    }
   },
 
   SET_ATTACKER_HERO_LEVEL (state, level) {
@@ -79,55 +98,68 @@ export default {
   SET_DEFENDER_UNIT_EFFECT (state, effects) {
     state.defender.unit.effects = effects
   },
-  REMOVE_ATTACKER_UNIT_EFFECT (state, effect) {
-    state.attacker.unit.effects.splice(state.attacker.unit.effects.indexOf(effect), 1)
-  },
-  REMOVE_DEFENDER_UNIT_EFFECT (state, effect) {
-    state.defender.unit.effects.splice(state.defender.unit.effects.indexOf(effect), 1)
-  },
 
   SET_ATTACKER_UNIT (state, unit) {
     state.attacker.unit.id = unit.id
     state.attacker.unit.name = unit.name
     state.attacker.unit.level = unit.level
     state.attacker.unit.nativeTerrain = unit.nativeTerrain
-
-    if (unit.magicImmunity) state.attacker.unit.magicImmunity = unit.magicImmunity
-    if (unit.spellsVulnerability) state.attacker.unit.spellsVulnerability = unit.spellsVulnerability
-    if (unit.ranged) state.attacker.unit.ranged = unit.ranged
-    if (unit.hits) state.attacker.unit.hits = unit.hits
-
     state.attacker.unit.stats = unit.stats
-    state.attacker.unit.effects = []
+
+    if (unit.magicImmunity) {
+      state.attacker.unit.magicImmunity = unit.magicImmunity
+    } else {
+      state.attacker.unit.magicImmunity = ''
+    }
+
+    if (unit.spellsVulnerability) {
+      state.attacker.unit.spellsVulnerability = unit.spellsVulnerability
+    } else {
+      state.attacker.unit.spellsVulnerability = ''
+    }
+
+    if (unit.ranged) {
+      state.attacker.unit.ranged = unit.ranged
+    } else {
+      state.attacker.unit.ranged = ''
+    }
+
+    if (unit.hits) {
+      state.attacker.unit.hits = unit.hits
+    } else {
+      state.attacker.unit.hits = 0
+    }
   },
   SET_DEFENDER_UNIT (state, unit) {
     state.defender.unit.id = unit.id
     state.defender.unit.name = unit.name
     state.defender.unit.level = unit.level
     state.defender.unit.nativeTerrain = unit.nativeTerrain
-
-    if (unit.magicImmunity) state.defender.unit.magicImmunity = unit.magicImmunity
-    if (unit.spellsVulnerability) state.defender.unit.spellsVulnerability = unit.spellsVulnerability
-    if (unit.ranged) state.defender.unit.ranged = unit.ranged
-    if (unit.hits) state.defender.unit.hits = unit.hits
-
     state.defender.unit.stats = unit.stats
-    state.defender.unit.effects = []
-  },
 
-  CLEAR_ATTACKER_HERO (state) {
-    state.attacker.hero.id = null
-    state.attacker.hero.name = null
-    state.attacker.hero.specialtySkill = ''
-    state.attacker.hero.specialtyUnit = ''
-    state.attacker.hero.specialtySpell = ''
-  },
-  CLEAR_DEFENDER_HERO (state) {
-    state.defender.hero.id = null
-    state.defender.hero.name = null
-    state.defender.hero.specialtySkill = ''
-    state.defender.hero.specialtyUnit = ''
-    state.defender.hero.specialtySpell = ''
+    if (unit.magicImmunity) {
+      state.defender.unit.magicImmunity = unit.magicImmunity
+    } else {
+      state.defender.unit.magicImmunity = null
+    }
+
+    if (unit.spellsVulnerability) {
+      state.defender.unit.spellsVulnerability = unit.spellsVulnerability
+    } else {
+      state.defender.unit.spellsVulnerability = ''
+    }
+
+    if (unit.ranged) {
+      state.defender.unit.ranged = unit.ranged
+    } else {
+      state.defender.unit.ranged = ''
+    }
+
+    if (unit.hits) {
+      state.defender.unit.hits = unit.hits
+    } else {
+      state.defender.unit.hits = ''
+    }
   },
 
   CALCULATE_START (state) {
