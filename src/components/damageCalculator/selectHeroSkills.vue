@@ -1,5 +1,5 @@
 <template lang='pug'>
-b-row(v-if='this[side].id')
+b-row
   //- Offense
   b-col(cols='2' sm='2' md='2' lg='2' xl='2')
     label.mt-1 Offense
@@ -7,50 +7,50 @@ b-row(v-if='this[side].id')
     b-form-select(v-model='offense' :options='options' size='sm')
 
   //- Air
-  b-col.text-truncate(cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
+  b-col(cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
     label.mt-1 Air
   b-col(cols='4' sm='3' md='4' lg='3' xl='3')
     b-form-select(v-model='air' :options='options' size='sm')
 
   //- Armorer
-  b-col(class='mt-2 text-truncate' cols='2' sm='2' md='2' lg='2' xl='2')
+  b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2')
     label.mt-1 Armorer
   b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
     b-form-select(v-model='armorer' :options='options' size='sm')
 
   //- Fire
-  b-col(class='mt-2 text-truncate' cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
+  b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
     label.mt-1 Fire
   b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
     b-form-select(v-model='fire' :options='options' size='sm')
 
   //- Archery
-  b-col(class='mt-2 text-truncate' cols='2' sm='2' md='2' lg='2' xl='2')
+  b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2')
     label.mt-1 Archery
   b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
     b-form-select(v-model='archery' :options='options' size='sm')
 
   //- Earth
-  b-col(class='mt-2 text-truncate' cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
+  b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
     label.mt-1 Earth
   b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
     b-form-select(v-model='earth' :options='options' size='sm')
 
   //- Artillery
-  b-col(class='mt-2 text-truncate' cols='2' sm='2' md='2' lg='2' xl='2')
+  b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2')
     label.mt-1 Artillery
   b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
     b-form-select(v-model='artillery' :options='options' size='sm')
 
   //- Water
-  b-col(class='mt-2 text-truncate' cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
+  b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
     label.mt-1 Water
   b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
     b-form-select(v-model='water' :options='options' size='sm')
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'selectHeroSkills',
@@ -68,10 +68,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      attacker: 'calculator/getAttackerHero',
-      defender: 'calculator/getDefenderHero'
-    }),
     offense: {
       get () {
         if (this.side === 'attacker') {

@@ -4,6 +4,8 @@ import unitsJson from '@/assets/json/units.json'
 
 import terrainsJson from '@/assets/json/terrains.json'
 
+import unitsHatesJson from '@/assets/json/unitsHates.json'
+
 export default {
   GET_UNITS_IMAGES (state) {
     for (let i = 0; i <= 160; i++) {
@@ -14,6 +16,9 @@ export default {
     for (let i = 0; i <= 159; i++) {
       state.images.heroes.push({ id: i, src: require(`@/assets/images/heroes/${i}.webp`) })
     }
+  },
+  GET_UNITS_HATES (state) {
+    state.hates = unitsHatesJson
   },
   GET_TERRAINS (state) {
     state.terrains = terrainsJson

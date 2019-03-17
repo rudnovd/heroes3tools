@@ -1,5 +1,5 @@
 <template lang='pug'>
-b-row(v-if='this[side].id')
+b-row
   b-col(cols='4' sm='4' md='4' lg='3' xl='3')
     b-form-group
       b-form-checkbox-group(v-model='effects' :options='attackBuffs')
@@ -14,7 +14,7 @@ b-row(v-if='this[side].id')
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'selectUnitEffects',
@@ -22,10 +22,6 @@ export default {
     side: String
   },
   computed: {
-    ...mapGetters({
-      attacker: 'calculator/getAttackerHero',
-      defender: 'calculator/getDefenderHero'
-    }),
     effects: {
       get () {
         if (this.side === 'attacker') {

@@ -6,24 +6,24 @@ multiselect(
   selectLabel='',
   deselectLabel='',
   :value='hero',
-  :options='heroes',
+  :options='$store.state.calculator.heroes',
   :searchable='true',
   :allow-empty='false',
   :clear-on-select='false',
   :maxHeight='480'
 )
   template(v-if='hero.id' slot='singleLabel', slot-scope='props')
-    img(:src='heroesImages[hero.id].src')
+    img(:src='$store.state.calculator.images.heroes[hero.id].src')
     span(class='multiselect__selected ml-1')
       | {{ props.option.name[0] }}
   template(slot='option', slot-scope='props')
-    img(:src='heroesImages[props.option.id].src')
+    img(:src='$store.state.calculator.images.heroes[props.option.id].src')
     span(class='ml-1')
       | {{ props.option.name[0] }}
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'selectHero',
@@ -31,10 +31,6 @@ export default {
     side: String
   },
   computed: {
-    ...mapGetters({
-      heroes: 'calculator/getHeroes',
-      heroesImages: 'calculator/getHeroesImages'
-    }),
     hero: {
       get () {
         if (this.side === 'attacker') {

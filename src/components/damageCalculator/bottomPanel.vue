@@ -3,7 +3,7 @@ b-row.p-2.border-top
 
   //- Swap button
   b-col(class='text-left ml-auto mr-auto mr-md-3 mr-lg-3 mr-xl-3' cols='auto' sm='2' md='1' lg='1' xl='1')
-    b-button(v-if='attacker.id && defender.id' variant='link' size='sm' @click='swapSides()')
+    b-button(v-if='attackerUnitSelected && defenderUnitSelected' variant='link' size='sm' @click='swapSides()')
       font-awesome-icon(class='fa-2x' icon='sync' style='color: #DC3545')
 
   //- Terrain text
@@ -32,9 +32,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      attacker: 'calculator/getAttackerUnit',
-      defender: 'calculator/getDefenderUnit',
-      terrains: 'calculator/getTerrains'
+      attackerUnitSelected: 'calculator/attackerUnitSelected',
+      defenderUnitSelected: 'calculator/defenderUnitSelected'
     }),
     terrain: {
       get () {
@@ -42,6 +41,11 @@ export default {
       },
       set (value) {
         this.setTerrain(value)
+      }
+    },
+    terrains: {
+      get () {
+        return this.$store.state.calculator.terrains
       }
     }
   },
