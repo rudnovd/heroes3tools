@@ -2,14 +2,15 @@
 b-container.footer.mt-5
   b-row.mt-2
     b-col(cols='auto')
-      b-button.text-muted(variant='link' size='sm' @click='$refs.howToUseModal.show()') How to use
-    b-col(cols='auto').ml-auto
-      b-button.text-muted(variant='link' size='sm' @click='$refs.licenseInformationModal.show()') License information
+      b-button(class='text-muted' variant='link' size='sm' @click='howToUseModalShow()') How to use
+    b-col(class='ml-auto' cols='auto')
+      b-button(class='text-muted' variant='link' size='sm' @click='licenseInformationModalShow()') License information
   b-row
     b-col(cols='auto')
-      b-button.text-muted(variant='link' size='sm' @click='$refs.sendErrorModal.show()') Find error?
-    b-col(cols='auto').ml-auto
-      b-button.text-muted(
+      b-button(class='text-muted' variant='link' size='sm' @click='sendErrorModalShow()') Find error?
+    b-col(class='ml-auto' cols='auto')
+      b-button(
+        class='text-muted'
         variant='link'
         size='sm'
         @click='openURL("https://github.com/rudnovd/heroes3-damage-calculator")'
@@ -17,6 +18,7 @@ b-container.footer.mt-5
 
   //- License information modal
   b-modal(
+    v-if='licenseInformationModal'
     title='License information'
     ref='licenseInformationModal'
     size='lg'
@@ -58,12 +60,13 @@ b-container.footer.mt-5
     hide-footer=true
   )
     //- Modal content
-    b-row(align-v='center')
+    b-row(align-v='center' v-if='sendErrorModal')
       b-col(cols='10' offset='1')
         iframe(src="https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform?embedded=true" width="640" height="471" frameborder="0" marginheight="0" marginwidth="0") Загрузка...
 
   //- How to use modal
   b-modal(
+    v-if='howToUseModal'
     title='How to use?'
     ref='howToUseModal'
     size='lg'
@@ -74,7 +77,7 @@ b-container.footer.mt-5
     //- Modal content
     b-row
       b-col(cols='12')
-        p
+        p Soon
 
 </template>
 
@@ -83,11 +86,26 @@ export default {
   name: 'pageFooter',
   data () {
     return {
+      sendErrorModal: false,
+      licenseInformationModal: true,
+      howToUseModal: true
     }
   },
   methods: {
     openURL (url) {
       window.open(url)
+    },
+    sendErrorModalShow () {
+      this.sendErrorModal = true
+      this.$refs.sendErrorModal.show()
+    },
+    licenseInformationModalShow () {
+      this.$refs.licenseInformationModal.show()
+      // this.licenseInformationModal = true
+    },
+    howToUseModalShow () {
+      this.$refs.howToUseModal.show()
+      // this.howToUseModal = true
     }
   }
 }
