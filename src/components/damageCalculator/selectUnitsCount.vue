@@ -1,6 +1,6 @@
 <template lang='pug'>
 b-form-input(
-  v-if='attacker.id && defender.id'
+  v-if='this[side]'
   v-model='count'
   type='number'
   number=true
@@ -20,8 +20,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      attacker: 'calculator/getAttackerUnit',
-      defender: 'calculator/getDefenderUnit'
+      attacker: 'calculator/attackerUnitSelected',
+      defender: 'calculator/defenderUnitSelected'
     }),
     count: {
       get () {

@@ -2,6 +2,7 @@ export default {
   heroes: [],
   units: [],
   terrains: [],
+  hates: [],
 
   terrain: null,
   calculate: false,

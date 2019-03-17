@@ -1,5 +1,5 @@
 <template lang='pug'>
-div(v-if='attacker.unit.id && defender.unit.id')
+div
   b-row
     //- Text
     b-col.text-right
@@ -7,15 +7,15 @@ div(v-if='attacker.unit.id && defender.unit.id')
 
     //- Damage value
     p.text-left.mr-3
-      strong(v-if='this[side].totalMinDamage !== this[side].totalMaxDamage')
-        | {{ this[side].totalMinDamage }} — {{ this[side].totalMaxDamage }} (~ {{ this[side].totalAverageDamage }})
-      strong(v-if='this[side].totalMinDamage === this[side].totalMaxDamage')
-        | {{ this[side].totalMinDamage }}
+      strong(v-if='$store.state.calculator[side].totalMinDamage !== $store.state.calculator[side].totalMaxDamage')
+        | {{ $store.state.calculator[side].totalMinDamage }} — {{ $store.state.calculator[side].totalMaxDamage }} (~ {{ $store.state.calculator[side].totalAverageDamage }})
+      strong(v-if='$store.state.calculator[side].totalMinDamage === $store.state.calculator[side].totalMaxDamage')
+        | {{ $store.state.calculator[side].totalMinDamage }}
 
     //- If unit hits > 0
-    p.text-left(class='mr-3' v-if='this[side].unit.hits > 1')
+    p.text-left(class='mr-3' v-if='$store.state.calculator[side].unit.hits > 1')
       strong
-        | x{{ this[side].unit.hits }}
+        | x{{ $store.state.calculator[side].unit.hits }}
 
   b-row
     //- Text
@@ -24,30 +24,22 @@ div(v-if='attacker.unit.id && defender.unit.id')
 
     //- Kills value
     p.text-left(class='mr-3')
-      strong(v-if='this[side].totalMinKills !== this[side].totalMaxKills')
-        | {{ this[side].totalMinKills }} — {{ this[side].totalMaxKills }} (~ {{ this[side].totalAverageKills }})
-      strong(v-if='this[side].totalMinKills === this[side].totalMaxKills')
-        | {{ this[side].totalMinKills }}
+      strong(v-if='$store.state.calculator[side].totalMinKills !== $store.state.calculator[side].totalMaxKills')
+        | {{ $store.state.calculator[side].totalMinKills }} — {{ $store.state.calculator[side].totalMaxKills }} (~ {{ $store.state.calculator[side].totalAverageKills }})
+      strong(v-if='$store.state.calculator[side].totalMinKills === $store.state.calculator[side].totalMaxKills')
+        | {{ $store.state.calculator[side].totalMinKills }}
 
     //- If unit hits > 0
-    p.text-left(class='mr-3' v-if='this[side].unit.hits > 1')
+    p.text-left(class='mr-3' v-if='$store.state.calculator[side].unit.hits > 1')
       strong
-        | x{{ this[side].unit.hits }}
+        | x{{ $store.state.calculator[side].unit.hits }}
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
   name: 'calculatedDamage',
   props: {
     side: String
-  },
-  computed: {
-    ...mapGetters({
-      attacker: 'calculator/getAttacker',
-      defender: 'calculator/getDefender'
-    })
   }
 }
 </script>

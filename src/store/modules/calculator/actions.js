@@ -14,6 +14,9 @@ export default {
   getTerrains ({ commit }) {
     commit('GET_TERRAINS')
   },
+  getUnitsHates ({ commit }) {
+    commit('GET_UNITS_HATES')
+  },
 
   setHero ({ commit }, { side, hero }) {
     if (side === 'attacker') {

@@ -1,5 +1,5 @@
 <template lang='pug'>
-b-row(v-if='this[side].hero.id')
+b-row
 
   //- Need other layout for attacker
   template(v-if='side === "attacker"')
@@ -79,7 +79,7 @@ b-row(v-if='this[side].hero.id')
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'selectHeroStats',
@@ -87,10 +87,6 @@ export default {
     side: String
   },
   computed: {
-    ...mapGetters({
-      attacker: 'calculator/getAttacker',
-      defender: 'calculator/getDefender'
-    }),
     attack: {
       get () {
         if (this.side === 'attacker') {

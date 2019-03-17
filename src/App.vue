@@ -18,6 +18,13 @@ export default {
     'page-footer': pageFooter
   },
   mounted () {
+    this.getUnits()
+    this.getHeroes()
+    this.getUnitsImages()
+    this.getHeroesImages()
+    this.getTerrains()
+    this.getUnitsHates()
+
     this.updateScreenResolution({ width: document.body.clientWidth, height: document.body.clientHeight })
 
     window.addEventListener('resize', () => {
@@ -26,7 +33,13 @@ export default {
   },
   methods: {
     ...mapActions({
-      updateScreenResolution: 'user/updateScreenResolution'
+      updateScreenResolution: 'user/updateScreenResolution',
+      getUnits: 'calculator/getUnits',
+      getHeroes: 'calculator/getHeroes',
+      getUnitsImages: 'calculator/getUnitsImages',
+      getHeroesImages: 'calculator/getHeroesImages',
+      getUnitsHates: 'calculator/getUnitsHates',
+      getTerrains: 'calculator/getTerrains'
     })
   }
 }
