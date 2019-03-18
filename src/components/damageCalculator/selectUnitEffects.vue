@@ -2,15 +2,24 @@
 b-row
   b-col(cols='4' sm='4' md='4' lg='3' xl='3')
     b-form-group
-      b-form-checkbox-group(v-model='effects' :options='attackBuffs')
+      template(v-if='$i18n.locale === "en"')
+        b-form-checkbox-group(v-model='effects' :options='attackBuffs_en')
+      template(v-if='$i18n.locale === "ru"')
+        b-form-checkbox-group(v-model='effects' :options='attackBuffs_ru')
 
   b-col(cols='4' sm='4' md='4' lg='3' xl='3')
     b-form-group
-      b-form-checkbox-group(v-model='effects' :options='defenseBuffs')
+      template(v-if='$i18n.locale === "en"')
+        b-form-checkbox-group(v-model='effects' :options='defenseBuffs_en')
+      template(v-if='$i18n.locale === "ru"')
+        b-form-checkbox-group(v-model='effects' :options='defenseBuffs_ru')
 
   b-col(cols='4' sm='4' md='4' lg='3' xl='3')
     b-form-group
-      b-form-checkbox-group(v-model='effects' :options='attackDebuffs')
+      template(v-if='$i18n.locale === "en"')
+        b-form-checkbox-group(v-model='effects' :options='attackDebuffs_en')
+      template(v-if='$i18n.locale === "ru"')
+        b-form-checkbox-group(v-model='effects' :options='attackDebuffs_ru')
 </template>
 
 <script>
@@ -44,9 +53,13 @@ export default {
   },
   data () {
     return {
-      attackBuffs: ['Bless', 'Bloodlust', 'Frenzy', 'Prayer', 'Precision', 'Slayer'],
-      defenseBuffs: ['Shield', 'Stone Skin', 'Air Shield'],
-      attackDebuffs: ['Curse', 'Weakness', 'Disrupting Ray']
+      attackBuffs_en: ['Bless', 'Bloodlust', 'Frenzy', 'Prayer', 'Precision', 'Slayer'],
+      defenseBuffs_en: ['Shield', 'Stone Skin', 'Air Shield'],
+      attackDebuffs_en: ['Curse', 'Weakness', 'Disrupting Ray'],
+
+      attackBuffs_ru: ['Благословение', 'Жажда крови', 'Бешенство', 'Молитва', 'Точность', 'Палач'],
+      defenseBuffs_ru: ['Щит', 'Каменная кожа', 'Воздушный щит'],
+      attackDebuffs_ru: ['Проклятье', 'Слабость', 'Разрушающий луч']
     }
   },
   methods: {

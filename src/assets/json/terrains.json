@@ -1,38 +1,47 @@
 [
   {
     "id": 0,
-    "name": "Dirt"
+    "name_en": "Dirt",
+    "name_ru": "Грязь"
   },
   {
     "id": 1,
-    "name": "Sand"
+    "name_en": "Sand",
+    "name_ru": "Песок"
   },
   {
     "id": 2,
-    "name": "Grass"
+    "name_en": "Grass",
+    "name_ru": "Трава"
   },
   {
     "id": 3,
-    "name": "Snow"
+    "name_en": "Snow",
+    "name_ru": "Снег"
   },
   {
     "id": 4,
-    "name": "Swamp"
+    "name_en": "Swamp",
+    "name_ru": "Болото"
   },
   {
     "id": 5,
-    "name": "Rough"
+    "name_en": "Rough",
+    "name_ru": "Камни" 
   },
   {
     "id": 6,
-    "name": "Subterranean"
+    "name_en": "Subterranean",
+    "name_ru": "Подземелье" 
   },
   {
     "id": 7,
-    "name": "Lava"
+    "name_en": "Lava",
+    "name_ru": "Лава" 
   },
   {
     "id": 8,
-    "name": "Highlands"
+    "name_en": "Highlands",
+    "name_ru": "Высокогорье"
   }
 ]

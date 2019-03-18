@@ -2,49 +2,49 @@
 b-row
   //- Offense
   b-col(cols='2' sm='2' md='2' lg='2' xl='2')
-    label.mt-1 Offense
+    label.mt-1 {{ $t('offense') }}
   b-col(cols='4' sm='3' md='4' lg='3' xl='3')
     b-form-select(v-model='offense' :options='options' size='sm')
 
   //- Air
   b-col(cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
-    label.mt-1 Air
+    label.mt-1 {{ $t('air') }}
   b-col(cols='4' sm='3' md='4' lg='3' xl='3')
     b-form-select(v-model='air' :options='options' size='sm')
 
   //- Armorer
   b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2')
-    label.mt-1 Armorer
+    label.mt-1 {{ $t('armorer') }}
   b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
     b-form-select(v-model='armorer' :options='options' size='sm')
 
   //- Fire
   b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
-    label.mt-1 Fire
+    label.mt-1 {{ $t('fire') }}
   b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
     b-form-select(v-model='fire' :options='options' size='sm')
 
   //- Archery
   b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2')
-    label.mt-1 Archery
+    label.mt-1 {{ $t('archery') }}
   b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
     b-form-select(v-model='archery' :options='options' size='sm')
 
   //- Earth
   b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
-    label.mt-1 Earth
+    label.mt-1 {{ $t('earth') }}
   b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
     b-form-select(v-model='earth' :options='options' size='sm')
 
   //- Artillery
   b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2')
-    label.mt-1 Artillery
+    label.mt-1 {{ $t('artillery') }}
   b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
     b-form-select(v-model='artillery' :options='options' size='sm')
 
   //- Water
   b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
-    label.mt-1 Water
+    label.mt-1 {{ $t('water') }}
   b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
     b-form-select(v-model='water' :options='options' size='sm')
 </template>
@@ -220,3 +220,28 @@ export default {
   }
 }
 </script>
+
+<i18n>
+{
+  "en": {
+    "offense": "Offense",
+    "air": "Air",
+    "armorer": "Armorer",
+    "fire": "Fire",
+    "archery": "Archery",
+    "earth": "Earth",
+    "artillery": "Artillery",
+    "water": "Water"
+  },
+  "ru": {
+    "offense": "Нападение",
+    "air": "Воздух",
+    "armorer": "Доспехи",
+    "fire": "Огонь",
+    "archery": "Стрельба",
+    "earth": "Земля",
+    "artillery": "Артиллерия",
+    "water": "Вода"
+  }
+}
+</i18n>

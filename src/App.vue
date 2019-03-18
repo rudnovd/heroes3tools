@@ -1,11 +1,14 @@
 <template lang="pug">
-  #app
-    damage-calculator
-    page-footer
+#app
+  change-locale
+  damage-calculator
+  page-footer
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+
+import changeLocale from '@/components/changeLocale.vue'
 
 import DamageCalculator from '@/components/DamageCalculator.vue'
 
@@ -15,7 +18,8 @@ export default {
   name: 'app',
   components: {
     'damage-calculator': DamageCalculator,
-    'page-footer': pageFooter
+    'page-footer': pageFooter,
+    'change-locale': changeLocale
   },
   mounted () {
     this.getUnits()
