@@ -8,7 +8,7 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
       //- Text
       b-row.mt-3.mb-3
         b-col(cols='12')
-          h4 Attacker
+          h4 {{ $t('attacker') }}
 
       //- Pick ATTACKER unit image and units count
       b-row
@@ -37,7 +37,7 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
               strong
                 | {{ $store.state.calculator.attacker.unit.name }}
             template(v-if='!attackerUnitSelected')
-              | Pick
+              | {{ $t('pick') }}
 
           //- Choose ATTACKER hero
           b-row.mt-3
@@ -59,8 +59,7 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
       //- Text
       b-row.mt-3.mb-3
         b-col(cols='12')
-          h4.text-right
-            | Defender
+          h4.text-right {{ $t('defender') }}
 
       //- Pick DEFENDER unit image and units count
       b-row
@@ -72,7 +71,7 @@ b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
               strong
                 | {{ $store.state.calculator.defender.unit.name }}
             template(v-if='!defenderUnitSelected')
-              | Pick
+              | {{ $t('pick') }}
 
           //- Choose DEFENDER hero
           b-row.mt-3
@@ -1006,3 +1005,18 @@ export default {
   opacity: 0;
 }
 </style>
+
+<i18n>
+{
+  "en": {
+    "attacker": "Attacker",
+    "defender": "Defender",
+    "pick": "Pick"
+  },
+  "ru": {
+    "attacker": "Атакующий",
+    "defender": "Защищающийся",
+    "pick": "Выбрать"
+  }
+}
+</i18n>

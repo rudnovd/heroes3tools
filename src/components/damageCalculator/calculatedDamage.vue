@@ -3,7 +3,7 @@ div
   b-row
     //- Text
     b-col.text-right
-      strong Damage:
+      strong {{ $t('damage') }}:
 
     //- Damage value
     p.text-left.mr-3
@@ -20,7 +20,7 @@ div
   b-row
     //- Text
     b-col.text-right
-      strong Kills:
+      strong {{ $t('kills') }}:
 
     //- Kills value
     p.text-left(class='mr-3')
@@ -43,3 +43,16 @@ export default {
   }
 }
 </script>
+
+<i18n>
+{
+  "en": {
+    "damage": "Damage",
+    "kills": "Kills"
+  },
+  "ru": {
+    "damage": "Урон",
+    "kills": "Убийств"
+  }
+}
+</i18n>

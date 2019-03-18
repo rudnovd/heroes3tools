@@ -5,7 +5,7 @@ b-row
   template(v-if='side === "attacker"')
     //- Input level
     b-col(cols='3' sm='2' md='3' lg='2' xl='2' offset='3' offset-sm='3' offset-md='3' offset-lg='3' offset-xl='3')
-      b-form-group(label='Level')
+      b-form-group(:label='$t("level")')
         b-form-input(
           v-model='level'
           type='number'
@@ -17,7 +17,7 @@ b-row
 
     //- Input attack
     b-col(cols='3' sm='2' md='3' lg='2' xl='2' offset='0' offset-sm='3' offset-md='0' offset-lg='3' offset-xl='3')
-      b-form-group(label='Attack')
+      b-form-group(:label='$t("attack")')
         b-form-input(
           v-model='attack'
           type='number'
@@ -29,7 +29,7 @@ b-row
 
     //- Input defense
     b-col(cols='3' sm='2' md='3' lg='2' xl='2')
-      b-form-group(label='Defense')
+      b-form-group(:label='$t("defense")')
         b-form-input(
           v-model='defense'
           type='number'
@@ -43,7 +43,7 @@ b-row
   template(v-else)
     //- Input level
     b-col(cols='3' sm='2' md='3' lg='2' xl='2')
-      b-form-group(label='Level')
+      b-form-group(:label='$t("level")')
         b-form-input(
           v-model='level'
           type='number'
@@ -55,7 +55,7 @@ b-row
 
     //- Input attack
     b-col(cols='3' sm='2' md='3' lg='2' xl='2' offset='0' offset-sm='3' offset-md='0' offset-lg='3' offset-xl='3')
-      b-form-group(label='Attack')
+      b-form-group(:label='$t("attack")')
         b-form-input(
           v-model='attack'
           type='number'
@@ -67,7 +67,7 @@ b-row
 
     //- Input defense
     b-col(cols='3' sm='2' md='3' lg='2' xl='2')
-      b-form-group(label='Defense')
+      b-form-group(:label='$t("defense")')
         b-form-input(
           v-model='defense'
           type='number'
@@ -148,3 +148,18 @@ export default {
   }
 }
 </script>
+
+<i18n>
+{
+  "en": {
+    "level": "Level",
+    "attack": "Attack",
+    "defense": "Defense"
+  },
+  "ru": {
+    "level": "Уровень",
+    "attack": "Атака",
+    "defense": "Защита"
+  }
+}
+</i18n>
