@@ -29,7 +29,7 @@
   },
   {
     "id": 6,
-    "name": "Кристиан",
+    "name": ["Кристиан", "Christian"],
     "specialtyUnit": [ 158 ]
   },
   {
@@ -42,18 +42,18 @@
     "name": ["Рион", "Rion"]
   },
   {
-    "specialtySpell": "bless",
     "id": 9,
-    "name": "Адель"
+    "name": ["Адель", "Adela"],
+    "specialtySpell": "bless"
   },
   {
-    "specialtySpell": "weakness",
     "id": 10,
-    "name": ["Катберт", "Cuthbert"]
+    "name": ["Катберт", "Cuthbert"],
+    "specialtySpell": "weakness"
   },
   {
     "id": 11,
-    "name": "Аделаида",
+    "name": ["Аделаида", "Adelaide"],
     "specialtySpell": "frost ring"
   },
   {
@@ -66,18 +66,18 @@
     "name": ["Саня", "Sanya"]
   },
   {
-    "specialtySpell": "prayer",
     "id": 14,
-    "name": ["Лоинс", "Loynis"]
+    "name": ["Лоинс", "Loynis"],
+    "specialtySpell": "prayer"
   },
   {
     "id": 15,
-    "name": "Каитлин"
+    "name": ["Каитлин", "Caitlin"]
   },
   {
-    "specialtySkill": "armorer",
     "id": 16,
-    "name": ["Мефала", "Mephala"]
+    "name": ["Мефала", "Mephala"],
+    "specialtySkill": "armorer"
   },
   {
     "id": 17,
@@ -104,7 +104,7 @@
   },
   {
     "id": 22,
-    "name": "Кланси",
+    "name": ["Кланси", "Clancy"],
     "specialtyUnit": [ 24, 25 ]
   },
   {
@@ -112,9 +112,9 @@
     "name": ["Киррь", "Kyrre"]
   },
   {
-    "specialtySpell": "slayer",
     "id": 24,
-    "name": "Корониус"
+    "name": ["Корониус", "Coronius"],
+    "specialtySpell": "slayer"
   },
   {
     "id": 25,
@@ -138,12 +138,12 @@
   },
   {
     "id": 30,
-    "name": "Алагар",
+    "name": ["Алагар", "Alagar"],
     "specialtySpell": "ice bolt"
   },
   {
     "id": 31,
-    "name": "Аерис",
+    "name": ["Аерис", "Aeris"],
     "specialtyUnit": [ 20, 21 ]
   },
   {
@@ -162,9 +162,9 @@
     "specialtyUnit": [ 32, 33 ]
   },
   {
-    "specialtySkill": "armorer",
     "id": 35,
-    "name": ["Нила", "Neela"]
+    "name": ["Нила", "Neela"],
+    "specialtySkill": "armorer"
   },
   {
     "id": 36,
@@ -187,7 +187,7 @@
   },
   {
     "id": 40,
-    "name": "Астрал"
+    "name": ["Астрал", "Astral"]
   },
   {
     "id": 41,
@@ -195,7 +195,7 @@
   },
   {
     "id": 42,
-    "name": "Серена"
+    "name": ["Серена", "Serena"]
   },
   {
     "id": 43,
@@ -217,7 +217,7 @@
   },
   {
     "id": 47,
-    "name": "Аин"
+    "name": ["Аин", "Aine"]
   },
   {
     "id": 48,
@@ -245,7 +245,7 @@
   },
   {
     "id": 53,
-    "name": "Калх",
+    "name": ["Калх", "Calh"],
     "specialtyUnit": [ 72, 73 ]
   },
   {
@@ -260,7 +260,7 @@
   },
   {
     "id": 56,
-    "name": "Айден"
+    "name": ["Айден", "Ayden"]
   },
   {
     "id": 57,
@@ -272,18 +272,18 @@
     "name": "Аксис"
   },
   {
-    "specialtySpell": "weakness",
     "id": 59,
-    "name": ["Олема", "Olema"]
+    "name": ["Олема", "Olema"],
+    "specialtySpell": "weakness"
   },
   {
     "id": 60,
-    "name": "Калид"
+    "name": ["Калид", "Calid"]
   },
   {
-    "specialtySpell": "bloodlust",
     "id": 61,
-    "name": "Аш"
+    "name": ["Аш", "Ash"],
+    "specialtySpell": "bloodlust"
   },
   {
     "id": 62,
@@ -312,7 +312,7 @@
   },
   {
     "id": 67,
-    "name": "Чарна",
+    "name": ["Чарна", "Charna"],
     "specialtyUnit": [ 46, 47 ]
   },
   {
@@ -326,7 +326,7 @@
   },
   {
     "id": 70,
-    "name": "Клавиус"
+    "name": ["Клавиус", "Clavius"]
   },
   {
     "id": 71,
@@ -357,9 +357,9 @@
     "name": ["Тант", "Thant"]
   },
   {
-    "specialtySpell": "stone skin",
     "id": 77,
-    "name": ["Кси", "Xsi"]
+    "name": ["Кси", "Xsi"],
+    "specialtySpell": "stone skin"
   },
   {
     "id": 78,
@@ -376,7 +376,7 @@
   },
   {
     "id": 81,
-    "name": "Арлаш",
+    "name": ["Арлаш", "Arlach"],
     "specialtyUnit": [ 158 ]
   },
   {
@@ -386,7 +386,7 @@
   },
   {
     "id": 83,
-    "name": "Аджит",
+    "name": ["Аджит", "Ajit"],
     "specialtyUnit": [ 60, 61 ]
   },
   {
@@ -409,7 +409,7 @@
   },
   {
     "id": 88,
-    "name": "Аламар"
+    "name": ["Аламар", "Alamar"]
   },
   {
     "id": 89,
@@ -475,7 +475,7 @@
   },
   {
     "id": 102,
-    "name": "Крэг Хэк",
+    "name": ["Крэг Хэк", "Crag Hack"],
     "specialtySkill": "offense"
   },
   {
@@ -502,14 +502,14 @@
     "name": ["Терек", "Terek"]
   },
   {
-    "specialtySpell": "precision",
     "id": 108,
-    "name": ["Зубин", "Zubin"]
+    "name": ["Зубин", "Zubin"],
+    "specialtySpell": "precision"
   },
   {
-    "specialtySkill": "offense",
     "id": 109,
-    "name": ["Гундула", "Gundula"]
+    "name": ["Гундула", "Gundula"],
+    "specialtySkill": "offense"
   },
   {
     "id": 110,
@@ -521,7 +521,7 @@
   },
   {
     "id": 112,
-    "name": "Брон",
+    "name": ["Брон", "Bron"],
     "specialtyUnit": [ 90, 91 ]
   },
   {
@@ -535,13 +535,13 @@
     "specialtyUnit": [ 86, 87 ]
   },
   {
-    "specialtySkill": "armorer",
     "id": 115,
-    "name": ["Тазар", "Tazar"]
+    "name": ["Тазар", "Tazar"],
+    "specialtySkill": "armorer"
   },
   {
     "id": 116,
-    "name": "Алкин",
+    "name": ["Алкин", "Alkin"],
     "specialtyUnit": [ 92, 93 ]
   },
   {
@@ -556,13 +556,13 @@
   },
   {
     "id": 119,
-    "name": "Брохильд",
+    "name": ["Брохильд", "Broghild"],
     "specialtyUnit": [ 94, 95 ]
   },
   {
-    "specialtySpell": "weakness",
     "id": 120,
-    "name": ["Мирланда", "Mirlanda"]
+    "name": ["Мирланда", "Mirlanda"],
+    "specialtySpell": "weakness"
   },
   {
     "id": 121,
@@ -577,9 +577,9 @@
     "name": ["Вердиш", "Verdish"]
   },
   {
-    "specialtySpell": "stone skin",
     "id": 124,
-    "name": ["Мерист", "Merist"]
+    "name": ["Мерист", "Merist"],
+    "specialtySpell": "stone skin"
   },
   {
     "id": 125,
@@ -588,7 +588,7 @@
   },
   {
     "id": 126,
-    "name": "Андра"
+    "name": ["Андра", "Andra"]
   },
   {
     "id": 127,
@@ -641,27 +641,27 @@
   },
   {
     "id": 137,
-    "name": "Брисса"
+    "name": ["Брисса", "Brissa"]
   },
   {
     "id": 138,
-    "name": "Циель",
+    "name": ["Циель", "Ciele"],
     "specialtySpell": "magic arrow"
   },
   {
-    "specialtySpell": "stone skin",
     "id": 139,
-    "name": ["Лабета", "Labetha"]
+    "name": ["Лабета", "Labetha"],
+    "specialtySpell": "stone skin"
   },
   {
-    "specialtySpell": "bloodlust",
     "id": 140,
-    "name": ["Интеус", "Inteus"]
+    "name": ["Интеус", "Inteus"],
+    "specialtySpell": "bloodlust"
   },
   {
-    "specialtySpell": "disrupting ray",
     "id": 141,
-    "name": ["Аэнаин", "Aenain"]
+    "name": ["Аэнаин", "Aenain"],
+    "specialtySpell": "disrupting ray"
   },
   {
     "id": 142,
@@ -673,75 +673,75 @@
   },
   {
     "id": 144,
-    "name": "Cassiopeia",
+    "name": ["Кассиопея", "Cassiopeia"],
     "specialtyUnit": [ 141, 141 ]
   },
   {
     "id": 145,
-    "name": "Corkes",
+    "name": ["Коркес", "Corkes"],
     "specialtySkill": "offense"
   },
   {
     "id": 146,
-    "name": "Jeremy",
+    "name": ["Джереми", "Jeremy"],
     "specialtyUnit": [ 159 ]
   },
   {
     "id": 147,
-    "name": "Illor",
+    "name": ["Иллор", "Illor"],
     "specialtyUnit": [ 148, 149 ]
   },
   {
     "id": 148,
-    "name": "Derek",
+    "name": ["Дерек", "Derek"],
     "specialtyUnit": [ 143, 144 ]
   },
   {
     "id": 149,
-    "name": "Leena"
+    "name": ["Лина", "Leena"]
   },
   {
     "id": 150,
-    "name": "Anabel",
+    "name": ["Анабель", "Anabel"],
     "specialtyUnit": [ 145, 146, 147 ]
   },
   {
     "id": 151,
-    "name": "Miriam"
+    "name": ["Мириам", "Miriam"]
   },
   {
     "id": 152,
-    "name": "Casmetra",
+    "name": ["Касметра", "Casmetra"],
     "specialtyUnit": [ 150, 151 ]
   },
   {
     "id": 153,
-    "name": "Eovacius"
+    "name": ["Эоваций", "Eovacius"]
   },
   {
     "id": 154,
-    "name": "Spint",
+    "name": ["Спинт", "Spint"],
     "specialtySkill": "sorcery"
   },
   {
     "id": 155,
-    "name": "Andal"
+    "name": ["Андал", "Andal"]
   },
   {
     "id": 156,
-    "name": "Manfred",
+    "name": ["Манфред", "Manfred"],
     "specialtySpell": "fireball"
   },
   {
     "id": 157,
-    "name": "Zilare"
+    "name": ["Зилар", "Zilare"]
   },
   {
     "id": 158,
-    "name": "Astra"
+    "name": ["Астра", "Astra"]
   },
   {
     "id": 159,
-    "name": "Dargem"
+    "name": ["Даргем", "Dargem"]
   }
 ]
