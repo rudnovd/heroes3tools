@@ -1,5 +1,5 @@
 <template lang='pug'>
-b-container(): b-row.mt-3.mb-3(): b-col.calculator(cols='12')
+b-container(): b-row.mb-3(): b-col.calculator(cols='12')
 
   b-row
     //- Attacker col

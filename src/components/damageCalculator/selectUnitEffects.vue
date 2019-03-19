@@ -53,13 +53,43 @@ export default {
   },
   data () {
     return {
-      attackBuffs_en: ['Bless', 'Bloodlust', 'Frenzy', 'Prayer', 'Precision', 'Slayer'],
-      defenseBuffs_en: ['Shield', 'Stone Skin', 'Air Shield'],
-      attackDebuffs_en: ['Curse', 'Weakness', 'Disrupting Ray'],
+      attackBuffs_en: [
+        { text: 'Bless', value: 'Bless' },
+        { text: 'Bloodlust', value: 'Bloodlust' },
+        { text: 'Frenzy', value: 'Frenzy' },
+        { text: 'Prayer', value: 'Prayer' },
+        { text: 'Precision', value: 'Precision' },
+        { text: 'Slayer', value: 'Slayer' }
+      ],
+      defenseBuffs_en: [
+        { text: 'Shield', value: 'Shield' },
+        { text: 'Stone Skin', value: 'Stone Skin' },
+        { text: 'Air Shield', value: 'Air Shield' }
+      ],
+      attackDebuffs_en: [
+        { text: 'Curse', value: 'Curse' },
+        { text: 'Weakness', value: 'Weakness' },
+        { text: 'Disrupting Ray', value: 'Disrupting Ray' }
+      ],
 
-      attackBuffs_ru: ['Благословение', 'Жажда крови', 'Бешенство', 'Молитва', 'Точность', 'Палач'],
-      defenseBuffs_ru: ['Щит', 'Каменная кожа', 'Воздушный щит'],
-      attackDebuffs_ru: ['Проклятье', 'Слабость', 'Разрушающий луч']
+      attackBuffs_ru: [
+        { text: 'Благословение', value: 'Bless' },
+        { text: 'Жажда крови', value: 'Bloodlust' },
+        { text: 'Бешенство', value: 'Frenzy' },
+        { text: 'Молитва', value: 'Prayer' },
+        { text: 'Точность', value: 'Precision' },
+        { text: 'Палач', value: 'Slayer' }
+      ],
+      defenseBuffs_ru: [
+        { text: 'Щит', value: 'Shield' },
+        { text: 'Каменная кожа', value: 'Stone Skin' },
+        { text: 'Воздушный щит', value: 'Air Shield' }
+      ],
+      attackDebuffs_ru: [
+        { text: 'Проклятье', value: 'Curse' },
+        { text: 'Слабость', value: 'Weakness' },
+        { text: 'Разрушающий луч', value: 'Disrupting Ray' }
+      ]
     }
   },
   methods: {

@@ -2,19 +2,23 @@
 b-container.footer.mt-5
   b-row.mt-2
     b-col(cols='auto')
-      b-button(class='text-muted' variant='link' size='sm' @click='howToUseModalShow()') How to use
+      b-button(class='text-muted' variant='link' size='sm' @click='howToUseModalShow()')
+        | {{ $t('how-to-use') }}
     b-col(class='ml-auto' cols='auto')
-      b-button(class='text-muted' variant='link' size='sm' @click='licenseInformationModalShow()') License information
+      b-button(class='text-muted' variant='link' size='sm' @click='licenseInformationModalShow()')
+        | {{ $t('license-information') }}
   b-row
     b-col(cols='auto')
-      b-button(class='text-muted' variant='link' size='sm' @click='sendErrorModalShow()') Find error?
+      b-button(class='text-muted' variant='link' size='sm' @click='sendErrorModalShow()')
+        | {{ $t('find-error-?') }}
     b-col(class='ml-auto' cols='auto')
       b-button(
         class='text-muted'
         variant='link'
         size='sm'
         @click='openURL("https://github.com/rudnovd/heroes3-damage-calculator")'
-      ) Source repository
+      )
+        | {{ $t('source-code') }}
 
   //- License information modal
   b-modal(
@@ -116,3 +120,20 @@ export default {
   border-top: 1px solid rgba(0,0,0,.1);
 }
 </style>
+
+<i18n>
+{
+  "en": {
+    "how-to-use": "How to use",
+    "license-information": "License information",
+    "find-error-?": "Find error?",
+    "source-code": "Source code"
+  },
+  "ru": {
+    "how-to-use": "Как пользоваться",
+    "license-information": "Информация о лицензии",
+    "find-error-?": "Нашли ошибку?",
+    "source-code": "Исходный код"
+  }
+}
+</i18n>
