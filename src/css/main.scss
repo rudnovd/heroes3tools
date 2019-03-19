@@ -9,6 +9,10 @@
        url('./assets/fonts/open-sans-v15-cyrillic_cyrillic-ext_latin-regular.woff') format('woff');
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 #app {
   font-family: "Open Sans";
   -webkit-font-smoothing: antialiased;

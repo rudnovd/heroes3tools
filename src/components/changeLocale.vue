@@ -35,3 +35,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.navbar {
+  max-height: 30px;
+}
+</style>
