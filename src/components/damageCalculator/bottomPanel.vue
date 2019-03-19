@@ -3,7 +3,13 @@ b-row.p-2.border-top
 
   //- Swap button
   b-col(class='text-left ml-auto mr-auto mr-md-3 mr-lg-3 mr-xl-3' cols='2' sm='2' md='1' lg='1' xl='1')
-    b-button(v-if='attackerUnitSelected && defenderUnitSelected' variant='link' size='sm' @click='swapSides()')
+    b-button(
+      v-if='attackerUnitSelected && defenderUnitSelected'
+      variant='link' size='sm'
+      v-b-tooltip.hover
+      :title="$t('swap-sides')"
+      @click='swapSides()'
+    )
       font-awesome-icon(class='fa-2x' icon='sync' style='color: #DC3545')
 
   //- Terrain text
@@ -74,10 +80,12 @@ export default {
 <i18n>
 {
   "en": {
-    "terrain": "Terrain"
+    "terrain": "Terrain",
+    "swap-sides": "Swap sides"
   },
   "ru": {
-    "terrain": "Территория"
+    "terrain": "Территория",
+    "swap-sides": "Поменять стороны"
   }
 }
 </i18n>

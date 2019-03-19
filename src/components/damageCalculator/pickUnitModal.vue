@@ -1,6 +1,6 @@
 <template lang='pug'>
 b-modal(
-  :title='`Pick ${side} unit`'
+  :title='`${$t("pick")} ${$t(side)} ${$t("unit")}`'
   :ref='refString'
   size='xl'
   ok-disabled=true
@@ -18,7 +18,7 @@ b-modal(
         ref='searchUnitInput'
         v-model='search.text'
         type='text'
-        placeholder='Search unit'
+        :placeholder='$t("search-unit")'
         @input='searchUnit()'
         @keyup.enter='selectFirstFounded()'
       )
@@ -27,38 +27,52 @@ b-modal(
     //-   b-btn(variant='danger' @click='clearUnit()')
     //-     | Clear
 
-    template(v-if='$store.state.user.width >= 1200')
+    template(v-if='$store.state.user.width')
       //- Show if not search
       b-col(v-if='!search.text' cols='12' v-for='(town, index) in Object.keys(unitsList)' :key='town.id')
-        b-btn(variant='link' size='sm' v-for='(unit, number) in unitsList[town]' :key='unit.id')
+        b-btn(
+          variant='link'
+          size='sm'
+          v-for='(unit, number) in unitsList[town]'
+          :key='unit.id'
+          v-b-tooltip.hover
+          :title='unit.name'
+        )
           img(:src='$store.state.calculator.images.units[unit.id].src' @click='setUnit({ side, unit }); hideModal();')
 
       //- Show if search
       b-col(v-if='search.text' cols='12')
-        b-btn(variant='link' size='sm' v-for='(unit, index) in search.foundUnits' :key='unit.id')
+        b-btn(
+          variant='link'
+          size='sm'
+          v-for='(unit, index) in search.foundUnits'
+          :key='unit.id'
+          v-b-tooltip.hover
+          :title='unit.name'
+        )
           img(:src='$store.state.calculator.images.units[unit.id].src' @click='setUnit({ side, unit}); hideModal();')
 
-    template(v-if='$store.state.user.width < 1200')
-      //- Show if not search
-      b-col(v-if='!search.text' cols='12' v-for='(town, index) in Object.keys(unitsList)' :key='town.id' v-cloak)
-        img(
-          v-for='(unit, number) in unitsList[town]'
-          class='p-1'
-          width='54px'
-          heigth='70px'
-          :src='$store.state.calculator.images.units[unit.id].src'
-          @click='setUnit({ side, unit }); hideModal();'
-        )
+    //- template(v-if='$store.state.user.width < 1200')
+    //-   //- Show if not search
+    //-   b-col(v-if='!search.text' cols='12' v-for='(town, index) in Object.keys(unitsList)' :key='town.id')
+    //-     a(v-for='(unit, number) in unitsList[town]')
+    //-       img(
+    //-         class='p-1'
+    //-         width='54px'
+    //-         heigth='70px'
+    //-         :src='$store.state.calculator.images.units[unit.id].src'
+    //-         @click='setUnit({ side, unit }); hideModal();'
+    //-       )
 
-      //- Show if search
-      b-col(v-if='search.text' cols='12')
-        img(
-          width='54px'
-          heigth='70px'
-          v-for='(unit, index) in search.foundUnits'
-          :src='$store.state.calculator.images.units[unit.id].src'
-          @click='setUnit({ side, unit}); hideModal();'
-        )
+      //- //- Show if search
+      //- b-col(v-if='search.text' cols='12')
+      //-   img(
+      //-     width='54px'
+      //-     heigth='70px'
+      //-     v-for='(unit, index) in search.foundUnits'
+      //-     :src='$store.state.calculator.images.units[unit.id].src'
+      //-     @click='setUnit({ side, unit}); hideModal();'
+      //-   )
 
 </template>
 
@@ -131,3 +145,22 @@ export default {
 }
 
 </script>
+
+<i18n>
+{
+  "en": {
+    "pick": "Pick",
+    "unit": "unit",
+    "attacker": "attacker",
+    "defender": "defender",
+    "search-unit": "Search unit"
+  },
+  "ru": {
+    "pick": "Выбор",
+    "unit": "юнита",
+    "attacker": "атакующего",
+    "defender": "защищающегося",
+    "search-unit": "Поиск юнита"
+  }
+}
+</i18n>

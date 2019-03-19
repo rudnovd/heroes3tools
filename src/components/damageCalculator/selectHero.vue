@@ -14,11 +14,17 @@ multiselect(
 )
   template(v-if='hero.id' slot='singleLabel', slot-scope='props')
     img(:src='$store.state.calculator.images.heroes[hero.id].src')
-    span(class='multiselect__selected ml-1')
+
+    span(class='multiselect__selected ml-1' v-if='$store.state.user.locale === "en"')
+      | {{ props.option.name[1] }}
+    span(class='multiselect__selected ml-1' v-if='$store.state.user.locale === "ru"')
       | {{ props.option.name[0] }}
   template(slot='option', slot-scope='props')
     img(:src='$store.state.calculator.images.heroes[props.option.id].src')
-    span(class='ml-1')
+
+    span(class='ml-1' v-if='$store.state.user.locale === "en"')
+      | {{ props.option.name[1] }}
+    span(class='ml-1' v-if='$store.state.user.locale === "ru"')
       | {{ props.option.name[0] }}
 </template>
 
