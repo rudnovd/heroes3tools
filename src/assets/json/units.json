@@ -1,7 +1,8 @@
 [
   {
     "id": 0,
-    "name": "Копейщик",
+    "name_en": "Pikeman",
+    "name_ru": "Копейщик",
     "level": 1,
     "stats": {
       "attack": 4,
@@ -14,7 +15,8 @@
   },
   {
     "id": 1,
-    "name": "Алебардщик",
+    "name_en": "Halberdier",
+    "name_ru": "Алебардщик",
     "level": 1,
     "stats": {
       "attack": 6,
@@ -27,7 +29,8 @@
   },
   {
     "id": 2,
-    "name": "Лучник",
+    "name_en": "Archer",
+    "name_ru": "Лучник",
     "level": 2,
     "stats": {
       "attack": 6,
@@ -41,7 +44,8 @@
   },
   {
     "id": 3,
-    "name": "Стрелок",
+    "name_en": "Marksman",
+    "name_ru": "Стрелок",
     "level": 2,
     "stats": {
       "attack": 6,
@@ -56,7 +60,8 @@
   },
   {
     "id": 4,
-    "name": "Грифон",
+    "name_en": "Griffin",
+    "name_ru": "Грифон",
     "level": 3,
     "stats": {
       "attack": 8,
@@ -69,7 +74,8 @@
   },
   {
     "id": 5,
-    "name": "Королевский грифон",
+    "name_en": "Royal Griffin",
+    "name_ru": "Королевский грифон",
     "level": 3,
     "stats": {
       "attack": 9,
@@ -82,7 +88,8 @@
   },
   {
     "id": 6,
-    "name": "Рыцарь",
+    "name_en": "Swordsman",
+    "name_ru": "Рыцарь",
     "level": 4,
     "stats": {
       "attack": 10,
@@ -95,7 +102,8 @@
   },
   {
     "id": 7,
-    "name": "Крестоносец",
+    "name_en": "Crusader",
+    "name_ru": "Крестоносец",
     "level": 4,
     "stats": {
       "attack": 12,
@@ -109,7 +117,8 @@
   },
   {
     "id": 8,
-    "name": "Монах",
+    "name_en": "Monk",
+    "name_ru": "Монах",
     "level": 5,
     "stats": {
       "attack": 12,
@@ -123,7 +132,8 @@
   },
   {
     "id": 9,
-    "name": "Фанатик",
+    "name_en": "Zealot",
+    "name_ru": "Фанатик",
     "level": 5,
     "stats": {
       "attack": 12,
@@ -137,7 +147,8 @@
   },
   {
     "id": 10,
-    "name": "Кавалерист",
+    "name_en": "Cavalier",
+    "name_ru": "Кавалерист",
     "level": 6,
     "stats": {
       "attack": 15,
@@ -150,7 +161,8 @@
   },
   {
     "id": 11,
-    "name": "Чемпион",
+    "name_en": "Champion",
+    "name_ru": "Чемпион",
     "level": 6,
     "stats": {
       "attack": 16,
@@ -163,7 +175,8 @@
   },
   {
     "id": 12,
-    "name": "Ангел",
+    "name_en": "Angel",
+    "name_ru": "Ангел",
     "level": 7,
     "stats": {
       "attack": 20,
@@ -176,7 +189,8 @@
   },
   {
     "id": 13,
-    "name": "Архангел",
+    "name_en": "Archangel",
+    "name_ru": "Архангел",
     "level": 7,
     "stats": {
       "attack": 30,
@@ -189,7 +203,8 @@
   },
   {
     "id": 14,
-    "name": "Кентавр",
+    "name_en": "Centaur",
+    "name_ru": "Кентавр",
     "level": 1,
     "stats": {
       "attack": 5,
@@ -202,7 +217,8 @@
   },
   {
     "id": 15,
-    "name": "Командир кентавров",
+    "name_en": "Centaur Captain",
+    "name_ru": "Командир кентавров",
     "level": 1,
     "stats": {
       "attack": 6,
@@ -215,7 +231,8 @@
   },
   {
     "id": 16,
-    "name": "Гном",
+    "name_en": "Dwarf",
+    "name_ru": "Гном",
     "level": 2,
     "stats": {
       "attack": 6,
@@ -228,7 +245,8 @@
   },
   {
     "id": 17,
-    "name": "Боевой гном",
+    "name_en": "Battle Dwarf",
+    "name_ru": "Боевой гном",
     "level": 2,
     "stats": {
       "attack": 7,
@@ -241,7 +259,8 @@
   },
   {
     "id": 18,
-    "name": "Эльф",
+    "name_en": "Wood Elf",
+    "name_ru": "Эльф",
     "level": 3,
     "stats": {
       "attack": 9,
@@ -255,7 +274,8 @@
   },
   {
     "id": 19,
-    "name": "Великий эльф",
+    "name_en": "Grand Elf",
+    "name_ru": "Великий эльф",
     "level": 3,
     "stats": {
       "attack": 9,
@@ -270,7 +290,8 @@
   },
   {
     "id": 20,
-    "name": "Пегас",
+    "name_en": "Pegasus",
+    "name_ru": "Пегас",
     "level": 4,
     "stats": {
       "attack": 9,
@@ -283,7 +304,8 @@
   },
   {
     "id": 21,
-    "name": "Серебряный пегас",
+    "name_en": "Silver Pegasus",
+    "name_ru": "Серебряный пегас",
     "level": 4,
     "stats": {
       "attack": 9,
@@ -296,7 +318,8 @@
   },
   {
     "id": 22,
-    "name": "Страж - дендроид",
+    "name_en": "Dendroid Guard",
+    "name_ru": "Страж-дендроид",
     "level": 5,
     "stats": {
       "attack": 9,
@@ -309,7 +332,8 @@
   },
   {
     "id": 23,
-    "name": "Дендроид - солдат",
+    "name_en": "Dendroid Soldier",
+    "name_ru": "Дендроид-солдат",
     "level": 5,
     "stats": {
       "attack": 9,
@@ -322,7 +346,8 @@
   },
   {
     "id": 24,
-    "name": "Единорог",
+    "name_en": "Unicorn",
+    "name_ru": "Единорог",
     "level": 6,
     "stats": {
       "attack": 15,
@@ -335,7 +360,8 @@
   },
   {
     "id": 25,
-    "name": "Боевой единорог",
+    "name_en": "War Unicorn",
+    "name_ru": "Боевой единорог",
     "level": 6,
     "stats": {
       "attack": 15,
@@ -348,7 +374,8 @@
   },
   {
     "id": 26,
-    "name": "Зеленый дракон",
+    "name_en": "Green Dragon",
+    "name_ru": "Зеленый дракон",
     "level": 7,
     "stats": {
       "attack": 18,
@@ -362,7 +389,8 @@
   },
   {
     "id": 27,
-    "name": "Золотой дракон",
+    "name_en": "Gold Dragon",
+    "name_ru": "Золотой дракон",
     "level": 7,
     "stats": {
       "attack": 27,
@@ -376,7 +404,8 @@
   },
   {
     "id": 28,
-    "name": "Гремлин",
+    "name_en": "Gremlin",
+    "name_ru": "Гремлин",
     "level": 1,
     "stats": {
       "attack": 3,
@@ -389,7 +418,8 @@
   },
   {
     "id": 29,
-    "name": "Гремлин - вожак",
+    "name_en": "Master Gremlin",
+    "name_ru": "Гремлин-вожак",
     "level": 1,
     "stats": {
       "attack": 4,
@@ -403,7 +433,8 @@
   },
   {
     "id": 30,
-    "name": "Каменная гаргулия",
+    "name_en": "Stone Gargoyle",
+    "name_ru": "Каменная гаргулия",
     "level": 2,
     "stats": {
       "attack": 6,
@@ -416,7 +447,8 @@
   },
   {
     "id": 31,
-    "name": "Обсидиановая гаргулия",
+    "name_en": "Obsidian Gargoyle",
+    "name_ru": "Обсидиановая гаргулия",
     "level": 2,
     "stats": {
       "attack": 7,
@@ -429,7 +461,8 @@
   },
   {
     "id": 32,
-    "name": "Каменный голем",
+    "name_en": "Stone Golem",
+    "name_ru": "Каменный голем",
     "level": 3,
     "stats": {
       "attack": 7,
@@ -442,7 +475,8 @@
   },
   {
     "id": 33,
-    "name": "Железный голем",
+    "name_en": "Iron Golem",
+    "name_ru": "Железный голем",
     "level": 3,
     "stats": {
       "attack": 9,
@@ -455,7 +489,8 @@
   },
   {
     "id": 34,
-    "name": "Маг",
+    "name_en": "Mage",
+    "name_ru": "Маг",
     "level": 4,
     "stats": {
       "attack": 11,
@@ -469,7 +504,8 @@
   },
   {
     "id": 35,
-    "name": "Архи-маг",
+    "name_en": "Arch Mage",
+    "name_ru": "Архи-маг",
     "level": 4,
     "stats": {
       "attack": 12,
@@ -483,7 +519,8 @@
   },
   {
     "id": 36,
-    "name": "Джин",
+    "name_en": "Genie",
+    "name_ru": "Джин",
     "level": 5,
     "stats": {
       "attack": 12,
@@ -496,7 +533,8 @@
   },
   {
     "id": 37,
-    "name": "Мастер джин",
+    "name_en": "Master Genie",
+    "name_ru": "Мастер джин",
     "level": 5,
     "stats": {
       "attack": 12,
@@ -509,7 +547,8 @@
   },
   {
     "id": 38,
-    "name": "Нага",
+    "name_en": "Naga",
+    "name_ru": "Нага",
     "level": 6,
     "stats": {
       "attack": 16,
@@ -522,7 +561,8 @@
   },
   {
     "id": 39,
-    "name": "Нага-королева",
+    "name_en": "Naga Queen",
+    "name_ru": "Нага-королева",
     "level": 6,
     "stats": {
       "attack": 16,
@@ -535,7 +575,8 @@
   },
   {
     "id": 40,
-    "name": "Гигант",
+    "name_en": "Giant",
+    "name_ru": "Гигант",
     "level": 7,
     "stats": {
       "attack": 19,
@@ -548,7 +589,8 @@
   },
   {
     "id": 41,
-    "name": "Титан",
+    "name_en": "Titan",
+    "name_ru": "Титан",
     "level": 7,
     "stats": {
       "attack": 24,
@@ -562,7 +604,8 @@
   },
   {
     "id": 42,
-    "name": "Скелет",
+    "name_en": "Skeleton",
+    "name_ru": "Скелет",
     "level": 1,
     "stats": {
       "attack": 5,
@@ -576,7 +619,8 @@
   },
   {
     "id": 43,
-    "name": "Скелет - воин",
+    "name_en": "Skeleton Warrior",
+    "name_ru": "Скелет-воин",
     "level": 1,
     "stats": {
       "attack": 6,
@@ -590,7 +634,8 @@
   },
   {
     "id": 44,
-    "name": "Живой мертвец",
+    "name_en": "Walking Dead",
+    "name_ru": "Живой мертвец",
     "level": 2,
     "stats": {
       "attack": 5,
@@ -604,7 +649,8 @@
   },
   {
     "id": 45,
-    "name": "Зомби",
+    "name_en": "Zombie",
+    "name_ru": "Зомби",
     "level": 2,
     "stats": {
       "attack": 5,
@@ -618,7 +664,8 @@
   },
   {
     "id": 46,
-    "name": "Страж",
+    "name_en": "Wight",
+    "name_ru": "Страж",
     "level": 3,
     "stats": {
       "attack": 7,
@@ -632,7 +679,8 @@
   },
   {
     "id": 47,
-    "name": "Привидение",
+    "name_en": "Wraith",
+    "name_ru": "Привидение",
     "level": 3,
     "stats": {
       "attack": 7,
@@ -646,7 +694,8 @@
   },
   {
     "id": 48,
-    "name": "Вампир",
+    "name_en": "Vampire",
+    "name_ru": "Вампир",
     "level": 4,
     "stats": {
       "attack": 10,
@@ -660,7 +709,8 @@
   },
   {
     "id": 49,
-    "name": "Вампир - лорд",
+    "name_en": "Vampire Lord",
+    "name_ru": "Вампир-лорд",
     "level": 4,
     "stats": {
       "attack": 10,
@@ -674,7 +724,8 @@
   },
   {
     "id": 50,
-    "name": "Лич",
+    "name_en": "Lich",
+    "name_ru": "Лич",
     "level": 5,
     "stats": {
       "attack": 13,
@@ -689,7 +740,8 @@
   },
   {
     "id": 51,
-    "name": "Могущественный лич",
+    "name_en": "Power Lich",
+    "name_ru": "Могущественный лич",
     "level": 5,
     "stats": {
       "attack": 13,
@@ -704,7 +756,8 @@
   },
   {
     "id": 52,
-    "name": "Черный рыцарь",
+    "name_en": "Black Knight",
+    "name_ru": "Черный рыцарь",
     "level": 6,
     "stats": {
       "attack": 16,
@@ -718,7 +771,8 @@
   },
   {
     "id": 53,
-    "name": "Рыцарь смерти",
+    "name_en": "Dread Knight",
+    "name_ru": "Рыцарь смерти",
     "level": 6,
     "stats": {
       "attack": 18,
@@ -732,7 +786,8 @@
   },
   {
     "id": 54,
-    "name": "Костяной дракон",
+    "name_en": "Bone Dragon",
+    "name_ru": "Костяной дракон",
     "level": 7,
     "stats": {
       "attack": 17,
@@ -746,7 +801,8 @@
   },
   {
     "id": 55,
-    "name": "Дракон - привидение",
+    "name_en": "Ghost Dragon",
+    "name_ru": "Дракон-привидение",
     "level": 7,
     "stats": {
       "attack": 19,
@@ -760,7 +816,8 @@
   },
   {
     "id": 56,
-    "name": "Троглодит",
+    "name_en": "Troglodyte",
+    "name_ru": "Троглодит",
     "level": 1,
     "stats": {
       "attack": 4,
@@ -773,7 +830,8 @@
   },
   {
     "id": 57,
-    "name": "Адский троглодит",
+    "name_en": "Infernal Troglodyte",
+    "name_ru": "Адский троглодит",
     "level": 1,
     "stats": {
       "attack": 5,
@@ -786,7 +844,8 @@
   },
   {
     "id": 58,
-    "name": "Гарпия",
+    "name_en": "Harpy",
+    "name_ru": "Гарпия",
     "level": 2,
     "stats": {
       "attack": 6,
@@ -799,7 +858,8 @@
   },
   {
     "id": 59,
-    "name": "Гарпия - ведьма",
+    "name_en": "Harpy Hag",
+    "name_ru": "Гарпия-ведьма",
     "level": 2,
     "stats": {
       "attack": 6,
@@ -812,7 +872,8 @@
   },
   {
     "id": 60,
-    "name": "Созерцатель ",
+    "name_en": "Beholder",
+    "name_ru": "Созерцатель",
     "level": 3,
     "stats": {
       "attack": 9,
@@ -826,7 +887,8 @@
   },
   {
     "id": 61,
-    "name": "Злые глаза",
+    "name_en": "Evil Eye",
+    "name_ru": "Злой глаз",
     "level": 3,
     "stats": {
       "attack": 10,
@@ -840,7 +902,8 @@
   },
   {
     "id": 62,
-    "name": "Медуза",
+    "name_en": "Medusa",
+    "name_ru": "Медуза",
     "level": 4,
     "stats": {
       "attack": 9,
@@ -854,7 +917,8 @@
   },
   {
     "id": 63,
-    "name": "Королева медуза",
+    "name_en": "Medusa Queen",
+    "name_ru": "Королева медуза",
     "level": 4,
     "stats": {
       "attack": 10,
@@ -868,7 +932,8 @@
   },
   {
     "id": 64,
-    "name": "Минотавр",
+    "name_en": "Minotaur",
+    "name_ru": "Минотавр",
     "level": 5,
     "stats": {
       "attack": 14,
@@ -881,7 +946,8 @@
   },
   {
     "id": 65,
-    "name": "Король - минотавр",
+    "name_en": "Minotaur King",
+    "name_ru": "Король-минотавр",
     "level": 5,
     "stats": {
       "attack": 15,
@@ -894,7 +960,8 @@
   },
   {
     "id": 66,
-    "name": "Мантикора",
+    "name_en": "Manticore",
+    "name_ru": "Мантикора",
     "level": 6,
     "stats": {
       "attack": 15,
@@ -907,7 +974,8 @@
   },
   {
     "id": 67,
-    "name": "Скорпикора",
+    "name_en": "Scorpicore",
+    "name_ru": "Скорпикора",
     "level": 6,
     "stats": {
       "attack": 16,
@@ -920,7 +988,8 @@
   },
   {
     "id": 68,
-    "name": "Красный дракон",
+    "name_en": "Red Dragon",
+    "name_ru": "Красный дракон",
     "level": 7,
     "stats": {
       "attack": 19,
@@ -934,7 +1003,8 @@
   },
   {
     "id": 69,
-    "name": "Черный дракон",
+    "name_en": "Black Dragon",
+    "name_ru": "Черный дракон",
     "level": 7,
     "stats": {
       "attack": 25,
@@ -948,7 +1018,8 @@
   },
   {
     "id": 70,
-    "name": "Бес",
+    "name_en": "Imp",
+    "name_ru": "Бес",
     "level": 1,
     "stats": {
       "attack": 2,
@@ -961,7 +1032,8 @@
   },
   {
     "id": 71,
-    "name": "Фамильяр",
+    "name_en": "Familiar",
+    "name_ru": "Фамильяр",
     "level": 1,
     "stats": {
       "attack": 4,
@@ -974,7 +1046,8 @@
   },
   {
     "id": 72,
-    "name": "Гог",
+    "name_en": "Gog",
+    "name_ru": "Гог",
     "level": 2,
     "stats": {
       "attack": 6,
@@ -988,7 +1061,8 @@
   },
   {
     "id": 73,
-    "name": "Магог",
+    "name_en": "Magog",
+    "name_ru": "Магог",
     "level": 2,
     "stats": {
       "attack": 7,
@@ -1002,7 +1076,8 @@
   },
   {
     "id": 74,
-    "name": "Адская гончая",
+    "name_en": "Hell Hound",
+    "name_ru": "Адская гончая",
     "level": 3,
     "stats": {
       "attack": 10,
@@ -1015,7 +1090,8 @@
   },
   {
     "id": 75,
-    "name": "Цербер",
+    "name_en": "Cerberus",
+    "name_ru": "Цербер",
     "level": 3,
     "stats": {
       "attack": 10,
@@ -1028,7 +1104,8 @@
   },
   {
     "id": 76,
-    "name": "Демон",
+    "name_en": "Demon",
+    "name_ru": "Демон",
     "level": 4,
     "stats": {
       "attack": 10,
@@ -1041,7 +1118,8 @@
   },
   {
     "id": 77,
-    "name": "Рогатый демон",
+    "name_en": "Horned Demon",
+    "name_ru": "Рогатый демон",
     "level": 4,
     "stats": {
       "attack": 10,
@@ -1054,7 +1132,8 @@
   },
   {
     "id": 78,
-    "name": "Порождение зла",
+    "name_en": "Pit Fiend",
+    "name_ru": "Порождение зла",
     "level": 5,
     "stats": {
       "attack": 13,
@@ -1067,7 +1146,8 @@
   },
   {
     "id": 79,
-    "name": "Адское отродье",
+    "name_en": "Pit Lord",
+    "name_ru": "Адское отродье",
     "level": 5,
     "stats": {
       "attack": 13,
@@ -1080,7 +1160,8 @@
   },
   {
     "id": 80,
-    "name": "Эфрит",
+    "name_en": "Efreet",
+    "name_ru": "Эфрит",
     "level": 6,
     "stats": {
       "attack": 16,
@@ -1094,7 +1175,8 @@
   },
   {
     "id": 81,
-    "name": "Султан - эфрит",
+    "name_en": "Efreet Sultan",
+    "name_ru": "Султан-эфрит",
     "level": 6,
     "stats": {
       "attack": 16,
@@ -1108,7 +1190,8 @@
   },
   {
     "id": 82,
-    "name": "Дьявол",
+    "name_en": "Devil",
+    "name_ru": "Дьявол",
     "level": 7,
     "stats": {
       "attack": 19,
@@ -1121,7 +1204,8 @@
   },
   {
     "id": 83,
-    "name": "Архидьявол",
+    "name_en": "Arch Devil",
+    "name_ru": "Архидьявол",
     "level": 7,
     "stats": {
       "attack": 26,
@@ -1134,7 +1218,8 @@
   },
   {
     "id": 84,
-    "name": "Гнолл",
+    "name_en": "Gnoll",
+    "name_ru": "Гнолл",
     "level": 1,
     "stats": {
       "attack": 3,
@@ -1147,7 +1232,8 @@
   },
   {
     "id": 85,
-    "name": "Гнолл - мародер",
+    "name_en": "Gnoll Marauder",
+    "name_ru": "Гнолл-мародер",
     "level": 1,
     "stats": {
       "attack": 4,
@@ -1160,7 +1246,8 @@
   },
   {
     "id": 86,
-    "name": "Ящер",
+    "name_en": "Lizardman",
+    "name_ru": "Ящер",
     "level": 2,
     "stats": {
       "attack": 5,
@@ -1174,7 +1261,8 @@
   },
   {
     "id": 87,
-    "name": "Ящер - воин",
+    "name_en": "Lizard Warrior",
+    "name_ru": "Ящер-воин",
     "level": 2,
     "stats": {
       "attack": 6,
@@ -1188,7 +1276,8 @@
   },
   {
     "id": 88,
-    "name": "Змий",
+    "name_en": "Serpent Fly",
+    "name_ru": "Змий",
     "level": 3,
     "stats": {
       "attack": 7,
@@ -1201,7 +1290,8 @@
   },
   {
     "id": 89,
-    "name": "Стрекоза",
+    "name_en": "Dragon Fly",
+    "name_ru": "Стрекоза",
     "level": 3,
     "stats": {
       "attack": 8,
@@ -1214,7 +1304,8 @@
   },
   {
     "id": 90,
-    "name": "Василиск",
+    "name_en": "Basilisk",
+    "name_ru": "Василиск",
     "level": 4,
     "stats": {
       "attack": 11,
@@ -1227,7 +1318,8 @@
   },
   {
     "id": 91,
-    "name": "Великий василиск",
+    "name_en": "Greater Basilisk",
+    "name_ru": "Великий василиск",
     "level": 4,
     "stats": {
       "attack": 12,
@@ -1240,7 +1332,8 @@
   },
   {
     "id": 92,
-    "name": "Горгона",
+    "name_en": "Gorgon",
+    "name_ru": "Горгона",
     "level": 5,
     "stats": {
       "attack": 10,
@@ -1253,7 +1346,8 @@
   },
   {
     "id": 93,
-    "name": "Могучая горгона",
+    "name_en": "Mighty Gorgon",
+    "name_ru": "Могучая горгона",
     "level": 5,
     "stats": {
       "attack": 11,
@@ -1266,7 +1360,8 @@
   },
   {
     "id": 94,
-    "name": "Виверна",
+    "name_en": "Wyvern",
+    "name_ru": "Виверна",
     "level": 6,
     "stats": {
       "attack": 14,
@@ -1279,7 +1374,8 @@
   },
   {
     "id": 95,
-    "name": "Виверна - монарх",
+    "name_en": "Wyvern Monarch",
+    "name_ru": "Виверна-монарх",
     "level": 6,
     "stats": {
       "attack": 14,
@@ -1292,7 +1388,8 @@
   },
   {
     "id": 96,
-    "name": "Гидра",
+    "name_en": "Hydra",
+    "name_ru": "Гидра",
     "level": 7,
     "stats": {
       "attack": 16,
@@ -1305,7 +1402,8 @@
   },
   {
     "id": 97,
-    "name": "Гидра хаоса",
+    "name_en": "Chaos Hydra",
+    "name_ru": "Гидра хаоса",
     "level": 7,
     "stats": {
       "attack": 18,
@@ -1318,7 +1416,8 @@
   },
   {
     "id": 98,
-    "name": "Гоблин",
+    "name_en": "Goblin",
+    "name_ru": "Гоблин",
     "level": 1,
     "stats": {
       "attack": 4,
@@ -1331,7 +1430,8 @@
   },
   {
     "id": 99,
-    "name": "Хобгоблин",
+    "name_en": "Hobgoblin",
+    "name_ru": "Хобгоблин",
     "level": 1,
     "stats": {
       "attack": 5,
@@ -1344,7 +1444,8 @@
   },
   {
     "id": 100,
-    "name": "Наездник на волках",
+    "name_en": "Wolf Rider",
+    "name_ru": "Наездник на волках",
     "level": 2,
     "stats": {
       "attack": 7,
@@ -1357,7 +1458,8 @@
   },
   {
     "id": 101,
-    "name": "Налетчик",
+    "name_en": "Wolf Raider",
+    "name_ru": "Налетчик",
     "level": 2,
     "stats": {
       "attack": 8,
@@ -1371,7 +1473,8 @@
   },
   {
     "id": 102,
-    "name": "Орк",
+    "name_en": "Orc",
+    "name_ru": "Орк",
     "level": 3,
     "stats": {
       "attack": 8,
@@ -1385,7 +1488,8 @@
   },
   {
     "id": 103,
-    "name": "Орк - вождь",
+    "name_en": "Orc Chieftain",
+    "name_ru": "Орк-вождь",
     "level": 3,
     "stats": {
       "attack": 8,
@@ -1399,7 +1503,8 @@
   },
   {
     "id": 104,
-    "name": "Людоед",
+    "name_en": "Ogre",
+    "name_ru": "Огр",
     "level": 4,
     "stats": {
       "attack": 13,
@@ -1412,7 +1517,8 @@
   },
   {
     "id": 105,
-    "name": "Людоед - маг",
+    "name_en": "Ogre Mage",
+    "name_ru": "Огр-маг",
     "level": 4,
     "stats": {
       "attack": 13,
@@ -1425,7 +1531,8 @@
   },
   {
     "id": 106,
-    "name": "Птица рух",
+    "name_en": "Roc",
+    "name_ru": "Птица рух",
     "level": 5,
     "stats": {
       "attack": 13,
@@ -1438,7 +1545,8 @@
   },
   {
     "id": 107,
-    "name": "Птица грома",
+    "name_en": "Thunderbird",
+    "name_ru": "Птица грома",
     "level": 5,
     "stats": {
       "attack": 13,
@@ -1451,7 +1559,8 @@
   },
   {
     "id": 108,
-    "name": "Циклоп",
+    "name_en": "Cyclops",
+    "name_ru": "Циклоп",
     "level": 6,
     "stats": {
       "attack": 15,
@@ -1465,7 +1574,8 @@
   },
   {
     "id": 109,
-    "name": "Король циклопов",
+    "name_en": "Cyclops King",
+    "name_ru": "Король циклопов",
     "level": 6,
     "stats": {
       "attack": 17,
@@ -1479,7 +1589,8 @@
   },
   {
     "id": 110,
-    "name": "Чудище",
+    "name_en": "Behemoth",
+    "name_ru": "Чудище",
     "level": 7,
     "stats": {
       "attack": 17,
@@ -1492,7 +1603,8 @@
   },
   {
     "id": 111,
-    "name": "Древнее чудище",
+    "name_en": "Ancient Behemoth",
+    "name_ru": "Древнее чудище",
     "level": 7,
     "stats": {
       "attack": 19,
@@ -1505,7 +1617,8 @@
   },
   {
     "id": 112,
-    "name": "Маленькая фея",
+    "name_en": "Pixie",
+    "name_ru": "Маленькая фея",
     "level": 1,
     "stats": {
       "attack": 2,
@@ -1518,7 +1631,8 @@
   },
   {
     "id": 113,
-    "name": "Фея",
+    "name_en": "Sprite",
+    "name_ru": "Фея",
     "level": 1,
     "stats": {
       "attack": 2,
@@ -1531,7 +1645,8 @@
   },
   {
     "id": 114,
-    "name": "Воздушный элементаль",
+    "name_en": "Air Elemental",
+    "name_ru": "Воздушный элементаль",
     "level": 2,
     "stats": {
       "attack": 9,
@@ -1552,7 +1667,8 @@
   },
   {
     "id": 115,
-    "name": "Элементаль шторма",
+    "name_en": "Storm Elemental",
+    "name_ru": "Элементаль шторма",
     "level": 2,
     "stats": {
       "attack": 9,
@@ -1574,7 +1690,8 @@
   },
   {
     "id": 116,
-    "name": "Элементаль воды",
+    "name_en": "Water Elemental",
+    "name_ru": "Элементаль воды",
     "level": 3,
     "stats": {
       "attack": 8,
@@ -1596,7 +1713,8 @@
   },
   {
     "id": 117,
-    "name": "Ледяной элементаль",
+    "name_en": "Ice Elemental",
+    "name_ru": "Ледяной элементаль",
     "level": 3,
     "stats": {
       "attack": 8,
@@ -1619,7 +1737,8 @@
   },
   {
     "id": 118,
-    "name": "Огненный элементаль",
+    "name_en": "Fire Elemental",
+    "name_ru": "Огненный элементаль",
     "level": 4,
     "stats": {
       "attack": 10,
@@ -1637,7 +1756,8 @@
   },
   {
     "id": 119,
-    "name": "Энергетич.элементаль",
+    "name_en": "Energy Elemental",
+    "name_ru": "Энергетический элементаль",
     "level": 4,
     "stats": {
       "attack": 12,
@@ -1655,7 +1775,8 @@
   },
   {
     "id": 120,
-    "name": "Элементаль земли",
+    "name_en": "Earth Elemental",
+    "name_ru": "Элементаль земли",
     "level": 5,
     "stats": {
       "attack": 10,
@@ -1676,7 +1797,8 @@
   },
   {
     "id": 121,
-    "name": "Элементаль магмы",
+    "name_en": "Magma Elemental",
+    "name_ru": "Элементаль магмы",
     "level": 5,
     "stats": {
       "attack": 11,
@@ -1697,7 +1819,8 @@
   },
   {
     "id": 122,
-    "name": "Психический элементаль",
+    "name_en": "Psychic Elemental",
+    "name_ru": "Психический элементаль",
     "level": 6,
     "stats": {
       "attack": 15,
@@ -1710,7 +1833,8 @@
   },
   {
     "id": 123,
-    "name": "Магический элементаль",
+    "name_en": "Magic Elemental",
+    "name_ru": "Магический элементаль",
     "level": 6,
     "stats": {
       "attack": 15,
@@ -1724,7 +1848,8 @@
   },
   {
     "id": 124,
-    "name": "Огненная птица",
+    "name_en": "Firebird",
+    "name_ru": "Огненная птица",
     "level": 7,
     "stats": {
       "attack": 18,
@@ -1738,7 +1863,8 @@
   },
   {
     "id": 125,
-    "name": "Феникс",
+    "name_en": "Phoenix",
+    "name_ru": "Феникс",
     "level": 7,
     "stats": {
       "attack": 21,
@@ -1752,7 +1878,8 @@
   },
   {
     "id": 126,
-    "name": "Крестьянин",
+    "name_en": "Peasant",
+    "name_ru": "Крестьянин",
     "level": 1,
     "stats": {
       "attack": 1,
@@ -1764,7 +1891,8 @@
   },
   {
     "id": 127,
-    "name": "Хоббит",
+    "name_en": "Halfling",
+    "name_ru": "Хоббит",
     "level": 1,
     "stats": {
       "attack": 4,
@@ -1777,7 +1905,8 @@
   },
   {
     "id": 128,
-    "name": "Кабан",
+    "name_en": "Boar",
+    "name_ru": "Кабан",
     "level": 2,
     "stats": {
       "attack": 6,
@@ -1789,7 +1918,8 @@
   },
   {
     "id": 129,
-    "name": "Вор",
+    "name_en": "Rogue",
+    "name_ru": "Вор",
     "level": 2,
     "stats": {
       "attack": 8,
@@ -1801,7 +1931,8 @@
   },
   {
     "id": 130,
-    "name": "Кочевник",
+    "name_en": "Nomad",
+    "name_ru": "Кочевник",
     "level": 3,
     "stats": {
       "attack": 9,
@@ -1813,7 +1944,8 @@
   },
   {
     "id": 131,
-    "name": "Мумия",
+    "name_en": "Mummy",
+    "name_ru": "Мумия",
     "level": 3,
     "stats": {
       "attack": 7,
@@ -1826,7 +1958,8 @@
   },
   {
     "id": 132,
-    "name": "Снайпер",
+    "name_en": "Sharpshooter",
+    "name_ru": "Снайпер",
     "level": 4,
     "stats": {
       "attack": 12,
@@ -1839,7 +1972,8 @@
   },
   {
     "id": 133,
-    "name": "Тролль",
+    "name_en": "Troll",
+    "name_ru": "Тролль",
     "level": 5,
     "stats": {
       "attack": 14,
@@ -1851,7 +1985,8 @@
   },
   {
     "id": 134,
-    "name": "Золотой голем",
+    "name_en": "Gold Golem",
+    "name_ru": "Золотой голем",
     "level": 5,
     "stats": {
       "attack": 11,
@@ -1863,7 +1998,8 @@
   },
   {
     "id": 135,
-    "name": "Алмазный голем",
+    "name_en": "Diamond Golem",
+    "name_ru": "Алмазный голем",
     "level": 6,
     "stats": {
       "attack": 13,
@@ -1875,7 +2011,8 @@
   },
   {
     "id": 136,
-    "name": "Чародей",
+    "name_en": "Enchanter",
+    "name_ru": "Чародей",
     "level": 6,
     "stats": {
       "attack": 17,
@@ -1888,7 +2025,8 @@
   },
   {
     "id": 137,
-    "name": "Сказочный дракон",
+    "name_en": "Faerie Dragon",
+    "name_ru": "Сказочный дракон",
     "level": 7,
     "stats": {
       "attack": 20,
@@ -1900,7 +2038,8 @@
   },
   {
     "id": 138,
-    "name": "Ржавый дракон",
+    "name_en": "Rust Dragon",
+    "name_ru": "Ржавый дракон",
     "level": 7,
     "stats": {
       "attack": 30,
@@ -1912,7 +2051,8 @@
   },
   {
     "id": 139,
-    "name": "Кристальный дракон",
+    "name_en": "Crystal Dragon",
+    "name_ru": "Кристальный дракон",
     "level": 7,
     "stats": {
       "attack": 40,
@@ -1924,7 +2064,8 @@
   },
   {
     "id": 140,
-    "name": "Лазурный дракон",
+    "name_en": "Azure Dragon",
+    "name_ru": "Лазурный дракон",
     "level": 7,
     "stats": {
       "attack": 50,
@@ -1936,7 +2077,8 @@
   },
   {
     "id": 141,
-    "name": "Nymphs",
+    "name_en": "Nymph",
+    "name_ru": "Нимфа",
     "level": 1,
     "stats": {
       "attack": 5,
@@ -1949,7 +2091,8 @@
   },
   {
     "id": 142,
-    "name": "Oceanids",
+    "name_en": "Oceanid",
+    "name_ru": "Океанида",
     "level": 1,
     "stats": {
       "attack": 6,
@@ -1962,7 +2105,8 @@
   },
   {
     "id": 143,
-    "name": "Crew Mates",
+    "name_en": "Crew Mate",
+    "name_ru": "Матрос",
     "level": 2,
     "stats": {
       "attack": 7,
@@ -1975,7 +2119,8 @@
   },
   {
     "id": 144,
-    "name": "Seamen",
+    "name_en": "Seamen",
+    "name_ru": "Головорез",
     "level": 2,
     "stats": {
       "attack": 8,
@@ -1988,7 +2133,8 @@
   },
   {
     "id": 145,
-    "name": "Pirates",
+    "name_en": "Pirate",
+    "name_ru": "Пират",
     "level": 3,
     "stats": {
       "attack": 8,
@@ -2002,7 +2148,8 @@
   },
   {
     "id": 146,
-    "name": "Corsairs",
+    "name_en": "Corsair",
+    "name_ru": "Корсар",
     "level": 3,
     "stats": {
       "attack": 10,
@@ -2016,7 +2163,8 @@
   },
   {
     "id": 147,
-    "name": "Sea Dogs",
+    "name_en": "Sea dog",
+    "name_ru": "Морской волк",
     "level": 3,
     "stats": {
       "attack": 12,
@@ -2030,7 +2178,8 @@
   },
   {
     "id": 148,
-    "name": "Stormbirds",
+    "name_en": "Stormbird",
+    "name_ru": "Дух океана",
     "level": 4,
     "stats": {
       "attack": 10,
@@ -2043,7 +2192,8 @@
   },
   {
     "id": 149,
-    "name": "Ayssids",
+    "name_en": "Ayssid",
+    "name_ru": "Ассида",
     "level": 4,
     "stats": {
       "attack": 11,
@@ -2056,7 +2206,8 @@
   },
   {
     "id": 150,
-    "name": "Sea Witches",
+    "name_en": "Sea witch",
+    "name_ru": "Жрица моря",
     "level": 5,
     "stats": {
       "attack": 12,
@@ -2070,7 +2221,8 @@
   },
   {
     "id": 151,
-    "name": "Sorceresses",
+    "name_en": "Sorceress",
+    "name_ru": "Закленательница",
     "level": 5,
     "stats": {
       "attack": 12,
@@ -2084,7 +2236,8 @@
   },
   {
     "id": 152,
-    "name": "Nix",
+    "name_en": "Nix",
+    "name_ru": "Никс",
     "level": 6,
     "stats": {
       "attack": 13,
@@ -2097,7 +2250,8 @@
   },
   {
     "id": 153,
-    "name": "Nix Warriors",
+    "name_en": "Nix warrior",
+    "name_ru": "Никс-воин",
     "level": 6,
     "stats": {
       "attack": 14,
@@ -2110,7 +2264,8 @@
   },
   {
     "id": 154,
-    "name": "Sea Serpents",
+    "name_en": "Sea serpent",
+    "name_ru": "Морской змей",
     "level": 7,
     "stats": {
       "attack": 22,
@@ -2123,7 +2278,8 @@
   },
   {
     "id": 155,
-    "name": "Haspids",
+    "name_en": "Haspid",
+    "name_ru": "Аспид",
     "level": 7,
     "stats": {
       "attack": 29,
@@ -2137,7 +2293,8 @@
 
   {
     "id": 156,
-    "name": "Satyr",
+    "name_en": "Satyr",
+    "name_ru": "Сатир",
     "level": 4,
     "stats": {
       "attack": 10,
@@ -2150,7 +2307,8 @@
 
   {
     "id": 157,
-    "name": "Fangarm",
+    "name_en": "Fangarm",
+    "name_ru": "Фангарм",
     "level": 5,
     "stats": {
       "attack": 12,
@@ -2162,7 +2320,8 @@
   },
   {
     "id": 158,
-    "name": "Ballista",
+    "name_en": "Баллиста",
+    "name_ru": "Ballista",
     "level": 5,
     "stats": {
       "attack": 10,
@@ -2175,7 +2334,8 @@
   },
   {
     "id": 159,
-    "name": "Cannon",
+    "name_en": "Cannon",
+    "name_ru": "Пушка",
     "level": 6,
     "stats": {
       "attack": 20,
@@ -2188,7 +2348,8 @@
   },
   {
     "id": 160,
-    "name": "Лепрекон",
+    "name_en": "Leprechaun",
+    "name_ru": "Лепрекон",
     "level": 2,
     "stats": {
       "attack": 8,
