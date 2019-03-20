@@ -22,8 +22,8 @@ b-container.footer.mt-5
 
   //- License information modal
   b-modal(
-    v-if='licenseInformationModal'
-    title='License information'
+    v-model='licenseInformationModal'
+    :title='$t("license-information")'
     ref='licenseInformationModal'
     size='lg'
     ok-disabled=true
@@ -31,32 +31,19 @@ b-container.footer.mt-5
     hide-footer=true
   )
     //- Modal content
-    b-row
+    b-row(v-if='licenseInformationModal')
       b-col(cols='12')
         p MIT License
         p Copyright (c) 2019
           b-link(href='https://github.com/rudnovd')  https://github.com/rudnovd
-        p Permission is hereby granted, free of charge, to any person obtaining a copy
-          | of this software and associated documentation files (the "Software"), to deal
-          | in the Software without restriction, including without limitation the rights
-          | to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-          | copies of the Software, and to permit persons to whom the Software is
-          | furnished to do so, subject to the following conditions:
-
-        p The above copyright notice and this permission notice shall be included in all
-          | copies or substantial portions of the Software.
-
-        p THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-          | IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-          | FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-          | AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-          | LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-          | OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-          | SOFTWARE.
+        p {{ $t('license[0]') }} {{ $t('license[1]') }} {{ $t('license[3]') }} {{ $t('license[4]') }} {{ $t('license[5]') }}
+        p {{ $t('license[6]') }} {{ $t('license[7]') }}
+        p {{ $t('license[8]') }} {{ $t('license[9]') }} {{ $t('license[10]') }} {{ $t('license[11]') }} {{ $t('license[12]') }} {{ $t('license[13]') }}
 
   //- Send error modal
   b-modal(
-    title='Send error'
+    v-model='sendErrorModal'
+    :title='$t("send-error")'
     ref='sendErrorModal'
     size='lg'
     ok-disabled=true
@@ -70,8 +57,8 @@ b-container.footer.mt-5
 
   //- How to use modal
   b-modal(
-    v-if='howToUseModal'
-    title='How to use?'
+    v-model='howToUseModal'
+    :title='$t("how-to-use")'
     ref='howToUseModal'
     size='lg'
     ok-disabled=true
@@ -79,9 +66,9 @@ b-container.footer.mt-5
     hide-footer=true
   )
     //- Modal content
-    b-row
+    b-row(v-if='howToUseModal')
       b-col(cols='12')
-        p Soon
+        p {{ $t('soon') }}
 
 </template>
 
@@ -91,8 +78,8 @@ export default {
   data () {
     return {
       sendErrorModal: false,
-      licenseInformationModal: true,
-      howToUseModal: true
+      licenseInformationModal: false,
+      howToUseModal: false
     }
   },
   methods: {
@@ -101,15 +88,12 @@ export default {
     },
     sendErrorModalShow () {
       this.sendErrorModal = true
-      this.$refs.sendErrorModal.show()
     },
     licenseInformationModalShow () {
-      this.$refs.licenseInformationModal.show()
-      // this.licenseInformationModal = true
+      this.licenseInformationModal = true
     },
     howToUseModalShow () {
-      this.$refs.howToUseModal.show()
-      // this.howToUseModal = true
+      this.howToUseModal = true
     }
   }
 }
@@ -127,13 +111,49 @@ export default {
     "how-to-use": "How to use",
     "license-information": "License information",
     "find-error-?": "Find error?",
-    "source-code": "Source code"
+    "source-code": "Source code",
+    "send-error": "Send error",
+    "soon": "Soon...",
+    "license": [
+      "Permission is hereby granted, free of charge, to any person obtaining a copy",
+      "of this software and associated documentation files (the 'Software'), to deal",
+      "in the Software without restriction, including without limitation the rights",
+      "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell",
+      "copies of the Software, and to permit persons to whom the Software is",
+      "furnished to do so, subject to the following conditions:",
+      "The above copyright notice and this permission notice shall be included in all",
+      "copies or substantial portions of the Software.",
+      "THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR",
+      "IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,",
+      "FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE",
+      "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER",
+      "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,",
+      "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+    ]
   },
   "ru": {
     "how-to-use": "Как пользоваться",
     "license-information": "Информация о лицензии",
     "find-error-?": "Нашли ошибку?",
-    "source-code": "Исходный код"
+    "source-code": "Исходный код",
+    "send-error": "Отправить ошибку",
+    "soon": "Скоро...",
+    "license": [
+      "Данная лицензия разрешает, безвозмездно, лицам, получившим копию данного программного обеспечения",
+      "и сопутствующей документации (в дальнейшем именуемыми 'Программное Обеспечение'), использовать",
+      "Программное Обеспечение без ограничений, включая неограниченное право на использование, копирование,",
+      "изменение, объединение, публикацию, распространение, сублицензирование и/или продажу копий",
+      "Программного Обеспечения, также как и лицам, которым предоставляется данное Программное Обеспечение,",
+      "при соблюдении следующих условий:",
+      "Вышеупомянутый копирайт и данные условия должны быть включены",
+      "во все копии или значимые части данного Программного Обеспечения.",
+      "ДАННОЕ ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ПРЕДОСТАВЛЯЕТСЯ «КАК ЕСТЬ», БЕЗ ЛЮБОГО ВИДА ГАРАНТИЙ, ЯВНО ВЫРАЖЕННЫХ",
+      "ИЛИ ПОДРАЗУМЕВАЕМЫХ, ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ ГАРАНТИЯМИ ТОВАРНОЙ ПРИГОДНОСТИ, СООТВЕТСТВИЯ ПО ЕГО",
+      "КОНКРЕТНОМУ НАЗНАЧЕНИЮ И НЕНАРУШЕНИЯ ПРАВ. НИ В КАКОМ СЛУЧАЕ АВТОРЫ ИЛИ ПРАВООБЛАДАТЕЛИ НЕ НЕСУТ",
+      "ОТВЕТСТВЕННОСТИ ПО ИСКАМ О ВОЗМЕЩЕНИИ УЩЕРБА, УБЫТКОВ ИЛИ ДРУГИХ ТРЕБОВАНИЙ ПО ДЕЙСТВУЮЩИМ КОНТРАКТАМ,",
+      "ДЕЛИКТАМ ИЛИ ИНОМУ, ВОЗНИКШИМ ИЗ, ИМЕЮЩИМ ПРИЧИНОЙ ИЛИ СВЯЗАННЫМ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ ИЛИ",
+      "ИСПОЛЬЗОВАНИЕМ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ ИЛИ ИНЫМИ ДЕЙСТВИЯМИ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ."
+    ]
   }
 }
 </i18n>

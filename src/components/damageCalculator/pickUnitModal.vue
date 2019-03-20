@@ -31,24 +31,48 @@ b-modal(
       //- Show if not search
       b-col(v-if='!search.text' cols='12' v-for='(town, index) in Object.keys(unitsList)' :key='town.id')
         b-btn(
+          v-if='$store.state.user.locale === "en"'
           variant='link'
           size='sm'
           v-for='(unit, number) in unitsList[town]'
           :key='unit.id'
           v-b-tooltip.hover
-          :title='unit.name'
+          :title='unit.name_en'
+        )
+          img(:src='$store.state.calculator.images.units[unit.id].src' @click='setUnit({ side, unit }); hideModal();')
+
+        b-btn(
+          v-if='$store.state.user.locale === "ru"'
+          variant='link'
+          size='sm'
+          v-for='(unit, number) in unitsList[town]'
+          :key='unit.id'
+          v-b-tooltip.hover
+          :title='unit.name_ru'
         )
           img(:src='$store.state.calculator.images.units[unit.id].src' @click='setUnit({ side, unit }); hideModal();')
 
       //- Show if search
       b-col(v-if='search.text' cols='12')
         b-btn(
+          v-if='$store.state.user.locale === "en"'
           variant='link'
           size='sm'
           v-for='(unit, index) in search.foundUnits'
           :key='unit.id'
           v-b-tooltip.hover
-          :title='unit.name'
+          :title='unit.name_en'
+        )
+          img(:src='$store.state.calculator.images.units[unit.id].src' @click='setUnit({ side, unit}); hideModal();')
+
+        b-btn(
+          v-if='$store.state.user.locale === "ru"'
+          variant='link'
+          size='sm'
+          v-for='(unit, index) in search.foundUnits'
+          :key='unit.id'
+          v-b-tooltip.hover
+          :title='unit.name_ru'
         )
           img(:src='$store.state.calculator.images.units[unit.id].src' @click='setUnit({ side, unit}); hideModal();')
 

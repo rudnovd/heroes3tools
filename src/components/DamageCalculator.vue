@@ -34,8 +34,10 @@ b-container(): b-row.mb-3(): b-col.calculator(cols='12')
         b-col(cols='9' sm='9' md='8' lg='9' xl='9')
           b-button.green-btn(size='sm' block @click='pickAttackerModalShow()')
             template(v-if='attackerUnitSelected')
-              strong
-                | {{ $store.state.calculator.attacker.unit.name }}
+              strong(v-if='$store.state.user.locale === "en"')
+                | {{ $store.state.calculator.attacker.unit.name_en }}
+              strong(v-if='$store.state.user.locale === "ru"')
+                | {{ $store.state.calculator.attacker.unit.name_ru }}
             template(v-if='!attackerUnitSelected')
               | {{ $t('pick') }}
 
@@ -68,8 +70,10 @@ b-container(): b-row.mb-3(): b-col.calculator(cols='12')
         b-col(cols='9' sm='9' md='8' lg='9' xl='9')
           b-button(size='sm' variant='danger' block @click='pickDefenderModalShow()')
             template(v-if='defenderUnitSelected')
-              strong
-                | {{ $store.state.calculator.defender.unit.name }}
+              strong(v-if='$store.state.user.locale === "en"')
+                | {{ $store.state.calculator.defender.unit.name_en }}
+              strong(v-if='$store.state.user.locale === "ru"')
+                | {{ $store.state.calculator.defender.unit.name_ru }}
             template(v-if='!defenderUnitSelected')
               | {{ $t('pick') }}
 
