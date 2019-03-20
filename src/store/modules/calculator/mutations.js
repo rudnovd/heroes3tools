@@ -111,7 +111,9 @@ export default {
 
   SET_ATTACKER_UNIT (state, unit) {
     state.attacker.unit.id = unit.id
-    state.attacker.unit.name = unit.name
+
+    state.attacker.unit.name_en = unit.name_en
+    state.attacker.unit.name_ru = unit.name_ru
     state.attacker.unit.level = unit.level
     state.attacker.unit.nativeTerrain = unit.nativeTerrain
     state.attacker.unit.stats = unit.stats
@@ -142,7 +144,8 @@ export default {
   },
   SET_DEFENDER_UNIT (state, unit) {
     state.defender.unit.id = unit.id
-    state.defender.unit.name = unit.name
+    state.defender.unit.name_en = unit.name_en
+    state.defender.unit.name_ru = unit.name_ru
     state.defender.unit.level = unit.level
     state.defender.unit.nativeTerrain = unit.nativeTerrain
     state.defender.unit.stats = unit.stats
