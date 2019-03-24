@@ -147,7 +147,10 @@ export default {
     searchUnit () {
       this.search.foundUnits = []
       for (let i = 0; i < this.$store.state.calculator.units.length; i++) {
-        if (this.$store.state.calculator.units[i].name.includes(this.search.text) || this.$store.state.calculator.units[i].name.toLowerCase().includes(this.search.text)) {
+        if (this.$store.state.calculator.units[i].name_en.includes(this.search.text) || this.$store.state.calculator.units[i].name_en.toLowerCase().includes(this.search.text)) {
+          this.search.foundUnits.push(this.$store.state.calculator.units[i])
+        }
+        if (this.$store.state.calculator.units[i].name_ru.includes(this.search.text) || this.$store.state.calculator.units[i].name_ru.toLowerCase().includes(this.search.text)) {
           this.search.foundUnits.push(this.$store.state.calculator.units[i])
         }
       }
