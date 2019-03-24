@@ -13,7 +13,7 @@ export default {
     }
   },
   GET_HEROES_IMAGES (state) {
-    for (let i = 0; i <= 159; i++) {
+    for (let i = 1; i <= 160; i++) {
       state.images.heroes.push({ id: i, src: require(`@/assets/images/heroes/${i}.webp`) })
     }
   },
