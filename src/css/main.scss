@@ -4,9 +4,33 @@
   font-display: fallback;
   font-weight: 400;
   src: local('Open Sans Regular'), 
-       local('OpenSans-Regular'), 
-       url('./assets/fonts/open-sans-v15-cyrillic_cyrillic-ext_latin-regular.woff2') format('woff2'), 
-       url('./assets/fonts/open-sans-v15-cyrillic_cyrillic-ext_latin-regular.woff') format('woff');
+  local('OpenSans-Regular'), 
+  url('./assets/fonts/open-sans-v15-cyrillic_cyrillic-ext_latin-regular.woff2') format('woff2'), 
+  url('./assets/fonts/open-sans-v15-cyrillic_cyrillic-ext_latin-regular.woff') format('woff');
+}
+
+@media screen and (max-width : 1200px) and (min-width : 500px) {
+  .container {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (min-width : 1200px) {
+  .container { 
+    min-width: 1200px;
+  } 
+}
+
+@media screen and (min-width : 1300px) {
+  .container { 
+    min-width: 1300px; 
+  } 
+}
+
+@media screen and (min-width : 1400px) {
+  .container { 
+    min-width: 1400px; 
+  } 
 }
 
 ::-webkit-scrollbar {
