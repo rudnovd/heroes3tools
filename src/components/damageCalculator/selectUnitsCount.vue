@@ -1,17 +1,16 @@
 <template lang='pug'>
 b-form-input(
-  v-if='this[side]'
+  class='input-units-count'
   v-model='count'
   type='number'
-  number=true
   size='sm'
-  min=1
-  max=999
+  min=0
+  max=9999
 )
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'selectUnitsCount',
@@ -19,10 +18,6 @@ export default {
     side: String
   },
   computed: {
-    ...mapGetters({
-      attacker: 'calculator/attackerUnitSelected',
-      defender: 'calculator/defenderUnitSelected'
-    }),
     count: {
       get () {
         if (this.side === 'attacker') {
@@ -34,6 +29,9 @@ export default {
         }
       },
       set (value) {
+        if (value > 9999 || value < 0) {
+          value = 1
+        }
         this.setUnitsCount({
           side: this.side,
           count: value
@@ -48,3 +46,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.input-units-count {
+  width: 62px;
+}
+</style>
