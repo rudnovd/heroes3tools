@@ -21,6 +21,20 @@ export default {
     'page-footer': pageFooter,
     'change-locale': changeLocale
   },
+  beforeMount () {
+    const version = '0.1.0'
+
+    let localStorageVersion = JSON.parse(window.localStorage.getItem('version'))
+    if (!localStorageVersion || localStorageVersion !== version) {
+      window.localStorage.clear()
+      window.localStorage.setItem('version', version)
+    }
+
+    let localStorageUser = JSON.parse(window.localStorage.getItem('user'))
+    if (localStorageUser) {
+      this.$i18n.locale = localStorageUser.locale
+    }
+  },
   mounted () {
     this.getUnits()
     this.getHeroes()
@@ -51,4 +65,5 @@ export default {
 
 <style lang="scss">
 @import '@/css/main.scss';
+
 </style>

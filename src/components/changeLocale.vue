@@ -17,6 +17,13 @@ export default {
       language: 'English'
     }
   },
+  beforeMount () {
+    if (this.$i18n.locale === 'en') {
+      this.language = 'English'
+    } else if (this.$i18n.locale === 'ru') {
+      this.language = 'Русский'
+    }
+  },
   methods: {
     ...mapActions({
       setLocale: 'user/setLocale'
@@ -31,6 +38,14 @@ export default {
         this.language = 'Русский'
         this.setLocale('ru')
       }
+
+      let userLocalStorage = {
+        'locale': locale
+      }
+
+      userLocalStorage = JSON.stringify(userLocalStorage)
+
+      window.localStorage.setItem('user', userLocalStorage)
     }
   }
 }
