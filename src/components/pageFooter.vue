@@ -1,17 +1,21 @@
 <template lang='pug'>
 b-container.footer.mt-5
   b-row.mt-2
-    b-col(cols='auto')
+
+    b-col(class='pl-0' cols='6')
+      b-button(class='text-muted' variant='link' size='sm' @click='aboutModalShow()')
+        | {{ $t('about') }}
+
       b-button(class='text-muted' variant='link' size='sm' @click='howToUseModalShow()')
         | {{ $t('how-to-use') }}
-    b-col(class='ml-auto' cols='auto')
+
       b-button(class='text-muted' variant='link' size='sm' @click='licenseInformationModalShow()')
         | {{ $t('license-information') }}
-  b-row
-    b-col(cols='auto')
+
+    b-col.text-right(class='pr-0' cols='6')
       b-button(class='text-muted' variant='link' size='sm' @click='sendErrorModalShow()')
         | {{ $t('find-error-?') }}
-    b-col(class='ml-auto' cols='auto')
+
       b-button(
         class='text-muted'
         variant='link'
@@ -19,6 +23,21 @@ b-container.footer.mt-5
         @click='openURL("https://github.com/rudnovd/heroes3-damage-calculator")'
       )
         | {{ $t('source-code') }}
+
+  //- About modal
+  b-modal(
+    v-model='aboutModal'
+    :title='$t("about")'
+    ref='aboutModal'
+    size='lg'
+    ok-disabled=true
+    cancel-disabled=true
+    hide-footer=true
+  )
+    //- Modal content
+    b-row(v-if='aboutModal')
+      b-col(cols='12')
+        p {{ $t('soon') }}
 
   //- License information modal
   b-modal(
@@ -77,6 +96,7 @@ export default {
   name: 'pageFooter',
   data () {
     return {
+      aboutModal: false,
       sendErrorModal: false,
       licenseInformationModal: false,
       howToUseModal: false
@@ -85,6 +105,9 @@ export default {
   methods: {
     openURL (url) {
       window.open(url)
+    },
+    aboutModalShow () {
+      this.aboutModal = true
     },
     sendErrorModalShow () {
       this.sendErrorModal = true
@@ -108,6 +131,7 @@ export default {
 <i18n>
 {
   "en": {
+    "about": "About",
     "how-to-use": "How to use",
     "license-information": "License information",
     "find-error-?": "Find error?",
@@ -132,6 +156,7 @@ export default {
     ]
   },
   "ru": {
+    "about": "О калькуляторе",
     "how-to-use": "Как пользоваться",
     "license-information": "Информация о лицензии",
     "find-error-?": "Нашли ошибку?",
