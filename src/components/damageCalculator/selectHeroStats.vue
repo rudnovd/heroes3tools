@@ -1,81 +1,44 @@
 <template lang='pug'>
 b-row
 
-  //- Need other layout for attacker
-  template(v-if='side === "attacker"')
-    //- Input level
-    b-col(cols='3' sm='2' md='3' lg='2' xl='2' offset='3' offset-sm='3' offset-md='3' offset-lg='3' offset-xl='3')
-      b-form-group(:label='$t("level")')
-        b-form-input(
-          v-model='level'
-          type='number'
-          size='sm'
-          number=true
-          min=1
-          max=99
-        )
+  //- Input level
+  b-col(cols='4' sm='3' md='3' lg='3' xl='3')
+    b-form-group(:label='$t("level")')
+      b-form-input(
+        class='input-unit-stat'
+        v-model='level'
+        type='number'
+        size='sm'
+        number=true
+        min=1
+        max=99
+      )
 
-    //- Input attack
-    b-col(cols='3' sm='2' md='3' lg='2' xl='2' offset='0' offset-sm='3' offset-md='0' offset-lg='3' offset-xl='3')
-      b-form-group(:label='$t("attack")')
-        b-form-input(
-          v-model='attack'
-          type='number'
-          size='sm'
-          number=true
-          min=0
-          max=99
-        )
+  //- Input attack
+  b-col(cols='4' sm='3' md='3' lg='3' xl='3' offset='1' offset-sm='3' offset-md='4' offset-lg='3' offset-xl='4')
+    b-form-group(class='float-right' :label='$t("attack")')
+      b-form-input(
+        class='input-unit-stat float-right'
+        v-model='attack'
+        type='number'
+        size='sm'
+        number=true
+        min=0
+        max=99
+      )
 
-    //- Input defense
-    b-col(cols='3' sm='2' md='3' lg='2' xl='2')
-      b-form-group(:label='$t("defense")')
-        b-form-input(
-          v-model='defense'
-          type='number'
-          size='sm'
-          number=true
-          min=0
-          max=99
-        )
-
-  //- Need other layout for defender
-  template(v-else)
-    //- Input level
-    b-col(cols='3' sm='2' md='3' lg='2' xl='2')
-      b-form-group(:label='$t("level")')
-        b-form-input(
-          v-model='level'
-          type='number'
-          size='sm'
-          number=true
-          min=1
-          max=99
-        )
-
-    //- Input attack
-    b-col(cols='3' sm='2' md='3' lg='2' xl='2' offset='0' offset-sm='3' offset-md='0' offset-lg='3' offset-xl='3')
-      b-form-group(:label='$t("attack")')
-        b-form-input(
-          v-model='attack'
-          type='number'
-          size='sm'
-          number=true
-          min=0
-          max=99
-        )
-
-    //- Input defense
-    b-col(cols='3' sm='2' md='3' lg='2' xl='2')
-      b-form-group(:label='$t("defense")')
-        b-form-input(
-          v-model='defense'
-          type='number'
-          size='sm'
-          number=true
-          min=0
-          max=99
-        )
+  //- Input defense
+  b-col(cols='3' sm='3' md='2' lg='3' xl='2')
+    b-form-group(class='float-right' :label='$t("defense")')
+      b-form-input(
+        class='input-unit-stat float-right'
+        v-model='defense'
+        type='number'
+        size='sm'
+        number=true
+        min=0
+        max=99
+      )
 </template>
 
 <script>
@@ -98,6 +61,9 @@ export default {
         }
       },
       set (value) {
+        if (value > 99 || value < 0) {
+          value = 0
+        }
         this.setHeroAttack({
           side: this.side,
           attack: value
@@ -115,6 +81,9 @@ export default {
         }
       },
       set (value) {
+        if (value > 99 || value < 0) {
+          value = 0
+        }
         this.setHeroDefense({
           side: this.side,
           defense: value
@@ -132,6 +101,9 @@ export default {
         }
       },
       set (value) {
+        if (value > 99 || value < 0) {
+          value = 1
+        }
         this.setHeroLevel({
           side: this.side,
           level: value
@@ -148,6 +120,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.input-unit-stat {
+  width: 60px;
+}
+</style>
 
 <i18n>
 {

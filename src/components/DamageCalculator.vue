@@ -3,103 +3,114 @@ b-container(): b-row.mb-3(): b-col.calculator(cols='12')
 
   b-row
     //- Attacker col
-    b-col(class='attacker border-top border-right' cols='12' sm='12' md='6' lg='6' xl='6')
+    b-col(class='attacker border-top border-right px-4 px-sm-4 px-md-4 px-lg-4 px-xl-4' cols='12' sm='12' md='12' lg='6' xl='6')
 
       //- Text
       b-row.mt-3.mb-3
-        b-col(cols='12')
+        b-col(cols='3' v-if='$store.state.user.locale === "en"')
           h4 {{ $t('attacker') }}
+        b-col(cols='3' v-if='$store.state.user.locale === "ru"')
+          strong {{ $t('attacker') }}
+        b-col(cols='9' sm='9' md='9' lg='9' xl='9')
+          b-button(class='green-btn' size='sm' block @click='pickAttackerModalShow()')
 
-      //- Pick ATTACKER unit image and units count
-      b-row
-
-        //- Pick ATTACKER unit image
-        b-col(cols='3' sm='3' md='4' lg='3' xl='3')
-          b-row
-            b-col(cols='12')
-              b-button(class='mb-1' variant='link' size='sm' @click='pickAttackerModalShow()')
-                img(
-                  class='border border-dark'
-                  v-if='attackerUnitSelected'
-                  :src='$store.state.calculator.images.units[$store.state.calculator.attacker.unit.id].src'
-                )
-                font-awesome-icon(class='fa-4x' v-if='!attackerUnitSelected' icon='question-circle' style='color: #00CB31')
-
-          //- Attacker units count
-          b-row
-            b-col(class='ml-2' cols='auto' sm='8' md='9' lg='9' xl='8')
-              select-units-count(side="attacker")
-
-        //- Pick ATTACKER unit button
-        b-col(cols='9' sm='9' md='8' lg='9' xl='9')
-          b-button.green-btn(size='sm' block @click='pickAttackerModalShow()')
             template(v-if='attackerUnitSelected')
               strong(v-if='$store.state.user.locale === "en"')
                 | {{ $store.state.calculator.attacker.unit.name_en }}
               strong(v-if='$store.state.user.locale === "ru"')
                 | {{ $store.state.calculator.attacker.unit.name_ru }}
+
             template(v-if='!attackerUnitSelected')
               | {{ $t('pick') }}
 
-          //- Choose ATTACKER hero
-          b-row.mt-3
-            b-col(cols='12')
-              select-hero(side='attacker')
+      //- Pick ATTACKER unit image and units count
+      b-row
+
+        //- Pick ATTACKER unit image
+        b-col(cols='3' sm='3' md='3' lg='3' xl='3')
+
+          img(
+            class='border border-dark mb-1'
+            v-if='attackerUnitSelected'
+            :src='$store.state.calculator.images.units[$store.state.calculator.attacker.unit.id].src'
+            @click='pickAttackerModalShow()'
+          )
+          font-awesome-icon(
+            v-if='!attackerUnitSelected'
+            class='fa-4x'
+            icon='question-circle'
+            style='color: #00CB31'
+            @click='pickAttackerModalShow()'
+          )
+
+          //- Attacker units count
+          select-units-count.mt-2(v-if='attackerUnitSelected' side="attacker")
+
+        //- Choose ATTACKER hero
+        b-col(cols='9')
+          select-hero(side='attacker')
+          select-hero-stats.mt-1(v-if='attackerHeroSelected' side='attacker')
 
       template(v-if='attackerHeroSelected')
-        select-hero-stats.mt-2(side='attacker')
 
         select-hero-skills.mt-3(side='attacker')
 
         select-unit-effects.mt-3(side='attacker')
 
       template(v-if='attackerUnitSelected && defenderUnitSelected')
-        calculated-damage.mt-3(side='attacker')
+        calculated-damage.align-self-end(side='attacker')
 
     //- Defender col
-    b-col.defender.border-top(cols='12' sm='12' md='6' lg='6' xl='6')
-      //- Text
+    b-col(class='defender border-top px-4 px-sm-4 px-md-4 px-lg-4 px-xl-4' cols='12' sm='12' md='12' lg='6' xl='6')
       b-row.mt-3.mb-3
-        b-col(cols='12')
-          h4.text-right {{ $t('defender') }}
-
-      //- Pick DEFENDER unit image and units count
-      b-row
-
         //- Pick DEFENDER unit button
-        b-col(cols='9' sm='9' md='8' lg='9' xl='9')
+        b-col(cols='9' sm='9' md='9' lg='9' xl='9')
           b-button(size='sm' variant='danger' block @click='pickDefenderModalShow()')
+
             template(v-if='defenderUnitSelected')
               strong(v-if='$store.state.user.locale === "en"')
                 | {{ $store.state.calculator.defender.unit.name_en }}
               strong(v-if='$store.state.user.locale === "ru"')
                 | {{ $store.state.calculator.defender.unit.name_ru }}
+
             template(v-if='!defenderUnitSelected')
               | {{ $t('pick') }}
 
-          //- Choose DEFENDER hero
-          b-row.mt-3
-            b-col(cols='12')
-              select-hero(side="defender")
+        //- Text
+        b-col(class='text-right' cols='3' v-if='$store.state.user.locale === "en"')
+          h4.text-right {{ $t('defender') }}
+
+        b-col(class='text-right' class='pl-0' cols='3' v-if='$store.state.user.locale === "ru"')
+          strong.text-right {{ $t('defender') }}
+
+      //- Pick DEFENDER unit image and units count
+      b-row
+
+        //- Choose DEFENDER hero
+        b-col(cols='9')
+          select-hero(side="defender")
+          select-hero-stats.mt-1(v-if='defenderHeroSelected' side='defender')
 
         //- Pick DEFENDER unit image
-        b-col(class='text-right' cols='3' sm='3' md='4' lg='3' xl='3')
-          b-row
-            b-col(cols='12')
-              b-button(class='mb-1' variant='link' size='sm' @click='pickDefenderModalShow()')
-                img(
-                  class='border border-dark'
-                  v-if='defenderUnitSelected'
-                  :src='$store.state.calculator.images.units[$store.state.calculator.defender.unit.id].src')
-                font-awesome-icon(class='fa-4x' v-if='!defenderUnitSelected' icon='question-circle' style='color: #DC3545')
+        b-col(class='text-right align-right' cols='3' sm='3' md='3' lg='3' xl='3')
+          img(
+            class='border border-dark'
+            v-if='defenderUnitSelected'
+            :src='$store.state.calculator.images.units[$store.state.calculator.defender.unit.id].src'
+            @click='pickDefenderModalShow()'
+          )
+          font-awesome-icon(
+            class='fa-4x'
+            v-if='!defenderUnitSelected'
+            icon='question-circle'
+            style='color: #DC3545'
+            @click='pickDefenderModalShow()'
+          )
 
           //- Defender units count
-          b-row(class='float-right' v-if='defenderUnitSelected')
-            b-col(cols='auto' sm='11' md='11' lg='11' xl='11')
-              select-units-count(side='defender')
+          select-units-count.mt-2.ml-auto(v-if='defenderUnitSelected' side="defender")
 
       template(v-if='defenderHeroSelected')
-        select-hero-stats.mt-2(side='defender')
 
         select-hero-skills.mt-3(side='defender')
 
@@ -953,9 +964,6 @@ export default {
     min-height: 80vh;
   }
   .defender {
-    min-height: 80vh;
-  }
-  .longheight {
     min-height: 80vh;
   }
 }

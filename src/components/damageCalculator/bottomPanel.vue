@@ -2,43 +2,46 @@
 b-row.p-2.border-top
 
   //- Swap button
-  b-col(class='text-left ml-auto mr-auto mr-md-3 mr-lg-3 mr-xl-3' cols='2' sm='2' md='1' lg='1' xl='1')
-    b-button(
-      v-if='attackerUnitSelected && defenderUnitSelected'
-      variant='link' size='sm'
-      v-b-tooltip.hover
-      :title="$t('swap-sides')"
-      @click='swapSides()'
-    )
-      font-awesome-icon(class='fa-2x' icon='sync' style='color: #DC3545')
+  b-col(cols='12' sm='8' md='6' lg='6' xl='6' offset='0' offset-sm='4' offset-md='6' offset-lg='6' offset-xl='6')
+    b-row
+      b-col(class='pl-0' cols='2')
+        b-button(
+          v-if='attackerUnitSelected && defenderUnitSelected'
+          variant='link' size='sm'
+          v-b-tooltip.hover
+          :title="$t('swap-sides')"
+          @click='swapSides()'
+        )
+          font-awesome-icon(class='fa-2x' icon='sync' style='color: #DC3545')
 
-  //- Terrain text
-  b-col(class='text-right' cols='4' sm='3' md='2' lg='2' xl='2' offset='0' offset-sm='3' offset-md='0' offset-lg='1' offset-xl='1')
-    label.mt-1
-      | {{ $t('terrain') }}:
-  //- Terrain select
-  b-col(cols='auto' sm='4' md='3' lg='2' xl='2')
-    template(v-if='$store.state.user.locale === "en"')
-      b-form-select(
-        v-model='terrain'
-        :options='terrains'
-        value-field='id'
-        text-field='name_en'
-        size='sm'
-      )
-        template(slot='first')
-          option(:value='null') Don't care
+      //- Terrain text
+      b-col(class='text-right' cols='4' sm='4' md='4' lg='3' xl='3' offset='1' offset-sm='0' offset-md='1' offset-lg='3' offset-xl='4')
+        label.mt-1
+          | {{ $t('terrain') }}
+      //- Terrain select
+      b-col(class='pl-0' cols='5' sm='6' md='5' lg='4' xl='3')
+        template(v-if='$store.state.user.locale === "en"')
+          b-form-select(
 
-    template(v-if='$store.state.user.locale === "ru"')
-      b-form-select(
-        v-model='terrain'
-        :options='terrains'
-        value-field='id'
-        text-field='name_ru'
-        size='sm'
-      )
-        template(slot='first')
-          option(:value='null') Нет
+            v-model='terrain'
+            :options='terrains'
+            value-field='id'
+            text-field='name_en'
+            size='sm'
+          )
+            template(slot='first')
+              option(:value='null') Don't care
+
+        template(v-if='$store.state.user.locale === "ru"')
+          b-form-select(
+            v-model='terrain'
+            :options='terrains'
+            value-field='id'
+            text-field='name_ru'
+            size='sm'
+          )
+            template(slot='first')
+              option(:value='null') Нет
 </template>
 
 <script>
@@ -76,6 +79,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.select-terrain {
+  width: 150px;
+}
+</style>
 
 <i18n>
 {

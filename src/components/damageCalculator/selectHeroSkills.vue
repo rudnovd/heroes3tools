@@ -1,76 +1,61 @@
 <template lang='pug'>
 b-row
+
   //- Offense
-  b-col(cols='2' sm='2' md='2' lg='2' xl='2')
+  b-col(class='mt-2 text-truncate pr-0' cols='4' sm='2' md='2' lg='3' xl='2')
     label.mt-1 {{ $t('offense') }}
-  b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-    template(v-if='$store.state.user.locale === "en"')
-      b-form-select(v-model='offense' :options='options_en' size='sm')
-    template(v-if='$store.state.user.locale === "ru"')
-      b-form-select(v-model='offense' :options='options_ru' size='sm')
+  b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='offense' :options='options_en' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='offense' :options='options_ru' size='sm')
 
   //- Air
-  b-col(cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
+  b-col(class='mt-2 text-sm-right text-md-right text-lg-right text-xl-right' cols='4' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='2' offset-lg='1' offset-xl='2')
     label.mt-1 {{ $t('air') }}
-  b-col(cols='4' sm='3' md='4' lg='3' xl='3')
-    template(v-if='$store.state.user.locale === "en"')
-      b-form-select(v-model='air' :options='options_en' size='sm')
-    template(v-if='$store.state.user.locale === "ru"')
-      b-form-select(v-model='air' :options='options_ru' size='sm')
+  b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='air' :options='options_en' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='air' :options='options_ru' size='sm')
 
   //- Armorer
-  b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2')
+  b-col(class='mt-2' cols='4' sm='2' md='2' lg='3' xl='2')
     label.mt-1 {{ $t('armorer') }}
-  b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
-    template(v-if='$store.state.user.locale === "en"')
-      b-form-select(v-model='armorer' :options='options_en' size='sm')
-    template(v-if='$store.state.user.locale === "ru"')
-      b-form-select(v-model='armorer' :options='options_ru' size='sm')
+  b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='armorer' :options='options_en' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='armorer' :options='options_ru' size='sm')
 
   //- Fire
-  b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
+  b-col(class='mt-2 text-sm-right text-md-right text-lg-right text-xl-right' cols='4' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='2' offset-lg='1' offset-xl='2')
     label.mt-1 {{ $t('fire') }}
-  b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
-    template(v-if='$store.state.user.locale === "en"')
-      b-form-select(v-model='fire' :options='options_en' size='sm')
-    template(v-if='$store.state.user.locale === "ru"')
-      b-form-select(v-model='fire' :options='options_ru' size='sm')
+  b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='fire' :options='options_en' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='fire' :options='options_ru' size='sm')
 
   //- Archery
-  b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2')
+  b-col(class='mt-2' cols='4' sm='2' md='2' lg='3' xl='2')
     label.mt-1 {{ $t('archery') }}
-  b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
-    template(v-if='$store.state.user.locale === "en"')
-      b-form-select(v-model='archery' :options='options_en' size='sm')
-    template(v-if='$store.state.user.locale === "ru"')
-      b-form-select(v-model='archery' :options='options_ru' size='sm')
+  b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='archery' :options='options_en' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='archery' :options='options_ru' size='sm')
 
   //- Earth
-  b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
+  b-col(class='mt-2 text-sm-right text-md-right text-lg-right text-xl-right' cols='4' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='2' offset-lg='1' offset-xl='2')
     label.mt-1 {{ $t('earth') }}
-  b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
-    template(v-if='$store.state.user.locale === "en"')
-      b-form-select(v-model='earth' :options='options_en' size='sm')
-    template(v-if='$store.state.user.locale === "ru"')
-      b-form-select(v-model='earth' :options='options_ru' size='sm')
+  b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='earth' :options='options_en' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='earth' :options='options_ru' size='sm')
 
   //- Artillery
-  b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2')
+  b-col(class='mt-2 text-truncate pr-0' cols='4' sm='2' md='2' lg='3' xl='2')
     label.mt-1 {{ $t('artillery') }}
-  b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
-    template(v-if='$store.state.user.locale === "en"')
-      b-form-select(v-model='artillery' :options='options_en' size='sm')
-    template(v-if='$store.state.user.locale === "ru"')
-      b-form-select(v-model='artillery' :options='options_ru' size='sm')
+  b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='artillery' :options='options_en' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='artillery' :options='options_ru' size='sm')
 
   //- Water
-  b-col(class='mt-2' cols='2' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='0' offset-lg='2' offset-xl='2')
+  b-col(class='mt-2 text-sm-right text-md-right text-lg-right text-xl-right' cols='4' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='2' offset-lg='1' offset-xl='2')
     label.mt-1 {{ $t('water') }}
-  b-col(class='mt-2' cols='4' sm='3' md='4' lg='3' xl='3')
-    template(v-if='$store.state.user.locale === "en"')
-      b-form-select(v-model='water' :options='options_en' size='sm')
-    template(v-if='$store.state.user.locale === "ru"')
-      b-form-select(v-model='water' :options='options_ru' size='sm')
+  b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='water' :options='options_en' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='water' :options='options_ru' size='sm')
 </template>
 
 <script>
