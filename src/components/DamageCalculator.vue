@@ -213,6 +213,7 @@ export default {
 
         damageBonus: 0,
         defenseBonus: 0,
+        defenseMagicBonus: 0,
 
         totalMinDamage: 0,
         totalMaxDamage: 0
@@ -227,6 +228,7 @@ export default {
 
         damageBonus: 0,
         defenseBonus: 0,
+        defenseMagicBonus: 0,
 
         totalMinDamage: 0,
         totalMaxDamage: 0
@@ -244,6 +246,7 @@ export default {
         this.attacker.totalMaxDamage = 0
         this.attacker.damageBonus = 0
         this.attacker.defenseBonus = 0
+        this.attacker.defenseMagicBonus = 0
 
         this.defender.attack = this.$store.state.calculator.defender.unit.stats.attack
         this.defender.defense = this.$store.state.calculator.defender.unit.stats.defense
@@ -253,6 +256,7 @@ export default {
         this.defender.totalMaxDamage = 0
         this.defender.damageBonus = 0
         this.defender.defenseBonus = 0
+        this.defender.defenseMagicBonus = 0
 
         this.calculateCurseModificator()
 
@@ -288,11 +292,11 @@ export default {
             attackDefenseDifference = 3
           }
 
-          this.attacker.totalMinDamage = Math.abs(this.attacker.baseMinDamage * ((1 + attackDefenseDifference + this.attacker.damageBonus) * (1 - this.defender.defenseBonus)))
-          this.attacker.totalMaxDamage = Math.abs(this.attacker.baseMaxDamage * ((1 + attackDefenseDifference + this.attacker.damageBonus) * (1 - this.defender.defenseBonus)))
+          this.attacker.totalMinDamage = Math.abs(this.attacker.baseMinDamage * ((1 + attackDefenseDifference + this.attacker.damageBonus) * (1 - this.defender.defenseBonus) * (1 - this.defender.defenseMagicBonus)))
+          this.attacker.totalMaxDamage = Math.abs(this.attacker.baseMaxDamage * ((1 + attackDefenseDifference + this.attacker.damageBonus) * (1 - this.defender.defenseBonus) * (1 - this.defender.defenseMagicBonus)))
         } else if (this.attacker.attack === this.defender.defense) {
-          this.attacker.totalMinDamage = Math.abs(this.attacker.baseMinDamage * ((1 + this.attacker.damageBonus) * (1 - this.defender.defenseBonus)))
-          this.attacker.totalMaxDamage = Math.abs(this.attacker.baseMaxDamage * ((1 + this.attacker.damageBonus) * (1 - this.defender.defenseBonus)))
+          this.attacker.totalMinDamage = Math.abs(this.attacker.baseMinDamage * ((1 + this.attacker.damageBonus) * (1 - this.defender.defenseBonus) * (1 - this.defender.defenseMagicBonus)))
+          this.attacker.totalMaxDamage = Math.abs(this.attacker.baseMaxDamage * ((1 + this.attacker.damageBonus) * (1 - this.defender.defenseBonus) * (1 - this.defender.defenseMagicBonus)))
         } else if (this.attacker.attack < this.defender.defense) {
           // Max attack cap = 0.7
           let attackDefenseDifference = Math.abs((this.defender.defense - this.attacker.attack) * 0.025)
@@ -301,8 +305,8 @@ export default {
             attackDefenseDifference = 0.7
           }
 
-          this.attacker.totalMinDamage = Math.abs(this.attacker.baseMinDamage * ((1 + this.attacker.damageBonus) * (1 - attackDefenseDifference) * (1 - this.defender.defenseBonus)))
-          this.attacker.totalMaxDamage = Math.abs(this.attacker.baseMaxDamage * ((1 + this.attacker.damageBonus) * (1 - attackDefenseDifference) * (1 - this.defender.defenseBonus)))
+          this.attacker.totalMinDamage = Math.abs(this.attacker.baseMinDamage * ((1 + this.attacker.damageBonus) * (1 - attackDefenseDifference) * (1 - this.defender.defenseBonus) * (1 - this.defender.defenseMagicBonus)))
+          this.attacker.totalMaxDamage = Math.abs(this.attacker.baseMaxDamage * ((1 + this.attacker.damageBonus) * (1 - attackDefenseDifference) * (1 - this.defender.defenseBonus) * (1 - this.defender.defenseMagicBonus)))
         }
 
         this.attacker.totalMinDamage *= this.$store.state.calculator.attacker.unit.count
@@ -325,12 +329,12 @@ export default {
             attackDefenseDifference = 3
           }
 
-          this.defender.totalMinDamage = Math.abs(this.defender.baseMinDamage * ((1 + attackDefenseDifference + this.defender.damageBonus) * (1 - this.attacker.defenseBonus)))
-          this.defender.totalMaxDamage = Math.abs(this.defender.baseMaxDamage * ((1 + attackDefenseDifference + this.defender.damageBonus) * (1 - this.attacker.defenseBonus)))
+          this.defender.totalMinDamage = Math.abs(this.defender.baseMinDamage * ((1 + attackDefenseDifference + this.defender.damageBonus) * (1 - this.attacker.defenseBonus) * (1 - this.attacker.defenseMagicBonus)))
+          this.defender.totalMaxDamage = Math.abs(this.defender.baseMaxDamage * ((1 + attackDefenseDifference + this.defender.damageBonus) * (1 - this.attacker.defenseBonus) * (1 - this.attacker.defenseMagicBonus)))
         } else if (this.defender.attack === this.attacker.defense) {
           // if === then no cap
-          this.defender.totalMinDamage = Math.abs(this.attacker.baseMinDamage * ((1 + this.defender.damageBonus) * (1 - this.attacker.defenseBonus)))
-          this.defender.totalMaxDamage = Math.abs(this.attacker.baseMaxDamage * ((1 + this.defender.damageBonus) * (1 - this.attacker.defenseBonus)))
+          this.defender.totalMinDamage = Math.abs(this.attacker.baseMinDamage * ((1 + this.defender.damageBonus) * (1 - this.attacker.defenseBonus) * (1 - this.attacker.defenseMagicBonus)))
+          this.defender.totalMaxDamage = Math.abs(this.attacker.baseMaxDamage * ((1 + this.defender.damageBonus) * (1 - this.attacker.defenseBonus) * (1 - this.attacker.defenseMagicBonus)))
         } else if (this.defender.attack < this.attacker.defense) {
           // Max attack cap = 0.7
           let attackDefenseDifference = (this.attacker.defense - this.defender.attack) * 0.025
@@ -339,8 +343,8 @@ export default {
             attackDefenseDifference = 0.7
           }
 
-          this.defender.totalMinDamage = Math.abs(this.defender.baseMinDamage * ((1 + this.defender.damageBonus) * (1 - attackDefenseDifference) * (1 - this.attacker.defenseBonus)))
-          this.defender.totalMaxDamage = Math.abs(this.defender.baseMaxDamage * ((1 + this.defender.damageBonus) * (1 - attackDefenseDifference) * (1 - this.attacker.defenseBonus)))
+          this.defender.totalMinDamage = Math.abs(this.defender.baseMinDamage * ((1 + this.defender.damageBonus) * (1 - attackDefenseDifference) * (1 - this.attacker.defenseBonus) * (1 - this.attacker.defenseMagicBonus)))
+          this.defender.totalMaxDamage = Math.abs(this.defender.baseMaxDamage * ((1 + this.defender.damageBonus) * (1 - attackDefenseDifference) * (1 - this.attacker.defenseBonus) * (1 - this.attacker.defenseMagicBonus)))
         }
 
         this.defender.totalMinDamage *= this.$store.state.calculator.defender.unit.count
@@ -421,7 +425,7 @@ export default {
       this.attacker.defense += parseInt(this.$store.state.calculator.attacker.hero.defense)
 
       this.defender.attack += parseInt(this.$store.state.calculator.defender.hero.attack)
-      this.defender.attack += parseInt(this.$store.state.calculator.defender.hero.defense)
+      this.defender.defense += parseInt(this.$store.state.calculator.defender.hero.defense)
 
       if (this.$store.state.calculator.terrain) {
         if (this.$store.state.calculator.attacker.unit.nativeTerrain === this.$store.state.calculator.terrain) {
@@ -882,18 +886,18 @@ export default {
       // ATTACKER shield spell
       if (this.$store.state.calculator.attacker.unit.effects.includes('Shield')) {
         if (this.$store.state.calculator.attacker.hero.earth < 2) {
-          this.attacker.defenseBonus += 0.15
+          this.attacker.defenseMagicBonus += 0.15
         } else if (this.$store.state.calculator.attacker.hero.earth > 1) {
-          this.attacker.defenseBonus += 0.3
+          this.attacker.defenseMagicBonus += 0.3
         }
       }
 
       // DEFENDER air shield spell
       if (this.$store.state.calculator.attacker.unit.effects.includes('Air Shield') && this.$store.state.calculator.defender.unit.ranged) {
         if (this.$store.state.calculator.attacker.hero.air < 2) {
-          this.attacker.defenseBonus += 0.25
+          this.attacker.defenseMagicBonus += 0.25
         } else if (this.$store.state.calculator.attacker.hero.air > 1) {
-          this.attacker.defenseBonus += 0.5
+          this.attacker.defenseMagicBonus += 0.5
         }
       }
 
@@ -954,18 +958,18 @@ export default {
       // DEFENDER shield spell
       if (this.$store.state.calculator.defender.unit.effects.includes('Shield')) {
         if (this.$store.state.calculator.defender.hero.earth < 2) {
-          this.defender.defenseBonus += 0.15
+          this.defender.defenseMagicBonus += 0.15
         } else if (this.$store.state.calculator.defender.hero.earth > 1) {
-          this.defender.defenseBonus += 0.3
+          this.defender.defenseMagicBonus += 0.3
         }
       }
 
       // DEFENDER air shield spell
       if (this.$store.state.calculator.defender.unit.effects.includes('Air Shield') && this.$store.state.calculator.attacker.unit.ranged) {
         if (this.$store.state.calculator.defender.hero.air < 2) {
-          this.defender.defenseBonus += 0.25
+          this.defender.defenseMagicBonus += 0.25
         } else if (this.$store.state.calculator.defender.hero.air > 1) {
-          this.defender.defenseBonus += 0.5
+          this.defender.defenseMagicBonus += 0.5
         }
       }
     },
