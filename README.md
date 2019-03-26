@@ -1,4 +1,8 @@
-# heroes3-damage-calculator
+# Heroes III damage calculator
+
+This calculator used for calculation creatures damage in game Heroes of Might and Magic III: Horn of The Abyss.
+
+![Calculator image](https://i.imgur.com/wISaRFn.png)
 
 ## Project setup
 ```
