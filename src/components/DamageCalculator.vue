@@ -73,7 +73,7 @@ b-container(): b-row.mb-3(): b-col.calculator(cols='12')
         select-unit-effects.mt-3(side='attacker')
 
       template(v-if='attackerUnitSelected && defenderUnitSelected')
-        calculated-damage.align-self-end(side='attacker')
+        calculated-damage.mt-3(side='attacker')
 
     //- Defender col
     b-col(class='defender border-top px-4 px-sm-4 px-md-4 px-lg-4 px-xl-4' cols='12' sm='12' md='12' lg='6' xl='6')
@@ -263,6 +263,8 @@ export default {
         this.calculateTotalDamagesModification()
 
         this.calculateWithHates()
+
+        this.calculateArtillery()
 
         // Calculate damages
 
@@ -979,6 +981,23 @@ export default {
       if (hates === true) {
         this.attacker.damageBonus += 0.5
         this.defender.damageBonus += 0.5
+      }
+    },
+    calculateArtillery () {
+      if (this.$store.state.calculator.attacker.unit.id === 158) {
+        this.attacker.baseMinDamage += (this.attacker.attack - this.$store.state.calculator.attacker.unit.stats.attack) * 2
+        this.attacker.baseMaxDamage += (this.attacker.attack - this.$store.state.calculator.attacker.unit.stats.attack) * 3
+      } else if (this.$store.state.calculator.attacker.unit.id === 159) {
+        this.attacker.baseMinDamage += (this.attacker.attack - this.$store.state.calculator.attacker.unit.stats.attack) * 4
+        this.attacker.baseMaxDamage += (this.attacker.attack - this.$store.state.calculator.attacker.unit.stats.attack) * 7
+      }
+
+      if (this.$store.state.calculator.defender.unit.id === 158) {
+        this.defender.baseMinDamage += (this.defender.attack - this.$store.state.calculator.defender.unit.stats.attack) * 2
+        this.defender.baseMaxDamage += (this.defender.attack - this.$store.state.calculator.defender.unit.stats.attack) * 3
+      } else if (this.$store.state.calculator.defender.unit.id === 159) {
+        this.defender.baseMinDamage += (this.defender.attack - this.$store.state.calculator.defender.unit.stats.attack) * 4
+        this.defender.baseMaxDamage += (this.defender.attack - this.$store.state.calculator.defender.unit.stats.attack) * 7
       }
     }
   }
