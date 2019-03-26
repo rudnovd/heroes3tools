@@ -45,7 +45,7 @@ export default {
 
       userLocalStorage = JSON.stringify(userLocalStorage)
 
-      window.localStorage.setItem('user', userLocalStorage)
+      localStorage.user = userLocalStorage
     }
   }
 }

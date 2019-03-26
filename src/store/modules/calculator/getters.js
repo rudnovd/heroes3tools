@@ -1,13 +1,9 @@
 export default {
   attackerHeroSelected: state => {
-    try {
-      if (state.attacker.hero.id !== null) {
-        return true
-      } else {
-        return false
-      }
-    } catch (err) {
-      console.log(err)
+    if (state.attacker.hero.id !== null) {
+      return true
+    } else {
+      return false
     }
   },
   defenderHeroSelected: state => {
