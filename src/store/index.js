@@ -8,12 +8,10 @@ import user from './modules/user'
 
 Vue.use(Vuex)
 
-const debug = process.env.NODE_ENV !== 'production'
-
 export default new Vuex.Store({
   modules: {
     calculator,
     user
   },
-  strict: true
+  strict: false
 })
