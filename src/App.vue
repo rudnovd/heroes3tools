@@ -30,10 +30,12 @@ export default {
       localStorage.version = version
     }
 
-    let localStorageUser = JSON.parse(localStorage.user)
+    let localStorageUser = localStorage.user
     if (localStorageUser) {
-      this.setLocale(localStorageUser.locale)
-      this.$i18n.locale = localStorageUser.locale
+      let user = JSON.parse(localStorage.user)
+
+      this.setLocale(user.locale)
+      this.$i18n.locale = user.locale
     }
   },
   mounted () {
