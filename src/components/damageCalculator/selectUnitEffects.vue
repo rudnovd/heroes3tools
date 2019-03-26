@@ -1,20 +1,20 @@
 <template lang='pug'>
 b-row
-  b-col(cols='4' sm='4' md='4' lg='4' xl='4')
+  b-col(cols='6' sm='6' md='4' lg='4' xl='4')
     b-form-group
       template(v-if='$i18n.locale === "en"')
         b-form-checkbox-group(stacked v-model='effects' :options='attackBuffs_en')
       template(v-if='$i18n.locale === "ru"')
         b-form-checkbox-group(stacked v-model='effects' :options='attackBuffs_ru')
 
-  b-col(cols='4' sm='4' md='4' lg='4' xl='4')
+  b-col(cols='6' sm='6' md='4' lg='4' xl='4')
     b-form-group
       template(v-if='$i18n.locale === "en"')
         b-form-checkbox-group(stacked v-model='effects' :options='defenseBuffs_en')
       template(v-if='$i18n.locale === "ru"')
         b-form-checkbox-group(stacked v-model='effects' :options='defenseBuffs_ru')
 
-  b-col(cols='4' sm='4' md='4' lg='4' xl='4')
+  b-col(class='mt-2 mt-sm-2 mt-md-0 mt-lg-0 mt-xl-0' cols='6' sm='6' md='4' lg='4' xl='4')
     b-form-group
       template(v-if='$i18n.locale === "en"')
         b-form-checkbox-group(stacked v-model='effects' :options='attackDebuffs_en')

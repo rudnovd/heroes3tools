@@ -15,7 +15,7 @@ b-row
       )
 
   //- Input attack
-  b-col(cols='4' sm='3' md='3' lg='3' xl='3' offset='1' offset-sm='3' offset-md='4' offset-lg='3' offset-xl='4')
+  b-col(cols='4' sm='3' md='3' lg='3' xl='3' offset='0' offset-sm='3' offset-md='4' offset-lg='3' offset-xl='4')
     b-form-group(class='float-right' :label='$t("attack")')
       b-form-input(
         class='input-unit-stat float-right'
@@ -28,7 +28,7 @@ b-row
       )
 
   //- Input defense
-  b-col(cols='3' sm='3' md='2' lg='3' xl='2')
+  b-col(cols='4' sm='3' md='2' lg='3' xl='2')
     b-form-group(class='float-right' :label='$t("defense")')
       b-form-input(
         class='input-unit-stat float-right'

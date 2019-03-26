@@ -9,6 +9,18 @@
   url('./assets/fonts/open-sans-v15-cyrillic_cyrillic-ext_latin-regular.woff') format('woff');
 }
 
+@media screen and (max-width : 360px) and (min-width : 100px) {
+  .container {
+    min-width: 360px;
+  }
+}
+
+@media screen and (max-width : 500px) and (min-width : 100px) {
+  .container {
+    max-width: 90%;
+  }
+}
+
 @media screen and (max-width : 1200px) and (min-width : 500px) {
   .container {
     font-size: 0.9rem;
