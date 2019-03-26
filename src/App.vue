@@ -24,14 +24,15 @@ export default {
   beforeMount () {
     const version = '0.1.0'
 
-    let localStorageVersion = JSON.parse(window.localStorage.getItem('version'))
+    let localStorageVersion = localStorage.version
     if (!localStorageVersion || localStorageVersion !== version) {
-      window.localStorage.clear()
-      window.localStorage.setItem('version', version)
+      localStorage.clear()
+      localStorage.version = version
     }
 
-    let localStorageUser = JSON.parse(window.localStorage.getItem('user'))
+    let localStorageUser = JSON.parse(localStorage.user)
     if (localStorageUser) {
+      this.setLocale(localStorageUser.locale)
       this.$i18n.locale = localStorageUser.locale
     }
   },
@@ -42,16 +43,10 @@ export default {
     this.getHeroesImages()
     this.getTerrains()
     this.getUnitsHates()
-
-    this.updateScreenResolution({ width: document.body.clientWidth, height: document.body.clientHeight })
-
-    window.addEventListener('resize', () => {
-      this.updateScreenResolution({ width: document.body.clientWidth, height: document.body.clientHeight })
-    })
   },
   methods: {
     ...mapActions({
-      updateScreenResolution: 'user/updateScreenResolution',
+      setLocale: 'user/setLocale',
       getUnits: 'calculator/getUnits',
       getHeroes: 'calculator/getHeroes',
       getUnitsImages: 'calculator/getUnitsImages',
