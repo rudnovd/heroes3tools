@@ -15,14 +15,13 @@ b-row.p-2.border-top
           font-awesome-icon(class='fa-2x' icon='sync' style='color: #DC3545')
 
       //- Terrain text
-      b-col(class='text-right' cols='4' sm='4' md='4' lg='3' xl='3' offset='1' offset-sm='0' offset-md='1' offset-lg='3' offset-xl='4')
+      b-col(class='text-right' cols='4' sm='4' md='4' lg='3' xl='3' offset='0' offset-sm='0' offset-md='1' offset-lg='3' offset-xl='4')
         label.mt-1
           | {{ $t('terrain') }}
       //- Terrain select
-      b-col(class='pl-0' cols='5' sm='6' md='5' lg='4' xl='3')
+      b-col(class='pl-0' cols='6' sm='6' md='5' lg='4' xl='3')
         template(v-if='$store.state.user.locale === "en"')
           b-form-select(
-
             v-model='terrain'
             :options='terrains'
             value-field='id'
@@ -82,7 +81,7 @@ export default {
 
 <style lang="scss" scoped>
 .select-terrain {
-  width: 150px;
+  max-width: 150px;
 }
 </style>
 

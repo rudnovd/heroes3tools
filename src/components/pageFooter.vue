@@ -2,7 +2,7 @@
 b-container.footer.mt-5
   b-row.mt-2
 
-    b-col(class='pl-0' cols='6')
+    b-col(class='pl-0' cols='12' sm='12' md='12' lg='6' xl='6')
       b-button(class='text-muted' variant='link' size='sm' @click='aboutModalShow()')
         | {{ $t('about') }}
 
@@ -12,7 +12,7 @@ b-container.footer.mt-5
       b-button(class='text-muted' variant='link' size='sm' @click='licenseInformationModalShow()')
         | {{ $t('license-information') }}
 
-    b-col.text-right(class='pr-0' cols='6')
+    b-col(class='pr-0 pl-0 pl-sm-0 pl-md-0 pl-lg-2 pl-xl-2 text-lg-right text-xl-right' cols='12' sm='12' md='12' lg='6' xl='6')
       b-button(class='text-muted' variant='link' size='sm' @click='sendErrorModalShow()')
         | {{ $t('find-error-?') }}
 
