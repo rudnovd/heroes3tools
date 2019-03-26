@@ -98,8 +98,14 @@ export default {
       unitsList.neutral.push(state.units[i])
     }
 
+    for (let i = 156; i < 158; i++) {
+      unitsList.neutral.push(state.units[i])
+    }
+
+    unitsList.neutral.push(state.units[160])
+
     // Neutral
-    for (let i = 156; i < 161; i++) {
+    for (let i = 158; i < 160; i++) {
       unitsList.neutral.push(state.units[i])
     }
 
