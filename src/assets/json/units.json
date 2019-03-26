@@ -2320,8 +2320,8 @@
   },
   {
     "id": 158,
-    "name_en": "Баллиста",
-    "name_ru": "Ballista",
+    "name_en": "Ballista",
+    "name_ru": "Баллиста",
     "level": 5,
     "stats": {
       "attack": 10,

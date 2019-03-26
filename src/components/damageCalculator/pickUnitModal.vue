@@ -28,28 +28,34 @@ b-modal(
     //-     | Clear
 
     //- Show if not search
-    b-col(v-if='!search.text' cols='12' v-for='(town, index) in Object.keys(unitsList)' :key='town.id')
+    b-col(v-if='!search.text' cols='12' v-for='(town, index) in unitsList' :key='index')
       b-btn(
         v-if='$store.state.user.locale === "en"'
+        v-for='unit in town'
         variant='link'
         size='sm'
-        v-for='(unit, number) in unitsList[town]'
         :key='unit.id'
-        v-b-tooltip.hover
-        :title='unit.name_en'
       )
-        img(:src='$store.state.calculator.images.units[unit.id].src' @click='setUnit({ side, unit }); hideModal();')
+        img(
+          :src='$store.state.calculator.images.units[unit.id].src'
+          @click='setUnit({ side, unit }); hideModal();'
+          v-b-tooltip.hover
+          :title='unit.name_en'
+        )
 
       b-btn(
         v-if='$store.state.user.locale === "ru"'
         variant='link'
         size='sm'
-        v-for='(unit, number) in unitsList[town]'
+        v-for='unit in town'
         :key='unit.id'
-        v-b-tooltip.hover
-        :title='unit.name_ru'
       )
-        img(:src='$store.state.calculator.images.units[unit.id].src' @click='setUnit({ side, unit }); hideModal();')
+        img(
+          :src='$store.state.calculator.images.units[unit.id].src'
+          @click='setUnit({ side, unit }); hideModal();'
+          v-b-tooltip.hover
+          :title='unit.name_ru'
+        )
 
     //- Show if search
     b-col(v-if='search.text' cols='12')
@@ -59,10 +65,13 @@ b-modal(
         size='sm'
         v-for='(unit, index) in search.foundUnits'
         :key='unit.id'
-        v-b-tooltip.hover
-        :title='unit.name_en'
       )
-        img(:src='$store.state.calculator.images.units[unit.id].src' @click='setUnit({ side, unit}); hideModal();')
+        img(
+          :src='$store.state.calculator.images.units[unit.id].src'
+          @click='setUnit({ side, unit}); hideModal();'
+          v-b-tooltip.hover
+          :title='unit.name_en'
+        )
 
       b-btn(
         v-if='$store.state.user.locale === "ru"'
@@ -70,37 +79,17 @@ b-modal(
         size='sm'
         v-for='(unit, index) in search.foundUnits'
         :key='unit.id'
-        v-b-tooltip.hover
-        :title='unit.name_ru'
       )
-        img(:src='$store.state.calculator.images.units[unit.id].src' @click='setUnit({ side, unit}); hideModal();')
-
-    //- template(v-if='$store.state.user.width < 1200')
-    //-   //- Show if not search
-    //-   b-col(v-if='!search.text' cols='12' v-for='(town, index) in Object.keys(unitsList)' :key='town.id')
-    //-     a(v-for='(unit, number) in unitsList[town]')
-    //-       img(
-    //-         class='p-1'
-    //-         width='54px'
-    //-         heigth='70px'
-    //-         :src='$store.state.calculator.images.units[unit.id].src'
-    //-         @click='setUnit({ side, unit }); hideModal();'
-    //-       )
-
-      //- //- Show if search
-      //- b-col(v-if='search.text' cols='12')
-      //-   img(
-      //-     width='54px'
-      //-     heigth='70px'
-      //-     v-for='(unit, index) in search.foundUnits'
-      //-     :src='$store.state.calculator.images.units[unit.id].src'
-      //-     @click='setUnit({ side, unit}); hideModal();'
-      //-   )
-
+        img(
+          :src='$store.state.calculator.images.units[unit.id].src'
+          @click='setUnit({ side, unit}); hideModal();'
+          v-b-tooltip.hover
+          :title='unit.name_ru'
+        )
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'pickUnitModal',
@@ -112,14 +101,14 @@ export default {
     this.$root.$on(this.refString, () => {
       this.showModal(this.refString)
     })
-  },
-  computed: {
-    ...mapGetters({
-      unitsList: 'calculator/getUnitsList'
+
+    this.$nextTick(() => {
+      this.unitsList = this.$store.getters['calculator/getUnitsList']
     })
   },
   data () {
     return {
+      unitsList: [],
       search: {
         text: null,
         foundUnits: []
@@ -169,7 +158,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <i18n>
