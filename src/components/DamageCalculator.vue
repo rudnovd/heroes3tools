@@ -47,6 +47,8 @@ b-container(): b-row.mb-3(): b-col.calculator(cols='12')
           img(
             class='border border-dark mb-1'
             v-if='attackerUnitSelected'
+            width=65
+            height=72
             :src='$store.state.calculator.images.units[$store.state.calculator.attacker.unit.id].src'
             @click='pickAttackerModalShow()'
           )
@@ -127,6 +129,8 @@ b-container(): b-row.mb-3(): b-col.calculator(cols='12')
           img(
             class='border border-dark'
             v-if='defenderUnitSelected'
+            width=65
+            height=72
             :src='$store.state.calculator.images.units[$store.state.calculator.defender.unit.id].src'
             @click='pickDefenderModalShow()'
           )
@@ -1025,13 +1029,6 @@ export default {
 .green-btn {
   background-color: $custom-light-green;
   color: black;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
-  opacity: 0;
 }
 </style>
 
