@@ -49,6 +49,6 @@ export default {
 
 <style lang="scss" scoped>
 .input-units-count {
-  width: 62px;
+  width: 66px;
 }
 </style>
