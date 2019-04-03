@@ -35,9 +35,28 @@ b-container.footer.mt-5
     hide-footer=true
   )
     //- Modal content
-    b-row(v-if='aboutModal')
+    b-row
       b-col(cols='12')
-        p {{ $t('soon') }}
+        i18n(path="aboutText" tag="p")
+          h3(place="calculator-title") Heroes III damage calculator
+          u(
+            class="c-pointer"
+            place="desktop-version"
+            @click='openURL("http://forum.heroesworld.ru/showpost.php?p=1064503&postcount=65")'
+          )
+            template(v-if='$store.state.user.locale === "en"')
+              | desktop version
+            template(v-if='$store.state.user.locale === "ru"')
+              | дектопной версии
+          br(place="br")
+          u(class="c-pointer"
+            place="error-form"
+            @click='openURL("https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform?usp=sf_link")'
+          )
+            template(v-if='$store.state.user.locale === "en"')
+              | this
+            template(v-if='$store.state.user.locale === "ru"')
+              | эту
 
   //- License information modal
   b-modal(
@@ -86,8 +105,49 @@ b-container.footer.mt-5
   )
     //- Modal content
     b-row(v-if='howToUseModal')
-      b-col(cols='12')
-        p {{ $t('soon') }}
+
+      b-col(v-if='howToUsePage < 11' class="text-center border-bottom" cols='12')
+        p(class="h4 mb-5") {{ $t('how-to-use-text')[howToUsePage - 1] }}
+        img(:src='"images/how-to-use/" + howToUsePage + ".png"')
+
+      b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "en"' class="text-center" cols='12')
+        p(class="h4 mb-5") For fast input you can use shorcuts:
+
+        p 1. When you select unit, enter his name in search field, then press 'Enter' key on keyboard. First found unit will be selected;
+        img(class="mb-5" src='images/how-to-use/shortcut-1.png')
+
+        p 2. When you select hero, enter his name, then press 'Enter' key on keyboard. First found hero will be selected.
+        img(src='images/how-to-use/shortcut-2.png')
+
+      b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "ru"' class="text-center" cols='12')
+        p(class="h4 mb-5") Для быстрого ввода вы можете использовать сокращения:
+
+        p 1. Когда вы выбираете юнита, введите его имя в поле поиска и нажмите 'Enter'. Первый найденный юнит будет выбран;
+        img(class="mb-5" src='images/how-to-use/shortcut-1.png')
+
+        p 2. Когда вы выбираете героя, введите его имя и нажмите 'Enter'. Первый найденный герой будет выбран.
+        img(src='images/how-to-use/shortcut-2.png')
+
+      b-col(class="align-middle mt-3" cols='3')
+        b-button(
+          v-if='howToUsePage !== 1'
+          variant='dark'
+          size='sm'
+          @click='howToUsePrevPage()'
+        )
+          | Previous
+
+      b-col(class="mt-3" cols='4' offset='1')
+        b-progress(class="mt-2" variant="success" :value='howToUseProgress')
+
+      b-col(class="text-right mt-3" cols='3' offset='1')
+        b-button(
+          v-if='howToUsePage < 11'
+          variant='dark'
+          size='sm'
+          @click='howToUseNextPage()'
+        )
+          | Next
 
 </template>
 
@@ -99,7 +159,10 @@ export default {
       aboutModal: false,
       sendErrorModal: false,
       licenseInformationModal: false,
-      howToUseModal: false
+      howToUseModal: false,
+
+      howToUsePage: 1,
+      howToUseProgress: 0
     }
   },
   methods: {
@@ -117,6 +180,19 @@ export default {
     },
     howToUseModalShow () {
       this.howToUseModal = true
+    },
+
+    howToUsePrevPage () {
+      if (this.howToUsePage !== 1) {
+        this.howToUsePage--
+        this.howToUseProgress -= 10
+      }
+    },
+    howToUseNextPage () {
+      if (this.howToUsePage < 11) {
+        this.howToUsePage++
+        this.howToUseProgress += 10
+      }
     }
   }
 }
@@ -153,6 +229,19 @@ export default {
       "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER",
       "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,",
       "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+    ],
+    "aboutText": "{calculator-title} {br} This software used for calculation creatures damage (with stats, skills, spells and specialties modificators) in game Heroes of Might and Magic III: Horn of The Abyss.{br} {br} This calculator is not absolutely accurate, but trying to be better. You can help be better: if you find errors use {error-form} form.{br} {br} Calculator based on {desktop-version}. {br} {br} Write about ideas or improvements on 18a221c6db0b96d8@gmail.com.",
+    "how-to-use-text": [
+      "Choose unit by clicking on 'Pick' button or image with question mark",
+      "Select unit",
+      "Enter units count",
+      "Choose hero from list",
+      "Enter hero level, attack and defense",
+      "Select hero skills",
+      "Select spells acting on the unit",
+      "Enter the same values for enemy side",
+      "Select battlefield terrain",
+      "Then you will see the damage values"
     ]
   },
   "ru": {
@@ -178,6 +267,19 @@ export default {
       "ОТВЕТСТВЕННОСТИ ПО ИСКАМ О ВОЗМЕЩЕНИИ УЩЕРБА, УБЫТКОВ ИЛИ ДРУГИХ ТРЕБОВАНИЙ ПО ДЕЙСТВУЮЩИМ КОНТРАКТАМ,",
       "ДЕЛИКТАМ ИЛИ ИНОМУ, ВОЗНИКШИМ ИЗ, ИМЕЮЩИМ ПРИЧИНОЙ ИЛИ СВЯЗАННЫМ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ ИЛИ",
       "ИСПОЛЬЗОВАНИЕМ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ ИЛИ ИНЫМИ ДЕЙСТВИЯМИ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ."
+    ],
+    "aboutText": "{calculator-title} {br} Данное программное обеспечение используется для расчёта урона юнитов (с модификаторами характеристик, навыков, заклинаний и специализаций) в игре Heroes of Might and Magic III: Horn of The Abyss.{br} {br} Этот калькулятор не является абсолютно точным, но пытается стать лучше. Вы можете помочь стать лучше: при нахождении ошибки используйте {error-form} форму.{br} {br} Калькуклятор основан на {desktop-version}. {br} {br} Об идеях и улучшениях пишите на 18a221c6db0b96d8@gmail.com.",
+    "how-to-use-text": [
+      "Откройте выбор юнита кликнув на кнопку 'Выбрать' или на изображение с вопросительным знаком",
+      "Выберите юнита",
+      "Введите количество юнитов",
+      "Выберите героя из списка",
+      "Введите уровень, атаку и защиту героя",
+      "Выберите навыки героя",
+      "Отметьте заклинания действующие на юнита",
+      "Введите такие же значения для вражеской стороны",
+      "Выберите территорию поля боя",
+      "Затем вы увидете значения урона"
     ]
   }
 }
