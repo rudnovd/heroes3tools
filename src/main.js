@@ -14,7 +14,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.min.css'
 
 import '@/components/globals'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 
 Vue.use(BootstrapVue)
 
