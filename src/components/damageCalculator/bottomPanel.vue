@@ -29,7 +29,7 @@ b-row.p-2.border-top
             size='sm'
           )
             template(slot='first')
-              option(:value='null') Don't care
+              option(:value='null') None
 
         template(v-if='$store.state.user.locale === "ru"')
           b-form-select(
