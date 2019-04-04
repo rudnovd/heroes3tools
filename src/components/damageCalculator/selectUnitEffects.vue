@@ -1,5 +1,7 @@
 <template lang='pug'>
 b-row
+
+  //- Attack buffs
   b-col(cols='6' sm='6' md='4' lg='4' xl='4')
     b-form-group
       template(v-if='$i18n.locale === "en"')
@@ -7,6 +9,7 @@ b-row
       template(v-if='$i18n.locale === "ru"')
         b-form-checkbox-group(stacked v-model='effects' :options='attackBuffs_ru')
 
+  //- Defense buffs
   b-col(cols='6' sm='6' md='4' lg='4' xl='4')
     b-form-group
       template(v-if='$i18n.locale === "en"')
@@ -14,6 +17,7 @@ b-row
       template(v-if='$i18n.locale === "ru"')
         b-form-checkbox-group(stacked v-model='effects' :options='defenseBuffs_ru')
 
+  //- Attack debuffs
   b-col(class='mt-2 mt-sm-2 mt-md-0 mt-lg-0 mt-xl-0' cols='6' sm='6' md='4' lg='4' xl='4')
     b-form-group
       template(v-if='$i18n.locale === "en"')

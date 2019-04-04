@@ -1,5 +1,5 @@
 <template lang='pug'>
-b-container(): b-row.mb-3(): b-col.calculator(cols='12')
+b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
 
   b-row
     //- Attacker col
@@ -156,10 +156,10 @@ b-container(): b-row.mb-3(): b-col.calculator(cols='12')
 
   bottom-panel
 
-  //- Pick ATTACKER unit modal
+  //- Select ATTACKER unit modal
   pick-unit-modal(side='attacker' refString='attackerModal' @sendUnit='selectUnit("attacker", $event)')
 
-  //- Pick DEFENDER unit modal
+  //- Select DEFENDER unit modal
   pick-unit-modal(side='defender' refString='defenderModal' @sendUnit='selectUnit("defender", $event)')
 </template>
 
