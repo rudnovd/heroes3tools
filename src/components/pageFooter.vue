@@ -3,14 +3,21 @@ b-container.footer.mt-5
   b-row.mt-2
 
     b-col(class='pl-0' cols='12' sm='12' md='12' lg='6' xl='6')
+
+      //- About
       b-button(class='text-muted' variant='link' size='sm' @click='aboutModalShow()')
         | {{ $t('about') }}
 
+      //- How to use
       b-button(class='text-muted' variant='link' size='sm' @click='howToUseModalShow()')
         | {{ $t('how-to-use') }}
 
+      //- License information
       b-button(class='text-muted' variant='link' size='sm' @click='licenseInformationModalShow()')
         | {{ $t('license-information') }}
+
+      //- Change locale
+      change-locale
 
     b-col(class='pr-0 pl-0 pl-sm-0 pl-md-0 pl-lg-2 pl-xl-2 text-lg-right text-xl-right' cols='12' sm='12' md='12' lg='6' xl='6')
       b-button(class='text-muted' variant='link' size='sm' @click='sendErrorModalShow()')
@@ -156,8 +163,13 @@ b-container.footer.mt-5
 </template>
 
 <script>
+import changeLocale from '@/components/changeLocale.vue'
+
 export default {
   name: 'pageFooter',
+  components: {
+    'change-locale': changeLocale
+  },
   data () {
     return {
       aboutModal: false,

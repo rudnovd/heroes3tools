@@ -1,10 +1,13 @@
 <template lang='pug'>
-b-container(fluid)
-  b-navbar(type="light" variant="faded")
-    b-navbar-nav.ml-auto
-      b-nav-item-dropdown(:text='language' right)
-        b-dropdown-item(@click='changeLocale("en")') English
-        b-dropdown-item(@click='changeLocale("ru")') Русский
+b-dropdown(
+  variant='link'
+  toggle-class='text-muted'
+  size='sm'
+  dropup
+  :text='$t("language")'
+)
+  b-dropdown-item-button(@click='changeLocale("en")') English
+  b-dropdown-item-button(@click='changeLocale("ru")') Русский
 </template>
 
 <script>
@@ -12,30 +15,17 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'changeLocale',
-  data () {
-    return {
-      language: 'English'
-    }
-  },
-  beforeMount () {
-    if (this.$i18n.locale === 'en') {
-      this.language = 'English'
-    } else if (this.$i18n.locale === 'ru') {
-      this.language = 'Русский'
-    }
-  },
   methods: {
     ...mapActions({
       setLocale: 'user/setLocale'
     }),
     changeLocale (locale) {
       this.$i18n.locale = locale
+      this.$root.$i18n.locale = locale
 
       if (locale === 'en') {
-        this.language = 'English'
         this.setLocale('en')
       } else if (locale === 'ru') {
-        this.language = 'Русский'
         this.setLocale('ru')
       }
 
@@ -56,3 +46,14 @@ export default {
   max-height: 30px;
 }
 </style>
+
+<i18n>
+{
+  "en": {
+    "language": "Language"
+  },
+  "ru": {
+    "language": "Язык"
+  }
+}
+</i18n>

@@ -1,6 +1,5 @@
 <template lang="pug">
 #app
-  change-locale
   damage-calculator
   page-footer
 </template>
