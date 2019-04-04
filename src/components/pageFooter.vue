@@ -115,12 +115,12 @@ b-container.footer.mt-5
         img(v-if='userScreenWidth > 1024' :src='"images/how-to-use/" + howToUsePage + ".png"')
 
       b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "en"' class="text-center" cols='12')
-        p(class="h4 mb-5") For fast input you can use shorcuts:
+        p(class="h4 mb-5") You can use shortcuts for fast input:
 
-        p 1. When you select unit, enter his name in search field, then press 'Enter' key on keyboard. First found unit will be selected;
+        p 1. When you select a unit, enter it's name in the search field, then press the 'Enter' key on the keyboard. The first found unit will be selected;
         img(class="mb-5" src='images/how-to-use/shortcut-1.png')
 
-        p 2. When you select hero, enter his name, then press 'Enter' key on keyboard. First found hero will be selected.
+        p 2. When you select a hero, enter it's name, then press the 'Enter' key on the keyboard. The first found hero will be selected.
         img(src='images/how-to-use/shortcut-2.png')
 
       b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "ru"' class="text-center" cols='12')
@@ -222,9 +222,9 @@ export default {
     "about": "About",
     "how-to-use": "How to use",
     "license-information": "License information",
-    "find-error-?": "Find error?",
+    "find-error-?": "Found an error?",
     "source-code": "Source code",
-    "send-error": "Send error",
+    "send-error": "Report an error",
     "soon": "Soon...",
     "license": [
       "Permission is hereby granted, free of charge, to any person obtaining a copy",
@@ -242,16 +242,16 @@ export default {
       "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,",
       "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
     ],
-    "aboutText": "{calculator-title} {br} This software used for calculation creatures damage (with stats, skills, spells and specialties modificators) in game Heroes of Might and Magic III: Horn of The Abyss.{br} {br} This calculator is not absolutely accurate, but trying to be better. You can help be better: if you find errors use {error-form} form.{br} {br} Calculator based on {desktop-version}. {br} {br} Write about ideas or improvements on 18a221c6db0b96d8@gmail.com.",
+    "aboutText": "{calculator-title} {br} This software is used to calculate damage to creatures (with stats, skills, spells and specialties modifiers) in the game Heroes of Might and Magic III: Horn of The Abyss.{br} {br} This calculator is not absolutely accurate, but you can help make it better. If you want to help: report any errors to {error-form} form.{br} {br} Calculator is based on the {desktop-version}. {br} {br} Send ideas or improvements to 18a221c6db0b96d8@gmail.com.",
     "how-to-use-text": [
-      "Choose unit by clicking on 'Pick' button or image with question mark",
-      "Select unit",
+      "Choose unit by clicking on the 'Pick' button or image with the question mark",
+      "Select a unit",
       "Enter units count",
-      "Choose hero from list",
+      "Choose a hero from the list",
       "Enter hero level, attack and defense",
       "Select hero skills",
-      "Select spells acting on the unit",
-      "Enter the same values for enemy side",
+      "Select spells affecting the unit",
+      "Enter the same values for the enemy side",
       "Select battlefield terrain",
       "Then you will see the damage values"
     ]
