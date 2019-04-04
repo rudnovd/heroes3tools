@@ -1,9 +1,10 @@
 <template lang='pug'>
 b-row.p-2.border-top
 
-  //- Swap button
   b-col(cols='12' sm='8' md='6' lg='6' xl='6' offset='0' offset-sm='4' offset-md='6' offset-lg='6' offset-xl='6')
     b-row
+
+      //- Swap sides button
       b-col(class='pl-0' cols='2')
         b-button(
           v-if='attackerUnitSelected && defenderUnitSelected'

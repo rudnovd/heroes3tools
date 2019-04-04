@@ -12,18 +12,27 @@ multiselect(
   :clear-on-select='false',
   :maxHeight='480'
 )
+  //- Show portrait when hero selected
   template(v-if='hero.id' slot='singleLabel', slot-scope='props')
     img(:src='$store.state.calculator.images.heroes[hero.id - 1].src')
 
+    //- Second array element from json - english name
     span(class='multiselect__selected ml-1' v-if='$store.state.user.locale === "en"')
       | {{ props.option.name[1] }}
+
+    //- First array element from json - russian name
     span(class='multiselect__selected ml-1' v-if='$store.state.user.locale === "ru"')
       | {{ props.option.name[0] }}
+
+  //- Show portraits in heroes list
   template(slot='option', slot-scope='props')
     img(:src='$store.state.calculator.images.heroes[props.option.id - 1].src')
 
+    //- Second array element from json - english name
     span(class='ml-1' v-if='$store.state.user.locale === "en"')
       | {{ props.option.name[1] }}
+
+    //- First array element from json - russian name
     span(class='ml-1' v-if='$store.state.user.locale === "ru"')
       | {{ props.option.name[0] }}
 </template>

@@ -22,12 +22,8 @@ b-modal(
         @input='searchUnit()'
         @keyup.enter='selectFirstFounded()'
       )
-    //- //- Clear unit
-    //- b-col(class='mr-2 mr-sm-4 mr-md-4 mr-lg-5 mr-xl-5' cols='3' sm='2' md='2' lg='1' xl='1')
-    //-   b-btn(variant='danger' @click='clearUnit()')
-    //-     | Clear
 
-    //- Show if not search
+    //- Show if not searching
     b-col(v-if='!search.text' cols='12' v-for='(town, index) in unitsList' :key='index')
       b-btn(
         v-if='$store.state.user.locale === "en"'
@@ -57,7 +53,7 @@ b-modal(
           :title='unit.name_ru'
         )
 
-    //- Show if search
+    //- Show if searching
     b-col(v-if='search.text' cols='12')
       b-btn(
         v-if='$store.state.user.locale === "en"'
@@ -131,7 +127,6 @@ export default {
       this.clearSearch()
     },
 
-    // Search units
     searchUnit () {
       this.search.foundUnits = []
       for (let i = 0; i < this.$store.state.calculator.units.length; i++) {

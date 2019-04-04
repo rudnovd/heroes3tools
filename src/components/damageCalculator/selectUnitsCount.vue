@@ -30,7 +30,7 @@ export default {
       },
       set (value) {
         if (value > 9999 || value < 0) {
-          value = 1
+          value = 0
         }
         this.setUnitsCount({
           side: this.side,
