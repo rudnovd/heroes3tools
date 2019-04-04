@@ -12,7 +12,7 @@ export default {
       id: null,
       name: null,
       level: null,
-      count: 1,
+      count: 0,
       nativeTerrain: null,
       magicImmunity: null,
       spellsVulnerability: null,
@@ -35,7 +35,7 @@ export default {
       specialtyUnit: '',
       specialtySpell: '',
 
-      level: 1,
+      level: 0,
       attack: 0,
       defense: 0,
 
@@ -64,7 +64,7 @@ export default {
       id: null,
       name: null,
       level: null,
-      count: 1,
+      count: 0,
       nativeTerrain: null,
       magicImmunity: null,
       spellsVulnerability: null,
@@ -87,7 +87,7 @@ export default {
       specialtyUnit: null,
       specialtySpell: null,
 
-      level: 1,
+      level: 0,
       attack: 0,
       defense: 0,
 
