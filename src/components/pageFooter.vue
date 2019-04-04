@@ -87,12 +87,14 @@ b-container.footer.mt-5
     ok-disabled=true
     cancel-disabled=true
     hide-footer=true
+    @show='getUserSreen()'
   )
     //- Modal content
     b-row(align-v='center' v-if='sendErrorModal')
       b-col(cols='10' offset='1')
-        iframe(src="https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform?embedded=true" width="640" height="471" frameborder="0" marginheight="0" marginwidth="0") Загрузка...
-
+        iframe(v-if='userScreenWidth <= 425' src="https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform?embedded=true" :width='userScreenWidth * 0.8' :height='userScreenWidth * 0.8' frameborder="0" marginheight="0" marginwidth="0") Загрузка...
+        iframe(v-if='userScreenWidth > 425 && userScreenHeight <= 768' src="https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform?embedded=true" :width='userScreenWidth * 0.5' :height='userScreenWidth * 0.6' frameborder="0" marginheight="0" marginwidth="0") Загрузка...
+        iframe(v-if='userScreenWidth > 768' src="https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform?embedded=true" width='640' height='471' frameborder="0" marginheight="0" marginwidth="0") Загрузка...
   //- How to use modal
   b-modal(
     v-model='howToUseModal'
@@ -102,13 +104,15 @@ b-container.footer.mt-5
     ok-disabled=true
     cancel-disabled=true
     hide-footer=true
+    @show="getUserSreen()"
   )
     //- Modal content
     b-row(v-if='howToUseModal')
 
       b-col(v-if='howToUsePage < 11' class="text-center border-bottom" cols='12')
         p(class="h4 mb-5") {{ $t('how-to-use-text')[howToUsePage - 1] }}
-        img(:src='"images/how-to-use/" + howToUsePage + ".png"')
+        img(v-if='userScreenWidth <= 1024' :src='"images/how-to-use/" + howToUsePage + ".png"' :width='userScreenWidth * 0.5' height='auto')
+        img(v-if='userScreenWidth > 1024' :src='"images/how-to-use/" + howToUsePage + ".png"')
 
       b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "en"' class="text-center" cols='12')
         p(class="h4 mb-5") For fast input you can use shorcuts:
@@ -162,7 +166,10 @@ export default {
       howToUseModal: false,
 
       howToUsePage: 1,
-      howToUseProgress: 0
+      howToUseProgress: 0,
+
+      userScreenWidth: 0,
+      userScreenHeight: 0
     }
   },
   methods: {
@@ -180,6 +187,11 @@ export default {
     },
     howToUseModalShow () {
       this.howToUseModal = true
+    },
+
+    getUserSreen () {
+      this.userScreenWidth = screen.width
+      this.userScreenHeight = screen.height
     },
 
     howToUsePrevPage () {
