@@ -1,5 +1,6 @@
 <template lang='pug'>
 b-modal(
+  id='pick-unit-modal'
   :title='`${$t("pick")} ${$t(side)} ${$t("unit")}`'
   :ref='refString'
   size='xl'
@@ -34,9 +35,9 @@ b-modal(
       )
         img(
           :src='$store.state.calculator.images.units[unit.id].src'
-          @click='setUnit({ side, unit }); hideModal();'
-          v-b-tooltip.hover
+          v-b-tooltip:pick-unit-modal.d500
           :title='unit.name_en'
+          @click='setUnit({ side, unit }); hideModal();'
         )
 
       b-btn(
