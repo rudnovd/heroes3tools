@@ -1030,6 +1030,11 @@ export default {
   background-color: $custom-light-green;
   color: black;
 }
+
+.green-btn:hover {
+  background-color: $custom-green;
+  color: black;
+}
 </style>
 
 <i18n>
