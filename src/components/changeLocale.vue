@@ -6,8 +6,8 @@ b-dropdown(
   dropup
   :text='$t("language")'
 )
-  b-dropdown-item-button(@click='changeLocale("en")') English
-  b-dropdown-item-button(@click='changeLocale("ru")') Русский
+  b-dropdown-item-button(class="text-muted btn-sm" @click='changeLocale("en")') English
+  b-dropdown-item-button(class="text-muted btn-sm" @click='changeLocale("ru")') Русский
 </template>
 
 <script>
