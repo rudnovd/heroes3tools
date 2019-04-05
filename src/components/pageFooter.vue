@@ -12,17 +12,20 @@ b-container.footer.mt-5
       b-button(class='text-muted' variant='link' size='sm' @click='howToUseModalShow()')
         | {{ $t('how-to-use') }}
 
-      //- License information
-      b-button(class='text-muted' variant='link' size='sm' @click='licenseInformationModalShow()')
-        | {{ $t('license-information') }}
-
       //- Change locale
       change-locale
 
     b-col(class='pr-0 pl-0 pl-sm-0 pl-md-0 pl-lg-2 pl-xl-2 text-lg-right text-xl-right' cols='12' sm='12' md='12' lg='6' xl='6')
+
+      //- Find error?
       b-button(class='text-muted' variant='link' size='sm' @click='sendErrorModalShow()')
         | {{ $t('find-error-?') }}
 
+      //- License information
+      b-button(class='text-muted' variant='link' size='sm' @click='licenseInformationModalShow()')
+        | {{ $t('license-information') }}
+
+      //- Source code
       b-button(
         class='text-muted'
         variant='link'
@@ -64,6 +67,8 @@ b-container.footer.mt-5
               | this
             template(v-if='$store.state.user.locale === "ru"')
               | эту
+          a(place="mail" href="mailto:18a221c6db0b96d8@gmail.com")
+            | 18a221c6db0b96d8@gmail.com
 
   //- License information modal
   b-modal(
@@ -94,14 +99,12 @@ b-container.footer.mt-5
     ok-disabled=true
     cancel-disabled=true
     hide-footer=true
-    @show='getUserSreen()'
   )
     //- Modal content
     b-row(align-v='center' v-if='sendErrorModal')
-      b-col(cols='10' offset='1')
-        iframe(v-if='userScreenWidth <= 425' src="https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform?embedded=true" :width='userScreenWidth * 0.8' :height='userScreenWidth * 0.8' frameborder="0" marginheight="0" marginwidth="0") Загрузка...
-        iframe(v-if='userScreenWidth > 425 && userScreenHeight <= 768' src="https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform?embedded=true" :width='userScreenWidth * 0.5' :height='userScreenWidth * 0.6' frameborder="0" marginheight="0" marginwidth="0") Загрузка...
-        iframe(v-if='userScreenWidth > 768' src="https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform?embedded=true" width='640' height='471' frameborder="0" marginheight="0" marginwidth="0") Загрузка...
+      b-col(cols='12' sm='12' md='12' lg='10' xl='10' offset='0' offset-sm='0' offset-md='0' offset-lg='1' offset-xl='1')
+        iframe(src="https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform?embedded=true" width='100%' height='471' frameborder="0" marginheight="0" marginwidth="0") Загрузка...
+
   //- How to use modal
   b-modal(
     v-model='howToUseModal'
@@ -111,19 +114,18 @@ b-container.footer.mt-5
     ok-disabled=true
     cancel-disabled=true
     hide-footer=true
-    @show="getUserSreen()"
   )
     //- Modal content
     b-row(v-if='howToUseModal')
 
-      b-col(v-if='howToUsePage < 11' class="text-center border-bottom" cols='12')
+      b-col(v-if='howToUsePage < 11' class="text-center" cols='12')
         p(class="h4 mb-5") {{ $t('how-to-use-text')[howToUsePage - 1] }}
-        img(v-if='userScreenWidth <= 1024' :src='"images/how-to-use/" + howToUsePage + ".png"' :width='userScreenWidth * 0.5' height='auto')
-        img(v-if='userScreenWidth > 1024' :src='"images/how-to-use/" + howToUsePage + ".png"')
+      b-col(v-if='howToUsePage < 11' class="text-center" cols='12' sm='12' md='12' lg='10' xl='10' offset='0' offset-sm='0' offset-md='0' offset-lg='1' offset-xl='1')
+        img(:src='"images/how-to-use/" + howToUsePage + ".png"' width='100%' height='auto')
 
       b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "en"' class="text-center" cols='12')
         p(class="h4 mb-5") You can use shortcuts for fast input:
-
+      b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "en"' class="text-center" cols='12' sm='12' md='12' lg='10' xl='10' offset='0' offset-sm='0' offset-md='0' offset-lg='1' offset-xl='1')
         p 1. When you select a unit, enter it's name in the search field, then press the 'Enter' key on the keyboard. The first found unit will be selected;
         img(class="mb-5" src='images/how-to-use/shortcut-1.png')
 
@@ -132,13 +134,14 @@ b-container.footer.mt-5
 
       b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "ru"' class="text-center" cols='12')
         p(class="h4 mb-5") Для быстрого ввода вы можете использовать сокращения:
-
+      b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "ru"' class="text-center" cols='12' sm='12' md='12' lg='10' xl='10' offset='0' offset-sm='0' offset-md='0' offset-lg='1' offset-xl='1')
         p 1. При выборе юнита введите его имя в поле поиска и нажмите 'Enter'. Будет выбран первый найденный юнит;
-        img(class="mb-5" src='images/how-to-use/shortcut-1.png')
+        img(class="mb-5" src='images/how-to-use/shortcut-1.png' width='100%' height='auto')
 
         p 2. При выборе героя введите его имя и нажмите 'Enter'. Будет выбран первый найденный герой.
-        img(src='images/how-to-use/shortcut-2.png')
+        img(src='images/how-to-use/shortcut-2.png' width='100%' height='auto')
 
+    b-row(class="border-top")
       b-col(class="align-middle mt-3" cols='3')
         b-button(
           v-if='howToUsePage !== 1'
@@ -146,7 +149,10 @@ b-container.footer.mt-5
           size='sm'
           @click='howToUsePrevPage()'
         )
-          | Previous
+          template(v-if='$store.state.user.locale === "en"')
+            | Previous
+          template(v-if='$store.state.user.locale === "ru"')
+            | Назад
 
       b-col(class="mt-3" cols='4' offset='1')
         b-progress(class="mt-2" variant="success" :value='howToUseProgress')
@@ -158,7 +164,10 @@ b-container.footer.mt-5
           size='sm'
           @click='howToUseNextPage()'
         )
-          | Next
+          template(v-if='$store.state.user.locale === "en"')
+            | Next
+          template(v-if='$store.state.user.locale === "ru"')
+            | Дальше
 
 </template>
 
@@ -192,18 +201,20 @@ export default {
       this.aboutModal = true
     },
     sendErrorModalShow () {
+      this.getUserSreen()
       this.sendErrorModal = true
     },
     licenseInformationModalShow () {
       this.licenseInformationModal = true
     },
     howToUseModalShow () {
+      this.getUserSreen()
       this.howToUseModal = true
     },
 
     getUserSreen () {
-      this.userScreenWidth = screen.width
-      this.userScreenHeight = screen.height
+      this.userScreenWidth = window.innerWidth
+      this.userScreenHeight = window.innerHeight
     },
 
     howToUsePrevPage () {
@@ -254,7 +265,7 @@ export default {
       "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,",
       "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
     ],
-    "aboutText": "{calculator-title} {br} This software is used to calculate damage to creatures (with stats, skills, spells and specialties modifiers) in the game Heroes of Might and Magic III: Horn of The Abyss.{br} {br} This calculator is not absolutely accurate, but you can help make it better. If you want to help: report any errors to {error-form} form.{br} {br} Calculator is based on the {desktop-version}. {br} {br} Send ideas or improvements to 18a221c6db0b96d8@gmail.com.",
+    "aboutText": "{calculator-title} {br} This software is used to calculate damage to creatures (with stats, skills, spells and specialties modifiers) in the game Heroes of Might and Magic III: Horn of The Abyss.{br} {br} This calculator is not absolutely accurate, but you can help make it better. If you want to help: report any errors to {error-form} form.{br} {br} Calculator is based on the {desktop-version}. {br} {br} Send ideas or improvements to {mail}.",
     "how-to-use-text": [
       "Choose unit by clicking on the 'Pick' button or image with the question mark",
       "Select a unit",
@@ -292,7 +303,7 @@ export default {
       "ДЕЛИКТАМ ИЛИ ИНОМУ, ВОЗНИКШИМ ИЗ, ИМЕЮЩИМ ПРИЧИНОЙ ИЛИ СВЯЗАННЫМ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ ИЛИ",
       "ИСПОЛЬЗОВАНИЕМ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ ИЛИ ИНЫМИ ДЕЙСТВИЯМИ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ."
     ],
-    "aboutText": "{calculator-title} {br} Данное программное обеспечение используется для расчёта урона юнитов (с модификаторами характеристик, навыков, заклинаний и специализаций) в игре Heroes of Might and Magic III: Horn of The Abyss.{br} {br} Этот калькулятор не является абсолютно точным, но его можно сделать лучше. Если вы хотите помочь: при нахождении ошибки используйте {error-form} форму.{br} {br} Калькулятор основан на {desktop-version}. {br} {br} Об идеях и улучшениях пишите на 18a221c6db0b96d8@gmail.com.",
+    "aboutText": "{calculator-title} {br} Данное программное обеспечение используется для расчёта урона юнитов (с модификаторами характеристик, навыков, заклинаний и специализаций) в игре Heroes of Might and Magic III: Horn of The Abyss.{br} {br} Этот калькулятор не является абсолютно точным, но его можно сделать лучше. Если вы хотите помочь: при нахождении ошибки используйте {error-form} форму.{br} {br} Калькулятор основан на {desktop-version}. {br} {br} Об идеях и улучшениях пишите на {mail}.",
     "how-to-use-text": [
       "Откройте выбор юнита кликнув на кнопку 'Выбрать' или на изображение с вопросительным знаком",
       "Выберите юнита",
