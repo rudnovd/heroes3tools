@@ -44,11 +44,10 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
         //- Pick ATTACKER unit image
         b-col(cols='3' sm='3' md='3' lg='3' xl='3')
 
-          img(
-            class='border border-dark mb-1'
+          b-img(
+            rounded
+            class='mb-1 selected-attacker-unit'
             v-if='attackerUnitSelected'
-            width=65
-            height=72
             :src='$store.state.calculator.images.units[$store.state.calculator.attacker.unit.id].src'
             @click='pickAttackerModalShow()'
           )
@@ -126,11 +125,10 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
 
         //- Pick DEFENDER unit image
         b-col(class='text-right align-right' cols='3' sm='3' md='3' lg='3' xl='3')
-          img(
-            class='border border-dark'
+          b-img(
+            rounded
+            class='selected-defender-unit'
             v-if='defenderUnitSelected'
-            width=65
-            height=72
             :src='$store.state.calculator.images.units[$store.state.calculator.defender.unit.id].src'
             @click='pickDefenderModalShow()'
           )
@@ -1034,6 +1032,16 @@ export default {
 .green-btn:hover {
   background-color: $custom-green;
   color: black;
+}
+
+img.selected-attacker-unit {
+  border: 2px solid black;
+  margin-left: 1px;
+}
+
+img.selected-defender-unit {
+  border: 2px solid black;
+  margin-right: 2px;
 }
 </style>
 

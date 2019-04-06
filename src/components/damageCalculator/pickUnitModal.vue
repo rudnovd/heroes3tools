@@ -33,7 +33,8 @@ b-modal(
         size='sm'
         :key='unit.id'
       )
-        img(
+        b-img(
+          rounded
           :src='$store.state.calculator.images.units[unit.id].src'
           v-b-tooltip:pick-unit-modal.d500
           :title='unit.name_en'
@@ -47,11 +48,12 @@ b-modal(
         v-for='unit in town'
         :key='unit.id'
       )
-        img(
+        b-img(
+          rounded
           :src='$store.state.calculator.images.units[unit.id].src'
-          @click='setUnit({ side, unit }); hideModal();'
-          v-b-tooltip.hover
+          v-b-tooltip:pick-unit-modal.d500
           :title='unit.name_ru'
+          @click='setUnit({ side, unit }); hideModal();'
         )
 
     //- Show if searching
@@ -63,11 +65,12 @@ b-modal(
         v-for='(unit, index) in search.foundUnits'
         :key='unit.id'
       )
-        img(
+        b-img(
+          rounded
           :src='$store.state.calculator.images.units[unit.id].src'
-          @click='setUnit({ side, unit}); hideModal();'
-          v-b-tooltip.hover
+          v-b-tooltip:pick-unit-modal.d500
           :title='unit.name_en'
+          @click='setUnit({ side, unit}); hideModal();'
         )
 
       b-btn(
@@ -77,11 +80,12 @@ b-modal(
         v-for='(unit, index) in search.foundUnits'
         :key='unit.id'
       )
-        img(
+        b-img(
+          rounded
           :src='$store.state.calculator.images.units[unit.id].src'
-          @click='setUnit({ side, unit}); hideModal();'
-          v-b-tooltip.hover
+          v-b-tooltip:pick-unit-modal.d500
           :title='unit.name_ru'
+          @click='setUnit({ side, unit}); hideModal();'
         )
 </template>
 
