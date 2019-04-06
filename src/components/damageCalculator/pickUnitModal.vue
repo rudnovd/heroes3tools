@@ -37,8 +37,6 @@ b-modal(
           rounded
           :src='$store.state.calculator.images.units[unit.id].src'
           :alt='unit.name_en'
-          v-b-tooltip:pick-unit-modal.d1000
-          :title='unit.name_en'
           @click='setUnit({ side, unit }); hideModal();'
         )
 
@@ -53,8 +51,6 @@ b-modal(
           rounded
           :src='$store.state.calculator.images.units[unit.id].src'
           :alt='unit.name_ru'
-          v-b-tooltip:pick-unit-modal.d1000
-          :title='unit.name_ru'
           @click='setUnit({ side, unit }); hideModal();'
         )
 
@@ -71,8 +67,6 @@ b-modal(
           rounded
           :src='$store.state.calculator.images.units[unit.id].src'
           :alt='unit.name_en'
-          v-b-tooltip:pick-unit-modal.d1000
-          :title='unit.name_en'
           @click='setUnit({ side, unit}); hideModal();'
         )
 
@@ -87,8 +81,6 @@ b-modal(
           rounded
           :src='$store.state.calculator.images.units[unit.id].src'
           :alt='unit.name_ru'
-          v-b-tooltip:pick-unit-modal.d1000
-          :title='unit.name_ru'
           @click='setUnit({ side, unit}); hideModal();'
         )
 </template>
