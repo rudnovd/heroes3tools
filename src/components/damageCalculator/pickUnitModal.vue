@@ -36,7 +36,8 @@ b-modal(
         b-img(
           rounded
           :src='$store.state.calculator.images.units[unit.id].src'
-          v-b-tooltip:pick-unit-modal.d500
+          :alt='unit.name_en'
+          v-b-tooltip:pick-unit-modal.d1000
           :title='unit.name_en'
           @click='setUnit({ side, unit }); hideModal();'
         )
@@ -51,7 +52,8 @@ b-modal(
         b-img(
           rounded
           :src='$store.state.calculator.images.units[unit.id].src'
-          v-b-tooltip:pick-unit-modal.d500
+          :alt='unit.name_ru'
+          v-b-tooltip:pick-unit-modal.d1000
           :title='unit.name_ru'
           @click='setUnit({ side, unit }); hideModal();'
         )
@@ -68,7 +70,8 @@ b-modal(
         b-img(
           rounded
           :src='$store.state.calculator.images.units[unit.id].src'
-          v-b-tooltip:pick-unit-modal.d500
+          :alt='unit.name_en'
+          v-b-tooltip:pick-unit-modal.d1000
           :title='unit.name_en'
           @click='setUnit({ side, unit}); hideModal();'
         )
@@ -83,7 +86,8 @@ b-modal(
         b-img(
           rounded
           :src='$store.state.calculator.images.units[unit.id].src'
-          v-b-tooltip:pick-unit-modal.d500
+          :alt='unit.name_ru'
+          v-b-tooltip:pick-unit-modal.d1000
           :title='unit.name_ru'
           @click='setUnit({ side, unit}); hideModal();'
         )
