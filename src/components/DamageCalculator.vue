@@ -181,7 +181,7 @@ import selectUnitsCount from '@/components/damageCalculator/selectUnitsCount.vue
 import bottomPanel from '@/components/damageCalculator/bottomPanel.vue'
 
 export default {
-  name: 'DamageCalculator',
+  name: 'damageCalculator',
   components: {
     'select-hero': selectHero,
     'select-hero-stats': selectHeroStats,
@@ -193,7 +193,7 @@ export default {
     'bottom-panel': bottomPanel
   },
   beforeCreate () {
-    document.title = 'Damage calculator'
+    document.title = this.$t('document-title')
   },
   computed: {
     ...mapGetters({
@@ -271,6 +271,8 @@ export default {
         this.calculateWithHates()
 
         this.calculateArtillery()
+
+        this.unitsFeatures()
 
         // Calculate damages
 
@@ -1005,6 +1007,37 @@ export default {
         this.defender.baseMinDamage += (this.defender.attack - this.$store.state.calculator.defender.unit.stats.attack) * 4
         this.defender.baseMaxDamage += (this.defender.attack - this.$store.state.calculator.defender.unit.stats.attack) * 7
       }
+    },
+    unitsFeatures () {
+      // Behemoth and Ancient Behemoth
+      if (this.$store.state.calculator.attacker.unit.id === 110) {
+        this.defender.defense *= 0.6
+        // this.defender.defense = 1 - (this.attacker.defense * 0.6)
+      } else if (this.$store.state.calculator.attacker.unit.id === 111) {
+        this.defender.defense *= 0.2
+      }
+
+      // Behemoth and Ancient Behemoth
+      if (this.$store.state.calculator.defender.unit.id === 110) {
+        this.attacker.defense *= 0.6
+        // this.attacker.defense = Math.abs(1 - (this.attacker.defense * 0.6))
+      } else if (this.$store.state.calculator.defender.unit.id === 111) {
+        this.attacker.defense *= 0.2
+      }
+
+      // Nix and Nix warrior
+      if (this.$store.state.calculator.attacker.unit.id === 152) {
+        this.defender.attack *= 0.7
+      } else if (this.$store.state.calculator.attacker.unit.id === 153) {
+        this.defender.attack *= 0.4
+      }
+
+      // Nix and Nix warrior
+      if (this.$store.state.calculator.defender.unit.id === 152) {
+        this.attacker.attack *= 0.7
+      } else if (this.$store.state.calculator.defender.unit.id === 153) {
+        this.attacker.attack *= 0.4
+      }
     }
   }
 }
@@ -1048,11 +1081,13 @@ img.selected-defender-unit {
 <i18n>
 {
   "en": {
+    "document-title": "Damage calculator",
     "attacker": "Attacker",
     "defender": "Defender",
     "pick": "Pick"
   },
   "ru": {
+    "document-title": "Калькулятор урона",
     "attacker": "Атакующий",
     "defender": "Защищающийся",
     "pick": "Выбрать"
