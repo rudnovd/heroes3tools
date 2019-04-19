@@ -7,16 +7,16 @@
 <script>
 import { mapActions } from 'vuex'
 
-import changeLocale from '@/components/changeLocale.vue'
+import changeLocale from '@/components/changeLocale'
 
-import DamageCalculator from '@/components/DamageCalculator.vue'
+import damageCalculator from '@/components/damageCalculator'
 
-import pageFooter from '@/components/pageFooter.vue'
+import pageFooter from '@/components/pageFooter'
 
 export default {
   name: 'app',
   components: {
-    'damage-calculator': DamageCalculator,
+    'damage-calculator': damageCalculator,
     'page-footer': pageFooter,
     'change-locale': changeLocale
   },
