@@ -12,6 +12,7 @@ b-row.p-2.border-top
           v-b-tooltip.hover
           :title="$t('swap-sides')"
           @click='swapSides()'
+          cypress-tag='swap-sides'
         )
           font-awesome-icon(class='fa-2x' icon='sync' style='color: #DC3545')
 
@@ -28,6 +29,7 @@ b-row.p-2.border-top
             value-field='id'
             text-field='name_en'
             size='sm'
+            cypress-tag='terrain-select'
           )
             template(slot='first')
               option(:value='null') None
@@ -39,6 +41,7 @@ b-row.p-2.border-top
             value-field='id'
             text-field='name_ru'
             size='sm'
+            cypress-tag='terrain-select'
           )
             template(slot='first')
               option(:value='null') Нет

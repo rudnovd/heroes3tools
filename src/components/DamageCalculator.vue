@@ -14,7 +14,7 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
 
         template(v-if='$store.state.user.locale === "en"')
           b-col(cols='9' sm='9' md='9' lg='9' xl='9' offset='3' offset-sm='3' offset-md='3' offset-lg='0' offset-xl='0')
-            b-button(class='green-btn' size='sm' block @click='pickAttackerModalShow()')
+            b-button(class='green-btn' size='sm' block @click='pickAttackerModalShow()' cypress-tag='pick-attacker-unit-button')
 
               template(v-if='attackerUnitSelected')
                 strong(v-if='$store.state.user.locale === "en"')
@@ -27,7 +27,7 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
 
         template(v-if='$store.state.user.locale === "ru"')
           b-col(cols='9' sm='9' md='9' lg='9' xl='9' offset='3' offset-sm='3' offset-md='3' offset-lg='3' offset-xl='3')
-            b-button(class='green-btn' size='sm' block @click='pickAttackerModalShow()')
+            b-button(class='green-btn' size='sm' block @click='pickAttackerModalShow()' cypress-tag='pick-attacker-unit-button')
 
               template(v-if='attackerUnitSelected')
                 strong(v-if='$store.state.user.locale === "en"')
@@ -50,6 +50,7 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
             v-if='attackerUnitSelected'
             :src='$store.state.calculator.images.units[$store.state.calculator.attacker.unit.id].src'
             @click='pickAttackerModalShow()'
+            cypress-tag='attacker-picked-unit-image'
           )
           font-awesome-icon(
             v-if='!attackerUnitSelected'
@@ -57,21 +58,22 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
             icon='question-circle'
             style='color: #00CB31'
             @click='pickAttackerModalShow()'
+            cypress-tag='attacker-picked-unit-image'
           )
 
           //- Attacker units count
-          select-units-count.mt-2(v-if='attackerUnitSelected' side="attacker")
+          select-units-count.mt-2(v-if='attackerUnitSelected' side='attacker' cypress-tag='attacker-units-count')
 
         //- Choose ATTACKER hero
         b-col(cols='9')
-          select-hero(side='attacker')
-          select-hero-stats.mt-1(v-if='attackerHeroSelected' side='attacker')
+          select-hero(side='attacker' cypress-tag='attacker-hero')
+          select-hero-stats.mt-1(v-if='attackerHeroSelected' side='attacker' cypress-tag='attacker-hero-stats')
 
       template(v-if='attackerHeroSelected')
 
-        select-hero-skills.mt-3(side='attacker')
+        select-hero-skills.mt-3(side='attacker' cypress-tag='attacker-hero-skills')
 
-        select-unit-effects.mt-3(side='attacker')
+        select-unit-effects.mt-3(side='attacker' cypress-tag='attacker-hero-effects')
 
       template(v-if='attackerUnitSelected && defenderUnitSelected')
         calculated-damage.mt-3(side='attacker')
@@ -83,7 +85,7 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
 
           //- Pick DEFENDER unit button
           b-col(class='order-2 order-sm-2 order-md-1 order-lg-1 order-xl-1' cols='9' sm='9' md='9' lg='9' xl='9')
-            b-button(size='sm' variant='danger' block @click='pickDefenderModalShow()')
+            b-button(size='sm' variant='danger' block @click='pickDefenderModalShow()' cypress-tag='pick-defender-unit-button')
 
               template(v-if='defenderUnitSelected')
                 strong(v-if='$store.state.user.locale === "en"')
@@ -104,7 +106,7 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
             h4.text-right {{ $t('defender') }}
 
           b-col(cols='9' sm='9' md='9' lg='9' xl='9')
-            b-button(size='sm' variant='danger' block @click='pickDefenderModalShow()')
+            b-button(size='sm' variant='danger' block @click='pickDefenderModalShow()' cypress-tag='pick-defender-unit-button')
 
               template(v-if='defenderUnitSelected')
                 strong(v-if='$store.state.user.locale === "en"')
@@ -120,8 +122,8 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
 
         //- Choose DEFENDER hero
         b-col(cols='9')
-          select-hero(side="defender")
-          select-hero-stats.mt-1(v-if='defenderHeroSelected' side='defender')
+          select-hero(side="defender" cypress-tag='defender-hero')
+          select-hero-stats.mt-1(v-if='defenderHeroSelected' side='defender' cypress-tag='defender-hero-stats')
 
         //- Pick DEFENDER unit image
         b-col(class='text-right align-right' cols='3' sm='3' md='3' lg='3' xl='3')
@@ -131,6 +133,7 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
             v-if='defenderUnitSelected'
             :src='$store.state.calculator.images.units[$store.state.calculator.defender.unit.id].src'
             @click='pickDefenderModalShow()'
+            cypress-tag='defender-picked-unit-image'
           )
           font-awesome-icon(
             class='fa-4x'
@@ -138,16 +141,17 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
             icon='question-circle'
             style='color: #DC3545'
             @click='pickDefenderModalShow()'
+            cypress-tag='defender-picked-unit-image'
           )
 
           //- Defender units count
-          select-units-count.mt-2.ml-auto(v-if='defenderUnitSelected' side="defender")
+          select-units-count.mt-2.ml-auto(v-if='defenderUnitSelected' side="defender" cypress-tag='defender-units-count')
 
       template(v-if='defenderHeroSelected')
 
-        select-hero-skills.mt-3(side='defender')
+        select-hero-skills.mt-3(side='defender' cypress-tag='defender-hero-skills')
 
-        select-unit-effects.mt-3(side='defender')
+        select-unit-effects.mt-3(side='defender' cypress-tag='defender-hero-effects')
 
       template(v-if='attackerUnitSelected && defenderUnitSelected')
         calculated-damage.mt-3(side='defender')
@@ -155,10 +159,10 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
   bottom-panel
 
   //- Select ATTACKER unit modal
-  pick-unit-modal(side='attacker' refString='attackerModal' @sendUnit='selectUnit("attacker", $event)')
+  pick-unit-modal(id='pick-attacker-unit-modal' side='attacker' refString='attackerModal' @sendUnit='selectUnit("attacker", $event)')
 
   //- Select DEFENDER unit modal
-  pick-unit-modal(side='defender' refString='defenderModal' @sendUnit='selectUnit("defender", $event)')
+  pick-unit-modal(id='pick-defender-unit-modal' side='defender' refString='defenderModal' @sendUnit='selectUnit("defender", $event)')
 </template>
 
 <script>
