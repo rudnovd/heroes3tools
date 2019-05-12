@@ -5,57 +5,57 @@ b-row
   b-col(class='mt-2 text-truncate pr-0' cols='4' sm='2' md='2' lg='3' xl='2')
     label.mt-1 {{ $t('offense') }}
   b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
-    b-form-select(v-if='$store.state.user.locale === "en"' v-model='offense' :options='options_en' size='sm')
-    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='offense' :options='options_ru' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='offense' :options='options_en' size='sm' cypress-tag='skill-offense')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='offense' :options='options_ru' size='sm' cypress-tag='skill-offense')
 
   //- Air
   b-col(class='mt-2 text-sm-right text-md-right text-lg-right text-xl-right' cols='4' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='2' offset-lg='1' offset-xl='2')
     label.mt-1 {{ $t('air') }}
   b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
-    b-form-select(v-if='$store.state.user.locale === "en"' v-model='air' :options='options_en' size='sm')
-    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='air' :options='options_ru' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='air' :options='options_en' size='sm' cypress-tag='skill-air')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='air' :options='options_ru' size='sm' cypress-tag='skill-air')
 
   //- Armorer
   b-col(class='mt-2' cols='4' sm='2' md='2' lg='3' xl='2')
     label.mt-1 {{ $t('armorer') }}
   b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
-    b-form-select(v-if='$store.state.user.locale === "en"' v-model='armorer' :options='options_en' size='sm')
-    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='armorer' :options='options_ru' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='armorer' :options='options_en' size='sm' cypress-tag='skill-armorer')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='armorer' :options='options_ru' size='sm' cypress-tag='skill-armorer')
 
   //- Fire
   b-col(class='mt-2 text-sm-right text-md-right text-lg-right text-xl-right' cols='4' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='2' offset-lg='1' offset-xl='2')
     label.mt-1 {{ $t('fire') }}
   b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
-    b-form-select(v-if='$store.state.user.locale === "en"' v-model='fire' :options='options_en' size='sm')
-    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='fire' :options='options_ru' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='fire' :options='options_en' size='sm' cypress-tag='skill-fire')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='fire' :options='options_ru' size='sm' cypress-tag='skill-fire')
 
   //- Archery
   b-col(class='mt-2' cols='4' sm='2' md='2' lg='3' xl='2')
     label.mt-1 {{ $t('archery') }}
   b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
-    b-form-select(v-if='$store.state.user.locale === "en"' v-model='archery' :options='options_en' size='sm')
-    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='archery' :options='options_ru' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='archery' :options='options_en' size='sm' cypress-tag='skill-archery')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='archery' :options='options_ru' size='sm' cypress-tag='skill-archery')
 
   //- Earth
   b-col(class='mt-2 text-sm-right text-md-right text-lg-right text-xl-right' cols='4' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='2' offset-lg='1' offset-xl='2')
     label.mt-1 {{ $t('earth') }}
   b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
-    b-form-select(v-if='$store.state.user.locale === "en"' v-model='earth' :options='options_en' size='sm')
-    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='earth' :options='options_ru' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='earth' :options='options_en' size='sm' cypress-tag='skill-earth')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='earth' :options='options_ru' size='sm' cypress-tag='skill-earth')
 
   //- Artillery
   b-col(class='mt-2 text-truncate pr-0' cols='4' sm='2' md='2' lg='3' xl='2')
     label.mt-1 {{ $t('artillery') }}
   b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
-    b-form-select(v-if='$store.state.user.locale === "en"' v-model='artillery' :options='options_en' size='sm')
-    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='artillery' :options='options_ru' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='artillery' :options='options_en' size='sm' cypress-tag='skill-artillery')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='artillery' :options='options_ru' size='sm' cypress-tag='skill-artillery')
 
   //- Water
   b-col(class='mt-2 text-sm-right text-md-right text-lg-right text-xl-right' cols='4' sm='2' md='2' lg='2' xl='2' offset='0' offset-sm='2' offset-md='2' offset-lg='1' offset-xl='2')
     label.mt-1 {{ $t('water') }}
   b-col(class='mt-2 pl-0' cols='8' sm='3' md='3' lg='3' xl='3')
-    b-form-select(v-if='$store.state.user.locale === "en"' v-model='water' :options='options_en' size='sm')
-    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='water' :options='options_ru' size='sm')
+    b-form-select(v-if='$store.state.user.locale === "en"' v-model='water' :options='options_en' size='sm' cypress-tag='skill-water')
+    b-form-select(v-if='$store.state.user.locale === "ru"' v-model='water' :options='options_ru' size='sm' cypress-tag='skill-water')
 </template>
 
 <script>

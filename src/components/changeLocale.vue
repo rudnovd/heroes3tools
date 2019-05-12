@@ -5,6 +5,7 @@ b-dropdown(
   size='sm'
   dropup
   :text='$t("language")'
+  cypress-tag='change-locale-select'
 )
   b-dropdown-item-button(class="text-muted btn-sm" @click='changeLocale("en")') English
   b-dropdown-item-button(class="text-muted btn-sm" @click='changeLocale("ru")') Русский

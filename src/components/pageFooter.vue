@@ -5,11 +5,11 @@ b-container.footer.mt-5
     b-col(class='pl-0' cols='12' sm='12' md='12' lg='6' xl='6')
 
       //- About
-      b-button(class='text-muted' variant='link' size='sm' @click='aboutModalShow()')
+      b-button(class='text-muted' variant='link' size='sm' @click='aboutModalShow()' cypress-tag='about-button')
         | {{ $t('about') }}
 
       //- How to use
-      b-button(class='text-muted' variant='link' size='sm' @click='howToUseModalShow()')
+      b-button(class='text-muted' variant='link' size='sm' @click='howToUseModalShow()' cypress-tag='how-to-use-button')
         | {{ $t('how-to-use') }}
 
       //- Change locale
@@ -18,11 +18,11 @@ b-container.footer.mt-5
     b-col(class='pr-0 pl-0 pl-sm-0 pl-md-0 pl-lg-2 pl-xl-2 text-lg-right text-xl-right' cols='12' sm='12' md='12' lg='6' xl='6')
 
       //- Find error?
-      b-button(class='text-muted' variant='link' size='sm' @click='sendErrorModalShow()')
+      b-button(class='text-muted' variant='link' size='sm' @click='sendErrorModalShow()' cypress-tag='send-error-button')
         | {{ $t('find-error-?') }}
 
       //- License information
-      b-button(class='text-muted' variant='link' size='sm' @click='licenseInformationModalShow()')
+      b-button(class='text-muted' variant='link' size='sm' @click='licenseInformationModalShow()' cypress-tag='license-information-button')
         | {{ $t('license-information') }}
 
       //- Source code
@@ -31,6 +31,7 @@ b-container.footer.mt-5
         variant='link'
         size='sm'
         @click='openURL("https://github.com/rudnovd/heroes3-damage-calculator")'
+        cypress-tag='source-code-button'
       )
         | {{ $t('source-code') }}
 

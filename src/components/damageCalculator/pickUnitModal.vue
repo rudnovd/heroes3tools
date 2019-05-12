@@ -1,6 +1,5 @@
 <template lang='pug'>
 b-modal(
-  id='pick-unit-modal'
   :title='`${$t("pick")} ${$t(side)} ${$t("unit")}`'
   :ref='refString'
   size='xl'
@@ -22,6 +21,7 @@ b-modal(
         :placeholder='$t("search-unit")'
         @input='searchUnit()'
         @keyup.enter='selectFirstFounded()'
+        cypress-tag='find-unit-input'
       )
 
     //- Show if not searching
@@ -32,6 +32,7 @@ b-modal(
         variant='link'
         size='sm'
         :key='unit.id'
+        cypress-tag='pick-unit-button'
       )
         b-img(
           rounded
@@ -46,6 +47,7 @@ b-modal(
         size='sm'
         v-for='unit in town'
         :key='unit.id'
+        cypress-tag='pick-unit-button'
       )
         b-img(
           rounded
@@ -62,6 +64,7 @@ b-modal(
         size='sm'
         v-for='(unit, index) in search.foundUnits'
         :key='unit.id'
+        cypress-tag='pick-unit-button'
       )
         b-img(
           rounded
@@ -76,6 +79,7 @@ b-modal(
         size='sm'
         v-for='(unit, index) in search.foundUnits'
         :key='unit.id'
+        cypress-tag='pick-unit-button'
       )
         b-img(
           rounded

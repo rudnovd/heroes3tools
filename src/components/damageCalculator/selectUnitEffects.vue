@@ -5,25 +5,25 @@ b-row
   b-col(cols='6' sm='6' md='4' lg='4' xl='4')
     b-form-group
       template(v-if='$i18n.locale === "en"')
-        b-form-checkbox-group(stacked v-model='effects' :options='attackBuffs_en')
+        b-form-checkbox-group(stacked v-model='effects' :options='attackBuffs_en' cypress-tag='unit-buffs-attack')
       template(v-if='$i18n.locale === "ru"')
-        b-form-checkbox-group(stacked v-model='effects' :options='attackBuffs_ru')
+        b-form-checkbox-group(stacked v-model='effects' :options='attackBuffs_ru' cypress-tag='unit-buffs-attack')
 
   //- Defense buffs
   b-col(cols='6' sm='6' md='4' lg='4' xl='4')
     b-form-group
       template(v-if='$i18n.locale === "en"')
-        b-form-checkbox-group(stacked v-model='effects' :options='defenseBuffs_en')
+        b-form-checkbox-group(stacked v-model='effects' :options='defenseBuffs_en' cypress-tag='unit-buffs-defense')
       template(v-if='$i18n.locale === "ru"')
-        b-form-checkbox-group(stacked v-model='effects' :options='defenseBuffs_ru')
+        b-form-checkbox-group(stacked v-model='effects' :options='defenseBuffs_ru' cypress-tag='unit-buffs-defense')
 
   //- Attack debuffs
   b-col(class='mt-2 mt-sm-2 mt-md-0 mt-lg-0 mt-xl-0' cols='6' sm='6' md='4' lg='4' xl='4')
     b-form-group
       template(v-if='$i18n.locale === "en"')
-        b-form-checkbox-group(stacked v-model='effects' :options='attackDebuffs_en')
+        b-form-checkbox-group(stacked v-model='effects' :options='attackDebuffs_en' cypress-tag='unit-debuffs-attack')
       template(v-if='$i18n.locale === "ru"')
-        b-form-checkbox-group(stacked v-model='effects' :options='attackDebuffs_ru')
+        b-form-checkbox-group(stacked v-model='effects' :options='attackDebuffs_ru' cypress-tag='unit-debuffs-attack')
 </template>
 
 <script>

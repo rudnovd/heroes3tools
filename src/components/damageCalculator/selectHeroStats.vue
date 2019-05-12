@@ -12,6 +12,7 @@ b-row
         number=true
         min=0
         max=99
+        cypress-tag='hero-stats-level'
       )
 
   //- Input attack
@@ -25,6 +26,7 @@ b-row
         number=true
         min=0
         max=99
+        cypress-tag='hero-stats-attack'
       )
 
   //- Input defense
@@ -38,6 +40,7 @@ b-row
         number=true
         min=0
         max=99
+        cypress-tag='hero-stats-defense'
       )
 </template>
 
