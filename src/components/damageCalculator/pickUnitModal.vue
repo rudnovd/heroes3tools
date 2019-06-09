@@ -13,7 +13,7 @@ b-modal(
   b-row(align-v='center')
 
     //- Search unit
-    b-col(class='ml-2 mr-auto mb-3' cols='5' sm='5' md='5' lg='4' xl='3')
+    b-col(class='ml-2 mr-auto mb-3' cols='6' sm='5' md='5' lg='4' xl='3')
       b-form-input(
         ref='searchUnitInput'
         v-model='search.text'
