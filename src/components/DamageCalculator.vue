@@ -62,25 +62,22 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
           )
 
           //- Attacker units count
-          select-units-count.mt-2(v-if='attackerUnitSelected' side='attacker' cypress-tag='attacker-units-count')
+          select-units-count(class='mt-2' v-show='attackerUnitSelected' side='attacker' cypress-tag='attacker-units-count')
 
         //- Choose ATTACKER hero
         b-col(cols='9')
           select-hero(side='attacker' cypress-tag='attacker-hero')
-          select-hero-stats.mt-1(v-if='attackerHeroSelected' side='attacker' cypress-tag='attacker-hero-stats')
+          select-hero-stats(class='mt-1' v-show='attackerHeroSelected' side='attacker' cypress-tag='attacker-hero-stats')
 
-      template(v-if='attackerHeroSelected')
+      select-hero-skills(class='mt-3' v-show='attackerHeroSelected' side='attacker' cypress-tag='attacker-hero-skills')
 
-        select-hero-skills.mt-3(side='attacker' cypress-tag='attacker-hero-skills')
+      select-unit-effects(class='mt-3' v-show='attackerHeroSelected' side='attacker' cypress-tag='attacker-hero-effects')
 
-        select-unit-effects.mt-3(side='attacker' cypress-tag='attacker-hero-effects')
-
-      template(v-if='attackerUnitSelected && defenderUnitSelected')
-        calculated-damage.mt-3(side='attacker')
+      calculated-damage(class='mt-3' v-show='attackerUnitSelected && defenderUnitSelected' side='attacker')
 
     //- Defender col
     b-col(class='defender border-top px-4 px-sm-4 px-md-4 px-lg-4 px-xl-4' cols='12' sm='12' md='12' lg='6' xl='6')
-      b-row.mt-3.mb-3
+      b-row(class='mt-3 mb-3')
         template(v-if='$store.state.user.locale === "en"')
 
           //- Pick DEFENDER unit button
@@ -98,21 +95,19 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
 
           //- Text
           b-col(class='text-right pl-0 order-1 order-sm-1 order-md-2 order-lg-2 order-xl-2' cols='12' sm='12' md='3' lg='3' xl='3' v-if='$store.state.user.locale === "en"')
-            h4.text-right {{ $t('defender') }}
+            h4(class='text-right') {{ $t('defender') }}
 
         template(v-if='$store.state.user.locale === "ru"')
           //- Pick DEFENDER unit button
           b-col(class='text-right' class='pl-0' cols='12' v-if='$store.state.user.locale === "ru"')
-            h4.text-right {{ $t('defender') }}
+            h4(class='text-right') {{ $t('defender') }}
 
           b-col(cols='9' sm='9' md='9' lg='9' xl='9')
             b-button(size='sm' variant='danger' block @click='pickDefenderModalShow()' cypress-tag='pick-defender-unit-button')
-
-              template(v-if='defenderUnitSelected')
-                strong(v-if='$store.state.user.locale === "en"')
-                  | {{ $store.state.calculator.defender.unit.name_en }}
-                strong(v-if='$store.state.user.locale === "ru"')
-                  | {{ $store.state.calculator.defender.unit.name_ru }}
+              strong(v-if='$store.state.user.locale === "en" && defenderUnitSelected')
+                | {{ $store.state.calculator.defender.unit.name_en }}
+              strong(v-if='$store.state.user.locale === "ru" && defenderUnitSelected')
+                | {{ $store.state.calculator.defender.unit.name_ru }}
 
               template(v-if='!defenderUnitSelected')
                 | {{ $t('pick') }}
@@ -123,7 +118,7 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
         //- Choose DEFENDER hero
         b-col(cols='9')
           select-hero(side="defender" cypress-tag='defender-hero')
-          select-hero-stats.mt-1(v-if='defenderHeroSelected' side='defender' cypress-tag='defender-hero-stats')
+          select-hero-stats(class='mt-1' v-show='defenderHeroSelected' side='defender' cypress-tag='defender-hero-stats')
 
         //- Pick DEFENDER unit image
         b-col(class='text-right align-right' cols='3' sm='3' md='3' lg='3' xl='3')
@@ -145,16 +140,13 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
           )
 
           //- Defender units count
-          select-units-count.mt-2.ml-auto(v-if='defenderUnitSelected' side="defender" cypress-tag='defender-units-count')
+          select-units-count(class='mt-2 ml-auto' v-if='defenderUnitSelected' side="defender" cypress-tag='defender-units-count')
 
-      template(v-if='defenderHeroSelected')
+      select-hero-skills(class='mt-3' v-show='defenderHeroSelected' side='defender' cypress-tag='defender-hero-skills')
 
-        select-hero-skills.mt-3(side='defender' cypress-tag='defender-hero-skills')
+      select-unit-effects(class='mt-3' v-show='defenderHeroSelected' side='defender' cypress-tag='defender-hero-effects')
 
-        select-unit-effects.mt-3(side='defender' cypress-tag='defender-hero-effects')
-
-      template(v-if='attackerUnitSelected && defenderUnitSelected')
-        calculated-damage.mt-3(side='defender')
+      calculated-damage(class='mt-3' v-show='attackerUnitSelected && defenderUnitSelected' side='defender')
 
   bottom-panel
 

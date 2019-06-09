@@ -5,12 +5,12 @@ div
   b-row
 
     //- Damage text
-    b-col.text-right
+    b-col(class='text-right')
       strong
         | {{ $t('damage') }}:
 
     //- Damage values
-    p.text-left.mr-3
+    p(class='text-left mr-3')
       //- If min damage and max damage has different values - show two numbers
       strong(v-if='$store.state.calculator[side].totalMinDamage !== $store.state.calculator[side].totalMaxDamage')
         | {{ $store.state.calculator[side].totalMinDamage }} — {{ $store.state.calculator[side].totalMaxDamage }} (~ {{ $store.state.calculator[side].totalAverageDamage }})
@@ -28,7 +28,7 @@ div
   b-row
 
     //- Kills text
-    b-col.text-right
+    b-col(class='text-right')
       strong
         | {{ $t('kills') }}:
 
