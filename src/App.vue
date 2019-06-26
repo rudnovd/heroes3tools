@@ -1,24 +1,21 @@
-<template lang="pug">
+<template lang='pug'>
 #app
-  damage-calculator
-  page-footer
+  DamageCalculator
+  PageFooter
 </template>
 
 <script>
 import { mapActions } from 'vuex'
 
-import changeLocale from '@/components/changeLocale'
+import DamageCalculator from '@/components/DamageCalculator.vue'
 
-import damageCalculator from '@/components/damageCalculator'
-
-import pageFooter from '@/components/pageFooter'
+import PageFooter from '@/components/PageFooter.vue'
 
 export default {
   name: 'app',
   components: {
-    'damage-calculator': damageCalculator,
-    'page-footer': pageFooter,
-    'change-locale': changeLocale
+    DamageCalculator,
+    PageFooter
   },
   beforeMount () {
     const version = '0.1.0'
@@ -59,7 +56,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang='scss'>
 @import '@/css/main.scss';
 
 </style>

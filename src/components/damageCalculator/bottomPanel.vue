@@ -1,5 +1,5 @@
 <template lang='pug'>
-b-row.p-2.border-top
+b-row(class='p-2 border-top')
 
   b-col(cols='12' sm='8' md='6' lg='6' xl='6' offset='0' offset-sm='4' offset-md='6' offset-lg='6' offset-xl='6')
     b-row
@@ -10,7 +10,7 @@ b-row.p-2.border-top
           v-if='attackerUnitSelected && defenderUnitSelected'
           variant='link' size='sm'
           v-b-tooltip.hover
-          :title="$t('swap-sides')"
+          :title='$t("swap-sides")'
           @click='swapSides()'
           cypress-tag='swap-sides'
         )
@@ -51,7 +51,6 @@ b-row.p-2.border-top
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'bottomPanel',
   props: {
     side: String
   },
@@ -83,7 +82,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 .select-terrain {
   max-width: 150px;
 }

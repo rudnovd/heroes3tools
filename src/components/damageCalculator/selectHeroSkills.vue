@@ -62,7 +62,6 @@ b-row
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'selectHeroSkills',
   props: {
     side: String
   },

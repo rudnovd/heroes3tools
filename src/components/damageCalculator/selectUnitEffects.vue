@@ -30,7 +30,6 @@ b-row
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'selectUnitEffects',
   props: {
     side: String
   },

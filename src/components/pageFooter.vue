@@ -13,7 +13,7 @@ b-container.footer.mt-5
         | {{ $t('how-to-use') }}
 
       //- Change locale
-      change-locale
+      ChangeLocale
 
     b-col(class='pr-0 pl-0 pl-sm-0 pl-md-0 pl-lg-2 pl-xl-2 text-lg-right text-xl-right' cols='12' sm='12' md='12' lg='6' xl='6')
 
@@ -48,27 +48,27 @@ b-container.footer.mt-5
     //- Modal content
     b-row
       b-col(cols='12')
-        i18n(path="aboutText" tag="p")
-          h3(place="calculator-title") Heroes III damage calculator
+        i18n(path='aboutText' tag='p')
+          h3(place='calculator-title') Heroes III damage calculator
           u(
-            class="c-pointer"
-            place="desktop-version"
+            class='c-pointer'
+            place='desktop-version'
             @click='openURL("http://forum.heroesworld.ru/showpost.php?p=1064503&postcount=65")'
           )
             template(v-if='$store.state.user.locale === "en"')
               | desktop version
             template(v-if='$store.state.user.locale === "ru"')
               | десктопной версии
-          br(place="br")
-          u(class="c-pointer"
-            place="error-form"
+          br(place='br')
+          u(class='c-pointer'
+            place='error-form'
             @click='openURL("https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform?usp=sf_link")'
           )
             template(v-if='$store.state.user.locale === "en"')
               | this
             template(v-if='$store.state.user.locale === "ru"')
               | эту
-          a(place="mail" href="mailto:18a221c6db0b96d8@gmail.com")
+          a(place='mail' href='mailto:18a221c6db0b96d8@gmail.com')
             | 18a221c6db0b96d8@gmail.com
 
   //- License information modal
@@ -104,7 +104,7 @@ b-container.footer.mt-5
     //- Modal content
     b-row(align-v='center' v-if='sendErrorModal')
       b-col(cols='12' sm='12' md='12' lg='10' xl='10' offset='0' offset-sm='0' offset-md='0' offset-lg='1' offset-xl='1')
-        iframe(src="https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform?embedded=true" width='100%' height='471' frameborder="0" marginheight="0" marginwidth="0") Загрузка...
+        iframe(src='https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform?embedded=true' width='100%' height='471' frameborder='0' marginheight='0' marginwidth='0') Загрузка...
 
   //- How to use modal
   b-modal(
@@ -119,31 +119,31 @@ b-container.footer.mt-5
     //- Modal content
     b-row(v-if='howToUseModal')
 
-      b-col(v-if='howToUsePage < 11' class="text-center" cols='12')
-        p(class="h4 mb-5") {{ $t('how-to-use-text')[howToUsePage - 1] }}
-      b-col(v-if='howToUsePage < 11' class="text-center" cols='12' sm='12' md='12' lg='10' xl='10' offset='0' offset-sm='0' offset-md='0' offset-lg='1' offset-xl='1')
+      b-col(v-if='howToUsePage < 11' class='text-center' cols='12')
+        p(class='h4 mb-5') {{ $t('how-to-use-text')[howToUsePage - 1] }}
+      b-col(v-if='howToUsePage < 11' class='text-center' cols='12' sm='12' md='12' lg='10' xl='10' offset='0' offset-sm='0' offset-md='0' offset-lg='1' offset-xl='1')
         img(:src='"images/how-to-use/" + howToUsePage + ".png"' width='100%' height='auto')
 
-      b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "en"' class="text-center" cols='12')
-        p(class="h4 mb-5") You can use shortcuts for fast input:
-      b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "en"' class="text-center" cols='12' sm='12' md='12' lg='10' xl='10' offset='0' offset-sm='0' offset-md='0' offset-lg='1' offset-xl='1')
+      b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "en"' class='text-center' cols='12')
+        p(class='h4 mb-5') You can use shortcuts for fast input:
+      b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "en"' class='text-center' cols='12' sm='12' md='12' lg='10' xl='10' offset='0' offset-sm='0' offset-md='0' offset-lg='1' offset-xl='1')
         p 1. When you select a unit, enter it's name in the search field, then press the 'Enter' key on the keyboard. The first found unit will be selected;
-        img(class="mb-5" src='images/how-to-use/shortcut-1.png')
+        img(class='mb-5' src='images/how-to-use/shortcut-1.png')
 
         p 2. When you select a hero, enter it's name, then press the 'Enter' key on the keyboard. The first found hero will be selected.
         img(src='images/how-to-use/shortcut-2.png')
 
-      b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "ru"' class="text-center" cols='12')
-        p(class="h4 mb-5") Для быстрого ввода вы можете использовать сокращения:
-      b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "ru"' class="text-center" cols='12' sm='12' md='12' lg='10' xl='10' offset='0' offset-sm='0' offset-md='0' offset-lg='1' offset-xl='1')
+      b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "ru"' class='text-center' cols='12')
+        p(class='h4 mb-5') Для быстрого ввода вы можете использовать сокращения:
+      b-col(v-if='howToUsePage === 11 && $store.state.user.locale === "ru"' class='text-center' cols='12' sm='12' md='12' lg='10' xl='10' offset='0' offset-sm='0' offset-md='0' offset-lg='1' offset-xl='1')
         p 1. При выборе юнита введите его имя в поле поиска и нажмите 'Enter'. Будет выбран первый найденный юнит;
-        img(class="mb-5" src='images/how-to-use/shortcut-1.png' width='100%' height='auto')
+        img(class='mb-5' src='images/how-to-use/shortcut-1.png' width='100%' height='auto')
 
         p 2. При выборе героя введите его имя и нажмите 'Enter'. Будет выбран первый найденный герой.
         img(src='images/how-to-use/shortcut-2.png' width='100%' height='auto')
 
-    b-row(class="border-top")
-      b-col(class="align-middle mt-3" cols='3')
+    b-row(class='border-top')
+      b-col(class='align-middle mt-3' cols='3')
         b-button(
           v-if='howToUsePage !== 1'
           variant='dark'
@@ -155,10 +155,10 @@ b-container.footer.mt-5
           template(v-if='$store.state.user.locale === "ru"')
             | Назад
 
-      b-col(class="mt-3" cols='4' offset='1')
-        b-progress(class="mt-2" variant="success" :value='howToUseProgress')
+      b-col(class='mt-3' cols='4' offset='1')
+        b-progress(class='mt-2' variant='success' :value='howToUseProgress')
 
-      b-col(class="text-right mt-3" cols='3' offset='1')
+      b-col(class='text-right mt-3' cols='3' offset='1')
         b-button(
           v-if='howToUsePage < 11'
           variant='dark'
@@ -173,12 +173,11 @@ b-container.footer.mt-5
 </template>
 
 <script>
-import changeLocale from '@/components/changeLocale.vue'
+import ChangeLocale from '@/components/ChangeLocale.vue'
 
 export default {
-  name: 'pageFooter',
   components: {
-    'change-locale': changeLocale
+    ChangeLocale
   },
   data () {
     return {
@@ -234,7 +233,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 .footer {
   border-top: 1px solid rgba(0,0,0,.1);
 }

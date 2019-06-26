@@ -62,18 +62,18 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
           )
 
           //- Attacker units count
-          select-units-count(class='mt-2' v-show='attackerUnitSelected' side='attacker' cypress-tag='attacker-units-count')
+          SelectUnitsCount(class='mt-2' v-show='attackerUnitSelected' side='attacker' cypress-tag='attacker-units-count')
 
         //- Choose ATTACKER hero
         b-col(cols='9')
-          select-hero(side='attacker' cypress-tag='attacker-hero')
-          select-hero-stats(class='mt-1' v-show='attackerHeroSelected' side='attacker' cypress-tag='attacker-hero-stats')
+          SelectHero(side='attacker' cypress-tag='attacker-hero')
+          SelectHeroStats(class='mt-1' v-show='attackerHeroSelected' side='attacker' cypress-tag='attacker-hero-stats')
 
-      select-hero-skills(class='mt-3' v-show='attackerHeroSelected' side='attacker' cypress-tag='attacker-hero-skills')
+      SelectHeroSkills(class='mt-3' v-show='attackerHeroSelected' side='attacker' cypress-tag='attacker-hero-skills')
 
-      select-unit-effects(class='mt-3' v-show='attackerHeroSelected' side='attacker' cypress-tag='attacker-hero-effects')
+      SelectUnitEffects(class='mt-3' v-show='attackerHeroSelected' side='attacker' cypress-tag='attacker-hero-effects')
 
-      calculated-damage(class='mt-3' v-show='attackerUnitSelected && defenderUnitSelected' side='attacker')
+      CalculatedDamage(class='mt-3' v-show='attackerUnitSelected && defenderUnitSelected' side='attacker')
 
     //- Defender col
     b-col(class='defender border-top px-4 px-sm-4 px-md-4 px-lg-4 px-xl-4' cols='12' sm='12' md='12' lg='6' xl='6')
@@ -117,8 +117,8 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
 
         //- Choose DEFENDER hero
         b-col(cols='9')
-          select-hero(side="defender" cypress-tag='defender-hero')
-          select-hero-stats(class='mt-1' v-show='defenderHeroSelected' side='defender' cypress-tag='defender-hero-stats')
+          SelectHero(side='defender' cypress-tag='defender-hero')
+          SelectHeroStats(class='mt-1' v-show='defenderHeroSelected' side='defender' cypress-tag='defender-hero-stats')
 
         //- Pick DEFENDER unit image
         b-col(class='text-right align-right' cols='3' sm='3' md='3' lg='3' xl='3')
@@ -140,53 +140,52 @@ b-container.mt-3: b-row.mb-3(): b-col.calculator(cols='12')
           )
 
           //- Defender units count
-          select-units-count(class='mt-2 ml-auto' v-if='defenderUnitSelected' side="defender" cypress-tag='defender-units-count')
+          SelectUnitsCount(class='mt-2 ml-auto' v-if='defenderUnitSelected' side='defender' cypress-tag='defender-units-count')
 
-      select-hero-skills(class='mt-3' v-show='defenderHeroSelected' side='defender' cypress-tag='defender-hero-skills')
+      SelectHeroSkills(class='mt-3' v-show='defenderHeroSelected' side='defender' cypress-tag='defender-hero-skills')
 
-      select-unit-effects(class='mt-3' v-show='defenderHeroSelected' side='defender' cypress-tag='defender-hero-effects')
+      SelectUnitEffects(class='mt-3' v-show='defenderHeroSelected' side='defender' cypress-tag='defender-hero-effects')
 
-      calculated-damage(class='mt-3' v-show='attackerUnitSelected && defenderUnitSelected' side='defender')
+      CalculatedDamage(class='mt-3' v-show='attackerUnitSelected && defenderUnitSelected' side='defender')
 
-  bottom-panel
+  BottomPanel
 
   //- Select ATTACKER unit modal
-  pick-unit-modal(id='pick-attacker-unit-modal' side='attacker' refString='attackerModal' @sendUnit='selectUnit("attacker", $event)')
+  PickUnitModal(id='pick-attacker-unit-modal' side='attacker' refString='attackerModal' @sendUnit='selectUnit("attacker", $event)')
 
   //- Select DEFENDER unit modal
-  pick-unit-modal(id='pick-defender-unit-modal' side='defender' refString='defenderModal' @sendUnit='selectUnit("defender", $event)')
+  PickUnitModal(id='pick-defender-unit-modal' side='defender' refString='defenderModal' @sendUnit='selectUnit("defender", $event)')
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 
-import selectHero from '@/components/damageCalculator/selectHero.vue'
+import SelectHero from '@/components/DamageCalculator/SelectHero.vue'
 
-import selectHeroStats from '@/components/damageCalculator/selectHeroStats.vue'
+import SelectHeroStats from '@/components/DamageCalculator/SelectHeroStats.vue'
 
-import pickUnitModal from '@/components/damageCalculator/pickUnitModal.vue'
+import PickUnitModal from '@/components/DamageCalculator/PickUnitModal.vue'
 
-import selectHeroSkills from '@/components/damageCalculator/selectHeroSkills.vue'
+import SelectHeroSkills from '@/components/DamageCalculator/SelectHeroSkills.vue'
 
-import selectUnitEffects from '@/components/damageCalculator/selectUnitEffects.vue'
+import SelectUnitEffects from '@/components/DamageCalculator/SelectUnitEffects.vue'
 
-import calculatedDamage from '@/components/damageCalculator/calculatedDamage.vue'
+import CalculatedDamage from '@/components/DamageCalculator/CalculatedDamage.vue'
 
-import selectUnitsCount from '@/components/damageCalculator/selectUnitsCount.vue'
+import SelectUnitsCount from '@/components/DamageCalculator/SelectUnitsCount.vue'
 
-import bottomPanel from '@/components/damageCalculator/bottomPanel.vue'
+import BottomPanel from '@/components/DamageCalculator/BottomPanel.vue'
 
 export default {
-  name: 'damageCalculator',
   components: {
-    'select-hero': selectHero,
-    'select-hero-stats': selectHeroStats,
-    'pick-unit-modal': pickUnitModal,
-    'select-hero-skills': selectHeroSkills,
-    'select-unit-effects': selectUnitEffects,
-    'calculated-damage': calculatedDamage,
-    'select-units-count': selectUnitsCount,
-    'bottom-panel': bottomPanel
+    SelectHero,
+    SelectHeroStats,
+    PickUnitModal,
+    SelectHeroSkills,
+    SelectUnitEffects,
+    CalculatedDamage,
+    SelectUnitsCount,
+    BottomPanel
   },
   beforeCreate () {
     document.title = this.$t('document-title')

@@ -50,7 +50,6 @@ div
 
 <script>
 export default {
-  name: 'calculatedDamage',
   props: {
     side: String
   }
