@@ -48,7 +48,6 @@ b-row
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'selectHeroStats',
   props: {
     side: String
   },
@@ -124,7 +123,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 .input-unit-stat {
   width: 60px;
 }

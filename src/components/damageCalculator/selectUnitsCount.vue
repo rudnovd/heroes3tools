@@ -13,7 +13,6 @@ b-form-input(
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'selectUnitsCount',
   props: {
     side: String
   },
@@ -47,7 +46,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 .input-units-count {
   width: 65px;
 }

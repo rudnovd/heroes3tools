@@ -41,7 +41,6 @@ multiselect(
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'selectHero',
   props: {
     side: String
   },
@@ -72,7 +71,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 .multiselect {
   font-size: 1.125rem;
   .multiselect__selected {

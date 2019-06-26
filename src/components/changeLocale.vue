@@ -7,15 +7,14 @@ b-dropdown(
   :text='$t("language")'
   cypress-tag='change-locale-select'
 )
-  b-dropdown-item-button(class="text-muted btn-sm" @click='changeLocale("en")') English
-  b-dropdown-item-button(class="text-muted btn-sm" @click='changeLocale("ru")') Русский
+  b-dropdown-item-button(class='text-muted btn-sm' @click='changeLocale("en")') English
+  b-dropdown-item-button(class='text-muted btn-sm' @click='changeLocale("ru")') Русский
 </template>
 
 <script>
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'changeLocale',
   methods: {
     ...mapActions({
       setLocale: 'user/setLocale'
@@ -42,7 +41,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 .navbar {
   max-height: 30px;
 }

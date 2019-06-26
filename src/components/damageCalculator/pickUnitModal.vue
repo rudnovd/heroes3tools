@@ -93,7 +93,6 @@ b-modal(
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'pickUnitModal',
   props: {
     side: String,
     refString: String
