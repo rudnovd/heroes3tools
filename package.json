@@ -1,23 +1,25 @@
 {
   "name": "heroes3-damage-calculator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
-    "build:modern": "vue-cli-service build --modern",
     "lint": "vue-cli-service lint",
+    "build:modern": "vue-cli-service build --modern",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "commit": "npx git-cz"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/vue-fontawesome": "^0.1.6",
-    "@sentry/browser": "^5.4.0",
-    "@sentry/integrations": "^5.4.1",
+    "@sentry/browser": "^5.5.0",
+    "@sentry/integrations": "^5.5.0",
     "bootstrap-vue": "^2.0.0-rc.16",
-    "pug": "^2.0.3",
+    "core-js": "^2.6.5",
+    "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
     "vue": "^2.6.10",
     "vue-i18n": "^8.11.2",
@@ -26,21 +28,29 @@
   },
   "devDependencies": {
     "@kazupon/vue-i18n-loader": "^0.3.0",
-    "@vue/cli-plugin-babel": "^3.8.0",
-    "@vue/cli-plugin-e2e-cypress": "^3.8.0",
-    "@vue/cli-plugin-eslint": "^3.8.0",
-    "@vue/cli-plugin-unit-jest": "^3.8.0",
-    "@vue/cli-service": "^3.8.0",
+    "@vue/cli-plugin-babel": "^3.9.2",
+    "@vue/cli-plugin-e2e-cypress": "^3.9.0",
+    "@vue/cli-plugin-eslint": "^3.9.2",
+    "@vue/cli-plugin-unit-jest": "^3.9.0",
+    "@vue/cli-service": "^3.9.2",
     "@vue/eslint-config-standard": "^4.0.0",
-    "@vue/test-utils": "1.0.0-beta.29",
+    "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.0.2",
     "babel-jest": "^24.8.0",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.2.2",
+    "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^6.0.1",
+    "eslint-plugin-vue": "^5.2.3",
+    "jest": "^24.8.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
     "vue-cli-plugin-i18n": "^0.6.0",
+    "vue-jest": "^3.0.4",
     "vue-template-compiler": "^2.6.10"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
