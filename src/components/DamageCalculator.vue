@@ -332,8 +332,8 @@ export default {
           this.defender.totalMaxDamage = Math.abs(this.defender.baseMaxDamage * ((1 + attackDefenseDifference + this.defender.damageBonus) * (1 - this.attacker.defenseBonus) * (1 - this.attacker.defenseMagicBonus)))
         } else if (this.defender.attack === this.attacker.defense) {
           // if === then no cap
-          this.defender.totalMinDamage = Math.abs(this.attacker.baseMinDamage * ((1 + this.defender.damageBonus) * (1 - this.attacker.defenseBonus) * (1 - this.attacker.defenseMagicBonus)))
-          this.defender.totalMaxDamage = Math.abs(this.attacker.baseMaxDamage * ((1 + this.defender.damageBonus) * (1 - this.attacker.defenseBonus) * (1 - this.attacker.defenseMagicBonus)))
+          this.defender.totalMinDamage = Math.abs(this.defender.baseMinDamage * ((1 + this.defender.damageBonus) * (1 - this.attacker.defenseBonus) * (1 - this.attacker.defenseMagicBonus)))
+          this.defender.totalMaxDamage = Math.abs(this.defender.baseMaxDamage * ((1 + this.defender.damageBonus) * (1 - this.attacker.defenseBonus) * (1 - this.attacker.defenseMagicBonus)))
         } else if (this.defender.attack < this.attacker.defense) {
           // Max attack cap = 0.7
           let attackDefenseDifference = (this.attacker.defense - this.defender.attack) * 0.025
