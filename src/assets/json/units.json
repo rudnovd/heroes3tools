@@ -2358,5 +2358,18 @@
       "maxDamage": 5,
       "health": 15
     }
+  },
+  {
+    "id": 161,
+    "name_en": "Steel Golem",
+    "name_ru": "Стальной Голем",
+    "level": 4,
+    "stats": {
+      "attack": 10,
+      "defense": 11,
+      "minDamage": 6,
+      "maxDamage": 8,
+      "health": 45
+    }
   }
 ]
