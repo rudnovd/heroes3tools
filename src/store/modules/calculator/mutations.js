@@ -8,12 +8,12 @@ import unitsHatesJson from '@/assets/json/unitsHates.json'
 
 export default {
   GET_UNITS_IMAGES (state) {
-    for (let i = 0; i <= 160; i++) {
+    for (let i = 0; i <= 161; i++) {
       state.images.units.push({ id: i, src: require(`@/assets/images/units/${i}.webp`) })
     }
   },
   GET_HEROES_IMAGES (state) {
-    for (let i = 1; i <= 160; i++) {
+    for (let i = 1; i <= 161; i++) {
       state.images.heroes.push({ id: i, src: require(`@/assets/images/heroes/${i}.webp`) })
     }
   },

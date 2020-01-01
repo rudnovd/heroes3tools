@@ -109,6 +109,8 @@ export default {
       unitsList.neutral.push(state.units[i])
     }
 
+    unitsList.neutral.push(state.units[161])
+
     return unitsList
   },
 
