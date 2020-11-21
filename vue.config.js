@@ -1,18 +1,31 @@
 module.exports = {
-  chainWebpack: config => {
-    config.module
-      .rule('i18n')
-      .resourceQuery(/blockType=i18n/)
-      .type('javascript/auto')
-      .use('i18n')
-      .loader('@kazupon/vue-i18n-loader')
-      .end()
+  css: {
+    sourceMap: process.env.NODE_ENV === 'development',
+    loaderOptions: {
+      sass: {
+        additionalData: `
+          @import "~@/scss/variables/main";
+          @import "~@/scss/mixins/main";
+        `,
+      },
+    },
   },
+
+  configureWebpack: {
+    devtool: 'source-map',
+    optimization: {
+      splitChunks: {
+        maxSize: 100000,
+      },
+    },
+  },
+
   pluginOptions: {
     i18n: {
       locale: 'en',
       fallbackLocale: 'en',
-      enableInSFC: true
-    }
-  }
+      localeDir: 'locales',
+      enableInSFC: false,
+    },
+  },
 }
