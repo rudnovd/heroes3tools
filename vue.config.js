@@ -4,22 +4,17 @@ module.exports = {
     loaderOptions: {
       sass: {
         additionalData: `
-          @import "~@/scss/variables/main";
-          @import "~@/scss/mixins/main";
+          @use "sass:color";
+          @use "sass:map";
+          @import "~@/styles/variables";
+          @import "~@/styles/mixins";
         `,
       },
     },
   },
-
   configureWebpack: {
     devtool: 'source-map',
-    optimization: {
-      splitChunks: {
-        maxSize: 100000,
-      },
-    },
   },
-
   pluginOptions: {
     i18n: {
       locale: 'en',
