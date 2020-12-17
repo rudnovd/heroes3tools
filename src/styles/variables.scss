@@ -1,0 +1,22 @@
+$grid-breakpoints: (
+  minimum: 320px,
+  small: 576px,
+  medium: 768px,
+  large: 1280px,
+  maximum: 1920px,
+);
+
+$color-attacker: rgb(0, 209, 45);
+$color-attacker-text: rgba(0, 0, 0, 0.87);
+$color-defender: rgb(220, 56, 72);
+$color-defender-text: rgb(255, 255, 255);
+
+$calculator-colors: (
+  attacker: $color-attacker,
+  defender: $color-defender,
+);
+
+$calculator-colors-text: (
+  attacker: $color-attacker-text,
+  defender: $color-defender-text,
+);
