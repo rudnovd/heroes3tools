@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta name="application-name" content="Heroes III damage calculator">
-    <meta name="keywords" content="damage calculator, heroes 3 damage calculator, heroes 3, heroes III, homm, homm 3, horn of the abyss" />
-    <meta name="description" content="Damage calculator for Heroes of Might and Magic 3: Horn of The Abyss" />
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>Damage calculator</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="application-name" content="Heroes 3 tools" />
+    <meta
+      name="keywords"
+      content="heroes 3 damage calculator, damage calculator heroes 3, heroes3tools, heroes 3 tools, heroes 3 hota, heroes 3, homm 3"
+    />
+    <meta
+      name="description"
+      content="Web tools for simplification playing in Heroes of Might and Magic III: Horn of The Abyss"
+    />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.svg" type="image/svg+xml" sizes="any" />
+    <link rel="apple-touch-icon" href="<%= BASE_URL %>apple.png" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but damage calculator doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong>
+        We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please
+        enable it to continue.
+      </strong>
     </noscript>
     <div id="app"></div>
+    <!-- Cloudflare Web Analytics -->
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "6f6a743144b94d0885827c59a31d191d"}'
+    ></script>
+    <!-- End Cloudflare Web Analytics -->
   </body>
 </html>
