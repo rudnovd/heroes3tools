@@ -1,62 +1,48 @@
-<template lang='pug'>
-#app
-  DamageCalculator
-  PageFooter
+<template>
+  <router-link v-if="route.path !== '/'" class="return-home" to="/">
+    <img src="~@/assets/icons/arrow_back.svg" width="16" height="16" />
+    Home page
+  </router-link>
+  <router-view />
 </template>
 
-<script>
-import { mapActions } from 'vuex'
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { useRoute } from 'vue-router'
 
-import DamageCalculator from '@/components/DamageCalculator.vue'
-
-import PageFooter from '@/components/PageFooter.vue'
-
-export default {
-  name: 'app',
-  components: {
-    DamageCalculator,
-    PageFooter
-  },
-  beforeMount () {
-    const version = '0.1.0'
-
-    let localStorageVersion = localStorage.version
-    if (!localStorageVersion || localStorageVersion !== version) {
-      localStorage.clear()
-      localStorage.version = version
-    }
-
-    let localStorageUser = localStorage.user
-    if (localStorageUser) {
-      let user = JSON.parse(localStorage.user)
-
-      this.setLocale(user.locale)
-      this.$i18n.locale = user.locale
+export default defineComponent({
+  name: 'App',
+  setup() {
+    return {
+      route: useRoute(),
     }
   },
-  mounted () {
-    this.getUnits()
-    this.getHeroes()
-    this.getUnitsImages()
-    this.getHeroesImages()
-    this.getTerrains()
-    this.getUnitsHates()
-  },
-  methods: {
-    ...mapActions({
-      setLocale: 'user/setLocale',
-      getUnits: 'calculator/getUnits',
-      getHeroes: 'calculator/getHeroes',
-      getUnitsImages: 'calculator/getUnitsImages',
-      getHeroesImages: 'calculator/getHeroesImages',
-      getUnitsHates: 'calculator/getUnitsHates',
-      getTerrains: 'calculator/getTerrains'
-    })
-  }
-}
+})
 </script>
 
-<style lang='scss'>
-@import '@/css/main.scss';
+<style lang="scss">
+@import '@/styles/main.scss';
+</style>
 
+<style lang="scss" scoped>
+.return-home {
+  padding-left: 5px;
+  font-size: 0.8rem;
+  opacity: 0.3;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  transition: opacity 0.15s;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &::before {
+    background: url('~@/assets/icons/arrow_back.svg');
+    width: 2rem;
+    height: 2rem;
+  }
+}
 </style>

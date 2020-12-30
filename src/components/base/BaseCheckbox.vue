@@ -29,9 +29,9 @@ export default defineComponent({
       default: '',
     },
     value: {
-      type: Boolean as never,
-      required: true,
-      default: true,
+      type: Boolean,
+      required: false,
+      default: false,
     },
     disabled: {
       type: Boolean,
