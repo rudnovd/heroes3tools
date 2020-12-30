@@ -1,7 +1,7 @@
 import { Hero } from '@/models/Hero'
 import { Creature } from '@/models/Creature'
 import { Terrain } from '@/models/Terrain'
-import { Creatures, Spells } from '@/models/enums'
+import { Creatures, SecondarySkills, Spells } from '@/models/enums'
 import { getObjectById } from '@/database'
 import { Spell } from './Spell'
 
@@ -43,7 +43,7 @@ export class CalculatorInstance {
    * @param defender Creature who accept damage from attacker creature
    * @returns {Object} Creature damage values
    */
-  private calculate(attacker: CalculatorCreature, defender: CalculatorCreature) {
+  public calculate(attacker: CalculatorCreature, defender: CalculatorCreature): any {
     // If ATTACKER attack > DEFENDER defense:
     // ATTACKER units count * ATTACKER unit damage * (1 + 0.05 * (ATTACKER attack - DEFENDER defense))
 
@@ -115,7 +115,7 @@ export class CalculatorHero implements Hero {
   id: number
   name: string
   classId: number
-  specialtySkill?: string
+  specialtySkill?: number
   specialtySpell?: number
   specialtyUnit?: Array<number>
 
@@ -231,6 +231,15 @@ export class CalculatorCreature implements Creature {
     defender: CalculatorCreature,
     terrain: Terrain
   ): void {
+    const currentEffect = this.effects.findIndex((creatureEffect: Spell) => creatureEffect.id === effect)
+    if (currentEffect === -1) {
+      getObjectById('spells', effect).then((effectObject: Spell) => {
+        this.effects.push(effectObject)
+      })
+    } else {
+      this.effects.splice(currentEffect)
+    }
+
     if (effect === Spells.Bless) this.effectBless(hero)
     if (effect === Spells.Curse) this.effectCurse(defenderHero)
     this.modificatorEffects(hero, defenderHero, defender)
@@ -399,8 +408,8 @@ export class CalculatorCreature implements Creature {
     }
   }
 
-  private modificatorTerrain(terrain: Terrain) {
-    if (terrain.id && this.nativeTerrain === terrain.id) {
+  private modificatorTerrain(terrain: Terrain | undefined) {
+    if (terrain && terrain.id && this.nativeTerrain === terrain.id) {
       this.attack++
       this.defense++
     }
@@ -431,12 +440,8 @@ export class CalculatorCreature implements Creature {
     if (hero.skills.offense && !this.ranged) {
       let bonus = 0.1 * hero.skills.offense
 
-      if (hero.specialtySkill) {
-        if (hero.specialtySkill === 'offense') {
-          bonus *= levelBonus
-
-          if (bonus > 1.92) bonus = 1.92
-        }
+      if (hero.specialtySkill && hero.specialtySkill === SecondarySkills.Offense) {
+        bonus = bonus * levelBonus > 1.92 ? 1.92 : bonus * levelBonus
       }
       damageBonus += bonus
     }
@@ -445,12 +450,8 @@ export class CalculatorCreature implements Creature {
     if (hero.skills.armorer) {
       let bonus = 0.05 * hero.skills.armorer
 
-      if (hero.specialtySkill) {
-        if (hero.specialtySkill === 'armorer') {
-          bonus *= levelBonus
-
-          if (bonus > 0.7) bonus = 0.7
-        }
+      if (hero.specialtySkill && hero.specialtySkill === SecondarySkills.Armorer) {
+        bonus = bonus * levelBonus > 0.7 ? 0.7 : bonus * levelBonus
       }
       defenseBonus += bonus
     }
@@ -462,23 +463,24 @@ export class CalculatorCreature implements Creature {
       else if (hero.skills.archery === 2) bonus = 0.25
       else if (hero.skills.archery === 3) bonus = 0.5
 
-      if (hero.specialtySkill) {
-        if (hero.specialtySkill === 'archery') {
-          bonus *= levelBonus
-
-          if (bonus > 3.2) bonus = 3.2
-        }
+      if (hero.specialtySkill && hero.specialtySkill === SecondarySkills.Archery) {
+        bonus = bonus * levelBonus > 3.2 ? 3.2 : bonus * levelBonus
       }
       damageBonus += bonus
     }
 
     // Artillery skill bonus (for ballista and cannon only)
-    if (hero.skills.artillery && (this.id === Creatures.Ballista || this.id === Creatures.Cannon)) {
-      if (hero.skills.artillery === 3) {
-        this.minDamage *= 2
-        this.maxDamage *= 2
-      }
+    if (
+      hero.skills.artillery &&
+      hero.skills.artillery === 3 &&
+      (this.id === Creatures.Ballista || this.id === Creatures.Cannon)
+    ) {
+      this.minDamage *= 2
+      this.maxDamage *= 2
     }
+
+    this.damageBonus = damageBonus
+    this.defenseBonus = defenseBonus
   }
 
   private modificatorHates(defenderCreature: CalculatorCreature) {
