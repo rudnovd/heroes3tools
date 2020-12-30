@@ -8,30 +8,30 @@ const router = createRouter({
       path: '/',
       component: () => import(/* webpackChunkName: 'Home' */ '@/views/Home.vue'),
       meta: {
-        title: i18n.global.t('pages.Home'),
+        title: i18n.global.t('pages.home'),
       },
     },
     {
       path: '/damage',
       component: () => import(/* webpackChunkName: 'DamageCalculator' */ '@/views/DamageCalculator.vue'),
       meta: {
-        title: i18n.global.t('pages.DamageCalculator'),
+        title: i18n.global.t('pages.damageCalculator'),
       },
     },
-    {
-      path: '/creatures',
-      component: () => import(/* webpackChunkName: 'CreaturesLibrary' */ '@/views/CreaturesLibrary.vue'),
-      meta: {
-        title: i18n.global.t('pages.CreaturesLibrary'),
-        disabled: true,
-      },
-    },
+    // {
+    //   path: '/creatures',
+    //   component: () => import(/* webpackChunkName: 'CreaturesLibrary' */ '@/views/CreaturesLibrary.vue'),
+    //   meta: {
+    //     title: i18n.global.t('pages.creaturesLibrary'),
+    //     disabled: true,
+    //   },
+    // },
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: () => import(/* webpackChunkName: 'Error' */ '@/views/Error.vue'),
       meta: {
-        title: i18n.global.t('pages.Error'),
+        title: i18n.global.t('pages.pageNotFound'),
       },
     },
   ],
