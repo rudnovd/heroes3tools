@@ -10,6 +10,7 @@ module.exports = {
       ['build', 'ci', 'chore', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test'],
     ],
     'scope-case': [2, 'always', 'lower-case'],
+    'scope-empty': [0, 'never'],
     'subject-empty': [0, 'always'],
     'subject-full-stop': [2, 'never', '.'],
     'header-case': [0, 'always', 'lower-case'],
