@@ -1,6 +1,6 @@
 <template>
   <transition name="modal">
-    <div v-if="show" :class="{ show }" class="modal-dialog" role="dialog">
+    <div v-if="show" :class="{ show }" class="dialog" role="dialog">
       <div v-click-outside name="modal" class="modal" :class="`modal-${size}`" @clickoutside="$emit('close')">
         <div class="modal-content">
           <div class="header">
@@ -18,7 +18,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import clickOutside from '@/directives/clickOutside'
-import CloseButton from '@/components/base/CloseButton.vue'
+import CloseButton from '@/components/buttons/CloseButton.vue'
 
 export default defineComponent({
   name: 'BaseModal',
@@ -48,7 +48,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.modal-dialog {
+.dialog {
   background: rgba(0, 0, 0, 0.5);
   height: 100%;
   left: 0;
@@ -69,8 +69,7 @@ export default defineComponent({
   background-color: rgb(255, 255, 255);
   border-radius: 0.3rem;
   margin: 2rem auto 2rem auto;
-  max-width: 320px;
-  min-height: 30%;
+  min-height: 150px;
   min-width: 320px;
   outline: 0;
   width: 90%;
@@ -97,7 +96,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 10px;
+  padding: 24px;
   pointer-events: auto;
   position: relative;
   user-select: none;
