@@ -1,9 +1,13 @@
 import { createI18n } from 'vue-i18n'
+import en from '@/locales/en.json'
 
 const i18n = createI18n({
   legacy: false,
   locale: 'en',
   availableLocales: ['en', 'ru'],
+  messages: {
+    en,
+  },
 })
 
 export function setI18nLanguage(locale: string): void {

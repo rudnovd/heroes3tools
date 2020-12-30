@@ -5,4 +5,4 @@ import router from '@/router'
 import store from '@/store'
 import '@/registerServiceWorker'
 
-createApp(App).use(i18n).use(router).use(store).mount('body')
+createApp(App).use(i18n).use(router).use(store).mount('#app')
