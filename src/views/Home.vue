@@ -1,33 +1,21 @@
 <template>
   <section class="home-page">
-    <header class="page-title">
-      <h1>Heroes III tools</h1>
-    </header>
+    <h1>Heroes III tools</h1>
 
-    <main class="page-links">
+    <section class="page-links">
       <div v-for="page in pages" :key="page.path" class="link-card" :class="{ disabled: page.disabled }">
-        <div class="link-image" @click="router.push(page.path)">
-          <picture>
-            <source :srcset="`${page.image.path}.webp`" type="image/webp" />
-            <source :srcset="`${page.image.path}.avif`" type="image/avif" />
-            <source :srcset="`${page.image.path}.png`" type="image/png" />
-            <img
-              :src="page.image.path"
-              :alt="page.name"
-              :width="page.image.width"
-              :height="page.image.height"
-              loading="lazy"
-            />
-          </picture>
-        </div>
+        <picture @click="router.push(page.path)">
+          <source :srcset="`${page.image}.webp`" type="image/webp" />
+          <source :srcset="`${page.image}.avif`" type="image/avif" />
+          <source :srcset="`${page.image}.png`" type="image/png" />
+          <img :src="page.image" :alt="page.name" loading="lazy" decoding="async" />
+        </picture>
 
-        <div class="link-name">
-          <h2>
-            <router-link :to="page.path">{{ page.name }}</router-link>
-          </h2>
-        </div>
+        <h2>
+          <router-link :to="page.path">{{ page.name }}</router-link>
+        </h2>
       </div>
-    </main>
+    </section>
   </section>
 </template>
 
@@ -45,33 +33,22 @@ export default defineComponent({
       {
         name: t('pages.damageCalculator'),
         path: '/damage',
-        image: {
-          path: '/images/pages/home/Tactics',
-          height: 198,
-          width: 176,
-        },
+        image: '/images/pages/home/Tactics',
       },
       {
         name: t('pages.magicCalculator'),
         path: '/magic',
-        image: {
-          path: '/images/pages/home/Water',
-          height: 198,
-          width: 176,
-        },
+        image: '/images/pages/home/Water',
         disabled: true,
       },
       {
         name: t('pages.creaturesLibrary'),
         path: '/creatures',
-        image: {
-          path: '/images/pages/home/Scholar',
-          height: 198,
-          width: 176,
-        },
+        image: '/images/pages/home/Scholar',
         disabled: true,
       },
     ]
+
     return { pages, router }
   },
 })
@@ -81,8 +58,6 @@ export default defineComponent({
 .home-page {
   height: 100%;
   display: grid;
-  align-items: center;
-  justify-content: center;
   grid-template-rows: 4rem 1fr 1fr 1fr;
   overflow: auto;
   margin: 0 auto 0 auto;
@@ -97,19 +72,19 @@ export default defineComponent({
     padding-top: 0;
     align-content: center;
   }
-}
 
-.page-title {
-  text-align: center;
+  & h1 {
+    text-align: center;
+  }
 }
 
 .page-links {
   display: grid;
-  user-select: none;
   grid-template-columns: clamp(200px, 50vw, 400px);
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
   justify-content: center;
   gap: 1rem;
+  user-select: none;
 
   @include media-medium {
     grid-template-columns: repeat(3, clamp(200px, 25vw, 400px));
@@ -120,13 +95,45 @@ export default defineComponent({
 
 .link-card {
   box-shadow: 0 0 10px black;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 2.6rem;
   height: 200px;
+  text-align: center;
   transition: filter 1s, box-shadow 1s, transform 1s;
 
   @include media-large {
     height: 300px;
+  }
+
+  & picture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('/images/pages/home/links-background.webp');
+    background-position-y: -1px;
+    cursor: pointer;
+
+    & img {
+      color: white;
+      height: 100px;
+      width: auto;
+
+      @include media-large {
+        height: auto;
+      }
+    }
+  }
+
+  & h2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: transform 0.15s linear;
+
+    & a {
+      color: black;
+      text-decoration: none;
+    }
   }
 
   &:hover {
@@ -134,7 +141,7 @@ export default defineComponent({
     box-shadow: 0 0 20px black;
     transform: translateY(-5px);
 
-    .link-name {
+    h2 {
       transform: translateY(-2px);
     }
 
@@ -148,49 +155,5 @@ export default defineComponent({
     opacity: 0.5;
     pointer-events: none;
   }
-}
-
-.link-image,
-.link-name {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-}
-
-.link-image {
-  height: 80%;
-  background: url('/images/pages/home/links-background.webp');
-  background-position-y: -1px;
-  cursor: pointer;
-}
-
-.link-image img {
-  height: 100px;
-  width: auto;
-
-  @include media-large {
-    height: auto;
-    width: auto;
-  }
-}
-
-.link-name {
-  h2 {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  transition: transform 0.15s linear;
-}
-
-.link-name a {
-  color: black;
-  text-decoration: none;
-}
-
-.link-name {
-  height: 20%;
 }
 </style>
