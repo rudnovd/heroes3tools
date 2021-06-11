@@ -3,7 +3,11 @@
     <img src="~@/assets/icons/arrow_back.svg" width="16" height="16" />
     Home page
   </router-link>
-  <router-view />
+  <transition name="transition-router">
+    <main>
+      <router-view />
+    </main>
+  </transition>
 </template>
 
 <script lang="ts">
@@ -44,5 +48,15 @@ export default defineComponent({
     width: 2rem;
     height: 2rem;
   }
+}
+
+.transition-router-enter-active,
+.transition-router-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.transition-router-enter-from,
+.transition-router-leave-to {
+  opacity: 0;
 }
 </style>
