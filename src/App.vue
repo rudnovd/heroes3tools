@@ -1,6 +1,6 @@
 <template>
   <router-link v-if="route.path !== '/'" class="return-home" to="/">
-    <img src="~@/assets/icons/arrow_back.svg" width="16" height="16" />
+    <img src="@/assets/icons/arrow_back.svg" width="16" height="16" />
     Home page
   </router-link>
   <main>
@@ -42,7 +42,7 @@ export default defineComponent({
   }
 
   &::before {
-    background: url('~@/assets/icons/arrow_back.svg');
+    background: url('@/assets/icons/arrow_back.svg');
     width: 2rem;
     height: 2rem;
   }

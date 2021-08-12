@@ -73,7 +73,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '~@/styles/multiselect';
+@import '@/styles/multiselect';
 </style>
 
 <style lang="scss" scoped>

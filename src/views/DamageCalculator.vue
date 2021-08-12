@@ -474,7 +474,7 @@ export default defineComponent({
   }
 
   .tab-close-button {
-    background: url('~@/assets/icons/cross.svg') no-repeat;
+    background: url('@/assets/icons/cross.svg') no-repeat;
     width: 0.5rem;
     height: 0.5rem;
     margin-left: auto;
@@ -495,7 +495,7 @@ export default defineComponent({
   }
 
   .tab-add-button {
-    background: url('~@/assets/icons/plus.svg') no-repeat;
+    background: url('@/assets/icons/plus.svg') no-repeat;
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50%;

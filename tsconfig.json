@@ -14,16 +14,12 @@
     "removeComments": true,
     "resolveJsonModule": true,
     "types": [
-      "webpack-env",
       "jest"
     ],
     "paths": {
       "@/*": [
         "src/*"
       ],
-      "~@/*": [
-        "src/*"
-      ]
     },
     "lib": [
       "ESNext",
