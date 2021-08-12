@@ -1,6 +1,6 @@
 module.exports = {
   css: {
-    sourceMap: process.env.NODE_ENV === 'development',
+    sourceMap: import.meta.env.DEV,
     loaderOptions: {
       sass: {
         additionalData: `

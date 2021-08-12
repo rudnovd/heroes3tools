@@ -16,5 +16,5 @@ export default createStore({
       state.calculators = payload.calculators
     },
   },
-  strict: process.env.NODE_ENV === 'development',
+  strict: import.meta.env.DEV,
 })

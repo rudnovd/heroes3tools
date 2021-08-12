@@ -3,11 +3,9 @@
     <img src="~@/assets/icons/arrow_back.svg" width="16" height="16" />
     Home page
   </router-link>
-  <transition name="transition-router">
-    <main>
-      <router-view />
-    </main>
-  </transition>
+  <main>
+    <router-view />
+  </main>
 </template>
 
 <script lang="ts">

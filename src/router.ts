@@ -2,18 +2,18 @@ import i18n from '@/i18n'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      component: () => import(/* webpackChunkName: 'Home' */ '@/views/Home.vue'),
+      component: () => import('@/views/Home.vue'),
       meta: {
         title: i18n.global.t('pages.home'),
       },
     },
     {
       path: '/damage',
-      component: () => import(/* webpackChunkName: 'DamageCalculator' */ '@/views/DamageCalculator.vue'),
+      component: () => import('@/views/DamageCalculator.vue'),
       meta: {
         title: i18n.global.t('pages.damageCalculator'),
       },
@@ -29,7 +29,7 @@ const router = createRouter({
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
-      component: () => import(/* webpackChunkName: 'Error' */ '@/views/Error.vue'),
+      component: () => import('@/views/Error.vue'),
       meta: {
         title: i18n.global.t('pages.pageNotFound'),
       },
@@ -56,7 +56,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to) => {
-  if (to.meta.title) document.title = to.meta.title
+  // if (to.meta.title) document.title = to.meta.title.toString()
 })
 
 export default router
