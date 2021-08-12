@@ -5,7 +5,7 @@
   font-style: normal;
   font-weight: 400;
   src: local('Open Sans Regular'), local('OpenSans-Regular'),
-    url('~@/assets/fonts/opensans/open-sans-v18-latin_cyrillic-regular.woff2') format('woff2');
+    url('@/assets/fonts/opensans/open-sans-v18-latin_cyrillic-regular.woff2') format('woff2');
 }
 
 /* open-sans-600 - cyrillic_latin */
@@ -15,7 +15,7 @@
   font-style: normal;
   font-weight: 600;
   src: local('Open Sans Bold'), local('OpenSans-Bold'),
-    url('~@/assets/fonts/opensans/open-sans-v18-latin_cyrillic-600.woff2') format('woff2');
+    url('@/assets/fonts/opensans/open-sans-v18-latin_cyrillic-600.woff2') format('woff2');
 }
 
 /* open-sans-700 - cyrillic_latin */
@@ -25,7 +25,7 @@
   font-style: normal;
   font-weight: 700;
   src: local('Open Sans Bold'), local('OpenSans-Bold'),
-    url('~@/assets/fonts/opensans/open-sans-v18-latin_cyrillic-700.woff2') format('woff2');
+    url('@/assets/fonts/opensans/open-sans-v18-latin_cyrillic-700.woff2') format('woff2');
 }
 
 /* open-sans-800 - cyrillic_latin */
@@ -35,7 +35,7 @@
   font-style: normal;
   font-weight: 800;
   src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold'),
-    url('~@/assets/fonts/opensans/open-sans-v18-latin_cyrillic-800.woff2') format('woff2');
+    url('@/assets/fonts/opensans/open-sans-v18-latin_cyrillic-800.woff2') format('woff2');
 }
 
 body {

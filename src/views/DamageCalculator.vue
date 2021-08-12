@@ -197,7 +197,7 @@ import { defineComponent, defineAsyncComponent, computed, reactive, ref, onBefor
 import { onBeforeRouteLeave } from 'vue-router'
 import { useStore } from 'vuex'
 import VueI18n, { useI18n } from 'vue-i18n'
-import TranslateResult = VueI18n.TranslateResult
+// import TranslateResult = VueI18n.TranslateResult
 import { initDatabaseStore } from '@/database'
 import { CalculatorCreature, CalculatorHero, CalculatorInstance, CalculatorSide } from '@/models/Calculator'
 import { Terrain } from '@/models/Terrain'
@@ -324,12 +324,13 @@ export default defineComponent({
 
     const addCalculator = () => calculators.value.push(new CalculatorInstance())
 
-    const calculatorTitle = (calculator: CalculatorInstance): string | TranslateResult | undefined => {
+    const calculatorTitle = (calculator: CalculatorInstance): string | undefined => {
       const attacker = calculator.attacker.creature
       const defender = calculator.defender.creature
 
       if (!attacker || !defender) {
-        return i18n.global.t('pages.damageCalculator')
+        // return i18n.global.t('pages.damageCalculator')
+        return 'Damage calculator'
       }
 
       if (attacker.id && defender.id) {
