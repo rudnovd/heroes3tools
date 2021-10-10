@@ -1,4 +1,4 @@
-import { TerrainTranslation } from '@/models/Terrain'
+import type { TerrainTranslation } from '@/models/Terrain'
 
 export const terrains: Array<TerrainTranslation> = [
   {

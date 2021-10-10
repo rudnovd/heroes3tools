@@ -26,21 +26,17 @@ export default defineComponent({
     label: {
       type: String,
       required: true,
-      default: '',
     },
     value: {
       type: Boolean,
-      required: false,
       default: false,
     },
     disabled: {
       type: Boolean,
-      required: false,
       default: false,
     },
     color: {
       type: String,
-      required: false,
       default: 'default',
     },
   },

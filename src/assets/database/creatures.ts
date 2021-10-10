@@ -1,5 +1,5 @@
-import { Creature } from '@/models/Creature'
-import { Towns, Terrains } from '@/models/enums'
+import type { Creature } from '@/models/Creature'
+import { Terrains, Towns } from '@/models/enums'
 
 export const creatures: Array<Creature> = [
   {

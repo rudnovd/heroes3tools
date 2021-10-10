@@ -13,16 +13,14 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'eslint:recommended',
     '@vue/typescript/recommended',
-    '@vue/prettier',
-    '@vue/prettier/@typescript-eslint',
   ],
   rules: {
-    'no-console': import.meta.env.PROD ? ['error', { allow: ['warn', 'error'] }] : 'off',
-    'no-debugger': import.meta.env.PROD ? 'error' : 'off',
+    // 'no-console': import.meta.env.PROD ? ['error', { allow: ['warn', 'error'] }] : 'off',
+    // 'no-debugger': import.meta.env.PROD ? 'error' : 'off',
     'vue/component-name-in-template-casing': ['error', 'PascalCase'],
     'vue/block-tag-newline': 'error',
     'vue/custom-event-name-casing': ['error', 'camelCase'],
-    'vue/html-comment-content-spacing': [import.meta.env.PROD ? 'error' : 'warn', 'always'],
+    // 'vue/html-comment-content-spacing': [import.meta.env.PROD ? 'error' : 'warn', 'always'],
     'vue/match-component-file-name': [
       'error',
       {
@@ -37,13 +35,13 @@ module.exports = {
         disallowVue3BuiltInComponents: true,
       },
     ],
-    'vue/no-unused-properties': [
-      import.meta.env.PROD ? 'error' : 'warn',
-      {
-        groups: ['props', 'setup'],
-      },
-    ],
-    'vue/padding-line-between-blocks': [import.meta.env.PROD ? 'error' : 'warn', 'always'],
+    // 'vue/no-unused-properties': [
+    //   import.meta.env.PROD ? 'error' : 'warn',
+    //   {
+    //     groups: ['props', 'setup'],
+    //   },
+    // ],
+    // 'vue/padding-line-between-blocks': [import.meta.env.PROD ? 'error' : 'warn', 'always'],
     'vue/require-name-property': ['error'],
     'vue/v-on-function-call': [
       'error',

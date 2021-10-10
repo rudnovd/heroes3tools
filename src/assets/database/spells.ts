@@ -1,4 +1,4 @@
-import { Spell } from '@/models/Spell'
+import type { Spell } from '@/models/Spell'
 
 export const spells: Array<Spell> = [
   {

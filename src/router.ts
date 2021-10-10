@@ -6,18 +6,25 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: () => import('@/views/Home.vue'),
-      meta: {
-        title: i18n.global.t('pages.home'),
-      },
-    },
-    {
-      path: '/damage',
-      component: () => import('@/views/DamageCalculator.vue'),
+      component: () => import('@/views/DamageCalculatorPage.vue'),
       meta: {
         title: i18n.global.t('pages.damageCalculator'),
       },
     },
+    // {
+    //   path: '/',
+    //   component: () => import('@/views/Home.vue'),
+    //   meta: {
+    //     title: i18n.global.t('pages.home'),
+    //   },
+    // },
+    // {
+    //   path: '/damage',
+    //   component: () => import('@/views/DamageCalculator.vue'),
+    //   meta: {
+    //     title: i18n.global.t('pages.damageCalculator'),
+    //   },
+    // },
     // {
     //   path: '/creatures',
     //   component: () => import(/* webpackChunkName: 'CreaturesLibrary' */ '@/views/CreaturesLibrary.vue'),
@@ -56,7 +63,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to) => {
-  // if (to.meta.title) document.title = to.meta.title.toString()
+  if (to.meta.title) document.title = to.meta.title as string
 })
 
 export default router

@@ -1,20 +1,13 @@
 import { createStore } from 'vuex'
-import { CalculatorInstance } from '@/models/Calculator'
+import type { Battle } from './models/Battle'
 
 export default createStore({
-  state: {
-    calculators: [] as Array<CalculatorInstance>,
-    activeIndex: 0,
-  },
+  state: {},
   actions: {
-    rememberCalculators({ commit }, payload: { calculators: Array<CalculatorInstance> }) {
+    rememberCalculators({ commit }, payload: { calculators: Array<Battle> }) {
       commit('REMEMBER_CALCULATORS', { calculators: payload.calculators })
     },
   },
-  mutations: {
-    REMEMBER_CALCULATORS(state, payload: { calculators: Array<CalculatorInstance> }) {
-      state.calculators = payload.calculators
-    },
-  },
+  mutations: {},
   strict: import.meta.env.DEV,
 })

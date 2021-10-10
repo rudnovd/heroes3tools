@@ -1,4 +1,4 @@
-import { Class } from '@/models/Class'
+import type { Class } from '@/models/Class'
 
 export const classes: Array<Class> = [
   {

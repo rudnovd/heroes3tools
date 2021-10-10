@@ -1,4 +1,4 @@
-import { CreatureTranslation } from '@/models/Creature'
+import type { CreatureTranslation } from '@/models/Creature'
 
 export const creatures: Array<CreatureTranslation> = [
   {

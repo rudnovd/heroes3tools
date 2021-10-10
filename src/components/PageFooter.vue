@@ -5,15 +5,15 @@
         {{ aboutText }}
       </button>
 
-      <button class="footer-button" @click="showHowToUseModal = true">
-        {{ t('footer.buttons.howToUse') }}
-      </button>
+      <!-- <button class="footer-button" @click="showHowToUseModal = true">
+        t('footer.buttons.howToUse'
+      </button> -->
 
-      <select v-model="selectedLocale" class="select-language" @change="changeLocale(selectedLocale)">
+      <!-- <select v-model="selectedLocale" class="select-language" @change="changeLocale(selectedLocale)">
         <option v-for="locale in locales" :key="locale.name" :value="locale.name">
           {{ locale.value }}
         </option>
-      </select>
+      </select> -->
     </div>
 
     <div class="right-side">
@@ -103,13 +103,13 @@ export default defineComponent({
       },
     ])
 
-    const changeLocale = async (value: 'ru' | 'en') => {
+    const changeLocale = async (value: string) => {
       locale.value = value
       setI18nLanguage(value)
       await loadLocaleMessages(value)
       getLocaleMessage(value)
       document.title = t(document.title).toString()
-      loadResourcesByLocale('creatures', value)
+      loadResourcesByLocale('creatures', value as 'ru' | 'en')
     }
 
     return {
@@ -130,7 +130,6 @@ footer {
   border-top: 1px solid rgb(222, 226, 230);
   display: flex;
   flex-direction: row;
-  margin-top: 20px;
 }
 
 .footer-button {

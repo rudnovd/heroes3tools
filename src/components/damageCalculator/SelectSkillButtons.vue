@@ -16,6 +16,7 @@
 </template>
 
 <script lang="ts">
+import type { Level } from '@/models/Level'
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
@@ -31,8 +32,7 @@ export default defineComponent({
       required: true,
     },
     levels: {
-      type: Array,
-      default: () => [],
+      type: Array as () => Array<Level>,
       required: true,
     },
   },
@@ -45,12 +45,12 @@ export default defineComponent({
       } else {
         selectedLevel.value = level
       }
-      context.emit('click', selectedLevel)
+      context.emit('click', selectedLevel.value)
     }
 
     return {
       selectedLevel,
-      onClick,
+      onClick
     }
   },
 })

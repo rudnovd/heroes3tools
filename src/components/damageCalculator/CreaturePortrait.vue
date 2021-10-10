@@ -15,15 +15,15 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Creature } from '@/models/Creature'
-import { Hero } from '@/models/Hero'
+import type { Creature, CreatureInstance } from '@/models/Creature'
+import type { Hero } from '@/models/Hero'
 
 export default defineComponent({
   name: 'CreaturePortrait',
   props: {
     // TODO: refactor prop name
     creature: {
-      type: Object as () => Creature | Hero,
+      type: Object as () => Creature | Hero | CreatureInstance,
       required: true,
     },
     folder: {

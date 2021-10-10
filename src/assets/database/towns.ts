@@ -1,4 +1,4 @@
-import { Town } from '@/models/Town'
+import type { Town } from '@/models/Town'
 
 export const towns: Array<Town> = [
   {

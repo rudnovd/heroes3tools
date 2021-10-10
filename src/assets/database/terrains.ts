@@ -1,4 +1,4 @@
-import { Terrain } from '@/models/Terrain'
+import type { Terrain } from '@/models/Terrain'
 
 export const terrains: Array<Terrain> = [
   {

@@ -1,46 +1,62 @@
 <template>
-  <input class="input-number" type="number" :min="min" :max="max" :value="value" @input="onInput" @paste="onInput" />
+  <input
+    :value="value"
+    class="input-number"
+    type="number"
+    :min="min"
+    :max="max"
+    @input="onInput"
+  />
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
+import { useDebounce } from '@vueuse/core'
+
 export default defineComponent({
   name: 'BaseInputNumber',
   props: {
     min: {
       type: Number,
-      default: 0,
-      required: false,
+      default: 1,
     },
     max: {
       type: Number,
       default: 99,
-      required: false,
     },
     value: {
       type: Number,
-      default: 0,
+      default: 1,
       required: true,
     },
+    debounce: {
+      type: Number,
+      default: 0,
+    }
   },
   emits: ['input'],
   setup(props, context) {
+    const value = ref(props.value)
     const previousValue = ref(0)
+    const debouncedValue = useDebounce(value, props.debounce)
 
     const onInput = (event: any) => {
       if (!event.target) return
 
       if (event.target.value < props.min || event.target.value > props.max) {
+        value.value = previousValue.value
         event.target.value = previousValue.value
       } else {
-        event.target.value = parseInt(event.target.value)
-        previousValue.value = event.target.value
+        value.value = parseInt(event.target.value)
+        previousValue.value = value.value
       }
-      context.emit('input', parseInt(event.target.value))
     }
 
+    watch(debouncedValue, () => context.emit('input', debouncedValue.value))
+
     return {
-      onInput,
+      value,
+      onInput
     }
   },
 })

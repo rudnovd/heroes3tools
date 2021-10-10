@@ -57,7 +57,7 @@ export default defineComponent({
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 5;
+  z-index: 50;
 
   &.show {
     overflow-x: hidden;
@@ -114,7 +114,7 @@ export default defineComponent({
 
 .modal-enter-active,
 .modal-leave-active {
-  transition: opacity 0.2s;
+  // transition: opacity 0.2s;
 }
 
 .modal-enter,

@@ -1,12 +1,13 @@
-import { openDB, DBSchema } from 'idb'
-import { Class } from '@/models/Class'
-import { Creature } from '@/models/Creature'
-import { Hero } from '@/models/Hero'
-import { Level } from '@/models/Level'
-import { Skill } from '@/models/Skill'
-import { Spell } from '@/models/Spell'
-import { Terrain } from '@/models/Terrain'
-import { Town } from '@/models/Town'
+import type { Class } from '@/models/Class'
+import type { Creature } from '@/models/Creature'
+import type { Hero } from '@/models/Hero'
+import type { Level } from '@/models/Level'
+import type { Skill } from '@/models/Skill'
+import type { Spell } from '@/models/Spell'
+import type { Terrain } from '@/models/Terrain'
+import type { Town } from '@/models/Town'
+import type { DBSchema } from 'idb'
+import { openDB } from 'idb'
 
 interface Data extends DBSchema {
   classes: {
@@ -84,7 +85,7 @@ export async function initDatabaseStore(store: DataStore): Promise<unknown> {
       return data
     }
 
-    const databaseModule = await import(`@/assets/database/${store}.ts`)
+    const databaseModule = await import(`./assets/database/${store}.ts`)
     for (const object of databaseModule[store]) {
       await database.add(store, object)
     }
@@ -151,7 +152,7 @@ export async function loadResourcesByLocale(store: DataStore, locale: locales): 
   try {
     const database = await openDatabase
 
-    const databaseModule = await import(`@/assets/database/locales/${locale}/${store}.ts`)
+    const databaseModule = await import(`./assets/database/locales/${locale}/${store}.ts`)
     for (const object of databaseModule[store]) {
       const creature = await database.get(store, object.id)
       await database.put(store, { ...creature, ...object }, object.id)
