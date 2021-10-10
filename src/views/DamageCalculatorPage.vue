@@ -53,6 +53,7 @@ import type { Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import DamageCalculator from '@/components/DamageCalculator.vue'
 import { Battle } from '@/models/Battle'
+import { getDatabaseStore, initDatabaseStore } from '@/database'
 
 export default defineComponent({
   name: 'DamageCalculatorPage',
@@ -70,6 +71,19 @@ export default defineComponent({
 
     const attacker = computed(() => calculators.value[activeIndex.value].attacker)
     const defender = computed(() => calculators.value[activeIndex.value].defender)
+
+    getDatabaseStore("creatures").then((creatures) => {
+      if (!creatures.length) {
+        initDatabaseStore("classes")
+        initDatabaseStore("creatures")
+        initDatabaseStore("heroes")
+        initDatabaseStore("levels")
+        initDatabaseStore("skills")
+        initDatabaseStore("spells")
+        initDatabaseStore("terrains")
+        initDatabaseStore("towns")
+      }
+    })
 
     watch(
       [attacker, defender],
