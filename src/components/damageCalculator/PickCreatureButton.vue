@@ -1,21 +1,40 @@
 <template>
-  <button class="pick-creature-button" :class="`color-${color}`" @click="$emit('click')">
-    <slot></slot>
+  <button
+    class="pick-creature-button"
+    :class="`color-${color}`"
+    @click="showSelectUnitModal = true"
+  >
+    <slot />
   </button>
+
+  <SelectUnitModal
+    :show="showSelectUnitModal"
+    :target="color"
+    @close="showSelectUnitModal = false"
+    @select="$emit('select', $event)"
+  />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, defineAsyncComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'PickCreatureButton',
+  components: {
+    SelectUnitModal: defineAsyncComponent(() => import('@/components/damageCalculator/SelectUnitModal.vue')),
+  },
   props: {
     color: {
       type: String as () => 'attacker' | 'defender',
       required: true,
     },
   },
-  emits: ['click'],
+  emits: ['click', 'select'],
+  setup() {
+    return {
+      showSelectUnitModal: ref(false)
+    }
+  },
 })
 </script>
 

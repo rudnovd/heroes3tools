@@ -1,5 +1,9 @@
 <template>
-  <BaseModal :show="show" size="large" @close="onClose">
+  <BaseModal
+    :show="show"
+    size="large"
+    @close="onClose"
+  >
     <template #header>
       <input
         v-model="search"
@@ -8,13 +12,20 @@
         :placeholder="t('damageCalculator.components.selectUnitModal.searchCreature')"
         autofocus
         @keyup.enter="selectFirstFounded"
-      />
+      >
     </template>
 
     <template #content>
       <div class="units-modal-content">
-        <div v-if="!search" class="units">
-          <div v-for="town in towns" :key="town.name" class="town">
+        <div
+          v-if="!search"
+          class="units"
+        >
+          <div
+            v-for="town in towns"
+            :key="town.name"
+            class="town"
+          >
             <CreaturePortrait
               v-for="creature in creatures.filter((_creature) => _creature.townId === town.id)"
               :key="creature.id"
@@ -41,7 +52,10 @@
           </div>
         </div>
 
-        <div v-else class="units">
+        <div
+          v-else
+          class="search-units"
+        >
           <CreaturePortrait
             v-for="creature in filterCreaturesByName"
             :key="creature.id"
@@ -59,12 +73,13 @@
 </template>
 
 <script lang="ts">
-import { computed, defineAsyncComponent, defineComponent, onBeforeMount, reactive, ref } from 'vue'
+import { computed, defineAsyncComponent, defineComponent, ref } from 'vue'
 import BaseModal from '@/components/base/BaseModal.vue'
-import { Creature } from '@/models/Creature'
+import type { Creature } from '@/models/Creature'
+import type { Town } from '@/models/Town'
 import { useI18n } from 'vue-i18n'
 import { getDatabaseStore } from '@/database'
-import { Town } from '@/models/Town'
+import type { BattleSide } from '@/models/Battle'
 
 export default defineComponent({
   name: 'SelectUnitModal',
@@ -74,28 +89,27 @@ export default defineComponent({
   },
   mixins: [BaseModal],
   props: {
-    creatures: {
-      type: Array as () => Array<Creature>,
-      required: false,
-      default: () => [],
-    },
+    target: {
+      type: String as () => BattleSide,
+      required: true
+    }
   },
   emits: ['close', 'select'],
   setup(props, context) {
     const { t } = useI18n()
     const search = ref('')
     const towns = ref([] as Town[])
+    const creatures = ref([] as Array<Creature>)
+
+    getDatabaseStore("creatures").then(result => creatures.value = result)
+    getDatabaseStore('towns').then(result => towns.value = result)
 
     const filterCreaturesByName = computed((): Creature[] => {
-      return props.creatures.filter((creature: Creature) => {
+      return creatures.value.filter((creature: Creature) => {
         const searchText = search.value.toLowerCase()
         const creatureName = creature.name.toLowerCase()
         return creatureName.indexOf(searchText) > -1
       })
-    })
-
-    onBeforeMount(async () => {
-      towns.value = await getDatabaseStore('towns')
     })
 
     const selectUnit = (value: Creature) => {
@@ -105,7 +119,9 @@ export default defineComponent({
     }
 
     const selectFirstFounded = () => {
-      selectUnit(filterCreaturesByName.value[0])
+      context.emit('select', filterCreaturesByName.value[0])
+      context.emit('close')
+      search.value = ''
     }
 
     const onClose = () => {
@@ -115,8 +131,10 @@ export default defineComponent({
 
     return {
       t,
+      creatures,
       selectUnit,
       selectFirstFounded,
+      filterCreaturesByName,
       onClose,
       towns,
       search,
@@ -192,6 +210,12 @@ export default defineComponent({
   flex-wrap: wrap;
 }
 
+.search-units {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .town {
   display: flex;
   flex-wrap: wrap;
@@ -200,7 +224,7 @@ export default defineComponent({
   gap: 8px;
 }
 
-.creature-img::v-deep img {
+.creature-img:deep(img) {
   border-radius: 5px;
   cursor: pointer;
   height: auto;

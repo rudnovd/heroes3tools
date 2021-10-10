@@ -1,4 +1,4 @@
-import { ClassTranslation } from '@/models/Class'
+import type { ClassTranslation } from '@/models/Class'
 
 export const classes: Array<ClassTranslation> = [
   {

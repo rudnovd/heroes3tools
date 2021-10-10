@@ -1,15 +1,16 @@
 <template>
   <div class="input-stat">
-    <span class="stat-name">
-      {{ $t(`heroes.stats.${stat}`) }}
-    </span>
-    <BaseInputNumber :min="0" :max="99" :value="value" @input="$emit('input')" />
+    <label class="stat-name">
+      {{ t(`heroes.stats.${stat}`) }}
+    </label>
+    <BaseInputNumber :min="0" :max="99" :value="value" @input="$emit('input', $event)" :debounce="100" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import BaseInputNumber from '@/components/base/BaseInputNumber.vue'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'InputHeroStat',
@@ -29,22 +30,13 @@ export default defineComponent({
     },
   },
   emits: ['input'],
-  data() {
+  setup() {
+    const { t } = useI18n()
+
     return {
-      previousValue: 0,
+      t,
     }
-  },
-  methods: {
-    onInput(event: any): void {
-      if (event.target.value < 0 || event.target.value > 99) {
-        event.target.value = this.previousValue
-      } else {
-        event.target.value = parseInt(event.target.value)
-        this.previousValue = event.target.value
-      }
-      this.$emit('input', parseInt(event.target.value))
-    },
-  },
+  }
 })
 </script>
 

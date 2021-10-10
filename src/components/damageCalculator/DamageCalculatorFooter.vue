@@ -33,10 +33,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-
-import PageFooter from '@/components/PageFooter.vue'
+import { defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import PageFooter from '@/components/PageFooter.vue'
 
 export default defineComponent({
   name: 'DamageCalculatorFooter',
@@ -45,12 +44,13 @@ export default defineComponent({
   },
   setup() {
     const { t } = useI18n()
-    return { t }
-  },
-  data() {
+    // const showAboutModal = ref(false)
+    // const showHowToUseModal = ref(false)
+
     return {
-      showAboutModal: false,
-      showHowToUseModal: false,
+      t,
+      // showAboutModal,
+      // showHowToUseModal
     }
   },
 })

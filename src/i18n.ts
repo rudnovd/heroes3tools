@@ -1,5 +1,5 @@
-import { createI18n } from 'vue-i18n'
 import en from '@/locales/en.json'
+import { createI18n } from 'vue-i18n'
 
 const i18n = createI18n({
   legacy: false,
@@ -11,7 +11,7 @@ const i18n = createI18n({
 })
 
 export function setI18nLanguage(locale: string): void {
-  i18n.global.locale.value = locale
+  // i18n.global.locale.value = locale as 'en' | 'ru'
   document.querySelector('html')?.setAttribute('lang', locale)
 }
 

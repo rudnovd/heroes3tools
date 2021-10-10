@@ -1,4 +1,4 @@
-import { HeroTranslation } from '@/models/Hero'
+import type { HeroTranslation } from '@/models/Hero'
 
 export const Heroes: Array<HeroTranslation> = [
   {

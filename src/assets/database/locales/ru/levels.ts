@@ -1,4 +1,4 @@
-import { LevelTranslation } from '@/models/Level'
+import type { LevelTranslation } from '@/models/Level'
 
 export const Levels: Array<LevelTranslation> = [
   {

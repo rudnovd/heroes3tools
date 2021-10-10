@@ -1,0 +1,104 @@
+<template>
+  <Multiselect
+    class="select-hero"
+    v-model="selectedHero"
+    :options="heroes"
+    trackBy="name"
+    searchable
+    valueProp="id"
+    label="name"
+    placeholder="Select hero"
+    no-results-text="Hero not found"
+    :hide-selected="false"
+    :classes="{
+      dropdown: 'multiselect-dropdown'
+    }"
+  >
+    <template #option="{ option }">
+      <div class="option">
+        <CreaturePortrait :folder="`/images/heroes/portraits/small`" :creature="option" :width="46" :height="30" />
+        {{ option.name }}
+      </div>
+    </template>
+
+    <template #singlelabel="{ value }">
+      <div class="multiselect-single-label">
+        <CreaturePortrait :folder="`/images/heroes/portraits/small`" :creature="value" :width="46" :height="30" />
+        {{ value.name }}
+      </div>
+    </template>
+  </Multiselect>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref, defineAsyncComponent, watch } from 'vue'
+import Multiselect from '@vueform/multiselect'
+import type { Hero, HeroInstance } from '@/models/Hero'
+import { getDatabaseStore } from '@/database'
+import type { BattleSide } from '@/models/Battle'
+
+export default defineComponent({
+  components: {
+    Multiselect,
+    CreaturePortrait: defineAsyncComponent(() => import('@/components/damageCalculator/CreaturePortrait.vue')),
+  },
+  props: {
+    side: String as () => BattleSide,
+    value: {
+      type: Object as () => Hero | HeroInstance | null,
+      required: true
+    }
+  },
+  setup(props, context) {
+    const selectedHero = ref(props.value?.id)
+    const heroes = ref<Array<Hero>>([])
+
+    getDatabaseStore("heroes").then(heroes_ => heroes.value = heroes_)
+
+    watch(selectedHero, (id) => context.emit('select-hero',  heroes.value.find(h => h.id === id)))
+
+    return {
+      selectedHero,
+      heroes,
+    }
+  },
+  emits: ['select-hero']
+})
+</script>
+
+<style src="@vueform/multiselect/themes/default.css"></style>
+
+<style lang="scss">
+.multiselect-dropdown {
+  height: 420px;
+}
+</style>
+
+<style lang="scss" scoped>
+.select-hero {
+  width: 100%;
+  height: 48px;
+}
+
+.select {
+  overflow-x: hidden;
+}
+
+.option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  & picture {
+    margin-right: 0.5rem;
+  }
+}
+
+.multiselect-single-label {
+  & picture {
+    display: flex;
+    margin-right: 0.5rem;
+  }
+}
+</style>
+

@@ -1,4 +1,4 @@
-import { SkillTranslation } from '@/models/Skill'
+import type { SkillTranslation } from '@/models/Skill'
 
 export const Skills: Array<SkillTranslation> = [
   {
