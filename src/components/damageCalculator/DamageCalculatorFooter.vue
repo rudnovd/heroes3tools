@@ -17,7 +17,7 @@
 
       <i18n class="modal-text" path="footer.damageCalculator.data.4" tag="p">
         <template #desktopVersion>
-          <a href="https://github.com/Nodl/H3Calc/tree/hota" target="_blank" place="desktopVersion">
+          <a href="https://github.com/Nodl/H3Calc/tree/hota" target="_blank" place="desktopVersion" rel="noopener">
             {{ t('footer.damageCalculator.data.desktopVersion') }}.
           </a>
         </template>
