@@ -26,7 +26,7 @@
       </button>
 
       <button class="footer-button">
-        <a href="https://github.com/rudnovd/heroes3tools" target="_blank">
+        <a href="https://github.com/rudnovd/heroes3tools" target="_blank" rel="noopener">
           {{ t('footer.buttons.sourceCode') }}
         </a>
       </button>
