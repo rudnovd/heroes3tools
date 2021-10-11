@@ -51,11 +51,11 @@ interface Data extends DBSchema {
   }
 }
 
-type DataStore = 'classes' | 'creatures' | 'heroes' | 'levels' | 'skills' | 'spells' | 'terrains' | 'towns'
+export type DataStore = 'classes' | 'creatures' | 'heroes' | 'levels' | 'skills' | 'spells' | 'terrains' | 'towns'
 type DataStoreType = Class | Creature | Hero | Level | Skill | Spell | Terrain | Town
 type locales = 'ru' | 'en'
 
-const openDatabase = openDB<Data>('data', 1, {
+export const openDatabase = openDB<Data>('data', 1, {
   upgrade(db) {
     db.createObjectStore('classes', { autoIncrement: true })
     db.createObjectStore('creatures', { autoIncrement: true })
@@ -68,14 +68,17 @@ const openDatabase = openDB<Data>('data', 1, {
   },
 })
 
-export function initDatabaseStore(storeName: 'classes'): Promise<Class[]>
-export function initDatabaseStore(storeName: 'creatures'): Promise<Creature[]>
-export function initDatabaseStore(storeName: 'heroes'): Promise<Hero[]>
-export function initDatabaseStore(storeName: 'levels'): Promise<Level[]>
-export function initDatabaseStore(storeName: 'skills'): Promise<Skill[]>
-export function initDatabaseStore(storeName: 'spells'): Promise<Spell[]>
-export function initDatabaseStore(storeName: 'terrains'): Promise<Terrain[]>
-export function initDatabaseStore(storeName: 'towns'): Promise<Town[]>
+export function initDatabaseStore(store: 'classes'): Promise<Class[]>
+export function initDatabaseStore(store: 'creatures'): Promise<Creature[]>
+export function initDatabaseStore(store: 'heroes'): Promise<Hero[]>
+export function initDatabaseStore(store: 'levels'): Promise<Level[]>
+export function initDatabaseStore(store: 'skills'): Promise<Skill[]>
+export function initDatabaseStore(store: 'spells'): Promise<Spell[]>
+export function initDatabaseStore(store: 'terrains'): Promise<Terrain[]>
+export function initDatabaseStore(store: 'towns'): Promise<Town[]>
+export function initDatabaseStore(
+  store: DataStore
+): Promise<(Creature | Hero | Level | Skill | Spell | Terrain | Town | Class)[] | undefined>
 export async function initDatabaseStore(store: DataStore): Promise<unknown> {
   try {
     const database = await openDatabase
@@ -96,14 +99,17 @@ export async function initDatabaseStore(store: DataStore): Promise<unknown> {
   }
 }
 
-export function getDatabaseStore(storeName: 'classes'): Promise<Class[]>
-export function getDatabaseStore(storeName: 'creatures'): Promise<Creature[]>
-export function getDatabaseStore(storeName: 'heroes'): Promise<Hero[]>
-export function getDatabaseStore(storeName: 'levels'): Promise<Level[]>
-export function getDatabaseStore(storeName: 'skills'): Promise<Skill[]>
-export function getDatabaseStore(storeName: 'spells'): Promise<Spell[]>
-export function getDatabaseStore(storeName: 'terrains'): Promise<Terrain[]>
-export function getDatabaseStore(storeName: 'towns'): Promise<Town[]>
+export function getDatabaseStore(store: 'classes'): Promise<Class[]>
+export function getDatabaseStore(store: 'creatures'): Promise<Creature[]>
+export function getDatabaseStore(store: 'heroes'): Promise<Hero[]>
+export function getDatabaseStore(store: 'levels'): Promise<Level[]>
+export function getDatabaseStore(store: 'skills'): Promise<Skill[]>
+export function getDatabaseStore(store: 'spells'): Promise<Spell[]>
+export function getDatabaseStore(store: 'terrains'): Promise<Terrain[]>
+export function getDatabaseStore(store: 'towns'): Promise<Town[]>
+export function getDatabaseStore(
+  store: DataStore
+): Promise<(Creature | Hero | Level | Skill | Spell | Terrain | Town | Class)[] | undefined>
 export async function getDatabaseStore(store: DataStore): Promise<unknown> {
   try {
     const database = await openDatabase
@@ -113,14 +119,14 @@ export async function getDatabaseStore(store: DataStore): Promise<unknown> {
   }
 }
 
-export function getObjectById(storeName: 'classes', id: number): Promise<Class>
-export function getObjectById(storeName: 'creatures', id: number): Promise<Creature>
-export function getObjectById(storeName: 'heroes', id: number): Promise<Hero>
-export function getObjectById(storeName: 'levels', id: number): Promise<Level>
-export function getObjectById(storeName: 'skills', id: number): Promise<Skill>
-export function getObjectById(storeName: 'spells', id: number): Promise<Spell>
-export function getObjectById(storeName: 'terrains', id: number): Promise<Terrain>
-export function getObjectById(storeName: 'towns', id: number): Promise<Town>
+export function getObjectById(store: 'classes', id: number): Promise<Class>
+export function getObjectById(store: 'creatures', id: number): Promise<Creature>
+export function getObjectById(store: 'heroes', id: number): Promise<Hero>
+export function getObjectById(store: 'levels', id: number): Promise<Level>
+export function getObjectById(store: 'skills', id: number): Promise<Skill>
+export function getObjectById(store: 'spells', id: number): Promise<Spell>
+export function getObjectById(store: 'terrains', id: number): Promise<Terrain>
+export function getObjectById(store: 'towns', id: number): Promise<Town>
 export async function getObjectById(store: DataStore, id: number): Promise<unknown> {
   try {
     const database = await openDatabase
@@ -130,14 +136,14 @@ export async function getObjectById(store: DataStore, id: number): Promise<unkno
   }
 }
 
-export function updateObjectById(storeName: 'classes', id: number, value: Class): Promise<Class>
-export function updateObjectById(storeName: 'creatures', id: number, value: Class): Promise<Creature>
-export function updateObjectById(storeName: 'heroes', id: number, value: Class): Promise<Hero>
-export function updateObjectById(storeName: 'levels', id: number, value: Class): Promise<Level>
-export function updateObjectById(storeName: 'skills', id: number, value: Class): Promise<Skill>
-export function updateObjectById(storeName: 'spells', id: number, value: Class): Promise<Spell>
-export function updateObjectById(storeName: 'terrains', id: number, value: Class): Promise<Terrain>
-export function updateObjectById(storeName: 'towns', id: number, value: Class): Promise<Town>
+export function updateObjectById(store: 'classes', id: number, value: Class): Promise<Class>
+export function updateObjectById(store: 'creatures', id: number, value: Class): Promise<Creature>
+export function updateObjectById(store: 'heroes', id: number, value: Class): Promise<Hero>
+export function updateObjectById(store: 'levels', id: number, value: Class): Promise<Level>
+export function updateObjectById(store: 'skills', id: number, value: Class): Promise<Skill>
+export function updateObjectById(store: 'spells', id: number, value: Class): Promise<Spell>
+export function updateObjectById(store: 'terrains', id: number, value: Class): Promise<Terrain>
+export function updateObjectById(store: 'towns', id: number, value: Class): Promise<Town>
 export async function updateObjectById(store: DataStore, id: number, value: DataStoreType): Promise<unknown> {
   try {
     const database = await openDatabase
