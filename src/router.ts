@@ -13,21 +13,21 @@ const router = createRouter({
     },
     // {
     //   path: '/',
-    //   component: () => import('@/views/Home.vue'),
+    //   component: () => import('@/views/HomePage.vue'),
     //   meta: {
     //     title: i18n.global.t('pages.home'),
     //   },
     // },
     // {
     //   path: '/damage',
-    //   component: () => import('@/views/DamageCalculator.vue'),
+    //   component: () => import('@/views/DamageCalculatorPage.vue'),
     //   meta: {
     //     title: i18n.global.t('pages.damageCalculator'),
     //   },
     // },
     // {
     //   path: '/creatures',
-    //   component: () => import(/* webpackChunkName: 'CreaturesLibrary' */ '@/views/CreaturesLibrary.vue'),
+    //   component: () => import('@/views/CreaturesLibraryPage.vue'),
     //   meta: {
     //     title: i18n.global.t('pages.creaturesLibrary'),
     //     disabled: true,
@@ -36,7 +36,7 @@ const router = createRouter({
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
-      component: () => import('@/views/Error.vue'),
+      component: () => import('@/views/ErrorPage.vue'),
       meta: {
         title: i18n.global.t('pages.pageNotFound'),
       },
