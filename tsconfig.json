@@ -27,12 +27,12 @@
       "ESNext",
       "DOM",
       "DOM.Iterable",
-      "ScriptHost"
+      "ScriptHost",
+      "WebWorker"
     ]
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.spec.ts"
   ],
