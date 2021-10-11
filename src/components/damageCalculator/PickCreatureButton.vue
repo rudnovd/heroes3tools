@@ -3,7 +3,12 @@
     <slot />
   </button>
 
-  <SelectUnitModal :show="showSelectUnitModal" @close="showSelectUnitModal = false" @select="$emit('select', $event)" />
+  <SelectUnitModal
+    v-if="showSelectUnitModal"
+    :show="showSelectUnitModal"
+    @close="showSelectUnitModal = false"
+    @select="$emit('select', $event)"
+  />
 </template>
 
 <script lang="ts">

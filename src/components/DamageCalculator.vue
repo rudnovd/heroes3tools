@@ -66,18 +66,22 @@
 
       <section v-if="side.hero" class="skills">
         <SelectSkillButtons
-          v-for="skill in data.skills"
+          v-for="skill in store.skills"
           :key="`attacker-skill-${skill.name}-buttons`"
           color="attacker"
           :name="skill.name"
-          :levels="data.levels.slice(1, data.levels.length)"
+          :levels="store.levels.slice(1, store.levels.length)"
           @click="side.hero!.skills[skill.name.toLowerCase()] = $event as number"
         />
       </section>
 
       <section v-if="side.activeCreature" class="effects">
         <div
-          v-for="(effectGroup, i) in [attackPositiveEffects, defensePositiveEffects, attackNegativeEffects]"
+          v-for="(effectGroup, i) in [
+            store.attackPositiveEffects,
+            store.defensePositiveEffects,
+            store.attackNegativeEffects,
+          ]"
           :key="`attacker-effects-group-${i}`"
         >
           <template v-for="effect in effectGroup" :key="`attacker-effect-${effect}`">
@@ -98,15 +102,15 @@
     </section>
 
     <div class="calculator-footer">
-      <SelectTerrain :terrains="data.terrains" @select-terrain="onSelectTerrain($event)" />
+      <SelectTerrain :terrains="store.terrains" @select-terrain="onSelectTerrain($event)" />
     </div>
   </section>
 </template>
 
 <script lang="ts">
 import { defineAsyncComponent, defineComponent, watch } from '@vue/runtime-core'
-import { computed, reactive, ref } from '@vue/reactivity'
-import type { Battle, BattleSide, DamageCalculatorBattleSide } from '@/models/Battle'
+import { reactive, ref } from '@vue/reactivity'
+import type { Battle, DamageCalculatorBattleSide } from '@/models/Battle'
 import { CreatureInstance } from '@/models/Creature'
 import type { Creature } from '@/models/Creature'
 import { useI18n } from 'vue-i18n'
@@ -115,12 +119,9 @@ import SelectHero from '@/components/SelectHero.vue'
 import { HeroInstance } from '@/models/Hero'
 import type { Spell } from '@/models/Spell'
 import type { Hero } from '@/models/Hero'
-import type { Skill } from '@/models/Skill'
-import type { Level } from '@/models/Level'
-import { Spells } from '@/models/enums'
-import { getDatabaseStore, initDatabaseStore } from '@/database'
 import type { Terrain } from '@/models/Terrain'
 import SelectTerrain from '@/components/SelectTerrain.vue'
+import { useStore } from '@/store'
 
 export default defineComponent({
   name: 'DamageCalculator',
@@ -142,9 +143,12 @@ export default defineComponent({
   },
   setup(props) {
     const { t } = useI18n()
+    const store = useStore()
+
     const battle = reactive(props.battleValue)
-    const battleSides: Array<BattleSide> = ['attacker', 'defender']
     const isStarted = ref(false)
+
+    store.initData()
 
     watch(
       [battle.attacker, battle.defender],
@@ -159,26 +163,6 @@ export default defineComponent({
 
     watch(isStarted, (newIsStarted) => {
       if (newIsStarted) isStarted.value = false
-    })
-
-    let data = reactive({
-      skills: [] as Array<Skill>,
-      levels: [] as Array<Level>,
-      spells: [] as Array<Spell>,
-      terrains: [] as Array<Terrain>,
-    })
-
-    getDatabaseStore('creatures').then((creatures) => {
-      if (!creatures.length) {
-        initDatabaseStore('classes')
-        initDatabaseStore('creatures')
-        initDatabaseStore('heroes')
-        initDatabaseStore('levels').then((result) => (data.levels = result))
-        initDatabaseStore('skills').then((result) => (data.skills = result))
-        initDatabaseStore('spells').then((result) => (data.spells = result))
-        initDatabaseStore('terrains').then((result) => (data.terrains = result))
-        initDatabaseStore('towns')
-      }
     })
 
     const totalDamage = (side: DamageCalculatorBattleSide) => {
@@ -202,29 +186,6 @@ export default defineComponent({
         return 0
       }
     }
-
-    const attackPositiveEffectsIds = [
-      Spells.Bless,
-      Spells.Bloodlust,
-      Spells.Frenzy,
-      Spells.Prayer,
-      Spells.Precision,
-      Spells.Slayer,
-    ]
-
-    const attackPositiveEffects = computed(() => {
-      return data.spells.filter((spell) => attackPositiveEffectsIds.indexOf(spell.id) !== -1)
-    })
-
-    const defensePositiveEffectsIds = [Spells.Shield, Spells.StoneSkin, Spells.AirShield]
-    const defensePositiveEffects = computed(() => {
-      return data.spells.filter((spell) => defensePositiveEffectsIds.indexOf(spell.id) !== -1)
-    })
-
-    const attackNegativeEffectsIds = [Spells.Curse, Spells.Weakness, Spells.DisruptingRay]
-    const attackNegativeEffects = computed(() => {
-      return data.spells.filter((spell) => attackNegativeEffectsIds.indexOf(spell.id) !== -1)
-    })
 
     const onSelectCreature = (side: DamageCalculatorBattleSide, creature: unknown) => {
       const newCreature = new CreatureInstance(creature as Creature)
@@ -276,11 +237,9 @@ export default defineComponent({
 
     return {
       t,
+      store,
+
       battle,
-      data,
-      attackPositiveEffects,
-      defensePositiveEffects,
-      attackNegativeEffects,
 
       totalDamage,
       totalKills,

@@ -31,10 +31,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, defineAsyncComponent, watch } from 'vue'
+import { defineComponent, ref, defineAsyncComponent, watch, computed } from 'vue'
 import Multiselect from '@vueform/multiselect'
 import type { Hero, HeroInstance } from '@/models/Hero'
-import { getDatabaseStore } from '@/database'
+import { useStore } from '@/store'
 
 export default defineComponent({
   name: 'SelectHero',
@@ -50,10 +50,10 @@ export default defineComponent({
   },
   emits: ['selectHero'],
   setup(props, context) {
-    const selectedHero = ref(props.value?.id)
-    const heroes = ref<Array<Hero>>([])
+    const store = useStore()
 
-    getDatabaseStore('heroes').then((heroes_) => (heroes.value = heroes_))
+    const selectedHero = ref(props.value?.id)
+    const heroes = computed(() => store.heroes)
 
     watch(selectedHero, (id) =>
       context.emit(

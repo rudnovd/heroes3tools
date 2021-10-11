@@ -62,9 +62,8 @@
 import { computed, defineAsyncComponent, defineComponent, ref } from 'vue'
 import BaseModal from '@/components/base/BaseModal.vue'
 import type { Creature } from '@/models/Creature'
-import type { Town } from '@/models/Town'
 import { useI18n } from 'vue-i18n'
-import { getDatabaseStore } from '@/database'
+import { useStore } from '@/store'
 
 export default defineComponent({
   name: 'SelectUnitModal',
@@ -77,14 +76,10 @@ export default defineComponent({
   setup(props, context) {
     const { t } = useI18n()
     const search = ref('')
-    const towns = ref([] as Town[])
-    const creatures = ref([] as Array<Creature>)
-
-    getDatabaseStore('creatures').then((result) => (creatures.value = result))
-    getDatabaseStore('towns').then((result) => (towns.value = result))
+    const { creatures, towns } = useStore()
 
     const filterCreaturesByName = computed((): Creature[] => {
-      return creatures.value.filter((creature: Creature) => {
+      return creatures.filter((creature: Creature) => {
         const searchText = search.value.toLowerCase()
         const creatureName = creature.name.toLowerCase()
         return creatureName.indexOf(searchText) > -1
@@ -111,41 +106,20 @@ export default defineComponent({
     return {
       t,
       creatures,
+      towns,
+
+      search,
+      filterCreaturesByName,
+
       selectUnit,
       selectFirstFounded,
-      filterCreaturesByName,
       onClose,
-      towns,
-      search,
     }
   },
 })
 </script>
 
 <style lang="scss" scoped>
-.modal-units {
-  width: 90%;
-  min-width: 200px;
-  margin: auto;
-  margin-top: 20px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 0.3rem;
-  outline: 0;
-  min-height: 100%;
-
-  @include media-medium {
-    width: 100%;
-  }
-
-  @include media-large {
-    width: 95%;
-  }
-
-  @include media-large {
-    width: 85%;
-  }
-}
-
 .units-modal-content {
   flex-direction: column;
   width: 100%;
