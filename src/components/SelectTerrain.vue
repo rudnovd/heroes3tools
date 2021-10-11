@@ -11,7 +11,7 @@
     no-results-text="Not found"
     :hide-selected="false"
     :classes="{
-      dropdown: 'multiselect-dropdown'
+      dropdown: 'multiselect-dropdown',
     }"
   >
     <template #option="{ option }">
@@ -47,11 +47,16 @@ export default defineComponent({
       required: true,
     },
   },
-  emits: ['select-terrain'],
+  emits: ['selectTerrain'],
   setup(props, context) {
     const selectedTerrain = ref(0)
 
-    watch(selectedTerrain, (id) => context.emit('select-terrain',  props.terrains.find(t => t.id === id)))
+    watch(selectedTerrain, (id) =>
+      context.emit(
+        'selectTerrain',
+        props.terrains.find((t) => t.id === id)
+      )
+    )
 
     return {
       selectedTerrain,

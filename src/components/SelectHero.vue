@@ -1,17 +1,17 @@
 <template>
   <Multiselect
-    class="select-hero"
     v-model="selectedHero"
+    class="select-hero"
     :options="heroes"
-    trackBy="name"
+    track-by="name"
     searchable
-    valueProp="id"
+    value-prop="id"
     label="name"
     placeholder="Select hero"
     no-results-text="Hero not found"
     :hide-selected="false"
     :classes="{
-      dropdown: 'multiselect-dropdown'
+      dropdown: 'multiselect-dropdown',
     }"
   >
     <template #option="{ option }">
@@ -35,34 +35,38 @@ import { defineComponent, ref, defineAsyncComponent, watch } from 'vue'
 import Multiselect from '@vueform/multiselect'
 import type { Hero, HeroInstance } from '@/models/Hero'
 import { getDatabaseStore } from '@/database'
-import type { BattleSide } from '@/models/Battle'
 
 export default defineComponent({
+  name: 'SelectHero',
   components: {
     Multiselect,
     CreaturePortrait: defineAsyncComponent(() => import('@/components/damageCalculator/CreaturePortrait.vue')),
   },
   props: {
-    side: String as () => BattleSide,
     value: {
       type: Object as () => Hero | HeroInstance | null,
-      required: true
-    }
+      required: true,
+    },
   },
+  emits: ['selectHero'],
   setup(props, context) {
     const selectedHero = ref(props.value?.id)
     const heroes = ref<Array<Hero>>([])
 
-    getDatabaseStore("heroes").then(heroes_ => heroes.value = heroes_)
+    getDatabaseStore('heroes').then((heroes_) => (heroes.value = heroes_))
 
-    watch(selectedHero, (id) => context.emit('select-hero',  heroes.value.find(h => h.id === id)))
+    watch(selectedHero, (id) =>
+      context.emit(
+        'selectHero',
+        heroes.value.find((h) => h.id === id)
+      )
+    )
 
     return {
       selectedHero,
       heroes,
     }
   },
-  emits: ['select-hero']
 })
 </script>
 

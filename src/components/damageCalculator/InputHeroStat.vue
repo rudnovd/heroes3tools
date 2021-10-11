@@ -3,12 +3,12 @@
     <label class="stat-name">
       {{ t(`heroes.stats.${stat}`) }}
     </label>
-    <BaseInputNumber :min="0" :max="99" :value="value" @input="$emit('input', $event)" :debounce="100" />
+    <BaseInputNumber :min="0" :max="99" :value="value" :debounce="100" @input="$emit('input', $event)" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import BaseInputNumber from '@/components/base/BaseInputNumber.vue'
 import { useI18n } from 'vue-i18n'
 
@@ -36,7 +36,7 @@ export default defineComponent({
     return {
       t,
     }
-  }
+  },
 })
 </script>
 

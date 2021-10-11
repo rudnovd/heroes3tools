@@ -50,7 +50,7 @@ export default defineComponent({
 
     return {
       selectedLevel,
-      onClick
+      onClick,
     }
   },
 })

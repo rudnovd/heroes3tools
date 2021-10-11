@@ -7,20 +7,14 @@
     >
       <section class="title">
         <h2>{{ t(`side.${[sideName]}`) }}</h2>
-        <PickCreatureButton
-          :color="sideName"
-          @select="onSelectCreature(side, $event)"
-        >
+        <PickCreatureButton :color="sideName" @select="onSelectCreature(side, $event)">
           {{ side.activeCreature ? side.activeCreature.name : t('damageCalculator.pickCreature') }}
         </PickCreatureButton>
       </section>
 
       <section class="main">
         <div class="creature">
-          <button
-            v-if="side.activeCreature"
-            class="creature-button"
-          >
+          <button v-if="side.activeCreature" class="creature-button">
             <CreaturePortrait
               :creature="side.activeCreature"
               class="creature-img"
@@ -43,16 +37,9 @@
         </div>
 
         <div class="hero">
-          <SelectHero
-            :side-name="sideName"
-            :value="side.hero"
-            @select-hero="onSelectHero(side, $event)"
-          />
+          <SelectHero :value="side.hero" @select-hero="onSelectHero(side, $event)" />
 
-          <div
-            v-if="side.hero"
-            class="hero-parameters"
-          >
+          <div v-if="side.hero" class="hero-parameters">
             <div>
               <label class="stat-name">
                 {{ t(`heroes.stats.level`) }}
@@ -77,10 +64,7 @@
         </div>
       </section>
 
-      <section
-        v-if="side.hero"
-        class="skills"
-      >
+      <section v-if="side.hero" class="skills">
         <SelectSkillButtons
           v-for="skill in data.skills"
           :key="`attacker-skill-${skill.name}-buttons`"
@@ -91,18 +75,12 @@
         />
       </section>
 
-      <section
-        v-if="side.activeCreature"
-        class="effects"
-      >
+      <section v-if="side.activeCreature" class="effects">
         <div
-          v-for="(effectGroup, index) in [attackPositiveEffects, defensePositiveEffects, attackNegativeEffects]"
-          :key="`attacker-effects-group-${index}`"
+          v-for="(effectGroup, i) in [attackPositiveEffects, defensePositiveEffects, attackNegativeEffects]"
+          :key="`attacker-effects-group-${i}`"
         >
-          <template
-            v-for="(effect) in effectGroup"
-            :key="`attacker-effect-${effect}`"
-          >
+          <template v-for="effect in effectGroup" :key="`attacker-effect-${effect}`">
             <BaseCheckbox
               color="attacker"
               :value="isEffectEnabled(side, effect)"
@@ -113,41 +91,35 @@
         </div>
       </section>
 
-      <section
-        v-if="side.activeCreature"
-        class="damage"
-      >
+      <section v-if="side.activeCreature" class="damage">
         <strong>Damage: {{ totalDamage(side) }}</strong>
         <strong>Kills: {{ totalKills(side) }}</strong>
       </section>
     </section>
 
     <div class="calculator-footer">
-      <SelectTerrain
-        :terrains="data.terrains"
-        @select-terrain="onSelectTerrain($event)"
-      />
+      <SelectTerrain :terrains="data.terrains" @select-terrain="onSelectTerrain($event)" />
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent, watch } from "@vue/runtime-core";
-import { computed, reactive, ref } from "@vue/reactivity";
-import type { Battle, BattleSide, DamageCalculatorBattleSide } from "@/models/Battle";
-import { CreatureInstance } from "@/models/Creature";
-import type { Creature } from "@/models/Creature";
-import { useI18n } from "vue-i18n";
+import { defineAsyncComponent, defineComponent, watch } from '@vue/runtime-core'
+import { computed, reactive, ref } from '@vue/reactivity'
+import type { Battle, BattleSide, DamageCalculatorBattleSide } from '@/models/Battle'
+import { CreatureInstance } from '@/models/Creature'
+import type { Creature } from '@/models/Creature'
+import { useI18n } from 'vue-i18n'
 import PickCreatureButton from '@/components/damageCalculator/PickCreatureButton.vue'
 import SelectHero from '@/components/SelectHero.vue'
-import { HeroInstance } from "@/models/Hero";
-import type { Spell } from "@/models/Spell";
+import { HeroInstance } from '@/models/Hero'
+import type { Spell } from '@/models/Spell'
 import type { Hero } from '@/models/Hero'
-import type { Skill } from "@/models/Skill";
-import type { Level } from "@/models/Level";
-import { Spells } from "@/models/enums";
-import { getDatabaseStore } from "@/database";
-import type { Terrain } from "@/models/Terrain";
+import type { Skill } from '@/models/Skill'
+import type { Level } from '@/models/Level'
+import { Spells } from '@/models/enums'
+import { getDatabaseStore, initDatabaseStore } from '@/database'
+import type { Terrain } from '@/models/Terrain'
 import SelectTerrain from '@/components/SelectTerrain.vue'
 
 export default defineComponent({
@@ -165,8 +137,8 @@ export default defineComponent({
   props: {
     battleValue: {
       type: Object as () => Battle,
-      required: true
-    }
+      required: true,
+    },
   },
   setup(props) {
     const { t } = useI18n()
@@ -196,10 +168,18 @@ export default defineComponent({
       terrains: [] as Array<Terrain>,
     })
 
-    getDatabaseStore('skills').then(result => data.skills = result)
-    getDatabaseStore('levels').then(result => data.levels = result)
-    getDatabaseStore('spells').then(result => data.spells = result)
-    getDatabaseStore('terrains').then(result => data.terrains = result)
+    getDatabaseStore('creatures').then((creatures) => {
+      if (!creatures.length) {
+        initDatabaseStore('classes')
+        initDatabaseStore('creatures')
+        initDatabaseStore('heroes')
+        initDatabaseStore('levels').then((result) => (data.levels = result))
+        initDatabaseStore('skills').then((result) => (data.skills = result))
+        initDatabaseStore('spells').then((result) => (data.spells = result))
+        initDatabaseStore('terrains').then((result) => (data.terrains = result))
+        initDatabaseStore('towns')
+      }
+    })
 
     const totalDamage = (side: DamageCalculatorBattleSide) => {
       const { minDamage, maxDamage, averageDamage } = side.activeCreature!.calculation
@@ -276,12 +256,12 @@ export default defineComponent({
       if (!effectEnabled) {
         side.activeCreature.effects.push(spell)
       } else {
-        side.activeCreature.effects = side.activeCreature.effects.filter(e => e.id !== spell.id)
+        side.activeCreature.effects = side.activeCreature.effects.filter((e) => e.id !== spell.id)
       }
     }
 
     const isEffectEnabled = (side: DamageCalculatorBattleSide, spell: Spell) => {
-      return side.activeCreature!.effects.findIndex(e => e.id === spell.id) !== -1
+      return side.activeCreature!.effects.findIndex((e) => e.id === spell.id) !== -1
     }
 
     const onSelectTerrain = (terrain: unknown) => {
@@ -292,13 +272,11 @@ export default defineComponent({
         battle.attacker.terrain = terrain as Terrain
         battle.defender.terrain = terrain as Terrain
       }
-
     }
 
     return {
       t,
       battle,
-      battleSides,
       data,
       attackPositiveEffects,
       defensePositiveEffects,
@@ -313,7 +291,7 @@ export default defineComponent({
       isEffectEnabled,
       onSelectTerrain,
     }
-  }
+  },
 })
 </script>
 
@@ -425,7 +403,6 @@ export default defineComponent({
   }
 }
 
-
 .creature-input {
   width: 65px;
   height: 32px;
@@ -473,8 +450,6 @@ export default defineComponent({
     }
   }
 }
-
-
 
 .hero-parameters {
   display: flex;

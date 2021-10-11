@@ -117,9 +117,6 @@ export default defineComponent({
       showAboutModal,
       showLicenseModal,
       foundErrorModal,
-      selectedLocale,
-      locales,
-      changeLocale,
     }
   },
 })
