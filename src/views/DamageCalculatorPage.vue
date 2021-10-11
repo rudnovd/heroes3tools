@@ -8,33 +8,20 @@
         :class="{ active: index === activeIndex }"
         :title="calculatorTitle(calculator)"
       >
-        <div
-          class="tab-title"
-          @click="activeIndex = index"
-        >
+        <div class="tab-title" @click="activeIndex = index">
           {{ calculatorTitle(calculator) }}
         </div>
 
-        <button
-          class="tab-close-button"
-          @click="deleteCalculator(index)"
-        />
+        <button class="tab-close-button" @click="deleteCalculator(index)" />
       </div>
 
       <div class="tab-add">
-        <button
-          class="tab-add-button"
-          :class="{ disabled: calculators.length >= 7 }"
-          @click="addCalculator"
-        />
+        <button class="tab-add-button" :class="{ disabled: calculators.length >= 7 }" @click="addCalculator" />
       </div>
     </div>
 
     <main v-if="calculators.length">
-      <KeepAlive
-        v-for="(calculator, index) in calculators"
-        :key="`damage-calculator-${index}`"
-      >
+      <KeepAlive v-for="(calculator, index) in calculators" :key="`damage-calculator-${index}`">
         <DamageCalculator
           v-if="activeIndex === index"
           :key="`damage-calculator-tab-${index}`"
@@ -53,7 +40,6 @@ import type { Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import DamageCalculator from '@/components/DamageCalculator.vue'
 import { Battle } from '@/models/Battle'
-import { getDatabaseStore, initDatabaseStore } from '@/database'
 
 export default defineComponent({
   name: 'DamageCalculatorPage',
@@ -71,19 +57,6 @@ export default defineComponent({
 
     const attacker = computed(() => calculators.value[activeIndex.value].attacker)
     const defender = computed(() => calculators.value[activeIndex.value].defender)
-
-    getDatabaseStore("creatures").then((creatures) => {
-      if (!creatures.length) {
-        initDatabaseStore("classes")
-        initDatabaseStore("creatures")
-        initDatabaseStore("heroes")
-        initDatabaseStore("levels")
-        initDatabaseStore("skills")
-        initDatabaseStore("spells")
-        initDatabaseStore("terrains")
-        initDatabaseStore("towns")
-      }
-    })
 
     watch(
       [attacker, defender],

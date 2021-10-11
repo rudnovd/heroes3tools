@@ -1,18 +1,9 @@
 <template>
-  <button
-    class="pick-creature-button"
-    :class="`color-${color}`"
-    @click="showSelectUnitModal = true"
-  >
+  <button class="pick-creature-button" :class="`color-${color}`" @click="showSelectUnitModal = true">
     <slot />
   </button>
 
-  <SelectUnitModal
-    :show="showSelectUnitModal"
-    :target="color"
-    @close="showSelectUnitModal = false"
-    @select="$emit('select', $event)"
-  />
+  <SelectUnitModal :show="showSelectUnitModal" @close="showSelectUnitModal = false" @select="$emit('select', $event)" />
 </template>
 
 <script lang="ts">
@@ -32,7 +23,7 @@ export default defineComponent({
   emits: ['click', 'select'],
   setup() {
     return {
-      showSelectUnitModal: ref(false)
+      showSelectUnitModal: ref(false),
     }
   },
 })

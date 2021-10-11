@@ -1,12 +1,5 @@
 <template>
-  <input
-    :value="value"
-    class="input-number"
-    type="number"
-    :min="min"
-    :max="max"
-    @input="onInput"
-  />
+  <input :value="currentValue" class="input-number" type="number" :min="min" :max="max" @input="onInput" />
 </template>
 
 <script lang="ts">
@@ -32,31 +25,34 @@ export default defineComponent({
     debounce: {
       type: Number,
       default: 0,
-    }
+    },
   },
   emits: ['input'],
   setup(props, context) {
-    const value = ref(props.value)
+    const currentValue = ref(props.value)
     const previousValue = ref(0)
-    const debouncedValue = useDebounce(value, props.debounce)
+    const debouncedValue = useDebounce(currentValue, props.debounce)
 
-    const onInput = (event: any) => {
+    const onInput = (event: Event) => {
       if (!event.target) return
 
-      if (event.target.value < props.min || event.target.value > props.max) {
-        value.value = previousValue.value
-        event.target.value = previousValue.value
+      const target = event.target as HTMLInputElement
+
+      let targetValue = parseInt(target.value)
+      if (targetValue < props.min || targetValue > props.max) {
+        currentValue.value = previousValue.value
+        targetValue = previousValue.value
       } else {
-        value.value = parseInt(event.target.value)
-        previousValue.value = value.value
+        currentValue.value = targetValue
+        previousValue.value = currentValue.value
       }
     }
 
     watch(debouncedValue, () => context.emit('input', debouncedValue.value))
 
     return {
-      value,
-      onInput
+      currentValue,
+      onInput,
     }
   },
 })

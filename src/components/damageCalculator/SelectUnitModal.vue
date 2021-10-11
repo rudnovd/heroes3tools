@@ -1,9 +1,5 @@
 <template>
-  <BaseModal
-    :show="show"
-    size="large"
-    @close="onClose"
-  >
+  <BaseModal :show="show" size="large" @close="onClose">
     <template #header>
       <input
         v-model="search"
@@ -12,20 +8,13 @@
         :placeholder="t('damageCalculator.components.selectUnitModal.searchCreature')"
         autofocus
         @keyup.enter="selectFirstFounded"
-      >
+      />
     </template>
 
     <template #content>
       <div class="units-modal-content">
-        <div
-          v-if="!search"
-          class="units"
-        >
-          <div
-            v-for="town in towns"
-            :key="town.name"
-            class="town"
-          >
+        <div v-if="!search" class="units">
+          <div v-for="town in towns" :key="town.name" class="town">
             <CreaturePortrait
               v-for="creature in creatures.filter((_creature) => _creature.townId === town.id)"
               :key="creature.id"
@@ -52,10 +41,7 @@
           </div>
         </div>
 
-        <div
-          v-else
-          class="search-units"
-        >
+        <div v-else class="search-units">
           <CreaturePortrait
             v-for="creature in filterCreaturesByName"
             :key="creature.id"
@@ -79,7 +65,6 @@ import type { Creature } from '@/models/Creature'
 import type { Town } from '@/models/Town'
 import { useI18n } from 'vue-i18n'
 import { getDatabaseStore } from '@/database'
-import type { BattleSide } from '@/models/Battle'
 
 export default defineComponent({
   name: 'SelectUnitModal',
@@ -88,12 +73,6 @@ export default defineComponent({
     CreaturePortrait: defineAsyncComponent(() => import('@/components/damageCalculator/CreaturePortrait.vue')),
   },
   mixins: [BaseModal],
-  props: {
-    target: {
-      type: String as () => BattleSide,
-      required: true
-    }
-  },
   emits: ['close', 'select'],
   setup(props, context) {
     const { t } = useI18n()
@@ -101,8 +80,8 @@ export default defineComponent({
     const towns = ref([] as Town[])
     const creatures = ref([] as Array<Creature>)
 
-    getDatabaseStore("creatures").then(result => creatures.value = result)
-    getDatabaseStore('towns').then(result => towns.value = result)
+    getDatabaseStore('creatures').then((result) => (creatures.value = result))
+    getDatabaseStore('towns').then((result) => (towns.value = result))
 
     const filterCreaturesByName = computed((): Creature[] => {
       return creatures.value.filter((creature: Creature) => {
