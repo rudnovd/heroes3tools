@@ -118,10 +118,19 @@ export const Effects = {
       Creatures.AzureDragon,
     ]
 
-    if (!initiator.hero || initiator.hero.skills.fire > 1) {
-      slayerCreatures.push(Creatures.Angel, Creatures.Archangel, Creatures.Devil, Creatures.ArchDevil)
-    } else if (initiator.hero.skills.fire > 2) {
-      slayerCreatures.push(Creatures.Giant, Creatures.Titan, Creatures.Firebird, Creatures.SeaSerpent, Creatures.Haspid)
+    if (initiator.hero) {
+      if (initiator.hero.skills.fire > 1) {
+        slayerCreatures.push(Creatures.Angel, Creatures.Archangel, Creatures.Devil, Creatures.ArchDevil)
+      }
+      if (initiator.hero.skills.fire > 2) {
+        slayerCreatures.push(
+          Creatures.Giant,
+          Creatures.Titan,
+          Creatures.Firebird,
+          Creatures.SeaSerpent,
+          Creatures.Haspid
+        )
+      }
     }
 
     if (defender.creatures.find((defenderCreature) => slayerCreatures.indexOf(defenderCreature.id) !== -1)) {
