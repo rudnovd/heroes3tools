@@ -3,14 +3,11 @@ module.exports = {
   globals: {},
   testEnvironment: 'jsdom',
   transform: {
-    "^.+\\.ts?$": "ts-jest"
+    '^.+\\.ts?$': 'ts-jest',
   },
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1'
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
-  setupFiles: [
-    "fake-indexeddb/auto",
-    "./src/assets/database/heroes.ts"
-  ],
-  moduleFileExtensions: ['ts', 'js', 'node']
+  setupFiles: ['fake-indexeddb/auto', './src/assets/database/heroes.ts'],
+  moduleFileExtensions: ['ts', 'js', 'node'],
 }
