@@ -1,12 +1,11 @@
 <template>
-  <BaseModal :show="show" size="large" @close="onClose">
+  <BaseDialog :show="show" size="large" @close="onClose">
     <template #header>
       <input
         v-model="search"
         type="text"
         class="search-input"
         :placeholder="t('damageCalculator.components.selectUnitModal.searchCreature')"
-        autofocus
         @keyup.enter="selectFirstFounded"
       />
     </template>
@@ -15,12 +14,12 @@
       <div class="units-modal-content">
         <div v-if="!search" class="units">
           <div v-for="town in towns" :key="town.name" class="town">
-            <CreaturePortrait
-              v-for="creature in creatures.filter((_creature) => _creature.townId === town.id)"
+            <Portrait
+              v-for="creature in creaturesByTowns[town.id]"
               :key="creature.id"
               class="creature-img"
               folder="/images/creatures/portraits/big"
-              :creature="creature"
+              :object="creature"
               :width="58"
               :height="64"
               @click="selectUnit(creature)"
@@ -28,12 +27,12 @@
           </div>
 
           <div class="town">
-            <CreaturePortrait
-              v-for="neutralCreature in creatures.filter((_creature) => !_creature.townId)"
+            <Portrait
+              v-for="neutralCreature in creaturesByTowns[0]"
               :key="neutralCreature.id"
               class="creature-img"
               folder="/images/creatures/portraits/big"
-              :creature="neutralCreature"
+              :object="neutralCreature"
               :width="58"
               :height="64"
               @click="selectUnit(neutralCreature)"
@@ -42,12 +41,12 @@
         </div>
 
         <div v-else class="search-units">
-          <CreaturePortrait
-            v-for="creature in filterCreaturesByName"
+          <Portrait
+            v-for="creature in searchCreatures"
             :key="creature.id"
             class="creature-img"
             folder="/images/creatures/portraits/big"
-            :creature="creature"
+            :object="creature"
             :width="58"
             :height="64"
             @click="selectUnit(creature)"
@@ -55,35 +54,62 @@
         </div>
       </div>
     </template>
-  </BaseModal>
+  </BaseDialog>
 </template>
 
 <script lang="ts">
 import { computed, defineAsyncComponent, defineComponent, ref } from 'vue'
-import BaseModal from '@/components/base/BaseModal.vue'
 import type { Creature } from '@/models/Creature'
 import { useI18n } from 'vue-i18n'
 import { useStore } from '@/store'
+import BaseDialog from '@/components/base/BaseDialog.vue'
 
 export default defineComponent({
   name: 'SelectUnitModal',
   components: {
-    BaseModal,
-    CreaturePortrait: defineAsyncComponent(() => import('@/components/damageCalculator/CreaturePortrait.vue')),
+    BaseDialog,
+    Portrait: defineAsyncComponent(() => import('@/components/Portrait.vue')),
   },
-  mixins: [BaseModal],
+  props: {
+    show: {
+      type: Boolean,
+      required: true,
+    },
+  },
   emits: ['close', 'select'],
   setup(props, context) {
     const { t } = useI18n()
     const search = ref('')
-    const { creatures, towns } = useStore()
+    const store = useStore()
 
-    const filterCreaturesByName = computed((): Creature[] => {
-      return creatures.filter((creature: Creature) => {
+    const creatures = computed(() => store.creatures)
+    const towns = computed(() => store.towns)
+
+    const searchCreatures = computed(() => {
+      return creatures.value.filter((creature: Creature) => {
         const searchText = search.value.toLowerCase()
         const creatureName = creature.name.toLowerCase()
         return creatureName.indexOf(searchText) > -1
       })
+    })
+
+    const creaturesByTowns = computed(() => {
+      const map: {
+        [key: number]: Array<Creature>
+      } = {
+        0: [],
+      }
+
+      towns.value.forEach((town) => (map[town.id] = []))
+      creatures.value.forEach((creature) => {
+        if (creature.townId) {
+          map[creature.townId].push(creature)
+        } else {
+          map[0].push(creature)
+        }
+      })
+
+      return map
     })
 
     const selectUnit = (value: Creature) => {
@@ -93,7 +119,7 @@ export default defineComponent({
     }
 
     const selectFirstFounded = () => {
-      context.emit('select', filterCreaturesByName.value[0])
+      context.emit('select', searchCreatures.value[0])
       context.emit('close')
       search.value = ''
     }
@@ -104,13 +130,12 @@ export default defineComponent({
     }
 
     return {
-      t,
-      creatures,
       towns,
-
       search,
-      filterCreaturesByName,
+      creaturesByTowns,
+      searchCreatures,
 
+      t,
       selectUnit,
       selectFirstFounded,
       onClose,
@@ -127,24 +152,6 @@ export default defineComponent({
   pointer-events: auto;
   background-clip: padding-box;
   user-select: none;
-
-  .header {
-    display: flex;
-    margin-bottom: 10px;
-
-    input {
-      flex: 0 0 33.3%;
-      min-width: 150px;
-      max-width: 300px;
-      padding: 0.25rem 0.5rem;
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-
-    .close-button {
-      margin-left: auto;
-    }
-  }
 }
 
 .search-input {

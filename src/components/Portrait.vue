@@ -1,14 +1,14 @@
 <template>
   <picture>
-    <source :srcset="`${folder}/${creature.id}.webp`" type="image/webp" />
-    <source :srcset="`${folder}/${creature.id}.gif`" type="image/gif" />
+    <source :srcset="`${folder}/${object.id}.webp`" type="image/webp" />
+    <source :srcset="`${folder}/${object.id}.gif`" type="image/gif" />
     <img
-      :alt="creature.name"
-      :title="creature.name"
+      :alt="object.name"
+      :title="object.name"
       :width="width"
       :height="height"
       loading="lazy"
-      @click="$emit('click', creature.id)"
+      @click="$emit('click', object.id)"
     />
   </picture>
 </template>
@@ -19,10 +19,9 @@ import type { Creature, CreatureInstance } from '@/models/Creature'
 import type { Hero } from '@/models/Hero'
 
 export default defineComponent({
-  name: 'CreaturePortrait',
+  name: 'Portrait',
   props: {
-    // TODO: refactor prop name
-    creature: {
+    object: {
       type: Object as () => Creature | Hero | CreatureInstance,
       required: true,
     },

@@ -5,10 +5,6 @@
         {{ aboutText }}
       </button>
 
-      <!-- <button class="footer-button" @click="showHowToUseModal = true">
-        t('footer.buttons.howToUse'
-      </button> -->
-
       <!-- <select v-model="selectedLocale" class="select-language" @change="changeLocale(selectedLocale)">
         <option v-for="locale in locales" :key="locale.name" :value="locale.name">
           {{ locale.value }}
@@ -32,14 +28,19 @@
       </button>
     </div>
 
-    <BaseModal :show="showAboutModal" size="small" @close="showAboutModal = false">
+    <BaseDialog v-if="showAboutModal" :show="showAboutModal" size="small" @close="showAboutModal = false">
       <template #content>
         <slot name="aboutModal"></slot>
       </template>
-    </BaseModal>
+    </BaseDialog>
 
-    <BaseModal :show="foundErrorModal" @close="foundErrorModal = false">
+    <BaseDialog v-if="foundErrorModal" :show="foundErrorModal" @close="foundErrorModal = false">
       <template #content>
+        <p>
+          Send issue in
+          <a href="https://github.com/rudnovd/heroes3tools/issues/new" target="_blank" rel="noopener">Github</a>
+          or use anonymous form:
+        </p>
         <iframe
           src="https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform?embedded=true"
           width="100%"
@@ -48,9 +49,9 @@
           Загрузка...
         </iframe>
       </template>
-    </BaseModal>
+    </BaseDialog>
 
-    <BaseModal :show="showLicenseModal" @close="showLicenseModal = false">
+    <BaseDialog v-if="showLicenseModal" :show="showLicenseModal" @close="showLicenseModal = false">
       <template #content>
         <p class="modal-text">{{ t('footer.license.1') }}</p>
         <i18n class="modal-text" path="footer.license.2" tag="p">
@@ -60,15 +61,14 @@
         </i18n>
         <p class="modal-text">{{ t('footer.license.3') }}</p>
         <p class="modal-text">{{ t('footer.license.4') }}</p>
-        <p class="modal-text">{{ t('footer.license.5') }}</p>
       </template>
-    </BaseModal>
+    </BaseDialog>
   </footer>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import BaseModal from '@/components/base/BaseModal.vue'
+import BaseDialog from '@/components/base/BaseDialog.vue'
 import { loadResourcesByLocale } from '@/database'
 import { useI18n } from 'vue-i18n'
 import { loadLocaleMessages, setI18nLanguage } from '@/i18n'
@@ -76,7 +76,7 @@ import { loadLocaleMessages, setI18nLanguage } from '@/i18n'
 export default defineComponent({
   name: 'PageFooter',
   components: {
-    BaseModal,
+    BaseDialog,
   },
   props: {
     aboutText: {
