@@ -45,12 +45,10 @@
     "damageCalculator": {
       "about": "About",
       "data": {
-        "1": "Heroes III damage calculator",
-        "2": "This software is used to calculate damage to creatures (with stats, skills, spells and specialties modifiers) in the game Heroes of Might and Magic III: Horn of The Abyss.",
-        "3": "This calculator is not absolutely accurate, but you can help make it better. If you want to help: report any errors to {errorForm}",
-        "4": "Calculator is based on the {desktopVersion}",
-        "5": "Send ideas or improvements to {email}",
-
+        "1": "Heroes 3 tools",
+        "2": "Heroes 3 tools - set of tools to simplify calculations in Heroes of Might and Magic III: Horn of The Abyss.",
+        "3": "Calculator is based on the {desktopVersion}",
+        "4": "Send ideas or improvements to {email}",
         "errorForm": "this form",
         "desktopVersion": "desktop version"
       }
