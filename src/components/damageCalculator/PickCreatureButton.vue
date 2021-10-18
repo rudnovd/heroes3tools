@@ -12,6 +12,7 @@
 </template>
 
 <script lang="ts">
+import { BattleSide } from '@/models/Battle'
 import { defineComponent, defineAsyncComponent, ref } from 'vue'
 
 export default defineComponent({
@@ -21,7 +22,7 @@ export default defineComponent({
   },
   props: {
     color: {
-      type: String as () => 'attacker' | 'defender',
+      type: String as () => BattleSide,
       required: true,
     },
   },

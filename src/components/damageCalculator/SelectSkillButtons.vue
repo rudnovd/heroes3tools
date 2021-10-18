@@ -16,6 +16,7 @@
 </template>
 
 <script lang="ts">
+import { BattleSide } from '@/models/Battle'
 import type { Level } from '@/models/Level'
 import { defineComponent, ref } from 'vue'
 
@@ -23,7 +24,7 @@ export default defineComponent({
   name: 'SelectSkillButtons',
   props: {
     color: {
-      type: String as () => 'attacker' | 'defender',
+      type: String as () => BattleSide,
       required: true,
     },
     name: {
@@ -39,6 +40,7 @@ export default defineComponent({
   emits: ['click'],
   setup(props, context) {
     const selectedLevel = ref(0)
+
     const onClick = (level: number) => {
       if (level === selectedLevel.value) {
         selectedLevel.value = 0

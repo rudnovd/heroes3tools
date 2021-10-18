@@ -16,14 +16,14 @@
   >
     <template #option="{ option }">
       <div class="option">
-        <CreaturePortrait :folder="`/images/terrains`" :creature="option" :width="46" :height="30" />
+        <Portrait :folder="`/images/terrains`" :object="option" :width="46" :height="30" />
         {{ option.name }}
       </div>
     </template>
 
     <template #singlelabel="{ value }">
       <div class="multiselect-single-label">
-        <CreaturePortrait :folder="`/images/terrains`" :creature="value" :width="46" :height="30" />
+        <Portrait :folder="`/images/terrains`" :object="value" :width="46" :height="30" />
         {{ value.name }}
       </div>
     </template>
@@ -39,7 +39,7 @@ export default defineComponent({
   name: 'SelectTerrain',
   components: {
     Multiselect,
-    CreaturePortrait: defineAsyncComponent(() => import('@/components/damageCalculator/CreaturePortrait.vue')),
+    Portrait: defineAsyncComponent(() => import('@/components/Portrait.vue')),
   },
   props: {
     terrains: {
