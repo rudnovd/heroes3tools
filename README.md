@@ -1,7 +1,10 @@
-# Heroes III damage calculator
+# Heroes 3 Tools
 
-This software is used to calculate damage to creatures (with stats, skills, spells and specialties modifiers) in the game Heroes of Might and Magic III: Horn of The Abyss.
+Heroes 3 tools - set of tools to simplify calculations in Heroes of Might and Magic III: Horn of The Abyss.
 
-![Calculator image](https://i.imgur.com/AY9Drvh.png)
+![Damage Calculator image](https://raw.githubusercontent.com/rudnovd/heroes3tools/master/docs/calculator-image.png)
 
-### [Development](https://github.com/rudnovd/heroes3-damage-calculator/wiki/Development)
+## Development
+
+- Install dependencies: `npm install`
+- Start dev-server: `npm start`
