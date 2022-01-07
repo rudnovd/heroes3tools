@@ -9,8 +9,20 @@
 </template>
 
 <script lang="ts">
+import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { defineComponent } from 'vue'
 import { useRoute } from 'vue-router'
+useRegisterSW({
+  immediate: true,
+  onRegistered(r) {
+    r &&
+      setInterval(async () => {
+        /* eslint-disable no-console */
+        console.log('Checking for sw update')
+        await r.update()
+      }, 20000 /* 20s for testing purposes */)
+  },
+})
 
 export default defineComponent({
   name: 'App',

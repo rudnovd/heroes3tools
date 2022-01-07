@@ -16,7 +16,8 @@
     "resolveJsonModule": true,
     "noImplicitAny": false,
     "types": [
-      "jest"
+      "jest",
+      "vite-plugin-pwa/client"
     ],
     "paths": {
       "@/*": [

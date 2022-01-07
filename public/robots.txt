@@ -1,3 +1,2 @@
 User-agent: *
 Disallow:
-X-Robots-Tag: all
