@@ -1,4 +1,4 @@
-import { getObjectById } from '@/database'
+import { classes } from '@/assets/database/classes'
 
 export interface Hero {
   id: number
@@ -67,22 +67,15 @@ export class HeroInstance implements Hero {
       earth: 0,
       water: 0,
     }
-  }
 
-  public async initialize(): Promise<void> {
-    try {
-      const heroClass = await getObjectById('classes', this.classId)
-
-      if (heroClass) {
-        this.stats = {
-          attack: heroClass.attack,
-          defense: heroClass.defense,
-          knowledge: heroClass.knowledge,
-          power: heroClass.power,
-        }
+    const heroClass = classes.find((classObject) => classObject.id === this.classId)
+    if (heroClass) {
+      this.stats = {
+        attack: heroClass.attack,
+        defense: heroClass.defense,
+        knowledge: heroClass.knowledge,
+        power: heroClass.power,
       }
-    } catch (error) {
-      console.error(error)
     }
   }
 }
