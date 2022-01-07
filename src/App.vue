@@ -12,7 +12,8 @@
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { defineComponent } from 'vue'
 import { useRoute } from 'vue-router'
-useRegisterSW({
+import { useStore } from './store'
+const { offlineReady, needRefresh, updateServiceWorker } = useRegisterSW({
   immediate: true,
   onRegistered(r) {
     r &&
@@ -27,8 +28,13 @@ useRegisterSW({
 export default defineComponent({
   name: 'App',
   setup() {
+    const store = useStore()
+    const route = useRoute()
+
+    store.initData()
+
     return {
-      route: useRoute(),
+      route,
     }
   },
 })

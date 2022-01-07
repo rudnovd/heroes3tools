@@ -108,20 +108,20 @@
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent, watch } from '@vue/runtime-core'
-import { reactive, ref } from '@vue/reactivity'
-import type { Battle, DamageCalculatorBattleSide } from '@/models/Battle'
-import { CreatureInstance } from '@/models/Creature'
-import type { Creature } from '@/models/Creature'
-import { useI18n } from 'vue-i18n'
 import PickCreatureButton from '@/components/damageCalculator/PickCreatureButton.vue'
 import SelectHero from '@/components/SelectHero.vue'
+import SelectTerrain from '@/components/SelectTerrain.vue'
+import type { Battle, DamageCalculatorBattleSide } from '@/models/Battle'
+import type { Creature } from '@/models/Creature'
+import { CreatureInstance } from '@/models/Creature'
+import type { Hero } from '@/models/Hero'
 import { HeroInstance } from '@/models/Hero'
 import type { Spell } from '@/models/Spell'
-import type { Hero } from '@/models/Hero'
 import type { Terrain } from '@/models/Terrain'
-import SelectTerrain from '@/components/SelectTerrain.vue'
 import { useStore } from '@/store'
+import { reactive, ref } from '@vue/reactivity'
+import { defineAsyncComponent, defineComponent, watch } from '@vue/runtime-core'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'DamageCalculator',
@@ -203,9 +203,7 @@ export default defineComponent({
 
       if (hero) {
         const newHero = new HeroInstance(hero as Hero)
-        newHero.initialize().finally(() => {
-          side.hero = newHero
-        })
+        side.hero = newHero
       } else {
         side.hero = null
       }
