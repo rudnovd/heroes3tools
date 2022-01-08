@@ -11,18 +11,18 @@ const pwaOptions: Partial<VitePWAOptions> = {
     'robots.txt',
     'favicon-apple.png',
     'favicon-192.png',
+    'favicon-maskable-192.png',
     'favicon-512.png',
   ],
   strategies: 'injectManifest',
   srcDir: 'src',
   filename: 'sw.ts',
-
   manifest: {
     name: 'Heroes 3 tools',
     short_name: 'heroes3tools',
     description: 'Web tools for simplification playing in Heroes of Might and Magic III: Horn of The Abyss',
     orientation: 'portrait',
-    theme_color: '#ffffff',
+    theme_color: '#c0b675',
     start_url: '/',
     id: '/',
     icons: [
@@ -30,6 +30,12 @@ const pwaOptions: Partial<VitePWAOptions> = {
         src: 'favicon-192.png',
         sizes: '192x192',
         type: 'image/png',
+      },
+      {
+        src: 'favicon-maskable-192.png',
+        sizes: '196x196',
+        type: 'image/png',
+        purpose: 'any maskable',
       },
       {
         src: 'favicon-512.png',
