@@ -3,9 +3,7 @@
     <img src="@/assets/icons/arrow_back.svg" width="16" height="16" />
     Home page
   </router-link>
-  <main>
-    <router-view />
-  </main>
+  <router-view />
 </template>
 
 <script lang="ts">
