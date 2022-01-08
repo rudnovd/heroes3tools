@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-alpha.3](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-alpha.2...v2.0.0-alpha.3) (2022-01-08)
+
+
+### Features
+
+* init PWA ([5fcfc00](https://github.com/rudnovd/heroes3tools/commit/5fcfc00de376aaae5b1ae8b9ddc6aa21f31233df))
+* **PWA:** update service worker ([b4b7a43](https://github.com/rudnovd/heroes3tools/commit/b4b7a43852142588b907c646f0ed809ccd1763e7))
+* remove indexedDB ([d3fa64d](https://github.com/rudnovd/heroes3tools/commit/d3fa64d4c247fdf455cbe161e52ebbd646a8bed4))
+
 ## [2.0.0-alpha.2](https://github.com/rudnovd/heroes3tools/compare/v1.0.1...v2.0.0-alpha.2) (2021-10-11)
 
 
