@@ -10,18 +10,22 @@
 
 <script lang="ts">
 import { useRegisterSW } from 'virtual:pwa-register/vue'
-import { defineComponent } from 'vue'
+import { defineComponent, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from './store'
-const { offlineReady, needRefresh, updateServiceWorker } = useRegisterSW({
+const { needRefresh, updateServiceWorker } = useRegisterSW({
   immediate: true,
-  onRegistered(r) {
-    r &&
+  onRegistered(registration) {
+    if (import.meta.env.DEV && registration) {
       setInterval(async () => {
         /* eslint-disable no-console */
         console.log('Checking for sw update')
-        await r.update()
+        await registration.update()
       }, 20000 /* 20s for testing purposes */)
+    } else if (import.meta.env.PROD && registration) {
+      /* eslint-disable no-console */
+      console.log('Service worker registered')
+    }
   },
 })
 
@@ -30,6 +34,12 @@ export default defineComponent({
   setup() {
     const store = useStore()
     const route = useRoute()
+
+    watch(needRefresh, () => {
+      updateServiceWorker()
+      /* eslint-disable no-console */
+      console.log('Service work updated')
+    })
 
     store.initData()
 
