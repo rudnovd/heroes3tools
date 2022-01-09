@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "start": "vite",
-    "build": "NODE_ENV=production npm run lint && vue-tsc --noEmit && vite build",
+    "build": "cross-env NODE_ENV=production npm run lint && vue-tsc --noEmit && vite build",
     "serve": "vite preview",
     "test": "jest",
-    "lint": "eslint --ext .ts,.vue src",
-    "lint:fix": "eslint --ext .ts,.vue --fix src",
+    "lint": "cross-env NODE_ENV=production eslint --ext .ts,.vue src",
+    "lint:fix": "cross-env NODE_ENV=production eslint --ext .ts,.vue --fix src",
     "commit": "npx git-cz"
   },
   "dependencies": {
@@ -27,6 +27,7 @@
     "@vitejs/plugin-vue": "^2.0.1",
     "@vue/eslint-config-typescript": "^10.0.0",
     "@vue/test-utils": "^2.0.0-rc.18",
+    "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
