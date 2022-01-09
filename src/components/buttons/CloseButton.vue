@@ -1,5 +1,5 @@
 <template>
-  <button class="close-button" @click="$emit('click')">
+  <button class="close-button" aria-label="close button" @click="$emit('click')">
     <span class="cross-first-line" />
     <span class="cross-second-line" />
   </button>

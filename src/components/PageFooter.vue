@@ -67,11 +67,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
 import BaseDialog from '@/components/base/BaseDialog.vue'
-import { loadResourcesByLocale } from '@/database'
-import { useI18n } from 'vue-i18n'
 import { loadLocaleMessages, setI18nLanguage } from '@/i18n'
+import { defineComponent, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'PageFooter',
@@ -109,7 +108,7 @@ export default defineComponent({
       await loadLocaleMessages(value)
       getLocaleMessage(value)
       document.title = t(document.title).toString()
-      loadResourcesByLocale('creatures', value as 'ru' | 'en')
+      // loadResourcesByLocale('creatures', value as 'ru' | 'en')
     }
 
     return {

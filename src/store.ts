@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { DataStore, getDatabaseStore, initDatabaseStore } from './database'
 import { Class } from './models/Class'
 import { Creature } from './models/Creature'
 import { Spells } from './models/enums'
@@ -10,7 +9,7 @@ import { Spell } from './models/Spell'
 import { Terrain } from './models/Terrain'
 import { Town } from './models/Town'
 
-export interface PiniaStateData {
+export interface StoreState {
   classes: Array<Class>
   creatures: Array<Creature>
   heroes: Array<Hero>
@@ -22,19 +21,18 @@ export interface PiniaStateData {
 }
 
 export const useStore = defineStore('data', {
-  state: () =>
-    ({
-      classes: [],
-      creatures: [],
-      heroes: [],
-      skills: [],
-      levels: [],
-      terrains: [],
-      spells: [],
-      towns: [],
-    } as PiniaStateData),
+  state: (): StoreState => ({
+    classes: [],
+    creatures: [],
+    heroes: [],
+    skills: [],
+    levels: [],
+    terrains: [],
+    spells: [],
+    towns: [],
+  }),
   getters: {
-    attackPositiveEffects(state) {
+    attackPositiveEffects(): Array<Spell> {
       const attackPositiveEffectsIds = [
         Spells.Bless,
         Spells.Bloodlust,
@@ -43,47 +41,22 @@ export const useStore = defineStore('data', {
         Spells.Precision,
         Spells.Slayer,
       ]
-
-      return state.spells.filter((spell) => attackPositiveEffectsIds.indexOf(spell.id) !== -1)
+      return this.spells.filter((spell) => attackPositiveEffectsIds.indexOf(spell.id) !== -1)
     },
-    defensePositiveEffects(state) {
+    defensePositiveEffects(): Array<Spell> {
       const defensePositiveEffectsIds = [Spells.Shield, Spells.StoneSkin, Spells.AirShield]
-      return state.spells.filter((spell) => defensePositiveEffectsIds.indexOf(spell.id) !== -1)
+      return this.spells.filter((spell) => defensePositiveEffectsIds.indexOf(spell.id) !== -1)
     },
-    attackNegativeEffects(state) {
+    attackNegativeEffects(): Array<Spell> {
       const attackNegativeEffectsIds = [Spells.Curse, Spells.Weakness, Spells.DisruptingRay]
-      return state.spells.filter((spell) => attackNegativeEffectsIds.indexOf(spell.id) !== -1)
+      return this.spells.filter((spell) => attackNegativeEffectsIds.indexOf(spell.id) !== -1)
     },
   },
   actions: {
-    async initData() {
-      const dataStores: Array<DataStore> = [
-        'classes',
-        'creatures',
-        'heroes',
-        'skills',
-        'levels',
-        'terrains',
-        'spells',
-        'towns',
-      ]
-
-      dataStores.forEach(async (datastore: DataStore) => {
-        let data = await getDatabaseStore(datastore)
-
-        if (!data || !data.length) {
-          data = await initDatabaseStore(datastore)
-        }
-
-        // TODO: fix
-        if (datastore === 'classes') this.classes = data as Class[]
-        if (datastore === 'creatures') this.creatures = data as Creature[]
-        if (datastore === 'heroes') this.heroes = data as Hero[]
-        if (datastore === 'skills') this.skills = data as Skill[]
-        if (datastore === 'levels') this.levels = data as Level[]
-        if (datastore === 'terrains') this.terrains = data as Terrain[]
-        if (datastore === 'spells') this.spells = data as Spell[]
-        if (datastore === 'towns') this.towns = data as Town[]
+    initData() {
+      const tables = ['classes', 'creatures', 'heroes', 'skills', 'levels', 'terrains', 'spells', 'towns']
+      tables.forEach(async (table: string) => {
+        this[table] = (await import(`./assets/database/${table}.ts`))[table]
       })
     },
   },
