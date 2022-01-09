@@ -8,6 +8,6 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
-  setupFiles: ['fake-indexeddb/auto', './src/assets/database/heroes.ts'],
+  setupFiles: ['./src/assets/database/heroes.ts'],
   moduleFileExtensions: ['ts', 'js', 'node'],
 }

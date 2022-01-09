@@ -1,45 +1,58 @@
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import { defineConfig } from 'vite'
-import { VitePWA } from 'vite-plugin-pwa'
+import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa'
+
+const pwaOptions: Partial<VitePWAOptions> = {
+  base: '/',
+  includeAssets: [
+    'favicon.svg',
+    'favicon.ico',
+    'robots.txt',
+    'sitemap.txt',
+    'favicon-apple.png',
+    'favicon-192.png',
+    'favicon-maskable-192.png',
+    'favicon-512.png',
+  ],
+  strategies: 'injectManifest',
+  srcDir: 'src',
+  filename: 'sw.ts',
+  manifest: {
+    name: 'Heroes 3 tools',
+    short_name: 'heroes3tools',
+    description: 'Web tools for simplification playing in Heroes of Might and Magic III: Horn of The Abyss',
+    orientation: 'portrait',
+    theme_color: '#c0b675',
+    start_url: '/',
+    id: '/',
+    icons: [
+      {
+        src: 'favicon-192.png',
+        sizes: '192x192',
+        type: 'image/png',
+      },
+      {
+        src: 'favicon-maskable-192.png',
+        sizes: '196x196',
+        type: 'image/png',
+        purpose: 'any maskable',
+      },
+      {
+        src: 'favicon-512.png',
+        sizes: '512x512',
+        type: 'image/png',
+      },
+    ],
+  },
+  workbox: {
+    sourcemap: true,
+  },
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    VitePWA({
-      mode: 'development',
-      includeAssets: [
-        'favicon.svg',
-        'favicon.ico',
-        'robots.txt',
-        'favicon-apple.png',
-        'favicon-192.png',
-        'favicon-512.png',
-      ],
-      manifest: {
-        name: 'Heroes 3 tools',
-        short_name: 'heroes3tools',
-        description: 'Web tools for simplification playing in Heroes of Might and Magic III: Horn of The Abyss',
-        theme_color: '#ffffff',
-        icons: [
-          {
-            src: 'favicon-192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: 'favicon-512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
-      },
-      workbox: {
-        sourcemap: true,
-      },
-    }),
-  ],
+  plugins: [vue(), VitePWA(pwaOptions)],
   resolve: {
     alias: [
       {
