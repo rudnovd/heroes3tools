@@ -9,6 +9,7 @@ const pwaOptions: Partial<VitePWAOptions> = {
     'favicon.svg',
     'favicon.ico',
     'robots.txt',
+    'sitemap.txt',
     'favicon-apple.png',
     'favicon-192.png',
     'favicon-maskable-192.png',
