@@ -15,7 +15,7 @@
       <section class="main">
         <div class="creature">
           <button v-if="side.activeCreature" class="creature-button">
-            <Portrait
+            <ObjectPortrait
               :object="side.activeCreature"
               class="creature-img"
               folder="/images/creatures/portraits/big"
@@ -129,7 +129,7 @@ export default defineComponent({
     PickCreatureButton,
     SelectHero,
     SelectTerrain,
-    Portrait: defineAsyncComponent(() => import('@/components/Portrait.vue')),
+    ObjectPortrait: defineAsyncComponent(() => import('@/components/ObjectPortrait.vue')),
     BaseInputNumber: defineAsyncComponent(() => import('@/components/base/BaseInputNumber.vue')),
     InputHeroStat: defineAsyncComponent(() => import('@/components/damageCalculator/InputHeroStat.vue')),
     SelectSkillButtons: defineAsyncComponent(() => import('@/components/damageCalculator/SelectSkillButtons.vue')),
