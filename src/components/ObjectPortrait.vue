@@ -14,12 +14,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
 import type { Creature, CreatureInstance } from '@/models/Creature'
 import type { Hero } from '@/models/Hero'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Portrait',
+  name: 'ObjectPortrait',
   props: {
     object: {
       type: Object as () => Creature | Hero | CreatureInstance,

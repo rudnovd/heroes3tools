@@ -16,14 +16,14 @@
   >
     <template #option="{ option }">
       <div class="option">
-        <Portrait :folder="`/images/heroes/portraits/small`" :object="option" :width="46" :height="30" />
+        <ObjectPortrait :folder="`/images/heroes/portraits/small`" :object="option" :width="46" :height="30" />
         {{ option.name }}
       </div>
     </template>
 
     <template #singlelabel="{ value }">
       <div class="multiselect-single-label">
-        <Portrait :folder="`/images/heroes/portraits/small`" :object="value" :width="46" :height="30" />
+        <ObjectPortrait :folder="`/images/heroes/portraits/small`" :object="value" :width="46" :height="30" />
         {{ value.name }}
       </div>
     </template>
@@ -31,16 +31,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, defineAsyncComponent, watch, computed } from 'vue'
-import Multiselect from '@vueform/multiselect'
 import type { Hero, HeroInstance } from '@/models/Hero'
 import { useStore } from '@/store'
+import Multiselect from '@vueform/multiselect'
+import { computed, defineAsyncComponent, defineComponent, ref, watch } from 'vue'
 
 export default defineComponent({
   name: 'SelectHero',
   components: {
     Multiselect,
-    Portrait: defineAsyncComponent(() => import('@/components/Portrait.vue')),
+    ObjectPortrait: defineAsyncComponent(() => import('@/components/ObjectPortrait.vue')),
   },
   props: {
     value: {

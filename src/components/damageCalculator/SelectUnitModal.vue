@@ -14,7 +14,7 @@
       <div class="units-modal-content">
         <div v-if="!search" class="units">
           <div v-for="town in towns" :key="town.name" class="town">
-            <Portrait
+            <ObjectPortrait
               v-for="creature in creaturesByTowns[town.id]"
               :key="creature.id"
               class="creature-img"
@@ -27,7 +27,7 @@
           </div>
 
           <div class="town">
-            <Portrait
+            <ObjectPortrait
               v-for="neutralCreature in creaturesByTowns[0]"
               :key="neutralCreature.id"
               class="creature-img"
@@ -58,17 +58,17 @@
 </template>
 
 <script lang="ts">
-import { computed, defineAsyncComponent, defineComponent, ref } from 'vue'
-import type { Creature } from '@/models/Creature'
-import { useI18n } from 'vue-i18n'
-import { useStore } from '@/store'
 import BaseDialog from '@/components/base/BaseDialog.vue'
+import type { Creature } from '@/models/Creature'
+import { useStore } from '@/store'
+import { computed, defineAsyncComponent, defineComponent, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'SelectUnitModal',
   components: {
     BaseDialog,
-    Portrait: defineAsyncComponent(() => import('@/components/Portrait.vue')),
+    ObjectPortrait: defineAsyncComponent(() => import('@/components/ObjectPortrait.vue')),
   },
   props: {
     show: {
