@@ -2,7 +2,7 @@
   <transition name="transition-dialog">
     <teleport to="body">
       <div v-if="show" class="dialog-area" role="dialog">
-        <div ref="baseDialog" class="base-dialog" :class="`base-dialog-${size}`">
+        <div ref="baseDialogRef" class="base-dialog" :class="`base-dialog-${size}`">
           <div class="modal-content">
             <div class="header">
               <slot name="header"></slot>
@@ -18,9 +18,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, onUnmounted } from 'vue'
 import CloseButton from '@/components/buttons/CloseButton.vue'
 import { onClickOutside } from '@vueuse/core'
+import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
+
+type BaseDialogSizesProp = 'small' | 'medium' | 'large' | 'maximum'
 
 export default defineComponent({
   name: 'BaseDialog',
@@ -33,18 +35,15 @@ export default defineComponent({
       required: true,
     },
     size: {
-      type: String,
+      type: String as () => BaseDialogSizesProp,
       default: 'medium',
-      validator(size: string) {
-        return ['small', 'medium', 'large', 'extra-large', 'maximum'].includes(size)
-      },
     },
   },
   emits: ['close'],
   setup(props, context) {
-    const baseDialog = ref(null)
+    const baseDialogRef = ref(null)
 
-    onClickOutside(baseDialog, () => context.emit('close'))
+    onClickOutside(baseDialogRef, () => context.emit('close'))
 
     onMounted(() => {
       const scrollbarWidth = window.innerWidth - document.body.clientWidth
@@ -59,7 +58,9 @@ export default defineComponent({
       }, 200)
     })
 
-    return { baseDialog }
+    return {
+      baseDialogRef,
+    }
   },
 })
 </script>
