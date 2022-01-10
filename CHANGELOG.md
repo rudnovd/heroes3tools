@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-alpha.4](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-alpha.3...v2.0.0-alpha.4) (2022-01-10)
+
+
+### Bug Fixes
+
+* **BaseDialog:** chagne size prop ([31950db](https://github.com/rudnovd/heroes3tools/commit/31950db0bd7417669bd693c0a939c8e1c4258847))
+* **effects:** slayer effect ([020de2f](https://github.com/rudnovd/heroes3tools/commit/020de2fcef6b3bec734bf1753b18a57b9708fd1e))
+
 ## [2.0.0-alpha.3](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-alpha.2...v2.0.0-alpha.3) (2022-01-08)
 
 
