@@ -15,6 +15,7 @@ module.exports = {
     '@vue/eslint-config-typescript/recommended',
     'plugin:prettier-vue/recommended',
     'prettier',
+    'plugin:@peeky/recommended',
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? ['error', { allow: ['warn', 'error'] }] : 'off',
@@ -60,12 +61,4 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
-  overrides: [
-    {
-      files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],
-      env: {
-        jest: true,
-      },
-    },
-  ],
 }
