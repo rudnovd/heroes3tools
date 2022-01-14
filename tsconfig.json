@@ -16,8 +16,8 @@
     "resolveJsonModule": true,
     "noImplicitAny": false,
     "types": [
-      "jest",
-      "vite-plugin-pwa/client"
+      "vite-plugin-pwa/client",
+      "@peeky/test"
     ],
     "paths": {
       "@/*": [
