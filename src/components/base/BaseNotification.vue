@@ -1,24 +1,26 @@
 <template>
   <div v-if="show" class="notification-container">
-    <div class="notification">
-      <div><slot></slot></div>
-      <div v-if="buttons" class="notification-buttons">
-        <button
-          v-for="(button, index) in buttons"
-          :key="`button-${index}`"
-          class="notification-button"
-          :style="{ color: button.textColor }"
-          @click="onClick(button)"
-        >
-          {{ button.text }}
-        </button>
+    <transition name="notification">
+      <div v-if="showNotification" class="notification">
+        <div><slot></slot></div>
+        <div v-if="buttons" class="notification-buttons">
+          <button
+            v-for="(button, index) in buttons"
+            :key="`button-${index}`"
+            class="notification-button"
+            :style="{ color: button.textColor }"
+            @click="onClick(button)"
+          >
+            {{ button.text }}
+          </button>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, nextTick, ref } from 'vue'
 
 interface BaseNotificationButtonProp {
   text: string
@@ -55,13 +57,18 @@ export default defineComponent({
     },
   },
   emits: ['close'],
-  setup(props, context) {
+  setup(_, context) {
+    const showNotification = ref(false)
+    nextTick(() => (showNotification.value = true))
+
     const onClick = (button: BaseNotificationButtonProp) => {
-      context.emit('close')
+      showNotification.value = false
       if (button.onClick) button.onClick()
+      context.emit('close')
     }
 
     return {
+      showNotification,
       onClick,
     }
   },
@@ -81,6 +88,7 @@ export default defineComponent({
   flex-wrap: nowrap;
   align-items: flex-end;
   position: fixed;
+  pointer-events: none;
 }
 
 .notification {
@@ -102,6 +110,7 @@ export default defineComponent({
   color: v-bind(textColor);
   min-height: 50px;
   min-width: 100px;
+  pointer-events: all;
 }
 
 .notification-buttons {
@@ -116,5 +125,15 @@ export default defineComponent({
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
+}
+
+.notification-enter-active,
+.notification-leave-active {
+  transition: transform 1s ease;
+}
+
+.notification-enter-from,
+.notification-leave-to {
+  transform: translateY(100px);
 }
 </style>
