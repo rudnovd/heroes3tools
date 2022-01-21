@@ -4,45 +4,60 @@
     Home page
   </router-link>
   <router-view />
+
+  <BaseNotification v-if="needRefresh" :show="needRefresh" :buttons="notificationsButtons">
+    New content is available.
+  </BaseNotification>
 </template>
 
 <script lang="ts">
 import { useRegisterSW } from 'virtual:pwa-register/vue'
-import { defineComponent, watch } from 'vue'
+import { defineComponent } from 'vue'
 import { useRoute } from 'vue-router'
+import BaseNotification from './components/base/BaseNotification.vue'
 import { useStore } from './store'
-const { needRefresh, updateServiceWorker } = useRegisterSW({
-  immediate: true,
-  onRegistered(registration) {
-    if (import.meta.env.DEV && registration) {
-      setInterval(async () => {
-        /* eslint-disable no-console */
-        console.log('Checking for sw update')
-        await registration.update()
-      }, 20000 /* 20s for testing purposes */)
-    } else if (import.meta.env.PROD && registration) {
-      /* eslint-disable no-console */
-      console.log('Service worker registered')
-    }
-  },
-})
 
 export default defineComponent({
   name: 'App',
+  components: { BaseNotification },
   setup() {
     const store = useStore()
     const route = useRoute()
 
-    watch(needRefresh, () => {
-      updateServiceWorker()
-      /* eslint-disable no-console */
-      console.log('Service work updated')
-    })
-
     store.initData()
 
+    const { updateServiceWorker, needRefresh } = useRegisterSW({
+      immediate: false,
+      onRegistered(registration) {
+        if (registration) {
+          /* eslint-disable no-console */
+          console.log('Service worker registered')
+        }
+      },
+      onRegisterError(error) {
+        if (error) {
+          /* eslint-disable no-console */
+          console.log(`Service worker registartion error: ${error}`)
+        }
+      },
+    })
+
+    const notificationsButtons = [
+      {
+        text: 'Update app',
+        onClick: () => {
+          updateServiceWorker(true)
+        },
+      },
+      {
+        text: 'Dismiss',
+      },
+    ]
     return {
       route,
+
+      needRefresh,
+      notificationsButtons,
     }
   },
 })
