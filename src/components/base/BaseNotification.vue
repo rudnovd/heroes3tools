@@ -2,13 +2,13 @@
   <div v-if="show" class="notification-container">
     <transition name="notification">
       <div v-if="showNotification" class="notification">
-        <div><slot></slot></div>
-        <div v-if="buttons" class="notification-buttons">
+        <div class="notification-slot"><slot></slot></div>
+        <div v-if="buttons.length" class="notification-buttons">
           <button
             v-for="(button, index) in buttons"
             :key="`button-${index}`"
             class="notification-button"
-            :style="{ color: button.textColor }"
+            :style="{ color: button.textColor, background: button.background }"
             @click="onClick(button)"
           >
             {{ button.text }}
@@ -25,6 +25,7 @@ import { defineComponent, nextTick, ref } from 'vue'
 interface BaseNotificationButtonProp {
   text: string
   textColor?: string
+  background?: string
   onClick?: () => void
 }
 
@@ -48,12 +49,6 @@ export default defineComponent({
     buttons: {
       type: Array as () => Array<BaseNotificationButtonProp>,
       default: () => [],
-      validator: function (value: Array<BaseNotificationButtonProp>) {
-        value.map((button) => {
-          if (!button.textColor) button.textColor = 'rgb(255, 255, 255)'
-        })
-        return true
-      } as never,
     },
   },
   emits: ['close'],
@@ -107,10 +102,13 @@ export default defineComponent({
   padding: 1rem;
   border-radius: 4px;
   background-color: v-bind(color);
-  color: v-bind(textColor);
   min-height: 50px;
   min-width: 100px;
   pointer-events: all;
+}
+
+.notification-slot {
+  color: v-bind(textColor);
 }
 
 .notification-buttons {
