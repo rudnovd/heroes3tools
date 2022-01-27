@@ -48,9 +48,11 @@ export default defineComponent({
         onClick: () => {
           updateServiceWorker(true)
         },
+        textColor: 'rgb(255, 255, 255)',
       },
       {
         text: 'Dismiss',
+        textColor: 'rgb(255, 255, 255)',
       },
     ]
     return {
