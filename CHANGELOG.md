@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-alpha.5](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-alpha.4...v2.0.0-alpha.5) (2022-01-27)
+
+
+### Features
+
+* **components:** add BaseNotification component ([d0badf0](https://github.com/rudnovd/heroes3tools/commit/d0badf048027be291b6c772be894677ee163773b))
+* **enums:** add heroes enums ([0de1eaa](https://github.com/rudnovd/heroes3tools/commit/0de1eaa171c3ae0eb0829ee4602bd6651ba04845))
+* **serviceworker:** make updatable by selection ([9d5ff7e](https://github.com/rudnovd/heroes3tools/commit/9d5ff7ea8faafb4bbf3bf0a8e68a4367ecf936e9))
+
+
+### Bug Fixes
+
+* **BaseNotification:** fix styles ([d112ada](https://github.com/rudnovd/heroes3tools/commit/d112ada89198d5e92ce9cb81cac41ba6a197c34b))
+
 ## [2.0.0-alpha.4](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-alpha.3...v2.0.0-alpha.4) (2022-01-10)
 
 
