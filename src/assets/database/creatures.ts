@@ -15,7 +15,7 @@ export const creatures: Array<Creature> = [
     defense: 5,
     hits: 1,
     ranged: false,
-    aiValue: 1,
+    aiValue: 80,
     cost: 1,
     fightValue: 1,
     growth: 1,
@@ -34,6 +34,8 @@ export const creatures: Array<Creature> = [
     defense: 5,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 115,
   },
   {
     name: 'Archer',
@@ -47,7 +49,10 @@ export const creatures: Array<Creature> = [
     attack: 6,
     defense: 3,
     hits: 1,
+    speed: 4,
     ranged: true,
+    description: 'Ranged (12 shots)',
+    aiValue: 126,
   },
   {
     name: 'Marksman',
@@ -61,7 +66,13 @@ export const creatures: Array<Creature> = [
     attack: 6,
     defense: 3,
     hits: 2,
+    speed: 6,
     ranged: true,
+    special: {
+      doubleAttack: true,
+    },
+    description: 'Ranged (24 shots), double attack',
+    aiValue: 184,
   },
   {
     name: 'Griffin',
@@ -74,8 +85,10 @@ export const creatures: Array<Creature> = [
     level: 3,
     attack: 8,
     defense: 8,
+    speed: 6,
     hits: 1,
     ranged: false,
+    aiValue: 351,
   },
   {
     name: 'Royal Griffin',
@@ -88,8 +101,10 @@ export const creatures: Array<Creature> = [
     level: 3,
     attack: 9,
     defense: 9,
+    speed: 9,
     hits: 1,
     ranged: false,
+    aiValue: 448,
   },
   {
     name: 'Swordsman',
@@ -102,8 +117,10 @@ export const creatures: Array<Creature> = [
     level: 4,
     attack: 10,
     defense: 12,
+    speed: 5,
     hits: 1,
     ranged: false,
+    aiValue: 445,
   },
   {
     name: 'Crusader',
@@ -116,8 +133,10 @@ export const creatures: Array<Creature> = [
     level: 4,
     attack: 12,
     defense: 12,
+    speed: 6,
     hits: 2,
     ranged: false,
+    aiValue: 588,
   },
   {
     name: 'Monk',
@@ -130,8 +149,10 @@ export const creatures: Array<Creature> = [
     level: 5,
     attack: 12,
     defense: 7,
+    speed: 5,
     hits: 1,
     ranged: true,
+    aiValue: 485,
   },
   {
     name: 'Zealot',
@@ -144,8 +165,10 @@ export const creatures: Array<Creature> = [
     level: 5,
     attack: 12,
     defense: 10,
+    speed: 7,
     hits: 1,
     ranged: true,
+    aiValue: 750,
   },
   {
     name: 'Cavalier',
@@ -159,7 +182,9 @@ export const creatures: Array<Creature> = [
     attack: 15,
     defense: 15,
     hits: 1,
+    speed: 7,
     ranged: false,
+    aiValue: 1946,
   },
   {
     name: 'Champion',
@@ -173,7 +198,9 @@ export const creatures: Array<Creature> = [
     attack: 16,
     defense: 16,
     hits: 1,
+    speed: 9,
     ranged: false,
+    aiValue: 2100,
   },
   {
     name: 'Angel',
@@ -188,7 +215,9 @@ export const creatures: Array<Creature> = [
     defense: 20,
     hits: 1,
     ranged: false,
+    speed: 12,
     hates: [83, 84],
+    aiValue: 5019,
   },
   {
     name: 'Archangel',
@@ -203,7 +232,9 @@ export const creatures: Array<Creature> = [
     defense: 30,
     hits: 1,
     ranged: false,
+    speed: 18,
     hates: [83, 84],
+    aiValue: 8776,
   },
   {
     name: 'Centaur',
@@ -216,8 +247,10 @@ export const creatures: Array<Creature> = [
     level: 1,
     attack: 5,
     defense: 3,
+    speed: 6,
     hits: 1,
     ranged: false,
+    aiValue: 100,
   },
   {
     name: 'Centaur Captain',
@@ -232,6 +265,8 @@ export const creatures: Array<Creature> = [
     defense: 3,
     hits: 1,
     ranged: false,
+    speed: 8,
+    aiValue: 138,
   },
   {
     name: 'Dwarf',
@@ -246,6 +281,8 @@ export const creatures: Array<Creature> = [
     defense: 7,
     hits: 1,
     ranged: false,
+    speed: 3,
+    aiValue: 138,
   },
   {
     name: 'Battle Dwarf',
@@ -260,6 +297,8 @@ export const creatures: Array<Creature> = [
     defense: 7,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 209,
   },
   {
     name: 'Wood Elf',
@@ -274,6 +313,8 @@ export const creatures: Array<Creature> = [
     defense: 5,
     hits: 1,
     ranged: true,
+    speed: 6,
+    aiValue: 234,
   },
   {
     name: 'Grand Elf',
@@ -288,6 +329,8 @@ export const creatures: Array<Creature> = [
     defense: 5,
     hits: 2,
     ranged: true,
+    speed: 7,
+    aiValue: 331,
   },
   {
     name: 'Pegasus',
@@ -302,6 +345,8 @@ export const creatures: Array<Creature> = [
     defense: 8,
     hits: 1,
     ranged: false,
+    speed: 8,
+    aiValue: 518,
   },
   {
     name: 'Silver Pegasus',
@@ -316,6 +361,8 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: false,
+    speed: 12,
+    aiValue: 532,
   },
   {
     name: 'Dendroid Guard',
@@ -330,6 +377,8 @@ export const creatures: Array<Creature> = [
     defense: 12,
     hits: 1,
     ranged: false,
+    speed: 3,
+    aiValue: 517,
   },
   {
     name: 'Dendroid Soldier',
@@ -344,6 +393,8 @@ export const creatures: Array<Creature> = [
     defense: 12,
     hits: 1,
     ranged: false,
+    speed: 4,
+    aiValue: 803,
   },
   {
     name: 'Unicorn',
@@ -358,6 +409,8 @@ export const creatures: Array<Creature> = [
     defense: 14,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 1806,
   },
   {
     name: 'War Unicorn',
@@ -372,6 +425,8 @@ export const creatures: Array<Creature> = [
     defense: 14,
     hits: 1,
     ranged: false,
+    speed: 9,
+    aiValue: 2030,
   },
   {
     name: 'Green Dragon',
@@ -386,6 +441,8 @@ export const creatures: Array<Creature> = [
     defense: 18,
     hits: 1,
     ranged: false,
+    speed: 10,
+    aiValue: 4872,
   },
   {
     name: 'Gold Dragon',
@@ -400,6 +457,8 @@ export const creatures: Array<Creature> = [
     defense: 27,
     hits: 1,
     ranged: false,
+    speed: 16,
+    aiValue: 8613,
   },
   {
     name: 'Gremlin',
@@ -414,6 +473,8 @@ export const creatures: Array<Creature> = [
     defense: 3,
     hits: 1,
     ranged: false,
+    speed: 4,
+    aiValue: 44,
   },
   {
     name: 'Master Gremlin',
@@ -428,6 +489,8 @@ export const creatures: Array<Creature> = [
     defense: 4,
     hits: 1,
     ranged: true,
+    speed: 5,
+    aiValue: 66,
   },
   {
     name: 'Stone Gargoyle',
@@ -442,6 +505,8 @@ export const creatures: Array<Creature> = [
     defense: 6,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 165,
   },
   {
     name: 'Obsidian Gargoyle',
@@ -456,6 +521,8 @@ export const creatures: Array<Creature> = [
     defense: 7,
     hits: 1,
     ranged: false,
+    speed: 9,
+    aiValue: 201,
   },
   {
     name: 'Stone Golem',
@@ -470,6 +537,8 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: false,
+    speed: 3,
+    aiValue: 250,
   },
   {
     name: 'Iron Golem',
@@ -484,6 +553,8 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 412,
   },
   {
     name: 'Mage',
@@ -498,6 +569,8 @@ export const creatures: Array<Creature> = [
     defense: 8,
     hits: 1,
     ranged: true,
+    speed: 5,
+    aiValue: 570,
   },
   {
     name: 'Arch Mage',
@@ -512,6 +585,8 @@ export const creatures: Array<Creature> = [
     defense: 9,
     hits: 1,
     ranged: true,
+    speed: 7,
+    aiValue: 680,
   },
   {
     name: 'Genie',
@@ -527,6 +602,8 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: false,
     hates: [81, 82],
+    speed: 7,
+    aiValue: 884,
   },
   {
     name: 'Master Genie',
@@ -542,6 +619,8 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: false,
     hates: [81, 82],
+    speed: 11,
+    aiValue: 942,
   },
   {
     name: 'Naga',
@@ -556,6 +635,8 @@ export const creatures: Array<Creature> = [
     defense: 13,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 2016,
   },
   {
     name: 'Naga Queen',
@@ -570,6 +651,8 @@ export const creatures: Array<Creature> = [
     defense: 13,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 2840,
   },
   {
     name: 'Giant',
@@ -585,6 +668,8 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: false,
     hates: [70, 71],
+    speed: 7,
+    aiValue: 3718,
   },
   {
     name: 'Titan',
@@ -600,6 +685,8 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: true,
     hates: [70, 71],
+    speed: 11,
+    aiValue: 7500,
   },
   {
     name: 'Skeleton',
@@ -614,6 +701,8 @@ export const creatures: Array<Creature> = [
     defense: 4,
     hits: 1,
     ranged: false,
+    speed: 4,
+    aiValue: 60,
   },
   {
     name: 'Skeleton Warrior',
@@ -628,6 +717,8 @@ export const creatures: Array<Creature> = [
     defense: 6,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 85,
   },
   {
     name: 'Walking Dead',
@@ -642,6 +733,8 @@ export const creatures: Array<Creature> = [
     defense: 5,
     hits: 1,
     ranged: false,
+    speed: 3,
+    aiValue: 98,
   },
   {
     name: 'Zombie',
@@ -656,6 +749,8 @@ export const creatures: Array<Creature> = [
     defense: 5,
     hits: 1,
     ranged: false,
+    speed: 4,
+    aiValue: 128,
   },
   {
     name: 'Wight',
@@ -670,6 +765,8 @@ export const creatures: Array<Creature> = [
     defense: 7,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 252,
   },
   {
     name: 'Wraith',
@@ -684,6 +781,8 @@ export const creatures: Array<Creature> = [
     defense: 7,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 315,
   },
   {
     name: 'Vampire',
@@ -698,6 +797,8 @@ export const creatures: Array<Creature> = [
     defense: 9,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 555,
   },
   {
     name: 'Vampire Lord',
@@ -712,6 +813,8 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: false,
+    speed: 9,
+    aiValue: 783,
   },
   {
     name: 'Lich',
@@ -726,6 +829,8 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: true,
+    speed: 6,
+    aiValue: 848,
   },
   {
     name: 'Power Lich',
@@ -740,6 +845,8 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: true,
+    speed: 7,
+    aiValue: 1079,
   },
   {
     name: 'Black Knight',
@@ -754,6 +861,8 @@ export const creatures: Array<Creature> = [
     defense: 16,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 2087,
   },
   {
     name: 'Dread Knight',
@@ -768,6 +877,8 @@ export const creatures: Array<Creature> = [
     defense: 18,
     hits: 1,
     ranged: false,
+    speed: 9,
+    aiValue: 2382,
   },
   {
     name: 'Bone Dragon',
@@ -782,6 +893,8 @@ export const creatures: Array<Creature> = [
     defense: 15,
     hits: 1,
     ranged: false,
+    speed: 9,
+    aiValue: 3388,
   },
   {
     name: 'Ghost Dragon',
@@ -796,6 +909,8 @@ export const creatures: Array<Creature> = [
     defense: 17,
     hits: 1,
     ranged: false,
+    speed: 14,
+    aiValue: 4696,
   },
   {
     name: 'Troglodyte',
@@ -810,6 +925,8 @@ export const creatures: Array<Creature> = [
     defense: 3,
     hits: 1,
     ranged: false,
+    speed: 4,
+    aiValue: 59,
   },
   {
     name: 'Infernal Troglodyte',
@@ -824,6 +941,8 @@ export const creatures: Array<Creature> = [
     defense: 4,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 84,
   },
   {
     name: 'Harpy',
@@ -838,6 +957,8 @@ export const creatures: Array<Creature> = [
     defense: 5,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 154,
   },
   {
     name: 'Harpy Hag',
@@ -852,6 +973,8 @@ export const creatures: Array<Creature> = [
     defense: 6,
     hits: 1,
     ranged: false,
+    speed: 9,
+    aiValue: 238,
   },
   {
     name: 'Beholder',
@@ -866,6 +989,8 @@ export const creatures: Array<Creature> = [
     defense: 7,
     hits: 1,
     ranged: true,
+    speed: 5,
+    aiValue: 336,
   },
   {
     name: 'Evil Eye',
@@ -880,6 +1005,8 @@ export const creatures: Array<Creature> = [
     defense: 8,
     hits: 1,
     ranged: true,
+    speed: 7,
+    aiValue: 367,
   },
   {
     name: 'Medusa',
@@ -894,6 +1021,8 @@ export const creatures: Array<Creature> = [
     defense: 9,
     hits: 1,
     ranged: true,
+    speed: 5,
+    aiValue: 517,
   },
   {
     name: 'Medusa Queen',
@@ -908,6 +1037,8 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: true,
+    speed: 6,
+    aiValue: 577,
   },
   {
     name: 'Minotaur',
@@ -922,6 +1053,8 @@ export const creatures: Array<Creature> = [
     defense: 12,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 835,
   },
   {
     name: 'Minotaur King',
@@ -936,6 +1069,8 @@ export const creatures: Array<Creature> = [
     defense: 15,
     hits: 1,
     ranged: false,
+    speed: 8,
+    aiValue: 1068,
   },
   {
     name: 'Manticore',
@@ -950,6 +1085,8 @@ export const creatures: Array<Creature> = [
     defense: 13,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 1547,
   },
   {
     name: 'Scorpicore',
@@ -964,6 +1101,8 @@ export const creatures: Array<Creature> = [
     defense: 14,
     hits: 1,
     ranged: false,
+    speed: 11,
+    aiValue: 1589,
   },
   {
     name: 'Red Dragon',
@@ -978,6 +1117,8 @@ export const creatures: Array<Creature> = [
     defense: 19,
     hits: 1,
     ranged: false,
+    speed: 11,
+    aiValue: 4702,
   },
   {
     name: 'Black Dragon',
@@ -993,6 +1134,8 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: false,
     hates: [41, 42],
+    speed: 15,
+    aiValue: 8721,
   },
   {
     name: 'Imp',
@@ -1007,6 +1150,8 @@ export const creatures: Array<Creature> = [
     defense: 3,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 50,
   },
   {
     name: 'Familiar',
@@ -1021,6 +1166,8 @@ export const creatures: Array<Creature> = [
     defense: 4,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 60,
   },
   {
     name: 'Gog',
@@ -1035,6 +1182,8 @@ export const creatures: Array<Creature> = [
     defense: 4,
     hits: 1,
     ranged: true,
+    speed: 4,
+    aiValue: 159,
   },
   {
     name: 'Magog',
@@ -1049,6 +1198,8 @@ export const creatures: Array<Creature> = [
     defense: 4,
     hits: 1,
     ranged: true,
+    speed: 6,
+    aiValue: 240,
   },
   {
     name: 'Hell Hound',
@@ -1063,6 +1214,8 @@ export const creatures: Array<Creature> = [
     defense: 6,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 357,
   },
   {
     name: 'Cerberus',
@@ -1077,6 +1230,8 @@ export const creatures: Array<Creature> = [
     defense: 8,
     hits: 1,
     ranged: false,
+    speed: 8,
+    aiValue: 392,
   },
   {
     name: 'Demon',
@@ -1091,6 +1246,8 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 445,
   },
   {
     name: 'Horned Demon',
@@ -1105,6 +1262,8 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 480,
   },
   {
     name: 'Pit Fiend',
@@ -1119,6 +1278,8 @@ export const creatures: Array<Creature> = [
     defense: 13,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 765,
   },
   {
     name: 'Pit Lord',
@@ -1133,6 +1294,8 @@ export const creatures: Array<Creature> = [
     defense: 13,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 1224,
   },
   {
     name: 'Efreet',
@@ -1148,6 +1311,8 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: false,
     hates: [37, 38],
+    speed: 9,
+    aiValue: 1670,
   },
   {
     name: 'Efreet Sultan',
@@ -1163,6 +1328,8 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: false,
     hates: [37, 38],
+    speed: 13,
+    aiValue: 2343,
   },
   {
     name: 'Devil',
@@ -1178,6 +1345,8 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: false,
     hates: [13, 14],
+    speed: 11,
+    aiValue: 5101,
   },
   {
     name: 'Arch Devil',
@@ -1193,6 +1362,8 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: false,
     hates: [13, 14],
+    speed: 17,
+    aiValue: 7115,
   },
   {
     name: 'Gnoll',
@@ -1207,6 +1378,8 @@ export const creatures: Array<Creature> = [
     defense: 5,
     hits: 1,
     ranged: false,
+    speed: 4,
+    aiValue: 56,
   },
   {
     name: 'Gnoll Marauder',
@@ -1221,6 +1394,8 @@ export const creatures: Array<Creature> = [
     defense: 6,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 90,
   },
   {
     name: 'Lizardman',
@@ -1235,6 +1410,8 @@ export const creatures: Array<Creature> = [
     defense: 6,
     hits: 1,
     ranged: true,
+    speed: 4,
+    aiValue: 126,
   },
   {
     name: 'Lizard Warrior',
@@ -1249,6 +1426,8 @@ export const creatures: Array<Creature> = [
     defense: 8,
     hits: 1,
     ranged: true,
+    speed: 5,
+    aiValue: 156,
   },
   {
     name: 'Serpent Fly',
@@ -1263,6 +1442,8 @@ export const creatures: Array<Creature> = [
     defense: 9,
     hits: 1,
     ranged: false,
+    speed: 9,
+    aiValue: 268,
   },
   {
     name: 'Dragon Fly',
@@ -1277,6 +1458,8 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: false,
+    speed: 13,
+    aiValue: 312,
   },
   {
     name: 'Basilisk',
@@ -1291,6 +1474,8 @@ export const creatures: Array<Creature> = [
     defense: 11,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 552,
   },
   {
     name: 'Greater Basilisk',
@@ -1305,6 +1490,8 @@ export const creatures: Array<Creature> = [
     defense: 12,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 714,
   },
   {
     name: 'Gorgon',
@@ -1319,6 +1506,8 @@ export const creatures: Array<Creature> = [
     defense: 14,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 890,
   },
   {
     name: 'Mighty Gorgon',
@@ -1333,6 +1522,8 @@ export const creatures: Array<Creature> = [
     defense: 16,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 1028,
   },
   {
     name: 'Wyvern',
@@ -1347,6 +1538,8 @@ export const creatures: Array<Creature> = [
     defense: 14,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 1350,
   },
   {
     name: 'Wyvern Monarch',
@@ -1361,6 +1554,8 @@ export const creatures: Array<Creature> = [
     defense: 14,
     hits: 1,
     ranged: false,
+    speed: 11,
+    aiValue: 1518,
   },
   {
     name: 'Hydra',
@@ -1375,6 +1570,8 @@ export const creatures: Array<Creature> = [
     defense: 18,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 4120,
   },
   {
     name: 'Chaos Hydra',
@@ -1389,6 +1586,8 @@ export const creatures: Array<Creature> = [
     defense: 20,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 5931,
   },
   {
     name: 'Goblin',
@@ -1403,6 +1602,8 @@ export const creatures: Array<Creature> = [
     defense: 2,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 60,
   },
   {
     name: 'Hobgoblin',
@@ -1417,6 +1618,8 @@ export const creatures: Array<Creature> = [
     defense: 3,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 78,
   },
   {
     name: 'Wolf Rider',
@@ -1431,6 +1634,8 @@ export const creatures: Array<Creature> = [
     defense: 5,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 130,
   },
   {
     name: 'Wolf Raider',
@@ -1445,6 +1650,8 @@ export const creatures: Array<Creature> = [
     defense: 5,
     hits: 2,
     ranged: false,
+    speed: 8,
+    aiValue: 203,
   },
   {
     name: 'Orc',
@@ -1459,6 +1666,8 @@ export const creatures: Array<Creature> = [
     defense: 4,
     hits: 1,
     ranged: true,
+    speed: 4,
+    aiValue: 192,
   },
   {
     name: 'Orc Chieftain',
@@ -1473,6 +1682,8 @@ export const creatures: Array<Creature> = [
     defense: 4,
     hits: 1,
     ranged: true,
+    speed: 5,
+    aiValue: 240,
   },
   {
     name: 'Ogre',
@@ -1487,6 +1698,8 @@ export const creatures: Array<Creature> = [
     defense: 7,
     hits: 1,
     ranged: false,
+    speed: 4,
+    aiValue: 416,
   },
   {
     name: 'Ogre Mage',
@@ -1501,6 +1714,8 @@ export const creatures: Array<Creature> = [
     defense: 7,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 672,
   },
   {
     name: 'Roc',
@@ -1515,6 +1730,8 @@ export const creatures: Array<Creature> = [
     defense: 11,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 1027,
   },
   {
     name: 'Thunderbird',
@@ -1529,6 +1746,8 @@ export const creatures: Array<Creature> = [
     defense: 11,
     hits: 1,
     ranged: false,
+    speed: 11,
+    aiValue: 1106,
   },
   {
     name: 'Cyclops',
@@ -1543,6 +1762,8 @@ export const creatures: Array<Creature> = [
     defense: 12,
     hits: 1,
     ranged: true,
+    speed: 6,
+    aiValue: 1266,
   },
   {
     name: 'Cyclops King',
@@ -1557,6 +1778,8 @@ export const creatures: Array<Creature> = [
     defense: 13,
     hits: 1,
     ranged: true,
+    speed: 8,
+    aiValue: 1443,
   },
   {
     name: 'Behemoth',
@@ -1571,6 +1794,8 @@ export const creatures: Array<Creature> = [
     defense: 17,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 3162,
   },
   {
     name: 'Ancient Behemoth',
@@ -1585,6 +1810,8 @@ export const creatures: Array<Creature> = [
     defense: 19,
     hits: 1,
     ranged: false,
+    speed: 9,
+    aiValue: 6168,
   },
   {
     name: 'Pixie',
@@ -1599,6 +1826,8 @@ export const creatures: Array<Creature> = [
     defense: 2,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 55,
   },
   {
     name: 'Sprite',
@@ -1613,6 +1842,8 @@ export const creatures: Array<Creature> = [
     defense: 2,
     hits: 1,
     ranged: false,
+    speed: 9,
+    aiValue: 95,
   },
   {
     name: 'Air Elemental',
@@ -1627,6 +1858,8 @@ export const creatures: Array<Creature> = [
     defense: 9,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 356,
   },
   {
     name: 'Storm Elemental',
@@ -1641,6 +1874,8 @@ export const creatures: Array<Creature> = [
     defense: 9,
     hits: 1,
     ranged: true,
+    speed: 8,
+    aiValue: 486,
   },
   {
     name: 'Water Elemental',
@@ -1655,6 +1890,8 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 315,
   },
   {
     name: 'Ice Elemental',
@@ -1669,6 +1906,8 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: true,
+    speed: 6,
+    aiValue: 380,
   },
   {
     name: 'Fire Elemental',
@@ -1683,6 +1922,8 @@ export const creatures: Array<Creature> = [
     defense: 8,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 345,
   },
   {
     name: 'Energy Elemental',
@@ -1697,6 +1938,8 @@ export const creatures: Array<Creature> = [
     defense: 8,
     hits: 1,
     ranged: false,
+    speed: 8,
+    aiValue: 470,
   },
   {
     name: 'Earth Elemental',
@@ -1711,6 +1954,8 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: false,
+    speed: 4,
+    aiValue: 330,
   },
   {
     name: 'Magma Elemental',
@@ -1725,6 +1970,8 @@ export const creatures: Array<Creature> = [
     defense: 11,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 490,
   },
   {
     name: 'Psychic Elemental',
@@ -1739,6 +1986,8 @@ export const creatures: Array<Creature> = [
     defense: 13,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 1669,
   },
   {
     name: 'Magic Elemental',
@@ -1753,6 +2002,8 @@ export const creatures: Array<Creature> = [
     defense: 13,
     hits: 1,
     ranged: false,
+    speed: 9,
+    aiValue: 2012,
   },
   {
     name: 'Firebird',
@@ -1767,6 +2018,8 @@ export const creatures: Array<Creature> = [
     defense: 18,
     hits: 1,
     ranged: false,
+    speed: 15,
+    aiValue: 4336,
   },
   {
     name: 'Phoenix',
@@ -1781,6 +2034,8 @@ export const creatures: Array<Creature> = [
     defense: 18,
     hits: 1,
     ranged: false,
+    speed: 21,
+    aiValue: 6721,
   },
   {
     name: 'Peasant',
@@ -1795,6 +2050,8 @@ export const creatures: Array<Creature> = [
     defense: 1,
     hits: 1,
     ranged: false,
+    speed: 3,
+    aiValue: 15,
   },
   {
     name: 'Halfling',
@@ -1809,6 +2066,8 @@ export const creatures: Array<Creature> = [
     defense: 2,
     hits: 1,
     ranged: true,
+    speed: 5,
+    aiValue: 75,
   },
   {
     name: 'Boar',
@@ -1823,6 +2082,8 @@ export const creatures: Array<Creature> = [
     defense: 5,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 145,
   },
   {
     name: 'Rogue',
@@ -1837,6 +2098,8 @@ export const creatures: Array<Creature> = [
     defense: 3,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 135,
   },
   {
     name: 'Nomad',
@@ -1851,6 +2114,8 @@ export const creatures: Array<Creature> = [
     defense: 8,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 345,
   },
   {
     name: 'Mummy',
@@ -1865,6 +2130,8 @@ export const creatures: Array<Creature> = [
     defense: 7,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 270,
   },
   {
     name: 'Sharpshooter',
@@ -1879,6 +2146,8 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: true,
+    speed: 9,
+    aiValue: 585,
   },
   {
     name: 'Troll',
@@ -1893,6 +2162,8 @@ export const creatures: Array<Creature> = [
     defense: 7,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 1024,
   },
   {
     name: 'Gold Golem',
@@ -1907,6 +2178,8 @@ export const creatures: Array<Creature> = [
     defense: 12,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 600,
   },
   {
     name: 'Diamond Golem',
@@ -1921,6 +2194,8 @@ export const creatures: Array<Creature> = [
     defense: 12,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 775,
   },
   {
     name: 'Enchanter',
@@ -1935,6 +2210,8 @@ export const creatures: Array<Creature> = [
     defense: 12,
     hits: 1,
     ranged: true,
+    speed: 9,
+    aiValue: 1210,
   },
   {
     name: 'Faerie Dragon',
@@ -1949,6 +2226,8 @@ export const creatures: Array<Creature> = [
     defense: 20,
     hits: 1,
     ranged: false,
+    speed: 15,
+    aiValue: 30501,
   },
   {
     name: 'Rust Dragon',
@@ -1963,6 +2242,8 @@ export const creatures: Array<Creature> = [
     defense: 30,
     hits: 1,
     ranged: false,
+    speed: 17,
+    aiValue: 26433,
   },
   {
     name: 'Crystal Dragon',
@@ -1977,6 +2258,8 @@ export const creatures: Array<Creature> = [
     defense: 40,
     hits: 1,
     ranged: false,
+    speed: 16,
+    aiValue: 39338,
   },
   {
     name: 'Azure Dragon',
@@ -1991,6 +2274,8 @@ export const creatures: Array<Creature> = [
     defense: 50,
     hits: 1,
     ranged: false,
+    speed: 19,
+    aiValue: 78845,
   },
   {
     name: 'Ballista',
@@ -2023,6 +2308,8 @@ export const creatures: Array<Creature> = [
     defense: 2,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 57,
   },
   {
     name: 'Oceanid',
@@ -2037,6 +2324,8 @@ export const creatures: Array<Creature> = [
     defense: 2,
     hits: 1,
     ranged: false,
+    speed: 8,
+    aiValue: 75,
   },
   {
     name: 'Crew Mate',
@@ -2051,6 +2340,8 @@ export const creatures: Array<Creature> = [
     defense: 4,
     hits: 1,
     ranged: false,
+    speed: 5,
+    aiValue: 155,
   },
   {
     name: 'Seaman',
@@ -2065,6 +2356,8 @@ export const creatures: Array<Creature> = [
     defense: 6,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 174,
   },
   {
     name: 'Pirate',
@@ -2079,6 +2372,8 @@ export const creatures: Array<Creature> = [
     defense: 6,
     hits: 1,
     ranged: true,
+    speed: 6,
+    aiValue: 312,
   },
   {
     name: 'Corsair',
@@ -2093,6 +2388,8 @@ export const creatures: Array<Creature> = [
     defense: 8,
     hits: 1,
     ranged: true,
+    speed: 7,
+    aiValue: 407,
   },
   {
     name: 'Sea Dog',
@@ -2107,6 +2404,8 @@ export const creatures: Array<Creature> = [
     defense: 11,
     hits: 1,
     ranged: true,
+    speed: 8,
+    aiValue: 602,
   },
   {
     name: 'Stormbird',
@@ -2121,6 +2420,8 @@ export const creatures: Array<Creature> = [
     defense: 8,
     hits: 1,
     ranged: false,
+    speed: 9,
+    aiValue: 502,
   },
   {
     name: 'Ayssid',
@@ -2135,6 +2436,8 @@ export const creatures: Array<Creature> = [
     defense: 8,
     hits: 1,
     ranged: false,
+    speed: 11,
+    aiValue: 645,
   },
   {
     name: 'Sea Witch',
@@ -2149,6 +2452,8 @@ export const creatures: Array<Creature> = [
     defense: 7,
     hits: 1,
     ranged: true,
+    speed: 6,
+    aiValue: 790,
   },
   {
     name: 'Sorceress',
@@ -2163,6 +2468,8 @@ export const creatures: Array<Creature> = [
     defense: 9,
     hits: 1,
     ranged: true,
+    speed: 7,
+    aiValue: 852,
   },
   {
     name: 'Nix',
@@ -2177,6 +2484,8 @@ export const creatures: Array<Creature> = [
     defense: 16,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 1415,
   },
   {
     name: 'Nix Warrior',
@@ -2191,6 +2500,8 @@ export const creatures: Array<Creature> = [
     defense: 17,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 2116,
   },
   {
     name: 'Sea Serpent',
@@ -2205,6 +2516,8 @@ export const creatures: Array<Creature> = [
     defense: 16,
     hits: 1,
     ranged: false,
+    speed: 9,
+    aiValue: 3953,
   },
   {
     name: 'Haspid',
@@ -2219,6 +2532,8 @@ export const creatures: Array<Creature> = [
     defense: 20,
     hits: 1,
     ranged: false,
+    speed: 12,
+    aiValue: 7220,
   },
   {
     name: 'Fangarm',
@@ -2232,6 +2547,8 @@ export const creatures: Array<Creature> = [
     defense: 12,
     hits: 1,
     ranged: false,
+    speed: 6,
+    aiValue: 929,
   },
   {
     name: 'Satyr',
@@ -2246,6 +2563,8 @@ export const creatures: Array<Creature> = [
     defense: 11,
     hits: 1,
     ranged: false,
+    speed: 7,
+    aiValue: 518,
   },
   {
     name: 'Leprechaun',
@@ -2264,6 +2583,7 @@ export const creatures: Array<Creature> = [
     minDamage: 3,
     nativeTerrain: 0,
     speed: 5,
+    ranged: false,
   },
   {
     name: 'Cannon',
@@ -2300,5 +2620,6 @@ export const creatures: Array<Creature> = [
     defense: 11,
     speed: 6,
     hits: 1,
+    ranged: false,
   },
 ]
