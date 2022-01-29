@@ -1,3 +1,4 @@
+import { CreaturesSpecial } from '@/models/CreaturesSpecials'
 import type { Spell } from './Spell'
 
 export interface Creature {
@@ -16,16 +17,19 @@ export interface Creature {
   nativeTerrain: number
   speed?: number
   name: string
-  ranged?: boolean
+  ranged: boolean
   townId?: number
   hexs?: number
   shots?: number
   hates?: Array<number>
+  special?: CreaturesSpecial
+  description?: string
 }
 
 export interface CreatureTranslation {
   id: number
   name: string
+  description?: string
 }
 
 export class CreatureInstance implements Creature {
@@ -44,11 +48,13 @@ export class CreatureInstance implements Creature {
   nativeTerrain: number
   speed?: number
   name: string
-  ranged?: boolean
+  ranged: boolean
   townId?: number
   hexs?: number
   shots?: number
   hates?: number[]
+  special?: CreaturesSpecial
+  description?: string
 
   count: number
   effects: Array<Spell>
@@ -84,6 +90,8 @@ export class CreatureInstance implements Creature {
     this.townId = creature.townId
     this.hexs = creature.hexs
     this.hates = creature.hates
+    this.special = creature.special
+    this.description = creature.description
     this.count = 1
     this.effects = []
     this.calculation = {
