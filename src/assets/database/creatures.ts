@@ -16,9 +16,9 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: false,
     aiValue: 80,
-    cost: 1,
+    cost: { gold: 60 },
     fightValue: 1,
-    growth: 1,
+    growth: 14,
     speed: 1,
   },
   {
@@ -36,6 +36,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 115,
+    growth: 14,
+    cost: { gold: 60 },
   },
   {
     name: 'Archer',
@@ -53,6 +55,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     description: 'Ranged (12 shots)',
     aiValue: 126,
+    growth: 9,
+    cost: { gold: 100 },
   },
   {
     name: 'Marksman',
@@ -73,6 +77,8 @@ export const creatures: Array<Creature> = [
     },
     description: 'Ranged (24 shots), double attack',
     aiValue: 184,
+    growth: 9,
+    cost: { gold: 150 },
   },
   {
     name: 'Griffin',
@@ -89,6 +95,8 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: false,
     aiValue: 351,
+    growth: 7,
+    cost: { gold: 200 },
   },
   {
     name: 'Royal Griffin',
@@ -105,6 +113,8 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: false,
     aiValue: 448,
+    growth: 7,
+    cost: { gold: 240 },
   },
   {
     name: 'Swordsman',
@@ -121,6 +131,8 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: false,
     aiValue: 445,
+    growth: 4,
+    cost: { gold: 300 },
   },
   {
     name: 'Crusader',
@@ -137,6 +149,8 @@ export const creatures: Array<Creature> = [
     hits: 2,
     ranged: false,
     aiValue: 588,
+    growth: 4,
+    cost: { gold: 400 },
   },
   {
     name: 'Monk',
@@ -153,6 +167,8 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: true,
     aiValue: 485,
+    growth: 3,
+    cost: { gold: 400 },
   },
   {
     name: 'Zealot',
@@ -169,6 +185,8 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: true,
     aiValue: 750,
+    growth: 3,
+    cost: { gold: 450 },
   },
   {
     name: 'Cavalier',
@@ -185,6 +203,8 @@ export const creatures: Array<Creature> = [
     speed: 7,
     ranged: false,
     aiValue: 1946,
+    growth: 2,
+    cost: { gold: 1000 },
   },
   {
     name: 'Champion',
@@ -201,6 +221,8 @@ export const creatures: Array<Creature> = [
     speed: 9,
     ranged: false,
     aiValue: 2100,
+    growth: 2,
+    cost: { gold: 1200 },
   },
   {
     name: 'Angel',
@@ -218,6 +240,8 @@ export const creatures: Array<Creature> = [
     speed: 12,
     hates: [83, 84],
     aiValue: 5019,
+    growth: 1,
+    cost: { gold: 3000, gem: 1 },
   },
   {
     name: 'Archangel',
@@ -235,6 +259,8 @@ export const creatures: Array<Creature> = [
     speed: 18,
     hates: [83, 84],
     aiValue: 8776,
+    growth: 1,
+    cost: { gold: 5000, gem: 3 },
   },
   {
     name: 'Centaur',
@@ -251,6 +277,8 @@ export const creatures: Array<Creature> = [
     hits: 1,
     ranged: false,
     aiValue: 100,
+    growth: 14,
+    cost: { gold: 70 },
   },
   {
     name: 'Centaur Captain',
@@ -267,6 +295,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 8,
     aiValue: 138,
+    growth: 14,
+    cost: { gold: 90 },
   },
   {
     name: 'Dwarf',
@@ -283,6 +313,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 3,
     aiValue: 138,
+    growth: 8,
+    cost: { gold: 120 },
   },
   {
     name: 'Battle Dwarf',
@@ -299,6 +331,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 209,
+    growth: 8,
+    cost: { gold: 150 },
   },
   {
     name: 'Wood Elf',
@@ -315,6 +349,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 6,
     aiValue: 234,
+    growth: 7,
+    cost: { gold: 200 },
   },
   {
     name: 'Grand Elf',
@@ -331,6 +367,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 7,
     aiValue: 331,
+    growth: 7,
+    cost: { gold: 225 },
   },
   {
     name: 'Pegasus',
@@ -347,6 +385,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 8,
     aiValue: 518,
+    growth: 5,
+    cost: { gold: 250 },
   },
   {
     name: 'Silver Pegasus',
@@ -363,6 +403,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 12,
     aiValue: 532,
+    growth: 5,
+    cost: { gold: 275 },
   },
   {
     name: 'Dendroid Guard',
@@ -379,6 +421,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 3,
     aiValue: 517,
+    growth: 3,
+    cost: { gold: 350 },
   },
   {
     name: 'Dendroid Soldier',
@@ -395,6 +439,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 4,
     aiValue: 803,
+    growth: 3,
+    cost: { gold: 425 },
   },
   {
     name: 'Unicorn',
@@ -411,6 +457,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 1806,
+    growth: 2,
+    cost: { gold: 850 },
   },
   {
     name: 'War Unicorn',
@@ -427,6 +475,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 9,
     aiValue: 2030,
+    growth: 2,
+    cost: { gold: 950 },
   },
   {
     name: 'Green Dragon',
@@ -443,6 +493,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 10,
     aiValue: 4872,
+    growth: 1,
+    cost: { gold: 2400, crystal: 1 },
   },
   {
     name: 'Gold Dragon',
@@ -459,6 +511,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 16,
     aiValue: 8613,
+    growth: 1,
+    cost: { gold: 4000, crystal: 2 },
   },
   {
     name: 'Gremlin',
@@ -475,6 +529,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 4,
     aiValue: 44,
+    cost: { gold: 30 },
+    growth: 16,
   },
   {
     name: 'Master Gremlin',
@@ -491,6 +547,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 5,
     aiValue: 66,
+    cost: { gold: 40 },
+    growth: 16,
   },
   {
     name: 'Stone Gargoyle',
@@ -507,6 +565,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 165,
+    cost: { gold: 130 },
+    growth: 9,
   },
   {
     name: 'Obsidian Gargoyle',
@@ -523,6 +583,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 9,
     aiValue: 201,
+    cost: { gold: 160 },
+    growth: 9,
   },
   {
     name: 'Stone Golem',
@@ -539,6 +601,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 3,
     aiValue: 250,
+    cost: { gold: 150 },
+    growth: 6,
   },
   {
     name: 'Iron Golem',
@@ -555,6 +619,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 412,
+    cost: { gold: 200 },
+    growth: 6,
   },
   {
     name: 'Mage',
@@ -571,6 +637,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 5,
     aiValue: 570,
+    cost: { gold: 350 },
+    growth: 4,
   },
   {
     name: 'Arch Mage',
@@ -587,6 +655,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 7,
     aiValue: 680,
+    cost: { gold: 450 },
+    growth: 4,
   },
   {
     name: 'Genie',
@@ -604,6 +674,8 @@ export const creatures: Array<Creature> = [
     hates: [81, 82],
     speed: 7,
     aiValue: 884,
+    cost: { gold: 550 },
+    growth: 3,
   },
   {
     name: 'Master Genie',
@@ -621,6 +693,8 @@ export const creatures: Array<Creature> = [
     hates: [81, 82],
     speed: 11,
     aiValue: 942,
+    cost: { gold: 600 },
+    growth: 3,
   },
   {
     name: 'Naga',
@@ -637,6 +711,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 2016,
+    cost: { gold: 1100 },
+    growth: 2,
   },
   {
     name: 'Naga Queen',
@@ -653,6 +729,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 2840,
+    cost: { gold: 1600 },
+    growth: 2,
   },
   {
     name: 'Giant',
@@ -670,6 +748,8 @@ export const creatures: Array<Creature> = [
     hates: [70, 71],
     speed: 7,
     aiValue: 3718,
+    cost: { gold: 2000, gem: 1 },
+    growth: 1,
   },
   {
     name: 'Titan',
@@ -687,6 +767,8 @@ export const creatures: Array<Creature> = [
     hates: [70, 71],
     speed: 11,
     aiValue: 7500,
+    cost: { gold: 5000, gem: 2 },
+    growth: 1,
   },
   {
     name: 'Skeleton',
@@ -703,6 +785,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 4,
     aiValue: 60,
+    cost: { gold: 60 },
+    growth: 12,
   },
   {
     name: 'Skeleton Warrior',
@@ -719,6 +803,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 85,
+    cost: { gold: 70 },
+    growth: 12,
   },
   {
     name: 'Walking Dead',
@@ -735,6 +821,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 3,
     aiValue: 98,
+    cost: { gold: 100 },
+    growth: 8,
   },
   {
     name: 'Zombie',
@@ -751,6 +839,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 4,
     aiValue: 128,
+    cost: { gold: 125 },
+    growth: 8,
   },
   {
     name: 'Wight',
@@ -767,6 +857,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 252,
+    cost: { gold: 200 },
+    growth: 7,
   },
   {
     name: 'Wraith',
@@ -783,6 +875,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 315,
+    cost: { gold: 230 },
+    growth: 7,
   },
   {
     name: 'Vampire',
@@ -799,6 +893,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 555,
+    cost: { gold: 360 },
+    growth: 4,
   },
   {
     name: 'Vampire Lord',
@@ -815,6 +911,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 9,
     aiValue: 783,
+    cost: { gold: 500 },
+    growth: 4,
   },
   {
     name: 'Lich',
@@ -831,6 +929,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 6,
     aiValue: 848,
+    cost: { gold: 550 },
+    growth: 3,
   },
   {
     name: 'Power Lich',
@@ -847,6 +947,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 7,
     aiValue: 1079,
+    cost: { gold: 600 },
+    growth: 3,
   },
   {
     name: 'Black Knight',
@@ -863,6 +965,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 2087,
+    cost: { gold: 1200 },
+    growth: 2,
   },
   {
     name: 'Dread Knight',
@@ -879,6 +983,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 9,
     aiValue: 2382,
+    cost: { gold: 1500 },
+    growth: 2,
   },
   {
     name: 'Bone Dragon',
@@ -895,6 +1001,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 9,
     aiValue: 3388,
+    cost: { gold: 1800 },
+    growth: 1,
   },
   {
     name: 'Ghost Dragon',
@@ -911,6 +1019,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 14,
     aiValue: 4696,
+    cost: { gold: 3000, mercury: 1 },
+    growth: 1,
   },
   {
     name: 'Troglodyte',
@@ -927,6 +1037,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 4,
     aiValue: 59,
+    cost: { gold: 50 },
+    growth: 14,
   },
   {
     name: 'Infernal Troglodyte',
@@ -943,6 +1055,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 84,
+    cost: { gold: 65 },
+    growth: 14,
   },
   {
     name: 'Harpy',
@@ -959,6 +1073,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 154,
+    cost: { gold: 130 },
+    growth: 8,
   },
   {
     name: 'Harpy Hag',
@@ -975,6 +1091,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 9,
     aiValue: 238,
+    cost: { gold: 170 },
+    growth: 8,
   },
   {
     name: 'Beholder',
@@ -991,6 +1109,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 5,
     aiValue: 336,
+    cost: { gold: 250 },
+    growth: 7,
   },
   {
     name: 'Evil Eye',
@@ -1007,6 +1127,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 7,
     aiValue: 367,
+    cost: { gold: 280 },
+    growth: 7,
   },
   {
     name: 'Medusa',
@@ -1023,6 +1145,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 5,
     aiValue: 517,
+    cost: { gold: 300 },
+    growth: 4,
   },
   {
     name: 'Medusa Queen',
@@ -1039,6 +1163,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 6,
     aiValue: 577,
+    cost: { gold: 330 },
+    growth: 4,
   },
   {
     name: 'Minotaur',
@@ -1055,6 +1181,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 835,
+    cost: { gold: 500 },
+    growth: 3,
   },
   {
     name: 'Minotaur King',
@@ -1071,6 +1199,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 8,
     aiValue: 1068,
+    cost: { gold: 575 },
+    growth: 3,
   },
   {
     name: 'Manticore',
@@ -1087,6 +1217,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 1547,
+    cost: { gold: 850 },
+    growth: 2,
   },
   {
     name: 'Scorpicore',
@@ -1103,6 +1235,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 11,
     aiValue: 1589,
+    cost: { gold: 1050 },
+    growth: 2,
   },
   {
     name: 'Red Dragon',
@@ -1119,6 +1253,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 11,
     aiValue: 4702,
+    cost: { gold: 2500, sulfur: 1 },
+    growth: 1,
   },
   {
     name: 'Black Dragon',
@@ -1136,6 +1272,8 @@ export const creatures: Array<Creature> = [
     hates: [41, 42],
     speed: 15,
     aiValue: 8721,
+    cost: { gold: 4000, sulfur: 2 },
+    growth: 1,
   },
   {
     name: 'Imp',
@@ -1152,6 +1290,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 50,
+    cost: { gold: 50 },
+    growth: 15,
   },
   {
     name: 'Familiar',
@@ -1168,6 +1308,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 60,
+    cost: { gold: 60 },
+    growth: 15,
   },
   {
     name: 'Gog',
@@ -1184,6 +1326,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 4,
     aiValue: 159,
+    cost: { gold: 125 },
+    growth: 8,
   },
   {
     name: 'Magog',
@@ -1200,6 +1344,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 6,
     aiValue: 240,
+    cost: { gold: 175 },
+    growth: 8,
   },
   {
     name: 'Hell Hound',
@@ -1216,6 +1362,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 357,
+    cost: { gold: 200 },
+    growth: 5,
   },
   {
     name: 'Cerberus',
@@ -1232,6 +1380,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 8,
     aiValue: 392,
+    cost: { gold: 250 },
+    growth: 5,
   },
   {
     name: 'Demon',
@@ -1248,6 +1398,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 445,
+    cost: { gold: 250 },
+    growth: 4,
   },
   {
     name: 'Horned Demon',
@@ -1264,6 +1416,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 480,
+    cost: { gold: 270 },
+    growth: 4,
   },
   {
     name: 'Pit Fiend',
@@ -1280,6 +1434,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 765,
+    cost: { gold: 500 },
+    growth: 3,
   },
   {
     name: 'Pit Lord',
@@ -1296,6 +1452,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 1224,
+    cost: { gold: 700 },
+    growth: 3,
   },
   {
     name: 'Efreet',
@@ -1313,6 +1471,8 @@ export const creatures: Array<Creature> = [
     hates: [37, 38],
     speed: 9,
     aiValue: 1670,
+    cost: { gold: 900 },
+    growth: 2,
   },
   {
     name: 'Efreet Sultan',
@@ -1330,6 +1490,8 @@ export const creatures: Array<Creature> = [
     hates: [37, 38],
     speed: 13,
     aiValue: 2343,
+    cost: { gold: 1100 },
+    growth: 2,
   },
   {
     name: 'Devil',
@@ -1347,6 +1509,8 @@ export const creatures: Array<Creature> = [
     hates: [13, 14],
     speed: 11,
     aiValue: 5101,
+    cost: { gold: 2700, mercury: 1 },
+    growth: 1,
   },
   {
     name: 'Arch Devil',
@@ -1364,6 +1528,8 @@ export const creatures: Array<Creature> = [
     hates: [13, 14],
     speed: 17,
     aiValue: 7115,
+    cost: { gold: 4500, mercury: 2 },
+    growth: 1,
   },
   {
     name: 'Gnoll',
@@ -1380,6 +1546,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 4,
     aiValue: 56,
+    cost: { gold: 50 },
+    growth: 12,
   },
   {
     name: 'Gnoll Marauder',
@@ -1396,6 +1564,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 90,
+    cost: { gold: 70 },
+    growth: 12,
   },
   {
     name: 'Lizardman',
@@ -1412,6 +1582,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 4,
     aiValue: 126,
+    cost: { gold: 110 },
+    growth: 9,
   },
   {
     name: 'Lizard Warrior',
@@ -1428,6 +1600,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 5,
     aiValue: 156,
+    cost: { gold: 140 },
+    growth: 9,
   },
   {
     name: 'Serpent Fly',
@@ -1444,6 +1618,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 9,
     aiValue: 268,
+    cost: { gold: 220 },
+    growth: 8,
   },
   {
     name: 'Dragon Fly',
@@ -1460,6 +1636,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 13,
     aiValue: 312,
+    cost: { gold: 240 },
+    growth: 8,
   },
   {
     name: 'Basilisk',
@@ -1476,6 +1654,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 552,
+    cost: { gold: 325 },
+    growth: 4,
   },
   {
     name: 'Greater Basilisk',
@@ -1492,6 +1672,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 714,
+    cost: { gold: 400 },
+    growth: 4,
   },
   {
     name: 'Gorgon',
@@ -1508,6 +1690,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 890,
+    cost: { gold: 525 },
+    growth: 3,
   },
   {
     name: 'Mighty Gorgon',
@@ -1524,6 +1708,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 1028,
+    cost: { gold: 600 },
+    growth: 3,
   },
   {
     name: 'Wyvern',
@@ -1540,6 +1726,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 1350,
+    cost: { gold: 800 },
+    growth: 2,
   },
   {
     name: 'Wyvern Monarch',
@@ -1556,6 +1744,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 11,
     aiValue: 1518,
+    cost: { gold: 1100 },
+    growth: 2,
   },
   {
     name: 'Hydra',
@@ -1572,6 +1762,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 4120,
+    cost: { gold: 2200 },
+    growth: 1,
   },
   {
     name: 'Chaos Hydra',
@@ -1588,6 +1780,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 5931,
+    cost: { gold: 3500, sulfur: 1 },
+    growth: 1,
   },
   {
     name: 'Goblin',
@@ -1604,6 +1798,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 60,
+    cost: { gold: 40 },
+    growth: 15,
   },
   {
     name: 'Hobgoblin',
@@ -1620,6 +1816,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 78,
+    cost: { gold: 50 },
+    growth: 15,
   },
   {
     name: 'Wolf Rider',
@@ -1636,6 +1834,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 130,
+    cost: { gold: 100 },
+    growth: 9,
   },
   {
     name: 'Wolf Raider',
@@ -1652,6 +1852,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 8,
     aiValue: 203,
+    cost: { gold: 140 },
+    growth: 9,
   },
   {
     name: 'Orc',
@@ -1668,6 +1870,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 4,
     aiValue: 192,
+    cost: { gold: 150 },
+    growth: 7,
   },
   {
     name: 'Orc Chieftain',
@@ -1684,6 +1888,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 5,
     aiValue: 240,
+    cost: { gold: 165 },
+    growth: 7,
   },
   {
     name: 'Ogre',
@@ -1700,6 +1906,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 4,
     aiValue: 416,
+    cost: { gold: 300 },
+    growth: 4,
   },
   {
     name: 'Ogre Mage',
@@ -1716,6 +1924,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 672,
+    cost: { gold: 400 },
+    growth: 4,
   },
   {
     name: 'Roc',
@@ -1732,6 +1942,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 1027,
+    cost: { gold: 600 },
+    growth: 3,
   },
   {
     name: 'Thunderbird',
@@ -1748,6 +1960,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 11,
     aiValue: 1106,
+    cost: { gold: 700 },
+    growth: 3,
   },
   {
     name: 'Cyclops',
@@ -1764,6 +1978,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 6,
     aiValue: 1266,
+    cost: { gold: 750 },
+    growth: 2,
   },
   {
     name: 'Cyclops King',
@@ -1780,6 +1996,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 8,
     aiValue: 1443,
+    cost: { gold: 1100 },
+    growth: 2,
   },
   {
     name: 'Behemoth',
@@ -1796,6 +2014,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 3162,
+    cost: { gold: 1500 },
+    growth: 1,
   },
   {
     name: 'Ancient Behemoth',
@@ -1812,6 +2032,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 9,
     aiValue: 6168,
+    cost: { gold: 3000, crystal: 1 },
+    growth: 1,
   },
   {
     name: 'Pixie',
@@ -1828,6 +2050,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 55,
+    cost: { gold: 25 },
+    growth: 20,
   },
   {
     name: 'Sprite',
@@ -1844,6 +2068,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 9,
     aiValue: 95,
+    cost: { gold: 30 },
+    growth: 20,
   },
   {
     name: 'Air Elemental',
@@ -1860,6 +2086,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 356,
+    cost: { gold: 250 },
+    growth: 6,
   },
   {
     name: 'Storm Elemental',
@@ -1876,6 +2104,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 8,
     aiValue: 486,
+    cost: { gold: 275 },
+    growth: 6,
   },
   {
     name: 'Water Elemental',
@@ -1892,6 +2122,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 315,
+    cost: { gold: 300 },
+    growth: 6,
   },
   {
     name: 'Ice Elemental',
@@ -1908,6 +2140,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 6,
     aiValue: 380,
+    cost: { gold: 375 },
+    growth: 6,
   },
   {
     name: 'Fire Elemental',
@@ -1924,6 +2158,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 345,
+    cost: { gold: 350 },
+    growth: 5,
   },
   {
     name: 'Energy Elemental',
@@ -1940,6 +2176,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 8,
     aiValue: 470,
+    cost: { gold: 400 },
+    growth: 5,
   },
   {
     name: 'Earth Elemental',
@@ -1956,6 +2194,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 4,
     aiValue: 330,
+    cost: { gold: 400 },
+    growth: 4,
   },
   {
     name: 'Magma Elemental',
@@ -1972,6 +2212,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 490,
+    cost: { gold: 500 },
+    growth: 4,
   },
   {
     name: 'Psychic Elemental',
@@ -1988,6 +2230,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 1669,
+    cost: { gold: 950 },
+    growth: 2,
   },
   {
     name: 'Magic Elemental',
@@ -2004,6 +2248,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 9,
     aiValue: 2012,
+    cost: { gold: 1200 },
+    growth: 2,
   },
   {
     name: 'Firebird',
@@ -2020,6 +2266,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 15,
     aiValue: 4336,
+    cost: { gold: 2000 },
+    growth: 1,
   },
   {
     name: 'Phoenix',
@@ -2036,6 +2284,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 21,
     aiValue: 6721,
+    cost: { gold: 3000, mercury: 1 },
+    growth: 1,
   },
   {
     name: 'Peasant',
@@ -2052,6 +2302,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 3,
     aiValue: 15,
+    cost: { gold: 10 },
+    growth: 25,
   },
   {
     name: 'Halfling',
@@ -2068,6 +2320,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 5,
     aiValue: 75,
+    cost: { gold: 40 },
+    growth: 15,
   },
   {
     name: 'Boar',
@@ -2084,6 +2338,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 145,
+    cost: { gold: 150 },
+    growth: 8,
   },
   {
     name: 'Rogue',
@@ -2100,6 +2356,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 135,
+    cost: { gold: 100 },
+    growth: 8,
   },
   {
     name: 'Nomad',
@@ -2116,6 +2374,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 345,
+    cost: { gold: 200 },
+    growth: 7,
   },
   {
     name: 'Mummy',
@@ -2132,6 +2392,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 270,
+    cost: { gold: 300 },
+    growth: 7,
   },
   {
     name: 'Sharpshooter',
@@ -2148,6 +2410,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 9,
     aiValue: 585,
+    cost: { gold: 400 },
+    growth: 4,
   },
   {
     name: 'Troll',
@@ -2164,6 +2428,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 1024,
+    cost: { gold: 500 },
+    growth: 3,
   },
   {
     name: 'Gold Golem',
@@ -2180,6 +2446,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 600,
+    cost: { gold: 500 },
+    growth: 3,
   },
   {
     name: 'Diamond Golem',
@@ -2196,6 +2464,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 775,
+    cost: { gold: 750 },
+    growth: 2,
   },
   {
     name: 'Enchanter',
@@ -2212,6 +2482,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 9,
     aiValue: 1210,
+    cost: { gold: 750 },
+    growth: 2,
   },
   {
     name: 'Faerie Dragon',
@@ -2228,6 +2500,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 15,
     aiValue: 30501,
+    cost: { gold: 10000, gem: 8 },
+    growth: 1,
   },
   {
     name: 'Rust Dragon',
@@ -2244,6 +2518,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 17,
     aiValue: 26433,
+    cost: { gold: 15000, sulfur: 14 },
+    growth: 1,
   },
   {
     name: 'Crystal Dragon',
@@ -2260,6 +2536,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 16,
     aiValue: 39338,
+    cost: { gold: 20000, crystal: 10 },
+    growth: 1,
   },
   {
     name: 'Azure Dragon',
@@ -2276,6 +2554,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 19,
     aiValue: 78845,
+    cost: { gold: 30000, mercury: 20 },
+    growth: 1,
   },
   {
     name: 'Ballista',
@@ -2292,7 +2572,7 @@ export const creatures: Array<Creature> = [
     ranged: true,
     hexs: 2,
     speed: 0,
-    cost: 2500,
+    cost: { gold: 2500 },
     shots: 24,
   },
   {
@@ -2310,6 +2590,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 57,
+    cost: { gold: 35 },
+    growth: 16,
   },
   {
     name: 'Oceanid',
@@ -2326,6 +2608,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 8,
     aiValue: 75,
+    cost: { gold: 45 },
+    growth: 16,
   },
   {
     name: 'Crew Mate',
@@ -2342,6 +2626,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 5,
     aiValue: 155,
+    cost: { gold: 110 },
+    growth: 9,
   },
   {
     name: 'Seaman',
@@ -2358,6 +2644,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 174,
+    cost: { gold: 140 },
+    growth: 9,
   },
   {
     name: 'Pirate',
@@ -2374,6 +2662,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 6,
     aiValue: 312,
+    cost: { gold: 225 },
+    growth: 7,
   },
   {
     name: 'Corsair',
@@ -2390,6 +2680,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 7,
     aiValue: 407,
+    cost: { gold: 275 },
+    growth: 7,
   },
   {
     name: 'Sea Dog',
@@ -2406,6 +2698,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 8,
     aiValue: 602,
+    cost: { gold: 375 },
+    growth: 7,
   },
   {
     name: 'Stormbird',
@@ -2422,6 +2716,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 9,
     aiValue: 502,
+    cost: { gold: 275 },
+    growth: 4,
   },
   {
     name: 'Ayssid',
@@ -2438,6 +2734,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 11,
     aiValue: 645,
+    cost: { gold: 325 },
+    growth: 4,
   },
   {
     name: 'Sea Witch',
@@ -2454,6 +2752,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 6,
     aiValue: 790,
+    cost: { gold: 515 },
+    growth: 3,
   },
   {
     name: 'Sorceress',
@@ -2470,6 +2770,8 @@ export const creatures: Array<Creature> = [
     ranged: true,
     speed: 7,
     aiValue: 852,
+    cost: { gold: 565 },
+    growth: 3,
   },
   {
     name: 'Nix',
@@ -2486,6 +2788,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 1415,
+    cost: { gold: 1000 },
+    growth: 2,
   },
   {
     name: 'Nix Warrior',
@@ -2502,6 +2806,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 2116,
+    cost: { gold: 1300 },
+    growth: 2,
   },
   {
     name: 'Sea Serpent',
@@ -2518,6 +2824,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 9,
     aiValue: 3953,
+    cost: { gold: 2200, sulfur: 1 },
+    growth: 1,
   },
   {
     name: 'Haspid',
@@ -2534,6 +2842,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 12,
     aiValue: 7220,
+    cost: { gold: 4000, sulfur: 2 },
+    growth: 1,
   },
   {
     name: 'Fangarm',
@@ -2549,6 +2859,8 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 6,
     aiValue: 929,
+    cost: { gold: 600 },
+    growth: 3,
   },
   {
     name: 'Satyr',
@@ -2565,13 +2877,15 @@ export const creatures: Array<Creature> = [
     ranged: false,
     speed: 7,
     aiValue: 518,
+    cost: { gold: 300 },
+    growth: 4,
   },
   {
     name: 'Leprechaun',
     aiValue: 208,
     attack: 8,
     townId: 0,
-    cost: 100,
+    cost: { gold: 100 },
     defense: 5,
     fightValue: 208,
     growth: 9,
@@ -2600,7 +2914,7 @@ export const creatures: Array<Creature> = [
     ranged: true,
     hexs: 2,
     speed: 0,
-    cost: 4000,
+    cost: { gold: 4000 },
     shots: 8,
   },
   {
@@ -2612,7 +2926,7 @@ export const creatures: Array<Creature> = [
     maxDamage: 8,
     health: 45,
     level: 4,
-    cost: 400,
+    cost: { gold: 400 },
     growth: 4,
     aiValue: 597,
     fightValue: 597,
