@@ -4,7 +4,13 @@ import type { Spell } from './Spell'
 export interface Creature {
   aiValue?: number
   attack: number
-  cost?: number
+  cost?: {
+    gold?: number
+    gem?: number
+    crystal?: number
+    mercury?: number
+    sulfur?: number
+  }
   defense: number
   fightValue?: number
   growth?: number
@@ -34,7 +40,13 @@ export interface CreatureTranslation {
 
 export class CreatureInstance implements Creature {
   aiValue?: number
-  cost?: number
+  cost?: {
+    gold?: number
+    gem?: number
+    crystal?: number
+    mercury?: number
+    sulfur?: number
+  }
   attack: number
   defense: number
   fightValue?: number
