@@ -21,8 +21,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'HomePage',
@@ -46,7 +46,6 @@ export default defineComponent({
         name: t('pages.creaturesLibrary'),
         path: '/creatures',
         image: '/images/pages/home/Scholar',
-        disabled: true,
       },
     ]
 

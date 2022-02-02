@@ -4,35 +4,34 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory('/'),
   routes: [
-    {
-      path: '/',
-      component: () => import('@/views/DamageCalculatorPage.vue'),
-      meta: {
-        title: i18n.global.t('pages.damageCalculator'),
-      },
-    },
     // {
     //   path: '/',
-    //   component: () => import('@/views/HomePage.vue'),
-    //   meta: {
-    //     title: i18n.global.t('pages.home'),
-    //   },
-    // },
-    // {
-    //   path: '/damage',
     //   component: () => import('@/views/DamageCalculatorPage.vue'),
     //   meta: {
     //     title: i18n.global.t('pages.damageCalculator'),
     //   },
     // },
-    // {
-    //   path: '/creatures',
-    //   component: () => import('@/views/CreaturesLibraryPage.vue'),
-    //   meta: {
-    //     title: i18n.global.t('pages.creaturesLibrary'),
-    //     disabled: true,
-    //   },
-    // },
+    {
+      path: '/',
+      component: () => import('@/views/HomePage.vue'),
+      meta: {
+        title: i18n.global.t('pages.home'),
+      },
+    },
+    {
+      path: '/damage',
+      component: () => import('@/views/DamageCalculatorPage.vue'),
+      meta: {
+        title: i18n.global.t('pages.damageCalculator'),
+      },
+    },
+    {
+      path: '/creatures',
+      component: () => import('@/views/CreaturesLibraryPage.vue'),
+      meta: {
+        title: i18n.global.t('pages.creaturesLibrary'),
+      },
+    },
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
