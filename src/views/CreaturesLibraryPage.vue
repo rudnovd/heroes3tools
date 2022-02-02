@@ -109,12 +109,8 @@ export default defineComponent({
           return creature.name.toLowerCase().indexOf(search.value.trim().toLowerCase()) > -1
         })
 
-        console.log(foundCreature)
-
         if (foundCreature) {
-          // if (route.hash !== `#${foundCreature.name.replace(/\s/g, '_')}`) {
           router.replace({ hash: `#${foundCreature.name}` })
-          // }
         }
       }
     }
