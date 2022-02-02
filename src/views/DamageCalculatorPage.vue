@@ -35,11 +35,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, defineAsyncComponent, computed, ref, watch } from 'vue'
-import type { Ref } from 'vue'
-import { useI18n } from 'vue-i18n'
 import DamageCalculator from '@/components/DamageCalculator.vue'
 import { Battle } from '@/models/Battle'
+import type { Ref } from 'vue'
+import { computed, defineAsyncComponent, defineComponent, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'DamageCalculatorPage',
@@ -121,17 +121,15 @@ export default defineComponent({
 <style lang="scss" scoped>
 .damage-calculator-page {
   display: grid;
-  grid-template-columns: 100%;
-  grid-auto-rows: auto;
   padding-top: 0.5rem;
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
   min-width: 300px;
   max-width: min(95%, 1920px);
 }
 
 .calculator-tabs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(75px, 30%));
+  grid-template-columns: repeat(auto-fit, minmax(90px, 30%));
   grid-template-rows: 35px;
   column-gap: 10px;
   row-gap: 0.5rem;
@@ -140,7 +138,7 @@ export default defineComponent({
   grid-auto-flow: row;
 
   @include media-medium {
-    grid-template-columns: repeat(auto-fit, minmax(75px, 13%));
+    grid-template-columns: repeat(auto-fit, minmax(90px, 13%));
     row-gap: 0;
     grid-auto-flow: column;
   }
