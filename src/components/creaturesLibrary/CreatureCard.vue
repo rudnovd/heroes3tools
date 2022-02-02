@@ -1,54 +1,63 @@
 <template>
-  <div class="creature-card" @click="$emit('click', creatureData)">
+  <div :id="creature.name" class="creature-card" @click="$emit('click', creature)">
     <div class="creature-image">
-      <img :src="imagePath" :alt="creatureData.name[$i18n.locale]" />
+      <ObjectPortrait :object="creature" folder="/images/creatures/models" />
     </div>
 
     <div class="creature-info">
-      <div class="parameter">
-        <span>Name:</span>
-        <span>{{ creatureData.name[$i18n.locale] }}</span>
-      </div>
+      <div class="creature-name">{{ creature.name }}</div>
 
-      <div class="parameter">
-        <span>Attack:</span>
-        <span>{{ creatureData.attack }}</span>
-      </div>
-
-      <div class="parameter">
-        <span>Defense:</span>
-        <span>{{ creatureData.defense }}</span>
+      <div v-for="parameter in ['attack', 'defense', 'health', 'speed']" :key="parameter" class="parameter">
+        <span>{{ parameter }}:</span>
+        <span>{{ creature[parameter] }}</span>
       </div>
 
       <div class="parameter">
         <span>Damage:</span>
-        <span>{{ creatureData.minDamage }} — {{ creatureData.maxDamage }}</span>
+        <span v-if="creature.minDamage !== creature.maxDamage">
+          {{ creature.minDamage }} — {{ creature.maxDamage }}
+        </span>
+        <span v-else>{{ creature.maxDamage }}</span>
       </div>
 
       <div class="parameter">
-        <span>Health:</span>
-        <span>{{ creatureData.health }}</span>
+        <span>ai value</span>
+        <span>{{ creature.aiValue }}</span>
+      </div>
+
+      <div class="parameter">
+        <span>cost:</span>
+        <div class="paramater-with-resources">
+          <div v-for="(value, key) in creature.cost" :key="key">
+            <ObjectPortrait height="18px" :object="{ id: key, name: key }" folder="/images/resources" />
+            <span>{{ value }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="parameter">
+        <span>growth:</span>
+        <span>{{ creature.growth }}</span>
+      </div>
+
+      <div v-if="creature.description" class="creature-description">
+        {{ creature.description }}
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { Creature } from '@/models/Creature'
 import { defineComponent } from 'vue'
+import ObjectPortrait from '../ObjectPortrait.vue'
 
 export default defineComponent({
   name: 'CreatureCard',
+  components: { ObjectPortrait },
   props: {
-    imagePath: {
-      type: String,
-      default: '',
-      required: false,
-    },
-    creatureData: {
-      type: Object,
-      default() {
-        return {}
-      },
+    creature: {
+      type: Object as () => Creature,
       required: true,
     },
   },
@@ -58,67 +67,93 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .creature-card {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   border-bottom: 1px solid black;
   border-right: 1px solid black;
+  transition: background 0.25s;
+
+  @include media-large {
+    grid-template-columns: 1fr 3fr;
+  }
 
   &:hover {
     background: rgb(245, 245, 245);
   }
+}
 
-  .creature-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    flex: 0 0 20%;
+.creature-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 
-    @include media-small {
-      flex: 0 0 40%;
-    }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/images/pages/home/links-background.webp');
+    filter: brightness(110%);
+  }
 
-    @include media-medium {
-      flex: 0 0 30%;
-    }
+  picture {
+    filter: drop-shadow(1px 1px 1px rgba(255, 255, 255, 0.3));
+  }
+}
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('/images/pages/home/links-background.webp');
-      filter: brightness(110%);
-    }
+.creature-name {
+  text-align: center;
+  border-bottom: 1px solid rgb(222, 226, 230);
+  grid-column: 1 / -1;
+}
 
-    img {
-      position: relative;
-      filter: drop-shadow(2px 4px 6px white);
+.creature-info {
+  display: grid;
+  grid-template-columns: 100%;
+
+  @include media-medium {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.parameter {
+  display: grid;
+  padding-left: 4px;
+  align-items: center;
+  grid-template-columns: 2fr 4fr;
+  border-bottom: 1px solid rgb(222, 226, 230);
+
+  span:first-child {
+    text-transform: capitalize;
+  }
+
+  &:nth-child(even) {
+    border-right: 1px solid rgb(222, 226, 230);
+  }
+
+  &:last-child,
+  &:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
+
+  @include media-small {
+    grid-template-columns: 1fr 4fr;
+    &:nth-last-child(-n + 2) {
+      border-bottom: 1px solid rgb(222, 226, 230);
     }
   }
 
-  .creature-info {
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    flex: 0 0 70%;
+  @include media-medium {
+    grid-template-columns: max(25%, 80px) 1fr;
   }
+}
 
-  .parameter {
-    display: flex;
-    padding-left: 0.3rem;
-    margin-bottom: 1px solid rgb(222, 226, 230);
-
-    span:first-child {
-      flex: 0 0 20%;
-    }
-
-    span:last-child {
-      flex: 0 0 80%;
-    }
-  }
+.creature-description {
+  padding-left: 4px;
+  grid-column: 1 / -1;
 }
 
 .creature-card.selected {
@@ -126,6 +161,22 @@ export default defineComponent({
 
   .creature-info {
     background: rgb(235, 235, 235);
+  }
+}
+
+.paramater-with-resources {
+  display: flex;
+  grid-gap: 8px;
+  align-items: center;
+
+  div {
+    display: flex;
+    align-items: center;
+    grid-gap: 4px;
+  }
+
+  picture {
+    display: flex;
   }
 }
 </style>

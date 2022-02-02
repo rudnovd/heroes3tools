@@ -1,114 +1,144 @@
-<!-- <template>
+<template>
   <section class="creatures-library-page">
     <div class="library-header">
       <div class="towns-anchors">
-        <img
-          v-for="town in data.towns"
+        <ObjectPortrait
+          v-for="town in towns.slice(0, 10)"
           :key="town.id"
-          :src="`images/towns_portraits/large/${town.name.en}.webp`"
-          width="80"
-          height="70"
-          @click="$router.push({ path: `#${town.name.en}` })"
+          :object="town"
+          folder="/images/towns/portraits/large"
+          width="80px"
+          height="70px"
+          @click="router.replace(`#${town.name}`)"
+        />
+        <ObjectPortrait
+          :object="{ id: 0, name: 'Neutral' }"
+          folder="/images/towns/portraits/large"
+          width="80px"
+          height="70px"
+          @click="router.replace(`#Neutral`)"
         />
       </div>
 
       <div class="search-creature">
-        <input :value="search" placeholder="Search creature" @input="searchUnit" />
+        <input ref="searchInput" v-model="search" placeholder="Search creature" @input="searchUnit" />
       </div>
     </div>
 
-    <div v-for="town in data.towns" :key="town.name.en" class="town">
-      <h2 :id="town.name.en" class="town-name">{{ town.name[$i18n.locale] }}</h2>
+    <div v-for="town in towns.slice(0, 10)" :key="town.name" class="town">
+      <h2 :id="town.name" class="town-name">{{ town.name }}</h2>
       <CreatureCard
-        v-for="creature in data.creatures.filter((creature) => creature.townId === town.id)"
-        :id="creature.name.en.replace(/\s/g, '_')"
+        v-for="creature in creatures.filter((creature) => creature.townId === town.id)"
         :key="creature.id"
-        :image-path="`images/creatures/${creature.name.en.replace(/\s/g, '_')}.webp`"
-        :creature-data="creature"
-        :class="{ selected: creature.id === selectedCreature.id }"
-        @click="$event.id === selectedCreature.id ? (selectedCreature = {}) : (selectedCreature = $event)"
+        :creature="creature"
+        :class="{ selected: selectedCreature && creature.id === selectedCreature.id }"
+        @click="onSelectCreature"
+      />
+    </div>
+    <div class="town">
+      <h2 id="Neutral" class="town-name">Neutral</h2>
+      <CreatureCard
+        v-for="creature in creatures.filter((creature) => creature.townId === 0)"
+        :key="creature.id"
+        :creature="creature"
+        :class="{ selected: selectedCreature && creature.id === selectedCreature.id }"
+        @click="onSelectCreature"
       />
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { mapActions, mapGetters } from 'vuex'
-import type { Creature } from '@/models/Creature'
 import CreatureCard from '@/components/creaturesLibrary/CreatureCard.vue'
+import ObjectPortrait from '@/components/ObjectPortrait.vue'
+import { Creature } from '@/models/Creature'
+import { useStore } from '@/store'
+import { computed, defineComponent, onUnmounted, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+
+let searchTimeout = 0
 
 export default defineComponent({
-  name: 'CreaturesLibrary',
+  name: 'CreaturesLibraryPage',
   components: {
     CreatureCard,
+    ObjectPortrait,
   },
-  data() {
-    return {
-      selectedCreature: {},
-      search: '',
-      searchTimeout: 0,
-    }
-  },
-  computed: {
-    ...mapGetters({
-      data: 'data/data',
-    }),
-  },
-  created() {
-    document.addEventListener('keyup', this.keyboardSearch)
-    this.getCreatures()
-    this.getTowns()
-  },
-  unmounted() {
-    document.removeEventListener('keyup', this.keyboardSearch)
-  },
-  methods: {
-    ...mapActions({
-      getCreatures: 'data/getCreatures',
-      getTowns: 'data/getTowns',
-    }),
-    keyboardSearch(value: KeyboardEvent): void {
-      if (value.keyCode === 8) {
-        this.search = this.search.slice(0, this.search.length - 1)
-      } else if (value.keyCode === 13) {
-        if (this.search.length > 0) {
-          this.search = ''
-        } else {
-          if (this.$route.hash.length > 0) {
-            this.$router.push({ path: this.$route.path })
-          }
-          window.scrollTo(0, 0)
+  setup() {
+    const store = useStore()
+    const router = useRouter()
+    const route = useRoute()
+
+    const towns = computed(() => store.towns)
+    const creatures = computed(() => store.creatures)
+
+    const selectedCreature = ref<Creature | null>(null)
+    const search = ref('')
+    const searchInput = ref()
+
+    const keyboardSearch = (value: KeyboardEvent) => {
+      if (value.key === 'Enter') {
+        if (search.value.length > 0) {
+          searchUnit()
+          search.value = ''
+        } else if (route.hash.length > 0) {
+          router.replace({ hash: '' })
         }
-      } else if (value.keyCode > 64 && value.keyCode < 91) {
-        this.search += value.key
-        this.searchUnit()
+      } else {
+        searchUnit()
       }
-    },
-    searchUnit(): void {
-      if (!this.search.length) {
+    }
+
+    document.addEventListener('keyup', keyboardSearch)
+    onUnmounted(() => {
+      document.removeEventListener('keyup', keyboardSearch)
+    })
+
+    const searchUnit = () => {
+      if (!search.value.length) {
         return
       }
 
-      if (this.searchTimeout) {
-        clearTimeout(this.searchTimeout)
-        this.searchTimeout = 0
+      if (searchTimeout) {
+        clearTimeout(searchTimeout)
+        searchTimeout = 0
       }
 
-      if (this.search.length) {
-        const creatures = this.data.creatures.filter((creature: any) => {
-          const creatureName = creature.name[this.$i18n.locale].toLowerCase()
-          const searchValue = this.search.toLowerCase()
-          return creatureName.indexOf(searchValue) > -1
+      if (search.value.length) {
+        const foundCreature = creatures.value.find((creature: Creature) => {
+          return creature.name.toLowerCase().indexOf(search.value.trim().toLowerCase()) > -1
         })
 
-        if (creatures.length) {
-          if (this.$route.hash !== `#${creatures[0].name.en.replace(/\s/g, '_')}`) {
-            this.$router.push({ path: `#${creatures[0].name.en.replace(/\s/g, '_')}` })
-          }
+        console.log(foundCreature)
+
+        if (foundCreature) {
+          // if (route.hash !== `#${foundCreature.name.replace(/\s/g, '_')}`) {
+          router.replace({ hash: `#${foundCreature.name}` })
+          // }
         }
       }
-    },
+    }
+
+    const onSelectCreature = (creature: Creature) => {
+      if (selectedCreature.value && selectedCreature.value.id === creature.id) {
+        selectedCreature.value = null
+      } else {
+        selectedCreature.value = creature
+      }
+    }
+
+    return {
+      router,
+      towns,
+      creatures,
+
+      search,
+      selectedCreature,
+      searchInput,
+
+      searchUnit,
+      onSelectCreature,
+    }
   },
 })
 </script>
@@ -119,15 +149,7 @@ export default defineComponent({
   margin: 20px auto 0 auto;
   flex-direction: column;
   min-width: 320px;
-  max-width: 90%;
-
-  @include media-large {
-    max-width: 80%;
-  }
-
-  @include media-large {
-    max-width: 60%;
-  }
+  max-width: min(90%, 1920px);
 }
 
 .library-header {
@@ -136,14 +158,18 @@ export default defineComponent({
 }
 
 .search-creature {
-  display: flex;
-  align-items: flex-end;
-  flex-direction: column;
-  margin-left: auto;
-  flex: 0 0 30%;
+  position: fixed;
+  right: 16px;
 
   input {
     min-width: 150px;
+    height: 32px;
+    opacity: 0.5;
+    transition: opacity 0.25s;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 
@@ -161,31 +187,26 @@ export default defineComponent({
   }
 }
 
-.town-name {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-  flex: 0 0 100%;
+.town {
+  display: grid;
+  grid-template-columns: 100%;
+  margin-bottom: 3rem;
+
+  @include media-medium {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
-.town {
-  display: flex;
-  flex: 0 0 100%;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-bottom: 3rem;
+.town-name {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .creature-card {
-  flex: 0 0 100%;
-
-  @include media-small {
-    flex: 0 0 50%;
-  }
-
   &:nth-child(2),
   &:nth-child(3) {
     border-top: 1px solid black;
   }
 }
-</style> -->
+</style>
