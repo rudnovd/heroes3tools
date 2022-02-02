@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-alpha.6](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-alpha.5...v2.0.0-alpha.6) (2022-02-02)
+
+
+### Features
+
+* **assets:** add ballista and cannon models ([2a2e0a3](https://github.com/rudnovd/heroes3tools/commit/2a2e0a39d788df7fff96d17b606f8f4bcc19d47d))
+* **assets:** add creatures models images ([d1974f0](https://github.com/rudnovd/heroes3tools/commit/d1974f06b30013b465ceffc595e2db721a1c015e))
+* **assets:** add new fields in creatures database ([95365c0](https://github.com/rudnovd/heroes3tools/commit/95365c0f6fab7e31108407295a7aa542bac86ee4))
+* **assets:** add new values in creatures database ([256c10c](https://github.com/rudnovd/heroes3tools/commit/256c10cbf3bac4ad5e442a82f2e2d6bf37dc4cfc))
+* **assets:** add resources images ([8a3ddcf](https://github.com/rudnovd/heroes3tools/commit/8a3ddcfff068f9a6c4260a1768149547e3116beb))
+* **models:** add CreatureSpecials interface ([a2d8e85](https://github.com/rudnovd/heroes3tools/commit/a2d8e85efd35d7a3cf16e9be67c3a686ef321bfd))
+* **models:** add SkillLevels enums ([b7dfc7c](https://github.com/rudnovd/heroes3tools/commit/b7dfc7ccd91a00be17c7d34d47784fa36ca988dd))
+* **models:** update cost field in Creature model ([df58bc8](https://github.com/rudnovd/heroes3tools/commit/df58bc8409dd7b7f12c0ebbe116920f339e8b780))
+* **models:** update Creature model ([6465f8b](https://github.com/rudnovd/heroes3tools/commit/6465f8b2644201efdf43e10842bdf6c6e8746fd6))
+* **router:** enable new routes ([2f10af7](https://github.com/rudnovd/heroes3tools/commit/2f10af758febe6b4dc1ce78ba59e13f122cafd2b))
+
+
+### Bug Fixes
+
+* **CreatureLibraryPage:** clean component ([1fe3077](https://github.com/rudnovd/heroes3tools/commit/1fe3077150196bbb837c2beb8103a23688075fc0))
+
 ## [2.0.0-alpha.5](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-alpha.4...v2.0.0-alpha.5) (2022-01-27)
 
 
