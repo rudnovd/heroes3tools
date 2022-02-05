@@ -37,6 +37,7 @@
 <script lang="ts">
 import DamageCalculator from '@/components/DamageCalculator.vue'
 import { Battle } from '@/models/Battle'
+import { useStore } from '@/store'
 import type { Ref } from 'vue'
 import { computed, defineAsyncComponent, defineComponent, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -51,12 +52,16 @@ export default defineComponent({
   },
   setup() {
     const { t } = useI18n()
+    const store = useStore()
+
     const calculators = ref<Array<Battle>>([new Battle()]) as Ref<Array<Battle>>
     const activeIndex = ref(0)
     const isStarted = ref(false)
 
     const attacker = computed(() => calculators.value[activeIndex.value].attacker)
     const defender = computed(() => calculators.value[activeIndex.value].defender)
+
+    if (!store.isDataLoaded) store.initData()
 
     watch(
       [attacker, defender],

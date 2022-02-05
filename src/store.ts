@@ -18,6 +18,8 @@ export interface StoreState {
   terrains: Array<Terrain>
   spells: Array<Spell>
   towns: Array<Town>
+
+  isDataLoaded: boolean
 }
 
 export const useStore = defineStore('data', {
@@ -30,6 +32,8 @@ export const useStore = defineStore('data', {
     terrains: [],
     spells: [],
     towns: [],
+
+    isDataLoaded: false,
   }),
   getters: {
     attackPositiveEffects(): Array<Spell> {
@@ -55,9 +59,13 @@ export const useStore = defineStore('data', {
   actions: {
     initData() {
       const tables = ['classes', 'creatures', 'heroes', 'skills', 'levels', 'terrains', 'spells', 'towns']
-      tables.forEach(async (table: string) => {
-        this[table] = (await import(`./assets/database/${table}.ts`))[table]
+
+      const promises = tables.map(async (table: string) => {
+        // dynamic load data module
+        const data = await import(`./assets/database/${table}.ts`)
+        this[table] = data[table]
       })
+      Promise.all(promises).then(() => (this.isDataLoaded = true))
     },
   },
 })
