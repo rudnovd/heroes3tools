@@ -49,91 +49,62 @@ export default defineComponent({
       },
     ]
 
-    return { pages, router }
+    return {
+      router,
+
+      pages,
+    }
   },
 })
 </script>
 
 <style lang="scss" scoped>
 .home-page {
-  height: 100%;
   display: grid;
-  grid-template-rows: 4rem 1fr 1fr 1fr;
-  overflow: auto;
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
+  gap: 16px;
   min-width: 300px;
-  padding-top: 2rem;
-  align-content: flex-start;
-  margin: auto;
-  max-width: min(95%, 2000px);
+  padding-bottom: 16px;
+  height: 100%;
+  grid-auto-rows: min-content;
 
-  @include media-medium {
-    grid-template-rows: 8rem auto;
-    padding-top: 0;
+  @include media-small {
     align-content: center;
+    padding-bottom: unset;
   }
 
-  & h1 {
+  h1 {
     text-align: center;
   }
 }
 
 .page-links {
   display: grid;
-  grid-template-columns: clamp(200px, 50vw, 400px);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 90%;
   justify-content: center;
   gap: 1rem;
   user-select: none;
 
-  @include media-medium {
+  @include media-small {
     grid-template-columns: repeat(3, clamp(200px, 25vw, 400px));
-    grid-template-rows: 1fr;
+  }
+
+  @include media-medium {
     gap: 3rem;
   }
 }
 
 .link-card {
-  box-shadow: 0 0 10px black;
+  box-shadow: 0 0 8px black;
   display: grid;
-  grid-template-rows: auto 2.6rem;
+  grid-template-rows: 1fr 3rem;
   height: 200px;
   text-align: center;
   transition: filter 1s, box-shadow 1s, transform 1s;
+  cursor: pointer;
 
   @include media-large {
     height: 300px;
-  }
-
-  & picture {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: url('/images/pages/home/links-background.webp');
-    background-position-y: -1px;
-    cursor: pointer;
-
-    & img {
-      color: white;
-      height: 100px;
-      width: auto;
-
-      @include media-large {
-        height: auto;
-      }
-    }
-  }
-
-  & h2 {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: transform 0.15s linear;
-
-    & a {
-      color: black;
-      text-decoration: none;
-    }
   }
 
   &:hover {
@@ -154,6 +125,39 @@ export default defineComponent({
     filter: grayscale(1);
     opacity: 0.5;
     pointer-events: none;
+  }
+
+  picture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('/images/pages/home/links-background.webp');
+    background-position-y: -1px;
+
+    img {
+      height: 100px;
+
+      @include media-large {
+        height: auto;
+      }
+    }
+  }
+
+  h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: transform 0.15s linear;
+
+    & a {
+      color: black;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: transform 0.15s linear;
+    }
   }
 }
 </style>
