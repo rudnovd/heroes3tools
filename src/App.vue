@@ -12,19 +12,16 @@
 
 <script lang="ts">
 import { useRegisterSW } from 'virtual:pwa-register/vue'
-import { defineComponent } from 'vue'
+import { defineAsyncComponent, defineComponent } from 'vue'
 import { useRoute } from 'vue-router'
-import BaseNotification from './components/base/BaseNotification.vue'
-import { useStore } from './store'
 
 export default defineComponent({
   name: 'App',
-  components: { BaseNotification },
+  components: {
+    BaseNotification: defineAsyncComponent(() => import('./components/base/BaseNotification.vue')),
+  },
   setup() {
-    const store = useStore()
     const route = useRoute()
-
-    store.initData()
 
     const { updateServiceWorker, needRefresh } = useRegisterSW({
       immediate: false,

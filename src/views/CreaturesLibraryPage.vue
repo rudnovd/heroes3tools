@@ -76,6 +76,8 @@ export default defineComponent({
     const search = ref('')
     const searchInput = ref()
 
+    if (!store.isDataLoaded) store.initData()
+
     const keyboardSearch = (value: KeyboardEvent) => {
       if (value.key === 'Enter') {
         if (search.value.length > 0) {
