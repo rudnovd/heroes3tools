@@ -6,7 +6,7 @@
       class="object-portrait"
       :alt="object.name"
       :title="object.name"
-      loading="lazy"
+      :loading="lazyLoading ? 'lazy' : 'eager'"
       @click="$emit('click', object.id)"
     />
   </picture>
@@ -38,6 +38,10 @@ export default defineComponent({
     height: {
       type: [Number, String],
       default: 'auto',
+    },
+    lazyLoading: {
+      type: Boolean,
+      default: true,
     },
   },
   emits: ['click'],
