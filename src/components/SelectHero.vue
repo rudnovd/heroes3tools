@@ -16,14 +16,24 @@
   >
     <template #option="{ option }">
       <div class="option">
-        <ObjectPortrait :folder="`/images/heroes/portraits/small`" :object="option" :width="46" :height="30" />
+        <ObjectPortrait
+          :folder="`/images/heroes/portraits/small`"
+          :file="{ name: option.id, alt: option.name }"
+          :width="46"
+          :height="30"
+        />
         {{ option.name }}
       </div>
     </template>
 
     <template #singlelabel="{ value }">
       <div class="multiselect-single-label">
-        <ObjectPortrait :folder="`/images/heroes/portraits/small`" :object="value" :width="46" :height="30" />
+        <ObjectPortrait
+          :folder="`/images/heroes/portraits/small`"
+          :file="{ name: value.id, alt: value.name }"
+          :width="46"
+          :height="30"
+        />
         {{ value.name }}
       </div>
     </template>
@@ -89,9 +99,9 @@ export default defineComponent({
 }
 
 .option {
-  width: 100%;
   display: flex;
   align-items: center;
+  width: 100%;
 
   & picture {
     margin-right: 0.5rem;

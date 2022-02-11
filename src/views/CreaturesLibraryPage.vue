@@ -5,14 +5,14 @@
         <ObjectPortrait
           v-for="town in towns.slice(0, 10)"
           :key="town.id"
-          :object="town"
+          :file="{ name: town.id, alt: town.name }"
           folder="/images/towns/portraits/large"
           width="80px"
           height="70px"
           @click="router.replace(`#${town.name}`)"
         />
         <ObjectPortrait
-          :object="{ id: 0, name: 'Neutral' }"
+          :file="{ name: 0, alt: 'Neutral' }"
           folder="/images/towns/portraits/large"
           width="80px"
           height="70px"
@@ -144,10 +144,10 @@ export default defineComponent({
 <style lang="scss">
 .creatures-library-page {
   display: flex;
-  margin: 20px auto 0 auto;
   flex-direction: column;
   min-width: 320px;
   max-width: min(90%, 1920px);
+  margin: 20px auto 0 auto;
 }
 
 .library-header {
@@ -173,8 +173,8 @@ export default defineComponent({
 
 .towns-anchors {
   display: grid;
-  grid-gap: 5px;
   grid-template-columns: repeat(4, 80px);
+  grid-gap: 5px;
 
   img {
     cursor: pointer;
@@ -197,8 +197,8 @@ export default defineComponent({
 
 .town-name {
   grid-column: 1 / -1;
-  text-align: center;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .creature-card {
