@@ -126,26 +126,26 @@ export default defineComponent({
 <style lang="scss" scoped>
 .damage-calculator-page {
   display: grid;
-  padding-top: 0.5rem;
-  margin: 0 auto;
   min-width: 300px;
   max-width: min(95%, 1920px);
+  padding-top: 0.5rem;
+  margin: 0 auto;
 }
 
 .calculator-tabs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 30%));
   grid-template-rows: 35px;
-  column-gap: 10px;
-  row-gap: 0.5rem;
-  user-select: none;
-  justify-content: flex-start;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 30%));
   grid-auto-flow: row;
+  row-gap: 0.5rem;
+  column-gap: 10px;
+  justify-content: flex-start;
+  user-select: none;
 
   @include media-medium {
     grid-template-columns: repeat(auto-fit, minmax(90px, 13%));
-    row-gap: 0;
     grid-auto-flow: column;
+    row-gap: 0;
   }
 
   .tab {
@@ -153,11 +153,11 @@ export default defineComponent({
     align-items: center;
     padding: 0 0.5rem 0 1rem;
     overflow: hidden;
-    box-shadow: 0 0 5px rgb(170, 170, 170);
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-    border: none;
     cursor: pointer;
+    border: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: 0 0 5px rgb(170, 170, 170);
     opacity: 0.6;
 
     &:first-child {
@@ -172,22 +172,22 @@ export default defineComponent({
 
   .tab-title {
     max-width: 90%;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .tab-close-button {
-    background: url('@/assets/icons/cross.svg') no-repeat;
     width: 0.5rem;
     height: 0.5rem;
     margin-left: auto;
+    background: url('@/assets/icons/cross.svg') no-repeat;
     border-radius: 50%;
     transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 
     &:hover {
-      box-shadow: 0 0 0 3px rgb(200, 200, 200, 0.5);
       background-color: rgb(200, 200, 200, 0.5);
+      box-shadow: 0 0 0 3px rgb(200, 200, 200, 0.5);
     }
   }
 
@@ -199,15 +199,15 @@ export default defineComponent({
   }
 
   .tab-add-button {
-    background: url('@/assets/icons/plus.svg') no-repeat;
     width: 1.5rem;
     height: 1.5rem;
+    background: url('@/assets/icons/plus.svg') no-repeat;
     border-radius: 50%;
     transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 
     &:hover {
-      box-shadow: 0 0 0 3px rgb(200, 200, 200, 0.5);
       background-color: rgb(200, 200, 200, 0.5);
+      box-shadow: 0 0 0 3px rgb(200, 200, 200, 0.5);
     }
 
     &.disabled {

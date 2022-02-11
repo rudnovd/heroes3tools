@@ -58,9 +58,9 @@ export default defineComponent({
 
 <style lang="scss">
 .footer-button {
-  color: rgb(108, 117, 125);
-  font-size: 0.875rem;
-  margin-right: 10px;
   padding: 0.25rem 0.5rem;
+  margin-right: 10px;
+  font-size: 0.875rem;
+  color: rgb(108, 117, 125);
 }
 </style>

@@ -65,12 +65,12 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .input-number {
-  border: 1px solid rgb(206, 212, 218);
-  border-radius: 0.2rem;
-  font-size: inherit;
-  font-family: inherit;
   padding: 0.25rem 0.5rem;
+  font-family: inherit;
+  font-size: inherit;
   font-size: 0.875rem;
   line-height: 1.5;
+  border: 1px solid rgb(206, 212, 218);
+  border-radius: 0.2rem;
 }
 </style>

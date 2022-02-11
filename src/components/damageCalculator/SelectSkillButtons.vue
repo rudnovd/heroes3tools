@@ -61,9 +61,9 @@ export default defineComponent({
 <style lang="scss" scoped>
 .select-skill-buttons {
   display: grid;
-  align-items: center;
   grid-template-columns: 1fr 3fr;
   grid-gap: 0.25rem;
+  align-items: center;
 }
 
 .skill-name {
@@ -73,22 +73,22 @@ export default defineComponent({
 }
 
 .skill-buttons {
-  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1.25fr 1fr;
+  width: 100%;
   height: 1.5rem;
 }
 
 .skill-button {
-  background-color: transparent;
-  font-size: 0.8rem;
-  height: 100%;
   min-width: 60px;
+  height: 100%;
   overflow: hidden;
-  text-overflow: ellipsis;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
-  white-space: nowrap;
+  font-size: 0.8rem;
   font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: transparent;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
 
 @each $color, $color-value in $calculator-colors {

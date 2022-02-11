@@ -67,55 +67,55 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .dialog-area {
-  background: rgba(0, 0, 0, 0.5);
-  height: 100%;
-  outline: 0;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
   z-index: 50;
+  width: 100%;
+  height: 100%;
   overflow-y: auto;
+  background: rgba(0, 0, 0, 0.5);
+  outline: 0;
 }
 
 .base-dialog {
   position: relative;
+  width: 90%;
+  min-width: 320px;
+  min-height: 150px;
+  margin: 2rem auto 2rem auto;
+  overflow: hidden;
   background-color: rgb(255, 255, 255);
   border-radius: 0.3rem;
-  margin: 2rem auto 2rem auto;
-  min-height: 150px;
-  min-width: 320px;
   outline: 0;
-  width: 90%;
-  overflow: hidden;
 
   &-small {
-    max-width: map-get($grid-breakpoints, 'small');
+    max-width: map.get($grid-breakpoints, 'small');
   }
 
   &-medium {
-    max-width: map-get($grid-breakpoints, 'medium');
+    max-width: map.get($grid-breakpoints, 'medium');
   }
 
   &-large {
-    max-width: map-get($grid-breakpoints, 'large');
+    max-width: map.get($grid-breakpoints, 'large');
   }
 
   &-maximum {
-    max-width: map-get($grid-breakpoints, 'maximum');
+    max-width: map.get($grid-breakpoints, 'maximum');
   }
 }
 
 .modal-content {
-  background-clip: padding-box;
+  position: relative;
   display: flex;
   flex-direction: column;
+  width: 100%;
   height: 100%;
   padding: 24px;
   pointer-events: auto;
-  position: relative;
   user-select: none;
-  width: 100%;
+  background-clip: padding-box;
 }
 
 .header {

@@ -20,8 +20,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .error-page {
   display: flex;
-  height: 100%;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 </style>
