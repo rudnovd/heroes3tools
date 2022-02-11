@@ -19,7 +19,7 @@
               :key="creature.id"
               class="creature-img"
               folder="/images/creatures/portraits/big"
-              :object="creature"
+              :file="{ name: creature.id, alt: creature.name }"
               :width="58"
               :height="64"
               @click="selectUnit(creature)"
@@ -32,7 +32,7 @@
               :key="neutralCreature.id"
               class="creature-img"
               folder="/images/creatures/portraits/big"
-              :object="neutralCreature"
+              :file="{ name: neutralCreature.id, alt: neutralCreature.name }"
               :width="58"
               :height="64"
               @click="selectUnit(neutralCreature)"
@@ -150,18 +150,18 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   pointer-events: auto;
-  background-clip: padding-box;
   user-select: none;
+  background-clip: padding-box;
 }
 
 .search-input {
-  border: 1px solid rgb(206, 212, 218);
-  border-radius: 0.2rem;
-  font-size: inherit;
-  font-family: inherit;
   padding: 0.25rem 0.5rem;
+  font-family: inherit;
+  font-size: inherit;
   font-size: 0.875rem;
   line-height: 1.5;
+  border: 1px solid rgb(206, 212, 218);
+  border-radius: 0.2rem;
 }
 
 .units {
@@ -178,17 +178,17 @@ export default defineComponent({
 
 .town {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
-  margin-bottom: 8px;
+  flex-wrap: wrap;
   gap: 8px;
+  margin-bottom: 8px;
 }
 
 .creature-img:deep(img) {
-  border-radius: 5px;
-  cursor: pointer;
-  height: auto;
   width: 50px;
+  height: auto;
+  cursor: pointer;
+  border-radius: 5px;
   transition: box-shadow 0.25s, transform 0.25s;
 
   @include media-medium {

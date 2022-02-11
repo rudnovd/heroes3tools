@@ -16,7 +16,7 @@
         <div class="creature">
           <button v-if="side.activeCreature" class="creature-button">
             <ObjectPortrait
-              :object="side.activeCreature"
+              :file="{ name: side.activeCreature.id, alt: side.activeCreature.name }"
               class="creature-img"
               folder="/images/creatures/portraits/big"
               :width="58"
@@ -254,24 +254,24 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .damage-calculator {
-  box-shadow: 0 0 3px rgba(170, 170, 170, 0.5);
   display: grid;
-  grid-template-columns: 100%;
   grid-template-rows: auto auto;
+  grid-template-columns: 100%;
+  box-shadow: 0 0 3px rgba(170, 170, 170, 0.5);
 
   @include media-large {
-    grid-template-columns: 50% 50%;
     grid-template-rows: 85vh auto;
+    grid-template-columns: 50% 50%;
   }
 }
 
 .attacker,
 .defender {
   display: grid;
-  grid-template-columns: 100%;
   grid-template-rows: auto 1fr 2fr 2fr 1fr;
-  padding: 10px;
+  grid-template-columns: 100%;
   gap: 1rem;
+  padding: 10px;
 
   @include media-large {
     padding: 20px;
@@ -280,15 +280,15 @@ export default defineComponent({
 
 .title {
   display: grid;
+  grid-template-areas: 'title button';
   column-gap: 0.5rem;
   align-items: center;
-  grid-template-areas: 'title button';
 }
 
 .main {
   display: grid;
-  margin-bottom: 2rem;
   column-gap: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .creature {
@@ -323,8 +323,8 @@ export default defineComponent({
   border-bottom: 1px solid rgb(222, 226, 230);
 
   @include media-large {
-    border-bottom: 0;
     border-right: 1px solid rgb(222, 226, 230);
+    border-bottom: 0;
   }
 
   .title {
@@ -338,20 +338,20 @@ export default defineComponent({
 
 .defender {
   .title {
-    grid-template-columns: 1fr minmax(auto, 33.3%);
     grid-template-areas: 'button title';
+    grid-template-columns: 1fr minmax(auto, 33.3%);
   }
   .title h2 {
-    text-align: right;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     grid-area: title;
+    overflow: hidden;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .main {
-    grid-template-columns: auto minmax(auto, 33.3%);
     grid-template-areas: 'hero creature';
+    grid-template-columns: auto minmax(auto, 33.3%);
   }
 
   .creature {
@@ -366,28 +366,28 @@ export default defineComponent({
 }
 
 .creature-button {
-  display: block;
-  height: 64px;
-  overflow: hidden;
-  padding: 0;
   position: relative;
-  width: 58px;
   z-index: 1;
+  display: block;
+  width: 58px;
+  height: 64px;
+  padding: 0;
+  overflow: hidden;
 
   &::after {
-    background-color: hsla(0, 0%, 100%, 0.2);
-    bottom: -50%;
-    content: '';
     position: absolute;
     top: -50%;
-    transform: translate3d(-525%, 0, 0) rotate(35deg);
-    width: 1.25em;
+    bottom: -50%;
     z-index: -1;
+    width: 1.25em;
+    content: '';
+    background-color: hsla(0, 0%, 100%, 0.2);
+    transform: translate3d(-525%, 0, 0) rotate(35deg);
   }
 
   &:hover::after {
-    transform: translate3d(200%, 0, 0) rotate(35deg);
     transition: transform 0.45s ease-in-out;
+    transform: translate3d(200%, 0, 0) rotate(35deg);
   }
 }
 
@@ -436,14 +436,14 @@ export default defineComponent({
 
 .calculator-footer {
   display: flex;
-  padding: 5px;
-  justify-content: flex-end;
   grid-column: 1 / -1;
+  justify-content: flex-end;
+  padding: 5px;
   border-top: 1px solid rgb(222, 226, 230);
 
   .multiselect {
-    margin: 0;
     width: 300px;
+    margin: 0;
   }
 }
 </style>

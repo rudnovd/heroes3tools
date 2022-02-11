@@ -4,15 +4,17 @@
 
     <section class="page-links">
       <div v-for="page in pages" :key="page.path" class="link-card" :class="{ disabled: page.disabled }">
-        <picture @click="router.push(page.path)">
-          <source :srcset="`${page.image}.webp`" type="image/webp" />
-          <source :srcset="`${page.image}.avif`" type="image/avif" />
-          <source :srcset="`${page.image}.png`" type="image/png" />
-          <img :src="page.image" :alt="page.name" loading="lazy" decoding="async" />
-        </picture>
+        <ObjectPortrait
+          folder="/images/pages/home"
+          :file="{ name: page.image, alt: page.image }"
+          :width="page.width"
+          :height="page.height"
+          @click="router.push(page.path)"
+        />
 
         <h2>
-          <router-link :to="page.path">{{ page.name }}</router-link>
+          <router-link v-if="!page.disabled" :to="page.path">{{ page.name }}</router-link>
+          <span v-else>{{ page.name }}</span>
         </h2>
       </div>
     </section>
@@ -20,38 +22,44 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineAsyncComponent, defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'HomePage',
+  components: {
+    ObjectPortrait: defineAsyncComponent(() => import('@/components/ObjectPortrait.vue')),
+  },
   setup() {
     const { t } = useI18n()
     const router = useRouter()
-
     const pages = [
       {
         name: t('pages.damageCalculator'),
         path: '/damage',
-        image: '/images/pages/home/Tactics',
+        image: 'Tactics',
+        height: 198,
+        width: 176,
       },
       {
         name: t('pages.magicCalculator'),
         path: '/magic',
-        image: '/images/pages/home/Water',
+        image: 'Water',
+        height: 198,
+        width: 176,
         disabled: true,
       },
       {
         name: t('pages.creaturesLibrary'),
         path: '/creatures',
-        image: '/images/pages/home/Scholar',
+        image: 'Scholar',
+        height: 198,
+        width: 176,
       },
     ]
-
     return {
       router,
-
       pages,
     }
   },
@@ -61,12 +69,12 @@ export default defineComponent({
 <style lang="scss" scoped>
 .home-page {
   display: grid;
-  margin: 0 auto;
+  grid-auto-rows: min-content;
   gap: 16px;
   min-width: 300px;
-  padding-bottom: 16px;
   height: 100%;
-  grid-auto-rows: min-content;
+  padding-bottom: 16px;
+  margin: 0 auto;
 
   @include media-small {
     align-content: center;
@@ -81,8 +89,8 @@ export default defineComponent({
 .page-links {
   display: grid;
   grid-template-columns: 90%;
-  justify-content: center;
   gap: 1rem;
+  justify-content: center;
   user-select: none;
 
   @include media-small {
@@ -95,16 +103,27 @@ export default defineComponent({
 }
 
 .link-card {
-  box-shadow: 0 0 8px black;
   display: grid;
-  grid-template-rows: 1fr 3rem;
-  height: 200px;
+  grid-template-rows: 200px 3rem;
   text-align: center;
+  box-shadow: 0 0 8px black;
   transition: filter 1s, box-shadow 1s, transform 1s;
-  cursor: pointer;
 
-  @include media-large {
-    height: 300px;
+  h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: transform 0.15s linear;
+
+    & a {
+      overflow: hidden;
+      color: black;
+      text-decoration: none;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: transform 0.15s linear;
+    }
   }
 
   &:hover {
@@ -122,9 +141,9 @@ export default defineComponent({
   }
 
   &.disabled {
+    pointer-events: none;
     filter: grayscale(1);
     opacity: 0.5;
-    pointer-events: none;
   }
 
   picture {
@@ -134,29 +153,8 @@ export default defineComponent({
     background: url('/images/pages/home/links-background.webp');
     background-position-y: -1px;
 
-    img {
-      height: 100px;
-
-      @include media-large {
-        height: auto;
-      }
-    }
-  }
-
-  h2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    transition: transform 0.15s linear;
-
-    & a {
-      color: black;
-      text-decoration: none;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transition: transform 0.15s linear;
+    &:hover {
+      cursor: pointer;
     }
   }
 }

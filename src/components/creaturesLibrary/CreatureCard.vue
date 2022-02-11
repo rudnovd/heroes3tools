@@ -1,7 +1,7 @@
 <template>
   <div :id="creature.name" class="creature-card" @click="$emit('click', creature)">
     <div class="creature-image">
-      <ObjectPortrait :object="creature" folder="/images/creatures/models" />
+      <ObjectPortrait :file="{ name: creature.id, alt: creature.name }" folder="/images/creatures/models" />
     </div>
 
     <div class="creature-info">
@@ -29,7 +29,7 @@
         <span>cost:</span>
         <div class="paramater-with-resources">
           <div v-for="(value, key) in creature.cost" :key="key">
-            <ObjectPortrait height="18px" :object="{ id: key, name: key }" folder="/images/resources" />
+            <ObjectPortrait height="18px" :file="{ name: key, alt: key }" folder="/images/resources" />
             <span>{{ value }}</span>
           </div>
         </div>
@@ -69,8 +69,8 @@ export default defineComponent({
 .creature-card {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  border-bottom: 1px solid black;
   border-right: 1px solid black;
+  border-bottom: 1px solid black;
   transition: background 0.25s;
 
   @include media-large {
@@ -83,18 +83,18 @@ export default defineComponent({
 }
 
 .creature-image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &::before {
-    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    content: '';
     background: url('/images/pages/home/links-background.webp');
     filter: brightness(110%);
   }
@@ -105,9 +105,9 @@ export default defineComponent({
 }
 
 .creature-name {
+  grid-column: 1 / -1;
   text-align: center;
   border-bottom: 1px solid rgb(222, 226, 230);
-  grid-column: 1 / -1;
 }
 
 .creature-info {
@@ -121,9 +121,9 @@ export default defineComponent({
 
 .parameter {
   display: grid;
-  padding-left: 4px;
-  align-items: center;
   grid-template-columns: 2fr 4fr;
+  align-items: center;
+  padding-left: 4px;
   border-bottom: 1px solid rgb(222, 226, 230);
 
   span:first-child {
@@ -152,8 +152,8 @@ export default defineComponent({
 }
 
 .creature-description {
-  padding-left: 4px;
   grid-column: 1 / -1;
+  padding-left: 4px;
 }
 
 .creature-card.selected {
@@ -171,8 +171,8 @@ export default defineComponent({
 
   div {
     display: flex;
-    align-items: center;
     grid-gap: 4px;
+    align-items: center;
   }
 
   picture {

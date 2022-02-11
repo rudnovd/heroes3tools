@@ -1,40 +1,35 @@
 <template>
   <picture>
-    <source :srcset="`${folder}/${object.id}.webp`" type="image/webp" />
-    <source :srcset="`${folder}/${object.id}.gif`" type="image/gif" />
+    <source :srcset="`${folder}/${file.name}.webp`" type="image/webp" />
+    <source :srcset="`${folder}/${file.name}.gif`" type="image/gif" />
     <img
-      class="object-portrait"
-      :alt="object.name"
-      :title="object.name"
+      :alt="file.alt || file.name.toString()"
+      :title="file.alt"
       :loading="lazyLoading ? 'lazy' : 'eager'"
-      @click="$emit('click', object.id)"
+      :sizes="sizes"
+      @click="$emit('click', file.name)"
     />
   </picture>
 </template>
 
 <script lang="ts">
-import type { Creature, CreatureInstance } from '@/models/Creature'
-import type { Hero } from '@/models/Hero'
-import type { Town } from '@/models/Town'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'ObjectPortrait',
   props: {
-    object: {
-      type: Object as () => Creature | Hero | Town | CreatureInstance | { id: number | string; name?: string },
+    file: {
+      type: Object as () => { name: string | number; alt?: string },
       required: true,
     },
     folder: {
       type: String,
       required: true,
     },
-    // eslint-disable-next-line vue/no-unused-properties
     width: {
       type: [Number, String],
       default: 'auto',
     },
-    // eslint-disable-next-line vue/no-unused-properties
     height: {
       type: [Number, String],
       default: 'auto',
@@ -43,13 +38,17 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    sizes: {
+      type: String,
+      default: null,
+    },
   },
   emits: ['click'],
 })
 </script>
 
 <style lang="scss" scoped>
-.object-portrait {
+img {
   width: v-bind(width);
   height: v-bind(height);
 }
