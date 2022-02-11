@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { BattleSide } from '@/models/Battle'
-import { defineComponent, defineAsyncComponent, ref } from 'vue'
+import { defineAsyncComponent, defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'PickCreatureButton',
@@ -37,30 +37,30 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .pick-creature-button {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 2rem;
-  border-radius: 5px;
-  line-height: 1.5;
-  z-index: 1;
-  position: relative;
   font-size: 0.875rem;
   font-weight: bold;
+  line-height: 1.5;
+  border-radius: 5px;
 
   &:hover {
     cursor: pointer;
   }
 
   &::before {
-    border-radius: 5px;
-    content: '';
-    z-index: -1;
     position: absolute;
     top: 0;
+    right: 0;
     bottom: 0;
     left: 0;
-    right: 0;
-    transform: scaleX(0);
+    z-index: -1;
+    content: '';
+    border-radius: 5px;
     transition: transform 0.25s ease-in-out;
+    transform: scaleX(0);
   }
 
   &:hover::before {

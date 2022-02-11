@@ -123,35 +123,35 @@ export default defineComponent({
 
 <style lang="scss">
 footer {
-  border-top: 1px solid rgb(222, 226, 230);
   display: flex;
   flex-direction: row;
+  border-top: 1px solid rgb(222, 226, 230);
 }
 
 .footer-button {
-  color: rgb(108, 117, 125);
-  font-size: 0.875rem;
-  margin-right: 10px;
   padding: 0.25rem 0.5rem;
+  margin-right: 10px;
+  font-size: 0.875rem;
+  color: rgb(108, 117, 125);
 
   &:hover {
     text-decoration: underline;
   }
 
   a {
-    text-decoration: none;
     color: rgb(108, 117, 125);
+    text-decoration: none;
   }
 }
 
 .select-language {
-  background-color: transparent;
-  border: none;
+  padding: 0.25rem 0.5rem;
+  margin-right: 10px;
+  font-size: 0.875rem;
   color: #6c757d;
   cursor: pointer;
-  font-size: 0.875rem;
-  margin-right: 10px;
-  padding: 0.25rem 0.5rem;
+  background-color: transparent;
+  border: none;
 }
 
 .left-side {

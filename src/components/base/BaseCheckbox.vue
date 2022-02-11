@@ -47,8 +47,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .option {
   display: block;
-  margin-bottom: 0.5em;
   width: fit-content;
+  margin-bottom: 0.5em;
 }
 
 .check {
@@ -66,9 +66,9 @@ export default defineComponent({
 
 .checkbox {
   position: absolute;
-  margin-left: -1.6em;
   width: 1.4em;
   height: 1.4em;
+  margin-left: -1.6em;
 }
 
 .check-focus {
@@ -76,8 +76,8 @@ export default defineComponent({
 }
 
 .check-square {
-  stroke: rgba(0, 0, 0, 0.25);
   fill: rgb(255, 255, 255);
+  stroke: rgba(0, 0, 0, 0.25);
   stroke-width: 1px;
 }
 
@@ -87,8 +87,8 @@ export default defineComponent({
 }
 
 .check-input:disabled + * .check-square {
-  stroke: rgb(155, 155, 155);
   fill: rgb(234, 234, 234);
+  stroke: rgb(155, 155, 155);
 }
 
 .check-input:checked:disabled + * .check-square {
@@ -121,8 +121,8 @@ export default defineComponent({
     }
 
     .check-input:checked + * .check-square {
-      stroke: $color-value;
       fill: $color-value;
+      stroke: $color-value;
     }
 
     .check-input:focus + * .check-focus {

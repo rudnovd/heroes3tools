@@ -72,39 +72,39 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .notification-container {
-  line-height: 1.5;
-  left: 0;
-  margin-bottom: 10px;
+  position: fixed;
   right: 0;
-  z-index: 2000;
   bottom: 0;
+  left: 0;
+  z-index: 2000;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: flex-end;
-  position: fixed;
+  margin-bottom: 10px;
+  line-height: 1.5;
   pointer-events: none;
 }
 
 .notification {
-  line-height: 1.5;
-  box-sizing: inherit;
-  left: 0;
-  margin-bottom: 10px;
   right: 0;
-  z-index: 2000;
   bottom: 0;
+  left: 0;
+  z-index: 2000;
+  box-sizing: inherit;
   display: flex;
   flex-direction: column;
-  align-items: center;
   grid-gap: 0.5rem;
-  margin-right: 10px;
-  padding: 1rem;
-  border-radius: 4px;
-  background-color: v-bind(color);
-  min-height: 50px;
+  align-items: center;
   min-width: 100px;
+  min-height: 50px;
+  padding: 1rem;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  line-height: 1.5;
   pointer-events: all;
+  background-color: v-bind(color);
+  border-radius: 4px;
 }
 
 .notification-slot {
