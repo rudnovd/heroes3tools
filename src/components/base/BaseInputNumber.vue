@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue'
 import { useDebounce } from '@vueuse/core'
+import { defineComponent, ref, watch } from 'vue'
 
 export default defineComponent({
   name: 'BaseInputNumber',
@@ -33,6 +33,13 @@ export default defineComponent({
     const previousValue = ref(0)
     const debouncedValue = useDebounce(currentValue, props.debounce)
 
+    watch(
+      () => props.value,
+      (newValue) => (currentValue.value = newValue)
+    )
+
+    watch(debouncedValue, () => context.emit('input', debouncedValue.value))
+
     const onInput = (event: Event) => {
       if (!event.target) return
 
@@ -47,8 +54,6 @@ export default defineComponent({
         previousValue.value = currentValue.value
       }
     }
-
-    watch(debouncedValue, () => context.emit('input', debouncedValue.value))
 
     return {
       currentValue,
