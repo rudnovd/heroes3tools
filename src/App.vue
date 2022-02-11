@@ -1,6 +1,6 @@
 <template>
   <router-link v-if="route.path !== '/'" class="return-home" to="/">
-    <img src="@/assets/icons/arrow_back.svg" width="16" height="16" />
+    <img src="@/assets/icons/arrow_back.svg" alt="back" width="16" height="16" />
     Home page
   </router-link>
   <router-view />
@@ -63,18 +63,19 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '@/styles/main.scss';
+@import '@/styles/main';
+@import '@/styles/fonts';
 </style>
 
 <style lang="scss" scoped>
 .return-home {
-  padding-left: 5px;
-  font-size: 0.8rem;
-  opacity: 0.3;
   display: inline-flex;
   align-items: center;
-  text-decoration: none;
+  padding-left: 5px;
+  font-size: 0.8rem;
   color: rgb(0, 0, 0);
+  text-decoration: none;
+  opacity: 0.3;
   transition: opacity 0.15s;
 
   &:hover {
@@ -82,9 +83,9 @@ export default defineComponent({
   }
 
   &::before {
-    background: url('@/assets/icons/arrow_back.svg');
     width: 2rem;
     height: 2rem;
+    background: url('@/assets/icons/arrow_back.svg');
   }
 }
 
