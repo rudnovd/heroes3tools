@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "stylelint-config-recommended-scss",
+    "stylelint-config-recommended-vue/scss",
+    "stylelint-config-prettier",
+    "stylelint-config-recess-order"
+  ],
+  "rules": {
+    "property-no-unknown": null,
+    "function-no-unknown": null
+  },
+  "overrides": [
+    {
+      "files": ["*.vue", "**/*.vue", ".scss", "**/*.scss"]
+    }
+  ]
+}
