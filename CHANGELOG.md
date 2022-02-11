@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-alpha.7](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-alpha.6...v2.0.0-alpha.7) (2022-02-11)
+
+
+### Features
+
+* **assets:** fill description field for creatures ([6914214](https://github.com/rudnovd/heroes3tools/commit/6914214126053e8ae3ea95a5fa5474a6a80da0f2))
+* **ObjectPortrait:** add lazyLoading prop ([d2f1992](https://github.com/rudnovd/heroes3tools/commit/d2f1992acd3b7425535bbb711be661686ea50837))
+
+
+### Bug Fixes
+
+* **BaseInputNumber:** fix value prop update ([4cb184a](https://github.com/rudnovd/heroes3tools/commit/4cb184a1f054830bc5a519d0f6b514dac394b839))
+
 ## [2.0.0-alpha.6](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-alpha.5...v2.0.0-alpha.6) (2022-02-02)
 
 
