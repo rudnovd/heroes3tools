@@ -2,6 +2,13 @@
   "name": "heroes3tools",
   "version": "2.0.0-alpha.6",
   "private": true,
+  "description": "Web tools for simplify calculations in Heroes of Might and Magic III: Horn of The Abyss",
+  "homepage": "https://heroes3.tools",
+  "bugs": {
+    "url": "https://github.com/rudnovd/heroes3tools/issues"
+  },
+  "repository": "github:rudnovd/heroes3tools",
+  "license": "MIT",
   "scripts": {
     "start": "vite",
     "build": "cross-env NODE_ENV=production npm run lint && vue-tsc --noEmit && vite build",
@@ -16,7 +23,6 @@
   },
   "dependencies": {
     "@vueform/multiselect": "^2.3.2",
-    "@vueuse/components": "^7.6.1",
     "@vueuse/core": "^7.6.1",
     "pinia": "^2.0.11",
     "vue": "^3.2.30",
@@ -70,5 +76,12 @@
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g ./commitlint.js"
     }
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "funding": {
+    "type": "Ko-fi",
+    "url": "https://ko-fi.com/rudnovd"
   }
 }
