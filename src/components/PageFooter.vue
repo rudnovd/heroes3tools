@@ -5,11 +5,11 @@
         {{ aboutText }}
       </button>
 
-      <!-- <select v-model="selectedLocale" class="select-language" @change="changeLocale(selectedLocale)">
+      <select v-model="selectedLocale" class="select-language" @change="setLanguage(selectedLocale)">
         <option v-for="locale in locales" :key="locale.name" :value="locale.name">
           {{ locale.value }}
         </option>
-      </select> -->
+      </select>
     </div>
 
     <div class="right-side">
@@ -54,13 +54,14 @@
     <BaseDialog v-if="showLicenseModal" :show="showLicenseModal" @close="showLicenseModal = false">
       <template #content>
         <p class="modal-text">{{ t('footer.license.1') }}</p>
-        <i18n class="modal-text" path="footer.license.2" tag="p">
+        <i18n-t class="modal-text" keypath="footer.license.2" tag="p">
           <template #url>
             <a href="https://github.com/rudnovd" target="_blank">https://github.com/rudnovd</a>
           </template>
-        </i18n>
+        </i18n-t>
         <p class="modal-text">{{ t('footer.license.3') }}</p>
         <p class="modal-text">{{ t('footer.license.4') }}</p>
+        <p class="modal-text">{{ t('footer.license.5') }}</p>
       </template>
     </BaseDialog>
   </footer>
@@ -68,7 +69,7 @@
 
 <script lang="ts">
 import BaseDialog from '@/components/base/BaseDialog.vue'
-import { loadLocaleMessages, setI18nLanguage } from '@/i18n'
+import { selectedLanguage, setLanguage } from '@/i18n'
 import { defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -80,17 +81,16 @@ export default defineComponent({
   props: {
     aboutText: {
       type: String,
-      required: false,
       default: 'About',
     },
   },
   setup() {
-    const { t, locale, getLocaleMessage } = useI18n()
+    const { t } = useI18n()
 
     const showAboutModal = ref(false)
     const showLicenseModal = ref(false)
     const foundErrorModal = ref(false)
-    const selectedLocale = ref('en')
+    const selectedLocale = ref(selectedLanguage.value)
     const locales = ref([
       {
         name: 'en',
@@ -102,20 +102,16 @@ export default defineComponent({
       },
     ])
 
-    const changeLocale = async (value: string) => {
-      locale.value = value
-      setI18nLanguage(value)
-      await loadLocaleMessages(value)
-      getLocaleMessage(value)
-      document.title = t(document.title).toString()
-      // loadResourcesByLocale('creatures', value as 'ru' | 'en')
-    }
-
     return {
       t,
-      showAboutModal,
+
+      locales,
+      selectedLocale,
       showLicenseModal,
+      showAboutModal,
       foundErrorModal,
+
+      setLanguage,
     }
   },
 })
@@ -147,11 +143,13 @@ footer {
 .select-language {
   padding: 0.25rem 0.5rem;
   margin-right: 10px;
+  font: inherit;
   font-size: 0.875rem;
   color: #6c757d;
   cursor: pointer;
   background-color: transparent;
   border: none;
+  outline: none;
 }
 
 .left-side {
