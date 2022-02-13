@@ -41,12 +41,12 @@
         </div>
 
         <div v-else class="search-units">
-          <Portrait
+          <ObjectPortrait
             v-for="creature in searchCreatures"
             :key="creature.id"
             class="creature-img"
             folder="/images/creatures/portraits/big"
-            :object="creature"
+            :file="{ name: creature.id, alt: creature.name }"
             :width="58"
             :height="64"
             @click="selectUnit(creature)"
