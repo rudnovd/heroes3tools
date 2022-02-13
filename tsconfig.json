@@ -17,7 +17,8 @@
     "noImplicitAny": false,
     "types": [
       "vite-plugin-pwa/client",
-      "@peeky/test"
+      "@peeky/test",
+      "@intlify/vite-plugin-vue-i18n/client"
     ],
     "paths": {
       "@/*": [
