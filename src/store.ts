@@ -57,13 +57,26 @@ export const useStore = defineStore('data', {
     },
   },
   actions: {
-    initData() {
+    loadData(locale = 'en') {
       const tables = ['classes', 'creatures', 'heroes', 'skills', 'levels', 'terrains', 'spells', 'towns']
 
+      // dynamic load data modules
       const promises = tables.map(async (table: string) => {
-        // dynamic load data module
-        const data = await import(`./assets/database/${table}.ts`)
-        this[table] = data[table]
+        // load original data if this not exist in store
+        if (!this[table].length || locale === 'en') {
+          const originalData = await import(`./assets/database/${table}.ts`)
+          this[table] = originalData[table]
+        }
+        if (locale === 'en') return
+
+        // load translation data
+        const data = await import(`./assets/database/locales/${locale}/${table}.ts`)
+        this[table] = this[table].map((tableData: Record<string, unknown>, index: number) => {
+          return {
+            ...tableData,
+            ...data[table][index],
+          }
+        })
       })
       Promise.all(promises).then(() => (this.isDataLoaded = true))
     },
