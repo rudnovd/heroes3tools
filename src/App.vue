@@ -14,6 +14,7 @@
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { defineAsyncComponent, defineComponent } from 'vue'
 import { useRoute } from 'vue-router'
+import { selectedLanguage, setLanguage } from './i18n'
 
 export default defineComponent({
   name: 'App',
@@ -38,6 +39,9 @@ export default defineComponent({
         }
       },
     })
+
+    // Get selected language from localstorage and change i18n language
+    if (selectedLanguage.value !== 'en') setLanguage(selectedLanguage.value)
 
     const notificationsButtons = [
       {
