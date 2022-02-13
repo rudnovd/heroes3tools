@@ -4,38 +4,19 @@
       <h2 class="modal-text">{{ t('footer.damageCalculator.data.1') }}</h2>
       <p class="modal-text">{{ t('footer.damageCalculator.data.2') }}</p>
 
-      <i18n class="modal-text" path="footer.damageCalculator.data.3" tag="p">
-        <template #errorForm>
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform"
-            target="_blank"
-          >
-            {{ t('footer.damageCalculator.data.errorForm') }}.
-          </a>
-        </template>
-      </i18n>
-
-      <i18n class="modal-text" path="footer.damageCalculator.data.4" tag="p">
-        <template #desktopVersion>
-          <a href="https://github.com/Nodl/H3Calc/tree/hota" target="_blank" place="desktopVersion" rel="noopener">
-            {{ t('footer.damageCalculator.data.desktopVersion') }}.
-          </a>
-        </template>
-      </i18n>
-
-      <i18n path="footer.damageCalculator.data.5" tag="p">
+      <i18n-t keypath="footer.damageCalculator.data.3" tag="p">
         <template #email>
           <a href="mailto:feedback@heroes3.tools" target="_blank">feedback@heroes3.tools</a>
         </template>
-      </i18n>
+      </i18n-t>
     </template>
   </PageFooter>
 </template>
 
 <script lang="ts">
+import PageFooter from '@/components/PageFooter.vue'
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
-import PageFooter from '@/components/PageFooter.vue'
 
 export default defineComponent({
   name: 'DamageCalculatorFooter',
@@ -44,13 +25,9 @@ export default defineComponent({
   },
   setup() {
     const { t } = useI18n()
-    // const showAboutModal = ref(false)
-    // const showHowToUseModal = ref(false)
 
     return {
       t,
-      // showAboutModal,
-      // showHowToUseModal
     }
   },
 })
