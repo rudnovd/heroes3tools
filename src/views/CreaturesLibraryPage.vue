@@ -51,6 +51,7 @@
 <script lang="ts">
 import CreatureCard from '@/components/creaturesLibrary/CreatureCard.vue'
 import ObjectPortrait from '@/components/ObjectPortrait.vue'
+import { selectedLanguage } from '@/i18n'
 import { Creature } from '@/models/Creature'
 import { useStore } from '@/store'
 import { computed, defineComponent, onUnmounted, ref } from 'vue'
@@ -76,7 +77,7 @@ export default defineComponent({
     const search = ref('')
     const searchInput = ref()
 
-    if (!store.isDataLoaded) store.initData()
+    if (!store.isDataLoaded) store.loadData(selectedLanguage.value)
 
     const keyboardSearch = (value: KeyboardEvent) => {
       if (value.key === 'Enter') {
