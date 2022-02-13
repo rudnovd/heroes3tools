@@ -1,6 +1,6 @@
 import type { SpellTranslation } from '@/models/Spell'
 
-export const Spells: Array<SpellTranslation> = [
+export const spells: Array<SpellTranslation> = [
   {
     id: 1,
     name: 'Магическая Стрела',
