@@ -1,6 +1,6 @@
 import type { HeroTranslation } from '@/models/Hero'
 
-export const Heroes: Array<HeroTranslation> = [
+export const heroes: Array<HeroTranslation> = [
   {
     id: 1,
     name: 'Оррин',

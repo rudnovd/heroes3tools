@@ -1,6 +1,6 @@
 import type { SkillTranslation } from '@/models/Skill'
 
-export const Skills: Array<SkillTranslation> = [
+export const skills: Array<SkillTranslation> = [
   {
     id: 1,
     name: 'Нападение',

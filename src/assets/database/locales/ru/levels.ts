@@ -1,6 +1,6 @@
 import type { LevelTranslation } from '@/models/Level'
 
-export const Levels: Array<LevelTranslation> = [
+export const levels: Array<LevelTranslation> = [
   {
     id: 1,
     name: 'Нет',
