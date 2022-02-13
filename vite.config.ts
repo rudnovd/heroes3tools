@@ -1,3 +1,4 @@
+import vueI18n from '@intlify/vite-plugin-vue-i18n'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import { defineConfig } from 'vite'
@@ -20,7 +21,7 @@ const pwaOptions: Partial<VitePWAOptions> = {
   filename: 'sw.ts',
   manifest: {
     name: 'Heroes 3 tools',
-    short_name: 'heroes3tools',
+    short_name: 'Heroes 3 tools',
     description: 'Web tools for simplification playing in Heroes of Might and Magic III: Horn of The Abyss',
     orientation: 'portrait',
     theme_color: '#c0b675',
@@ -52,16 +53,12 @@ const pwaOptions: Partial<VitePWAOptions> = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), VitePWA(pwaOptions)],
+  plugins: [vue(), VitePWA(pwaOptions), vueI18n({ include: path.resolve(__dirname, './src/locales/**') })],
   resolve: {
     alias: [
       {
         find: '@',
         replacement: path.resolve(__dirname, 'src'),
-      },
-      {
-        find: 'vue-i18n',
-        replacement: 'vue-i18n/dist/vue-i18n.cjs.js',
       },
     ],
   },
