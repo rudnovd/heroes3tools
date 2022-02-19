@@ -1,114 +1,70 @@
 <template>
-  <Multiselect
-    v-model="selectedHero"
-    class="select-hero"
+  <CustomSelect
+    :value="value"
     :options="heroes"
-    track-by="name"
-    searchable
-    value-prop="id"
-    label="name"
-    placeholder="Select hero"
-    no-results-text="Hero not found"
-    :hide-selected="false"
-    :classes="{
-      dropdown: 'multiselect-dropdown',
-    }"
+    :preload-options-count="20"
+    use-virtual-scoll
+    placeholder="Select Hero"
+    @select="$emit('select', $event)"
+    @clear="$emit('clear')"
   >
-    <template #option="{ option }">
-      <div class="option">
-        <ObjectPortrait
-          :folder="`/images/heroes/portraits/small`"
-          :file="{ name: option.id, alt: option.name }"
-          :width="46"
-          :height="30"
-        />
-        {{ option.name }}
-      </div>
+    <template #selected="{ selected }">
+      <ObjectPortrait
+        :folder="`/images/heroes/portraits/small`"
+        :file="{ name: selected.id, alt: selected.name }"
+        :width="46"
+        :height="30"
+      />
+      {{ selected.name }}
     </template>
 
-    <template #singlelabel="{ value }">
-      <div class="multiselect-single-label">
-        <ObjectPortrait
-          :folder="`/images/heroes/portraits/small`"
-          :file="{ name: value.id, alt: value.name }"
-          :width="46"
-          :height="30"
-        />
-        {{ value.name }}
-      </div>
+    <template #option="{ option }">
+      <ObjectPortrait
+        :folder="`/images/heroes/portraits/small`"
+        :file="{ name: option.id, alt: option.name }"
+        :width="46"
+        :height="30"
+        :lazy-loading="false"
+      />
+      {{ option.name }}
     </template>
-  </Multiselect>
+  </CustomSelect>
 </template>
 
 <script lang="ts">
+import CustomSelect from '@/components/CustomSelect.vue'
 import type { Hero, HeroInstance } from '@/models/Hero'
-import { useStore } from '@/store'
-import Multiselect from '@vueform/multiselect'
-import { computed, defineAsyncComponent, defineComponent, ref, watch } from 'vue'
+import { defineAsyncComponent, defineComponent, PropType } from 'vue'
 
 export default defineComponent({
   name: 'SelectHero',
   components: {
-    Multiselect,
+    CustomSelect,
     ObjectPortrait: defineAsyncComponent(() => import('@/components/ObjectPortrait.vue')),
   },
   props: {
+    heroes: {
+      type: Array as PropType<Array<Hero>>,
+      required: true,
+    },
     value: {
-      type: Object as () => Hero | HeroInstance | null,
+      type: null as unknown as PropType<Hero | HeroInstance | null>,
       required: true,
     },
   },
-  emits: ['selectHero'],
-  setup(props, context) {
-    const store = useStore()
-
-    const selectedHero = ref(props.value?.id)
-    const heroes = computed(() => store.heroes)
-
-    watch(selectedHero, (id) =>
-      context.emit(
-        'selectHero',
-        heroes.value.find((h) => h.id === id)
-      )
-    )
-
-    return {
-      selectedHero,
-      heroes,
-    }
-  },
+  emits: ['select', 'clear'],
 })
 </script>
 
-<style src="@vueform/multiselect/themes/default.css"></style>
-
-<style lang="scss">
-.multiselect-dropdown {
-  height: 420px;
-}
-</style>
-
 <style lang="scss" scoped>
-.select-hero {
-  width: 100%;
-  height: 48px;
-}
-
-.select {
-  overflow-x: hidden;
-}
-
-.option {
-  display: flex;
-  align-items: center;
-  width: 100%;
-
+.selected-value {
   & picture {
+    display: flex;
     margin-right: 0.5rem;
   }
 }
 
-.multiselect-single-label {
+.option-item {
   & picture {
     display: flex;
     margin-right: 0.5rem;
