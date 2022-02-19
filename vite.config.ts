@@ -25,6 +25,7 @@ const pwaOptions: Partial<VitePWAOptions> = {
     description: 'Web tools for simplification playing in Heroes of Might and Magic III: Horn of The Abyss',
     orientation: 'portrait',
     theme_color: '#c0b675',
+    background_color: '#c0b675',
     start_url: '/',
     id: '/',
     icons: [
