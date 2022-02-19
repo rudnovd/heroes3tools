@@ -55,14 +55,14 @@
 
 <script lang="ts">
 import { onClickOutside, useVirtualList } from '@vueuse/core'
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, PropType, ref } from 'vue'
 
 export default defineComponent({
   name: 'CustomSelect',
   props: {
     value: {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      type: Object as () => Record<string, any> | null,
+      type: null as unknown as PropType<Record<string, any> | null>,
       required: true,
     },
     label: {
