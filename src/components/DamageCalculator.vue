@@ -14,6 +14,7 @@
 
       <section class="main">
         <div class="creature">
+          <!-- Creature portrait -->
           <button v-if="side.activeCreature" class="creature-button">
             <ObjectPortrait
               :file="{ name: side.activeCreature.id, alt: side.activeCreature.name }"
@@ -24,6 +25,7 @@
             />
           </button>
 
+          <!-- Input creatures count -->
           <BaseInputNumber
             v-if="side.activeCreature"
             :key="`${sideName}-input-creatures-count`"
@@ -31,25 +33,25 @@
             :min="0"
             :max="9999"
             :value="side.activeCreature.count"
-            :debounce="100"
-            @input="side.activeCreature!.count = $event as number"
+            :debounce="50"
+            @input="side.activeCreature!.count = $event"
           />
         </div>
 
         <div class="hero">
-          <SelectHero :value="side.hero" @select-hero="onSelectHero(side, $event)" />
+          <SelectHero
+            :value="side.hero"
+            :heroes="heroes"
+            @select="onSelectHero(side, $event)"
+            @clear="side.hero = null"
+          />
 
           <div v-if="side.hero" class="hero-parameters">
             <div>
               <label class="stat-name">
                 {{ t(`heroes.stats.level`) }}
               </label>
-              <BaseInputNumber
-                :max="99"
-                :value="side.hero.level"
-                :debounce="100"
-                @input="side.hero!.level = $event as number"
-              />
+              <BaseInputNumber :max="99" :value="side.hero.level" :debounce="50" @input="side.hero!.level = $event" />
             </div>
 
             <InputHeroStat
@@ -58,7 +60,7 @@
               :class="`parameter-${stat}`"
               :stat="stat"
               :value="side.hero.stats[stat]"
-              @input="side.hero!.stats[stat] = $event as number"
+              @input="side.hero!.stats[stat] = $event"
             />
           </div>
         </div>
@@ -71,7 +73,7 @@
           color="attacker"
           :name="skill.name"
           :levels="store.levels.slice(1, store.levels.length)"
-          @click="side.hero!.skills[skill.name.toLowerCase()] = $event as number"
+          @click="side.hero!.skills[skill.name.toLowerCase()] = $event"
         />
       </section>
 
@@ -89,20 +91,45 @@
               color="attacker"
               :value="isEffectEnabled(side, effect)"
               :label="effect.name"
-              @change="onSelectCreatureEffect(side, effect, $event as boolean)"
+              @change="onSelectCreatureEffect(side, effect, $event)"
             />
           </template>
         </div>
       </section>
 
       <section v-if="side.activeCreature" class="damage">
-        <strong>Damage: {{ totalDamage(side) }}</strong>
-        <strong>Kills: {{ totalKills(side) }}</strong>
+        <strong>
+          Damage:
+          {{
+            getTotalResultString(
+              side.activeCreature.calculation.minDamage,
+              side.activeCreature.calculation.maxDamage,
+              side.activeCreature.calculation.averageDamage
+            )
+          }}
+        </strong>
+        <strong>
+          Kills:
+          {{
+            getTotalResultString(
+              side.activeCreature.calculation.minKills,
+              side.activeCreature.calculation.maxKills,
+              side.activeCreature.calculation.averageKills
+            )
+          }}
+        </strong>
       </section>
     </section>
 
     <div class="calculator-footer">
-      <SelectTerrain :terrains="store.terrains" @select-terrain="onSelectTerrain($event)" />
+      <div class="select-terrain">
+        <SelectTerrain
+          :value="battle.attacker.terrain"
+          :terrains="terrains"
+          @select="onSelectTerrain($event)"
+          @clear="onSelectTerrain(null)"
+        />
+      </div>
     </div>
   </section>
 </template>
@@ -119,8 +146,8 @@ import { HeroInstance } from '@/models/Hero'
 import type { Spell } from '@/models/Spell'
 import type { Terrain } from '@/models/Terrain'
 import { useStore } from '@/store'
-import { reactive, ref } from '@vue/reactivity'
 import { defineAsyncComponent, defineComponent, watch } from '@vue/runtime-core'
+import { computed, reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
@@ -147,9 +174,10 @@ export default defineComponent({
 
     const battle = reactive(props.battleValue)
     const isStarted = ref(false)
+    const heroes = computed(() => store.heroes)
+    const terrains = computed(() => store.terrains)
 
-    store.initData()
-
+    // Calculate damage values when attacker or defender props changed
     watch(
       [battle.attacker, battle.defender],
       () => {
@@ -161,52 +189,27 @@ export default defineComponent({
       { deep: true }
     )
 
+    // Watch isStarted ref for prevent infinite calculating
     watch(isStarted, (newIsStarted) => {
       if (newIsStarted) isStarted.value = false
     })
 
-    const totalDamage = (side: DamageCalculatorBattleSide) => {
-      const { minDamage, maxDamage, averageDamage } = side.activeCreature!.calculation
-      if (minDamage > 0 && minDamage !== maxDamage) {
-        return `${minDamage} — ${maxDamage} (~ ${averageDamage})`
-      } else if (minDamage > 0 && minDamage === maxDamage) {
-        return minDamage
-      } else {
-        return 0
-      }
+    // Return string of total damage or total kills
+    const getTotalResultString = (min: number, max: number, average: number) => {
+      if (min > 0 && min !== max) return `${min} — ${max} (~ ${average})`
+      else if (min > 0 && min === max) return min
+      else return 0
     }
 
-    const totalKills = (side: DamageCalculatorBattleSide) => {
-      const { minKills, maxKills, averageKills } = side.activeCreature!.calculation
-      if (minKills > 0 && minKills !== maxKills) {
-        return `${minKills} — ${maxKills} (~ ${averageKills})`
-      } else if (minKills > 0 && minKills === maxKills) {
-        return minKills
-      } else {
-        return 0
-      }
+    const onSelectCreature = (side: DamageCalculatorBattleSide, creature: Creature) => {
+      const creatureInstance = new CreatureInstance(creature)
+      if (side.activeCreature) creatureInstance.count = side.activeCreature.count
+      side.activeCreature = creatureInstance
+      side.creatures[0] = creatureInstance
     }
 
-    const onSelectCreature = (side: DamageCalculatorBattleSide, creature: unknown) => {
-      const newCreature = new CreatureInstance(creature as Creature)
-
-      if (side.activeCreature) {
-        newCreature.count = side.activeCreature.count
-      }
-
-      side.activeCreature = newCreature
-      side.creatures[0] = newCreature
-    }
-
-    const onSelectHero = (side: DamageCalculatorBattleSide, hero: unknown) => {
-      side.hero = null
-
-      if (hero) {
-        const newHero = new HeroInstance(hero as Hero)
-        side.hero = newHero
-      } else {
-        side.hero = null
-      }
+    const onSelectHero = (side: DamageCalculatorBattleSide, hero: Hero) => {
+      side.hero = new HeroInstance(hero)
     }
 
     const onSelectCreatureEffect = (side: DamageCalculatorBattleSide, spell: Spell, effectEnabled: boolean) => {
@@ -223,14 +226,9 @@ export default defineComponent({
       return side.activeCreature!.effects.findIndex((e) => e.id === spell.id) !== -1
     }
 
-    const onSelectTerrain = (terrain: unknown) => {
-      battle.attacker.terrain = null
-      battle.defender.terrain = null
-
-      if (terrain) {
-        battle.attacker.terrain = terrain as Terrain
-        battle.defender.terrain = terrain as Terrain
-      }
+    const onSelectTerrain = (terrain: Terrain | null) => {
+      battle.attacker.terrain = terrain
+      battle.defender.terrain = terrain
     }
 
     return {
@@ -238,10 +236,10 @@ export default defineComponent({
       store,
 
       battle,
+      heroes,
+      terrains,
 
-      totalDamage,
-      totalKills,
-
+      getTotalResultString,
       onSelectCreature,
       onSelectHero,
       onSelectCreatureEffect,
@@ -440,10 +438,9 @@ export default defineComponent({
   justify-content: flex-end;
   padding: 5px;
   border-top: 1px solid rgb(222, 226, 230);
+}
 
-  .multiselect {
-    width: 300px;
-    margin: 0;
-  }
+.select-terrain {
+  width: 300px;
 }
 </style>
