@@ -1,5 +1,11 @@
 <template>
-  <CustomSelect :value="value" :options="terrains" dropdown-position="top" @select="$emit('select', $event)">
+  <BaseSelect
+    :value="value"
+    :options="terrains"
+    :placeholder="t('components.selectTerrain.placeholder')"
+    dropdown-position="top"
+    @select="$emit('select', $event)"
+  >
     <template #selected="{ selected }">
       <ObjectPortrait
         :folder="`/images/terrains`"
@@ -19,18 +25,19 @@
       />
       {{ option.name }}
     </template>
-  </CustomSelect>
+  </BaseSelect>
 </template>
 
 <script lang="ts">
-import CustomSelect from '@/components/CustomSelect.vue'
+import BaseSelect from '@/components/base/BaseSelect.vue'
 import type { Terrain } from '@/models/Terrain'
 import { defineAsyncComponent, defineComponent, PropType } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'SelectTerrain',
   components: {
-    CustomSelect,
+    BaseSelect,
     ObjectPortrait: defineAsyncComponent(() => import('@/components/ObjectPortrait.vue')),
   },
   props: {
@@ -44,6 +51,13 @@ export default defineComponent({
     },
   },
   emits: ['select'],
+  setup() {
+    const { t } = useI18n()
+
+    return {
+      t,
+    }
+  },
 })
 </script>
 

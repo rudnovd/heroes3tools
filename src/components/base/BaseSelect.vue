@@ -44,21 +44,23 @@
     </div>
 
     <div v-if="opened && !options.length" class="no-options">
-      <slot name="noOptions">No options</slot>
+      <slot name="noOptions">{{ t('components.base.baseSelect.noOptions') }}</slot>
     </div>
 
     <div v-if="opened && search.length && !optionsList.length" class="no-options">
-      <slot name="noOptions">No options found</slot>
+      <slot name="noOptionsFound">{{ t('components.base.baseSelect.noOptionsFound') }}</slot>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import i18n from '@/i18n'
 import { onClickOutside, useVirtualList } from '@vueuse/core'
 import { computed, defineComponent, PropType, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
-  name: 'CustomSelect',
+  name: 'BaseSelect',
   props: {
     value: {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -96,11 +98,13 @@ export default defineComponent({
     },
     placeholder: {
       type: String,
-      default: 'Select option',
+      default: i18n.global.t('components.base.baseSelect.selectOptions'),
     },
   },
   emits: ['click', 'select', 'clear'],
   setup(props, context) {
+    const { t } = useI18n()
+
     const opened = ref(false)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const selectedValue = ref<Record<string, any> | null>(props.value)
@@ -154,6 +158,8 @@ export default defineComponent({
     onClickOutside(containerProps.ref, () => (opened.value = false))
 
     return {
+      t,
+
       opened,
       selectedValue,
       search,

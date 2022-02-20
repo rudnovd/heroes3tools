@@ -135,7 +135,7 @@
 </template>
 
 <script lang="ts">
-import PickCreatureButton from '@/components/damageCalculator/PickCreatureButton.vue'
+import PickCreatureButton from '@/components/PickCreatureButton.vue'
 import SelectHero from '@/components/SelectHero.vue'
 import SelectTerrain from '@/components/SelectTerrain.vue'
 import type { Battle, DamageCalculatorBattleSide } from '@/models/Battle'

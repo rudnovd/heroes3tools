@@ -18,7 +18,7 @@ import { defineAsyncComponent, defineComponent, ref } from 'vue'
 export default defineComponent({
   name: 'PickCreatureButton',
   components: {
-    SelectUnitModal: defineAsyncComponent(() => import('@/components/damageCalculator/SelectUnitModal.vue')),
+    SelectUnitModal: defineAsyncComponent(() => import('@/components/SelectUnitModal.vue')),
   },
   props: {
     color: {
