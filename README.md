@@ -15,6 +15,10 @@ All rights for the original Heroes of Might and Magic III game and static resour
 1. Install dependencies: `npm install`
 1. Run app: `npm start`
 
+## Translation
+
+If you would like to help translate into other languages, read [translation guide](https://github.com/rudnovd/heroes3tools/wiki/Translation).
+
 ## License
 
 This project is licensed under the [MIT](./LICENSE.md).
