@@ -38,7 +38,7 @@
       <template #content>
         <p>
           Send issue in
-          <a href="https://github.com/rudnovd/heroes3tools/issues/new" target="_blank" rel="noopener">Github</a>
+          <a href="https://github.com/rudnovd/heroes3tools/issues" target="_blank" rel="noopener">Github</a>
           or use anonymous form:
         </p>
         <iframe
@@ -46,7 +46,7 @@
           width="100%"
           height="650"
         >
-          Загрузка...
+          Loading...
         </iframe>
       </template>
     </BaseDialog>
@@ -54,7 +54,7 @@
     <BaseDialog v-if="showLicenseModal" :show="showLicenseModal" @close="showLicenseModal = false">
       <template #content>
         <p class="modal-text">{{ t('components.pageFooter.license.1') }}</p>
-        <i18n-t class="modal-text" keypath="footer.license.2" tag="p">
+        <i18n-t class="modal-text" keypath="components.pageFooter.license.2" tag="p">
           <template #url>
             <a href="https://github.com/rudnovd" target="_blank">https://github.com/rudnovd</a>
           </template>

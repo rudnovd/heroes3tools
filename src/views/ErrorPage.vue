@@ -1,6 +1,6 @@
 <template>
   <main class="error-page">
-    <h2>{{ t('pageNotFound') }}</h2>
+    <h2>{{ t('pages.pageNotFound') }}</h2>
   </main>
 </template>
 

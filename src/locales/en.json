@@ -57,6 +57,18 @@
     "defender": "Defender",
     "level": "Level",
     "attack": "Attack",
-    "defense": "Defense"
+    "defense": "Defense",
+    "health": "Health",
+    "damage": "Damage",
+    "cost": "Cost",
+    "speed": "Speed",
+    "aiValue": "Ai value",
+    "growth": "Growth"
+  },
+  "common": {
+    "homePage": "Home page",
+    "newContentIsAvailable": "New content is available",
+    "updateApp": "Update app",
+    "dismiss": "Dismiss"
   }
 }
