@@ -1,10 +1,10 @@
 <template>
-  <CustomSelect
+  <BaseSelect
     :value="value"
     :options="heroes"
     :preload-options-count="20"
     use-virtual-scoll
-    placeholder="Select Hero"
+    :placeholder="t('components.selectHero.placeholder')"
     @select="$emit('select', $event)"
     @clear="$emit('clear')"
   >
@@ -28,18 +28,19 @@
       />
       {{ option.name }}
     </template>
-  </CustomSelect>
+  </BaseSelect>
 </template>
 
 <script lang="ts">
-import CustomSelect from '@/components/CustomSelect.vue'
+import BaseSelect from '@/components/base/BaseSelect.vue'
 import type { Hero, HeroInstance } from '@/models/Hero'
 import { defineAsyncComponent, defineComponent, PropType } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'SelectHero',
   components: {
-    CustomSelect,
+    BaseSelect,
     ObjectPortrait: defineAsyncComponent(() => import('@/components/ObjectPortrait.vue')),
   },
   props: {
@@ -53,6 +54,13 @@ export default defineComponent({
     },
   },
   emits: ['select', 'clear'],
+  setup() {
+    const { t } = useI18n()
+
+    return {
+      t,
+    }
+  },
 })
 </script>
 
