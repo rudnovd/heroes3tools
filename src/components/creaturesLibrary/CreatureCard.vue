@@ -8,12 +8,12 @@
       <div class="creature-name">{{ creature.name }}</div>
 
       <div v-for="parameter in ['attack', 'defense', 'health', 'speed']" :key="parameter" class="parameter">
-        <span>{{ parameter }}:</span>
+        <span>{{ t(`data.${parameter}`) }}:</span>
         <span>{{ creature[parameter] }}</span>
       </div>
 
       <div class="parameter">
-        <span>Damage:</span>
+        <span>{{ t('data.damage') }}:</span>
         <span v-if="creature.minDamage !== creature.maxDamage">
           {{ creature.minDamage }} — {{ creature.maxDamage }}
         </span>
@@ -21,12 +21,12 @@
       </div>
 
       <div class="parameter">
-        <span>ai value</span>
+        <span>{{ t('data.aiValue') }}:</span>
         <span>{{ creature.aiValue }}</span>
       </div>
 
       <div class="parameter">
-        <span>cost:</span>
+        <span>{{ t('data.cost') }}:</span>
         <div class="paramater-with-resources">
           <div v-for="(value, key) in creature.cost" :key="key">
             <ObjectPortrait height="18px" :file="{ name: key, alt: key }" folder="/images/resources" />
@@ -36,7 +36,7 @@
       </div>
 
       <div class="parameter">
-        <span>growth:</span>
+        <span>{{ t('data.growth') }}:</span>
         <span>{{ creature.growth }}</span>
       </div>
 
@@ -50,6 +50,7 @@
 <script lang="ts">
 import { Creature } from '@/models/Creature'
 import { defineComponent } from 'vue'
+import { useI18n } from 'vue-i18n'
 import ObjectPortrait from '../ObjectPortrait.vue'
 
 export default defineComponent({
@@ -62,6 +63,13 @@ export default defineComponent({
     },
   },
   emits: ['click'],
+  setup() {
+    const { t } = useI18n()
+
+    return {
+      t,
+    }
+  },
 })
 </script>
 

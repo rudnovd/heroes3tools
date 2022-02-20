@@ -1,18 +1,19 @@
 <template>
   <router-link v-if="route.path !== '/'" class="return-home" to="/">
     <img src="@/assets/icons/arrow_back.svg" alt="back" width="16" height="16" />
-    Home page
+    {{ t('common.homePage') }}
   </router-link>
   <router-view />
 
   <BaseNotification v-if="needRefresh" :show="needRefresh" :buttons="notificationsButtons">
-    New content is available.
+    {{ t('common.newContentIsAvailable') }}.
   </BaseNotification>
 </template>
 
 <script lang="ts">
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { defineAsyncComponent, defineComponent } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { selectedLanguage, setLanguage } from './i18n'
 
@@ -23,6 +24,7 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute()
+    const { t } = useI18n()
 
     const { updateServiceWorker, needRefresh } = useRegisterSW({
       immediate: false,
@@ -45,18 +47,19 @@ export default defineComponent({
 
     const notificationsButtons = [
       {
-        text: 'Update app',
+        text: t('common.updateApp'),
         onClick: () => {
           updateServiceWorker(true)
         },
         textColor: 'rgb(255, 255, 255)',
       },
       {
-        text: 'Dismiss',
+        text: t('common.dismiss'),
         textColor: 'rgb(255, 255, 255)',
       },
     ]
     return {
+      t,
       route,
 
       needRefresh,

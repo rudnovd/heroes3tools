@@ -4,7 +4,7 @@
       <h2 class="modal-text">{{ t('components.damageCalculatorFooter.data.1') }}</h2>
       <p class="modal-text">{{ t('components.damageCalculatorFooter.data.2') }}</p>
 
-      <i18n-t keypath="footer.damageCalculator.data.3" tag="p">
+      <i18n-t keypath="components.damageCalculatorFooter.data.3" tag="p">
         <template #email>
           <a href="mailto:feedback@heroes3.tools" target="_blank">feedback@heroes3.tools</a>
         </template>
