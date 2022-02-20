@@ -14,16 +14,16 @@
 
     <div class="right-side">
       <button class="footer-button" @click="foundErrorModal = true">
-        {{ t('footer.buttons.foundAnError') }}
+        {{ t('components.pageFooter.foundAnError') }}
       </button>
 
       <button class="footer-button" @click="showLicenseModal = true">
-        {{ t('footer.buttons.licenseInformation') }}
+        {{ t('components.pageFooter.licenseInformation') }}
       </button>
 
       <button class="footer-button">
         <a href="https://github.com/rudnovd/heroes3tools" target="_blank" rel="noopener">
-          {{ t('footer.buttons.sourceCode') }}
+          {{ t('components.pageFooter.sourceCode') }}
         </a>
       </button>
     </div>
@@ -53,15 +53,15 @@
 
     <BaseDialog v-if="showLicenseModal" :show="showLicenseModal" @close="showLicenseModal = false">
       <template #content>
-        <p class="modal-text">{{ t('footer.license.1') }}</p>
+        <p class="modal-text">{{ t('components.pageFooter.license.1') }}</p>
         <i18n-t class="modal-text" keypath="footer.license.2" tag="p">
           <template #url>
             <a href="https://github.com/rudnovd" target="_blank">https://github.com/rudnovd</a>
           </template>
         </i18n-t>
-        <p class="modal-text">{{ t('footer.license.3') }}</p>
-        <p class="modal-text">{{ t('footer.license.4') }}</p>
-        <p class="modal-text">{{ t('footer.license.5') }}</p>
+        <p class="modal-text">{{ t('components.pageFooter.license.3') }}</p>
+        <p class="modal-text">{{ t('components.pageFooter.license.4') }}</p>
+        <p class="modal-text">{{ t('components.pageFooter.license.5') }}</p>
       </template>
     </BaseDialog>
   </footer>

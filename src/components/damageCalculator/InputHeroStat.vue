@@ -1,15 +1,15 @@
 <template>
   <div class="input-stat">
     <label class="stat-name">
-      {{ t(`heroes.stats.${stat}`) }}
+      {{ t(`data.${stat}`) }}
     </label>
-    <BaseInputNumber :min="0" :max="99" :value="value" :debounce="100" @input="$emit('input', $event)" />
+    <BaseInputNumber :min="0" :max="99" :value="value" :debounce="50" @input="$emit('input', $event)" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
 import BaseInputNumber from '@/components/base/BaseInputNumber.vue'
+import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({

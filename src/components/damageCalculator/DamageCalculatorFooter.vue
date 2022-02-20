@@ -1,8 +1,8 @@
 <template>
-  <PageFooter :about-text="t('footer.damageCalculator.about')">
+  <PageFooter :about-text="t('components.damageCalculatorFooter.about')">
     <template #aboutModal>
-      <h2 class="modal-text">{{ t('footer.damageCalculator.data.1') }}</h2>
-      <p class="modal-text">{{ t('footer.damageCalculator.data.2') }}</p>
+      <h2 class="modal-text">{{ t('components.damageCalculatorFooter.data.1') }}</h2>
+      <p class="modal-text">{{ t('components.damageCalculatorFooter.data.2') }}</p>
 
       <i18n-t keypath="footer.damageCalculator.data.3" tag="p">
         <template #email>
