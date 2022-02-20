@@ -6,43 +6,43 @@
     "magicCalculator": "Magic Calculator",
     "pageNotFound": "Page not found"
   },
-  "side": {
-    "attacker": "Attacker",
-    "defender": "Defender"
-  },
-  "damageCalculator": {
-    "pickCreature": "Pick creature",
-    "damage": "Damage",
-    "kills": "Kills",
-
-    "components": {
-      "selectHero": {
-        "selectHero": "Select hero"
-      },
-      "selectTerrain": {
-        "selectTerrain": "Select terrain"
-      },
-      "selectUnitModal": {
-        "searchCreature": "Search creature"
+  "components": {
+    "base": {
+      "baseSelect": {
+        "selectOptions": "Select options",
+        "noOptions": "No options",
+        "noOptionsFound": "No options found"
       }
-    }
-  },
-  "footer": {
-    "buttons": {
+    },
+    "selectHero": {
+      "placeholder": "Select hero"
+    },
+    "selectTerrain": {
+      "placeholder": "Select terrain"
+    },
+    "selectUnitModal": {
+      "searchCreature": "Search creature"
+    },
+    "damageCalculator": {
+      "pickCreature": "Pick creature",
+      "damage": "Damage",
+      "kills": "Kills"
+    },
+    "pageFooter": {
       "howToUse": "How to use",
       "language": "Language",
       "foundAnError": "Found an error?",
       "licenseInformation": "License information",
-      "sourceCode": "Source code"
+      "sourceCode": "Source code",
+      "license": {
+        "1": "MIT LICENSE",
+        "2": "Copyright (c) 2019 {url}",
+        "3": "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:",
+        "4": "The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.",
+        "5": "THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+      }
     },
-    "license": {
-      "1": "MIT LICENSE",
-      "2": "Copyright (c) 2019 {url}",
-      "3": "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:",
-      "4": "The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.",
-      "5": "THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
-    },
-    "damageCalculator": {
+    "damageCalculatorFooter": {
       "about": "About",
       "data": {
         "1": "Heroes 3 tools",
@@ -52,11 +52,11 @@
       }
     }
   },
-  "heroes": {
-    "stats": {
-      "level": "Level",
-      "attack": "Attack",
-      "defense": "Defense"
-    }
+  "data": {
+    "attacker": "Attacker",
+    "defender": "Defender",
+    "level": "Level",
+    "attack": "Attack",
+    "defense": "Defense"
   }
 }

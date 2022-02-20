@@ -5,7 +5,7 @@
         v-model="search"
         type="text"
         class="search-input"
-        :placeholder="t('damageCalculator.components.selectUnitModal.searchCreature')"
+        :placeholder="t('components.selectUnitModal.searchCreature')"
         @keyup.enter="selectFirstFounded"
       />
     </template>

@@ -6,9 +6,9 @@
       :class="sideName"
     >
       <section class="title">
-        <h2>{{ t(`side.${[sideName]}`) }}</h2>
+        <h2>{{ t(`data.${sideName}`) }}</h2>
         <PickCreatureButton :color="sideName" @select="onSelectCreature(side, $event)">
-          {{ side.activeCreature ? side.activeCreature.name : t('damageCalculator.pickCreature') }}
+          {{ side.activeCreature ? side.activeCreature.name : t('components.damageCalculator.pickCreature') }}
         </PickCreatureButton>
       </section>
 
@@ -49,7 +49,7 @@
           <div v-if="side.hero" class="hero-parameters">
             <div>
               <label class="stat-name">
-                {{ t(`heroes.stats.level`) }}
+                {{ t('data.level') }}
               </label>
               <BaseInputNumber :max="99" :value="side.hero.level" :debounce="50" @input="side.hero!.level = $event" />
             </div>
@@ -99,7 +99,7 @@
 
       <section v-if="side.activeCreature" class="damage">
         <strong>
-          Damage:
+          {{ t('components.damageCalculator.damage') }}:
           {{
             getTotalResultString(
               side.activeCreature.calculation.minDamage,
@@ -109,7 +109,7 @@
           }}
         </strong>
         <strong>
-          Kills:
+          {{ t('components.damageCalculator.kills') }}:
           {{
             getTotalResultString(
               side.activeCreature.calculation.minKills,
