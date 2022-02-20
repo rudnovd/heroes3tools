@@ -5,7 +5,7 @@
         {{ aboutText }}
       </button>
 
-      <select v-model="selectedLocale" class="select-language" @change="setLanguage(selectedLocale)">
+      <select v-model="selectedLocale" class="select-language" @change="changeLocale">
         <option v-for="locale in locales" :key="locale.name" :value="locale.name">
           {{ locale.value }}
         </option>
@@ -72,6 +72,7 @@ import BaseDialog from '@/components/base/BaseDialog.vue'
 import { selectedLanguage, setLanguage } from '@/i18n'
 import { defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'PageFooter',
@@ -86,6 +87,7 @@ export default defineComponent({
   },
   setup() {
     const { t } = useI18n()
+    const route = useRoute()
 
     const showAboutModal = ref(false)
     const showLicenseModal = ref(false)
@@ -102,6 +104,11 @@ export default defineComponent({
       },
     ])
 
+    const changeLocale = (event: Event) => {
+      const value = (event.target as HTMLButtonElement).value
+      setLanguage(value).then(() => (document.title = t(route.meta.title as string)))
+    }
+
     return {
       t,
 
@@ -111,7 +118,7 @@ export default defineComponent({
       showAboutModal,
       foundErrorModal,
 
-      setLanguage,
+      changeLocale,
     }
   },
 })

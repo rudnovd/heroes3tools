@@ -4,32 +4,25 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory('/'),
   routes: [
-    // {
-    //   path: '/',
-    //   component: () => import('@/views/DamageCalculatorPage.vue'),
-    //   meta: {
-    //     title: i18n.global.t('pages.damageCalculator'),
-    //   },
-    // },
     {
       path: '/',
       component: () => import('@/views/HomePage.vue'),
       meta: {
-        title: i18n.global.t('pages.home'),
+        title: 'pages.home',
       },
     },
     {
       path: '/damage',
       component: () => import('@/views/DamageCalculatorPage.vue'),
       meta: {
-        title: i18n.global.t('pages.damageCalculator'),
+        title: 'pages.damageCalculator',
       },
     },
     {
       path: '/creatures',
       component: () => import('@/views/CreaturesLibraryPage.vue'),
       meta: {
-        title: i18n.global.t('pages.creaturesLibrary'),
+        title: 'pages.creaturesLibrary',
       },
     },
     {
@@ -37,7 +30,7 @@ const router = createRouter({
       name: 'not-found',
       component: () => import('@/views/ErrorPage.vue'),
       meta: {
-        title: i18n.global.t('pages.pageNotFound'),
+        title: 'pages.pageNotFound',
       },
     },
   ],
@@ -62,7 +55,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to) => {
-  if (to.meta.title) document.title = to.meta.title as string
+  document.title = i18n.global.t(to.meta.title as string)
 })
 
 export default router
