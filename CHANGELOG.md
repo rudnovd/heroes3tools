@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-alpha.8](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-alpha.7...v2.0.0-alpha.8) (2022-02-21)
+
+
+### Features
+
+* **App:** switch to memorized user locale ([e86d7b9](https://github.com/rudnovd/heroes3tools/commit/e86d7b9ab814ff2712936dc8206df0fa5d8a6403))
+* **assets:** add creatures description ([75f505d](https://github.com/rudnovd/heroes3tools/commit/75f505d4ff59ae9f1a8e21227c9e74cdb897b5dd))
+* **components:** add CustomSelect component ([f2baafd](https://github.com/rudnovd/heroes3tools/commit/f2baafde5f9d8139403b53a6a0d53c15978192ab))
+* **CreaturesLibraryPage:** add new translation ([0a01498](https://github.com/rudnovd/heroes3tools/commit/0a0149841b8fe85d9149509c114062aa0d192e0a))
+* **i18n:** update i18n functions ([4128eef](https://github.com/rudnovd/heroes3tools/commit/4128eef2b54064cadeffe386c144841d873391b8))
+* **locales:** add new words ([ab200f0](https://github.com/rudnovd/heroes3tools/commit/ab200f0249678de4782ec6d88e5365b871bc9b0b))
+* **pwa:** add background_color ([67141dc](https://github.com/rudnovd/heroes3tools/commit/67141dc4508ff90d4c3e7e3cd16262a094ddfe36))
+* **views:** load data for selected locale ([9c78d59](https://github.com/rudnovd/heroes3tools/commit/9c78d5986442b030bf0d86303bebaa2be908a3cb))
+
+
+### Bug Fixes
+
+* **assets:** rename locales exports ([ddb9d73](https://github.com/rudnovd/heroes3tools/commit/ddb9d73c5ceca8f95d7be48e089c7732d14f7652))
+* **BaseSelect:** fix selected class error ([2cc1c5f](https://github.com/rudnovd/heroes3tools/commit/2cc1c5f04544630e1ecbcac8f112b42b19affd00))
+* **CreatureCard:** fix component styles ([a2fc467](https://github.com/rudnovd/heroes3tools/commit/a2fc467d3b9ba2117d2044e7861a7c665982f1bc))
+* **DamageCalculatorFooter:** fix i18n errors ([196b3b2](https://github.com/rudnovd/heroes3tools/commit/196b3b268ab8832662f9f3807a1588228148a7a8))
+* **i18n:** fix document title localization ([6283668](https://github.com/rudnovd/heroes3tools/commit/628366805ebafae1bcb5e90ba1b42f6a242b5729))
+* **PageFooter:** fix i18n errors ([4beea29](https://github.com/rudnovd/heroes3tools/commit/4beea29d5093dafbc8b5b5cdba839ee7904fde65))
+* **SelectUnitModal:** rename old component ([5dc9572](https://github.com/rudnovd/heroes3tools/commit/5dc95724fffca466ca8de1a554ff68ad8fcce9eb))
+
 ## [2.0.0-alpha.7](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-alpha.6...v2.0.0-alpha.7) (2022-02-11)
 
 
