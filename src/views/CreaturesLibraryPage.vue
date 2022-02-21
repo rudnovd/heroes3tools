@@ -21,7 +21,12 @@
       </div>
 
       <div class="search-creature">
-        <input ref="searchInput" v-model="search" placeholder="Search creature" @input="searchUnit" />
+        <input
+          ref="searchInput"
+          v-model="search"
+          :placeholder="t('components.selectUnitModal.searchCreature')"
+          @input="searchUnit"
+        />
       </div>
     </div>
 
@@ -55,6 +60,7 @@ import { selectedLanguage } from '@/i18n'
 import { Creature } from '@/models/Creature'
 import { useStore } from '@/store'
 import { computed, defineComponent, onUnmounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 
 let searchTimeout = 0
@@ -69,6 +75,7 @@ export default defineComponent({
     const store = useStore()
     const router = useRouter()
     const route = useRoute()
+    const { t } = useI18n()
 
     const towns = computed(() => store.towns)
     const creatures = computed(() => store.creatures)
@@ -128,6 +135,8 @@ export default defineComponent({
 
     return {
       router,
+      t,
+
       towns,
       creatures,
 
