@@ -35,7 +35,7 @@
           v-for="{ index, data } in optionsList"
           :key="index"
           class="option-item"
-          :class="{ selected: selectedValue && selectedValue[label] === data.id }"
+          :class="{ selected: selectedValue && selectedValue[label] === data[label] }"
           @click="onSelect(data)"
         >
           <slot name="option" :option="data">{{ data[label] }}</slot>
