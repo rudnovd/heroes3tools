@@ -76,13 +76,13 @@ export default defineComponent({
 <style lang="scss" scoped>
 .creature-card {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 150px 1fr;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
   transition: background 0.25s;
 
   @include media-large {
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 150px 1fr;
   }
 
   &:hover {
@@ -120,6 +120,7 @@ export default defineComponent({
 
 .creature-info {
   display: grid;
+  grid-template-rows: repeat(5, 30px) 1fr;
   grid-template-columns: 100%;
 
   @include media-medium {
@@ -129,33 +130,33 @@ export default defineComponent({
 
 .parameter {
   display: grid;
+  grid-template-rows: 29px;
   grid-template-columns: 2fr 4fr;
   align-items: center;
   padding-left: 4px;
   border-bottom: 1px solid rgb(222, 226, 230);
 
+  &:last-child {
+    border-bottom: none;
+  }
+
   span:first-child {
     text-transform: capitalize;
   }
 
-  &:nth-child(even) {
-    border-right: 1px solid rgb(222, 226, 230);
-  }
-
-  &:last-child,
-  &:nth-last-child(-n + 2) {
-    border-bottom: none;
-  }
-
   @include media-small {
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 2fr 4fr;
     &:nth-last-child(-n + 2) {
       border-bottom: 1px solid rgb(222, 226, 230);
     }
   }
 
   @include media-medium {
-    grid-template-columns: max(25%, 80px) 1fr;
+    grid-template-columns: 125px 1fr;
+
+    &:nth-child(even) {
+      border-right: 1px solid rgb(222, 226, 230);
+    }
   }
 }
 
