@@ -7,9 +7,9 @@
         <ObjectPortrait
           folder="/images/pages/home"
           :file="{ name: page.image, alt: page.image }"
-          :width="page.width"
-          :height="page.height"
-          @click="router.push(page.path)"
+          :width="176"
+          :height="198"
+          @click-picture="router.push(page.path)"
         />
 
         <h2>
@@ -34,32 +34,29 @@ export default defineComponent({
   setup() {
     const { t } = useI18n()
     const router = useRouter()
+
     const pages = [
       {
         name: t('pages.damageCalculator'),
         path: '/damage',
         image: 'Tactics',
-        height: 198,
-        width: 176,
       },
       {
         name: t('pages.magicCalculator'),
         path: '/magic',
         image: 'Water',
-        height: 198,
-        width: 176,
         disabled: true,
       },
       {
         name: t('pages.creaturesLibrary'),
         path: '/creatures',
         image: 'Scholar',
-        height: 198,
-        width: 176,
       },
     ]
+
     return {
       router,
+
       pages,
     }
   },
@@ -73,41 +70,57 @@ export default defineComponent({
   gap: 16px;
   min-width: 300px;
   height: 100%;
-  padding-bottom: 16px;
   margin: 0 auto;
 
-  @include media-small {
+  @include media-medium {
     align-content: center;
     padding-bottom: unset;
   }
 
-  h1 {
+  & > h1 {
     text-align: center;
   }
 }
 
 .page-links {
   display: grid;
-  grid-template-columns: 90%;
+  grid-template-columns: 100%;
   gap: 1rem;
-  justify-content: center;
-  user-select: none;
-
-  @include media-small {
-    grid-template-columns: repeat(3, clamp(200px, 25vw, 400px));
-  }
+  justify-items: center;
+  padding: 0px 16px 16px;
 
   @include media-medium {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    justify-content: center;
+  }
+
+  @include media-large {
+    grid-template-columns: repeat(3, minmax(300px, 400px));
     gap: 3rem;
+    padding: 0;
   }
 }
 
 .link-card {
   display: grid;
   grid-template-rows: 200px 3rem;
-  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  user-select: none;
   box-shadow: 0 0 8px black;
   transition: filter 1s, box-shadow 1s, transform 1s;
+
+  picture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('/images/pages/home/links-background.webp');
+    background-position-y: -1px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   h2 {
     display: flex;
@@ -115,15 +128,22 @@ export default defineComponent({
     justify-content: center;
     overflow: hidden;
     transition: transform 0.15s linear;
+  }
 
-    & a {
-      overflow: hidden;
-      color: black;
-      text-decoration: none;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      transition: transform 0.15s linear;
-    }
+  a,
+  span {
+    overflow: hidden;
+    color: black;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: transform 0.15s linear;
+  }
+
+  &.disabled {
+    pointer-events: none;
+    filter: grayscale(1);
+    opacity: 0.5;
   }
 
   &:hover {
@@ -137,24 +157,6 @@ export default defineComponent({
 
     a {
       text-decoration: underline;
-    }
-  }
-
-  &.disabled {
-    pointer-events: none;
-    filter: grayscale(1);
-    opacity: 0.5;
-  }
-
-  picture {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: url('/images/pages/home/links-background.webp');
-    background-position-y: -1px;
-
-    &:hover {
-      cursor: pointer;
     }
   }
 }
