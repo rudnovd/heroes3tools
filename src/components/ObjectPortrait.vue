@@ -1,5 +1,5 @@
 <template>
-  <picture>
+  <picture @click="$emit('clickPicture')">
     <source :srcset="`${folder}/${file.name}.webp`" type="image/webp" />
     <source :srcset="`${folder}/${file.name}.gif`" type="image/gif" />
     <img
@@ -43,7 +43,7 @@ export default defineComponent({
       default: null,
     },
   },
-  emits: ['click'],
+  emits: ['click', 'clickPicture'],
 })
 </script>
 
