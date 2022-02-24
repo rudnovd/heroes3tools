@@ -1,8 +1,55 @@
 import type { DamageCalculatorBattleSide } from '@/models/Battle'
 import type { CreatureInstance } from '@/models/Creature'
 import { Creatures, Spells } from '@/models/enums'
+import { Spell } from '@/models/Spell'
 
 export const Effects = {
+  functions: {
+    canAccess: (effect: Spell, target: CreatureInstance) => {
+      if (!target) return false
+
+      // if target has Anti Magic effect
+      if (target.effects.find((effect) => effect.id === Spells.AntiMagic)) return false
+
+      // if target has immunity to effect
+      if (target.special?.immunity?.find((spell) => spell.id === effect.id)) return false
+
+      const undeadImmunitySpells = [
+        Spells.Bless,
+        Spells.Curse,
+        Spells.DeathRipple,
+        Spells.Resurrection,
+        Spells.Sacrifice,
+      ]
+      const mindSpells = [
+        Spells.Berserk,
+        Spells.Blind,
+        Spells.Forgetfulness,
+        Spells.Frenzy,
+        Spells.Hypnotize,
+        Spells.Mirth,
+        Spells.Sorrow,
+      ]
+
+      // Check undead creatures immunities
+      if (target.special?.undead) {
+        if (undeadImmunitySpells.indexOf(effect.id) > -1) return false
+        if (mindSpells.indexOf(effect.id) > -1) return false
+      }
+
+      // Check non living creatures immunities
+      if (
+        target.special?.nonLiving &&
+        target.id !== Creatures.StoneGargoyle &&
+        target.id !== Creatures.ObsidianGargoyle
+      ) {
+        if (mindSpells.indexOf(effect.id) > -1) return false
+      }
+
+      return true
+    },
+  },
+
   /**
    * Calculate creature minDamage, maxDamage and damageBonus with bless spell
    * @param initiator DamageCalculatorBattleSide who casts effect
