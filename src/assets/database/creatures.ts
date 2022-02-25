@@ -1,5 +1,6 @@
 import type { Creature } from '@/models/Creature'
-import { Terrains, Towns } from '@/models/enums'
+import { Creatures, Terrains, Towns } from '@/models/enums'
+import { spells } from './spells'
 
 export const creatures: Array<Creature> = [
   {
@@ -99,6 +100,9 @@ export const creatures: Array<Creature> = [
     aiValue: 351,
     growth: 7,
     cost: { gold: 200 },
+    special: {
+      twoRetaliations: true,
+    },
     description: 'Flying, Two retaliations',
   },
   {
@@ -118,6 +122,9 @@ export const creatures: Array<Creature> = [
     aiValue: 448,
     growth: 7,
     cost: { gold: 240 },
+    special: {
+      unlimitedRetaliations: true,
+    },
     description: 'Flying, Unlimited retaliations',
   },
   {
@@ -155,6 +162,9 @@ export const creatures: Array<Creature> = [
     aiValue: 588,
     growth: 4,
     cost: { gold: 400 },
+    special: {
+      doubleAttack: true,
+    },
     description: 'Double attack',
   },
   {
@@ -193,6 +203,9 @@ export const creatures: Array<Creature> = [
     aiValue: 750,
     growth: 3,
     cost: { gold: 450 },
+    special: {
+      noMeleePenalty: true,
+    },
     description: 'Ranged (24 shots), No melee penalty',
   },
   {
@@ -212,6 +225,9 @@ export const creatures: Array<Creature> = [
     aiValue: 1946,
     growth: 2,
     cost: { gold: 1000 },
+    special: {
+      jousting: true,
+    },
     description: 'Jousting',
   },
   {
@@ -231,6 +247,9 @@ export const creatures: Array<Creature> = [
     aiValue: 2100,
     growth: 2,
     cost: { gold: 1200 },
+    special: {
+      jousting: true,
+    },
     description: 'Jousting',
   },
   {
@@ -251,6 +270,11 @@ export const creatures: Array<Creature> = [
     aiValue: 5019,
     growth: 1,
     cost: { gold: 3000, gem: 1 },
+    special: {
+      flying: true,
+      hates: [Creatures.Devil, Creatures.ArchDevil],
+      moraleBonusForArmy: 1,
+    },
     description: 'Flying, Hates Devils, Morale +1',
   },
   {
@@ -271,6 +295,11 @@ export const creatures: Array<Creature> = [
     aiValue: 8776,
     growth: 1,
     cost: { gold: 5000, gem: 3 },
+    special: {
+      flying: true,
+      hates: [Creatures.Devil, Creatures.ArchDevil],
+      moraleBonusForArmy: 1,
+    },
     description: 'Flying, Hates Devils, Resurrection, Morale +1',
   },
   {
@@ -326,6 +355,9 @@ export const creatures: Array<Creature> = [
     aiValue: 138,
     growth: 8,
     cost: { gold: 120 },
+    special: {
+      magicResistanceChance: 20,
+    },
     description: 'Resistance +20%',
   },
   {
@@ -345,6 +377,9 @@ export const creatures: Array<Creature> = [
     aiValue: 209,
     growth: 8,
     cost: { gold: 150 },
+    special: {
+      magicResistanceChance: 40,
+    },
     description: 'Resistance +40%',
   },
   {
@@ -383,6 +418,9 @@ export const creatures: Array<Creature> = [
     aiValue: 331,
     growth: 7,
     cost: { gold: 225 },
+    special: {
+      doubleAttack: true,
+    },
     description: 'Ranged (24 shots), Double attack',
   },
   {
@@ -402,6 +440,9 @@ export const creatures: Array<Creature> = [
     aiValue: 518,
     growth: 5,
     cost: { gold: 250 },
+    special: {
+      magicDamperValue: 2,
+    },
     description: 'Flying, Magic damper',
   },
   {
@@ -421,6 +462,9 @@ export const creatures: Array<Creature> = [
     aiValue: 532,
     growth: 5,
     cost: { gold: 275 },
+    special: {
+      magicDamperValue: 2,
+    },
     description: 'Flying, Magic damper',
   },
   {
@@ -440,6 +484,9 @@ export const creatures: Array<Creature> = [
     aiValue: 517,
     growth: 3,
     cost: { gold: 350 },
+    special: {
+      binding: true,
+    },
     description: 'Binding',
   },
   {
@@ -459,6 +506,9 @@ export const creatures: Array<Creature> = [
     aiValue: 803,
     growth: 3,
     cost: { gold: 425 },
+    special: {
+      binding: true,
+    },
     description: 'Binding',
   },
   {
@@ -516,6 +566,10 @@ export const creatures: Array<Creature> = [
     aiValue: 4872,
     growth: 1,
     cost: { gold: 2400, crystal: 1 },
+    special: {
+      flying: true,
+      immunity: spells.filter((spell) => spell.level <= 3),
+    },
     description: 'Dragon, Flying, Breath attack, 1-3 level spells immunity',
   },
   {
@@ -535,6 +589,10 @@ export const creatures: Array<Creature> = [
     aiValue: 8613,
     growth: 1,
     cost: { gold: 4000, crystal: 2 },
+    special: {
+      flying: true,
+      immunity: spells.filter((spell) => spell.level <= 4),
+    },
     description: 'Dragon, Flying, Breath attack, 1-4 lvl spells immunity',
   },
   {
@@ -591,6 +649,10 @@ export const creatures: Array<Creature> = [
     aiValue: 165,
     cost: { gold: 130 },
     growth: 9,
+    special: {
+      flying: true,
+      nonLiving: true,
+    },
     description: 'Unliving, Flying',
   },
   {
@@ -610,6 +672,10 @@ export const creatures: Array<Creature> = [
     aiValue: 201,
     cost: { gold: 160 },
     growth: 9,
+    special: {
+      flying: true,
+      nonLiving: true,
+    },
     description: 'Unliving, Flying',
   },
   {
@@ -629,6 +695,9 @@ export const creatures: Array<Creature> = [
     aiValue: 250,
     cost: { gold: 150 },
     growth: 6,
+    special: {
+      spellDamageResistance: 50,
+    },
     description: 'Unliving, Spell Damage Resistance +50%',
   },
   {
@@ -648,6 +717,9 @@ export const creatures: Array<Creature> = [
     aiValue: 412,
     cost: { gold: 200 },
     growth: 6,
+    special: {
+      spellDamageResistance: 75,
+    },
     description: 'Unliving, Spell Damage Resistance +75%',
   },
   {
@@ -667,6 +739,9 @@ export const creatures: Array<Creature> = [
     aiValue: 570,
     cost: { gold: 350 },
     growth: 4,
+    special: {
+      noMeleePenalty: true,
+    },
     description: 'Ranged (24 shots), No melee penalty, No obstacle penalty, Spells cost -2 spell points',
   },
   {
@@ -686,6 +761,9 @@ export const creatures: Array<Creature> = [
     aiValue: 680,
     cost: { gold: 450 },
     growth: 4,
+    special: {
+      noMeleePenalty: true,
+    },
     description: 'Ranged (24 shots), No melee penalty, No obstacle penalty, Spells cost -2 sp',
   },
   {
@@ -706,6 +784,10 @@ export const creatures: Array<Creature> = [
     aiValue: 884,
     cost: { gold: 550 },
     growth: 3,
+    special: {
+      flying: true,
+      hates: [Creatures.Efreet, Creatures.EfreetSultan],
+    },
     description: 'Flying, Hates Efreet and Efreet Sultans',
   },
   {
@@ -726,6 +808,10 @@ export const creatures: Array<Creature> = [
     aiValue: 942,
     cost: { gold: 600 },
     growth: 3,
+    special: {
+      flying: true,
+      hates: [Creatures.Efreet, Creatures.EfreetSultan],
+    },
     description: 'Flying, Spellcaster, Hates Efreet and Efreet Sultans',
   },
   {
@@ -745,6 +831,9 @@ export const creatures: Array<Creature> = [
     aiValue: 2016,
     cost: { gold: 1100 },
     growth: 2,
+    special: {
+      noEnemyRetaliation: true,
+    },
     description: 'No enemy retaliation',
   },
   {
@@ -764,6 +853,9 @@ export const creatures: Array<Creature> = [
     aiValue: 2840,
     cost: { gold: 1600 },
     growth: 2,
+    special: {
+      noEnemyRetaliation: true,
+    },
     description: 'No enemy retaliation',
   },
   {
@@ -784,6 +876,9 @@ export const creatures: Array<Creature> = [
     aiValue: 3718,
     cost: { gold: 2000, gem: 1 },
     growth: 1,
+    special: {
+      immunity: spells.filter((spells) => spells.group?.indexOf('mind') !== -1),
+    },
     description: 'Immunity to Mind spells',
   },
   {
@@ -804,6 +899,9 @@ export const creatures: Array<Creature> = [
     aiValue: 7500,
     cost: { gold: 5000, gem: 2 },
     growth: 1,
+    special: {
+      immunity: spells.filter((spells) => spells.group?.indexOf('mind') !== -1),
+    },
     description: 'Ranged (24 shots), No melee penalty, Immunity to Mind spells, Hates Black Dragons',
   },
   {
@@ -823,6 +921,9 @@ export const creatures: Array<Creature> = [
     aiValue: 60,
     cost: { gold: 60 },
     growth: 12,
+    special: {
+      undead: true,
+    },
     description: 'Undead',
   },
   {
@@ -842,6 +943,9 @@ export const creatures: Array<Creature> = [
     aiValue: 85,
     cost: { gold: 70 },
     growth: 12,
+    special: {
+      undead: true,
+    },
     description: 'Undead',
   },
   {
@@ -861,6 +965,9 @@ export const creatures: Array<Creature> = [
     aiValue: 98,
     cost: { gold: 100 },
     growth: 8,
+    special: {
+      undead: true,
+    },
     description: 'Undead',
   },
   {
@@ -880,6 +987,9 @@ export const creatures: Array<Creature> = [
     aiValue: 128,
     cost: { gold: 125 },
     growth: 8,
+    special: {
+      undead: true,
+    },
     description: 'Undead, Disease',
   },
   {
@@ -899,6 +1009,10 @@ export const creatures: Array<Creature> = [
     aiValue: 252,
     cost: { gold: 200 },
     growth: 7,
+    special: {
+      undead: true,
+      flying: true,
+    },
     description: 'Undead, Flying, Regeneration',
   },
   {
@@ -918,6 +1032,10 @@ export const creatures: Array<Creature> = [
     aiValue: 315,
     cost: { gold: 230 },
     growth: 7,
+    special: {
+      undead: true,
+      flying: true,
+    },
     description: 'Undead, Flying, Regeneration, Mana drain',
   },
   {
@@ -937,6 +1055,10 @@ export const creatures: Array<Creature> = [
     aiValue: 555,
     cost: { gold: 360 },
     growth: 4,
+    special: {
+      undead: true,
+      flying: true,
+    },
     description: 'Undead, Flying, No enemy retaliation',
   },
   {
@@ -956,6 +1078,10 @@ export const creatures: Array<Creature> = [
     aiValue: 783,
     cost: { gold: 500 },
     growth: 4,
+    special: {
+      undead: true,
+      flying: true,
+    },
     description: 'Undead, Flying, No enemy retaliation, Life drain',
   },
   {
@@ -975,6 +1101,9 @@ export const creatures: Array<Creature> = [
     aiValue: 848,
     cost: { gold: 550 },
     growth: 3,
+    special: {
+      undead: true,
+    },
     description: 'Ranged (12 shots), Undead, Death cloud',
   },
   {
@@ -994,6 +1123,9 @@ export const creatures: Array<Creature> = [
     aiValue: 1079,
     cost: { gold: 600 },
     growth: 3,
+    special: {
+      undead: true,
+    },
     description: 'Ranged (24 shots), Undead, Death cloud',
   },
   {
@@ -1013,6 +1145,9 @@ export const creatures: Array<Creature> = [
     aiValue: 2087,
     cost: { gold: 1200 },
     growth: 2,
+    special: {
+      undead: true,
+    },
     description: 'Undead, Curse',
   },
   {
@@ -1032,6 +1167,9 @@ export const creatures: Array<Creature> = [
     aiValue: 2382,
     cost: { gold: 1500 },
     growth: 2,
+    special: {
+      undead: true,
+    },
     description: 'Undead, Curse, Death blow',
   },
   {
@@ -1051,6 +1189,10 @@ export const creatures: Array<Creature> = [
     aiValue: 3388,
     cost: { gold: 1800 },
     growth: 1,
+    special: {
+      undead: true,
+      flying: true,
+    },
     description: 'Dragon, Undead, Flying, Morale -1',
   },
   {
@@ -1070,6 +1212,11 @@ export const creatures: Array<Creature> = [
     aiValue: 4696,
     cost: { gold: 3000, mercury: 1 },
     growth: 1,
+    special: {
+      undead: true,
+      flying: true,
+      moralePenaltyForEnemyArmy: -1,
+    },
     description: 'Dragon, Undead, Flying, Morale -1, Aging',
   },
   {
@@ -1127,6 +1274,9 @@ export const creatures: Array<Creature> = [
     aiValue: 154,
     cost: { gold: 130 },
     growth: 8,
+    special: {
+      flying: true,
+    },
     description: 'Flying, Strike and return',
   },
   {
@@ -1146,6 +1296,9 @@ export const creatures: Array<Creature> = [
     aiValue: 238,
     cost: { gold: 170 },
     growth: 8,
+    special: {
+      flying: true,
+    },
     description: 'Flying, Strike and return, No enemy retaliation',
   },
   {
@@ -1165,6 +1318,9 @@ export const creatures: Array<Creature> = [
     aiValue: 336,
     cost: { gold: 250 },
     growth: 7,
+    special: {
+      noMeleePenalty: true,
+    },
     description: 'Ranged (12 shots), No melee penalty',
   },
   {
@@ -1184,6 +1340,9 @@ export const creatures: Array<Creature> = [
     aiValue: 367,
     cost: { gold: 280 },
     growth: 7,
+    special: {
+      noMeleePenalty: true,
+    },
     description: 'Ranged (24 shots), No melee penalty',
   },
   {
@@ -1203,6 +1362,9 @@ export const creatures: Array<Creature> = [
     aiValue: 517,
     cost: { gold: 300 },
     growth: 4,
+    special: {
+      noMeleePenalty: true,
+    },
     description: 'Ranged (4 shots), No melee penalty, Petrify',
   },
   {
@@ -1222,6 +1384,9 @@ export const creatures: Array<Creature> = [
     aiValue: 577,
     cost: { gold: 330 },
     growth: 4,
+    special: {
+      noMeleePenalty: true,
+    },
     description: 'Ranged (8 shots), No melee penalty, Petrify',
   },
   {
@@ -1279,6 +1444,9 @@ export const creatures: Array<Creature> = [
     aiValue: 1547,
     cost: { gold: 850 },
     growth: 2,
+    special: {
+      flying: true,
+    },
     description: 'Flying',
   },
   {
@@ -1298,6 +1466,9 @@ export const creatures: Array<Creature> = [
     aiValue: 1589,
     cost: { gold: 1050 },
     growth: 2,
+    special: {
+      flying: true,
+    },
     description: 'Flying, Paralyze',
   },
   {
@@ -1317,6 +1488,10 @@ export const creatures: Array<Creature> = [
     aiValue: 4702,
     cost: { gold: 2500, sulfur: 1 },
     growth: 1,
+    special: {
+      flying: true,
+      immunity: spells.filter((spell) => spell.level <= 4),
+    },
     description: 'Dragon, Flying, Breath attack, 1-3 level spells immunity',
   },
   {
@@ -1337,6 +1512,10 @@ export const creatures: Array<Creature> = [
     aiValue: 8721,
     cost: { gold: 4000, sulfur: 2 },
     growth: 1,
+    special: {
+      flying: true,
+      immunity: spells,
+    },
     description: 'Dragon, Flying, Breath attack, Magic immunity, Hates Titans',
   },
   {
@@ -1449,6 +1628,9 @@ export const creatures: Array<Creature> = [
     aiValue: 392,
     cost: { gold: 250 },
     growth: 5,
+    special: {
+      noEnemyRetaliation: true,
+    },
     description: 'No enemy retaliation, 3-headed attack',
   },
   {
@@ -1542,6 +1724,10 @@ export const creatures: Array<Creature> = [
     aiValue: 1670,
     cost: { gold: 900 },
     growth: 2,
+    special: {
+      flying: true,
+      hates: [Creatures.Genie, Creatures.MasterGenie],
+    },
     description: 'Flying, Fire immunity, Hates Genies',
   },
   {
@@ -1562,6 +1748,10 @@ export const creatures: Array<Creature> = [
     aiValue: 2343,
     cost: { gold: 1100 },
     growth: 2,
+    special: {
+      flying: true,
+      hates: [Creatures.Genie, Creatures.MasterGenie],
+    },
     description: 'Flying, Fire shield, Fire immunity, Hates Genies',
   },
   {
@@ -1582,6 +1772,11 @@ export const creatures: Array<Creature> = [
     aiValue: 5101,
     cost: { gold: 2700, mercury: 1 },
     growth: 1,
+    special: {
+      flying: true,
+      noEnemyRetaliation: true,
+      hates: [Creatures.Angel, Creatures.Archangel],
+    },
     description: 'Teleporting, No enemy retaliation, Luck -1, Hates Angels',
   },
   {
@@ -1602,6 +1797,11 @@ export const creatures: Array<Creature> = [
     aiValue: 7115,
     cost: { gold: 4500, mercury: 2 },
     growth: 1,
+    special: {
+      flying: true,
+      noEnemyRetaliation: true,
+      hates: [Creatures.Angel, Creatures.Archangel],
+    },
     description: 'Teleporting, No enemy retaliation, Luck -2, Hates Angels',
   },
   {
@@ -1695,6 +1895,9 @@ export const creatures: Array<Creature> = [
     aiValue: 268,
     cost: { gold: 220 },
     growth: 8,
+    special: {
+      flying: true,
+    },
     description: 'Flying, Dispel',
   },
   {
@@ -1714,6 +1917,9 @@ export const creatures: Array<Creature> = [
     aiValue: 312,
     cost: { gold: 240 },
     growth: 8,
+    special: {
+      flying: true,
+    },
     description: 'Flying, Dispel, Weakness',
   },
   {
@@ -1733,6 +1939,9 @@ export const creatures: Array<Creature> = [
     aiValue: 552,
     cost: { gold: 325 },
     growth: 4,
+    special: {
+      petrifyChance: 20,
+    },
     description: 'Petrify',
   },
   {
@@ -1752,6 +1961,9 @@ export const creatures: Array<Creature> = [
     aiValue: 714,
     cost: { gold: 400 },
     growth: 4,
+    special: {
+      petrifyChance: 20,
+    },
     description: 'Petrify',
   },
   {
@@ -1789,6 +2001,9 @@ export const creatures: Array<Creature> = [
     aiValue: 1028,
     cost: { gold: 600 },
     growth: 3,
+    special: {
+      baseDeathStareChance: 10,
+    },
     description: 'Death stare 10% chance/unit',
   },
   {
@@ -1808,6 +2023,9 @@ export const creatures: Array<Creature> = [
     aiValue: 1350,
     cost: { gold: 800 },
     growth: 2,
+    special: {
+      flying: true,
+    },
     description: 'Flying',
   },
   {
@@ -1827,6 +2045,10 @@ export const creatures: Array<Creature> = [
     aiValue: 1518,
     cost: { gold: 1100 },
     growth: 2,
+    special: {
+      flying: true,
+      poisonChance: 30,
+    },
     description: 'Flying, Poison',
   },
   {
@@ -1846,6 +2068,9 @@ export const creatures: Array<Creature> = [
     aiValue: 4120,
     cost: { gold: 2200 },
     growth: 1,
+    special: {
+      noEnemyRetaliation: true,
+    },
     description: 'No enemy retaliation, Attack all adjacent enemies',
   },
   {
@@ -1865,6 +2090,9 @@ export const creatures: Array<Creature> = [
     aiValue: 5931,
     cost: { gold: 3500, sulfur: 1 },
     growth: 1,
+    special: {
+      noEnemyRetaliation: true,
+    },
     description: 'No enemy retaliation, Attack all adjacent enemies',
   },
   {
@@ -1938,6 +2166,9 @@ export const creatures: Array<Creature> = [
     aiValue: 203,
     cost: { gold: 140 },
     growth: 9,
+    special: {
+      doubleAttack: true,
+    },
     description: 'Double attack',
   },
   {
@@ -2032,6 +2263,9 @@ export const creatures: Array<Creature> = [
     aiValue: 1027,
     cost: { gold: 600 },
     growth: 3,
+    special: {
+      flying: true,
+    },
     description: 'Flying',
   },
   {
@@ -2051,6 +2285,10 @@ export const creatures: Array<Creature> = [
     aiValue: 1106,
     cost: { gold: 700 },
     growth: 3,
+    special: {
+      flying: true,
+      lightningStrikeChance: 20,
+    },
     description: 'Flying, Lightning strike',
   },
   {
@@ -2108,6 +2346,9 @@ export const creatures: Array<Creature> = [
     aiValue: 3162,
     cost: { gold: 1500 },
     growth: 1,
+    special: {
+      ignoreEmenyDefencePercents: 40,
+    },
     description: 'Defense -40% to enemy target',
   },
   {
@@ -2127,6 +2368,9 @@ export const creatures: Array<Creature> = [
     aiValue: 6168,
     cost: { gold: 3000, crystal: 1 },
     growth: 1,
+    special: {
+      ignoreEmenyDefencePercents: 80,
+    },
     description: 'Defense -80% to enemy target',
   },
   {
@@ -2146,6 +2390,9 @@ export const creatures: Array<Creature> = [
     aiValue: 55,
     cost: { gold: 25 },
     growth: 20,
+    special: {
+      flying: true,
+    },
     description: 'Flying',
   },
   {
@@ -2165,6 +2412,10 @@ export const creatures: Array<Creature> = [
     aiValue: 95,
     cost: { gold: 30 },
     growth: 20,
+    special: {
+      flying: true,
+      noEnemyRetaliation: true,
+    },
     description: 'Flying, No enemy retaliation',
   },
   {
@@ -2184,6 +2435,9 @@ export const creatures: Array<Creature> = [
     aiValue: 356,
     cost: { gold: 250 },
     growth: 6,
+    special: {
+      nonLiving: true,
+    },
     description:
       'Elemental, Lightning and Armageddon vulnerability, Immune to Meteor Shower, +100% to basic damage to Earth and Magma Elementals',
   },
@@ -2204,6 +2458,9 @@ export const creatures: Array<Creature> = [
     aiValue: 486,
     cost: { gold: 275 },
     growth: 6,
+    special: {
+      nonLiving: true,
+    },
     description:
       'Ranged (24 shots), Elemental, Lightning and Armageddon vulnerability, Immune to Meteor Shower, +100% to basic damage to Earth and Magma Elementals, Casts Protection from Air',
   },
@@ -2224,6 +2481,9 @@ export const creatures: Array<Creature> = [
     aiValue: 315,
     cost: { gold: 300 },
     growth: 6,
+    special: {
+      nonLiving: true,
+    },
     description:
       'Elemental, Ice immunity, Vulnerable to Fireball, Inferno and Armageddon, +100% to basic damage to Fire and Energy Elementals',
   },
@@ -2244,6 +2504,9 @@ export const creatures: Array<Creature> = [
     aiValue: 380,
     cost: { gold: 375 },
     growth: 6,
+    special: {
+      nonLiving: true,
+    },
     description:
       'Ranged (24 shots), Elemental, Ice immunity, Vulnerable to Fireball, Inferno and Armageddon, +100% to basic damage to Fire and Energy Elementals, Casts Protection from Water',
   },
@@ -2264,6 +2527,9 @@ export const creatures: Array<Creature> = [
     aiValue: 345,
     cost: { gold: 350 },
     growth: 5,
+    special: {
+      nonLiving: true,
+    },
     description: 'Elemental, Ice vulnerability, Fire immunity, +100% to basic damage to Water and Ice Elementals',
   },
   {
@@ -2283,6 +2549,9 @@ export const creatures: Array<Creature> = [
     aiValue: 470,
     cost: { gold: 400 },
     growth: 5,
+    special: {
+      nonLiving: true,
+    },
     description:
       'Elemental, Flying, Ice vulnerability, Fire immunity, +100% to basic damage to Water and Ice Elementals, Casts Protection from Fire',
   },
@@ -2303,6 +2572,9 @@ export const creatures: Array<Creature> = [
     aiValue: 330,
     cost: { gold: 400 },
     growth: 4,
+    special: {
+      nonLiving: true,
+    },
     description:
       'Elemental, Meteor Shower vulnerability, Lightning and Armageddon immunity, +100% to basic damage to Air and Storm Elementals',
   },
@@ -2323,6 +2595,9 @@ export const creatures: Array<Creature> = [
     aiValue: 490,
     cost: { gold: 500 },
     growth: 4,
+    special: {
+      nonLiving: true,
+    },
     description:
       'Elemental, Meteor Shower vulnerability, Lightning and Armageddon immunity, +100% to basic damage to Air and Storm Elementals, Casts Protection from Earth',
   },
@@ -2343,6 +2618,9 @@ export const creatures: Array<Creature> = [
     aiValue: 1669,
     cost: { gold: 950 },
     growth: 2,
+    special: {
+      nonLiving: true,
+    },
     description:
       'Elemental, Attacks all adjacent enemies without retaliation, -50% damage to creatures with Mind immunity',
   },
@@ -2363,6 +2641,10 @@ export const creatures: Array<Creature> = [
     aiValue: 2012,
     cost: { gold: 1200 },
     growth: 2,
+    special: {
+      nonLiving: true,
+      immunity: spells,
+    },
     description:
       'Elemental, Attacks all adjacent enemies without retaliation, Magic immunity, -50% damage to creatures with Magic immunity',
   },
@@ -2383,6 +2665,10 @@ export const creatures: Array<Creature> = [
     aiValue: 4336,
     cost: { gold: 2000 },
     growth: 1,
+    special: {
+      flying: true,
+      immunity: spells.filter((spell) => spell.element === 'Fire'),
+    },
     description: 'Flying, Breath attack, 50% fire resistance',
   },
   {
@@ -2402,6 +2688,10 @@ export const creatures: Array<Creature> = [
     aiValue: 6721,
     cost: { gold: 3000, mercury: 1 },
     growth: 1,
+    special: {
+      flying: true,
+      immunity: spells.filter((spell) => spell.element === 'Fire'),
+    },
     description: 'Flying, Breath attack, Fire immunity, Rebirth',
   },
   {
@@ -2514,6 +2804,9 @@ export const creatures: Array<Creature> = [
     aiValue: 270,
     cost: { gold: 300 },
     growth: 7,
+    special: {
+      undead: true,
+    },
     description: 'Undead, Curse',
   },
   {
@@ -2571,6 +2864,10 @@ export const creatures: Array<Creature> = [
     aiValue: 600,
     cost: { gold: 500 },
     growth: 3,
+    special: {
+      nonLiving: true,
+      spellDamageResistance: 85,
+    },
     description: 'Unliving, Spell Damage Resistance +85%',
   },
   {
@@ -2590,6 +2887,10 @@ export const creatures: Array<Creature> = [
     aiValue: 775,
     cost: { gold: 750 },
     growth: 2,
+    special: {
+      nonLiving: true,
+      spellDamageResistance: 95,
+    },
     description: 'Unliving, Spell Damage Resistance +95%',
   },
   {
@@ -2628,6 +2929,9 @@ export const creatures: Array<Creature> = [
     aiValue: 30501,
     cost: { gold: 10000, gem: 8 },
     growth: 1,
+    special: {
+      flying: true,
+    },
     description: 'Dragon, Flying, Spellcaster, Magic Mirror',
   },
   {
@@ -2647,6 +2951,9 @@ export const creatures: Array<Creature> = [
     aiValue: 26433,
     cost: { gold: 15000, sulfur: 14 },
     growth: 1,
+    special: {
+      flying: true,
+    },
     description: 'Dragon, Flying, Breath attack, Acid breath',
   },
   {
@@ -2666,6 +2973,9 @@ export const creatures: Array<Creature> = [
     aiValue: 39338,
     cost: { gold: 20000, crystal: 10 },
     growth: 1,
+    special: {
+      flying: true,
+    },
     description: 'Dragon, Crystal generation, Magic resistance +20%',
   },
   {
@@ -2685,6 +2995,9 @@ export const creatures: Array<Creature> = [
     aiValue: 78845,
     cost: { gold: 30000, mercury: 20 },
     growth: 1,
+    special: {
+      flying: true,
+    },
     description: 'Dragon, Flying, Breath attack, Fear, Resist lvl 1–3 spells, Resist Fear',
   },
   {
@@ -2723,6 +3036,9 @@ export const creatures: Array<Creature> = [
     aiValue: 57,
     cost: { gold: 35 },
     growth: 16,
+    special: {
+      flying: true,
+    },
     description: 'Teleporting, Immune to ice',
   },
   {
@@ -2742,6 +3058,9 @@ export const creatures: Array<Creature> = [
     aiValue: 75,
     cost: { gold: 45 },
     growth: 16,
+    special: {
+      flying: true,
+    },
     description: 'Teleporting, Immune to ice',
   },
   {
@@ -2797,6 +3116,9 @@ export const creatures: Array<Creature> = [
     aiValue: 312,
     cost: { gold: 225 },
     growth: 7,
+    special: {
+      noMeleePenalty: true,
+    },
     description: 'Ranged (4 shots), No melee penalty',
   },
   {
@@ -2816,6 +3138,10 @@ export const creatures: Array<Creature> = [
     aiValue: 407,
     cost: { gold: 275 },
     growth: 7,
+    special: {
+      noMeleePenalty: true,
+      noEnemyRetaliation: true,
+    },
     description: 'Ranged (4 shots), No melee penalty, No enemy retaliation',
   },
   {
@@ -2835,6 +3161,10 @@ export const creatures: Array<Creature> = [
     aiValue: 602,
     cost: { gold: 375 },
     growth: 7,
+    special: {
+      noMeleePenalty: true,
+      noEnemyRetaliation: true,
+    },
     description: 'Ranged (12 shots), No melee penalty, No enemy retaliation, Accurate Shot',
   },
   {
@@ -2854,6 +3184,9 @@ export const creatures: Array<Creature> = [
     aiValue: 502,
     cost: { gold: 275 },
     growth: 4,
+    special: {
+      flying: true,
+    },
     description: 'Flying',
   },
   {
@@ -2873,6 +3206,9 @@ export const creatures: Array<Creature> = [
     aiValue: 645,
     cost: { gold: 325 },
     growth: 4,
+    special: {
+      flying: true,
+    },
     description: 'Flying, Ferocity',
   },
   {
@@ -2930,6 +3266,9 @@ export const creatures: Array<Creature> = [
     aiValue: 1415,
     cost: { gold: 1000 },
     growth: 2,
+    special: {
+      ignoreEnemyAttackPercents: 30,
+    },
     description: 'Ignores 30% of enemy attack value',
   },
   {
@@ -2949,6 +3288,9 @@ export const creatures: Array<Creature> = [
     aiValue: 2116,
     cost: { gold: 1300 },
     growth: 2,
+    special: {
+      ignoreEnemyAttackPercents: 60,
+    },
     description: 'Ignores 60% of enemy attack value',
   },
   {
@@ -2968,6 +3310,9 @@ export const creatures: Array<Creature> = [
     aiValue: 3953,
     cost: { gold: 2200, sulfur: 1 },
     growth: 1,
+    special: {
+      poisonChance: 30,
+    },
     description: 'Poisonous',
   },
   {
@@ -2987,6 +3332,9 @@ export const creatures: Array<Creature> = [
     aiValue: 7220,
     cost: { gold: 4000, sulfur: 2 },
     growth: 1,
+    special: {
+      poisonChance: 30,
+    },
     description: 'Poisonous, Revenge',
   },
   {
@@ -3005,6 +3353,9 @@ export const creatures: Array<Creature> = [
     aiValue: 929,
     cost: { gold: 600 },
     growth: 3,
+    special: {
+      flying: true,
+    },
     description: 'Flying, Mind spell immunity, Unlimited retaliations, Casts Hypnotize on attacked stack',
   },
   {
@@ -3083,6 +3434,10 @@ export const creatures: Array<Creature> = [
     speed: 6,
     hits: 1,
     ranged: false,
+    special: {
+      nonLiving: true,
+      spellDamageResistance: 80,
+    },
     description: 'Unliving, Spell Damage Resistance +80%',
   },
 ]
