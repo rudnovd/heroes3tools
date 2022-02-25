@@ -36,6 +36,7 @@ export const spells: Array<Spell> = [
     level: 2,
     name: 'Blind',
     element: 'Fire',
+    group: ['mind'],
   },
   {
     id: 7,
@@ -72,6 +73,7 @@ export const spells: Array<Spell> = [
     level: 4,
     name: 'Berserk',
     element: 'Fire',
+    group: ['mind'],
   },
   {
     id: 13,
@@ -84,6 +86,7 @@ export const spells: Array<Spell> = [
     level: 4,
     name: 'Frenzy',
     element: 'Fire',
+    group: ['mind'],
   },
   {
     id: 15,
@@ -168,6 +171,7 @@ export const spells: Array<Spell> = [
     level: 3,
     name: 'Forgetfulness',
     element: 'Water',
+    group: ['mind'],
   },
   {
     id: 29,
@@ -180,6 +184,7 @@ export const spells: Array<Spell> = [
     level: 3,
     name: 'Mirth',
     element: 'Water',
+    group: ['mind'],
   },
   {
     id: 31,
@@ -294,6 +299,7 @@ export const spells: Array<Spell> = [
     level: 4,
     name: 'Sorrow',
     element: 'Earth',
+    group: ['mind'],
   },
   {
     id: 50,
@@ -378,6 +384,7 @@ export const spells: Array<Spell> = [
     level: 3,
     name: 'Hypnotize',
     element: 'Air',
+    group: ['mind'],
   },
   {
     id: 64,
