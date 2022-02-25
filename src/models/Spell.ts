@@ -1,8 +1,11 @@
+type SpellGroup = 'mind'
+
 export interface Spell {
   id: number
   name: string
   level: number
   element: Elements
+  group?: Array<SpellGroup>
 }
 
 export interface SpellTranslation {
