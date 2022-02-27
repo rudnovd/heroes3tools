@@ -68,27 +68,20 @@
 
       <section v-if="side.hero" class="skills">
         <SelectSkillButtons
-          v-for="skill in store.skills"
-          :key="`attacker-skill-${skill.name}-buttons`"
-          color="attacker"
+          v-for="skill in skills"
+          :key="`${sideName}-skill-${skill.name}-buttons`"
+          :color="sideName"
           :name="skill.name"
-          :levels="store.levels.slice(1, store.levels.length)"
+          :levels="levels.slice(1, levels.length)"
           @click="side.hero!.skills[skill.name.toLowerCase()] = $event"
         />
       </section>
 
       <section v-if="side.activeCreature" class="effects">
-        <div
-          v-for="(effectGroup, i) in [
-            store.attackPositiveEffects,
-            store.defensePositiveEffects,
-            store.attackNegativeEffects,
-          ]"
-          :key="`attacker-effects-group-${i}`"
-        >
+        <div v-for="(effectGroup, i) in effects" :key="`attacker-effects-group-${i}`">
           <template v-for="effect in effectGroup" :key="`attacker-effect-${effect}`">
             <BaseCheckbox
-              color="attacker"
+              :color="sideName"
               :value="isEffectEnabled(side, effect)"
               :label="effect.name"
               @change="onSelectCreatureEffect(side, effect, $event)"
@@ -99,6 +92,7 @@
 
       <section v-if="side.activeCreature" class="damage">
         <strong>
+          <!-- Damage result -->
           {{ t('components.damageCalculator.damage') }}:
           {{
             getTotalResultString(
@@ -109,6 +103,7 @@
           }}
         </strong>
         <strong>
+          <!-- Kills result -->
           {{ t('components.damageCalculator.kills') }}:
           {{
             getTotalResultString(
@@ -176,6 +171,13 @@ export default defineComponent({
     const isStarted = ref(false)
     const heroes = computed(() => store.heroes)
     const terrains = computed(() => store.terrains)
+    const levels = computed(() => store.levels)
+    const skills = computed(() => store.skills)
+    const effects = computed(() => [
+      store.attackPositiveEffects,
+      store.defensePositiveEffects,
+      store.attackNegativeEffects,
+    ])
 
     // Calculate damage values when attacker or defender props changed
     watch(
@@ -233,11 +235,13 @@ export default defineComponent({
 
     return {
       t,
-      store,
 
       battle,
       heroes,
       terrains,
+      levels,
+      skills,
+      effects,
 
       getTotalResultString,
       onSelectCreature,
@@ -253,12 +257,12 @@ export default defineComponent({
 <style lang="scss" scoped>
 .damage-calculator {
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-rows: minmax(50vh, 1fr) 1fr;
   grid-template-columns: 100%;
   box-shadow: 0 0 3px rgba(170, 170, 170, 0.5);
 
   @include media-large {
-    grid-template-rows: 85vh auto;
+    grid-template-rows: 85vh 1fr;
     grid-template-columns: 50% 50%;
   }
 }
@@ -281,6 +285,12 @@ export default defineComponent({
   grid-template-areas: 'title button';
   column-gap: 0.5rem;
   align-items: center;
+
+  & > h2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 .main {
@@ -339,12 +349,9 @@ export default defineComponent({
     grid-template-areas: 'button title';
     grid-template-columns: 1fr minmax(auto, 33.3%);
   }
-  .title h2 {
+  .title > h2 {
     grid-area: title;
-    overflow: hidden;
     text-align: right;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   .main {
