@@ -292,12 +292,25 @@ export const Effects = {
     }
   },
 
-  airShield: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): CreatureInstance => {
+  /**
+   * Set Air Shield effect to creature
+   * (Air Shield reduces damage taken from ranged attacks)
+   * @param initiator Battle side (attacker or defender) who casts effect
+   * @param target Creature who accept effect
+   * @param defender Battle side who deal damage
+   * @return {CreatureInstance} Creature with Air Shield effect
+   */
+  airShield: (
+    initiator: DamageCalculatorBattleSide,
+    defender: DamageCalculatorBattleSide,
+    target: CreatureInstance
+  ): CreatureInstance => {
+    // get creature values for modify them
     let {
       calculation: { defenseMagicBonus },
     } = target
 
-    if (target.ranged) {
+    if (defender.activeCreature?.ranged) {
       if (!initiator.hero || initiator.hero.skills.air < 2) {
         defenseMagicBonus += 0.25
       } else if (initiator.hero.skills.air > 1) {
