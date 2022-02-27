@@ -1,6 +1,6 @@
 <template>
   <section class="creatures-library-page">
-    <div class="library-header">
+    <section class="library-header">
       <div class="towns-anchors">
         <ObjectPortrait
           v-for="town in towns.slice(0, 10)"
@@ -28,7 +28,7 @@
           @input="searchUnit"
         />
       </div>
-    </div>
+    </section>
 
     <div v-for="town in towns.slice(0, 10)" :key="town.name" class="town">
       <h2 :id="town.name" class="town-name">{{ town.name }}</h2>
@@ -153,11 +153,14 @@ export default defineComponent({
 
 <style lang="scss">
 .creatures-library-page {
-  display: flex;
-  flex-direction: column;
   min-width: 320px;
-  max-width: min(90%, 1920px);
-  margin: 20px auto 0 auto;
+  max-width: 1920px;
+  padding: 0 8px;
+  margin: 0 auto;
+
+  @include media-medium {
+    padding: 0 24px;
+  }
 }
 
 .library-header {
