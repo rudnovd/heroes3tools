@@ -51,18 +51,21 @@ export const Effects = {
   },
 
   /**
-   * Calculate creature minDamage, maxDamage and damageBonus with bless spell
-   * @param initiator DamageCalculatorBattleSide who casts effect
-   * @param target Effect target
-   * @return {CreatureInstance} Creature with bless effect
+   * Set Bless effect to creature
+   * (Bless inflict maximum creature damage)
+   * @param initiator Battle side (attacker or defender) who casts effect
+   * @param target Creature who accept effect
+   * @return {CreatureInstance} Creature with Bless effect
    */
   bless: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): CreatureInstance => {
+    // get creature values for modify them
     let {
       minDamage,
       maxDamage,
       calculation: { damageBonus },
     } = target
 
+    // if battle side has hero with Bless specialty then add damageBonus value
     if (initiator.hero && initiator.hero.specialtySpell === Spells.Bless) {
       damageBonus += (0.03 * initiator.hero.level) / initiator.hero.level
     }
@@ -86,12 +89,14 @@ export const Effects = {
   },
 
   /**
-   * Calculate curse spell effect
-   * @param initiator DamageCalculatorBattleSide who casts effect
-   * @param target Effect target
-   * @return {CreatureInstance} Creature with curse effect
+   * Set Curse effect to creature
+   * (Curse deliver minimum or reduced damage when creature attacking)
+   * @param initiator Battle side (attacker or defender) who casts effect
+   * @param target Creature who accept effect
+   * @return {CreatureInstance} Creature with Curse effect
    */
   curse: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): CreatureInstance => {
+    // get creature values for modify them
     let { minDamage, maxDamage } = target
 
     if (!initiator.hero || initiator.hero.skills.fire <= 1) {
@@ -108,7 +113,15 @@ export const Effects = {
     }
   },
 
+  /**
+   * Set Bloodlust effect to creature
+   * (Bloodlust increases creature attack)
+   * @param initiator Battle side (attacker or defender) who casts effect
+   * @param target Creature who accept effect
+   * @return {CreatureInstance} Creature with Bloodlust effect
+   */
   bloodlust: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): CreatureInstance => {
+    // get creature values for modify them
     let { attack } = target
 
     if (!initiator.hero || initiator.hero.skills.fire <= 1) {
@@ -123,7 +136,15 @@ export const Effects = {
     }
   },
 
+  /**
+   * Set Frenzy effect to creature
+   * (Frenzy increases creature attack and sets defense to 0)
+   * @param initiator Battle side (attacker or defender) who casts effect
+   * @param target Creature who accept effect
+   * @return {CreatureInstance} Creature with Frenzy effect
+   */
   frenzy: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): CreatureInstance => {
+    // get creature values for modify them
     let { attack, defense } = target
 
     if (!initiator.hero || initiator.hero.skills.fire <= 1) {
@@ -143,11 +164,20 @@ export const Effects = {
     }
   },
 
+  /**
+   * Set Slayer effect to creature
+   * (Slayer increases creature attack against Dragons, Behemoths and Hydras, advanced level: Angels and Devils, expert level: Titans
+   * @param initiator Battle side (attacker or defender) who casts effect
+   * @param defender Defender who accept effect
+   * @param target Creature who accept effect
+   * @return {CreatureInstance} Creature with Slayer effect
+   */
   slayer: (
     initiator: DamageCalculatorBattleSide,
     defender: DamageCalculatorBattleSide,
     target: CreatureInstance
   ): CreatureInstance => {
+    // get creature values for modify them
     let { attack } = target
 
     const slayerCreatures = [
@@ -190,7 +220,15 @@ export const Effects = {
     }
   },
 
+  /**
+   * Set Prayer effect to creature
+   * (Prayer increases creature attack, defense and speed)
+   * @param initiator Battle side (attacker or defender) who casts effect
+   * @param target Creature who accept effect
+   * @return {CreatureInstance} Creature with Prayer effect
+   */
   prayer: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): CreatureInstance => {
+    // get creature values for modify them
     let { attack, defense } = target
 
     if (!initiator.hero || initiator.hero.skills.water <= 1) {
@@ -208,7 +246,15 @@ export const Effects = {
     }
   },
 
+  /**
+   * Set Precision effect to creature
+   * (Precision increases ranged creature attack)
+   * @param initiator Battle side (attacker or defender) who casts effect
+   * @param target Creature who accept effect
+   * @return {CreatureInstance} Creature with Precision effect
+   */
   precision: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): CreatureInstance => {
+    // get creature values for modify them
     let { attack } = target
 
     if (target.ranged) {
@@ -225,7 +271,15 @@ export const Effects = {
     }
   },
 
+  /**
+   * Set Stone Skin effect to creature
+   * (Stone Skin increases creature defense)
+   * @param initiator Battle side (attacker or defender) who casts effect
+   * @param target Creature who accept effect
+   * @return {CreatureInstance} Creature with Stone Skin effect
+   */
   stoneSkin: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): CreatureInstance => {
+    // get creature values for modify them
     let { defense } = target
 
     if (!initiator.hero || initiator.hero.skills.earth <= 1) {
@@ -240,7 +294,15 @@ export const Effects = {
     }
   },
 
+  /**
+   * Set Weakness ray effect to creature
+   * (Weakness reduces creature attack)
+   * @param initiator Battle side (attacker or defender) who casts effect
+   * @param target Creature who accept effect
+   * @return {CreatureInstance} Creature with Weakness ray effect
+   */
   weakness: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): CreatureInstance => {
+    // get creature values for modify them
     let { attack } = target
 
     if (!initiator.hero || initiator.hero.skills.water <= 1) {
@@ -255,7 +317,15 @@ export const Effects = {
     }
   },
 
+  /**
+   * Set Disrupting Ray effect to creature
+   * (Disrupting Ray reduces defense of a single creature)
+   * @param initiator Battle side (attacker or defender) who casts effect
+   * @param target Creature who accept effect
+   * @return {CreatureInstance} Creature with Disrupting Ray effect
+   */
   disruptingRay: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): CreatureInstance => {
+    // get creature values for modify them
     let { defense } = target
 
     if (!initiator.hero || initiator.hero.skills.air <= 1) {
@@ -272,7 +342,15 @@ export const Effects = {
     }
   },
 
+  /**
+   * Set Shield effect to creature
+   * (Shield reduces damage taken from hand-to-hand attacks)
+   * @param initiator Battle side (attacker or defender) who casts effect
+   * @param target Creature who accept effect
+   * @return {CreatureInstance} Creature with Shield effect
+   */
   shield: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): CreatureInstance => {
+    // get creature values for modify them
     let {
       calculation: { defenseMagicBonus },
     } = target
