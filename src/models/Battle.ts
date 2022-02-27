@@ -101,6 +101,12 @@ export class Battle {
 
   private calculateWithEffects(attacker: DamageCalculatorBattleSide, target: CreatureInstance) {
     if (!target.effects.length) return target
+    else if (target.effects.find((effect) => effect.id === Spells.AntiMagic)) return target
+
+    // Check for creature spell immunity
+    for (const effect of target.effects) {
+      if (target.special?.immunity?.find((spell) => spell.id === effect.id)) return target
+    }
 
     if (target.effects.find((effect) => effect.id === Spells.Bless)) {
       target = Effects.bless(attacker, target)
@@ -143,7 +149,7 @@ export class Battle {
     }
 
     if (target.effects.find((effect) => effect.id === Spells.AirShield)) {
-      target = Effects.airShield(attacker, target)
+      target = Effects.airShield(attacker, this.defender, target)
     }
 
     return target
