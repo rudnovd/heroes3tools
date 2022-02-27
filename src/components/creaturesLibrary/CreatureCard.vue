@@ -76,12 +76,12 @@ export default defineComponent({
 <style lang="scss" scoped>
 .creature-card {
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: 105px 1fr;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
   transition: background 0.25s;
 
-  @include media-large {
+  @include media-medium {
     grid-template-columns: 150px 1fr;
   }
 
@@ -120,7 +120,7 @@ export default defineComponent({
 
 .creature-info {
   display: grid;
-  grid-template-rows: repeat(5, 30px) 1fr;
+  grid-template-rows: repeat(5, minmax(30px, 1fr)) 1fr;
   grid-template-columns: 100%;
 
   @include media-medium {
@@ -130,8 +130,7 @@ export default defineComponent({
 
 .parameter {
   display: grid;
-  grid-template-rows: 29px;
-  grid-template-columns: 2fr 4fr;
+  grid-template-columns: minmax(120px, 2fr) 4fr;
   align-items: center;
   padding-left: 4px;
   border-bottom: 1px solid rgb(222, 226, 230);
@@ -163,6 +162,8 @@ export default defineComponent({
 .creature-description {
   grid-column: 1 / -1;
   padding-left: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .creature-card.selected {
@@ -175,6 +176,7 @@ export default defineComponent({
 
 .paramater-with-resources {
   display: flex;
+  flex-wrap: wrap;
   grid-gap: 8px;
   align-items: center;
 
