@@ -1,11 +1,11 @@
 <template>
   <footer>
     <div class="left-side">
-      <button class="footer-button" @click="showAboutModal = true">
-        {{ aboutText }}
+      <button v-if="!about.hide" @click="showAboutModal = true">
+        {{ about.text }}
       </button>
 
-      <select v-model="selectedLocale" class="select-language" @change="changeLocale">
+      <select v-model="selectedLocale" @change="changeLocale">
         <option v-for="locale in locales" :key="locale.name" :value="locale.name">
           {{ locale.value }}
         </option>
@@ -13,15 +13,15 @@
     </div>
 
     <div class="right-side">
-      <button class="footer-button" @click="foundErrorModal = true">
+      <button @click="foundErrorModal = true">
         {{ t('components.pageFooter.foundAnError') }}
       </button>
 
-      <button class="footer-button" @click="showLicenseModal = true">
+      <button @click="showLicenseModal = true">
         {{ t('components.pageFooter.licenseInformation') }}
       </button>
 
-      <button class="footer-button">
+      <button>
         <a href="https://github.com/rudnovd/heroes3tools" target="_blank" rel="noopener">
           {{ t('components.pageFooter.sourceCode') }}
         </a>
@@ -41,27 +41,27 @@
           <a href="https://github.com/rudnovd/heroes3tools/issues" target="_blank" rel="noopener">Github</a>
           or use anonymous form:
         </p>
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLScB1GE0fEa-jIxkDmcMj-JFG5voOLuzLU-duU3_NW_AC4YMkQ/viewform?embedded=true"
-          width="100%"
-          height="650"
-        >
-          Loading...
-        </iframe>
+
+        <form class="send-error" name="send-error" netlify>
+          <textarea name="error" :placeholder="t('components.pageFooter.sendErrorForm.placeholder')" />
+          <button class="send-error-button" type="submit">
+            {{ t('components.pageFooter.sendErrorForm.button') }}
+          </button>
+        </form>
       </template>
     </BaseDialog>
 
     <BaseDialog v-if="showLicenseModal" :show="showLicenseModal" @close="showLicenseModal = false">
       <template #content>
-        <p class="modal-text">{{ t('components.pageFooter.license.1') }}</p>
-        <i18n-t class="modal-text" keypath="components.pageFooter.license.2" tag="p">
+        <p>{{ t('components.pageFooter.license.1') }}</p>
+        <i18n-t keypath="components.pageFooter.license.2" tag="p">
           <template #url>
             <a href="https://github.com/rudnovd" target="_blank">https://github.com/rudnovd</a>
           </template>
         </i18n-t>
-        <p class="modal-text">{{ t('components.pageFooter.license.3') }}</p>
-        <p class="modal-text">{{ t('components.pageFooter.license.4') }}</p>
-        <p class="modal-text">{{ t('components.pageFooter.license.5') }}</p>
+        <p>{{ t('components.pageFooter.license.3') }}</p>
+        <p>{{ t('components.pageFooter.license.4') }}</p>
+        <p>{{ t('components.pageFooter.license.5') }}</p>
       </template>
     </BaseDialog>
   </footer>
@@ -70,7 +70,7 @@
 <script lang="ts">
 import BaseDialog from '@/components/base/BaseDialog.vue'
 import { selectedLanguage, setLanguage } from '@/i18n'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, PropType, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
@@ -80,9 +80,13 @@ export default defineComponent({
     BaseDialog,
   },
   props: {
-    aboutText: {
+    about: {
+      type: Object as PropType<{ hide?: boolean; text?: string }>,
+      default: () => ({ hide: false, text: 'About' }),
+    },
+    border: {
       type: String,
-      default: 'About',
+      default: '1px solid rgb(222, 226, 230)',
     },
   },
   setup() {
@@ -126,49 +130,71 @@ export default defineComponent({
 
 <style lang="scss">
 footer {
-  display: flex;
-  flex-direction: row;
-  border-top: 1px solid rgb(222, 226, 230);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-width: 300px;
+  padding: 4px 8px;
+  font-size: 0.875rem;
+  border-top: v-bind(border);
 }
 
-.footer-button {
-  padding: 0.25rem 0.5rem;
-  margin-right: 10px;
-  font-size: 0.875rem;
+footer button {
   color: rgb(108, 117, 125);
+  text-align: end;
 
   &:hover {
     text-decoration: underline;
   }
 
-  a {
+  & > a {
     color: rgb(108, 117, 125);
     text-decoration: none;
   }
 }
 
-.select-language {
-  padding: 0.25rem 0.5rem;
-  margin-right: 10px;
+footer select {
+  padding: 0;
   font: inherit;
-  font-size: 0.875rem;
   color: #6c757d;
   cursor: pointer;
   background-color: transparent;
   border: none;
-  outline: none;
 }
 
-.left-side {
-  flex: 1 0 0;
+.left-side,
+.right-side {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 16px;
 }
 
 .right-side {
-  flex: 1 0 0;
-  text-align: right;
+  justify-content: flex-end;
 }
 
-.modal-text {
+.modal-content p {
   margin-bottom: 1rem;
+}
+
+.send-error {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  textarea {
+    height: 100px;
+    font: inherit;
+    border: 1px solid #dee2e6;
+  }
+
+  .send-error-button {
+    width: 128px;
+    font-weight: bold;
+    line-height: 1.5;
+    color: $color-attacker-text;
+    background-color: $color-attacker;
+    border: 1px solid $color-attacker;
+    border-radius: 5px;
+  }
 }
 </style>
