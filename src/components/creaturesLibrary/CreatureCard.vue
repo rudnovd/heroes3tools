@@ -120,7 +120,7 @@ export default defineComponent({
 
 .creature-info {
   display: grid;
-  grid-template-rows: repeat(5, minmax(30px, 1fr)) 1fr;
+  grid-template-rows: repeat(5, minmax(30px, auto)) 1fr;
   grid-template-columns: 100%;
 
   @include media-medium {
