@@ -65,6 +65,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .input-number {
+  width: 100%;
   padding: 0.25rem 0.5rem;
   font-family: inherit;
   font-size: inherit;
