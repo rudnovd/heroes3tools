@@ -19,6 +19,19 @@
       </div>
     </section>
   </section>
+
+  <PageFooter>
+    <template #aboutModal>
+      <h2>{{ t('components.homePage.data.1') }}</h2>
+      <p>{{ t('components.homePage.data.2') }}</p>
+
+      <i18n-t keypath="components.homePage.data.3" tag="p">
+        <template #email>
+          <a href="mailto:feedback@heroes3.tools" target="_blank">feedback@heroes3.tools</a>
+        </template>
+      </i18n-t>
+    </template>
+  </PageFooter>
 </template>
 
 <script lang="ts">
@@ -30,6 +43,7 @@ export default defineComponent({
   name: 'HomePage',
   components: {
     ObjectPortrait: defineAsyncComponent(() => import('@/components/ObjectPortrait.vue')),
+    PageFooter: defineAsyncComponent(() => import('@/components/PageFooter.vue')),
   },
   setup() {
     const { t } = useI18n()
@@ -55,6 +69,7 @@ export default defineComponent({
     ]
 
     return {
+      t,
       router,
 
       pages,
@@ -69,7 +84,7 @@ export default defineComponent({
   grid-auto-rows: min-content;
   gap: 16px;
   min-width: 300px;
-  height: 100%;
+  height: calc(100% - 30px);
   margin: 0 auto;
 
   @include media-medium {

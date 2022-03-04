@@ -11,16 +11,16 @@
 </template>
 
 <script lang="ts">
+import { selectedLanguage, setLanguage } from '@/i18n'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { defineAsyncComponent, defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
-import { selectedLanguage, setLanguage } from './i18n'
 
 export default defineComponent({
   name: 'App',
   components: {
-    BaseNotification: defineAsyncComponent(() => import('./components/base/BaseNotification.vue')),
+    BaseNotification: defineAsyncComponent(() => import('@/components/base/BaseNotification.vue')),
   },
   setup() {
     const route = useRoute()
