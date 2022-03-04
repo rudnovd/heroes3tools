@@ -51,6 +51,8 @@
       />
     </div>
   </section>
+
+  <PageFooter :about="{ hide: true }" />
 </template>
 
 <script lang="ts">
@@ -59,7 +61,7 @@ import ObjectPortrait from '@/components/ObjectPortrait.vue'
 import { selectedLanguage } from '@/i18n'
 import { Creature } from '@/models/Creature'
 import { useStore } from '@/store'
-import { computed, defineComponent, onUnmounted, ref } from 'vue'
+import { computed, defineAsyncComponent, defineComponent, onUnmounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -70,6 +72,7 @@ export default defineComponent({
   components: {
     CreatureCard,
     ObjectPortrait,
+    PageFooter: defineAsyncComponent(() => import('@/components/PageFooter.vue')),
   },
   setup() {
     const store = useStore()
@@ -155,11 +158,11 @@ export default defineComponent({
 .creatures-library-page {
   min-width: 320px;
   max-width: 1920px;
-  padding: 0 8px;
+  padding: 0 8px 16px;
   margin: 0 auto;
 
   @include media-medium {
-    padding: 0 24px;
+    padding: 0 24px 16px;
   }
 }
 
@@ -202,6 +205,10 @@ export default defineComponent({
   display: grid;
   grid-template-columns: 100%;
   margin-bottom: 3rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   @include media-medium {
     grid-template-columns: 1fr 1fr;

@@ -30,7 +30,18 @@
       </KeepAlive>
     </main>
 
-    <DamageCalculatorFooter />
+    <PageFooter :about="{ text: t('components.damageCalculatorPage.about') }" border="none">
+      <template #aboutModal>
+        <h2>{{ t('components.damageCalculatorPage.data.1') }}</h2>
+        <p>{{ t('components.damageCalculatorPage.data.2') }}</p>
+
+        <i18n-t keypath="components.damageCalculatorPage.data.3" tag="p">
+          <template #email>
+            <a href="mailto:feedback@heroes3.tools" target="_blank">feedback@heroes3.tools</a>
+          </template>
+        </i18n-t>
+      </template>
+    </PageFooter>
   </section>
 </template>
 
@@ -47,9 +58,7 @@ export default defineComponent({
   name: 'DamageCalculatorPage',
   components: {
     DamageCalculator,
-    DamageCalculatorFooter: defineAsyncComponent(
-      () => import('@/components/damageCalculator/DamageCalculatorFooter.vue')
-    ),
+    PageFooter: defineAsyncComponent(() => import('@/components/PageFooter.vue')),
   },
   setup() {
     const { t } = useI18n()
@@ -114,6 +123,8 @@ export default defineComponent({
     }
 
     return {
+      t,
+
       calculators,
       activeIndex,
       calculatorTitle,
