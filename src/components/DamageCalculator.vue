@@ -302,6 +302,11 @@ export default defineComponent({
 .creature {
   display: grid;
   gap: 0.5rem;
+
+  .creature-input {
+    width: 65px;
+    height: 32px;
+  }
 }
 
 .hero {
@@ -363,11 +368,6 @@ export default defineComponent({
     grid-area: creature;
     justify-content: end;
   }
-}
-
-.creature-input {
-  width: 65px;
-  height: 32px;
 }
 
 .creature-button {
