@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.0](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-alpha.8...v2.0.0-beta.0) (2022-03-05)
+
+
+### Features
+
+* **assets:** init specials for creatures database ([ad636ba](https://github.com/rudnovd/heroes3tools/commit/ad636baf12b8827c62acc6579723a212b4dce4e6))
+* **components:** use PageFooter for all pages ([b09951a](https://github.com/rudnovd/heroes3tools/commit/b09951a1a217728883496f5b79bd7aa632813cf3))
+* **locales:** update locales ([09fe7d7](https://github.com/rudnovd/heroes3tools/commit/09fe7d70a9b9449c30674c27bde4a7b6b54cca9d))
+* **models:** add SpellGroup type in Spells models ([309e5d3](https://github.com/rudnovd/heroes3tools/commit/309e5d3fa99732e248b0360151f1b04bdb8c8dab))
+* **modules:** update effects module ([b3e1b8e](https://github.com/rudnovd/heroes3tools/commit/b3e1b8ec084d81a22d9caf130f65800815966fe8))
+* **ObjectPortait:** add emit for picture element ([eaa88d6](https://github.com/rudnovd/heroes3tools/commit/eaa88d69a1a286a15a3fc5f378b343c3ebf5695e))
+
+
+### Bug Fixes
+
+* **BaseInputNumber:** fix firefox styles ([d149b90](https://github.com/rudnovd/heroes3tools/commit/d149b90a399a5e58731c1de9bc2b11b02c802a05))
+* **CreatureCard:** fix component styles ([1944e9f](https://github.com/rudnovd/heroes3tools/commit/1944e9f40932890dd18c90ee110d69a4611b7b5f))
+* **effects:** fix Air Shield errors ([a6fee76](https://github.com/rudnovd/heroes3tools/commit/a6fee76bac45130060a890aa2b5e5775a87b35cd))
+
 ## [2.0.0-alpha.8](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-alpha.7...v2.0.0-alpha.8) (2022-02-21)
 
 
