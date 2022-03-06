@@ -20,7 +20,7 @@ export const creatures: Array<Creature> = [
     cost: { gold: 60 },
     fightValue: 1,
     growth: 14,
-    speed: 1,
+    speed: 4,
     description: 'Immune to jousting',
   },
   {
