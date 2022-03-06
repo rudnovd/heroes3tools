@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent } from 'vue'
+import { computed, defineAsyncComponent, defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 
@@ -49,7 +49,7 @@ export default defineComponent({
     const { t } = useI18n()
     const router = useRouter()
 
-    const pages = [
+    const pages = computed(() => [
       {
         name: t('pages.damageCalculator'),
         path: '/damage',
@@ -66,7 +66,7 @@ export default defineComponent({
         path: '/creatures',
         image: 'Scholar',
       },
-    ]
+    ])
 
     return {
       t,
