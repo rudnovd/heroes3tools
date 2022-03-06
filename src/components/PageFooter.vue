@@ -2,7 +2,7 @@
   <footer>
     <div class="left-side">
       <button v-if="!about.hide" @click="showAboutModal = true">
-        {{ about.text }}
+        {{ about.text || t('components.pageFooter.about') }}
       </button>
 
       <select v-model="selectedLocale" @change="changeLocale">
@@ -82,7 +82,7 @@ export default defineComponent({
   props: {
     about: {
       type: Object as PropType<{ hide?: boolean; text?: string }>,
-      default: () => ({ hide: false, text: 'About' }),
+      default: () => ({ hide: false, text: null }),
     },
     border: {
       type: String,

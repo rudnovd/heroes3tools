@@ -43,6 +43,7 @@
       }
     },
     "pageFooter": {
+      "about": "О проекте",
       "foundAnError": "Нашли ошибку?",
       "howToUse": "Как пользоваться",
       "language": "Язык",
