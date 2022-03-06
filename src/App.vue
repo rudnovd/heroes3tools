@@ -13,7 +13,7 @@
 <script lang="ts">
 import { selectedLanguage, setLanguage } from '@/i18n'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
-import { defineAsyncComponent, defineComponent } from 'vue'
+import { computed, defineAsyncComponent, defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
@@ -45,7 +45,7 @@ export default defineComponent({
     // Get selected language from localstorage and change i18n language
     if (selectedLanguage.value !== 'en') setLanguage(selectedLanguage.value)
 
-    const notificationsButtons = [
+    const notificationsButtons = computed(() => [
       {
         text: t('common.updateApp'),
         onClick: () => {
@@ -57,7 +57,8 @@ export default defineComponent({
         text: t('common.dismiss'),
         textColor: 'rgb(255, 255, 255)',
       },
-    ]
+    ])
+
     return {
       t,
       route,
