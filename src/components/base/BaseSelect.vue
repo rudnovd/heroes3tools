@@ -56,7 +56,7 @@
 <script lang="ts">
 import i18n from '@/i18n'
 import { onClickOutside, useVirtualList } from '@vueuse/core'
-import { computed, defineComponent, PropType, ref } from 'vue'
+import { computed, defineComponent, PropType, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
@@ -152,6 +152,13 @@ export default defineComponent({
         return list.value.map((item) => ({ ...item.data, index: item.index }))
       } else {
         return firstOptions.value
+      }
+    })
+
+    watch(search, () => {
+      if (!optionsList.value.length) {
+        wrapperProps.value.style.height = '0px'
+        wrapperProps.value.style.marginTop = '0px'
       }
     })
 
