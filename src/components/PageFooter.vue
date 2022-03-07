@@ -168,6 +168,10 @@ footer select {
   gap: 0 16px;
 }
 
+.left-side button {
+  text-align: left;
+}
+
 .right-side {
   justify-content: flex-end;
 }
