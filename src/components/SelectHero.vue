@@ -67,8 +67,12 @@ export default defineComponent({
 <style lang="scss" scoped>
 .selected-value {
   & picture {
-    display: flex;
-    margin-right: 0.5rem;
+    display: none;
+
+    @include media-medium {
+      display: flex;
+      margin-right: 0.5rem;
+    }
   }
 }
 
