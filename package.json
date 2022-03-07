@@ -24,7 +24,7 @@
     "localazy:download": "localazy download -k localazy.keys.json"
   },
   "dependencies": {
-    "@vueuse/core": "^7.7.0",
+    "@vueuse/core": "^7.7.1",
     "pinia": "^2.0.11",
     "vue": "^3.2.31",
     "vue-i18n": "^9.1.9",
@@ -34,7 +34,7 @@
     "@commitlint/cli": "^16.2.1",
     "@intlify/vite-plugin-vue-i18n": "^3.3.1",
     "@localazy/cli": "^1.6.0",
-    "@peeky/test": "^0.13.2",
+    "@peeky/test": "^0.13.5",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
     "@vitejs/plugin-vue": "^2.2.4",
