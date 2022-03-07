@@ -319,6 +319,12 @@ export default defineComponent({
 .effects {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+
+  & > div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+  }
 }
 
 .skills {
@@ -414,10 +420,16 @@ export default defineComponent({
 }
 
 .hero-parameters {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-flow: column;
+  grid-gap: 8px;
+
+  & > div {
+    width: 64px;
+  }
 
   .parameter-attack {
-    margin-right: 2rem;
     margin-left: auto;
   }
 }
