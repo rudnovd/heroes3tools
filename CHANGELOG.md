@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.1](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2022-03-07)
+
+
+### Bug Fixes
+
+* **App:** use computed for notificationsButtons ([f0225da](https://github.com/rudnovd/heroes3tools/commit/f0225da806a444bee71d3d67d51ed32b329ca8b0))
+* **assets:** fix creatures values ([df66383](https://github.com/rudnovd/heroes3tools/commit/df66383591cfe25fa2e8e5d1e86a359200ef2371))
+* **BaseSelect:** fix search error ([21a14ab](https://github.com/rudnovd/heroes3tools/commit/21a14ab662ba77deb3cf3ef5371b63087b1a70e5))
+* **DamageCalculator:** fix component styles ([3d51f2e](https://github.com/rudnovd/heroes3tools/commit/3d51f2e6f0ad597b8f3950a05ddc6c642ab0ec06))
+* **HomePage:** fix small screen styles ([1a9204e](https://github.com/rudnovd/heroes3tools/commit/1a9204ec022ca68ae44e84476c6fe5f0d5df377b))
+* **HomePage:** use computed for titles ([53d7e33](https://github.com/rudnovd/heroes3tools/commit/53d7e338ef7cbcf4fcc83b85819a59ab7c20f71f))
+* **PageFooter:** add 'about' word in locales ([30d9f47](https://github.com/rudnovd/heroes3tools/commit/30d9f479bac802c5bd78eb3ad0cfa17dc9e812a8))
+* **PageFooter:** fix component styles ([a3f5de3](https://github.com/rudnovd/heroes3tools/commit/a3f5de39c2286c59f0150abb31c03a14c0246200))
+
 ## [2.0.0-beta.0](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-alpha.8...v2.0.0-beta.0) (2022-03-05)
 
 
