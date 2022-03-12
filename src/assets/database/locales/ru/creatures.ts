@@ -19,7 +19,7 @@ export const creatures: Array<CreatureTranslation> = [
   {
     id: 4,
     name: 'Стрелок',
-    description: 'Стреляет (24 выстрела), стреляет дважды',
+    description: 'Стреляет (24 выстрела), Стреляет дважды',
   },
   {
     id: 5,
@@ -156,10 +156,12 @@ export const creatures: Array<CreatureTranslation> = [
   {
     id: 31,
     name: 'Каменная горгулья',
+    description: 'Неживой, Летающий',
   },
   {
     id: 32,
     name: 'Обсидиановая горгулья',
+    description: 'Неживой, Летающий',
   },
   {
     id: 33,
@@ -346,6 +348,7 @@ export const creatures: Array<CreatureTranslation> = [
   {
     id: 67,
     name: 'Мантикора',
+    description: 'Летающий',
   },
   {
     id: 68,
@@ -486,6 +489,7 @@ export const creatures: Array<CreatureTranslation> = [
   {
     id: 95,
     name: 'Виверна',
+    description: 'Летающий',
   },
   {
     id: 96,
@@ -542,6 +546,7 @@ export const creatures: Array<CreatureTranslation> = [
   {
     id: 107,
     name: 'Птица рух',
+    description: 'Летающий',
   },
   {
     id: 108,
@@ -572,6 +577,7 @@ export const creatures: Array<CreatureTranslation> = [
   {
     id: 113,
     name: 'Маленькая фея',
+    description: 'Летающий',
   },
   {
     id: 114,
@@ -707,6 +713,8 @@ export const creatures: Array<CreatureTranslation> = [
   {
     id: 138,
     name: 'Сказочный дракон',
+    description:
+      'Дракон, Летающий, 20% шанс отразить заклинание на случайный вражеское существо, Применяет атакующие заклинания (Магическая Стрела (Земля), Метеоритный Дождь (Земля), Ледяная стрела (Вода), Ледяное кольцо (Вода)Ледяное кольцо (Вода), Огненный шар (Огонь), Инферно (Огонь), Молния (Воздух), Цепная Молния (Воздух))',
   },
   {
     id: 139,
@@ -728,6 +736,7 @@ export const creatures: Array<CreatureTranslation> = [
   {
     id: 142,
     name: 'Баллиста',
+    description: 'Стреляет (24 выстрела)',
   },
   {
     id: 143,
@@ -737,6 +746,7 @@ export const creatures: Array<CreatureTranslation> = [
   {
     id: 144,
     name: 'Океанида',
+    description: 'Телепортация, Иммунитет к заклинаниям: Ледяная Молния, Кольцо Холода',
   },
   {
     id: 145,
@@ -809,6 +819,8 @@ export const creatures: Array<CreatureTranslation> = [
   {
     id: 158,
     name: 'Фангарм',
+    description:
+      'Летающий, Иммунитет к заклинаниям воздействующим на разум (Берсерк, Ослепление, Забывчивость, Бешенство, Гипноз, Радость, Печаль), Ответные удары на все атаки, Накладывает Гипноз при атаке',
   },
   {
     id: 159,
@@ -824,6 +836,7 @@ export const creatures: Array<CreatureTranslation> = [
   {
     id: 161,
     name: 'Пушка',
+    description: 'Стреляет (8 выстрелов)',
   },
   {
     id: 162,
