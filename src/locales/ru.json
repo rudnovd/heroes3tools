@@ -35,6 +35,13 @@
         "3": "Об идеях и улучшениях пишите на {email}"
       }
     },
+    "errorPage": {
+      "data": {
+        "nothingHere": "Здесь ничего нет.",
+        "whereCouldItBe": "И куда подевалось?"
+      },
+      "returnToHomeButton": "Вернуться на Главную страницу"
+    },
     "homePage": {
       "data": {
         "1": "Heroes 3 tools",
