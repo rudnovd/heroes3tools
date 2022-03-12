@@ -9,6 +9,7 @@ const router = createRouter({
       component: () => import('@/views/HomePage.vue'),
       meta: {
         title: 'pages.home',
+        hideBackButton: true,
       },
     },
     {
@@ -31,6 +32,7 @@ const router = createRouter({
       component: () => import('@/views/ErrorPage.vue'),
       meta: {
         title: 'pages.pageNotFound',
+        hideBackButton: true,
       },
     },
   ],

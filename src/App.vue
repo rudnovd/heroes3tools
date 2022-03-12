@@ -1,5 +1,5 @@
 <template>
-  <router-link v-if="route.path !== '/'" class="return-home" to="/">
+  <router-link v-if="!route.meta.hideBackButton" class="return-home" to="/">
     <img src="@/assets/icons/arrow_back.svg" alt="back" width="16" height="16" />
     {{ t('common.homePage') }}
   </router-link>
