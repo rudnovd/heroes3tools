@@ -61,6 +61,13 @@
         "2": "Heroes 3 tools - set of tools to simplify calculations in Heroes of Might and Magic III: Horn of The Abyss.",
         "3": "Send ideas or improvements to {email}"
       }
+    },
+    "errorPage": {
+      "returnToHomeButton": "Return to Home page",
+      "data": {
+        "nothingHere": "Nothing here.",
+        "whereCouldItBe": "Where could it be?"
+      }
     }
   },
   "data": {
