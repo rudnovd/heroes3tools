@@ -29,7 +29,7 @@ const router = createRouter({
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
-      component: () => import('@/views/ErrorPage.vue'),
+      component: () => import('@/views/NotFoundPage.vue'),
       meta: {
         title: 'pages.pageNotFound',
         hideBackButton: true,
