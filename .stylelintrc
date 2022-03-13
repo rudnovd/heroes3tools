@@ -3,7 +3,8 @@
     "stylelint-config-recommended-scss",
     "stylelint-config-recommended-vue/scss",
     "stylelint-config-prettier",
-    "stylelint-config-recess-order"
+    "stylelint-config-recess-order",
+    "stylelint-prettier/recommended"
   ],
   "rules": {
     "property-no-unknown": null,
