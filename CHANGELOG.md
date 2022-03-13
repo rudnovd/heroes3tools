@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.2](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2022-03-13)
+
+
+### Features
+
+* **database:** update databases data ([425af1e](https://github.com/rudnovd/heroes3tools/commit/425af1e6f90088d0141014ee3004fea909d1add1))
+* **images:** add new background assets ([2874b83](https://github.com/rudnovd/heroes3tools/commit/2874b8396d71550049fe5dae3a5568035fe2cf82))
+* **locales:** update locales ([ef824d3](https://github.com/rudnovd/heroes3tools/commit/ef824d318183e83fab1775105b1c498079a74b3c))
+* **views:** add new 'Not Found' page ([9d236fb](https://github.com/rudnovd/heroes3tools/commit/9d236fbcefab1931b18bab55cb986b73b7da2e2a))
+
 ## [2.0.0-beta.1](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2022-03-07)
 
 
