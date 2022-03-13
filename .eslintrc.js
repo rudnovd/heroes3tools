@@ -14,7 +14,6 @@ module.exports = {
     'eslint:recommended',
     '@vue/eslint-config-typescript/recommended',
     'plugin:prettier-vue/recommended',
-    'prettier',
     'plugin:@peeky/recommended',
   ],
   rules: {
