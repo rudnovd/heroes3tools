@@ -20,12 +20,10 @@ export default defineComponent({
   props: {
     stat: {
       type: String,
-      default: '',
       required: true,
     },
     value: {
       type: Number,
-      default: 0,
       required: true,
     },
   },

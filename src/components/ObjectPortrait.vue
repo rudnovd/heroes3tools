@@ -13,13 +13,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
   name: 'ObjectPortrait',
   props: {
     file: {
-      type: Object as () => { name: string | number; alt?: string },
+      type: Object as PropType<{ name: string | number; alt?: string }>,
       required: true,
     },
     folder: {

@@ -73,7 +73,7 @@ export default defineComponent({
     },
     options: {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      type: Array as () => Array<Record<string, any>>,
+      type: Array as PropType<Array<Record<string, any>>>,
       required: true,
     },
     optionsMaxHeight: {
@@ -93,7 +93,7 @@ export default defineComponent({
       default: '42px',
     },
     dropdownPosition: {
-      type: String as () => 'top' | 'bottom',
+      type: String as PropType<'top' | 'bottom'>,
       default: 'bottom',
     },
     placeholder: {
