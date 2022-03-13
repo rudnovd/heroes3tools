@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { BattleSide } from '@/models/Battle'
-import { defineAsyncComponent, defineComponent, ref } from 'vue'
+import { defineAsyncComponent, defineComponent, PropType, ref } from 'vue'
 
 export default defineComponent({
   name: 'PickCreatureButton',
@@ -22,7 +22,7 @@ export default defineComponent({
   },
   props: {
     color: {
-      type: String as () => BattleSide,
+      type: String as PropType<BattleSide>,
       required: true,
     },
   },

@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, ref } from 'vue'
+import { defineComponent, nextTick, PropType, ref } from 'vue'
 
 interface BaseNotificationButtonProp {
   text: string
@@ -36,18 +36,16 @@ export default defineComponent({
       type: Boolean,
       required: true,
     },
-    // eslint-disable-next-line vue/no-unused-properties
     color: {
       type: String,
       default: 'rgb(33, 186, 69)',
     },
-    // eslint-disable-next-line vue/no-unused-properties
     textColor: {
       type: String,
       default: 'rgb(255, 255, 255)',
     },
     buttons: {
-      type: Array as () => Array<BaseNotificationButtonProp>,
+      type: Array as PropType<Array<BaseNotificationButtonProp>>,
       default: () => [],
     },
   },

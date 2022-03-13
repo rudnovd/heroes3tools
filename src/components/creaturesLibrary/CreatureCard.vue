@@ -49,7 +49,7 @@
 
 <script lang="ts">
 import { Creature } from '@/models/Creature'
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import ObjectPortrait from '../ObjectPortrait.vue'
 
@@ -58,7 +58,7 @@ export default defineComponent({
   components: { ObjectPortrait },
   props: {
     creature: {
-      type: Object as () => Creature,
+      type: Object as PropType<Creature>,
       required: true,
     },
   },
