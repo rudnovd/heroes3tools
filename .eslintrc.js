@@ -14,7 +14,6 @@ module.exports = {
     'eslint:recommended',
     '@vue/eslint-config-typescript/recommended',
     'plugin:prettier-vue/recommended',
-    'plugin:@peeky/recommended',
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? ['error', { allow: ['warn', 'error'] }] : 'off',
