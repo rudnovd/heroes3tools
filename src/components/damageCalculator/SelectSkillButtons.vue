@@ -18,13 +18,13 @@
 <script lang="ts">
 import { BattleSide } from '@/models/Battle'
 import type { Level } from '@/models/Level'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, PropType, ref } from 'vue'
 
 export default defineComponent({
   name: 'SelectSkillButtons',
   props: {
     color: {
-      type: String as () => BattleSide,
+      type: String as PropType<BattleSide>,
       required: true,
     },
     name: {
@@ -33,7 +33,7 @@ export default defineComponent({
       required: true,
     },
     levels: {
-      type: Array as () => Array<Level>,
+      type: Array as PropType<Array<Level>>,
       required: true,
     },
   },

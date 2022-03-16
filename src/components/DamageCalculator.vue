@@ -142,7 +142,7 @@ import type { Spell } from '@/models/Spell'
 import type { Terrain } from '@/models/Terrain'
 import { useStore } from '@/store'
 import { defineAsyncComponent, defineComponent, watch } from '@vue/runtime-core'
-import { computed, reactive, ref } from 'vue'
+import { computed, PropType, reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
@@ -159,7 +159,7 @@ export default defineComponent({
   },
   props: {
     battleValue: {
-      type: Object as () => Battle,
+      type: Object as PropType<Battle>,
       required: true,
     },
   },
