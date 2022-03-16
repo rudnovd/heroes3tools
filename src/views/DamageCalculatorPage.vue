@@ -1,33 +1,44 @@
 <template>
   <section class="damage-calculator-page">
-    <div class="calculator-tabs">
-      <div
-        v-for="(calculator, index) in calculators"
-        :key="`calculator-tab-${index}`"
-        class="tab"
-        :class="{ active: index === activeIndex }"
-        :title="calculatorTitle(calculator)"
-      >
-        <div class="tab-title" @click="activeIndex = index">
-          {{ calculatorTitle(calculator) }}
-        </div>
+    <section class="damage-calculator-nav">
+      <ul class="calculator-tabs">
+        <li
+          v-for="(calculator, index) in calculators"
+          :key="`calculator-tab-${index}`"
+          class="tab"
+          :class="{ active: index === activeIndex }"
+          :title="calculatorTitle(calculator)"
+          @click="activeIndex = index"
+        >
+          <span class="tab-title">
+            {{ calculatorTitle(calculator) }}
+          </span>
 
-        <button class="tab-close-button" @click="deleteCalculator(index)" />
-      </div>
+          <button
+            class="tab-close-button"
+            :class="{ disabled: calculators.length < 2 }"
+            @click="(event) => deleteCalculator(event, index)"
+          />
+        </li>
+      </ul>
 
-      <div class="tab-add">
-        <button class="tab-add-button" :class="{ disabled: calculators.length >= 7 }" @click="addCalculator" />
-      </div>
-    </div>
+      <button
+        class="tab-add-button"
+        :class="{ disabled: calculators.length >= 7 }"
+        title="Add new Calculator tab"
+        @click="addCalculator"
+      />
+    </section>
 
     <main v-if="calculators.length">
-      <KeepAlive v-for="(calculator, index) in calculators" :key="`damage-calculator-${index}`">
+      <TransitionGroup name="calculator-change-tab">
         <DamageCalculator
-          v-if="activeIndex === index"
+          v-for="(calculator, index) in calculators"
+          v-show="activeIndex === index"
           :key="`damage-calculator-tab-${index}`"
           :battle-value="calculator"
         />
-      </KeepAlive>
+      </TransitionGroup>
     </main>
 
     <PageFooter :about="{ text: t('components.damageCalculatorPage.about') }" border="none">
@@ -87,13 +98,9 @@ export default defineComponent({
       if (newIsStarted) isStarted.value = false
     })
 
-    const calculatorTitle = (calculator: Battle): string | undefined => {
+    const calculatorTitle = (calculator: Battle) => {
       const attacker = calculator.attacker.activeCreature
       const defender = calculator.defender.activeCreature
-
-      if (!attacker && !defender) {
-        return t('pages.damageCalculator')
-      }
 
       if (attacker && defender) {
         return `${attacker.name} — ${defender.name}`
@@ -101,21 +108,26 @@ export default defineComponent({
         return attacker.name
       } else if (defender) {
         return defender.name
+      } else {
+        return t('pages.damageCalculator')
       }
     }
 
     const addCalculator = () => {
-      if (calculators.value.length >= 7) return
-
       calculators.value.push(new Battle())
       activeIndex.value = calculators.value.length - 1
     }
 
-    const deleteCalculator = (index: number) => {
-      if (calculators.value.length < 2) return
+    const deleteCalculator = (event: MouseEvent, index: number) => {
+      // Cancel changing activeIndex in <li class="tab"> onClick event
+      event.stopPropagation()
 
+      // Delete calculator instance
       calculators.value.splice(index, 1)
+
+      // If current calculator selected for delete
       if (activeIndex.value === index) {
+        // Switch to previous or first tab
         activeIndex.value = calculators.value.length > 1 ? index - 1 : 0
       } else {
         activeIndex.value = calculators.value.length - 1
@@ -139,93 +151,116 @@ export default defineComponent({
 .damage-calculator-page {
   display: grid;
   min-width: 300px;
-  max-width: min(95%, 1920px);
-  padding-top: 0.5rem;
+  max-width: 1920px;
+  padding: 0.5rem 24px 0 24px;
   margin: 0 auto;
+}
+
+.damage-calculator-nav {
+  display: grid;
+  grid-template-columns: auto min-content;
+  align-items: center;
 }
 
 .calculator-tabs {
   display: grid;
-  grid-template-rows: 35px;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 30%));
-  grid-auto-flow: row;
-  row-gap: 0.5rem;
-  column-gap: 10px;
+  grid-template-rows: repeat(auto-fit, 36px);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
   justify-content: flex-start;
   user-select: none;
 
+  @include media-small {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   @include media-medium {
-    grid-template-columns: repeat(auto-fit, minmax(90px, 13%));
-    grid-auto-flow: column;
-    row-gap: 0;
+    grid-template-columns: repeat(auto-fit, 200px);
   }
 
-  .tab {
-    display: flex;
-    align-items: center;
-    padding: 0 0.5rem 0 1rem;
-    overflow: hidden;
-    cursor: pointer;
-    border: none;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    box-shadow: 0 0 5px rgb(170, 170, 170);
-    opacity: 0.6;
+  @include media-large {
+    grid-template-columns: repeat(auto-fit, 300px);
+  }
+}
 
-    &:first-child {
-      padding: 0 0.5rem 0 20px;
-    }
+.tab {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 0.5rem 0 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 0 5px rgb(170, 170, 170);
+  opacity: 0.6;
 
-    &.active,
-    &:hover {
-      opacity: 1;
-    }
+  &:first-child {
+    padding: 0 0.5rem 0 20px;
   }
 
-  .tab-title {
-    max-width: 90%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  &.active,
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.tab-title {
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tab-close-button {
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-left: auto;
+  background: url('@/assets/icons/cross.svg') no-repeat;
+  border-radius: 50%;
+  transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+
+  &:hover {
+    background-color: rgb(200, 200, 200, 0.5);
+    box-shadow: 0 0 0 3px rgb(200, 200, 200, 0.5);
   }
 
-  .tab-close-button {
-    width: 0.5rem;
-    height: 0.5rem;
-    margin-left: auto;
-    background: url('@/assets/icons/cross.svg') no-repeat;
-    border-radius: 50%;
-    transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
 
-    &:hover {
-      background-color: rgb(200, 200, 200, 0.5);
-      box-shadow: 0 0 0 3px rgb(200, 200, 200, 0.5);
-    }
+.tab-add-button {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: url('@/assets/icons/plus.svg') no-repeat;
+  border-radius: 50%;
+  transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+
+  &:hover {
+    background-color: rgb(200, 200, 200, 0.5);
+    box-shadow: 0 0 0 3px rgb(200, 200, 200, 0.5);
   }
 
-  .tab-add {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.5;
   }
+}
 
-  .tab-add-button {
-    width: 1.5rem;
-    height: 1.5rem;
-    background: url('@/assets/icons/plus.svg') no-repeat;
-    border-radius: 50%;
-    transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+.calculator-change-tab-enter-active,
+.calculator-change-tab-leave-active {
+  transition: all 0.2s ease;
+}
 
-    &:hover {
-      background-color: rgb(200, 200, 200, 0.5);
-      box-shadow: 0 0 0 3px rgb(200, 200, 200, 0.5);
-    }
+.calculator-change-tab-enter-from,
+.calculator-change-tab-enter-to {
+  display: none;
+}
 
-    &.disabled {
-      pointer-events: none;
-      opacity: 0.5;
-    }
-  }
+.calculator-change-tab-leave-from,
+.calculator-change-tab-leave-to {
+  filter: blur(1px);
 }
 </style>
