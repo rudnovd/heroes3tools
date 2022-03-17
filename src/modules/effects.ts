@@ -102,7 +102,7 @@ export const Effects = {
     if (!initiator.hero || initiator.hero.skills.fire <= 1) {
       maxDamage = minDamage
     } else if (initiator.hero.skills.fire >= 2) {
-      minDamage = minDamage * 0.8 - 1
+      minDamage = minDamage - 1
       maxDamage = minDamage
     }
 
