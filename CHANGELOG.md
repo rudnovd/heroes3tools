@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-rc.0](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-beta.2...v2.0.0-rc.0) (2022-03-19)
+
+
+### Bug Fixes
+
+* **effects:** fix curse effect ([dc7f9df](https://github.com/rudnovd/heroes3tools/commit/dc7f9df8f17a0dddaa8f567ad3204d7f5af597c7))
+
 ## [2.0.0-beta.2](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2022-03-13)
 
 
