@@ -77,8 +77,9 @@ export class Battle {
       modifiedDefenderCreature = this.calculateWithHeroModificators(this.defender.hero, modifiedDefenderCreature)
     }
 
-    if (this.attacker.terrain) {
+    if (this.attacker.terrain && this.defender.terrain) {
       modifiedAttackerCreature = Modificators.terrain(this.attacker.terrain, modifiedAttackerCreature)
+      modifiedDefenderCreature = Modificators.terrain(this.defender.terrain, modifiedDefenderCreature)
     }
 
     if (modifiedAttackerCreature.hates?.length) {
