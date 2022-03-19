@@ -33,29 +33,79 @@ export class Battle {
     }
   }
 
-  public calculate(): undefined | { attacker: DamageCalculatorBattleSide; defender: DamageCalculatorBattleSide } {
+  public calculate() {
     if (!this.attacker.activeCreature || !this.defender.activeCreature) return
 
-    const attackerCreature = this.calculateCreatureValues(this.attacker, this.defender)
-    const defenderCreature = this.calculateCreatureValues(this.defender, this.attacker)
-
-    if (!attackerCreature || !defenderCreature) return
-
-    const attackerCalculation = this.calculateFinalValues(attackerCreature, defenderCreature)
-    const defenderCalculation = this.calculateFinalValues(defenderCreature, attackerCreature)
-
-    if (attackerCalculation) {
-      this.attacker.activeCreature.calculation = {
-        ...this.attacker.activeCreature.calculation,
-        ...attackerCalculation,
-      }
+    // clear calculation values
+    this.attacker.activeCreature.calculation = {
+      damageBonus: 0,
+      defenseBonus: 0,
+      defenseMagicBonus: 0,
+      minDamage: 0,
+      maxDamage: 0,
+      averageDamage: 0,
+      minKills: 0,
+      maxKills: 0,
+      averageKills: 0,
     }
 
-    if (defenderCalculation) {
-      this.defender.activeCreature.calculation = {
-        ...this.defender.activeCreature.calculation,
-        ...defenderCalculation,
-      }
+    // clear calculation values
+    this.defender.activeCreature.calculation = {
+      damageBonus: 0,
+      defenseBonus: 0,
+      defenseMagicBonus: 0,
+      minDamage: 0,
+      maxDamage: 0,
+      averageDamage: 0,
+      minKills: 0,
+      maxKills: 0,
+      averageKills: 0,
+    }
+
+    // make copy of attacker active creature with modified stats from positive and negative spells
+    let modifiedAttackerCreature = this.calculateWithPositiveEffects(this.attacker, this.attacker.activeCreature)
+    modifiedAttackerCreature = this.calculateWithNegativeEffects(this.defender, modifiedAttackerCreature)
+
+    // make copy of defender active creature with modified stats from positive and negative spells
+    let modifiedDefenderCreature = this.calculateWithPositiveEffects(this.defender, this.defender.activeCreature)
+    modifiedDefenderCreature = this.calculateWithNegativeEffects(this.attacker, modifiedDefenderCreature)
+
+    if (this.attacker.hero) {
+      modifiedAttackerCreature = this.calculateWithHeroModificators(this.attacker.hero, modifiedAttackerCreature)
+    }
+    if (this.defender.hero) {
+      modifiedDefenderCreature = this.calculateWithHeroModificators(this.defender.hero, modifiedDefenderCreature)
+    }
+
+    if (this.attacker.terrain) {
+      modifiedAttackerCreature = Modificators.terrain(this.attacker.terrain, modifiedAttackerCreature)
+    }
+
+    if (modifiedAttackerCreature.hates?.length) {
+      modifiedAttackerCreature = Modificators.creatureHate(modifiedAttackerCreature, modifiedDefenderCreature)
+    }
+    if (modifiedDefenderCreature.hates?.length) {
+      modifiedDefenderCreature = Modificators.creatureHate(modifiedDefenderCreature, modifiedAttackerCreature)
+    }
+
+    if (modifiedAttackerCreature.special) {
+      modifiedAttackerCreature = Modificators.creatureSpecial(modifiedAttackerCreature, modifiedDefenderCreature)
+    }
+    if (modifiedDefenderCreature.special) {
+      modifiedDefenderCreature = Modificators.creatureSpecial(modifiedDefenderCreature, modifiedAttackerCreature)
+    }
+
+    const attackerCalculation = this.calculateDamageValues(modifiedAttackerCreature, modifiedDefenderCreature)
+    const defenderCalculation = this.calculateDamageValues(modifiedDefenderCreature, modifiedAttackerCreature)
+
+    this.attacker.activeCreature.calculation = {
+      ...this.attacker.activeCreature.calculation,
+      ...attackerCalculation,
+    }
+
+    this.defender.activeCreature.calculation = {
+      ...this.defender.activeCreature.calculation,
+      ...defenderCalculation,
     }
 
     return {
@@ -64,42 +114,16 @@ export class Battle {
     }
   }
 
-  private calculateCreatureValues(attacker: DamageCalculatorBattleSide, defender: DamageCalculatorBattleSide) {
-    let currentAttackerCreature = attacker.activeCreature
-    if (!currentAttackerCreature || !defender.activeCreature) return
+  private calculateWithHeroModificators(hero: HeroInstance, target: CreatureInstance) {
+    target = Modificators.heroSpecialtySpell(hero, target)
+    target = Modificators.hero(hero, target)
+    target = Modificators.heroSkills(hero, target)
+    target = Modificators.isArtillery(hero, target)
 
-    currentAttackerCreature.calculation = {
-      averageDamage: 0,
-      averageKills: 0,
-      damageBonus: 0,
-      defenseBonus: 0,
-      defenseMagicBonus: 0,
-      maxDamage: 0,
-      maxKills: 0,
-      minDamage: 0,
-      minKills: 0,
-    }
-
-    currentAttackerCreature = this.calculateWithEffects(attacker, currentAttackerCreature)
-
-    if (attacker.terrain) {
-      currentAttackerCreature = Modificators.terrain(attacker.terrain, currentAttackerCreature)
-    }
-
-    if (attacker.hero) {
-      currentAttackerCreature = Modificators.heroSpecialtySpell(attacker.hero, currentAttackerCreature)
-      currentAttackerCreature = Modificators.hero(attacker.hero, currentAttackerCreature)
-      currentAttackerCreature = Modificators.heroSkills(attacker.hero, currentAttackerCreature)
-      currentAttackerCreature = Modificators.isArtillery(attacker.hero, currentAttackerCreature)
-    }
-
-    currentAttackerCreature = Modificators.creatureHate(currentAttackerCreature, defender.activeCreature)
-    currentAttackerCreature = Modificators.creatureSpecial(currentAttackerCreature, defender.activeCreature)
-
-    return currentAttackerCreature
+    return target
   }
 
-  private calculateWithEffects(attacker: DamageCalculatorBattleSide, target: CreatureInstance) {
+  private calculateWithPositiveEffects(attacker: DamageCalculatorBattleSide, target: CreatureInstance) {
     if (!target.effects.length) return target
     else if (target.effects.find((effect) => effect.id === Spells.AntiMagic)) return target
 
@@ -108,44 +132,44 @@ export class Battle {
       if (target.special?.immunity?.find((spell) => spell.id === effect.id)) return target
     }
 
-    if (target.effects.find((effect) => effect.id === Spells.Bless)) {
-      target = Effects.bless(attacker, target)
-    }
+    const positiveEffects: Array<{
+      id: number
+      effectFunction: (initiator: DamageCalculatorBattleSide, target: CreatureInstance) => CreatureInstance
+    }> = [
+      {
+        id: Spells.Bless,
+        effectFunction: Effects.bless,
+      },
+      {
+        id: Spells.Bloodlust,
+        effectFunction: Effects.bloodlust,
+      },
+      {
+        id: Spells.Prayer,
+        effectFunction: Effects.prayer,
+      },
+      {
+        id: Spells.Precision,
+        effectFunction: Effects.precision,
+      },
+      {
+        id: Spells.StoneSkin,
+        effectFunction: Effects.stoneSkin,
+      },
+      {
+        id: Spells.Shield,
+        effectFunction: Effects.shield,
+      },
+    ]
 
-    if (target.effects.find((effect) => effect.id === Spells.Curse)) {
-      target = Effects.curse(attacker, target)
-    }
-
-    if (target.effects.find((effect) => effect.id === Spells.Bloodlust)) {
-      target = Effects.bloodlust(attacker, target)
-    }
-
-    if (target.effects.find((effect) => effect.id === Spells.Frenzy)) {
-      target = Effects.frenzy(attacker, target)
-    }
+    positiveEffects.forEach((effect) => {
+      if (target.effects.find((creatureEffect) => creatureEffect.id === effect.id)) {
+        target = effect.effectFunction(attacker, target)
+      }
+    })
 
     if (target.effects.find((effect) => effect.id === Spells.Frenzy)) {
       target = Effects.slayer(attacker, this.defender, target)
-    }
-
-    if (target.effects.find((effect) => effect.id === Spells.Prayer)) {
-      target = Effects.prayer(attacker, target)
-    }
-
-    if (target.effects.find((effect) => effect.id === Spells.Precision)) {
-      target = Effects.precision(attacker, target)
-    }
-
-    if (target.effects.find((effect) => effect.id === Spells.StoneSkin)) {
-      target = Effects.stoneSkin(attacker, target)
-    }
-
-    if (target.effects.find((effect) => effect.id === Spells.Weakness)) {
-      target = Effects.weakness(attacker, target)
-    }
-
-    if (target.effects.find((effect) => effect.id === Spells.Shield)) {
-      target = Effects.shield(attacker, target)
     }
 
     if (target.effects.find((effect) => effect.id === Spells.AirShield)) {
@@ -155,15 +179,43 @@ export class Battle {
     return target
   }
 
-  private calculateFinalValues(attacker: CreatureInstance, defender: CreatureInstance) {
+  private calculateWithNegativeEffects(attacker: DamageCalculatorBattleSide, target: CreatureInstance) {
+    const negativeEffects: Array<{
+      id: number
+      effectFunction: (initiator: DamageCalculatorBattleSide, target: CreatureInstance) => CreatureInstance
+    }> = [
+      {
+        id: Spells.Curse,
+        effectFunction: Effects.curse,
+      },
+      {
+        id: Spells.Weakness,
+        effectFunction: Effects.weakness,
+      },
+      {
+        id: Spells.DisruptingRay,
+        effectFunction: Effects.disruptingRay,
+      },
+    ]
+
+    negativeEffects.forEach((effect) => {
+      if (target.effects.find((creatureEffect) => creatureEffect.id === effect.id)) {
+        target = effect.effectFunction(attacker, target)
+      }
+    })
+
+    return target
+  }
+
+  private calculateDamageValues(attacker: CreatureInstance, defender: CreatureInstance) {
     // If ATTACKER attack > DEFENDER defense:
-    // ATTACKER units count * ATTACKER unit damage * (1 + 0.05 * (ATTACKER attack - DEFENDER defense))
+    // damageBonus = ATTACKER creatures count * ATTACKER creature damage * (1 + 0.05 * (ATTACKER attack - DEFENDER defense))
 
     // If DEFENDER attack > ATTACKER defense:
-    // DEFENDER units count * DEFENDER unit damage * (1 + 0.05 * (DEFENDER attack - ATTACKER defense))
+    // damageBonus = DEFENDER creatures count * DEFENDER creature damage * (1 + 0.05 * (DEFENDER attack - ATTACKER defense))
 
     // If DEFENDER attack < ATTACKER defense:
-    // DEFENDER units count * DEFENDER unit damage * (1 - 0.025 * (ATTACKER defense - DEFENDER attack))
+    // damageBonus = DEFENDER creatures count * DEFENDER creature damage * (1 - 0.025 * (ATTACKER defense - DEFENDER attack))
 
     let damageBonus = 0,
       defenseBonus = 0,
