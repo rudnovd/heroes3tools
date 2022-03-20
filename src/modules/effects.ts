@@ -99,7 +99,7 @@ export const Effects = {
     // get creature values for modify them
     let { minDamage, maxDamage } = target
 
-    if (!initiator.hero || initiator.hero.skills.fire <= 1) {
+    if (!initiator.hero || initiator.hero.skills.fire <= 1 || minDamage === 1) {
       maxDamage = minDamage
     } else if (initiator.hero.skills.fire >= 2) {
       minDamage = minDamage - 1
