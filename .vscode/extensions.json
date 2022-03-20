@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "stylelint.vscode-stylelint",
+    "johnsoncodehk.volar",
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig",
+    "syler.sass-indented"
+  ]
+}
