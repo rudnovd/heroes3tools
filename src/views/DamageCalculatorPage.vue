@@ -152,8 +152,12 @@ export default defineComponent({
   display: grid;
   min-width: 300px;
   max-width: 1920px;
-  padding: 0.5rem 24px 0 24px;
+  padding: 0.5rem 8px 0 8px;
   margin: 0 auto;
+
+  @include media-medium {
+    padding: 0.5rem 24px 0 24px;
+  }
 }
 
 .damage-calculator-nav {
