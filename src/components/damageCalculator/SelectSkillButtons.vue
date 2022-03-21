@@ -1,6 +1,6 @@
 <template>
   <div class="select-skill-buttons">
-    <span class="skill-name">{{ name }}</span>
+    <span class="skill-name" :class="`color-${color}`">{{ name }}</span>
     <div class="skill-buttons" :class="`color-${color}`">
       <button
         v-for="level in levels"
@@ -52,6 +52,7 @@ export default defineComponent({
 
     return {
       selectedLevel,
+
       onClick,
     }
   },
@@ -62,12 +63,18 @@ export default defineComponent({
 .select-skill-buttons {
   display: grid;
   grid-template-columns: 1fr 3fr;
-  grid-gap: 0.25rem;
   align-items: center;
 }
 
 .skill-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5rem;
+  padding-right: 8px;
   overflow: hidden;
+  font-size: 0.8rem;
+  font-weight: 600;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -99,16 +106,19 @@ export default defineComponent({
 
     .skill-button:hover,
     .skill-button.active {
+      color: map.get($calculator-colors-text, $color);
       background-color: $color-value;
-    }
-
-    .skill-button:nth-child(1) {
-      border-left: 1px solid $color-value;
     }
 
     .skill-button:nth-last-child(1) {
       border-right: 1px solid $color-value;
     }
+  }
+
+  .skill-name.color-#{$color} {
+    color: map.get($calculator-colors-text, $color);
+    background-color: $color-value;
+    border: 1px solid black;
   }
 }
 </style>
