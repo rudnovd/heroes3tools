@@ -220,12 +220,14 @@ export default defineComponent({
       if (!effectEnabled) {
         side.activeCreature.effects.push(spell)
       } else {
-        side.activeCreature.effects = side.activeCreature.effects.filter((e) => e.id !== spell.id)
+        side.activeCreature.effects = side.activeCreature.effects.filter(
+          (creatureEffect) => creatureEffect.id !== spell.id
+        )
       }
     }
 
     const isEffectEnabled = (side: DamageCalculatorBattleSide, spell: Spell) => {
-      return side.activeCreature!.effects.findIndex((e) => e.id === spell.id) !== -1
+      return side.activeCreature?.effects.findIndex((creatureEffect) => creatureEffect.id === spell.id) !== -1
     }
 
     const onSelectTerrain = (terrain: Terrain | null) => {
@@ -275,7 +277,12 @@ export default defineComponent({
   gap: 1rem;
   padding: 10px;
 
+  @include media-medium {
+    grid-template-rows: auto 1fr 1fr 2fr 1fr;
+  }
+
   @include media-large {
+    grid-template-rows: auto 1fr 2fr 2fr 1fr;
     padding: 20px;
   }
 }
