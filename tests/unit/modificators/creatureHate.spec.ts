@@ -18,13 +18,10 @@ describe('Creature hate modificator', () => {
     battle.defender.activeCreature = getCreatureInstance(Creatures.Devil)
     battle.defender.activeCreature.count = 10
 
-    const results = getBattleCreatureCalculationResults(battle)
+    const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-    expect(results.attacker.minDamage).toBe(737)
-    expect(results.attacker.maxDamage).toBe(737)
-
-    expect(results.defender.minDamage).toBe(442)
-    expect(results.defender.maxDamage).toBe(590)
+    expect(attacker).toContain({ minDamage: 737, maxDamage: 737 })
+    expect(defender).toContain({ minDamage: 442, maxDamage: 590 })
   })
 
   test('3 Angels vs 3 Devils with hero', () => {
@@ -40,12 +37,9 @@ describe('Creature hate modificator', () => {
     battle.attacker.terrain = terrains.find((terrain) => terrain.id === Terrains.Lava)!
     battle.defender.terrain = terrains.find((terrain) => terrain.id === Terrains.Lava)!
 
-    const results = getBattleCreatureCalculationResults(battle)
+    const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-    expect(results.attacker.minDamage).toBe(255)
-    expect(results.attacker.maxDamage).toBe(255)
-
-    expect(results.defender.minDamage).toBe(130)
-    expect(results.defender.maxDamage).toBe(174)
+    expect(attacker).toContain({ minDamage: 255, maxDamage: 255 })
+    expect(defender).toContain({ minDamage: 130, maxDamage: 174 })
   })
 })

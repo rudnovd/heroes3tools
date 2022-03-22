@@ -20,17 +20,10 @@ describe('Terrain modificator', () => {
     battle.defender.activeCreature.count = 24
     battle.defender.terrain = terrains.find((terrain) => terrain.id === Terrains.Grass)!
 
-    const results = getBattleCreatureCalculationResults(battle)
+    const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-    expect(results.attacker.minDamage).toBe(648)
-    expect(results.attacker.maxDamage).toBe(810)
-    expect(results.attacker.minKills).toBe(7)
-    expect(results.attacker.maxKills).toBe(9)
-
-    expect(results.defender.minDamage).toBe(355)
-    expect(results.defender.maxDamage).toBe(532)
-    expect(results.defender.minKills).toBe(1)
-    expect(results.defender.maxKills).toBe(2)
+    expect(attacker).toContain({ minDamage: 648, maxDamage: 810, minKills: 7, maxKills: 9 })
+    expect(defender).toContain({ minDamage: 355, maxDamage: 532, minKills: 1, maxKills: 2 })
   })
 
   test('12 Green Dragons vs 24 Efreets on Lava terrain', () => {
@@ -42,16 +35,9 @@ describe('Terrain modificator', () => {
     battle.defender.activeCreature.count = 24
     battle.defender.terrain = terrains.find((terrain) => terrain.id === Terrains.Lava)!
 
-    const results = getBattleCreatureCalculationResults(battle)
+    const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-    expect(results.attacker.minDamage).toBe(600)
-    expect(results.attacker.maxDamage).toBe(750)
-    expect(results.attacker.minKills).toBe(6)
-    expect(results.attacker.maxKills).toBe(8)
-
-    expect(results.defender.minDamage).toBe(374)
-    expect(results.defender.maxDamage).toBe(561)
-    expect(results.defender.minKills).toBe(2)
-    expect(results.defender.maxKills).toBe(3)
+    expect(attacker).toContain({ minDamage: 600, maxDamage: 750, minKills: 6, maxKills: 8 })
+    expect(defender).toContain({ minDamage: 374, maxDamage: 561, minKills: 2, maxKills: 3 })
   })
 })

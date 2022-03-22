@@ -1,10 +1,11 @@
 import { heroes } from '@/assets/database/heroes'
 import { spells } from '@/assets/database/spells'
+import { terrains } from '@/assets/database/terrains'
 import { Battle } from '@/models/Battle'
-import { Creatures, Heroes, SkillLevels, Spells } from '@/models/enums'
+import { Creatures, Heroes, SkillLevels, Spells, Terrains } from '@/models/enums'
 import { HeroInstance } from '@/models/Hero'
 import { beforeEach, describe, expect, test } from 'vitest'
-import { getBattleCreaturCalculationResults, getCreatureInstance } from '../helpers'
+import { getBattleCreatureCalculationResults, getCreatureInstance, getHeroInstance } from '../helpers'
 
 describe('Base Damage Calculator tests with specified values', () => {
   let battle: Battle
@@ -13,50 +14,53 @@ describe('Base Damage Calculator tests with specified values', () => {
     battle = new Battle()
   })
 
-  test('120 Pikemans vs 3 Devils', () => {
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Devil)
-
-    battle.attacker.activeCreature.count = 120
-    battle.defender.activeCreature.count = 3
-
+  describe('120 Pikemans vs 3 Devils', () => {
     test('Base', () => {
-      const { attacker, defender } = getBattleCreaturCalculationResults(battle)
+      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+      battle.defender.activeCreature = getCreatureInstance(Creatures.Devil)
 
-      expect(attacker.minDamage).toBe(69)
-      expect(attacker.averageDamage).toBe(138)
-      expect(attacker.maxDamage).toBe(206)
-      expect(attacker.minKills).toBe(0)
-      expect(attacker.averageKills).toBe(0)
-      expect(attacker.maxKills).toBe(1)
+      battle.attacker.activeCreature.count = 120
+      battle.defender.activeCreature.count = 3
 
-      expect(defender.minDamage).toBe(153)
-      expect(defender.averageDamage).toBe(178)
-      expect(defender.maxDamage).toBe(204)
-      expect(defender.minKills).toBe(15)
-      expect(defender.averageKills).toBe(17)
-      expect(defender.maxKills).toBe(20)
+      const { attacker, defender } = getBattleCreatureCalculationResults(battle)
+
+      expect(attacker).toContain({
+        minDamage: 69,
+        maxDamage: 206,
+        minKills: 0,
+        maxKills: 1,
+      })
+      expect(defender).toContain({
+        minDamage: 153,
+        maxDamage: 204,
+        minKills: 15,
+        maxKills: 20,
+      })
     })
 
     test('With attacker hero', () => {
       const hero = new HeroInstance(heroes[0])
       battle.attacker.hero = hero
+      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+      battle.defender.activeCreature = getCreatureInstance(Creatures.Devil)
 
-      const { attacker, defender } = getBattleCreaturCalculationResults(battle)
+      battle.attacker.activeCreature.count = 120
+      battle.defender.activeCreature.count = 3
 
-      expect(attacker.minDamage).toBe(75)
-      expect(attacker.averageDamage).toBe(150)
-      expect(attacker.maxDamage).toBe(225)
-      expect(attacker.minKills).toBe(0)
-      expect(attacker.averageKills).toBe(0)
-      expect(attacker.maxKills).toBe(1)
+      const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-      expect(defender.minDamage).toBe(144)
-      expect(defender.averageDamage).toBe(168)
-      expect(defender.maxDamage).toBe(192)
-      expect(defender.minKills).toBe(14)
-      expect(defender.averageKills).toBe(16)
-      expect(defender.maxKills).toBe(19)
+      expect(attacker).toContain({
+        minDamage: 75,
+        maxDamage: 225,
+        minKills: 0,
+        maxKills: 1,
+      })
+      expect(defender).toContain({
+        minDamage: 144,
+        maxDamage: 192,
+        minKills: 14,
+        maxKills: 19,
+      })
     })
   })
 
@@ -73,21 +77,20 @@ describe('Base Damage Calculator tests with specified values', () => {
     battle.attacker.hero.stats.defense = 22
     battle.attacker.hero.skills.offense = SkillLevels.Expert
 
-    const { attacker, defender } = getBattleCreaturCalculationResults(battle)
+    const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-    expect(attacker.minDamage).toBe(712)
-    expect(attacker.averageDamage).toBe(712)
-    expect(attacker.maxDamage).toBe(712)
-    expect(attacker.minKills).toBe(14)
-    expect(attacker.averageKills).toBe(14)
-    expect(attacker.maxKills).toBe(14)
-
-    expect(defender.minDamage).toBe(223)
-    expect(defender.averageDamage).toBe(251)
-    expect(defender.maxDamage).toBe(279)
-    expect(defender.minKills).toBe(0)
-    expect(defender.averageKills).toBe(1)
-    expect(defender.maxKills).toBe(1)
+    expect(attacker).toContain({
+      minDamage: 712,
+      maxDamage: 712,
+      minKills: 14,
+      maxKills: 14,
+    })
+    expect(defender).toContain({
+      minDamage: 223,
+      maxDamage: 279,
+      minKills: 0,
+      maxKills: 1,
+    })
   })
 
   test('5 Archangels with Hero vs 12 Giants', () => {
@@ -103,21 +106,20 @@ describe('Base Damage Calculator tests with specified values', () => {
     battle.attacker.hero.stats.defense = 22
     battle.attacker.hero.skills.offense = SkillLevels.Expert
 
-    const { attacker, defender } = getBattleCreaturCalculationResults(battle)
+    const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-    expect(attacker.minDamage).toBe(662)
-    expect(attacker.averageDamage).toBe(662)
-    expect(attacker.maxDamage).toBe(662)
-    expect(attacker.minKills).toBe(4)
-    expect(attacker.averageKills).toBe(4)
-    expect(attacker.maxKills).toBe(4)
-
-    expect(defender.minDamage).toBe(144)
-    expect(defender.averageDamage).toBe(180)
-    expect(defender.maxDamage).toBe(216)
-    expect(defender.minKills).toBe(0)
-    expect(defender.averageKills).toBe(0)
-    expect(defender.maxKills).toBe(0)
+    expect(attacker).toContain({
+      minDamage: 662,
+      maxDamage: 662,
+      minKills: 4,
+      maxKills: 4,
+    })
+    expect(defender).toContain({
+      minDamage: 144,
+      maxDamage: 216,
+      minKills: 0,
+      maxKills: 0,
+    })
   })
 
   test('20 Wyverns with Hero vs 10 Mighty Gorgon', () => {
@@ -133,21 +135,20 @@ describe('Base Damage Calculator tests with specified values', () => {
     battle.attacker.hero.stats.defense = 15
     battle.attacker.hero.skills.offense = SkillLevels.Expert
 
-    const { attacker, defender } = getBattleCreaturCalculationResults(battle)
+    const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-    expect(attacker.minDamage).toBe(616)
-    expect(attacker.averageDamage).toBe(704)
-    expect(attacker.maxDamage).toBe(792)
-    expect(attacker.minKills).toBe(8)
-    expect(attacker.averageKills).toBe(10)
-    expect(attacker.maxKills).toBe(11)
-
-    expect(defender.minDamage).toBe(66)
-    expect(defender.averageDamage).toBe(77)
-    expect(defender.maxDamage).toBe(88)
-    expect(defender.minKills).toBe(0)
-    expect(defender.averageKills).toBe(1)
-    expect(defender.maxKills).toBe(1)
+    expect(attacker).toContain({
+      minDamage: 616,
+      maxDamage: 792,
+      minKills: 8,
+      maxKills: 11,
+    })
+    expect(defender).toContain({
+      minDamage: 66,
+      maxDamage: 88,
+      minKills: 0,
+      maxKills: 1,
+    })
   })
 
   test('20 Wyverns with Hero vs 10 Gorgon', () => {
@@ -167,84 +168,44 @@ describe('Base Damage Calculator tests with specified values', () => {
     const curse = spells.find((spell) => spell.id === Spells.Curse)!
     battle.defender.activeCreature.effects.push(curse)
 
-    const { attacker, defender } = getBattleCreaturCalculationResults(battle)
+    const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-    expect(attacker.minDamage).toBe(643)
-    expect(attacker.averageDamage).toBe(736)
-    expect(attacker.maxDamage).toBe(828)
-    expect(attacker.minKills).toBe(9)
-    expect(attacker.averageKills).toBe(10)
-    expect(attacker.maxKills).toBe(11)
-
-    expect(defender.minDamage).toBe(57)
-    expect(defender.averageDamage).toBe(57)
-    expect(defender.maxDamage).toBe(57)
-    expect(defender.minKills).toBe(0)
-    expect(defender.averageKills).toBe(0)
-    expect(defender.maxKills).toBe(0)
+    expect(attacker).toContain({
+      minDamage: 643,
+      maxDamage: 828,
+      minKills: 9,
+      maxKills: 11,
+    })
+    expect(defender).toContain({
+      minDamage: 57,
+      maxDamage: 57,
+      minKills: 0,
+      maxKills: 0,
+    })
   })
 
-  test('20 Wyverns with Hero vs 10 Gorgon', () => {
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Wyvern)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Gorgon)
+  test('11 Ogre Magi vs 59 Halberdiers', () => {
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.OgreMage)
+    battle.attacker.activeCreature.count = 11
 
-    battle.attacker.activeCreature.count = 20
-    battle.defender.activeCreature.count = 10
+    battle.attacker.hero = getHeroInstance(Heroes.Adela)
+    battle.attacker.hero.stats.attack = 5
+    battle.attacker.hero.stats.defense = 1
+    battle.attacker.hero.level = 10
 
-    const hero = heroes.find((hero) => hero.id === Heroes.Valeska)!
-    battle.attacker.hero = new HeroInstance(hero)
-    battle.attacker.hero.stats.attack = 13
-    battle.attacker.hero.stats.defense = 13
+    battle.attacker.terrain = terrains.find((terrain) => terrain.id === Terrains.Sand)!
+    battle.defender.terrain = terrains.find((terrain) => terrain.id === Terrains.Sand)!
 
-    const curse = spells.find((spell) => spell.id === Spells.Curse)!
-    battle.defender.activeCreature.effects.push(curse)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.Halberdier)
+    battle.defender.activeCreature.count = 59
 
-    const { attacker, defender } = getBattleCreaturCalculationResults(battle)
+    const { attacker } = getBattleCreatureCalculationResults(battle)
 
-    expect(attacker.minDamage).toBe(461)
-    expect(attacker.averageDamage).toBe(528)
-    expect(attacker.maxDamage).toBe(594)
-    expect(attacker.minKills).toBe(6)
-    expect(attacker.averageKills).toBe(7)
-    expect(attacker.maxKills).toBe(8)
-
-    expect(defender.minDamage).toBe(69)
-    expect(defender.averageDamage).toBe(69)
-    expect(defender.maxDamage).toBe(69)
-    expect(defender.minKills).toBe(0)
-    expect(defender.averageKills).toBe(0)
-    expect(defender.maxKills).toBe(0)
-  })
-  test('20 Wyverns with Hero vs 10 Gorgon', () => {
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Wyvern)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Gorgon)
-
-    battle.attacker.activeCreature.count = 20
-    battle.defender.activeCreature.count = 10
-
-    const hero = heroes.find((hero) => hero.id === Heroes.Valeska)!
-    battle.attacker.hero = new HeroInstance(hero)
-    battle.attacker.hero.stats.attack = 15
-    battle.attacker.hero.stats.defense = 16
-    battle.attacker.hero.skills.fire = SkillLevels.Advanced
-
-    const curse = spells.find((spell) => spell.id === Spells.Curse)!
-    battle.defender.activeCreature.effects.push(curse)
-
-    const { attacker, defender } = getBattleCreaturCalculationResults(battle)
-
-    expect(attacker.minDamage).toBe(490)
-    expect(attacker.averageDamage).toBe(560)
-    expect(attacker.maxDamage).toBe(630)
-    expect(attacker.minKills).toBe(7)
-    expect(attacker.averageKills).toBe(8)
-    expect(attacker.maxKills).toBe(9)
-
-    expect(defender.minDamage).toBe(55)
-    expect(defender.averageDamage).toBe(55)
-    expect(defender.maxDamage).toBe(55)
-    expect(defender.minKills).toBe(0)
-    expect(defender.averageKills).toBe(0)
-    expect(defender.maxKills).toBe(0)
+    expect(attacker).toContain({
+      minDamage: 108,
+      maxDamage: 217,
+      minKills: 10,
+      maxKills: 21,
+    })
   })
 })

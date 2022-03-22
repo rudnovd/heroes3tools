@@ -21,9 +21,9 @@ describe('Hero specialty spell modificator', () => {
         battle.attacker.hero,
         battle.attacker.activeCreature
       )
-      const creatureWithBloodlust = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
+      const { attack } = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
 
-      expect(creatureWithBloodlust.attack).toBe(8)
+      expect(attack).toBe(8)
     })
 
     test('Ash with Griffin (creature level - 3)', () => {
@@ -34,9 +34,9 @@ describe('Hero specialty spell modificator', () => {
         battle.attacker.hero,
         battle.attacker.activeCreature
       )
-      const creatureWithBloodlust = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
+      const { attack } = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
 
-      expect(creatureWithBloodlust.attack).toBe(13)
+      expect(attack).toBe(13)
     })
 
     test('Ash with Genie (creature level - 5)', () => {
@@ -47,9 +47,9 @@ describe('Hero specialty spell modificator', () => {
         battle.attacker.hero,
         battle.attacker.activeCreature
       )
-      const creatureWithBloodlust = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
+      const { attack } = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
 
-      expect(creatureWithBloodlust.attack).toBe(16)
+      expect(attack).toBe(16)
     })
 
     test('Ash with Bone Dragon (creature level - 7)', () => {
@@ -60,9 +60,9 @@ describe('Hero specialty spell modificator', () => {
         battle.attacker.hero,
         battle.attacker.activeCreature
       )
-      const creatureWithBloodlust = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
+      const { attack } = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
 
-      expect(creatureWithBloodlust.attack).toBe(20)
+      expect(attack).toBe(20)
     })
   })
 
@@ -77,7 +77,7 @@ describe('Hero specialty spell modificator', () => {
       )
       const { attack, defense } = Effects.prayer(battle.attacker, creatureWithModifiedStats)
 
-      expect({ attack, defense }).toStrictEqual({ attack: 9, defense: 8 })
+      expect({ attack, defense }).toEqual({ attack: 9, defense: 8 })
     })
 
     test('Loynis with Hell Hound (creature level - 3)', () => {
@@ -90,7 +90,7 @@ describe('Hero specialty spell modificator', () => {
       )
       const { attack, defense } = Effects.prayer(battle.attacker, creatureWithModifiedStats)
 
-      expect({ attack, defense }).toStrictEqual({ attack: 14, defense: 10 })
+      expect({ attack, defense }).toEqual({ attack: 14, defense: 10 })
     })
 
     test('Loynis with Gorgon (creature level - 5)', () => {
@@ -103,7 +103,7 @@ describe('Hero specialty spell modificator', () => {
       )
       const { attack, defense } = Effects.prayer(battle.attacker, creatureWithModifiedStats)
 
-      expect({ attack, defense }).toStrictEqual({ attack: 13, defense: 17 })
+      expect({ attack, defense }).toEqual({ attack: 13, defense: 17 })
     })
 
     test('Loynis with Behemoth (creature level - 7)', () => {
@@ -116,7 +116,7 @@ describe('Hero specialty spell modificator', () => {
       )
       const { attack, defense } = Effects.prayer(battle.attacker, creatureWithModifiedStats)
 
-      expect({ attack, defense }).toStrictEqual({ attack: 19, defense: 19 })
+      expect({ attack, defense }).toEqual({ attack: 19, defense: 19 })
     })
   })
 
