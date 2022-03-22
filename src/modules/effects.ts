@@ -311,6 +311,10 @@ export const Effects = {
       attack -= 6
     }
 
+    if (attack < 0) {
+      attack = 0
+    }
+
     return {
       ...target,
       attack,
@@ -334,6 +338,10 @@ export const Effects = {
       defense -= 4
     } else if (initiator.hero.skills.air === 3) {
       defense -= 5
+    }
+
+    if (defense < 0) {
+      defense = 0
     }
 
     return {
