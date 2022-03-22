@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-rc.1](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-rc.0...v2.0.0-rc.1) (2022-03-22)
+
+
+### Bug Fixes
+
+* **Battle:** fix terrain calculation ([025f051](https://github.com/rudnovd/heroes3tools/commit/025f0514cfa79430ad199ad2d29f8485c4f6f1ed))
+* **DamageCalculatorPage:** fix page paddings ([ccaaa4e](https://github.com/rudnovd/heroes3tools/commit/ccaaa4ed693c6cc15358e1b33a5268d7c4316252))
+* **effects:** add checks for weakness and disruptingRay ([bc8e6b0](https://github.com/rudnovd/heroes3tools/commit/bc8e6b07534e9b697dcf12deb11508026307dc1a))
+* **effects:** fix curse effect ([b76a613](https://github.com/rudnovd/heroes3tools/commit/b76a613672d42d868fe688ef1b82aecf4f232b5d))
+
 ## [2.0.0-rc.0](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-beta.2...v2.0.0-rc.0) (2022-03-19)
 
 
