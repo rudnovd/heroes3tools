@@ -17,16 +17,16 @@ describe('Curse spell effect', () => {
   describe('Curse spell effect without any modificators', () => {
     test('Pikeman (different minDamage and maxDamage)', () => {
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      const result = Effects.curse(battle.attacker, battle.attacker.activeCreature)
-      expect(result.minDamage).toBe(1)
-      expect(result.maxDamage).toBe(1)
+      const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
+
+      expect({ minDamage, maxDamage }).toEqual({ minDamage: 1, maxDamage: 1 })
     })
 
     test('Angel creature (equal minDamage and maxDamage)', () => {
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
-      const result = Effects.curse(battle.attacker, battle.attacker.activeCreature)
-      expect(result.minDamage).toBe(50)
-      expect(result.maxDamage).toBe(50)
+      const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
+
+      expect({ minDamage, maxDamage }).toEqual({ minDamage: 50, maxDamage: 50 })
     })
   })
 
@@ -35,18 +35,18 @@ describe('Curse spell effect', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Rion)
       battle.attacker.hero.stats.attack = 0
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      const result = Effects.curse(battle.attacker, battle.attacker.activeCreature)
-      expect(result.minDamage).toBe(1)
-      expect(result.maxDamage).toBe(1)
+      const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
+
+      expect({ minDamage, maxDamage }).toEqual({ minDamage: 1, maxDamage: 1 })
     })
 
     test('Angel (equal minDamage and maxDamage)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Rion)
       battle.attacker.hero.stats.attack = 0
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
-      const result = Effects.curse(battle.attacker, battle.attacker.activeCreature)
-      expect(result.minDamage).toBe(50)
-      expect(result.maxDamage).toBe(50)
+      const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
+
+      expect({ minDamage, maxDamage }).toEqual({ minDamage: 50, maxDamage: 50 })
     })
   })
 
@@ -56,10 +56,9 @@ describe('Curse spell effect', () => {
       battle.attacker.hero.stats.attack = 0
       battle.attacker.hero.skills.fire = 1
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      const result = Effects.curse(battle.attacker, battle.attacker.activeCreature)
-      expect(result.minDamage).toBe(1)
-      expect(result.maxDamage).toBe(1)
-      expect(result.calculation.damageBonus).toBe(0)
+      const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
+
+      expect({ minDamage, maxDamage }).toEqual({ minDamage: 1, maxDamage: 1 })
     })
 
     test('Angel (equal minDamage and maxDamage)', () => {
@@ -67,10 +66,9 @@ describe('Curse spell effect', () => {
       battle.attacker.hero.stats.attack = 0
       battle.attacker.hero.skills.fire = 1
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
-      const result = Effects.curse(battle.attacker, battle.attacker.activeCreature)
-      expect(result.minDamage).toBe(50)
-      expect(result.maxDamage).toBe(50)
-      expect(result.calculation.damageBonus).toBe(0)
+      const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
+
+      expect({ minDamage, maxDamage }).toEqual({ minDamage: 50, maxDamage: 50 })
     })
   })
 
@@ -80,10 +78,9 @@ describe('Curse spell effect', () => {
       battle.attacker.hero.stats.attack = 0
       battle.attacker.hero.skills.fire = 2
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      const result = Effects.curse(battle.attacker, battle.attacker.activeCreature)
-      expect(result.minDamage).toBe(1)
-      expect(result.maxDamage).toBe(1)
-      expect(result.calculation.damageBonus).toBe(0)
+      const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
+
+      expect({ minDamage, maxDamage }).toEqual({ minDamage: 1, maxDamage: 1 })
     })
 
     test('Angel (equal minDamage and maxDamage)', () => {
@@ -91,10 +88,9 @@ describe('Curse spell effect', () => {
       battle.attacker.hero.stats.attack = 0
       battle.attacker.hero.skills.fire = 2
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
-      const result = Effects.curse(battle.attacker, battle.attacker.activeCreature)
-      expect(result.minDamage).toBe(49)
-      expect(result.maxDamage).toBe(49)
-      expect(result.calculation.damageBonus).toBe(0)
+      const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
+
+      expect({ minDamage, maxDamage }).toEqual({ minDamage: 49, maxDamage: 49 })
     })
   })
 
@@ -104,9 +100,9 @@ describe('Curse spell effect', () => {
       battle.attacker.hero.stats.attack = 0
       battle.attacker.hero.skills.fire = 3
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      const result = Effects.curse(battle.attacker, battle.attacker.activeCreature)
-      expect(result.minDamage).toBe(1)
-      expect(result.maxDamage).toBe(1)
+      const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
+
+      expect({ minDamage, maxDamage }).toEqual({ minDamage: 1, maxDamage: 1 })
     })
 
     test('Angel (equal minDamage and maxDamage)', () => {
@@ -114,9 +110,9 @@ describe('Curse spell effect', () => {
       battle.attacker.hero.stats.attack = 0
       battle.attacker.hero.skills.fire = 3
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
-      const result = Effects.curse(battle.attacker, battle.attacker.activeCreature)
-      expect(result.minDamage).toBe(49)
-      expect(result.maxDamage).toBe(49)
+      const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
+
+      expect({ minDamage, maxDamage }).toEqual({ minDamage: 49, maxDamage: 49 })
     })
   })
 
@@ -137,19 +133,18 @@ describe('Curse spell effect', () => {
 
       const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-      expect(attacker.minDamage).toBe(461)
-      expect(attacker.averageDamage).toBe(528)
-      expect(attacker.maxDamage).toBe(594)
-      expect(attacker.minKills).toBe(6)
-      expect(attacker.averageKills).toBe(7)
-      expect(attacker.maxKills).toBe(8)
-
-      expect(defender.minDamage).toBe(69)
-      expect(defender.averageDamage).toBe(69)
-      expect(defender.maxDamage).toBe(69)
-      expect(defender.minKills).toBe(0)
-      expect(defender.averageKills).toBe(0)
-      expect(defender.maxKills).toBe(0)
+      expect(attacker).toContain({
+        minDamage: 461,
+        maxDamage: 594,
+        minKills: 6,
+        maxKills: 8,
+      })
+      expect(defender).toContain({
+        minDamage: 69,
+        maxDamage: 69,
+        minKills: 0,
+        maxKills: 0,
+      })
     })
 
     test('20 Wyverns with Hero with advanced Fire skill vs 10 Gorgon', () => {
@@ -169,19 +164,18 @@ describe('Curse spell effect', () => {
 
       const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-      expect(attacker.minDamage).toBe(490)
-      expect(attacker.averageDamage).toBe(560)
-      expect(attacker.maxDamage).toBe(630)
-      expect(attacker.minKills).toBe(7)
-      expect(attacker.averageKills).toBe(8)
-      expect(attacker.maxKills).toBe(9)
-
-      expect(defender.minDamage).toBe(55)
-      expect(defender.averageDamage).toBe(55)
-      expect(defender.maxDamage).toBe(55)
-      expect(defender.minKills).toBe(0)
-      expect(defender.averageKills).toBe(0)
-      expect(defender.maxKills).toBe(0)
+      expect(attacker).toContain({
+        minDamage: 490,
+        maxDamage: 630,
+        minKills: 7,
+        maxKills: 9,
+      })
+      expect(defender).toContain({
+        minDamage: 55,
+        maxDamage: 55,
+        minKills: 0,
+        maxKills: 0,
+      })
     })
   })
 })
