@@ -140,6 +140,7 @@ export enum Creatures {
   RustDragon,
   CrystalDragon,
   AzureDragon,
+  Ballista,
   Nymph,
   Oceanid,
   CrewMate,
@@ -155,11 +156,10 @@ export enum Creatures {
   NixWarrior,
   SeaSerpent,
   Haspid,
-  Satyr,
   Fangarm,
-  Ballista,
-  Cannon,
+  Satyr,
   Leprechaun,
+  Cannon,
   SteelGolem,
 }
 
