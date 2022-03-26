@@ -1,7 +1,7 @@
 import type { DamageCalculatorBattleSide } from '@/models/Battle'
 import type { CreatureInstance } from '@/models/Creature'
 import { Creatures, Spells } from '@/models/enums'
-import { Spell } from '@/models/Spell'
+import type { Spell } from '@/models/Spell'
 
 export const Effects = {
   functions: {

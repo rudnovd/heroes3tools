@@ -1,4 +1,4 @@
-import { CreaturesSpecial } from '@/models/CreaturesSpecials'
+import type { CreaturesSpecial } from '@/models/CreaturesSpecials'
 import type { Spell } from './Spell'
 
 export interface Creature {

@@ -1,4 +1,4 @@
-import { Spell } from '@/models/Spell'
+import type { Spell } from '@/models/Spell'
 
 export type CreaturesSpecial = Readonly<
   Partial<{

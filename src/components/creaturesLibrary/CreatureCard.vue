@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts">
-import { Creature } from '@/models/Creature'
+import type { Creature } from '@/models/Creature'
 import { defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import ObjectPortrait from '../ObjectPortrait.vue'
