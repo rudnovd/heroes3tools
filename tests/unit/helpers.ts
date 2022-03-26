@@ -1,8 +1,8 @@
 import { creatures } from '@/assets/database/creatures'
 import { heroes } from '@/assets/database/heroes'
-import { Battle } from '@/models/Battle'
+import type { Battle } from '@/models/Battle'
 import { CreatureInstance } from '@/models/Creature'
-import { Creatures, Heroes } from '@/models/enums'
+import type { Creatures, Heroes } from '@/models/enums'
 import { HeroInstance } from '@/models/Hero'
 
 export function getCreatureInstance(id: Creatures) {

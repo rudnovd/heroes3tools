@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia'
-import { Class } from './models/Class'
-import { Creature } from './models/Creature'
+import type { Class } from './models/Class'
+import type { Creature } from './models/Creature'
 import { Spells } from './models/enums'
-import { Hero } from './models/Hero'
-import { Level } from './models/Level'
-import { Skill } from './models/Skill'
-import { Spell } from './models/Spell'
-import { Terrain } from './models/Terrain'
-import { Town } from './models/Town'
+import type { Hero } from './models/Hero'
+import type { Level } from './models/Level'
+import type { Skill } from './models/Skill'
+import type { Spell } from './models/Spell'
+import type { Terrain } from './models/Terrain'
+import type { Town } from './models/Town'
 
 export interface StoreState {
   classes: Array<Class>

@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { BattleSide } from '@/models/Battle'
+import type { BattleSide } from '@/models/Battle'
 import type { Level } from '@/models/Level'
 import { defineComponent, PropType, ref } from 'vue'
 

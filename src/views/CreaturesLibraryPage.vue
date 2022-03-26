@@ -59,7 +59,7 @@
 import CreatureCard from '@/components/creaturesLibrary/CreatureCard.vue'
 import ObjectPortrait from '@/components/ObjectPortrait.vue'
 import { selectedLanguage } from '@/i18n'
-import { Creature } from '@/models/Creature'
+import type { Creature } from '@/models/Creature'
 import { useStore } from '@/store'
 import { computed, defineAsyncComponent, defineComponent, onUnmounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'

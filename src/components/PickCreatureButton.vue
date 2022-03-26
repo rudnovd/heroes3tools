@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { BattleSide } from '@/models/Battle'
+import type { BattleSide } from '@/models/Battle'
 import { defineAsyncComponent, defineComponent, PropType, ref } from 'vue'
 
 export default defineComponent({

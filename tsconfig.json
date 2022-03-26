@@ -15,6 +15,7 @@
     "removeComments": true,
     "resolveJsonModule": true,
     "noImplicitAny": false,
+    "importsNotUsedAsValues": "error",
     "types": [
       "vite-plugin-pwa/client",
       "@intlify/vite-plugin-vue-i18n/client"
