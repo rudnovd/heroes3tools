@@ -87,7 +87,8 @@ export default defineComponent({
     watch(
       [attacker, defender],
       () => {
-        if (isStarted.value) return
+        if (!attacker.value.activeCreature?.id || !defender.value.activeCreature?.id) return
+        else if (isStarted.value) return
         calculators.value[activeIndex.value].calculate()
         isStarted.value = true
       },
