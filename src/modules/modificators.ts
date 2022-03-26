@@ -109,8 +109,7 @@ export const Modificators = {
 
   heroSkills: (hero: HeroInstance, target: CreatureInstance): CreatureInstance => {
     let {
-      minDamage,
-      maxDamage,
+      hits,
       calculation: { damageBonus, defenseBonus },
     } = target
 
@@ -151,18 +150,16 @@ export const Modificators = {
     }
 
     if (
+      (target.id === Creatures.Ballista || target.id === Creatures.Cannon) &&
       hero.skills.artillery &&
-      hero.skills.artillery === 3 &&
-      (target.id === Creatures.Ballista || target.id === Creatures.Cannon)
+      hero.skills.artillery === 2
     ) {
-      minDamage *= 2
-      maxDamage *= 2
+      hits = 2
     }
 
     return {
       ...target,
-      minDamage,
-      maxDamage,
+      hits,
       calculation: {
         ...target.calculation,
         damageBonus,
