@@ -141,8 +141,8 @@ import { HeroInstance } from '@/models/Hero'
 import type { Spell } from '@/models/Spell'
 import type { Terrain } from '@/models/Terrain'
 import { useStore } from '@/store'
-import { defineAsyncComponent, defineComponent, watch } from '@vue/runtime-core'
-import { computed, PropType, reactive, ref } from 'vue'
+import { defineAsyncComponent, defineComponent } from '@vue/runtime-core'
+import { computed, PropType, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
@@ -168,7 +168,6 @@ export default defineComponent({
     const store = useStore()
 
     const battle = reactive(props.battleValue)
-    const isStarted = ref(false)
     const heroes = computed(() => store.heroes)
     const terrains = computed(() => store.terrains)
     const levels = computed(() => store.levels)
@@ -178,23 +177,6 @@ export default defineComponent({
       store.defensePositiveEffects,
       store.attackNegativeEffects,
     ])
-
-    // Calculate damage values when attacker or defender props changed
-    watch(
-      [battle.attacker, battle.defender],
-      () => {
-        if (!isStarted.value) {
-          battle.calculate()
-          isStarted.value = true
-        }
-      },
-      { deep: true }
-    )
-
-    // Watch isStarted ref for prevent infinite calculating
-    watch(isStarted, (newIsStarted) => {
-      if (newIsStarted) isStarted.value = false
-    })
 
     // Return string of total damage or total kills
     const getTotalResultString = (min: number, max: number, average: number) => {
