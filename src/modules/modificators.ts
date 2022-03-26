@@ -189,15 +189,15 @@ export const Modificators = {
     }
   },
 
-  isArtillery: (hero: HeroInstance, target: CreatureInstance): CreatureInstance => {
+  artillery: (hero: HeroInstance, target: CreatureInstance): CreatureInstance => {
     let { minDamage, maxDamage } = target
 
     if (target.id === Creatures.Ballista) {
-      minDamage += (target.attack - hero.stats.attack) * 2
-      maxDamage += (target.attack - hero.stats.attack) * 3
+      minDamage = (hero.stats.attack + 1) * 2
+      maxDamage = (hero.stats.attack + 1) * 3
     } else if (target.id === Creatures.Cannon) {
-      minDamage += (target.attack - hero.stats.attack) * 4
-      maxDamage += (target.attack - hero.stats.attack) * 7
+      minDamage = (hero.stats.attack + 1) * 4
+      maxDamage = (hero.stats.attack + 1) * 7
     }
 
     return {
