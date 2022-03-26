@@ -91,13 +91,9 @@ export const Modificators = {
     attack += hero.stats.attack
     defense += hero.stats.defense
 
-    if (hero.specialtyUnit) {
-      if (hero.specialtyUnit.includes(target.id)) {
-        attack *= 1 + (hero.level / target.level) * 0.05
-        defense *= 1 + (hero.level / target.level) * 0.05
-        attack = Math.ceil(attack)
-        defense = Math.ceil(defense)
-      }
+    if (hero.specialtyUnit && hero.specialtyUnit.includes(target.id)) {
+      attack = Math.ceil(attack * 1 + (hero.level / target.level) * 0.05)
+      defense = Math.ceil(defense * 1 + (hero.level / target.level) * 0.05)
     }
 
     return {
