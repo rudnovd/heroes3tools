@@ -1,7 +1,8 @@
+import { creatures } from '@/assets/database/creatures'
 import { Effects } from '@/modules/effects'
 import { Modificators } from '@/modules/modificators'
-import type { CreatureInstance } from './Creature'
-import { Spells } from './enums'
+import { CreatureInstance } from './Creature'
+import { Creatures, Spells } from './enums'
 import type { HeroInstance } from './Hero'
 import type { Terrain } from './Terrain'
 
@@ -34,32 +35,24 @@ export class Battle {
   }
 
   public calculate() {
-    if (!this.attacker.activeCreature || !this.defender.activeCreature) return
-
-    // clear calculation values
-    this.attacker.activeCreature.calculation = {
-      damageBonus: 0,
-      defenseBonus: 0,
-      defenseMagicBonus: 0,
-      minDamage: 0,
-      maxDamage: 0,
-      averageDamage: 0,
-      minKills: 0,
-      maxKills: 0,
-      averageKills: 0,
+    if (!this.attacker.activeCreature || !this.defender.activeCreature) {
+      throw new Error('Calculate function require attacker and defender active creatures')
     }
 
-    // clear calculation values
-    this.defender.activeCreature.calculation = {
-      damageBonus: 0,
-      defenseBonus: 0,
-      defenseMagicBonus: 0,
-      minDamage: 0,
-      maxDamage: 0,
-      averageDamage: 0,
-      minKills: 0,
-      maxKills: 0,
-      averageKills: 0,
+    const attackerCreatureOriginal = creatures.find((creature) => creature.id === this.attacker.activeCreature?.id)
+    const defenderCreatureOriginal = creatures.find((creature) => creature.id === this.defender.activeCreature?.id)
+    if (!attackerCreatureOriginal || !defenderCreatureOriginal) throw new Error()
+
+    // clear active creatures values
+    this.attacker.activeCreature = {
+      ...new CreatureInstance(attackerCreatureOriginal),
+      effects: this.attacker.activeCreature.effects,
+      count: this.attacker.activeCreature.count,
+    }
+    this.defender.activeCreature = {
+      ...new CreatureInstance(defenderCreatureOriginal),
+      effects: this.defender.activeCreature.effects,
+      count: this.defender.activeCreature.count,
     }
 
     // make copy of attacker active creature with modified stats from positive and negative spells
@@ -99,14 +92,22 @@ export class Battle {
     const attackerCalculation = this.calculateDamageValues(modifiedAttackerCreature, modifiedDefenderCreature)
     const defenderCalculation = this.calculateDamageValues(modifiedDefenderCreature, modifiedAttackerCreature)
 
-    this.attacker.activeCreature.calculation = {
-      ...this.attacker.activeCreature.calculation,
-      ...attackerCalculation,
+    this.attacker.activeCreature = {
+      ...this.attacker.activeCreature,
+      hits: modifiedAttackerCreature.hits,
+      calculation: {
+        ...this.attacker.activeCreature.calculation,
+        ...attackerCalculation,
+      },
     }
 
-    this.defender.activeCreature.calculation = {
-      ...this.defender.activeCreature.calculation,
-      ...defenderCalculation,
+    this.defender.activeCreature = {
+      ...this.defender.activeCreature,
+      hits: modifiedDefenderCreature.hits,
+      calculation: {
+        ...this.defender.activeCreature.calculation,
+        ...defenderCalculation,
+      },
     }
 
     return {
@@ -116,10 +117,12 @@ export class Battle {
   }
 
   private calculateWithHeroModificators(hero: HeroInstance, target: CreatureInstance) {
-    target = Modificators.heroSpecialtySpell(hero, target)
+    if (hero.specialtySpell) target = Modificators.heroSpecialtySpell(hero, target)
     target = Modificators.hero(hero, target)
     target = Modificators.heroSkills(hero, target)
-    target = Modificators.isArtillery(hero, target)
+    if (target.id === Creatures.Ballista || target.id === Creatures.Cannon) {
+      target = Modificators.artillery(hero, target)
+    }
 
     return target
   }
