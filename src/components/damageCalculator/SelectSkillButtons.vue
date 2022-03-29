@@ -1,6 +1,8 @@
 <template>
   <div class="select-skill-buttons">
-    <span class="skill-name" :class="`color-${color}`">{{ name }}</span>
+    <div class="skill-name" :class="`color-${color}`">
+      <span>{{ name }}</span>
+    </div>
     <div class="skill-buttons" :class="`color-${color}`">
       <button
         v-for="level in levels"
@@ -62,7 +64,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .select-skill-buttons {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 75px 1fr;
   align-items: center;
 }
 
@@ -71,12 +73,14 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
   height: 1.5rem;
-  padding-right: 8px;
-  overflow: hidden;
   font-size: 0.8rem;
   font-weight: 600;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+
+  & > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 .skill-buttons {
