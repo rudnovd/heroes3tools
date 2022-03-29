@@ -111,8 +111,14 @@ export class Battle {
     }
 
     return {
-      attacker: this.attacker,
-      defender: this.defender,
+      attacker: {
+        ...this.attacker,
+        activeCreature: this.attacker.activeCreature,
+      },
+      defender: {
+        ...this.defender,
+        activeCreature: this.defender.activeCreature,
+      },
     }
   }
 
