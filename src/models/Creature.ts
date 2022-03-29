@@ -21,7 +21,7 @@ export interface Creature {
   maxDamage: number
   minDamage: number
   nativeTerrain: number
-  speed?: number
+  speed: number
   name: string
   ranged: boolean
   townId?: number
@@ -58,7 +58,7 @@ export class CreatureInstance implements Creature {
   maxDamage: number
   minDamage: number
   nativeTerrain: number
-  speed?: number
+  speed: number
   name: string
   ranged: boolean
   townId?: number
