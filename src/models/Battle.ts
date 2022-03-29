@@ -94,7 +94,7 @@ export class Battle {
 
     this.attacker.activeCreature = {
       ...this.attacker.activeCreature,
-      hits: modifiedAttackerCreature.hits,
+      ...modifiedAttackerCreature,
       calculation: {
         ...this.attacker.activeCreature.calculation,
         ...attackerCalculation,
@@ -103,7 +103,7 @@ export class Battle {
 
     this.defender.activeCreature = {
       ...this.defender.activeCreature,
-      hits: modifiedDefenderCreature.hits,
+      ...modifiedDefenderCreature,
       calculation: {
         ...this.defender.activeCreature.calculation,
         ...defenderCalculation,
