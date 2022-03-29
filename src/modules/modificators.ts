@@ -86,20 +86,22 @@ export const Modificators = {
   },
 
   hero: (hero: HeroInstance, target: CreatureInstance): CreatureInstance => {
-    let { attack, defense } = target
+    let { attack, speed, defense } = target
+
+    if (hero.specialtyUnit?.includes(target.id)) {
+      attack += Math.ceil(Math.floor(hero.level / target.level) * (attack * 0.05))
+      defense += Math.ceil(Math.floor(hero.level / target.level) * (defense * 0.05))
+      speed++
+    }
 
     attack += hero.stats.attack
     defense += hero.stats.defense
-
-    if (hero.specialtyUnit && hero.specialtyUnit.includes(target.id)) {
-      attack = Math.ceil(attack * 1 + (hero.level / target.level) * 0.05)
-      defense = Math.ceil(defense * 1 + (hero.level / target.level) * 0.05)
-    }
 
     return {
       ...target,
       attack,
       defense,
+      speed,
     }
   },
 
