@@ -68,12 +68,12 @@
 
       <section v-if="side.hero" class="skills">
         <SelectSkillButtons
-          v-for="skill in skills"
-          :key="`${sideName}-skill-${skill.name}-buttons`"
+          v-for="(skill, key) in skills"
+          :key="`${sideName}-skill-${key}-buttons`"
           :color="sideName"
-          :name="skill.name"
+          :name="skill"
           :levels="levels.slice(1, levels.length)"
-          @click="side.hero!.skills[skill.name.toLowerCase()] = $event"
+          @click="side.hero!.skills[key] = $event"
         />
       </section>
 
@@ -171,7 +171,12 @@ export default defineComponent({
     const heroes = computed(() => store.heroes)
     const terrains = computed(() => store.terrains)
     const levels = computed(() => store.levels)
-    const skills = computed(() => store.skills)
+    const skills = computed(() => {
+      const damageCalculatorSkills = ['offense', 'air', 'armorer', 'fire', 'archery', 'earth', 'artillery', 'water']
+      const skills = {}
+      damageCalculatorSkills.forEach((skill, index) => (skills[skill] = store.skills[index].name))
+      return skills
+    })
     const effects = computed(() => [
       store.attackPositiveEffects,
       store.defensePositiveEffects,
