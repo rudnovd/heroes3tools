@@ -48,11 +48,13 @@ export class Battle {
       ...new CreatureInstance(attackerCreatureOriginal),
       effects: this.attacker.activeCreature.effects,
       count: this.attacker.activeCreature.count,
+      rangePenalty: this.attacker.activeCreature.rangePenalty,
     }
     this.defender.activeCreature = {
       ...new CreatureInstance(defenderCreatureOriginal),
       effects: this.defender.activeCreature.effects,
       count: this.defender.activeCreature.count,
+      rangePenalty: this.attacker.activeCreature.rangePenalty,
     }
 
     // make copy of attacker active creature with modified stats from positive and negative spells
@@ -230,7 +232,8 @@ export class Battle {
     let damageBonus = 0,
       defenseBonus = 0,
       defenseMagicBonus = 0,
-      difference = 0
+      difference = 0,
+      rangePenalty = attacker.rangePenalty ? 0.5 : 0
 
     if (attacker.attack > defender.defense) {
       // Max attack cap = 3
@@ -246,9 +249,10 @@ export class Battle {
     }
     defenseBonus = 1 - defender.calculation.defenseBonus
     defenseMagicBonus = 1 - defender.calculation.defenseMagicBonus
+    rangePenalty = 1 - rangePenalty
 
-    let minDamage = Math.abs(attacker.minDamage * (damageBonus * defenseBonus * defenseMagicBonus))
-    let maxDamage = Math.abs(attacker.maxDamage * (damageBonus * defenseBonus * defenseMagicBonus))
+    let minDamage = Math.abs(attacker.minDamage * (damageBonus * defenseBonus * defenseMagicBonus * rangePenalty))
+    let maxDamage = Math.abs(attacker.maxDamage * (damageBonus * defenseBonus * defenseMagicBonus * rangePenalty))
     let averageDamage = Math.abs((minDamage + maxDamage) / 2)
 
     minDamage = Math.floor(minDamage * attacker.count)

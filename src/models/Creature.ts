@@ -81,6 +81,7 @@ export class CreatureInstance implements Creature {
     maxKills: number
     averageKills: number
   }
+  rangePenalty?: boolean
 
   constructor(creature: Creature) {
     this.aiValue = creature.aiValue
@@ -116,6 +117,10 @@ export class CreatureInstance implements Creature {
       minKills: 0,
       maxKills: 0,
       averageKills: 0,
+    }
+
+    if (creature.ranged) {
+      this.rangePenalty = false
     }
   }
 }
