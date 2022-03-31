@@ -24,7 +24,7 @@
     "release": "standard-version"
   },
   "dependencies": {
-    "@vueuse/core": "^8.2.2",
+    "@vueuse/core": "^8.2.3",
     "pinia": "^2.0.12",
     "vue": "^3.2.31",
     "vue-i18n": "^9.1.9",
