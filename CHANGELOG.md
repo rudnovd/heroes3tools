@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-rc.2](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-rc.1...v2.0.0-rc.2) (2022-03-31)
+
+
+### Features
+
+* **Battle:** add range penalty calculation ([2e7adf0](https://github.com/rudnovd/heroes3tools/commit/2e7adf02af2ab8277ac3c6b85c31829ae5cd9392))
+* **Battle:** merge modified creature props in active creature ([5fbbed7](https://github.com/rudnovd/heroes3tools/commit/5fbbed7eae6ac00ad4a222aae5bb42468f28ed5d))
+* **Battle:** rewrite calculation function ([873901a](https://github.com/rudnovd/heroes3tools/commit/873901a842707eef75edff95ab252ffa13b1842d))
+
+
+### Bug Fixes
+
+* **DamageCalculator:** fix skill buttons ([1df1810](https://github.com/rudnovd/heroes3tools/commit/1df1810cc5c1b0ecd825b404ef2cacbb5a41307a))
+* **enums:** fix wrong numbers in creatures enum ([a877b9c](https://github.com/rudnovd/heroes3tools/commit/a877b9cca3b124ce9dd55ac4f30c39fd7c20eb76))
+* **modificators:** fix and rename isArtillery modificator ([e86070c](https://github.com/rudnovd/heroes3tools/commit/e86070c5b054539aef3be584de37a22ea327e5d0))
+* **modificators:** fix artillery calculation in heroSkills modificator ([a5231e9](https://github.com/rudnovd/heroes3tools/commit/a5231e92e8ef47a0f6800ca8b514239b0f696a6d))
+* **modificators:** fix hero specialty unit calculation ([87d4660](https://github.com/rudnovd/heroes3tools/commit/87d46602c2ee7d1db52ecd96f7306c9ce2c61ec7))
+* **SelectSkillButtons:** fix text overlow ([f74b1a2](https://github.com/rudnovd/heroes3tools/commit/f74b1a2514bcfcc99905c2111471d4aa5e31eea8))
+
 ## [2.0.0-rc.1](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-rc.0...v2.0.0-rc.1) (2022-03-22)
 
 
