@@ -1,0 +1,12 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: weekly
+    reviewers:
+      - rudnovd
+    target-branch: 'preview'
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
