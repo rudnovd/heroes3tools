@@ -67,10 +67,10 @@ export const Effects = {
 
     // if battle side has hero with Bless specialty then add damageBonus value
     if (initiator.hero && initiator.hero.specialtySpell === Spells.Bless) {
-      damageBonus += (0.03 * initiator.hero.level) / initiator.hero.level
+      damageBonus += (0.03 * initiator.hero.level) / target.level
     }
 
-    if (!initiator.hero || initiator.hero.skills.water <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.water || initiator.hero.skills.water <= 1) {
       minDamage = maxDamage
     } else if (initiator.hero.skills.water >= 2) {
       maxDamage++
