@@ -4,6 +4,7 @@ export interface Hero {
   id: number
   name: string
   classId: number
+  skills: Partial<Skills>
   specialtySkill?: number
   specialtySpell?: number
   specialtyUnit?: Array<number>
@@ -12,6 +13,39 @@ export interface Hero {
 export interface HeroTranslation {
   id: number
   name: string
+}
+
+interface Skills {
+  [key: string]: number
+  offense: number
+  armorer: number
+  archery: number
+  artillery: number
+  air: number
+  fire: number
+  earth: number
+  water: number
+  ballistics: number
+  diplomacy: number
+  eagleEye: number
+  estates: number
+  firstAid: number
+  intelligence: number
+  learning: number
+  logistics: number
+  luck: number
+  mysticism: number
+  navigation: number
+  necromancy: number
+  pathfinding: number
+  resistance: number
+  scholar: number
+  scouting: number
+  sorcery: number
+  tactics: number
+  wisdom: number
+  interference: number
+  leadership: number
 }
 
 export class HeroInstance implements Hero {
@@ -30,17 +64,7 @@ export class HeroInstance implements Hero {
     power: number
     knowledge: number
   }
-  skills: {
-    [key: string]: number
-    offense: number
-    armorer: number
-    archery: number
-    artillery: number
-    air: number
-    fire: number
-    earth: number
-    water: number
-  }
+  skills: Partial<Skills>
 
   constructor(hero: Hero) {
     this.id = hero.id
@@ -66,6 +90,7 @@ export class HeroInstance implements Hero {
       fire: 0,
       earth: 0,
       water: 0,
+      ...hero.skills,
     }
 
     const heroClass = classes.find((classObject) => classObject.id === this.classId)
