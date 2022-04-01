@@ -232,20 +232,19 @@ export class Battle {
     let damageBonus = 0,
       defenseBonus = 0,
       defenseMagicBonus = 0,
-      difference = 0,
       rangePenalty = attacker.rangePenalty ? 0.5 : 0
 
     if (attacker.attack > defender.defense) {
       // Max attack cap = 3
-      difference = Math.abs(0.05 * (attacker.attack - defender.defense))
-      if (difference > 3) difference = 3
-      damageBonus = 1 + difference + attacker.calculation.damageBonus
+      damageBonus = 0.05 * (attacker.attack - defender.defense)
+      if (damageBonus > 3) damageBonus = 3
+      damageBonus = 1 + damageBonus + attacker.calculation.damageBonus
     } else if (attacker.attack === defender.defense) {
       damageBonus = 1 + attacker.calculation.damageBonus
     } else if (attacker.attack < defender.defense) {
-      difference = Math.abs((defender.defense - attacker.attack) * 0.025)
-      if (difference > 0.7) difference = 0.7
-      damageBonus = 1 - difference + attacker.calculation.damageBonus
+      damageBonus = (defender.defense - attacker.attack) * 0.025
+      if (damageBonus > 0.7) damageBonus = 0.7
+      damageBonus = 1 - damageBonus + attacker.calculation.damageBonus
     }
     defenseBonus = 1 - defender.calculation.defenseBonus
     defenseMagicBonus = 1 - defender.calculation.defenseMagicBonus
