@@ -67,10 +67,10 @@ export const Effects = {
 
     // if battle side has hero with Bless specialty then add damageBonus value
     if (initiator.hero && initiator.hero.specialtySpell === Spells.Bless) {
-      damageBonus += (0.03 * initiator.hero.level) / initiator.hero.level
+      damageBonus += (0.03 * initiator.hero.level) / target.level
     }
 
-    if (!initiator.hero || initiator.hero.skills.water <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.water || initiator.hero.skills.water <= 1) {
       minDamage = maxDamage
     } else if (initiator.hero.skills.water >= 2) {
       maxDamage++
@@ -99,7 +99,7 @@ export const Effects = {
     // get creature values for modify them
     let { minDamage, maxDamage } = target
 
-    if (!initiator.hero || initiator.hero.skills.fire <= 1 || minDamage === 1) {
+    if (!initiator.hero || !initiator.hero.skills.fire || initiator.hero.skills.fire <= 1 || minDamage === 1) {
       maxDamage = minDamage
     } else if (initiator.hero.skills.fire >= 2) {
       minDamage = minDamage - 1
@@ -124,7 +124,7 @@ export const Effects = {
     // get creature values for modify them
     let { attack } = target
 
-    if (!initiator.hero || initiator.hero.skills.fire <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.fire || initiator.hero.skills.fire <= 1) {
       attack += 3
     } else if (initiator.hero.skills.fire >= 2) {
       attack += 6
@@ -147,15 +147,15 @@ export const Effects = {
     // get creature values for modify them
     let { attack, defense } = target
 
-    if (!initiator.hero || initiator.hero.skills.fire <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.fire || initiator.hero.skills.fire <= 1) {
       attack += defense
     } else if (initiator.hero.skills.fire === 2) {
       attack += defense * 1.5
     } else if (initiator.hero.skills.fire === 3) {
-      defense = 0
+      attack += defense * 2
     }
 
-    attack += defense * 2
+    defense = 0
 
     return {
       ...target,
@@ -195,7 +195,7 @@ export const Effects = {
       Creatures.AzureDragon,
     ]
 
-    if (initiator.hero) {
+    if (initiator.hero && initiator.hero.skills.fire) {
       if (initiator.hero.skills.fire > 1) {
         slayerCreatures.push(Creatures.Angel, Creatures.Archangel, Creatures.Devil, Creatures.ArchDevil)
       }
@@ -231,7 +231,7 @@ export const Effects = {
     // get creature values for modify them
     let { attack, defense } = target
 
-    if (!initiator.hero || initiator.hero.skills.water <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.water || initiator.hero.skills.water <= 1) {
       attack += 2
       defense += 2
     } else if (initiator.hero.skills.water >= 2) {
@@ -258,7 +258,7 @@ export const Effects = {
     let { attack } = target
 
     if (target.ranged) {
-      if (!initiator.hero || initiator.hero.skills.air <= 1) {
+      if (!initiator.hero || !initiator.hero.skills.air || initiator.hero.skills.air <= 1) {
         attack += 3
       } else if (initiator.hero.skills.air >= 2) {
         attack += 6
@@ -282,7 +282,7 @@ export const Effects = {
     // get creature values for modify them
     let { defense } = target
 
-    if (!initiator.hero || initiator.hero.skills.earth <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.earth || initiator.hero.skills.earth <= 1) {
       defense += 3
     } else if (initiator.hero.skills.earth >= 2) {
       defense += 6
@@ -305,7 +305,7 @@ export const Effects = {
     // get creature values for modify them
     let { attack } = target
 
-    if (!initiator.hero || initiator.hero.skills.water <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.water || initiator.hero.skills.water <= 1) {
       attack -= 3
     } else if (initiator.hero.skills.water >= 2) {
       attack -= 6
@@ -332,7 +332,7 @@ export const Effects = {
     // get creature values for modify them
     let { defense } = target
 
-    if (!initiator.hero || initiator.hero.skills.air <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.air || initiator.hero.skills.air <= 1) {
       defense -= 3
     } else if (initiator.hero.skills.air === 2) {
       defense -= 4
@@ -363,7 +363,7 @@ export const Effects = {
       calculation: { defenseMagicBonus },
     } = target
 
-    if (!initiator.hero || initiator.hero.skills.earth <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.earth || initiator.hero.skills.earth <= 1) {
       defenseMagicBonus += 0.15
     } else if (initiator.hero.skills.earth >= 2) {
       defenseMagicBonus += 0.3
@@ -397,7 +397,7 @@ export const Effects = {
     } = target
 
     if (defender.activeCreature?.ranged) {
-      if (!initiator.hero || initiator.hero.skills.air < 2) {
+      if (!initiator.hero || !initiator.hero.skills.air || initiator.hero.skills.air < 2) {
         defenseMagicBonus += 0.25
       } else if (initiator.hero.skills.air > 1) {
         defenseMagicBonus += 0.5

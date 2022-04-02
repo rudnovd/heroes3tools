@@ -72,6 +72,7 @@
           :key="`${sideName}-skill-${key}-buttons`"
           :color="sideName"
           :name="skill"
+          :value="side.hero.skills[key] || 0"
           :levels="levels.slice(1, levels.length)"
           @click="side.hero!.skills[key] = $event"
         />
@@ -185,8 +186,8 @@ export default defineComponent({
 
     // Return string of total damage or total kills
     const getTotalResultString = (min: number, max: number, average: number) => {
-      if (min > 0 && min !== max) return `${min} — ${max} (~ ${average})`
-      else if (min > 0 && min === max) return min
+      if (min !== max) return `${min} — ${max} (~ ${average})`
+      else if (min === max) return min
       else return 0
     }
 
@@ -251,7 +252,7 @@ export default defineComponent({
   box-shadow: 0 0 3px rgba(170, 170, 170, 0.5);
 
   @include media-large {
-    grid-template-rows: 85vh 1fr;
+    grid-template-rows: minmax(85vh, auto) 1fr;
     grid-template-columns: 50% 50%;
   }
 }
@@ -259,17 +260,11 @@ export default defineComponent({
 .attacker,
 .defender {
   display: grid;
-  grid-template-rows: auto 1fr 2fr 2fr 1fr;
-  grid-template-columns: 100%;
+  grid-template-rows: repeat(4, min-content) auto;
   gap: 1rem;
   padding: 10px;
 
-  @include media-medium {
-    grid-template-rows: auto 1fr 1fr 2fr 1fr;
-  }
-
   @include media-large {
-    grid-template-rows: auto 1fr 2fr 2fr 1fr;
     padding: 20px;
   }
 }
@@ -290,7 +285,6 @@ export default defineComponent({
 .main {
   display: grid;
   column-gap: 0.5rem;
-  margin-bottom: 2rem;
 }
 
 .creature {
@@ -313,6 +307,7 @@ export default defineComponent({
 .effects {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  padding-left: 4px;
 
   & > div {
     overflow: hidden;
@@ -328,7 +323,7 @@ export default defineComponent({
 
   @include media-medium {
     grid-template-columns: 1fr 1fr;
-    gap: 0 1rem;
+    gap: 1rem 1rem;
   }
 }
 
@@ -428,16 +423,13 @@ export default defineComponent({
   }
 }
 .damage {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-end;
+  justify-content: flex-end;
   font-size: 1.2rem;
   text-align: right;
-
-  & strong {
-    display: block;
-  }
-
-  strong:first-child {
-    margin-bottom: 1rem;
-  }
 }
 
 .stat-name {

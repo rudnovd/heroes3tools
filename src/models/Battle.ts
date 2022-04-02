@@ -157,6 +157,10 @@ export class Battle {
         effectFunction: Effects.bloodlust,
       },
       {
+        id: Spells.Frenzy,
+        effectFunction: Effects.frenzy,
+      },
+      {
         id: Spells.Prayer,
         effectFunction: Effects.prayer,
       },
@@ -180,7 +184,7 @@ export class Battle {
       }
     })
 
-    if (target.effects.find((effect) => effect.id === Spells.Frenzy)) {
+    if (target.effects.find((effect) => effect.id === Spells.Slayer)) {
       target = Effects.slayer(attacker, this.defender, target)
     }
 
@@ -232,32 +236,28 @@ export class Battle {
     let damageBonus = 0,
       defenseBonus = 0,
       defenseMagicBonus = 0,
-      difference = 0,
       rangePenalty = attacker.rangePenalty ? 0.5 : 0
 
     if (attacker.attack > defender.defense) {
       // Max attack cap = 3
-      difference = Math.abs(0.05 * (attacker.attack - defender.defense))
-      if (difference > 3) difference = 3
-      damageBonus = 1 + difference + attacker.calculation.damageBonus
+      damageBonus = 0.05 * (attacker.attack - defender.defense)
+      if (damageBonus > 3) damageBonus = 3
+      damageBonus = 1 + damageBonus + attacker.calculation.damageBonus
     } else if (attacker.attack === defender.defense) {
       damageBonus = 1 + attacker.calculation.damageBonus
     } else if (attacker.attack < defender.defense) {
-      difference = Math.abs((defender.defense - attacker.attack) * 0.025)
-      if (difference > 0.7) difference = 0.7
-      damageBonus = 1 - difference + attacker.calculation.damageBonus
+      damageBonus = (defender.defense - attacker.attack) * 0.025
+      if (damageBonus > 0.7) damageBonus = 0.7
+      damageBonus = 1 - damageBonus + attacker.calculation.damageBonus
     }
     defenseBonus = 1 - defender.calculation.defenseBonus
     defenseMagicBonus = 1 - defender.calculation.defenseMagicBonus
     rangePenalty = 1 - rangePenalty
+    const totalBonus = damageBonus * defenseBonus * defenseMagicBonus * rangePenalty
 
-    let minDamage = Math.abs(attacker.minDamage * (damageBonus * defenseBonus * defenseMagicBonus * rangePenalty))
-    let maxDamage = Math.abs(attacker.maxDamage * (damageBonus * defenseBonus * defenseMagicBonus * rangePenalty))
-    let averageDamage = Math.abs((minDamage + maxDamage) / 2)
-
-    minDamage = Math.floor(minDamage * attacker.count)
-    maxDamage = Math.floor(maxDamage * attacker.count)
-    averageDamage = Math.floor(averageDamage * attacker.count)
+    const minDamage = Math.floor(attacker.minDamage * totalBonus * attacker.count)
+    const maxDamage = Math.floor(attacker.maxDamage * totalBonus * attacker.count)
+    const averageDamage = Math.floor((minDamage + maxDamage) / 2)
 
     return {
       minDamage,
