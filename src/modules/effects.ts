@@ -152,10 +152,10 @@ export const Effects = {
     } else if (initiator.hero.skills.fire === 2) {
       attack += defense * 1.5
     } else if (initiator.hero.skills.fire === 3) {
-      defense = 0
+      attack += defense * 2
     }
 
-    attack += defense * 2
+    defense = 0
 
     return {
       ...target,
