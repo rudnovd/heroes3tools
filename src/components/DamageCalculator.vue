@@ -185,8 +185,8 @@ export default defineComponent({
 
     // Return string of total damage or total kills
     const getTotalResultString = (min: number, max: number, average: number) => {
-      if (min > 0 && min !== max) return `${min} — ${max} (~ ${average})`
-      else if (min > 0 && min === max) return min
+      if (min !== max) return `${min} — ${max} (~ ${average})`
+      else if (min === max) return min
       else return 0
     }
 
