@@ -157,6 +157,10 @@ export class Battle {
         effectFunction: Effects.bloodlust,
       },
       {
+        id: Spells.Frenzy,
+        effectFunction: Effects.frenzy,
+      },
+      {
         id: Spells.Prayer,
         effectFunction: Effects.prayer,
       },
@@ -180,7 +184,7 @@ export class Battle {
       }
     })
 
-    if (target.effects.find((effect) => effect.id === Spells.Frenzy)) {
+    if (target.effects.find((effect) => effect.id === Spells.Slayer)) {
       target = Effects.slayer(attacker, this.defender, target)
     }
 
