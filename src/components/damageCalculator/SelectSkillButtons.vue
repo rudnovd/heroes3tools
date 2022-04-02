@@ -20,7 +20,7 @@
 <script lang="ts">
 import type { BattleSide } from '@/models/Battle'
 import type { Level } from '@/models/Level'
-import { defineComponent, PropType, ref } from 'vue'
+import { defineComponent, PropType, ref, watch } from 'vue'
 
 export default defineComponent({
   name: 'SelectSkillButtons',
@@ -38,10 +38,19 @@ export default defineComponent({
       type: Array as PropType<Array<Level>>,
       required: true,
     },
+    value: {
+      type: Number,
+      required: true,
+    },
   },
   emits: ['click'],
   setup(props, context) {
-    const selectedLevel = ref(0)
+    const selectedLevel = ref(props.value)
+
+    watch(
+      () => props.value,
+      (newValue) => (selectedLevel.value = newValue)
+    )
 
     const onClick = (level: number) => {
       if (level === selectedLevel.value) {

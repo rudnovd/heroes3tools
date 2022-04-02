@@ -72,6 +72,7 @@
           :key="`${sideName}-skill-${key}-buttons`"
           :color="sideName"
           :name="skill"
+          :value="side.hero.skills[key] || 0"
           :levels="levels.slice(1, levels.length)"
           @click="side.hero!.skills[key] = $event"
         />
