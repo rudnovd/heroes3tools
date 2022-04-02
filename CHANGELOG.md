@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-rc.3](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-rc.2...v2.0.0-rc.3) (2022-04-02)
+
+
+### Features
+
+* **DamageCalculator:** fill skill buttons when select hero ([da75ded](https://github.com/rudnovd/heroes3tools/commit/da75ded28244799836882fe82d658997803bada2))
+* **database:** fill heroes skills ([e396b84](https://github.com/rudnovd/heroes3tools/commit/e396b849d1b5393dc0a09a6070815994eebb6249))
+* **models:** make Hero skills props partial ([269dab6](https://github.com/rudnovd/heroes3tools/commit/269dab6f071ba130dbcab8f3d565c01acc495a3f))
+
+
+### Bug Fixes
+
+* **Battle:** fix positive effects list ([72206e9](https://github.com/rudnovd/heroes3tools/commit/72206e9c40d8bb7f6a9472ec84ce10486809cdec))
+* **DamageCalculator:** fix displaying calculation results ([cf89a2b](https://github.com/rudnovd/heroes3tools/commit/cf89a2b5a5724ca67b815c2494963eb601fb2b65))
+* **effects:** fix Bless formula ([e9618cb](https://github.com/rudnovd/heroes3tools/commit/e9618cb5d083ca28a5050edd55ffec3c0ac2a1e9))
+* **effects:** fix frenzy effect calculation ([11fa602](https://github.com/rudnovd/heroes3tools/commit/11fa60294c2012a550389edcb8b02fa42560e2c9))
+* **modificators:** fix creature special calculation ([f272631](https://github.com/rudnovd/heroes3tools/commit/f2726319e207d0c953fdbc7fc26178156f3bc8fd))
+
 ## [2.0.0-rc.2](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-rc.1...v2.0.0-rc.2) (2022-03-31)
 
 
