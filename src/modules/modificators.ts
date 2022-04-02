@@ -207,10 +207,10 @@ export const Modificators = {
 
     switch (defender.id) {
       case Creatures.Behemoth:
-        defense *= 0.6
+        defense = defense * 0.6 - 1
         break
       case Creatures.AncientBehemoth:
-        defense *= 0.2
+        defense = defense * 0.2 - 1
         break
       case Creatures.Nix:
         attack *= 0.7
@@ -221,6 +221,8 @@ export const Modificators = {
       default:
         break
     }
+
+    if (defense <= 0) defense = 1
 
     return {
       ...attacker,
