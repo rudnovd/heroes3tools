@@ -253,14 +253,11 @@ export class Battle {
     defenseBonus = 1 - defender.calculation.defenseBonus
     defenseMagicBonus = 1 - defender.calculation.defenseMagicBonus
     rangePenalty = 1 - rangePenalty
+    const totalBonus = damageBonus * defenseBonus * defenseMagicBonus * rangePenalty
 
-    let minDamage = Math.abs(attacker.minDamage * (damageBonus * defenseBonus * defenseMagicBonus * rangePenalty))
-    let maxDamage = Math.abs(attacker.maxDamage * (damageBonus * defenseBonus * defenseMagicBonus * rangePenalty))
-    let averageDamage = Math.abs((minDamage + maxDamage) / 2)
-
-    minDamage = Math.floor(minDamage * attacker.count)
-    maxDamage = Math.floor(maxDamage * attacker.count)
-    averageDamage = Math.floor(averageDamage * attacker.count)
+    const minDamage = Math.floor(attacker.minDamage * totalBonus * attacker.count)
+    const maxDamage = Math.floor(attacker.maxDamage * totalBonus * attacker.count)
+    const averageDamage = Math.floor((minDamage + maxDamage) / 2)
 
     return {
       minDamage,
