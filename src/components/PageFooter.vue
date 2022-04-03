@@ -26,6 +26,8 @@
           {{ t('components.pageFooter.sourceCode') }}
         </a>
       </button>
+
+      <span>App version: {{ appVersion }}</span>
     </div>
 
     <BaseDialog v-if="showAboutModal" :show="showAboutModal" size="small" @close="showAboutModal = false">
@@ -121,6 +123,7 @@ export default defineComponent({
       showLicenseModal,
       showAboutModal,
       foundErrorModal,
+      appVersion: import.meta.env.__APP_VERSION__,
 
       changeLocale,
     }
@@ -150,6 +153,11 @@ footer button {
     color: rgb(108, 117, 125);
     text-decoration: none;
   }
+}
+
+footer span {
+  color: rgb(108, 117, 125);
+  text-align: end;
 }
 
 footer select {
