@@ -44,7 +44,7 @@
           or use anonymous form:
         </p>
 
-        <form class="send-error" name="send-error" netlify>
+        <form class="send-error" name="send-error" method="POST" netlify>
           <textarea name="error" :placeholder="t('components.pageFooter.sendErrorForm.placeholder')" />
           <button class="send-error-button" type="submit">
             {{ t('components.pageFooter.sendErrorForm.button') }}
@@ -200,7 +200,7 @@ footer select {
   }
 
   .send-error-button {
-    width: 128px;
+    max-width: 200px;
     font-weight: bold;
     line-height: 1.5;
     color: $color-attacker-text;
