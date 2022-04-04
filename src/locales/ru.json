@@ -1,16 +1,17 @@
 {
-  "common": {
-    "dismiss": "Отклонить",
-    "homePage": "Главная страница",
-    "newContentIsAvailable": "Доступен новый контент",
-    "updateApp": "Обновить приложение"
+  "pages": {
+    "home": "Heroes 3 tools",
+    "damageCalculator": "Калькулятор Урона",
+    "creaturesLibrary": "Библиотека существ",
+    "magicCalculator": "Калькулятор Магии",
+    "pageNotFound": "Страница не найдена"
   },
   "components": {
     "base": {
       "baseSelect": {
+        "selectOptions": "Выбрать опции",
         "noOptions": "Нет опций",
-        "noOptionsFound": "Опций не найдено",
-        "selectOptions": "Выбрать опции"
+        "noOptionsFound": "Опций не найдено"
       }
     },
     "damageCalculator": {
@@ -51,6 +52,7 @@
     },
     "pageFooter": {
       "about": "О проекте",
+      "appVersion": "Версия приложения",
       "foundAnError": "Нашли ошибку?",
       "howToUse": "Как пользоваться",
       "language": "Язык",
@@ -91,17 +93,37 @@
     "level": "Уровень",
     "speed": "Скорость"
   },
-  "extra": {
+  "common": {
     "dismiss": "Отклонить",
     "homePage": "Главная страница",
+    "newCalculatorAnnounce": {
+      "announce": {
+        "here": "здесь",
+        "text": "Калькулятор урона обновлен. {whatsNew}? Старая версия доступна {here}.",
+        "whatsNew": "Что нового"
+      },
+      "modal": {
+        "next": "Далее",
+        "previous": "Назад",
+        "steps": {
+          "1": {
+            "text": "Теперь Калькулятор Урона может содержать несколько вкладок для расчетов.",
+            "title": "Вкладки."
+          },
+          "2": {
+            "text": "Устанавливайте приложение из браузера и пользуйтесь им как настольным приложение (также доступно в оффлайн).",
+            "title": "Настольное приложение."
+          },
+          "3": {
+            "oldVersionText": "Старая версия доступна {here}.",
+            "startCalculating": "Начать расчеты",
+            "text": "Исправлено множество ошибок вычислений.",
+            "title": "Расчеты."
+          }
+        }
+      }
+    },
     "newContentIsAvailable": "Доступен новый контент",
     "updateApp": "Обновить приложение"
-  },
-  "pages": {
-    "creaturesLibrary": "Библиотека существ",
-    "damageCalculator": "Калькулятор Урона",
-    "home": "Heroes 3 tools",
-    "magicCalculator": "Калькулятор Магии",
-    "pageNotFound": "Страница не найдена"
   }
 }
