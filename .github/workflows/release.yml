@@ -17,5 +17,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
-        body: |
-          Please refer to [CHANGELOG.md](https://github.com/rudnovd/heroes3tools/blob/master/CHANGELOG.md) for details.
+        with:
+          body: |
+            Please refer to [CHANGELOG.md](https://github.com/rudnovd/heroes3tools/blob/master/CHANGELOG.md) for details.
