@@ -53,6 +53,7 @@ export default defineComponent({
 
 .check {
   padding-left: 1.2em;
+  user-select: none;
 }
 
 .check-disabled {
