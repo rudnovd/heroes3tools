@@ -27,7 +27,7 @@
         </a>
       </button>
 
-      <span>App version: {{ appVersion }}</span>
+      <span>{{ t('components.pageFooter.appVersion') }}: {{ appVersion }}</span>
     </div>
 
     <BaseDialog v-if="showAboutModal" :show="showAboutModal" size="small" @close="showAboutModal = false">

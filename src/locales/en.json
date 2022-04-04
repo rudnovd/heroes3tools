@@ -45,7 +45,8 @@
       "sendErrorForm": {
         "button": "Send Error",
         "placeholder": "Describe error or paste links to screenshots (for example from https://imgur.com)"
-      }
+      },
+      "appVersion": "App version"
     },
     "homePage": {
       "data": {
@@ -87,6 +88,33 @@
     "homePage": "Home page",
     "newContentIsAvailable": "New content is available",
     "updateApp": "Update app",
-    "dismiss": "Dismiss"
+    "dismiss": "Dismiss",
+    "newCalculatorAnnounce": {
+      "announce": {
+        "text": "Damage calculator has been updated. {whatsNew}? Old version available {here}.",
+        "whatsNew": "Whats new",
+        "here": "here"
+      },
+      "modal": {
+        "steps": {
+          "1": {
+            "title": "Tabs.",
+            "text": "Now Damage Calculator can contain several tabs for calculations."
+          },
+          "2" : {
+            "title": "Desktop app.",
+            "text": "Install the app from browser and use it as a desktop app (also available offline)."
+          },
+          "3": {
+            "title": "Calculations.",
+            "text": "Fixed many calculation errors.",
+            "oldVersionText": "Old version available {here}.",
+            "startCalculating": "Start calculating"
+          }
+        },
+        "previous": "Previous",
+        "next": "Next"
+      }
+    }
   }
 }
