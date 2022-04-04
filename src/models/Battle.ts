@@ -49,12 +49,14 @@ export class Battle {
       effects: this.attacker.activeCreature.effects,
       count: this.attacker.activeCreature.count,
       rangePenalty: this.attacker.activeCreature.rangePenalty,
+      name: this.attacker.activeCreature.name,
     }
     this.defender.activeCreature = {
       ...new CreatureInstance(defenderCreatureOriginal),
       effects: this.defender.activeCreature.effects,
       count: this.defender.activeCreature.count,
-      rangePenalty: this.attacker.activeCreature.rangePenalty,
+      rangePenalty: this.defender.activeCreature.rangePenalty,
+      name: this.defender.activeCreature.name,
     }
 
     // make copy of attacker active creature with modified stats from positive and negative spells
