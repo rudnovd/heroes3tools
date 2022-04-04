@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-rc.4](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-rc.3...v2.0.0-rc.4) (2022-04-04)
+
+
+### Features
+
+* **App:** add announce about new calculator ([17765de](https://github.com/rudnovd/heroes3tools/commit/17765de6259d393b397b586e13cd9b0a0cb0e872))
+* **components:** add BaseButton component ([7e74ae5](https://github.com/rudnovd/heroes3tools/commit/7e74ae5174ac60af11203228cc1f111c2c0dfb46))
+* **PageFooter:** add app version info ([f63b717](https://github.com/rudnovd/heroes3tools/commit/f63b717e125fddbb478677b2c74bc279a4dea4a5))
+* **SelectUnitModal:** focus search when modal open ([ea59692](https://github.com/rudnovd/heroes3tools/commit/ea596921d6eb89554185c7676757d624864f5ddf))
+
+
+### Bug Fixes
+
+* **Battle:** fix creature update ([a036c01](https://github.com/rudnovd/heroes3tools/commit/a036c01894d597e1b978235e3d76eda3e72131d8))
+* **PageFooter:** fix netlify form ([935fa58](https://github.com/rudnovd/heroes3tools/commit/935fa5863881b32a67d3fe9842b0c4e825e6237a))
+
 ## [2.0.0-rc.3](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-rc.2...v2.0.0-rc.3) (2022-04-02)
 
 
