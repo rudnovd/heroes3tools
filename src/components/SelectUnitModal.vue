@@ -2,6 +2,7 @@
   <BaseDialog :show="show" size="large" @close="onClose">
     <template #header>
       <input
+        ref="searchInput"
         v-model="search"
         type="text"
         class="search-input"
@@ -61,7 +62,7 @@
 import BaseDialog from '@/components/base/BaseDialog.vue'
 import type { Creature } from '@/models/Creature'
 import { useStore } from '@/store'
-import { computed, defineAsyncComponent, defineComponent, ref } from 'vue'
+import { computed, defineAsyncComponent, defineComponent, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
@@ -79,11 +80,17 @@ export default defineComponent({
   emits: ['close', 'select'],
   setup(props, context) {
     const { t } = useI18n()
-    const search = ref('')
     const store = useStore()
 
     const creatures = computed(() => store.creatures)
     const towns = computed(() => store.towns)
+
+    const search = ref('')
+    const searchInput = ref()
+
+    onMounted(() => {
+      searchInput.value.focus()
+    })
 
     const searchCreatures = computed(() => {
       return creatures.value.filter((creature: Creature) => {
@@ -130,12 +137,14 @@ export default defineComponent({
     }
 
     return {
+      t,
+
       towns,
       search,
       creaturesByTowns,
       searchCreatures,
+      searchInput,
 
-      t,
       selectUnit,
       selectFirstFounded,
       onClose,
