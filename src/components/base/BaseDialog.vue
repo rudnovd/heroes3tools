@@ -1,6 +1,6 @@
 <template>
-  <transition name="transition-dialog">
-    <teleport to="body">
+  <teleport to="body">
+    <transition name="transition-dialog">
       <div v-if="show" class="dialog-area" role="dialog">
         <div ref="baseDialogRef" class="base-dialog" :class="`base-dialog-${size}`">
           <div class="modal-content">
@@ -13,8 +13,8 @@
           </div>
         </div>
       </div>
-    </teleport>
-  </transition>
+    </transition>
+  </teleport>
 </template>
 
 <script lang="ts">
@@ -127,23 +127,21 @@ export default defineComponent({
   }
 }
 
-.transition-dialog {
-  &-enter-active {
-    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+.transition-dialog-enter-active,
+.transition-dialog-leave-active {
+  transition: opacity 0.25s ease-in-out;
+
+  .base-dialog {
+    transition: transform 0.25s ease-in-out;
   }
-  &-leave-active {
-    transition: opacity 0.2s ease-in, transform 0.2s ease-in;
-  }
-  &-enter {
-    opacity: 0;
-    transform: translateY(-2vh);
-  }
-  &-enter-to {
-    opacity: 1;
-  }
-  &-leave-to {
-    opacity: 0;
-    transform: translateY(-50vh);
+}
+
+.transition-dialog-enter-from,
+.transition-dialog-leave-to {
+  opacity: 0;
+
+  .base-dialog {
+    transform: translateY(-32px);
   }
 }
 </style>
