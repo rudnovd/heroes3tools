@@ -1,7 +1,7 @@
 <template>
   <div class="select">
-    <div class="container" @click="open">
-      <div class="selected">
+    <div class="container">
+      <div class="selected" @click="open">
         <input
           v-show="!selectedValue || search.length"
           v-model="search"
@@ -19,29 +19,31 @@
       <button v-if="selectedValue" class="clear-button" @click="onClear"></button>
 
       <!-- Caret button -->
-      <button class="caret" :class="{ 'is-open': opened }"></button>
+      <button ref="caretRef" class="caret" :class="{ 'is-open': opened }" @click="opened = !opened"></button>
     </div>
 
-    <div
-      v-show="opened"
-      :ref="containerProps.ref"
-      class="items"
-      :class="dropdownPosition"
-      tabindex="-1"
-      @scroll="containerProps.onScroll"
-    >
-      <ul v-bind="wrapperProps">
-        <li
-          v-for="{ index, data } in optionsList"
-          :key="index"
-          class="option-item"
-          :class="{ selected: selectedValue && selectedValue[label] === data[label] }"
-          @click="onSelect(data)"
-        >
-          <slot name="option" :option="data">{{ data[label] }}</slot>
-        </li>
-      </ul>
-    </div>
+    <Transition name="fade">
+      <div
+        v-if="opened"
+        :ref="containerProps.ref"
+        class="items"
+        :class="dropdownPosition"
+        tabindex="-1"
+        @scroll="containerProps.onScroll"
+      >
+        <ul v-bind="wrapperProps">
+          <li
+            v-for="{ index, data } in optionsList"
+            :key="index"
+            class="option-item"
+            :class="{ selected: selectedValue && selectedValue[label] === data[label] }"
+            @click="onSelect(data)"
+          >
+            <slot name="option" :option="data">{{ data[label] }}</slot>
+          </li>
+        </ul>
+      </div>
+    </Transition>
 
     <div v-if="opened && !options.length" class="no-options">
       <slot name="noOptions">{{ t('components.base.baseSelect.noOptions') }}</slot>
@@ -126,7 +128,10 @@ export default defineComponent({
     }
 
     const open = () => {
-      if (!opened.value) opened.value = true
+      if (!opened.value) {
+        opened.value = true
+        containerProps.ref.value.focus()
+      }
     }
 
     const firstOptions = computed(() => {
@@ -162,7 +167,11 @@ export default defineComponent({
       }
     })
 
-    onClickOutside(containerProps.ref, () => (opened.value = false))
+    onClickOutside(containerProps.ref, () => {
+      setTimeout(() => {
+        opened.value = false
+      }, 100)
+    })
 
     return {
       t,
@@ -227,7 +236,7 @@ export default defineComponent({
 
 .caret {
   position: relative;
-  z-index: 10;
+  // z-index: 10;
   flex-grow: 0;
   flex-shrink: 0;
   width: 0.625rem;
@@ -312,5 +321,15 @@ export default defineComponent({
 
 .no-options {
   border: 1px solid #dee2e6;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
