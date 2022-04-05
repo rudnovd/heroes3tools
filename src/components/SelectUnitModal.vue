@@ -62,7 +62,7 @@
 import BaseDialog from '@/components/base/BaseDialog.vue'
 import type { Creature } from '@/models/Creature'
 import { useStore } from '@/store'
-import { computed, defineAsyncComponent, defineComponent, onMounted, ref } from 'vue'
+import { computed, defineAsyncComponent, defineComponent, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
@@ -88,9 +88,12 @@ export default defineComponent({
     const search = ref('')
     const searchInput = ref()
 
-    onMounted(() => {
-      searchInput.value.focus()
-    })
+    watch(
+      () => props.show,
+      (newShowState) => {
+        if (newShowState) nextTick(() => searchInput.value.focus())
+      }
+    )
 
     const searchCreatures = computed(() => {
       return creatures.value.filter((creature: Creature) => {
