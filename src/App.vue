@@ -17,7 +17,10 @@
     <img src="@/assets/icons/arrow_back.svg" alt="back" width="16" height="16" />
     {{ t('common.homePage') }}
   </router-link>
-  <router-view />
+
+  <Transition name="router">
+    <router-view />
+  </Transition>
 
   <BaseNotification v-if="needRefresh" :show="needRefresh" :buttons="notificationsButtons">
     {{ t('common.newContentIsAvailable') }}.
@@ -222,13 +225,13 @@ export default defineComponent({
   }
 }
 
-.transition-router-enter-active,
-.transition-router-leave-active {
+.router-enter-active,
+.router-leave-active {
   transition: opacity 0.5s ease;
 }
 
-.transition-router-enter-from,
-.transition-router-leave-to {
+.router-enter-from,
+.router-leave-to {
   opacity: 0;
 }
 </style>
