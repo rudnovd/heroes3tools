@@ -23,9 +23,9 @@
       <div class="search-creature">
         <input
           ref="searchInput"
-          v-model="search"
+          :value="search"
           :placeholder="t('components.selectUnitModal.searchCreature')"
-          @input="searchUnit"
+          @input="setSearch"
         />
       </div>
     </section>
@@ -50,27 +50,25 @@
         @click="onSelectCreature"
       />
     </div>
-  </section>
 
-  <PageFooter :about="{ hide: true }" />
+    <PageFooter :about="{ hide: true }" border="none" />
+  </section>
 </template>
 
 <script lang="ts">
-import CreatureCard from '@/components/creaturesLibrary/CreatureCard.vue'
 import ObjectPortrait from '@/components/ObjectPortrait.vue'
 import { selectedLanguage } from '@/i18n'
 import type { Creature } from '@/models/Creature'
 import { useStore } from '@/store'
-import { computed, defineAsyncComponent, defineComponent, onUnmounted, ref } from 'vue'
+import { useDebounce } from '@vueuse/core'
+import { computed, defineAsyncComponent, defineComponent, onUnmounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
-
-let searchTimeout = 0
 
 export default defineComponent({
   name: 'CreaturesLibraryPage',
   components: {
-    CreatureCard,
+    CreatureCard: defineAsyncComponent(() => import('@/components/creaturesLibrary/CreatureCard.vue')),
     ObjectPortrait,
     PageFooter: defineAsyncComponent(() => import('@/components/PageFooter.vue')),
   },
@@ -85,6 +83,7 @@ export default defineComponent({
 
     const selectedCreature = ref<Creature | null>(null)
     const search = ref('')
+    const debouncedSearch = useDebounce(search, 500)
     const searchInput = ref()
 
     if (!store.isDataLoaded) store.loadData(selectedLanguage.value)
@@ -92,13 +91,10 @@ export default defineComponent({
     const keyboardSearch = (value: KeyboardEvent) => {
       if (value.key === 'Enter') {
         if (search.value.length > 0) {
-          searchUnit()
           search.value = ''
         } else if (route.hash.length > 0) {
           router.replace({ hash: '' })
         }
-      } else {
-        searchUnit()
       }
     }
 
@@ -107,25 +103,21 @@ export default defineComponent({
       document.removeEventListener('keyup', keyboardSearch)
     })
 
-    const searchUnit = () => {
-      if (!search.value.length) {
-        return
-      }
-
-      if (searchTimeout) {
-        clearTimeout(searchTimeout)
-        searchTimeout = 0
-      }
-
-      if (search.value.length) {
+    watch(debouncedSearch, (searchValue) => {
+      if (searchValue.length) {
         const foundCreature = creatures.value.find((creature: Creature) => {
-          return creature.name.toLowerCase().indexOf(search.value.trim().toLowerCase()) > -1
+          return creature.name.toLowerCase().indexOf(searchValue.trim().toLowerCase()) > -1
         })
 
         if (foundCreature) {
           router.replace({ hash: `#${foundCreature.name}` })
         }
       }
+    })
+
+    const setSearch = (event: Event) => {
+      const target = event.target as HTMLInputElement
+      search.value = target.value
     }
 
     const onSelectCreature = (creature: Creature) => {
@@ -147,7 +139,7 @@ export default defineComponent({
       selectedCreature,
       searchInput,
 
-      searchUnit,
+      setSearch,
       onSelectCreature,
     }
   },
@@ -176,13 +168,17 @@ export default defineComponent({
   right: 16px;
 
   input {
-    min-width: 150px;
+    width: 120px;
     height: 32px;
     opacity: 0.5;
     transition: opacity 0.25s;
 
     &:hover {
       opacity: 1;
+    }
+
+    @include media-medium {
+      width: 170px;
     }
   }
 }
@@ -206,7 +202,7 @@ export default defineComponent({
   grid-template-columns: 100%;
   margin-bottom: 3rem;
 
-  &:last-child {
+  &:nth-last-child(-n + 2) {
     margin-bottom: 0;
   }
 
