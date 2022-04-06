@@ -70,16 +70,15 @@
 </template>
 
 <script lang="ts">
-import BaseDialog from '@/components/base/BaseDialog.vue'
 import { selectedLanguage, setLanguage } from '@/i18n'
-import { defineComponent, PropType, ref } from 'vue'
+import { defineAsyncComponent, defineComponent, PropType, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'PageFooter',
   components: {
-    BaseDialog,
+    BaseDialog: defineAsyncComponent(() => import('@/components/base/BaseDialog.vue')),
   },
   props: {
     about: {
