@@ -20,7 +20,7 @@
 <script lang="ts">
 import CloseButton from '@/components/buttons/CloseButton.vue'
 import { onClickOutside } from '@vueuse/core'
-import { defineComponent, onMounted, onUnmounted, PropType, ref } from 'vue'
+import { defineComponent, PropType, ref, watch } from 'vue'
 
 type BaseDialogSizesProp = 'small' | 'medium' | 'large' | 'maximum'
 
@@ -45,18 +45,21 @@ export default defineComponent({
 
     onClickOutside(baseDialogRef, () => context.emit('close'))
 
-    onMounted(() => {
-      const scrollbarWidth = window.innerWidth - document.body.clientWidth
-      document.body.style.paddingRight = `${scrollbarWidth}px`
-      document.body.classList.add('no-scroll')
-    })
-
-    onUnmounted(() => {
-      setTimeout(() => {
-        document.body.classList.remove('no-scroll')
-        document.body.style.paddingRight = ''
-      }, 200)
-    })
+    watch(
+      () => props.show,
+      (newShowState) => {
+        if (newShowState) {
+          const scrollbarWidth = window.innerWidth - document.body.clientWidth
+          document.body.style.paddingRight = `${scrollbarWidth}px`
+          document.body.classList.add('no-scroll')
+        } else {
+          setTimeout(() => {
+            document.body.classList.remove('no-scroll')
+            document.body.style.paddingRight = ''
+          }, 200)
+        }
+      }
+    )
 
     return {
       baseDialogRef,
