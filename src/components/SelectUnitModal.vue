@@ -3,11 +3,12 @@
     <template #header>
       <input
         ref="searchInput"
-        v-model="search"
+        :value="search"
         type="text"
         class="search-input"
         :placeholder="t('components.selectUnitModal.searchCreature')"
         @keyup.enter="selectFirstFounded"
+        @input="searchCreature"
       />
     </template>
 
@@ -139,6 +140,11 @@ export default defineComponent({
       context.emit('close')
     }
 
+    const searchCreature = (event: Event) => {
+      const target = event.currentTarget as HTMLInputElement
+      search.value = target.value
+    }
+
     return {
       t,
 
@@ -151,6 +157,7 @@ export default defineComponent({
       selectUnit,
       selectFirstFounded,
       onClose,
+      searchCreature,
     }
   },
 })
