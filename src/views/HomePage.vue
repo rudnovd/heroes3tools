@@ -2,7 +2,7 @@
   <section class="home-page">
     <h1>Heroes III tools</h1>
 
-    <section class="page-links">
+    <main class="page-links">
       <div v-for="page in pages" :key="page.path" class="link-card" :class="{ disabled: page.disabled }">
         <ObjectPortrait
           folder="/images/pages/home"
@@ -17,21 +17,21 @@
           <span v-else>{{ page.name }}</span>
         </h2>
       </div>
-    </section>
+    </main>
+
+    <PageFooter>
+      <template #aboutModal>
+        <h2>{{ t('components.homePage.data.1') }}</h2>
+        <p>{{ t('components.homePage.data.2') }}</p>
+
+        <i18n-t keypath="components.homePage.data.3" tag="p">
+          <template #email>
+            <a href="mailto:feedback@heroes3.tools" target="_blank">feedback@heroes3.tools</a>
+          </template>
+        </i18n-t>
+      </template>
+    </PageFooter>
   </section>
-
-  <PageFooter>
-    <template #aboutModal>
-      <h2>{{ t('components.homePage.data.1') }}</h2>
-      <p>{{ t('components.homePage.data.2') }}</p>
-
-      <i18n-t keypath="components.homePage.data.3" tag="p">
-        <template #email>
-          <a href="mailto:feedback@heroes3.tools" target="_blank">feedback@heroes3.tools</a>
-        </template>
-      </i18n-t>
-    </template>
-  </PageFooter>
 </template>
 
 <script lang="ts">
@@ -81,10 +81,10 @@ export default defineComponent({
 <style lang="scss" scoped>
 .home-page {
   display: grid;
-  grid-auto-rows: min-content;
+  grid-template-rows: min-content 1fr 30px;
   gap: 16px;
   min-width: 300px;
-  min-height: calc(100% - 30px);
+  min-height: 100%;
   margin: 0 auto;
 
   @include media-medium {
@@ -92,15 +92,23 @@ export default defineComponent({
     padding-bottom: unset;
   }
 
+  @include media-large {
+    grid-template-rows: 1fr 2fr 30px;
+  }
+
   & > h1 {
-    text-align: center;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
   }
 }
 
 .page-links {
   display: grid;
   grid-template-columns: 100%;
+  grid-auto-rows: min-content;
   gap: 1rem;
+  align-items: start;
   justify-items: center;
   padding: 0px 16px 16px;
 
