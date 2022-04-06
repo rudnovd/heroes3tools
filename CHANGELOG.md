@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-rc.5](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-rc.4...v2.0.0-rc.5) (2022-04-06)
+
+
+### Features
+
+* **App:** add router transition ([176f0df](https://github.com/rudnovd/heroes3tools/commit/176f0df6e090834f894ad9e56017015f89ff6e9a))
+
+
+### Bug Fixes
+
+* **SelectUnitModal:** change input focus method ([890f199](https://github.com/rudnovd/heroes3tools/commit/890f199706f2dbc1e0c09174bb088f56938e4101))
+* **SelectUnitModal:** fix search for mobile devices ([413f676](https://github.com/rudnovd/heroes3tools/commit/413f676092fc70858a5e9b45ad45dd19330ff0b0))
+
 ## [2.0.0-rc.4](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-rc.3...v2.0.0-rc.4) (2022-04-04)
 
 
