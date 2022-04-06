@@ -252,8 +252,12 @@ export default defineComponent({
   box-shadow: 0 0 3px rgba(170, 170, 170, 0.5);
 
   @include media-large {
-    grid-template-rows: minmax(85vh, auto) 1fr;
+    grid-template-rows: minmax(80vh, auto) 1fr;
     grid-template-columns: 50% 50%;
+  }
+
+  @include media-maximum {
+    grid-template-rows: minmax(84vh, auto) 1fr;
   }
 }
 
