@@ -10,6 +10,8 @@
           {{ locale.value }}
         </option>
       </select>
+
+      <slot></slot>
     </div>
 
     <div class="right-side">
