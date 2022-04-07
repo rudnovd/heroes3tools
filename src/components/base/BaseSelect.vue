@@ -128,10 +128,7 @@ export default defineComponent({
     }
 
     const open = () => {
-      if (!opened.value) {
-        opened.value = true
-        containerProps.ref.value.focus()
-      }
+      if (!opened.value) opened.value = true
     }
 
     const firstOptions = computed(() => {
