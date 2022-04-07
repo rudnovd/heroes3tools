@@ -9,14 +9,12 @@ on:
 
 jobs:
   build:
-    if: github.event.base_ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           body: |
             Please refer to [CHANGELOG.md](https://github.com/rudnovd/heroes3tools/blob/master/CHANGELOG.md) for details.
