@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-rc.6](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-rc.5...v2.0.0-rc.6) (2022-04-11)
+
+
+### Features
+
+* **components:** add BaseTooltip component ([cae1616](https://github.com/rudnovd/heroes3tools/commit/cae161684a8b3bfdc53e1bb862b9b3cfd4a8219b))
+* **components:** add HowToUse component ([ab711fc](https://github.com/rudnovd/heroes3tools/commit/ab711fc51dc09021c56b17b7be7a029a803dcad4))
+* **DamageCalculatorPage:** add how to use guide ([fea5b5c](https://github.com/rudnovd/heroes3tools/commit/fea5b5c9538de272daad9d53bcc752401c65c4a3))
+* **locales:** update locales ([dc13913](https://github.com/rudnovd/heroes3tools/commit/dc13913a449952ac4b6b20d8b36b1c7872bb42af))
+* **PageFooter:** add slot in component ([551df92](https://github.com/rudnovd/heroes3tools/commit/551df929606da3bdede02b5ae47b8282d0b0dc8e))
+
+
+### Bug Fixes
+
+* **BaseSelect:** fix open function ([16e2505](https://github.com/rudnovd/heroes3tools/commit/16e25055f232d4a30001f71d6bc65e377a3e84dd))
+
 ## [2.0.0-rc.5](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-rc.4...v2.0.0-rc.5) (2022-04-06)
 
 
