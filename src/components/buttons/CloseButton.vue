@@ -10,6 +10,16 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'CloseButton',
+  props: {
+    color: {
+      type: String,
+      default: 'black',
+    },
+    weight: {
+      type: String,
+      default: '1px',
+    },
+  },
   emits: ['click'],
 })
 </script>
@@ -18,21 +28,22 @@ export default defineComponent({
 .cross-first-line,
 .cross-second-line {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: v-bind(color);
+  opacity: 0.3;
 }
 
 .cross-first-line {
   top: 50%;
   left: 0;
   width: 100%;
-  height: 1px;
+  height: v-bind(weight);
   transform: translate(0%, -50%) rotate(45deg);
 }
 
 .cross-second-line {
   top: 0;
   left: 50%;
-  width: 1px;
+  width: v-bind(weight);
   height: 100%;
   transform: translate(-50%, 0%) rotate(45deg);
 }
@@ -46,7 +57,7 @@ export default defineComponent({
 
   &:hover .cross-first-line,
   &:hover .cross-second-line {
-    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0.7;
   }
 
   &:active .cross-first-line,
