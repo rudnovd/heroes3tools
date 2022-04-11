@@ -30,7 +30,6 @@
     },
     "pageFooter": {
       "about": "About",
-      "howToUse": "How to use",
       "language": "Language",
       "foundAnError": "Found an error?",
       "licenseInformation": "License information",
@@ -69,6 +68,10 @@
         "nothingHere": "Nothing here.",
         "whereCouldItBe": "Where could it be?"
       }
+    },
+    "howToUse": {
+      "finishTheTour": "Finish the tour",
+      "howToUse": "How to use"
     }
   },
   "data": {
@@ -115,6 +118,13 @@
         "previous": "Previous",
         "next": "Next"
       }
+    },
+    "howToUseSteps": {
+      "selectAttackerCreature": "Click to select attacker creature",
+      "selectAttackerHero": "Click to select attacker hero",
+      "selectDefenderCreature": "Click to select defender creature",
+      "selectDefenderHero": "Click to select defender hero",
+      "damage": "Damage values displays here"
     }
   }
 }

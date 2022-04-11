@@ -1,17 +1,50 @@
 {
-  "pages": {
-    "home": "Heroes 3 tools",
-    "damageCalculator": "Калькулятор Урона",
-    "creaturesLibrary": "Библиотека существ",
-    "magicCalculator": "Калькулятор Магии",
-    "pageNotFound": "Страница не найдена"
+  "common": {
+    "dismiss": "Отклонить",
+    "homePage": "Главная страница",
+    "howToUseSteps": {
+      "damage": "Значения урона отображаются здесь",
+      "selectAttackerCreature": "Нажмите, чтобы выбрать атакующее существо",
+      "selectAttackerHero": "Нажмите, чтобы выбрать атакующего героя",
+      "selectDefenderCreature": "Нажмите, чтобы выбрать защищающееся существо",
+      "selectDefenderHero": "Нажмите, чтобы выбрать защищающегося героя"
+    },
+    "newCalculatorAnnounce": {
+      "announce": {
+        "here": "здесь",
+        "text": "Калькулятор урона обновлен. {whatsNew}? Старая версия доступна {here}.",
+        "whatsNew": "Что нового"
+      },
+      "modal": {
+        "next": "Далее",
+        "previous": "Назад",
+        "steps": {
+          "1": {
+            "text": "Теперь Калькулятор Урона может содержать несколько вкладок для расчетов.",
+            "title": "Вкладки."
+          },
+          "2": {
+            "text": "Устанавливайте приложение из браузера и пользуйтесь им как настольным приложение (также доступно в оффлайн).",
+            "title": "Настольное приложение."
+          },
+          "3": {
+            "oldVersionText": "Старая версия доступна {here}.",
+            "startCalculating": "Начать расчеты",
+            "text": "Исправлено множество ошибок вычислений.",
+            "title": "Расчеты."
+          }
+        }
+      }
+    },
+    "newContentIsAvailable": "Доступен новый контент",
+    "updateApp": "Обновить приложение"
   },
   "components": {
     "base": {
       "baseSelect": {
-        "selectOptions": "Выбрать опции",
         "noOptions": "Нет опций",
-        "noOptionsFound": "Опций не найдено"
+        "noOptionsFound": "Опций не найдено",
+        "selectOptions": "Выбрать опции"
       }
     },
     "damageCalculator": {
@@ -49,6 +82,10 @@
         "2": "Heroes 3 tools - Набор инструментов для упрощения расчётов в игре Heroes of Might and Magic III: Horn of The Abyss.",
         "3": "Об идеях и улучшениях пишите на {email}"
       }
+    },
+    "howToUse": {
+      "finishTheTour": "Завершить экскурсию",
+      "howToUse": "Как пользоваться"
     },
     "pageFooter": {
       "about": "О проекте",
@@ -93,37 +130,17 @@
     "level": "Уровень",
     "speed": "Скорость"
   },
-  "common": {
+  "extra": {
     "dismiss": "Отклонить",
     "homePage": "Главная страница",
-    "newCalculatorAnnounce": {
-      "announce": {
-        "here": "здесь",
-        "text": "Калькулятор урона обновлен. {whatsNew}? Старая версия доступна {here}.",
-        "whatsNew": "Что нового"
-      },
-      "modal": {
-        "next": "Далее",
-        "previous": "Назад",
-        "steps": {
-          "1": {
-            "text": "Теперь Калькулятор Урона может содержать несколько вкладок для расчетов.",
-            "title": "Вкладки."
-          },
-          "2": {
-            "text": "Устанавливайте приложение из браузера и пользуйтесь им как настольным приложение (также доступно в оффлайн).",
-            "title": "Настольное приложение."
-          },
-          "3": {
-            "oldVersionText": "Старая версия доступна {here}.",
-            "startCalculating": "Начать расчеты",
-            "text": "Исправлено множество ошибок вычислений.",
-            "title": "Расчеты."
-          }
-        }
-      }
-    },
     "newContentIsAvailable": "Доступен новый контент",
     "updateApp": "Обновить приложение"
+  },
+  "pages": {
+    "creaturesLibrary": "Библиотека существ",
+    "damageCalculator": "Калькулятор Урона",
+    "home": "Heroes 3 tools",
+    "magicCalculator": "Калькулятор Магии",
+    "pageNotFound": "Страница не найдена"
   }
 }
