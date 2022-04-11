@@ -2,7 +2,7 @@
   <button @click="startTour">{{ t('components.howToUse.howToUse') }}?</button>
   <teleport v-if="isStarted" to="body">
     <div class="tour-background">
-      <CloseButton @click="isStarted = false" />
+      <CloseButton color="white" weight="3px" @click="isStarted = false" />
       <div v-for="(tourContainer, index) in tourContainers" :key="index" :ref="refs.set">
         <BaseTooltip :anchor="tourContainer?.node!">
           <div class="tour-content">
@@ -176,7 +176,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .tour-background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
