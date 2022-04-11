@@ -84,7 +84,7 @@ export default defineComponent({
   grid-template-rows: min-content 1fr 30px;
   gap: 16px;
   min-width: 300px;
-  min-height: 100%;
+  min-height: 100vh;
   margin: 0 auto;
 
   @include media-medium {
