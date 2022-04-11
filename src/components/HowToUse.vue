@@ -1,5 +1,5 @@
 <template>
-  <button @click="startTour">How to use?</button>
+  <button @click="startTour">{{ t('components.howToUse.howToUse') }}?</button>
   <teleport v-if="isStarted" to="body">
     <div class="tour-background">
       <CloseButton @click="isStarted = false" />
@@ -26,6 +26,7 @@
 import { computed } from '@vue/reactivity'
 import { useTemplateRefsList } from '@vueuse/core'
 import { defineComponent, PropType, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import BaseButton from './base/BaseButton.vue'
 import BaseTooltip from './base/BaseTooltip.vue'
 import CloseButton from './buttons/CloseButton.vue'
@@ -54,6 +55,8 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const { t } = useI18n()
+
     const isStarted = ref(false)
     const step = ref(props.firstStep)
     const refs = useTemplateRefsList<HTMLDivElement>()
@@ -143,7 +146,7 @@ export default defineComponent({
 
         if (step.value === props.steps.length - 1 && index === stepsWithText.length - 1) {
           buttons.push({
-            text: 'End tour',
+            text: t('components.howToUse.finishTheTour'),
             action: () => {
               triggerStep()
             },
@@ -159,6 +162,8 @@ export default defineComponent({
     })
 
     return {
+      t,
+
       isStarted,
       tourContainers,
       refs,
