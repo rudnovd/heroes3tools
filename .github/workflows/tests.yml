@@ -3,8 +3,8 @@ name: tests
 on:
   push:
     branches:
-      - master
       - preview
+      - test
   pull_request:
 
 jobs:
@@ -16,4 +16,6 @@ jobs:
         with:
           node-version: '16'
       - run: npm ci
+      - run: npm run stylelint
+      - run: npm run build
       - run: npm run test
