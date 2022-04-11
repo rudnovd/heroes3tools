@@ -144,7 +144,6 @@ footer {
 
 footer button {
   color: rgb(108, 117, 125);
-  text-align: end;
 
   &:hover {
     text-decoration: underline;
@@ -172,17 +171,30 @@ footer select {
 
 .left-side,
 .right-side {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 16px;
+  display: grid;
+  grid-template-columns: max-content;
+  grid-auto-flow: row;
+
+  @include media-medium {
+    grid-auto-flow: column;
+    gap: 0 16px;
+  }
 }
 
-.left-side button {
-  text-align: left;
+.left-side {
+  justify-content: start;
+
+  & > * {
+    text-align: left;
+  }
 }
 
 .right-side {
-  justify-content: flex-end;
+  justify-content: end;
+
+  & > * {
+    text-align: right;
+  }
 }
 
 .modal-content p {
