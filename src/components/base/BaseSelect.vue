@@ -4,11 +4,12 @@
       <div class="selected" @click="open">
         <input
           v-show="!selectedValue || search.length"
-          v-model="search"
+          :value="search"
           autocomplete="off"
           class="search"
           :placeholder="placeholder"
           @focus="open"
+          @input="searchHero"
         />
         <div v-if="selectedValue && !search.length" class="selected-value">
           <slot name="selected" :selected="selectedValue">{{ selectedValue }}</slot>
@@ -131,6 +132,11 @@ export default defineComponent({
       if (!opened.value) opened.value = true
     }
 
+    const searchHero = (event: Event) => {
+      const target = event.currentTarget as HTMLInputElement
+      search.value = target.value
+    }
+
     const firstOptions = computed(() => {
       if (search.value.length) {
         return props.options
@@ -181,6 +187,7 @@ export default defineComponent({
       wrapperProps,
 
       open,
+      searchHero,
       onSelect,
       onClear,
     }
