@@ -76,10 +76,12 @@ export default defineComponent({
       const currentStep = props.steps[stepToDisplay]
       currentStep.targets.forEach((target) => {
         const element = document.querySelector(target.node) as HTMLElement
-        if (!element) step.value++
+        if (!element) {
+          step.value++
+          return
+        }
 
         const elementStyles = getComputedStyle(element)
-        // console.log(elementStyles.position)
         // if (!elementStyles.position.length || elementStyles.position === 'static') {
         //   element.style.setProperty('position', 'relative')
         // }
