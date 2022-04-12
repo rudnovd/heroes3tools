@@ -23,11 +23,9 @@
         {{ t('components.pageFooter.licenseInformation') }}
       </button>
 
-      <button>
-        <a href="https://github.com/rudnovd/heroes3tools" target="_blank" rel="noopener">
-          {{ t('components.pageFooter.sourceCode') }}
-        </a>
-      </button>
+      <a href="https://github.com/rudnovd/heroes3tools" target="_blank" rel="noopener">
+        {{ t('components.pageFooter.sourceCode') }}
+      </a>
 
       <span>{{ t('components.pageFooter.appVersion') }}: {{ appVersion }}</span>
     </div>
@@ -140,30 +138,31 @@ footer {
   padding: 4px 8px;
   font-size: 0.875rem;
   border-top: v-bind(border);
-}
 
-footer button {
-  color: rgb(108, 117, 125);
-
-  &:hover {
-    text-decoration: underline;
+  a,
+  button,
+  span,
+  select {
+    color: rgb(108, 117, 125);
   }
 
-  & > a {
-    color: rgb(108, 117, 125);
+  a,
+  button {
     text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
 footer span {
-  color: rgb(108, 117, 125);
   text-align: end;
 }
 
 footer select {
   padding: 0;
   font: inherit;
-  color: #6c757d;
   cursor: pointer;
   background-color: transparent;
   border: none;
