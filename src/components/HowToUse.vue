@@ -134,6 +134,10 @@ export default defineComponent({
       }
     })
 
+    watch(isStarted, (newIsStarted) => {
+      if (!newIsStarted && step.value <= props.steps.length - 1) returnElementStyles(step.value)
+    })
+
     const tourContainers = computed(() => {
       if (!isStarted.value) return []
       const currentStep = props.steps[step.value]
