@@ -358,7 +358,7 @@ export const creatures: Array<Creature> = [
     special: {
       magicResistanceChance: 20,
     },
-    description: 'Resistance +20%',
+    description: 'Magic Resistance 20%',
   },
   {
     name: 'Battle Dwarf',
@@ -380,7 +380,7 @@ export const creatures: Array<Creature> = [
     special: {
       magicResistanceChance: 40,
     },
-    description: 'Resistance +40%',
+    description: 'Magic Resistance 40%',
   },
   {
     name: 'Wood Elf',
@@ -443,7 +443,7 @@ export const creatures: Array<Creature> = [
     special: {
       magicDamperValue: 2,
     },
-    description: 'Flying, Magic damper',
+    description: 'Flying, Magic damper (enemy spells cost two extra spell points)',
   },
   {
     name: 'Silver Pegasus',
@@ -465,7 +465,7 @@ export const creatures: Array<Creature> = [
     special: {
       magicDamperValue: 2,
     },
-    description: 'Flying, Magic damper',
+    description: 'Flying, Magic damper (enemy spells cost two extra spell points)',
   },
   {
     name: 'Dendroid Guard',
@@ -528,7 +528,7 @@ export const creatures: Array<Creature> = [
     aiValue: 1806,
     growth: 2,
     cost: { gold: 850 },
-    description: 'Blind, Aura of Resistance +20%',
+    description: 'Blind, Aura of Resistance 20%',
   },
   {
     name: 'War Unicorn',
@@ -547,7 +547,7 @@ export const creatures: Array<Creature> = [
     aiValue: 2030,
     growth: 2,
     cost: { gold: 950 },
-    description: 'Blind, Aura of Resistance +20%',
+    description: 'Blind, Aura of Resistance 20%',
   },
   {
     name: 'Green Dragon',
@@ -698,7 +698,7 @@ export const creatures: Array<Creature> = [
     special: {
       spellDamageResistance: 50,
     },
-    description: 'Unliving, Spell Damage Resistance +50%',
+    description: 'Unliving, Spell Damage Resistance 50%',
   },
   {
     name: 'Iron Golem',
@@ -720,7 +720,7 @@ export const creatures: Array<Creature> = [
     special: {
       spellDamageResistance: 75,
     },
-    description: 'Unliving, Spell Damage Resistance +75%',
+    description: 'Unliving, Spell Damage Resistance 75%',
   },
   {
     name: 'Mage',
@@ -764,7 +764,7 @@ export const creatures: Array<Creature> = [
     special: {
       noMeleePenalty: true,
     },
-    description: 'Ranged (24 shots), No melee penalty, No obstacle penalty, Spells cost -2 sp',
+    description: 'Ranged (24 shots), No melee penalty, No obstacle penalty, Spells cost -2 spell points',
   },
   {
     name: 'Genie',
@@ -812,7 +812,8 @@ export const creatures: Array<Creature> = [
       flying: true,
       hates: [Creatures.Efreet, Creatures.EfreetSultan],
     },
-    description: 'Flying, Spellcaster, Hates Efreet and Efreet Sultans',
+    description:
+      'Flying, Spellcaster (Bless, Bloodlust, Cure, Haste, Protection from Fire, Protection from Water, Shield, Stone Skin, Fortune, Precision, Protection from Air, Air Shield, Anit-Magic, Protection from Earth, Mirth, Counterstrike, Fire Shield, Frenzy, Prayer, Slayer, Magic Mirror), Hates Efreet and Efreet Sultans',
   },
   {
     name: 'Naga',
@@ -2868,7 +2869,7 @@ export const creatures: Array<Creature> = [
       nonLiving: true,
       spellDamageResistance: 85,
     },
-    description: 'Unliving, Spell Damage Resistance +85%',
+    description: 'Unliving, Spell Damage Resistance 85%',
   },
   {
     name: 'Diamond Golem',
@@ -2891,7 +2892,7 @@ export const creatures: Array<Creature> = [
       nonLiving: true,
       spellDamageResistance: 95,
     },
-    description: 'Unliving, Spell Damage Resistance +95%',
+    description: 'Unliving, Spell Damage Resistance 95%',
   },
   {
     name: 'Enchanter',
@@ -2976,7 +2977,7 @@ export const creatures: Array<Creature> = [
     special: {
       flying: true,
     },
-    description: 'Dragon, Crystal generation, Magic resistance +20%',
+    description: 'Dragon, Crystal generation, Magic resistance 20%',
   },
   {
     name: 'Azure Dragon',
@@ -3438,6 +3439,6 @@ export const creatures: Array<Creature> = [
       nonLiving: true,
       spellDamageResistance: 80,
     },
-    description: 'Unliving, Spell Damage Resistance +80%',
+    description: 'Unliving, Spell Damage Resistance 80%',
   },
 ]
