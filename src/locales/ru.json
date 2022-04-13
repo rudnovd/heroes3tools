@@ -141,6 +141,7 @@
     "damageCalculator": "Калькулятор Урона",
     "home": "Heroes 3 tools",
     "magicCalculator": "Калькулятор Магии",
-    "pageNotFound": "Страница не найдена"
+    "pageNotFound": "Страница не найдена",
+    "sendError": "Отправить ошибку"
   }
 }
