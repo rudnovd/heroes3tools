@@ -15,9 +15,9 @@
     </div>
 
     <div class="right-side">
-      <button @click="foundErrorModal = true">
+      <router-link to="send-error">
         {{ t('components.pageFooter.foundAnError') }}
-      </button>
+      </router-link>
 
       <button @click="showLicenseModal = true">
         {{ t('components.pageFooter.licenseInformation') }}
@@ -33,23 +33,6 @@
     <BaseDialog v-if="showAboutModal" :show="showAboutModal" size="small" @close="showAboutModal = false">
       <template #content>
         <slot name="aboutModal"></slot>
-      </template>
-    </BaseDialog>
-
-    <BaseDialog v-if="foundErrorModal" :show="foundErrorModal" @close="foundErrorModal = false">
-      <template #content>
-        <p>
-          Send issue in
-          <a href="https://github.com/rudnovd/heroes3tools/issues" target="_blank" rel="noopener">Github</a>
-          or use anonymous form:
-        </p>
-
-        <form class="send-error" name="send-error" method="POST" netlify>
-          <textarea name="error" :placeholder="t('components.pageFooter.sendErrorForm.placeholder')" />
-          <button class="send-error-button" type="submit">
-            {{ t('components.pageFooter.sendErrorForm.button') }}
-          </button>
-        </form>
       </template>
     </BaseDialog>
 
@@ -96,7 +79,6 @@ export default defineComponent({
 
     const showAboutModal = ref(false)
     const showLicenseModal = ref(false)
-    const foundErrorModal = ref(false)
     const selectedLocale = ref(selectedLanguage.value)
     const locales = ref([
       {
@@ -121,7 +103,6 @@ export default defineComponent({
       selectedLocale,
       showLicenseModal,
       showAboutModal,
-      foundErrorModal,
       appVersion: import.meta.env.__APP_VERSION__,
 
       changeLocale,
@@ -198,27 +179,5 @@ footer select {
 
 .modal-content p {
   margin-bottom: 1rem;
-}
-
-.send-error {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  textarea {
-    height: 100px;
-    font: inherit;
-    border: 1px solid #dee2e6;
-  }
-
-  .send-error-button {
-    max-width: 200px;
-    font-weight: bold;
-    line-height: 1.5;
-    color: $color-attacker-text;
-    background-color: $color-attacker;
-    border: 1px solid $color-attacker;
-    border-radius: 5px;
-  }
 }
 </style>

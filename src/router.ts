@@ -27,6 +27,13 @@ const router = createRouter({
       },
     },
     {
+      path: '/send-error',
+      component: () => import('@/views/SendErrorPage.vue'),
+      meta: {
+        title: 'pages.sendError',
+      },
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: () => import('@/views/NotFoundPage.vue'),
