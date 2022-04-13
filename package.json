@@ -26,7 +26,7 @@
   "dependencies": {
     "@vueuse/core": "^8.2.5",
     "pinia": "^2.0.13",
-    "vue": "^3.2.31",
+    "vue": "^3.2.32",
     "vue-i18n": "^9.1.9",
     "vue-router": "^4.0.14"
   },
@@ -35,11 +35,11 @@
     "@commitlint/config-conventional": "^16.2.1",
     "@intlify/vite-plugin-vue-i18n": "^3.4.0",
     "@localazy/cli": "^1.6.0",
-    "@typescript-eslint/eslint-plugin": "^5.18.0",
-    "@typescript-eslint/parser": "^5.18.0",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
     "@vitejs/plugin-vue": "^2.3.1",
     "@vue/eslint-config-typescript": "^10.0.0",
-    "@vue/test-utils": "^2.0.0-rc.19",
+    "@vue/test-utils": "^2.0.0-rc.20",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.13.0",
@@ -58,16 +58,16 @@
     "stylelint-prettier": "^2.0.0",
     "stylelint-scss": "^4.2.0",
     "typescript": "^4.6.3",
-    "vite": "^2.9.1",
+    "vite": "^2.9.3",
     "vite-plugin-pwa": "^0.11.13",
     "vitest": "^0.9.3",
     "vue-eslint-parser": "^8.3.0",
-    "vue-tsc": "^0.34.5",
-    "workbox-build": "^6.5.2",
-    "workbox-core": "^6.5.2",
-    "workbox-precaching": "^6.5.2",
-    "workbox-routing": "^6.5.2",
-    "workbox-strategies": "^6.5.2"
+    "vue-tsc": "^0.34.6",
+    "workbox-build": "^6.5.3",
+    "workbox-core": "^6.5.3",
+    "workbox-precaching": "^6.5.3",
+    "workbox-routing": "^6.5.3",
+    "workbox-strategies": "^6.5.3"
   },
   "config": {
     "commitizen": {
