@@ -4,6 +4,7 @@
     "damageCalculator": "Damage Calculator",
     "creaturesLibrary": "Creatures Library",
     "magicCalculator": "Magic Calculator",
+    "sendError": "Send Error",
     "pageNotFound": "Page not found"
   },
   "components": {
