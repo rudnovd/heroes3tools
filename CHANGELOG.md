@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-rc.6...v2.0.0) (2022-04-13)
+
+
+### Features
+
+* **CloseButton:** add new props ([8b3159f](https://github.com/rudnovd/heroes3tools/commit/8b3159f4efc375dcccc4469d0a6086017693bdab))
+* **locales:** update locales ([c15321c](https://github.com/rudnovd/heroes3tools/commit/c15321c1ba5e4a00ddde2cfbb8af6bc9efed8840))
+
+
+### Bug Fixes
+
+* **BaseSelect:** fix input for phones ([ab3dfda](https://github.com/rudnovd/heroes3tools/commit/ab3dfda32808f4d42a756e6c6d3bb0cba29a8558))
+* **BaseSelect:** fix search funtion name ([23b21fe](https://github.com/rudnovd/heroes3tools/commit/23b21fe373e973554f439d541aba654a8843e6b1))
+* **DamageCalculatorPage:** fix tabs changing logic ([462c814](https://github.com/rudnovd/heroes3tools/commit/462c8147a85f8d47848f3f9d0bcd4896b9475248))
+* **HomePage:** fix page styles ([2db348d](https://github.com/rudnovd/heroes3tools/commit/2db348de5c8ae51daeeaf09476623fcdb2e1ee60))
+* **HowToUse:** fix displayStep function ([42a7b82](https://github.com/rudnovd/heroes3tools/commit/42a7b8208d47bd02808fb5816c466d25a5a6190e))
+* **HowToUse:** fix z-index when close by button ([7e14dd1](https://github.com/rudnovd/heroes3tools/commit/7e14dd11691cb39c97cd6fd14cd316b5911f9fd5))
+* **styles:** fix app styles ([9881158](https://github.com/rudnovd/heroes3tools/commit/988115814748c008ac4e89971b11f9e4f583075c))
+
 ## [2.0.0-rc.6](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-rc.5...v2.0.0-rc.6) (2022-04-11)
 
 
