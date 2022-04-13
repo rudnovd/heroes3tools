@@ -35,7 +35,7 @@
         <DamageCalculator
           v-for="(calculator, index) in calculators"
           v-show="activeIndex === index"
-          :key="`damage-calculator-tab-${index}`"
+          :key="`damage-calculator-tab-${index}-${Math.random()}`"
           :battle-value="calculator"
         />
       </TransitionGroup>
@@ -236,9 +236,14 @@ export default defineComponent({
 
       // If current calculator selected for delete
       if (activeIndex.value === index) {
-        // Switch to previous or first tab
-        activeIndex.value = calculators.value.length > 1 ? index - 1 : 0
-      } else {
+        if (index > 0 && index < calculators.value.length - 1) {
+          activeIndex.value = index + 1
+        } else if (index > 0 && index !== calculators.value.length - 1) {
+          activeIndex.value = index - 1
+        } else if (index < calculators.value.length - 1) {
+          activeIndex.value = 0
+        }
+      } else if (index < activeIndex.value) {
         activeIndex.value = calculators.value.length - 1
       }
     }
