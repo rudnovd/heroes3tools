@@ -9,7 +9,7 @@
           class="search"
           :placeholder="placeholder"
           @focus="open"
-          @input="searchHero"
+          @input="searchElement"
         />
         <div v-if="selectedValue && !search.length" class="selected-value">
           <slot name="selected" :selected="selectedValue">{{ selectedValue }}</slot>
@@ -132,7 +132,7 @@ export default defineComponent({
       if (!opened.value) opened.value = true
     }
 
-    const searchHero = (event: Event) => {
+    const searchElement = (event: Event) => {
       const target = event.currentTarget as HTMLInputElement
       search.value = target.value
     }
@@ -187,7 +187,7 @@ export default defineComponent({
       wrapperProps,
 
       open,
-      searchHero,
+      searchElement,
       onSelect,
       onClear,
     }
