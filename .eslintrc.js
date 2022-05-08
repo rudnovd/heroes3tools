@@ -5,6 +5,17 @@ module.exports = {
   root: true,
   env: {
     node: true,
+    'vue/setup-compiler-macros': true,
+  },
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    extraFileExtensions: ['.vue'],
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   extends: [
     'plugin:vue/base',
@@ -12,52 +23,49 @@ module.exports = {
     'plugin:vue/vue3-strongly-recommended',
     'plugin:vue/vue3-recommended',
     'eslint:recommended',
-    '@vue/eslint-config-typescript/recommended',
-    'plugin:prettier-vue/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
   ],
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? ['error', { allow: ['warn', 'error'] }] : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'vue/component-name-in-template-casing': ['error', 'PascalCase'],
-    'vue/block-tag-newline': 'error',
-    'vue/custom-event-name-casing': ['error', 'camelCase'],
-    'vue/html-comment-content-spacing': [process.env.NODE_ENV === 'production' ? 'error' : 'warn', 'always'],
-    'vue/match-component-file-name': [
-      'error',
-      {
-        extensions: ['vue'],
-        shouldMatchCase: true,
-      },
-    ],
-    'vue/no-reserved-component-names': [
-      'error',
-      {
-        disallowVueBuiltInComponents: true,
-        disallowVue3BuiltInComponents: true,
-      },
-    ],
-    'vue/no-unused-properties': [
-      process.env.NODE_ENV === 'production' ? 'error' : 'warn',
-      {
-        groups: ['props', 'setup'],
-      },
-    ],
-    'vue/padding-line-between-blocks': [process.env.NODE_ENV === 'production' ? 'error' : 'warn', 'always'],
-    'vue/require-name-property': ['error'],
-    'vue/v-on-function-call': [
-      'error',
-      'never',
-      {
-        ignoreIncludesComment: false,
-      },
-    ],
-    'vue/arrow-spacing': ['error'],
-    '@typescript-eslint/no-non-null-assertion': 'off',
+    rules: {
+      'vue/block-tag-newline': [
+        'error',
+        {
+          singleline: 'always',
+          multiline: 'always',
+        },
+      ],
+      'vue/custom-event-name-casing': ['error', 'kebab-case'],
+      'vue/html-comment-content-spacing': [process.env.NODE_ENV === 'production' ? 'error' : 'warn', 'always'],
+      'vue/no-reserved-component-names': [
+        'error',
+        {
+          disallowVueBuiltInComponents: true,
+          disallowVue3BuiltInComponents: true,
+        },
+      ],
+      'vue/padding-line-between-blocks': [process.env.NODE_ENV === 'production' ? 'error' : 'warn', 'always'],
+      'vue/v-on-function-call': [
+        'error',
+        'never',
+        {
+          ignoreIncludesComment: false,
+        },
+      ],
+      'vue/arrow-spacing': ['error'],
+    },
   },
-  parser: 'vue-eslint-parser',
-  parserOptions: {
-    ecmaVersion: 2020,
-    sourceType: 'module',
-  },
+  overrides: [
+    {
+      files: ['*.d.ts'],
+      rules: {
+        '@typescript-eslint/no-empty-interface': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
+        'no-unused-vars': 'off',
+      },
+    },
+  ],
   ignorePatterns: ['/node_modules/**', '/dist/**', '/public/**'],
 }
