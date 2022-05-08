@@ -2,20 +2,8 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "strict": true,
-    "jsx": "preserve",
-    "importHelpers": true,
     "moduleResolution": "node",
-    "skipLibCheck": true,
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
     "baseUrl": ".",
-    "removeComments": true,
-    "resolveJsonModule": true,
-    "noImplicitAny": false,
-    "importsNotUsedAsValues": "error",
     "types": [
       "vite-plugin-pwa/client",
       "@intlify/vite-plugin-vue-i18n/client"
@@ -25,13 +13,25 @@
         "src/*"
       ],
     },
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable",
-      "ScriptHost",
-      "WebWorker"
-    ]
+    "importsNotUsedAsValues": "error",
+    "noImplicitThis": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "removeComments": true,
+
+    // Required in Vue projects
+    "jsx": "preserve",
+
+    // For `<script setup>`
+    "preserveValueImports": true,
+
+    // Vite recommended (https://vitejs.dev/guide/features.html#typescript-compiler-options=)
+    "isolatedModules": true,
+    "useDefineForClassFields": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true
   },
   "include": [
     "src/**/*.ts",
@@ -39,7 +39,4 @@
     "tests/**/*.ts",
     "tests/**/*.spec.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
 }
