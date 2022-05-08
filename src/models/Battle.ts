@@ -148,7 +148,8 @@ export class Battle {
 
     const positiveEffects: Array<{
       id: number
-      effectFunction: (initiator: DamageCalculatorBattleSide, target: CreatureInstance) => CreatureInstance
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      effectFunction: (...params: any) => CreatureInstance
     }> = [
       {
         id: Spells.Bless,
@@ -200,7 +201,8 @@ export class Battle {
   private calculateWithNegativeEffects(attacker: DamageCalculatorBattleSide, target: CreatureInstance) {
     const negativeEffects: Array<{
       id: number
-      effectFunction: (initiator: DamageCalculatorBattleSide, target: CreatureInstance) => CreatureInstance
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      effectFunction: (...params: any) => CreatureInstance
     }> = [
       {
         id: Spells.Curse,

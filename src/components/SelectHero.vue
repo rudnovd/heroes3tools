@@ -34,7 +34,8 @@
 <script lang="ts">
 import BaseSelect from '@/components/base/BaseSelect.vue'
 import type { Hero, HeroInstance } from '@/models/Hero'
-import { defineAsyncComponent, defineComponent, PropType } from 'vue'
+import type { PropType } from 'vue'
+import { defineAsyncComponent, defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({

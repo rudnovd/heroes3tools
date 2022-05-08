@@ -8,7 +8,8 @@
 
 <script lang="ts">
 import type { BattleSide } from '@/models/Battle'
-import { defineAsyncComponent, defineComponent, PropType, ref } from 'vue'
+import type { PropType } from 'vue'
+import { defineAsyncComponent, defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'PickCreatureButton',

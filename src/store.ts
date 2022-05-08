@@ -10,6 +10,8 @@ import type { Terrain } from './models/Terrain'
 import type { Town } from './models/Town'
 
 export interface StoreState {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any
   classes: Array<Class>
   creatures: Array<Creature>
   heroes: Array<Hero>

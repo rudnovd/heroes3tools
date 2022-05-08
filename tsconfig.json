@@ -5,14 +5,15 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "types": [
+      "node",
+      "vite/client",
       "vite-plugin-pwa/client",
       "@intlify/vite-plugin-vue-i18n/client"
     ],
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
+      "@/*": ["./src/*"]
     },
+
     "importsNotUsedAsValues": "error",
     "noImplicitThis": true,
     "strict": true,
@@ -30,6 +31,7 @@
     // Vite recommended (https://vitejs.dev/guide/features.html#typescript-compiler-options=)
     "isolatedModules": true,
     "useDefineForClassFields": true,
+
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "skipLibCheck": true
   },
@@ -37,6 +39,9 @@
     "src/**/*.ts",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.spec.ts"
+    "tests/**/*.spec.ts",
+    "env.d.ts",
+    "vite.config.ts"
   ],
+  "exclude": ["dist, node_modules", "src/sw.ts"]
 }

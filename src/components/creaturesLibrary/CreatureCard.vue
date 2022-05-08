@@ -49,7 +49,8 @@
 
 <script lang="ts">
 import type { Creature } from '@/models/Creature'
-import { defineComponent, PropType } from 'vue'
+import type { PropType } from 'vue'
+import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import ObjectPortrait from '../ObjectPortrait.vue'
 

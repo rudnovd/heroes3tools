@@ -25,7 +25,8 @@
 <script lang="ts">
 import { computed } from '@vue/reactivity'
 import { useTemplateRefsList } from '@vueuse/core'
-import { defineComponent, PropType, ref, watch } from 'vue'
+import type { PropType } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import BaseButton from './base/BaseButton.vue'
 import BaseTooltip from './base/BaseTooltip.vue'

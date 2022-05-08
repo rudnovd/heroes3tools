@@ -1,5 +1,5 @@
 <template>
-  <picture @click="$emit('clickPicture')">
+  <picture @click="$emit('click-picture')">
     <source :srcset="`${folder}/${file.name}.webp`" type="image/webp" />
     <source :srcset="`${folder}/${file.name}.gif`" type="image/gif" />
     <img
@@ -13,7 +13,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import type { PropType } from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'ObjectPortrait',
@@ -43,7 +44,7 @@ export default defineComponent({
       default: null,
     },
   },
-  emits: ['click', 'clickPicture'],
+  emits: ['click', 'click-picture'],
 })
 </script>
 

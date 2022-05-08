@@ -54,7 +54,8 @@
 
 <script lang="ts">
 import { selectedLanguage, setLanguage } from '@/i18n'
-import { defineAsyncComponent, defineComponent, PropType, ref } from 'vue'
+import type { PropType } from 'vue'
+import { defineAsyncComponent, defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 

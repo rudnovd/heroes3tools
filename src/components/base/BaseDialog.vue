@@ -20,7 +20,8 @@
 <script lang="ts">
 import CloseButton from '@/components/buttons/CloseButton.vue'
 import { onClickOutside } from '@vueuse/core'
-import { defineComponent, PropType, ref, watch } from 'vue'
+import type { PropType } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 
 type BaseDialogSizesProp = 'small' | 'medium' | 'large' | 'maximum'
 

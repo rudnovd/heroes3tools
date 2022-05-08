@@ -143,7 +143,8 @@ import type { Spell } from '@/models/Spell'
 import type { Terrain } from '@/models/Terrain'
 import { useStore } from '@/store'
 import { defineAsyncComponent, defineComponent } from '@vue/runtime-core'
-import { computed, PropType, reactive } from 'vue'
+import type { PropType } from 'vue'
+import { computed, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
@@ -174,7 +175,7 @@ export default defineComponent({
     const levels = computed(() => store.levels)
     const skills = computed(() => {
       const damageCalculatorSkills = ['offense', 'air', 'armorer', 'fire', 'archery', 'earth', 'artillery', 'water']
-      const skills = {}
+      const skills: { [key: string]: string } = {}
       damageCalculatorSkills.forEach((skill, index) => (skills[skill] = store.skills[index].name))
       return skills
     })

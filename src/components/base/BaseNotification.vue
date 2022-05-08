@@ -20,7 +20,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, PropType, ref } from 'vue'
+import type { PropType } from 'vue'
+import { defineComponent, nextTick, ref } from 'vue'
 
 interface BaseNotificationButtonProp {
   text: string
