@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/rudnovd/heroes3tools/compare/v2.0.0...v2.0.1) (2022-06-24)
+
+
+### Bug Fixes
+
+* fix stylelint errors ([d3d7986](https://github.com/rudnovd/heroes3tools/commit/d3d7986d3e705ae66f8617d90496a878578279ce))
+
 ## [2.0.0](https://github.com/rudnovd/heroes3tools/compare/v2.0.0-rc.6...v2.0.0) (2022-04-13)
 
 
