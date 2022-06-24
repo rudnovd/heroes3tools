@@ -2,7 +2,7 @@
   "recommendations": [
     "esbenp.prettier-vscode",
     "stylelint.vscode-stylelint",
-    "johnsoncodehk.volar",
+    "vue.volar",
     "dbaeumer.vscode-eslint",
     "editorconfig.editorconfig",
     "syler.sass-indented"
