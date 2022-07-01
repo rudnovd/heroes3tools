@@ -31,7 +31,7 @@
     "vue-router": "^4.0.16"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.2",
+    "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.2",
     "@intlify/vite-plugin-vue-i18n": "^3.4.0",
     "@localazy/cli": "^1.6.3",
