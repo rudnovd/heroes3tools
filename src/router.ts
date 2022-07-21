@@ -20,6 +20,13 @@ const router = createRouter({
       },
     },
     {
+      path: '/magic',
+      component: () => import('@/views/MagicCalculatorPage.vue'),
+      meta: {
+        title: 'pages.magicCalculator',
+      },
+    },
+    {
       path: '/creatures',
       component: () => import('@/views/CreaturesLibraryPage.vue'),
       meta: {
