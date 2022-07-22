@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import BaseInputNumber from '@/components/base/BaseInputNumber.vue'
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
@@ -19,7 +19,7 @@ export default defineComponent({
   },
   props: {
     stat: {
-      type: String,
+      type: String as PropType<'attack' | 'defense' | 'power' | 'knowledge' | string>,
       required: true,
     },
     value: {
