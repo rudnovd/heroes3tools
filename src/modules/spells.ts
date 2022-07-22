@@ -6,9 +6,61 @@ import type { Spell } from '@/models/Spell'
 
 function hasImmunity(target: CreatureInstance, spell: Spell) {
   if (target.effects.find((effect) => effect.id === SpellsEnum.AntiMagic)) return true
-  if (target.id === Creatures.BlackDragon) return true
+
+  const creaturesWithImmunity = [
+    Creatures.BlackDragon,
+    Creatures.MagicElemental,
+    Creatures.FireElemental,
+    Creatures.EnergyElemental,
+  ]
+  if (creaturesWithImmunity.includes(target.id)) return true
+
+  const fireImmunityCreatures = [Creatures.Firebird, Creatures.Efreet, Creatures.EfreetSultan]
+  if (fireImmunityCreatures.includes(target.id)) return true
+
+  const threeSpellLevelImmunityCreatures = [Creatures.GreenDragon, Creatures.RedDragon]
+  if (threeSpellLevelImmunityCreatures.includes(target.id) && spell.level <= 3) return true
+
+  const fourSpellLevelImmunityCreatures = [Creatures.GoldDragon]
+  if (fourSpellLevelImmunityCreatures.includes(target.id) && spell.level <= 4) return true
+
+  if (
+    (target.id === Creatures.AirElemental || target.id === Creatures.StormElemental) &&
+    spell.id === SpellsEnum.MeteorShower
+  )
+    return true
+
+  if (
+    (target.id === Creatures.WaterElemental || target.id === Creatures.IceElemental) &&
+    (spell.id === SpellsEnum.IceBolt || spell.id === SpellsEnum.FrostRing)
+  )
+    return true
+
+  if (
+    (target.id === Creatures.EarthElemental || target.id === Creatures.MagmaElemental) &&
+    (spell.id === SpellsEnum.LightningBolt ||
+      spell.id === SpellsEnum.ChainLightning ||
+      spell.id === SpellsEnum.Armageddon)
+  )
+    return true
 
   return false
+}
+
+function calculateSpellEffects(target: CreatureInstance, damage: number) {
+  damage = calculateReducing(target, damage)
+
+  return damage
+}
+
+function calculateReducing(target: CreatureInstance, damage: number) {
+  if (target.id === Creatures.StoneGolem) damage -= (damage / 100) * 50
+  else if (target.id === Creatures.IronGolem) damage -= (damage / 100) * 75
+  else if (target.id === Creatures.SteelGolem) damage -= (damage / 100) * 80
+  else if (target.id === Creatures.GoldGolem) damage -= (damage / 100) * 85
+  else if (target.id === Creatures.DiamondGolem) damage -= (damage / 100) * 95
+
+  return damage
 }
 
 export const Spells = {
@@ -34,7 +86,7 @@ export const Spells = {
       damage = 30 + initiator.hero.stats.power * 10
     }
 
-    return damage
+    return calculateSpellEffects(target, damage)
   },
   cure: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
     if (hasImmunity(target, spells[SpellsEnum.Cure - 1])) return 0
@@ -72,7 +124,7 @@ export const Spells = {
       damage = 50 + initiator.hero.stats.power * 25
     }
 
-    return damage
+    return calculateSpellEffects(target, damage)
   },
 
   fireWall: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
@@ -92,7 +144,7 @@ export const Spells = {
       damage = 60 + initiator.hero.stats.power * 10
     }
 
-    return damage
+    return calculateSpellEffects(target, damage)
   },
 
   iceBolt: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
@@ -112,7 +164,7 @@ export const Spells = {
       damage = 50 + initiator.hero.stats.power * 20
     }
 
-    return damage
+    return calculateSpellEffects(target, damage)
   },
 
   deathRipple: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
@@ -132,7 +184,7 @@ export const Spells = {
       damage = 30 + initiator.hero.stats.power * 5
     }
 
-    return damage
+    return calculateSpellEffects(target, damage)
   },
 
   fireball: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
@@ -152,7 +204,7 @@ export const Spells = {
       damage = 60 + initiator.hero.stats.power * 10
     }
 
-    return damage
+    return calculateSpellEffects(target, damage)
   },
 
   landMine: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
@@ -172,7 +224,7 @@ export const Spells = {
       damage = 100 + initiator.hero.stats.power * 10
     }
 
-    return damage
+    return calculateSpellEffects(target, damage)
   },
 
   frostRing: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
@@ -192,7 +244,7 @@ export const Spells = {
       damage = 60 + initiator.hero.stats.power * 10
     }
 
-    return damage
+    return calculateSpellEffects(target, damage)
   },
 
   destroyUndead: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
@@ -212,7 +264,7 @@ export const Spells = {
       damage = 50 + initiator.hero.stats.power * 10
     }
 
-    return damage
+    return calculateSpellEffects(target, damage)
   },
 
   inferno: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
@@ -232,7 +284,7 @@ export const Spells = {
       damage = 80 + initiator.hero.stats.power * 10
     }
 
-    return damage
+    return calculateSpellEffects(target, damage)
   },
 
   meteorShower: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
@@ -252,7 +304,7 @@ export const Spells = {
       damage = 100 + initiator.hero.stats.power * 25
     }
 
-    return damage
+    return calculateSpellEffects(target, damage)
   },
 
   chainLightning: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
@@ -272,13 +324,13 @@ export const Spells = {
       damage = 100 + initiator.hero.stats.power * 40
     }
 
-    return damage
+    return calculateSpellEffects(target, damage)
   },
 
   titansLightningBolt: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
     if (hasImmunity(target, spells[SpellsEnum.TitansLightningBolt - 1])) return 0
 
-    return 600
+    return calculateSpellEffects(target, 600)
   },
 
   implosion: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
@@ -298,7 +350,7 @@ export const Spells = {
       damage = 300 + initiator.hero.stats.power * 75
     }
 
-    return damage
+    return calculateSpellEffects(target, damage)
   },
 
   armageddon: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
@@ -318,6 +370,6 @@ export const Spells = {
       damage = 120 + initiator.hero.stats.power * 50
     }
 
-    return damage
+    return calculateSpellEffects(target, damage)
   },
 }
