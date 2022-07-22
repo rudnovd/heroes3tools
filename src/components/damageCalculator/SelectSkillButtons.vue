@@ -73,16 +73,16 @@ export default defineComponent({
 <style lang="scss" scoped>
 .select-skill-buttons {
   display: grid;
-  grid-template-columns: 75px 1fr;
+  grid-template-columns: 100px 1fr;
   align-items: center;
 }
 
 .skill-name {
   display: flex;
   align-items: center;
-  justify-content: center;
   height: 1.5rem;
-  font-size: 0.8rem;
+  padding-left: 2px;
+  font-size: 0.75rem;
   font-weight: 600;
 
   & > span {
@@ -103,7 +103,7 @@ export default defineComponent({
   min-width: 60px;
   height: 100%;
   overflow: hidden;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-overflow: ellipsis;
   white-space: nowrap;
