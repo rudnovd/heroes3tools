@@ -15,7 +15,7 @@ function hasImmunity(target: CreatureInstance, spell: Spell) {
   ]
   if (creaturesWithImmunity.includes(target.id)) return true
 
-  const fireImmunityCreatures = [Creatures.Firebird, Creatures.Efreet, Creatures.EfreetSultan]
+  const fireImmunityCreatures = [Creatures.Efreet, Creatures.EfreetSultan]
   if (fireImmunityCreatures.includes(target.id)) return true
 
   const threeSpellLevelImmunityCreatures = [Creatures.GreenDragon, Creatures.RedDragon]
@@ -47,26 +47,68 @@ function hasImmunity(target: CreatureInstance, spell: Spell) {
   return false
 }
 
-function calculateSpellEffects(target: CreatureInstance, damage: number) {
-  damage = calculateReducing(target, damage)
-
-  return damage
-}
-
-function calculateReducing(target: CreatureInstance, damage: number) {
+function calculateReducing(
+  initiator: DamageCalculatorBattleSide,
+  target: CreatureInstance,
+  spell: Spell,
+  damage: number
+) {
   if (target.id === Creatures.StoneGolem) damage -= (damage / 100) * 50
   else if (target.id === Creatures.IronGolem) damage -= (damage / 100) * 75
   else if (target.id === Creatures.SteelGolem) damage -= (damage / 100) * 80
   else if (target.id === Creatures.GoldGolem) damage -= (damage / 100) * 85
   else if (target.id === Creatures.DiamondGolem) damage -= (damage / 100) * 95
 
+  if (spell.element === 'Fire' && target.effects.find((effect) => effect.id === SpellsEnum.ProtectionFromFire)) {
+    if (!initiator.hero) {
+      damage -= (damage / 100) * 30
+    } else if (initiator.hero.skills.fire && initiator.hero.skills.fire >= 1) {
+      damage -= (damage / 100) * 50
+    }
+  }
+
   return damage
 }
 
-export const Spells = {
-  magicArrow: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.MagicArrow - 1])) return 0
+function calculateSpecialtyBonus(
+  initiator: DamageCalculatorBattleSide,
+  target: CreatureInstance,
+  spell: Spell,
+  damage: number
+) {
+  if (!initiator.hero) return damage
 
+  const { specialtySpell } = initiator.hero
+  let bonus = 0
+
+  if (spell.id === SpellsEnum.MagicArrow && specialtySpell === SpellsEnum.MagicArrow) {
+    bonus = damage / 2
+  } else if (spell.id === SpellsEnum.Firewall && specialtySpell === SpellsEnum.Firewall) {
+    bonus = damage
+  } else if (spell.id === specialtySpell) {
+    bonus = 1 + (initiator.hero.level / target.level) * 0.03
+  }
+
+  return damage + bonus
+}
+
+export const Spells = {
+  cast(initiator: DamageCalculatorBattleSide, target: CreatureInstance, spell: Spell) {
+    if (hasImmunity(target, spell)) return 0
+
+    const originalSpell = spells.find((_spell) => _spell.id === spell.id)!
+    const spellCamelName =
+      originalSpell.name[0].toLocaleLowerCase() +
+      originalSpell.name.slice(1, originalSpell.name.length).replace(/\s+/g, '')
+
+    let damage = this[spellCamelName](initiator)
+    damage = calculateSpecialtyBonus(initiator, target, spell, damage)
+    damage = calculateReducing(initiator, target, spell, damage)
+
+    return damage
+  },
+
+  magicArrow: (initiator: DamageCalculatorBattleSide): number => {
     let damage = 0
 
     const schoolLevel =
@@ -86,11 +128,9 @@ export const Spells = {
       damage = 30 + initiator.hero.stats.power * 10
     }
 
-    return calculateSpellEffects(target, damage)
+    return damage
   },
-  cure: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.Cure - 1])) return 0
-
+  cure: (initiator: DamageCalculatorBattleSide): number => {
     let damage = 0
 
     const schoolLevel = initiator.hero?.skills.water || 0
@@ -107,9 +147,7 @@ export const Spells = {
 
     return -damage
   },
-  lightningBolt: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.LightningBolt - 1])) return 0
-
+  lightningBolt: (initiator: DamageCalculatorBattleSide): number => {
     let damage = 0
 
     const schoolLevel = initiator.hero?.skills.air || 0
@@ -124,12 +162,10 @@ export const Spells = {
       damage = 50 + initiator.hero.stats.power * 25
     }
 
-    return calculateSpellEffects(target, damage)
+    return damage
   },
 
-  fireWall: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.Firewall - 1])) return 0
-
+  fireWall: (initiator: DamageCalculatorBattleSide): number => {
     let damage = 0
 
     const schoolLevel = initiator.hero?.skills.fire || 0
@@ -144,12 +180,10 @@ export const Spells = {
       damage = 60 + initiator.hero.stats.power * 10
     }
 
-    return calculateSpellEffects(target, damage)
+    return damage
   },
 
-  iceBolt: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.IceBolt - 1])) return 0
-
+  iceBolt: (initiator: DamageCalculatorBattleSide): number => {
     let damage = 0
 
     const schoolLevel = initiator.hero?.skills.water || 0
@@ -164,12 +198,10 @@ export const Spells = {
       damage = 50 + initiator.hero.stats.power * 20
     }
 
-    return calculateSpellEffects(target, damage)
+    return damage
   },
 
-  deathRipple: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.DeathRipple - 1])) return 0
-
+  deathRipple: (initiator: DamageCalculatorBattleSide): number => {
     let damage = 0
 
     const schoolLevel = initiator.hero?.skills.earth || 0
@@ -184,12 +216,10 @@ export const Spells = {
       damage = 30 + initiator.hero.stats.power * 5
     }
 
-    return calculateSpellEffects(target, damage)
+    return damage
   },
 
-  fireball: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.Fireball - 1])) return 0
-
+  fireball: (initiator: DamageCalculatorBattleSide): number => {
     let damage = 0
 
     const schoolLevel = initiator.hero?.skills.fire || 0
@@ -204,12 +234,10 @@ export const Spells = {
       damage = 60 + initiator.hero.stats.power * 10
     }
 
-    return calculateSpellEffects(target, damage)
+    return damage
   },
 
-  landMine: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.LandMine - 1])) return 0
-
+  landMine: (initiator: DamageCalculatorBattleSide): number => {
     let damage = 0
 
     const schoolLevel = initiator.hero?.skills.fire || 0
@@ -224,12 +252,10 @@ export const Spells = {
       damage = 100 + initiator.hero.stats.power * 10
     }
 
-    return calculateSpellEffects(target, damage)
+    return damage
   },
 
-  frostRing: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.FrostRing - 1])) return 0
-
+  frostRing: (initiator: DamageCalculatorBattleSide): number => {
     let damage = 0
 
     const schoolLevel = initiator.hero?.skills.water || 0
@@ -244,12 +270,10 @@ export const Spells = {
       damage = 60 + initiator.hero.stats.power * 10
     }
 
-    return calculateSpellEffects(target, damage)
+    return damage
   },
 
-  destroyUndead: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.DestroyUndead - 1])) return 0
-
+  destroyUndead: (initiator: DamageCalculatorBattleSide): number => {
     let damage = 0
 
     const schoolLevel = initiator.hero?.skills.air || 0
@@ -264,12 +288,10 @@ export const Spells = {
       damage = 50 + initiator.hero.stats.power * 10
     }
 
-    return calculateSpellEffects(target, damage)
+    return damage
   },
 
-  inferno: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.Inferno - 1])) return 0
-
+  inferno: (initiator: DamageCalculatorBattleSide): number => {
     let damage = 0
 
     const schoolLevel = initiator.hero?.skills.fire || 0
@@ -284,12 +306,10 @@ export const Spells = {
       damage = 80 + initiator.hero.stats.power * 10
     }
 
-    return calculateSpellEffects(target, damage)
+    return damage
   },
 
-  meteorShower: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.MeteorShower - 1])) return 0
-
+  meteorShower: (initiator: DamageCalculatorBattleSide): number => {
     let damage = 0
 
     const schoolLevel = initiator.hero?.skills.earth || 0
@@ -304,12 +324,10 @@ export const Spells = {
       damage = 100 + initiator.hero.stats.power * 25
     }
 
-    return calculateSpellEffects(target, damage)
+    return damage
   },
 
-  chainLightning: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.ChainLightning - 1])) return 0
-
+  chainLightning: (initiator: DamageCalculatorBattleSide): number => {
     let damage = 0
 
     const schoolLevel = initiator.hero?.skills.air || 0
@@ -324,18 +342,14 @@ export const Spells = {
       damage = 100 + initiator.hero.stats.power * 40
     }
 
-    return calculateSpellEffects(target, damage)
+    return damage
   },
 
-  titansLightningBolt: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.TitansLightningBolt - 1])) return 0
-
-    return calculateSpellEffects(target, 600)
+  titansLightningBolt: (initiator: DamageCalculatorBattleSide): number => {
+    return 600
   },
 
-  implosion: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.Implosion - 1])) return 0
-
+  implosion: (initiator: DamageCalculatorBattleSide): number => {
     let damage = 0
 
     const schoolLevel = initiator.hero?.skills.earth || 0
@@ -350,12 +364,10 @@ export const Spells = {
       damage = 300 + initiator.hero.stats.power * 75
     }
 
-    return calculateSpellEffects(target, damage)
+    return damage
   },
 
-  armageddon: (initiator: DamageCalculatorBattleSide, target: CreatureInstance): number => {
-    if (hasImmunity(target, spells[SpellsEnum.Armageddon - 1])) return 0
-
+  armageddon: (initiator: DamageCalculatorBattleSide): number => {
     let damage = 0
 
     const schoolLevel = initiator.hero?.skills.fire || 0
@@ -370,6 +382,6 @@ export const Spells = {
       damage = 120 + initiator.hero.stats.power * 50
     }
 
-    return calculateSpellEffects(target, damage)
+    return damage
   },
 }
