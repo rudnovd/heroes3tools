@@ -179,8 +179,11 @@ export default defineComponent({
   font-size: inherit;
   font-size: 0.875rem;
   line-height: 1.5;
-  border: 1px solid rgb(206, 212, 218);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
   border-radius: 0.2rem;
+  transition: color 0.2s linear, background-color 0.2s linear, border 0.2s linear;
 }
 
 .units {

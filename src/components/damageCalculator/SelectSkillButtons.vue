@@ -113,7 +113,7 @@ export default defineComponent({
 
 @each $color, $color-value in $calculator-colors {
   .skill-buttons.color-#{$color} {
-    color: map.get($calculator-colors-text, $color);
+    color: var(--color-text);
     border-top: 1px solid $color-value;
     border-bottom: 1px solid $color-value;
 

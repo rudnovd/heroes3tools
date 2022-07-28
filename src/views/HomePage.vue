@@ -154,7 +154,7 @@ export default defineComponent({
   a,
   span {
     overflow: hidden;
-    color: black;
+    color: var(--color-text);
     text-decoration: none;
     text-overflow: ellipsis;
     white-space: nowrap;
