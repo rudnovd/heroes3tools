@@ -170,8 +170,18 @@ export default defineComponent({
   input {
     width: 120px;
     height: 32px;
+    padding: 0.25rem 0.5rem;
+    font-family: inherit;
+    font-size: inherit;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 0.2rem;
     opacity: 0.5;
     transition: opacity 0.25s;
+    transition: color 0.2s linear, background-color 0.2s linear, border 0.2s linear;
 
     &:hover {
       opacity: 1;
@@ -220,7 +230,7 @@ export default defineComponent({
 .creature-card {
   &:nth-child(2),
   &:nth-child(3) {
-    border-top: 1px solid black;
+    border-top: 1px solid var(--color-border);
   }
 }
 </style>

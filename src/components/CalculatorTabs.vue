@@ -131,8 +131,9 @@ export default defineComponent({
   transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 
   &:hover {
-    background-color: rgb(200, 200, 200, 0.5);
-    box-shadow: 0 0 0 3px rgb(200, 200, 200, 0.5);
+    background-color: var(--color-text);
+    box-shadow: 0 0 0 3px var(--color-bg);
+    opacity: 0.5;
   }
 
   &.disabled {
@@ -156,6 +157,13 @@ export default defineComponent({
   &.disabled {
     pointer-events: none;
     opacity: 0.5;
+  }
+}
+
+@include dark-scheme {
+  .tab-close-button,
+  .tab-add-button {
+    filter: invert(1);
   }
 }
 </style>

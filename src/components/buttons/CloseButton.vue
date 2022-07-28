@@ -28,7 +28,7 @@ export default defineComponent({
 .cross-first-line,
 .cross-second-line {
   position: absolute;
-  background-color: v-bind(color);
+  background-color: var(--color-text);
   opacity: 0.3;
 }
 

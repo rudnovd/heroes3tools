@@ -77,8 +77,9 @@ export default defineComponent({
 }
 
 .check-square {
-  fill: rgb(255, 255, 255);
-  stroke: rgba(0, 0, 0, 0.25);
+  opacity: 0.25;
+  fill: var(--color-bg);
+  stroke: var(--color-text);
   stroke-width: 1px;
 }
 
