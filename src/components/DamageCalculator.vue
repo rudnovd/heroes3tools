@@ -137,6 +137,7 @@ import SelectTerrain from '@/components/SelectTerrain.vue'
 import type { Battle, DamageCalculatorBattleSide } from '@/models/Battle'
 import type { Creature } from '@/models/Creature'
 import { CreatureInstance } from '@/models/Creature'
+import { SecondarySkills } from '@/models/enums'
 import type { Hero } from '@/models/Hero'
 import { HeroInstance } from '@/models/Hero'
 import type { Spell } from '@/models/Spell'
@@ -172,9 +173,21 @@ export default defineComponent({
     const terrains = computed(() => store.terrains)
     const levels = computed(() => store.levels)
     const skills = computed(() => {
-      const damageCalculatorSkills = ['offense', 'air', 'armorer', 'fire', 'archery', 'earth', 'artillery', 'water']
+      const damageCalculatorSkillsIds = [
+        SecondarySkills.Offense,
+        SecondarySkills.AirMagic,
+        SecondarySkills.Armorer,
+        SecondarySkills.FireMagic,
+        SecondarySkills.Archery,
+        SecondarySkills.EarthMagic,
+        SecondarySkills.Artillery,
+        SecondarySkills.WaterMagic,
+      ]
+      const damageCalculatorSkills = ['air', 'archery', 'armorer', 'artillery', 'earth', 'fire', 'offense', 'water']
       const skills = {}
-      damageCalculatorSkills.forEach((skill, index) => (skills[skill] = store.skills[index].name))
+      store.skills
+        .filter((skill) => damageCalculatorSkillsIds.includes(skill.id))
+        .forEach((skill, index) => (skills[damageCalculatorSkills[index]] = skill.name))
       return skills
     })
     const effects = computed(() => [
@@ -331,10 +344,10 @@ export default defineComponent({
 }
 
 .attacker {
-  border-bottom: 1px solid rgb(222, 226, 230);
+  border-bottom: 1px solid var(--color-border);
 
   @include media-large {
-    border-right: 1px solid rgb(222, 226, 230);
+    border-right: 1px solid var(--color-border);
     border-bottom: 0;
   }
 
@@ -445,7 +458,7 @@ export default defineComponent({
   grid-column: 1 / -1;
   justify-content: flex-end;
   padding: 5px;
-  border-top: 1px solid rgb(222, 226, 230);
+  border-top: 1px solid var(--color-border);
 }
 
 .select-terrain {
