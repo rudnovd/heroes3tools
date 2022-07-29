@@ -11,10 +11,6 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'CloseButton',
   props: {
-    color: {
-      type: String,
-      default: 'black',
-    },
     weight: {
       type: String,
       default: '1px',
