@@ -29,6 +29,9 @@
       "damage": "Damage",
       "kills": "Kills"
     },
+    "magicCalculator": {
+      "selectSpell": "Select spell"
+    },
     "pageFooter": {
       "about": "About",
       "language": "Language",
@@ -78,6 +81,8 @@
   "data": {
     "attacker": "Attacker",
     "defender": "Defender",
+    "power": "Power",
+    "knowledge": "Knowledge",
     "level": "Level",
     "attack": "Attack",
     "defense": "Defense",
@@ -105,7 +110,7 @@
             "title": "Tabs.",
             "text": "Now Damage Calculator can contain several tabs for calculations."
           },
-          "2" : {
+          "2": {
             "title": "Desktop app.",
             "text": "Install the app from browser and use it as a desktop app (also available offline)."
           },
