@@ -8,6 +8,10 @@ import type { Terrain } from './Terrain'
 
 export type BattleSide = 'attacker' | 'defender'
 
+export function getOppositeBattleSide(side: BattleSide): string {
+  return side === 'attacker' ? 'defender' : 'attacker'
+}
+
 export interface DamageCalculatorBattleSide {
   hero: HeroInstance | null
   creatures: Array<CreatureInstance>
