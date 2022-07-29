@@ -24,19 +24,19 @@
     "release": "standard-version"
   },
   "dependencies": {
-    "@vueuse/core": "^8.9.4",
-    "pinia": "^2.0.16",
+    "@vueuse/core": "^9.0.0",
+    "pinia": "^2.0.17",
     "vue": "^3.2.37",
     "vue-i18n": "^9.1.10",
-    "vue-router": "^4.1.2"
+    "vue-router": "^4.1.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
-    "@intlify/vite-plugin-vue-i18n": "^5.0.0",
+    "@intlify/vite-plugin-vue-i18n": "^5.0.1",
     "@localazy/cli": "^1.6.3",
-    "@typescript-eslint/eslint-plugin": "^5.30.7",
-    "@typescript-eslint/parser": "^5.30.7",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
     "@vitejs/plugin-vue": "^3.0.1",
     "@vue/eslint-config-typescript": "^11.0.0",
     "@vue/test-utils": "^2.0.2",
@@ -45,10 +45,10 @@
     "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier-vue": "^4.2.0",
-    "eslint-plugin-vue": "^9.2.0",
+    "eslint-plugin-vue": "^9.3.0",
     "husky": "^8.0.1",
     "prettier": "^2.7.1",
-    "sass": "^1.53.0",
+    "sass": "^1.54.0",
     "standard-version": "^9.5.0",
     "stylelint": "^14.9.1",
     "stylelint-config-prettier": "^9.0.3",
@@ -58,16 +58,16 @@
     "stylelint-prettier": "^2.0.0",
     "stylelint-scss": "^4.3.0",
     "typescript": "^4.7.4",
-    "vite": "^3.0.2",
+    "vite": "^3.0.4",
     "vite-plugin-pwa": "^0.12.3",
-    "vitest": "^0.18.1",
+    "vitest": "^0.19.1",
     "vue-eslint-parser": "^9.0.3",
-    "vue-tsc": "^0.38.9",
-    "workbox-build": "^6.5.3",
-    "workbox-core": "^6.5.3",
-    "workbox-precaching": "^6.5.3",
-    "workbox-routing": "^6.5.3",
-    "workbox-strategies": "^6.5.3"
+    "vue-tsc": "^0.39.2",
+    "workbox-build": "^6.5.4",
+    "workbox-core": "^6.5.4",
+    "workbox-precaching": "^6.5.4",
+    "workbox-routing": "^6.5.4",
+    "workbox-strategies": "^6.5.4"
   },
   "config": {
     "commitizen": {
