@@ -87,6 +87,9 @@
       "finishTheTour": "Завершить экскурсию",
       "howToUse": "Как пользоваться"
     },
+    "magicCalculator": {
+      "selectSpell": "Выбрать заклинание"
+    },
     "pageFooter": {
       "about": "О проекте",
       "appVersion": "Версия приложения",
@@ -127,7 +130,9 @@
     "defense": "Защита",
     "growth": "Прирост",
     "health": "Здоровье",
+    "knowledge": "Знание",
     "level": "Уровень",
+    "power": "Сила Магии",
     "speed": "Скорость"
   },
   "extra": {
