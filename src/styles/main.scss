@@ -81,4 +81,9 @@ button {
   background: none;
   border: none;
   outline: none;
+  transition: color 0.2s linear, background 0.2s linear, border 0.2s linear;
+}
+
+input {
+  transition: color 0.2s linear, background 0.2s linear, border 0.2s linear;
 }
