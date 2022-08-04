@@ -57,7 +57,6 @@
 
 <script lang="ts">
 import ObjectPortrait from '@/components/ObjectPortrait.vue'
-import { selectedLanguage } from '@/i18n'
 import type { Creature } from '@/models/Creature'
 import { useStore } from '@/store'
 import { useDebounce } from '@vueuse/core'
@@ -85,8 +84,6 @@ export default defineComponent({
     const search = ref('')
     const debouncedSearch = useDebounce(search, 500)
     const searchInput = ref()
-
-    if (!store.isDataLoaded) store.loadData(selectedLanguage.value)
 
     const keyboardSearch = (value: KeyboardEvent) => {
       if (value.key === 'Enter') {
