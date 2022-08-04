@@ -61,6 +61,7 @@ export default defineComponent({
   position: relative;
   z-index: 1;
   display: grid;
+  grid-template-rows: 70px 1fr;
   width: 100%;
   height: 100%;
   padding: 8px;
