@@ -7,7 +7,7 @@
   <RouterView v-slot="{ Component }">
     <Transition name="router" mode="out-in" @enter="onEnter" @after-leave="afterLeave">
       <KeepAlive :include="keepAliveComponents">
-      <component :is="Component" />
+        <component :is="Component" />
       </KeepAlive>
     </Transition>
   </RouterView>
@@ -66,8 +66,6 @@ export default defineComponent({
     // Get selected language from localstorage and change i18n language
     if (selectedLanguage.value !== 'en') setLanguage(selectedLanguage.value)
 
-    if (!store.isDataLoaded && getDataRoutes.includes(route.path)) store.loadData(selectedLanguage.value)
-
     const notificationsButtons = computed(() => [
       {
         text: t('common.updateApp'),
@@ -83,10 +81,15 @@ export default defineComponent({
     ])
 
     // Show back button on first visit app
+    watchOnce(router.currentRoute, () => {
+      if (Object.keys(route.meta).length && !route.meta.hideBackButton) showBackButton.value = true
+    })
+
+    // Collect data about game from files when visit one of getDataRoutes array pages
     watchOnce(
-      () => router.currentRoute,
-      () => {
-        if (Object.keys(route.meta).length && !route.meta.hideBackButton) showBackButton.value = true
+      () => route.path,
+      (newPath) => {
+        if (!store.isDataLoaded && getDataRoutes.includes(newPath)) store.loadData(selectedLanguage.value)
       }
     )
 

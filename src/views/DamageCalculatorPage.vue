@@ -45,7 +45,6 @@
 <script lang="ts">
 import CalculatorTabs from '@/components/CalculatorTabs.vue'
 import DamageCalculator from '@/components/DamageCalculator.vue'
-import { selectedLanguage } from '@/i18n'
 import { Battle } from '@/models/Battle'
 import { useStore } from '@/store'
 import type { Ref } from 'vue'
@@ -176,8 +175,6 @@ export default defineComponent({
         },
       ]
     })
-
-    if (!store.isDataLoaded) store.loadData(selectedLanguage.value)
 
     watch(
       [attacker, defender],
