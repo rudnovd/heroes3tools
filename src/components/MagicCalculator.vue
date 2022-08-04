@@ -108,14 +108,18 @@
       </section>
 
       <section v-if="side.activeCreature" class="damage">
-        <strong>
+        <strong v-show="spellDamages[sideName] >= 0">
           <!-- Damage result -->
           {{ t('components.damageCalculator.damage') }}:
           {{ spellDamages[sideName] }}
         </strong>
         <strong>
           <!-- Kills result -->
-          {{ t('components.damageCalculator.kills') }}:
+          {{
+            spellDamages[sideName] >= 0
+              ? t('components.damageCalculator.kills')
+              : t('components.damageCalculator.heals')
+          }}:
           {{ getSpellKillsValue(sideName) }}
         </strong>
       </section>
@@ -146,7 +150,6 @@ import type { Hero } from '@/models/Hero'
 import { HeroInstance } from '@/models/Hero'
 import type { Spell } from '@/models/Spell'
 import type { Terrain } from '@/models/Terrain'
-import { Spells } from '@/modules/spells'
 import { useStore } from '@/store'
 import { computed, defineAsyncComponent, defineComponent, PropType, reactive, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -189,14 +192,16 @@ export default defineComponent({
         earth: '',
         fire: '',
         water: '',
+        sorcery: '',
       }
       const magicSkillsIds = [
         SecondarySkills.FireMagic,
         SecondarySkills.EarthMagic,
         SecondarySkills.AirMagic,
+        SecondarySkills.Sorcery,
         SecondarySkills.WaterMagic,
       ]
-      const skillsNames = ['air', 'earth', 'fire', 'water']
+      const skillsNames = ['air', 'earth', 'fire', 'sorcery', 'water']
       store.skills
         .filter((skill) => magicSkillsIds.indexOf(skill.id) !== -1)
         .forEach((skill, index) => (skills[skillsNames[index]] = skill.name))
@@ -204,7 +209,7 @@ export default defineComponent({
     })
 
     const spellsEffects = computed(() => {
-      const effectsIds = [5, 13, 22, 43, 46, 60, 68]
+      const effectsIds = [5, 22, 46, 60, 43]
       return store.spells.filter((spell) => effectsIds.includes(spell.id))
     })
 
@@ -271,12 +276,18 @@ export default defineComponent({
     const calculateSpell = (sideName: BattleSide, spell: Spell) => {
       if (!battle.attacker.activeCreature || !battle.defender.activeCreature) return
       const oppositeSide = getOppositeBattleSide(sideName)
-      spellDamages.value[sideName] = Spells.cast(battle[sideName], battle[oppositeSide].activeCreature, spell)
+      spellDamages.value[sideName] = battle.cast(
+        battle[sideName],
+        battle[oppositeSide],
+        battle[oppositeSide].activeCreature,
+        spell
+      )
     }
 
     const getSpellKillsValue = (sideName: BattleSide) => {
       const oppositeSide = getOppositeBattleSide(sideName)
-      return Math.floor(spellDamages.value[sideName] / battle[oppositeSide].activeCreature?.health) || 0
+      const kills = Math.floor(spellDamages.value[sideName] / battle[oppositeSide].activeCreature?.health)
+      return Math.abs(kills) || 0
     }
 
     const onSelectTerrain = (terrain: Terrain | null) => {
@@ -440,6 +451,10 @@ export default defineComponent({
   .spell {
     padding-right: calc(33.3% + 0.5rem);
   }
+
+  .hero-parameters {
+    justify-content: flex-start;
+  }
 }
 
 .creature-button {
@@ -487,18 +502,20 @@ export default defineComponent({
 
 .hero-parameters {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-auto-columns: max-content;
   grid-auto-flow: column;
   grid-gap: 8px;
+  justify-content: flex-end;
 
   & > div {
-    width: 64px;
+    width: 100px;
   }
 
   .parameter-attack {
     margin-left: auto;
   }
 }
+
 .damage {
   display: flex;
   flex-direction: column;
