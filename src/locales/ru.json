@@ -49,6 +49,7 @@
     },
     "damageCalculator": {
       "damage": "Урон",
+      "heals": "Излечит",
       "kills": "Убийств",
       "pickCreature": "Выбрать существо"
     },

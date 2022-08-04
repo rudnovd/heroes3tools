@@ -27,7 +27,8 @@
     "damageCalculator": {
       "pickCreature": "Pick creature",
       "damage": "Damage",
-      "kills": "Kills"
+      "kills": "Kills",
+      "heals": "Heals"
     },
     "magicCalculator": {
       "selectSpell": "Select spell"
