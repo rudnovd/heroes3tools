@@ -6,7 +6,9 @@
 
   <RouterView v-slot="{ Component }">
     <Transition name="router" mode="out-in" @enter="onEnter" @after-leave="afterLeave">
+      <KeepAlive :include="keepAliveComponents">
       <component :is="Component" />
+      </KeepAlive>
     </Transition>
   </RouterView>
 
@@ -26,6 +28,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { isDark } from './utilities'
 
 const getDataRoutes = ['/damage', '/magic', '/creatures']
+const keepAliveComponents = ['DamageCalculatorPage', 'MagicCalculatorPage', 'CreaturesLibraryPage']
 
 export default defineComponent({
   name: 'App',
@@ -102,6 +105,7 @@ export default defineComponent({
       showBackButton,
       needRefresh,
       notificationsButtons,
+      keepAliveComponents,
 
       onEnter,
       afterLeave,
