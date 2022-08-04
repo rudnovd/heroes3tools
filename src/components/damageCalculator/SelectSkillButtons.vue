@@ -131,7 +131,6 @@ export default defineComponent({
   .skill-name.color-#{$color} {
     color: map.get($calculator-colors-text, $color);
     background-color: $color-value;
-    border: 1px solid black;
   }
 }
 </style>
