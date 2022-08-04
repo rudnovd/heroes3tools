@@ -53,7 +53,7 @@ export default defineComponent({
   transition: border 0.1s linear;
 
   &.selected-spell {
-    border: 3px solid rgba(0, 0, 0, 0.7);
+    border-color: rgba(var(--color-text), 0.7);
   }
 }
 
