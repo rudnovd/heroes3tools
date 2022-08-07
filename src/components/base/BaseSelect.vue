@@ -234,6 +234,7 @@ export default defineComponent({
   padding: 0;
   padding-left: 8px;
   font: inherit;
+  color: var(--color-text);
   background-color: var(--color-bg);
   border: 0;
   outline: none;
@@ -330,7 +331,8 @@ export default defineComponent({
 }
 
 .no-options {
-  border: 1px solid #dee2e6;
+  padding-left: 8px;
+  border: 1px solid var(--color-border);
 }
 
 .fade-enter-active,
