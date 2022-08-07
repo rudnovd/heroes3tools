@@ -2,7 +2,7 @@
   <section class="magic-calculator">
     <section
       v-for="(side, sideName, index) in { attacker: battle.attacker, defender: battle.defender }"
-      :key="`damage-calculator-${sideName}-${index}`"
+      :key="`magic-calculator-${sideName}-${index}`"
       :class="sideName"
     >
       <section class="title">
@@ -67,6 +67,7 @@
       </section>
 
       <section v-if="hasOtherSideCreature(sideName)" class="spell">
+        <div>{{ t('data.target') }}: {{ getSpellTargets(sideName) }}</div>
         <BaseSelect
           :value="selectedSpell[sideName]"
           :options="spells"
@@ -97,7 +98,7 @@
       </section>
 
       <section v-if="side.activeCreature" class="spells-effects">
-        <span>Effects:</span>
+        <span>{{ t('data.effects') }}:</span>
         <SpellCard
           v-for="spell in spellsEffects"
           :key="spell.id"
@@ -107,14 +108,15 @@
         ></SpellCard>
       </section>
 
-      <section v-if="side.activeCreature" class="damage">
+      <section v-show="selectedSpell[sideName]" class="damage">
+        <!-- Damage result -->
         <strong v-show="spellDamages[sideName] >= 0">
-          <!-- Damage result -->
           {{ t('components.damageCalculator.damage') }}:
           {{ spellDamages[sideName] }}
         </strong>
+
+        <!-- Kills result -->
         <strong>
-          <!-- Kills result -->
           {{
             spellDamages[sideName] >= 0
               ? t('components.damageCalculator.kills')
@@ -124,42 +126,33 @@
         </strong>
       </section>
     </section>
-
-    <div class="calculator-footer">
-      <div class="select-terrain">
-        <SelectTerrain
-          :value="battle.attacker.terrain"
-          :terrains="terrains"
-          @select="onSelectTerrain($event)"
-          @clear="onSelectTerrain(null)"
-        />
-      </div>
-    </div>
   </section>
 </template>
 
 <script lang="ts">
 import PickCreatureButton from '@/components/PickCreatureButton.vue'
 import SelectHero from '@/components/SelectHero.vue'
-import SelectTerrain from '@/components/SelectTerrain.vue'
 import { Battle, BattleSide, DamageCalculatorBattleSide, getOppositeBattleSide } from '@/models/Battle'
 import type { Creature } from '@/models/Creature'
 import { CreatureInstance } from '@/models/Creature'
-import { SecondarySkills } from '@/models/enums'
+import { SecondarySkills, Spells } from '@/models/enums'
 import type { Hero } from '@/models/Hero'
 import { HeroInstance } from '@/models/Hero'
 import type { Spell } from '@/models/Spell'
-import type { Terrain } from '@/models/Terrain'
 import { useStore } from '@/store'
 import { computed, defineAsyncComponent, defineComponent, PropType, reactive, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+
+const spellsTargets = {
+  all: [Spells.Armageddon, Spells.DeathRipple, Spells.DestroyUndead] as Array<number>,
+  self: [Spells.AnimateDead, Spells.Cure, Spells.Resurrection],
+}
 
 export default defineComponent({
   name: 'MagicCalculator',
   components: {
     PickCreatureButton,
     SelectHero,
-    SelectTerrain,
     ObjectPortrait: defineAsyncComponent(() => import('@/components/ObjectPortrait.vue')),
     BaseInputNumber: defineAsyncComponent(() => import('@/components/base/BaseInputNumber.vue')),
     InputHeroStat: defineAsyncComponent(() => import('@/components/damageCalculator/InputHeroStat.vue')),
@@ -180,7 +173,6 @@ export default defineComponent({
     const battle = reactive(props.battleValue)
 
     const heroes = computed(() => store.heroes)
-    const terrains = computed(() => store.terrains)
     const levels = computed(() => store.levels)
     const spells = computed(() => {
       const allowedSpells = [1, 20, 7, 24, 40, 58, 8, 9, 29, 42, 62, 11, 15, 47, 48, 64, 70, 51]
@@ -200,8 +192,9 @@ export default defineComponent({
         SecondarySkills.AirMagic,
         SecondarySkills.Sorcery,
         SecondarySkills.WaterMagic,
+        SecondarySkills.Interference,
       ]
-      const skillsNames = ['air', 'earth', 'fire', 'sorcery', 'water']
+      const skillsNames = ['air', 'earth', 'fire', 'sorcery', 'water', 'interference']
       store.skills
         .filter((skill) => magicSkillsIds.indexOf(skill.id) !== -1)
         .forEach((skill, index) => (skills[skillsNames[index]] = skill.name))
@@ -276,12 +269,22 @@ export default defineComponent({
     const calculateSpell = (sideName: BattleSide, spell: Spell) => {
       if (!battle.attacker.activeCreature || !battle.defender.activeCreature) return
       const oppositeSide = getOppositeBattleSide(sideName)
-      spellDamages.value[sideName] = battle.cast(
-        battle[sideName],
-        battle[oppositeSide],
-        battle[oppositeSide].activeCreature,
-        spell
-      )
+      const attacker = battle[sideName]
+      const defender = battle[oppositeSide]
+
+      if (spellsTargets.all.includes(spell.id)) {
+        spellDamages.value[sideName] = battle.cast(attacker, defender, defender.activeCreature, spell)
+        spellDamages.value[oppositeSide] = battle.cast(
+          defender,
+          attacker,
+          battle[sideName as string].activeCreature,
+          spell
+        )
+      } else if (spellsTargets.self.includes(spell.id)) {
+        spellDamages.value[sideName] = battle.cast(attacker, attacker, battle[sideName as string].activeCreature, spell)
+      } else {
+        spellDamages.value[sideName] = battle.cast(attacker, defender, defender.activeCreature, spell)
+      }
     }
 
     const getSpellKillsValue = (sideName: BattleSide) => {
@@ -290,9 +293,21 @@ export default defineComponent({
       return Math.abs(kills) || 0
     }
 
-    const onSelectTerrain = (terrain: Terrain | null) => {
-      battle.attacker.terrain = terrain
-      battle.defender.terrain = terrain
+    const getSpellTargets = (sideName: BattleSide) => {
+      const oppositeSide = getOppositeBattleSide(sideName)
+      const spellId = selectedSpell.value[sideName]?.id
+      const attacker = battle[sideName].activeCreature?.name || ''
+      const defender = battle[oppositeSide].activeCreature?.name || ''
+
+      if (!spellId) {
+        return ''
+      } else if (spellsTargets.all.includes(spellId)) {
+        return `${defender}, ${attacker}`
+      } else if (spellsTargets.self.includes(spellId)) {
+        return attacker
+      } else {
+        return defender
+      }
     }
 
     return {
@@ -300,7 +315,6 @@ export default defineComponent({
 
       battle,
       heroes,
-      terrains,
       levels,
       skills,
       spells,
@@ -312,9 +326,9 @@ export default defineComponent({
       onSelectCreature,
       onSelectHero,
       onSelectCreatureEffect,
-      onSelectTerrain,
       onSelectSpell,
       getSpellKillsValue,
+      getSpellTargets,
       hasOtherSideCreature,
     }
   },
@@ -327,21 +341,23 @@ export default defineComponent({
   grid-template-rows: minmax(50vh, 1fr) 1fr;
   grid-template-columns: 100%;
   box-shadow: 0 0 3px rgba(170, 170, 170, 0.5);
+  content-visibility: auto;
+  contain-intrinsic-size: 80vh;
 
   @include media-large {
-    grid-template-rows: minmax(80vh, auto) 1fr;
+    grid-template-rows: minmax(80vh, auto);
     grid-template-columns: 50% 50%;
   }
 
   @include media-maximum {
-    grid-template-rows: minmax(84vh, auto) 1fr;
+    grid-template-rows: minmax(84vh, auto);
   }
 }
 
 .attacker,
 .defender {
   display: grid;
-  grid-template-rows: repeat(4, min-content) auto;
+  grid-template-rows: repeat(5, min-content) auto;
   gap: 1rem;
   padding: 10px;
 
@@ -396,6 +412,34 @@ export default defineComponent({
   }
 }
 
+.hero-parameters {
+  display: grid;
+  grid-auto-columns: max-content;
+  grid-auto-flow: column;
+  grid-gap: 8px;
+  justify-content: flex-end;
+
+  & > div {
+    width: 100px;
+  }
+
+  .parameter-attack {
+    margin-left: auto;
+  }
+}
+
+.spell {
+  display: grid;
+  grid-template-areas: 'target select';
+  grid-template-columns: minmax(auto, 33.3%) 1fr;
+  gap: 8px;
+  align-items: center;
+
+  div:nth-child(1) {
+    font-size: 0.9rem;
+  }
+}
+
 .spells-effects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -422,10 +466,6 @@ export default defineComponent({
   .main {
     grid-template-columns: minmax(auto, 33.3%) 1fr;
   }
-
-  .spell {
-    padding-left: calc(33.3% + 0.5rem);
-  }
 }
 
 .defender {
@@ -449,7 +489,15 @@ export default defineComponent({
   }
 
   .spell {
-    padding-right: calc(33.3% + 0.5rem);
+    grid-template-columns: 1fr minmax(auto, 33.3%);
+
+    div:nth-child(1) {
+      grid-area: select;
+    }
+
+    div:nth-child(2) {
+      grid-area: target;
+    }
   }
 
   .hero-parameters {
@@ -500,22 +548,6 @@ export default defineComponent({
   }
 }
 
-.hero-parameters {
-  display: grid;
-  grid-auto-columns: max-content;
-  grid-auto-flow: column;
-  grid-gap: 8px;
-  justify-content: flex-end;
-
-  & > div {
-    width: 100px;
-  }
-
-  .parameter-attack {
-    margin-left: auto;
-  }
-}
-
 .damage {
   display: flex;
   flex-direction: column;
@@ -529,22 +561,5 @@ export default defineComponent({
 .stat-name {
   display: block;
   margin-bottom: 10px;
-}
-
-.calculator-footer {
-  display: flex;
-  grid-column: 1 / -1;
-  justify-content: flex-end;
-  padding: 5px;
-  border-top: 1px solid var(--color-border);
-}
-
-.select-terrain {
-  width: 300px;
-}
-
-.spell-level {
-  font-size: 1.2rem;
-  font-weight: bold;
 }
 </style>
