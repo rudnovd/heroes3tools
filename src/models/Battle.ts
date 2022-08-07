@@ -3,7 +3,7 @@ import { Effects } from '@/modules/effects'
 import { Modificators } from '@/modules/modificators'
 import { spellsFunctionsMap } from '@/modules/spells'
 import { CreatureInstance } from './Creature'
-import { Creatures, SkillLevels, Spells } from './enums'
+import { Creatures, Heroes, SecondarySkills, Spells } from './enums'
 import type { HeroInstance } from './Hero'
 import type { Spell } from './Spell'
 import type { Terrain } from './Terrain'
@@ -142,10 +142,16 @@ export class Battle {
 
     let damage = 0
     if (this.hasSpellImmunity(target, spell)) return damage
-    damage = spellsFunctionsMap[spell.id](attacker)
-    damage = this.calculateSpellSpecialtyBonus(attacker, target, spell, damage)
-    damage = this.calculateSpellBonuses(attacker, target, spell, damage)
-    damage = this.calculateSpellReducing(attacker, defender, target, spell, damage)
+
+    let attackerCopy = JSON.parse(JSON.stringify(attacker))
+    let defenderCopy = JSON.parse(JSON.stringify(defender))
+    attackerCopy = this.getStatsReducing(attackerCopy, defenderCopy)
+    defenderCopy = this.getStatsReducing(defenderCopy, attackerCopy)
+
+    damage = spellsFunctionsMap[spell.id](attackerCopy)
+    damage = this.calculateSpellSpecialtyBonus(attackerCopy, target, spell, damage)
+    damage = this.calculateSpellBonuses(attackerCopy, target, spell, damage)
+    damage = this.calculateSpellReducing(attackerCopy, defenderCopy, target, spell, damage)
 
     return Math.floor(damage)
   }
@@ -161,13 +167,28 @@ export class Battle {
     return target
   }
 
+  private getStatsReducing(attacker: DamageCalculatorBattleSide, defender: DamageCalculatorBattleSide) {
+    if (!attacker.hero || !defender.hero) return attacker
+
+    const { interference } = attacker.hero.skills
+    if (interference) {
+      defender.hero.stats.power -= (defender.hero.stats.power / 100) * interference * 10
+      if (attacker.hero.id === Heroes.Giselle) {
+        defender.hero.stats.power -= (defender.hero.stats.power / 100) * attacker.hero.level * 5
+      }
+      defender.hero.stats.power = Math.ceil(defender.hero.stats.power)
+    }
+
+    return attacker
+  }
+
   private calculateWithPositiveEffects(attacker: DamageCalculatorBattleSide, target: CreatureInstance) {
     if (!target.effects.length) return target
     else if (target.effects.find((effect) => effect.id === Spells.AntiMagic)) return target
 
     // Check for creature spell immunity
     for (const effect of target.effects) {
-      if (target.special?.immunity?.find((spell) => spell.id === effect.id)) return target
+      if (target.special?.immunity?.find((spell) => spell === effect.id)) return target
     }
 
     const positiveEffects: Array<{
@@ -295,61 +316,51 @@ export class Battle {
     }
   }
 
-  private hasSpellImmunity(target: CreatureInstance, spell: Spell) {
+  /**
+   * Check creature for immunity to spell
+   * @param target Creature who accept spell
+   * @param spell Spell that cast to target
+   * @return {Boolean} true if creature has immunity to spell
+   */
+  private hasSpellImmunity(target: CreatureInstance, spell: Spell): boolean {
+    // If creature with Antimagic effect spell
     if (target.effects.find((effect) => effect.id === Spells.AntiMagic)) return true
 
-    const creaturesWithImmunity = [
-      Creatures.BlackDragon,
-      Creatures.MagicElemental,
-      Creatures.FireElemental,
-      Creatures.EnergyElemental,
-    ]
-    if (creaturesWithImmunity.includes(target.id)) return true
+    // Creatures with full magic immunity
+    if (target.special?.immunityToSpellLevels?.includes(spell.level)) return true
 
-    const fireImmunityCreatures = [Creatures.Efreet, Creatures.EfreetSultan]
-    if (fireImmunityCreatures.includes(target.id)) return true
+    // Creatures with fire magic immunity
+    if (target.special?.immunityToSpellElement?.includes('fire') && spell.element.id === 'fire') return true
 
-    const threeSpellLevelImmunityCreatures = [Creatures.GreenDragon, Creatures.RedDragon]
-    if (threeSpellLevelImmunityCreatures.includes(target.id) && spell.level <= 3) return true
+    // Creatures with water magic immunity
+    if (target.special?.immunityToSpellElement?.includes('water') && spell.element.id === 'water') return true
 
-    const fourSpellLevelImmunityCreatures = [Creatures.GoldDragon]
-    if (fourSpellLevelImmunityCreatures.includes(target.id) && spell.level <= 4) return true
+    const onlyUndeadSpells = [Spells.AnimateDead, Spells.DestroyUndead]
+    const onlyLivingSpells = [Spells.DeathRipple, Spells.Resurrection, Spells.Bless]
 
-    if (
-      (target.id === Creatures.AirElemental || target.id === Creatures.StormElemental) &&
-      spell.id === Spells.MeteorShower
-    )
-      return true
+    // If spell in list spells that not affected to undead creatures
+    if (target.special?.undead && onlyLivingSpells.includes(spell.id)) return true
 
-    if (
-      (target.id === Creatures.WaterElemental || target.id === Creatures.IceElemental) &&
-      (spell.id === Spells.IceBolt || spell.id === Spells.FrostRing)
-    )
-      return true
+    // If spell in list spells that not affected to living creatures
+    if (!target.special?.undead && onlyUndeadSpells.includes(spell.id)) return true
 
-    if (
-      (target.id === Creatures.EarthElemental || target.id === Creatures.MagmaElemental) &&
-      (spell.id === Spells.LightningBolt || spell.id === Spells.ChainLightning || spell.id === Spells.Armageddon)
-    )
-      return true
+    const warMachines = [Creatures.Ballista, Creatures.Cannon]
+    const warMachinesImmunities = [Spells.Implosion, Spells.Resurrection, Spells.DeathRipple, Spells.DestroyUndead]
+    if (warMachinesImmunities.includes(spell.id) && warMachines.includes(target.id)) return true
 
     return false
   }
 
   private calculateSpellReducing(
-    attacker: DamageCalculatorBattleSide,
+    _attacker: DamageCalculatorBattleSide,
     defender: DamageCalculatorBattleSide,
     target: CreatureInstance,
     spell: Spell,
     damage: number
   ) {
-    if (target.id === Creatures.StoneGolem) damage -= (damage / 100) * 50
-    else if (target.id === Creatures.IronGolem) damage -= (damage / 100) * 75
-    else if (target.id === Creatures.SteelGolem) damage -= (damage / 100) * 80
-    else if (target.id === Creatures.GoldGolem) damage -= (damage / 100) * 85
-    else if (target.id === Creatures.DiamondGolem) damage -= (damage / 100) * 95
+    if (target.special?.spellDamageResistance) damage -= (damage / 100) * target.special.spellDamageResistance
 
-    if (spell.element !== 'Neutral') {
+    if (spell.element.id !== 'neutral') {
       const protectionsIds = [
         Spells.ProtectionFromFire,
         Spells.ProtectionFromWater,
@@ -359,14 +370,9 @@ export class Battle {
 
       const effects = target.effects.filter((effect) => protectionsIds.includes(effect.id))
 
-      if (effects.find((effect: Spell) => effect.element === spell.element)) {
-        const schoolLevel = defender.hero?.skills[spell.element.toLocaleLowerCase()] || 0
-
-        if (!defender.hero || !schoolLevel) {
-          damage -= (damage / 100) * 50
-        } else if (schoolLevel >= 1) {
-          damage -= (damage / 100) * 75
-        }
+      if (effects.find((effect: Spell) => effect.element.id === spell.element.id)) {
+        const schoolLevel = defender.hero?.skills[spell.element.id] || 0
+        damage -= (damage / 100) * schoolLevel ? 75 : 50
       }
     }
 
@@ -382,17 +388,18 @@ export class Battle {
     if (!initiator.hero) return damage
 
     const { specialtySpell } = initiator.hero
-    let bonus = 0
+    let value = damage
 
     if (spell.id === Spells.MagicArrow && specialtySpell === Spells.MagicArrow) {
-      bonus = damage / 2
+      value += damage / 2
     } else if (spell.id === Spells.Firewall && specialtySpell === Spells.Firewall) {
-      bonus = damage
+      value += damage
     } else if (spell.id === specialtySpell) {
-      bonus = 1 + (initiator.hero.level / target.level) * 0.03
+      const bonus = 1 + (initiator.hero.level / target.level) * 0.03
+      value *= bonus
     }
 
-    return damage + bonus
+    return Math.ceil(value)
   }
 
   private calculateSpellBonuses(
@@ -404,12 +411,17 @@ export class Battle {
     if (!initiator.hero) return damage
 
     let bonus = 0
-    if (initiator.hero.skills.sorcery && initiator.hero.skills.sorcery <= SkillLevels.Basic) {
-      bonus += (damage / 100) * 5
-    } else if (initiator.hero.skills.sorcery && initiator.hero.skills.sorcery <= SkillLevels.Advanced) {
-      bonus += (damage / 100) * 10
-    } else if (initiator.hero.skills.sorcery && initiator.hero.skills.sorcery <= SkillLevels.Expert) {
-      bonus += (damage / 100) * 15
+
+    if (target.special?.vulnerablesToSpells && target.special.vulnerablesToSpells.includes(spell.id)) {
+      bonus += damage
+    }
+
+    if (initiator.hero.skills.sorcery) {
+      bonus += (damage / 100) * initiator.hero.skills.sorcery * 5
+
+      if (initiator.hero.specialtySkill === SecondarySkills.Sorcery) {
+        bonus += (damage / 100) * initiator.hero.level * 5
+      }
     }
 
     return damage + bonus
