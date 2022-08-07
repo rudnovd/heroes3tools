@@ -129,12 +129,14 @@
     "damage": "Урон",
     "defender": "Защищающийся",
     "defense": "Защита",
+    "effects": "Эффекты",
     "growth": "Прирост",
     "health": "Здоровье",
     "knowledge": "Знание",
     "level": "Уровень",
     "power": "Сила Магии",
-    "speed": "Скорость"
+    "speed": "Скорость",
+    "target": "Цель"
   },
   "extra": {
     "dismiss": "Отклонить",

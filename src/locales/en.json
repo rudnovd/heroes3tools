@@ -92,7 +92,9 @@
     "cost": "Cost",
     "speed": "Speed",
     "aiValue": "Ai value",
-    "growth": "Growth"
+    "growth": "Growth",
+    "target": "Target",
+    "effects": "Effects"
   },
   "common": {
     "homePage": "Home page",
