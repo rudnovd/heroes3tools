@@ -46,6 +46,7 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
+  max-height: 128px;
   background: url('/images/windows/book-bg.webp');
   background-position: center;
   border: 3px solid transparent;

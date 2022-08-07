@@ -130,6 +130,7 @@ footer {
   font-size: 0.875rem;
   color: var(--color-link);
   border-top: v-bind(border);
+  transition: border-top 0.2s linear;
 
   & > * {
     flex: 0 0 calc(50% - 8px);
