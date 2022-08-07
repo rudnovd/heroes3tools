@@ -1,176 +1,37 @@
 import type { DamageCalculatorBattleSide } from '@/models/Battle'
 import { SkillLevels, Spells as SpellsEnum } from '@/models/enums'
 
+function getSpellDamage(
+  initiator: DamageCalculatorBattleSide,
+  element: string,
+  damageGrades: Array<number>,
+  powerBonus: number
+) {
+  const power = initiator.hero?.stats.power || 0
+  const skillLevel = initiator.hero?.skills[element] || 0
+  damageGrades = [damageGrades[0], ...damageGrades]
+
+  return damageGrades[skillLevel] + power * powerBonus
+}
+
 export const Spells = {
-  magicArrow: (initiator: DamageCalculatorBattleSide): number => {
+  magicArrow: (initiator: DamageCalculatorBattleSide) => {
     let damage = 0
 
-    const schoolLevel =
-      initiator.hero?.skills.fire ||
-      initiator.hero?.skills.air ||
-      initiator.hero?.skills.water ||
-      initiator.hero?.skills.earth ||
-      0
+    let schoolLevel = 0
 
-    if (!initiator.hero) {
-      damage = 20
-    } else if (schoolLevel <= SkillLevels.Basic) {
-      damage = 10 + initiator.hero.stats.power * 10
-    } else if (schoolLevel <= SkillLevels.Advanced) {
-      damage = 20 + initiator.hero.stats.power * 10
-    } else if (schoolLevel <= SkillLevels.Expert) {
-      damage = 30 + initiator.hero.stats.power * 10
+    if (initiator.hero?.skills.fire) {
+      schoolLevel = initiator.hero?.skills.fire
     }
-
-    return damage
-  },
-  cure: (initiator: DamageCalculatorBattleSide): number => {
-    let damage = 0
-
-    const schoolLevel = initiator.hero?.skills.water || 0
-
-    if (!initiator.hero) {
-      damage = 10
-    } else if (schoolLevel <= SkillLevels.Basic) {
-      damage = 10 + initiator.hero.stats.power * 5
-    } else if (schoolLevel <= SkillLevels.Advanced) {
-      damage = 20 + initiator.hero.stats.power * 5
-    } else if (schoolLevel <= SkillLevels.Expert) {
-      damage = 30 + initiator.hero.stats.power * 5
+    if (initiator.hero?.skills.air && initiator.hero?.skills.air > schoolLevel) {
+      schoolLevel = initiator.hero?.skills.air
     }
-
-    return -damage
-  },
-  lightningBolt: (initiator: DamageCalculatorBattleSide): number => {
-    let damage = 0
-
-    const schoolLevel = initiator.hero?.skills.air || 0
-
-    if (!initiator.hero) {
-      damage = 10
-    } else if (schoolLevel <= SkillLevels.Basic) {
-      damage = 10 + initiator.hero.stats.power * 25
-    } else if (schoolLevel <= SkillLevels.Advanced) {
-      damage = 20 + initiator.hero.stats.power * 25
-    } else if (schoolLevel <= SkillLevels.Expert) {
-      damage = 50 + initiator.hero.stats.power * 25
+    if (initiator.hero?.skills.water && initiator.hero?.skills.water > schoolLevel) {
+      schoolLevel = initiator.hero?.skills.water
     }
-
-    return damage
-  },
-
-  fireWall: (initiator: DamageCalculatorBattleSide): number => {
-    let damage = 0
-
-    const schoolLevel = initiator.hero?.skills.fire || 0
-
-    if (!initiator.hero) {
-      damage = 15
-    } else if (schoolLevel <= SkillLevels.Basic) {
-      damage = 15 + initiator.hero.stats.power * 10
-    } else if (schoolLevel <= SkillLevels.Advanced) {
-      damage = 30 + initiator.hero.stats.power * 10
-    } else if (schoolLevel <= SkillLevels.Expert) {
-      damage = 60 + initiator.hero.stats.power * 10
+    if (initiator.hero?.skills.earth && initiator.hero?.skills.earth > schoolLevel) {
+      schoolLevel = initiator.hero?.skills.earth
     }
-
-    return damage
-  },
-
-  iceBolt: (initiator: DamageCalculatorBattleSide): number => {
-    let damage = 0
-
-    const schoolLevel = initiator.hero?.skills.water || 0
-
-    if (!initiator.hero) {
-      damage = 10
-    } else if (schoolLevel <= SkillLevels.Basic) {
-      damage = 10 + initiator.hero.stats.power * 20
-    } else if (schoolLevel <= SkillLevels.Advanced) {
-      damage = 20 + initiator.hero.stats.power * 20
-    } else if (schoolLevel <= SkillLevels.Expert) {
-      damage = 50 + initiator.hero.stats.power * 20
-    }
-
-    return damage
-  },
-
-  deathRipple: (initiator: DamageCalculatorBattleSide): number => {
-    let damage = 0
-
-    const schoolLevel = initiator.hero?.skills.earth || 0
-
-    if (!initiator.hero) {
-      damage = 10
-    } else if (schoolLevel <= SkillLevels.Basic) {
-      damage = 10 + initiator.hero.stats.power * 5
-    } else if (schoolLevel <= SkillLevels.Advanced) {
-      damage = 20 + initiator.hero.stats.power * 5
-    } else if (schoolLevel <= SkillLevels.Expert) {
-      damage = 30 + initiator.hero.stats.power * 5
-    }
-
-    return damage
-  },
-
-  fireball: (initiator: DamageCalculatorBattleSide): number => {
-    let damage = 0
-
-    const schoolLevel = initiator.hero?.skills.fire || 0
-
-    if (!initiator.hero) {
-      damage = 15
-    } else if (schoolLevel <= SkillLevels.Basic) {
-      damage = 15 + initiator.hero.stats.power * 10
-    } else if (schoolLevel <= SkillLevels.Advanced) {
-      damage = 30 + initiator.hero.stats.power * 10
-    } else if (schoolLevel <= SkillLevels.Expert) {
-      damage = 60 + initiator.hero.stats.power * 10
-    }
-
-    return damage
-  },
-
-  landMine: (initiator: DamageCalculatorBattleSide): number => {
-    let damage = 0
-
-    const schoolLevel = initiator.hero?.skills.fire || 0
-
-    if (!initiator.hero) {
-      damage = 25
-    } else if (schoolLevel <= SkillLevels.Basic) {
-      damage = 25 + initiator.hero.stats.power * 10
-    } else if (schoolLevel <= SkillLevels.Advanced) {
-      damage = 50 + initiator.hero.stats.power * 10
-    } else if (schoolLevel <= SkillLevels.Expert) {
-      damage = 100 + initiator.hero.stats.power * 10
-    }
-
-    return damage
-  },
-
-  frostRing: (initiator: DamageCalculatorBattleSide): number => {
-    let damage = 0
-
-    const schoolLevel = initiator.hero?.skills.water || 0
-
-    if (!initiator.hero) {
-      damage = 15
-    } else if (schoolLevel <= SkillLevels.Basic) {
-      damage = 15 + initiator.hero.stats.power * 10
-    } else if (schoolLevel <= SkillLevels.Advanced) {
-      damage = 30 + initiator.hero.stats.power * 10
-    } else if (schoolLevel <= SkillLevels.Expert) {
-      damage = 60 + initiator.hero.stats.power * 10
-    }
-
-    return damage
-  },
-
-  destroyUndead: (initiator: DamageCalculatorBattleSide): number => {
-    let damage = 0
-
-    const schoolLevel = initiator.hero?.skills.air || 0
 
     if (!initiator.hero) {
       damage = 10
@@ -179,104 +40,76 @@ export const Spells = {
     } else if (schoolLevel <= SkillLevels.Advanced) {
       damage = 20 + initiator.hero.stats.power * 10
     } else if (schoolLevel <= SkillLevels.Expert) {
-      damage = 50 + initiator.hero.stats.power * 10
+      damage = 30 + initiator.hero.stats.power * 10
     }
 
     return damage
   },
-
-  inferno: (initiator: DamageCalculatorBattleSide): number => {
-    let damage = 0
-
-    const schoolLevel = initiator.hero?.skills.fire || 0
-
-    if (!initiator.hero) {
-      damage = 20
-    } else if (schoolLevel <= SkillLevels.Basic) {
-      damage = 20 + initiator.hero.stats.power * 10
-    } else if (schoolLevel <= SkillLevels.Advanced) {
-      damage = 40 + initiator.hero.stats.power * 10
-    } else if (schoolLevel <= SkillLevels.Expert) {
-      damage = 80 + initiator.hero.stats.power * 10
-    }
-
-    return damage
+  cure: (initiator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initiator, 'water', [-10, -20, -30], -5)
+  },
+  lightningBolt: (initiator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initiator, 'air', [10, 20, 50], 25)
   },
 
-  meteorShower: (initiator: DamageCalculatorBattleSide): number => {
-    let damage = 0
-
-    const schoolLevel = initiator.hero?.skills.earth || 0
-
-    if (!initiator.hero) {
-      damage = 25
-    } else if (schoolLevel <= SkillLevels.Basic) {
-      damage = 25 + initiator.hero.stats.power * 25
-    } else if (schoolLevel <= SkillLevels.Advanced) {
-      damage = 50 + initiator.hero.stats.power * 25
-    } else if (schoolLevel <= SkillLevels.Expert) {
-      damage = 100 + initiator.hero.stats.power * 25
-    }
-
-    return damage
+  fireWall: (initiator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initiator, 'fire', [15, 30, 60], 10)
   },
 
-  chainLightning: (initiator: DamageCalculatorBattleSide): number => {
-    let damage = 0
-
-    const schoolLevel = initiator.hero?.skills.air || 0
-
-    if (!initiator.hero) {
-      damage = 25
-    } else if (schoolLevel <= SkillLevels.Basic) {
-      damage = 25 + initiator.hero.stats.power * 40
-    } else if (schoolLevel <= SkillLevels.Advanced) {
-      damage = 50 + initiator.hero.stats.power * 40
-    } else if (schoolLevel <= SkillLevels.Expert) {
-      damage = 100 + initiator.hero.stats.power * 40
-    }
-
-    return damage
+  iceBolt: (initiator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initiator, 'water', [10, 20, 50], 20)
   },
 
-  titansLightningBolt: (): number => {
+  deathRipple: (initiator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initiator, 'earth', [10, 20, 30], 5)
+  },
+
+  fireball: (initiator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initiator, 'fire', [15, 30, 60], 10)
+  },
+
+  landMine: (initiator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initiator, 'fire', [25, 50, 100], 10)
+  },
+
+  frostRing: (initiator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initiator, 'water', [15, 30, 60], 10)
+  },
+
+  destroyUndead: (initiator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initiator, 'air', [10, 20, 50], 10)
+  },
+
+  inferno: (initiator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initiator, 'fire', [20, 40, 80], 10)
+  },
+
+  meteorShower: (initiator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initiator, 'earth', [25, 50, 100], 25)
+  },
+
+  chainLightning: (initiator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initiator, 'air', [25, 50, 100], 40)
+  },
+
+  titansLightningBolt: () => {
     return 600
   },
 
-  implosion: (initiator: DamageCalculatorBattleSide): number => {
-    let damage = 0
-
-    const schoolLevel = initiator.hero?.skills.earth || 0
-
-    if (!initiator.hero) {
-      damage = 100
-    } else if (schoolLevel <= SkillLevels.Basic) {
-      damage = 100 + initiator.hero.stats.power * 75
-    } else if (schoolLevel <= SkillLevels.Advanced) {
-      damage = 200 + initiator.hero.stats.power * 75
-    } else if (schoolLevel <= SkillLevels.Expert) {
-      damage = 300 + initiator.hero.stats.power * 75
-    }
-
-    return damage
+  implosion: (initiator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initiator, 'earth', [100, 200, 300], 75)
   },
 
-  armageddon: (initiator: DamageCalculatorBattleSide): number => {
-    let damage = 0
+  armageddon: (initiator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initiator, 'fire', [30, 60, 120], 40)
+  },
 
-    const schoolLevel = initiator.hero?.skills.fire || 0
+  animateDead: (initator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initator, 'earth', [-30, -60, -160], -50)
+  },
 
-    if (!initiator.hero) {
-      damage = 30
-    } else if (schoolLevel <= SkillLevels.Basic) {
-      damage = 30 + initiator.hero.stats.power * 40
-    } else if (schoolLevel <= SkillLevels.Advanced) {
-      damage = 60 + initiator.hero.stats.power * 40
-    } else if (schoolLevel <= SkillLevels.Expert) {
-      damage = 120 + initiator.hero.stats.power * 40
-    }
-
-    return damage
+  resurrection: (initator: DamageCalculatorBattleSide) => {
+    return getSpellDamage(initator, 'earth', [-40, -80, -160], -50)
   },
 }
 
@@ -291,9 +124,9 @@ export const spellsFunctionsMap = {
   [SpellsEnum.IceBolt]: Spells.iceBolt,
   [SpellsEnum.FrostRing]: Spells.frostRing,
   [SpellsEnum.DeathRipple]: Spells.deathRipple,
-  // [SpellsEnum.AnimateDead]: Spells.animateDead,
+  [SpellsEnum.AnimateDead]: Spells.animateDead,
   [SpellsEnum.MeteorShower]: Spells.meteorShower,
-  // [SpellsEnum.Resurrection]: Spells.ressurection,
+  [SpellsEnum.Resurrection]: Spells.resurrection,
   [SpellsEnum.Implosion]: Spells.implosion,
   [SpellsEnum.LightningBolt]: Spells.lightningBolt,
   [SpellsEnum.DestroyUndead]: Spells.destroyUndead,
