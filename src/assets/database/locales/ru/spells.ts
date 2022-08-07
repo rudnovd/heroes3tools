@@ -1,354 +1,564 @@
-import type { SpellTranslation } from '@/models/Spell'
+import type { Spell } from '@/models/Spell'
 
-export const spells: Array<SpellTranslation> = [
+export const spells: Array<Pick<Spell, 'id' | 'name' | 'element'>> = [
   {
     id: 1,
     name: 'Магическая Стрела',
-    element: 'Нейтральный',
+    element: {
+      id: 'neutral',
+      name: 'Нейтральный',
+    },
   },
   {
     id: 2,
     name: 'Видение',
-    element: 'Нейтральный',
+    element: {
+      id: 'neutral',
+      name: 'Нейтральный',
+    },
   },
   {
     id: 3,
     name: 'Жажда Крови',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 4,
     name: 'Проклятие',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 5,
     name: 'Защита От Огня',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 6,
     name: 'Слепота',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 7,
     name: 'Стена Огня',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 8,
     name: 'Огненный Шар',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 9,
     name: 'Мина',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 10,
     name: 'Неудача',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 11,
     name: 'Армагеддон',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 12,
     name: 'Берсерк',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 13,
     name: 'Огненный Щит',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 14,
     name: 'Бешенство',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 15,
     name: 'Инферно',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 16,
     name: 'Палач',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 17,
     name: 'Жертва',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 18,
     name: 'Элементаль Огня',
-    element: 'Огонь',
+    element: {
+      id: 'fire',
+      name: 'Огонь',
+    },
   },
   {
     id: 19,
     name: 'Благословение',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 20,
     name: 'Лечение',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 21,
     name: 'Рассеивание',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 22,
     name: 'Защита От Воды',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 23,
     name: 'Вызвать Лодку',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 24,
     name: 'Ледяная Стрела',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 25,
     name: 'Устранение Преград',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 26,
     name: 'Потопить Лодку',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 27,
     name: 'Слабость',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 28,
     name: 'Забывчивость',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 29,
     name: 'Ледяное Кольцо',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 30,
     name: 'Радость',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 31,
     name: 'Телепортация',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 32,
     name: 'Клон',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 33,
     name: 'Молитва',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 34,
     name: 'Ходьба по воде',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 35,
     name: 'Элементаль Воды',
-    element: 'Вода',
+    element: {
+      id: 'water',
+      name: 'Вода',
+    },
   },
   {
     id: 36,
     name: 'Щит',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 37,
     name: 'Замедление',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 38,
     name: 'Каменная Кожа',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 39,
     name: 'Просмотр Земли',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 40,
     name: 'Волна Смерти',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 41,
     name: 'Зыбучий Песок',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 42,
     name: 'Оживить Мертвеца',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 43,
     name: 'Анти-Магия',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 44,
     name: 'Землетрясение',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 45,
     name: 'Силовое поле',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 46,
     name: 'Защита От Земли',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 47,
     name: 'Метеоритный Дождь',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 48,
     name: 'Воскрешение',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 49,
     name: 'Печаль',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 50,
     name: 'Городской Портал',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 51,
     name: 'Взрыв',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 52,
     name: 'Элементаль Земли',
-    element: 'Земля',
+    element: {
+      id: 'earth',
+      name: 'Земля',
+    },
   },
   {
     id: 53,
     name: 'Ускорение',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 54,
     name: 'Просмотр Воздуха',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 55,
     name: 'Маскировка',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 56,
     name: 'Разрушающий Луч',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 57,
     name: 'Удача',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 58,
     name: 'Молния',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 59,
     name: 'Точность',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 60,
     name: 'Защита От Воздуха',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 61,
     name: 'Воздушный Щит',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 62,
     name: 'Уничтожить Нежить',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 63,
     name: 'Гипноз',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 64,
     name: 'Цепная Молния',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 65,
     name: 'Ответный Удар',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 66,
     name: 'Дверь Измерений',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 67,
     name: 'Полёт',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 68,
     name: 'Магическое Зеркало',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 69,
     name: 'Элементаль Воздуха',
-    element: 'Воздух',
+    element: {
+      id: 'air',
+      name: 'Воздух',
+    },
   },
   {
     id: 70,
     name: 'Стрела Титана',
-    element: 'Нейтральный',
+    element: {
+      id: 'neutral',
+      name: 'Нейтральный',
+    },
   },
 ]
