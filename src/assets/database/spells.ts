@@ -5,427 +5,637 @@ export const spells: Array<Spell> = [
     id: 1,
     level: 1,
     name: 'Magic Arrow',
-    element: 'Neutral',
+    element: {
+      id: 'neutral',
+      name: 'Neutral',
+    },
   },
   {
     id: 2,
     level: 1,
     name: 'Visions',
-    element: 'Neutral',
+    element: {
+      id: 'neutral',
+      name: 'Neutral',
+    },
   },
   {
     id: 3,
     level: 1,
     name: 'Bloodlust',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
   },
   {
     id: 4,
     level: 1,
     name: 'Curse',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
   },
   {
     id: 5,
     level: 1,
     name: 'Protection From Fire',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
   },
   {
     id: 6,
     level: 2,
     name: 'Blind',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
     group: ['mind'],
   },
   {
     id: 7,
     level: 2,
     name: 'Fire wall',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
   },
   {
     id: 8,
     level: 3,
     name: 'Fireball',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
   },
   {
     id: 9,
     level: 3,
     name: 'Land Mine',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
   },
   {
     id: 10,
     level: 3,
     name: 'Misfortune',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
   },
   {
     id: 11,
     level: 4,
     name: 'Armageddon',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
   },
   {
     id: 12,
     level: 4,
     name: 'Berserk',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
     group: ['mind'],
   },
   {
     id: 13,
     level: 4,
     name: 'Fire Shield',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
   },
   {
     id: 14,
     level: 4,
     name: 'Frenzy',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
     group: ['mind'],
   },
   {
     id: 15,
     level: 4,
     name: 'Inferno',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
   },
   {
     id: 16,
     level: 4,
     name: 'Slayer',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
   },
   {
     id: 17,
     level: 5,
     name: 'Sacrifice',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
   },
   {
     id: 18,
     level: 5,
     name: 'Summon Fire Elemental',
-    element: 'Fire',
+    element: {
+      id: 'fire',
+      name: 'Fire',
+    },
   },
   {
     id: 19,
     level: 1,
     name: 'Bless',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
   },
   {
     id: 20,
     level: 1,
     name: 'Cure',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
   },
   {
     id: 21,
     level: 1,
     name: 'Dispel',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
   },
   {
     id: 22,
     level: 1,
     name: 'Protection From Water',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
   },
   {
     id: 23,
     level: 1,
     name: 'Summon Boat',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
   },
   {
     id: 24,
     level: 2,
     name: 'Ice Bolt',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
   },
   {
     id: 25,
     level: 2,
     name: 'Remove Obstacle',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
   },
   {
     id: 26,
     level: 2,
     name: 'Scuttle Boat',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
   },
   {
     id: 27,
     level: 2,
     name: 'Weakness',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
   },
   {
     id: 28,
     level: 3,
     name: 'Forgetfulness',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
     group: ['mind'],
   },
   {
     id: 29,
     level: 3,
     name: 'Frost Ring',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
   },
   {
     id: 30,
     level: 3,
     name: 'Mirth',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
     group: ['mind'],
   },
   {
     id: 31,
     level: 3,
     name: 'Teleport',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
   },
   {
     id: 32,
     level: 4,
     name: 'Clone',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
   },
   {
     id: 33,
     level: 4,
     name: 'Prayer',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
   },
   {
     id: 34,
     level: 4,
     name: 'Water Walk',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
   },
   {
     id: 35,
     level: 5,
     name: 'Summon Water Elemental',
-    element: 'Water',
+    element: {
+      id: 'water',
+      name: 'Water',
+    },
   },
   {
     id: 36,
     level: 1,
     name: 'Shield',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 37,
     level: 1,
     name: 'Slow',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 38,
     level: 1,
     name: 'Stone Skin',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 39,
     level: 1,
     name: 'View Earth',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 40,
     level: 2,
     name: 'Death Ripple',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 41,
     level: 2,
     name: 'Quicksand',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 42,
     level: 3,
     name: 'Animate Dead',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 43,
     level: 3,
     name: 'Anti-Magic',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 44,
     level: 3,
     name: 'Earthquake',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 45,
     level: 3,
     name: 'Force Field',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 46,
     level: 3,
     name: 'Protection From Earth',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 47,
     level: 4,
     name: 'Meteor Shower',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 48,
     level: 4,
     name: 'Resurrection',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 49,
     level: 4,
     name: 'Sorrow',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
     group: ['mind'],
   },
   {
     id: 50,
     level: 4,
     name: 'Town Portal',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 51,
     level: 5,
     name: 'Implosion',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 52,
     level: 5,
     name: 'Summon Earth Elemental',
-    element: 'Earth',
+    element: {
+      id: 'earth',
+      name: 'Earth',
+    },
   },
   {
     id: 53,
     level: 1,
     name: 'Haste',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 54,
     level: 1,
     name: 'View Air',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 55,
     level: 2,
     name: 'Disguise',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 56,
     level: 2,
     name: 'Disrupting Ray',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 57,
     level: 2,
     name: 'Fortune',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 58,
     level: 2,
     name: 'Lightning Bolt',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 59,
     level: 2,
     name: 'Precision',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 60,
     level: 2,
     name: 'Protection From Air',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 61,
     level: 3,
     name: 'Air Shield',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 62,
     level: 3,
     name: 'Destroy Undead',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 63,
     level: 3,
     name: 'Hypnotize',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
     group: ['mind'],
   },
   {
     id: 64,
     level: 4,
     name: 'Chain Lightning',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 65,
     level: 4,
     name: 'Counterstrike',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 66,
     level: 5,
     name: 'Dimension Door',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 67,
     level: 5,
     name: 'Fly',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 68,
     level: 5,
     name: 'Magic Mirror',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 69,
     level: 5,
     name: 'Summon Air Elemental',
-    element: 'Air',
+    element: {
+      id: 'air',
+      name: 'Air',
+    },
   },
   {
     id: 70,
     level: 4,
     name: 'Titans Lightning Bolt',
-    element: 'Neutral',
+    element: {
+      id: 'neutral',
+      name: 'neutral',
+    },
   },
 ]
