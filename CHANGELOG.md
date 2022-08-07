@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0-beta.0](https://github.com/rudnovd/heroes3tools/compare/v2.0.2...v2.1.0-beta.0) (2022-08-07)
+
+
+### Features
+
+* add Magic Calculator components ([4f0035d](https://github.com/rudnovd/heroes3tools/commit/4f0035d042da6afcc82ee29819a7cf51f145169c))
+* **app:** add dark theme, refactor styles ([b70b86a](https://github.com/rudnovd/heroes3tools/commit/b70b86ad6b827b450b88f3ebedbd31254af0d342))
+* **app:** cache calculators and library pages ([6add8bd](https://github.com/rudnovd/heroes3tools/commit/6add8bd9a42f4626aea6d336935fe7c0747db72e))
+* **assets:** add new background ([b175530](https://github.com/rudnovd/heroes3tools/commit/b175530eb50fb587ba624ebb201166fc165a417e))
+* **assets:** add spells icons images ([243b234](https://github.com/rudnovd/heroes3tools/commit/243b23490e4c0908cc608c6cc436e9e212edc3d1))
+* **Battle:** add helper function ([e71781d](https://github.com/rudnovd/heroes3tools/commit/e71781da601a410ce0c5c2a445bde7133b8d0adb))
+* **Battle:** update spells calculation functions ([b964be5](https://github.com/rudnovd/heroes3tools/commit/b964be50742299a0a06d6fdad4778832142d91c0))
+* **components:** add CalculatorTabs component ([5d7c63a](https://github.com/rudnovd/heroes3tools/commit/5d7c63abb5fa4167dbffc1ad9012a3b835d4f224))
+* **components:** add SpellCard component ([086551e](https://github.com/rudnovd/heroes3tools/commit/086551e5032e1b2a0fe48eb65e32a2f2149f4ae2))
+* **database:** add new skills ([cd94984](https://github.com/rudnovd/heroes3tools/commit/cd94984e200a8bb95d882df6dd6582feb6cfeea1))
+* **database:** add new specials for creatures ([233010f](https://github.com/rudnovd/heroes3tools/commit/233010f58327f410a3cfb4c3c445962ca8ffc862))
+* **HomePage:** enable Magic Calculator page ([bd7b300](https://github.com/rudnovd/heroes3tools/commit/bd7b30086a7fa3c52e4194cef0aeac23b802e1eb))
+* **MagicCalculatorPage:** add page footer ([cc2c7d7](https://github.com/rudnovd/heroes3tools/commit/cc2c7d77da2361620647429ef061ccf3b737af20))
+* **MagicCalculator:** update component ([19d4480](https://github.com/rudnovd/heroes3tools/commit/19d44802f54f297a718782aa6ab062173c718472))
+* **MagicCalculator:** update component functions ([7223110](https://github.com/rudnovd/heroes3tools/commit/7223110473583e017957cecd5cbd173175779e9e))
+* **models:** update creatures specials interface ([a88e537](https://github.com/rudnovd/heroes3tools/commit/a88e537ecf87639fe667add0db31ad2bf3379a2c))
+* **modules:** init spells module ([73d1f28](https://github.com/rudnovd/heroes3tools/commit/73d1f2818b5b43e50e1fe742b483d8cbf5c0e5bd))
+* **router:** add magic calculator route ([e814948](https://github.com/rudnovd/heroes3tools/commit/e8149483c3e34cd3aabc9bfcbd5b423b41747a00))
+* **spells:** update module functions ([0b87859](https://github.com/rudnovd/heroes3tools/commit/0b87859f151222a1612ee2f3f1b5f58ab5bf6036))
+* **styles:** add new transitions ([90848f5](https://github.com/rudnovd/heroes3tools/commit/90848f5448178f70acdac6963445c056e2b0b0a1))
+
+
+### Bug Fixes
+
+* **BaseSelect:** fix component styles ([844f038](https://github.com/rudnovd/heroes3tools/commit/844f0382dc8ffdddeae5c3ecc66374969943f45c))
+* **CloseButton:** remove unused prop ([02bba32](https://github.com/rudnovd/heroes3tools/commit/02bba3215fd9ea67c059c7c724c07de1a3d6d739))
+* **effects:** fix immunity checking ([830a58f](https://github.com/rudnovd/heroes3tools/commit/830a58f6f5bd7de6ef7b70c17828029893f22009))
+* **i18n:** load default language in App.vue ([571266d](https://github.com/rudnovd/heroes3tools/commit/571266d63c0dd36b69c10b6f0d83adfec7f07e91))
+* **SpellCard:** fix border-color style ([f75804f](https://github.com/rudnovd/heroes3tools/commit/f75804f5999ddb6cbfd15274f5eef5fd9696646b))
+
 ### [2.0.2](https://github.com/rudnovd/heroes3tools/compare/v2.0.1...v2.0.2) (2022-07-21)
 
 
