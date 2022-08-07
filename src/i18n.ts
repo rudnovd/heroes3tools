@@ -1,4 +1,3 @@
-import en from '@/locales/en.json'
 import { useLocalStorage } from '@vueuse/core'
 import { nextTick } from 'vue'
 import { createI18n } from 'vue-i18n'
@@ -11,9 +10,6 @@ const i18n = createI18n({
   legacy: false,
   locale: 'en',
   availableLocales,
-  messages: {
-    en,
-  },
 })
 
 export async function setLanguage(locale: string) {

@@ -43,6 +43,8 @@ export default defineComponent({
 
     const showBackButton = ref(false)
 
+    setLanguage('en')
+
     const { updateServiceWorker, needRefresh } = useRegisterSW({
       immediate: false,
       onRegistered(registration) {
