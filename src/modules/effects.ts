@@ -12,7 +12,7 @@ export const Effects = {
       if (target.effects.find((effect) => effect.id === Spells.AntiMagic)) return false
 
       // if target has immunity to effect
-      if (target.special?.immunity?.find((spell) => spell.id === effect.id)) return false
+      if (target.special?.immunity?.find((spell) => spell === effect.id)) return false
 
       const undeadImmunitySpells = [
         Spells.Bless,
