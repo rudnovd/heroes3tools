@@ -23,13 +23,27 @@
         />
       </TransitionGroup>
     </main>
+
+    <PageFooter :about="{ text: t('components.damageCalculatorPage.about') }" border="none">
+      <template #aboutModal>
+        <h2>{{ t('components.damageCalculatorPage.data.1') }}</h2>
+        <p>{{ t('components.damageCalculatorPage.data.2') }}</p>
+
+        <i18n-t keypath="components.damageCalculatorPage.data.3" tag="p">
+          <template #email>
+            <a href="mailto:feedback@heroes3.tools" target="_blank">feedback@heroes3.tools</a>
+          </template>
+        </i18n-t>
+      </template>
+    </PageFooter>
   </section>
 </template>
 
 <script lang="ts">
 import CalculatorTabs from '@/components/CalculatorTabs.vue'
 import { Battle } from '@/models/Battle'
-import { defineComponent, Ref, ref } from 'vue'
+import { defineAsyncComponent, defineComponent, Ref, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import MagicCalculator from '../components/MagicCalculator.vue'
 
 export default defineComponent({
@@ -37,8 +51,11 @@ export default defineComponent({
   components: {
     CalculatorTabs,
     MagicCalculator,
+    PageFooter: defineAsyncComponent(() => import('@/components/PageFooter.vue')),
   },
   setup() {
+    const { t } = useI18n()
+
     const calculators = ref<Array<Battle>>([new Battle()]) as Ref<Array<Battle>>
     const activeIndex = ref(0)
 
@@ -69,6 +86,7 @@ export default defineComponent({
     }
 
     return {
+      t,
       calculators,
       activeIndex,
 
