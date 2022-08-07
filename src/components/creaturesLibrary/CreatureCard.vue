@@ -77,9 +77,9 @@ export default defineComponent({
 .creature-card {
   display: grid;
   grid-template-columns: 105px 1fr;
-  border-right: 1px solid var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
-  transition: background 0.25s;
+  border-right: 1px solid var(--color-text);
+  border-bottom: 1px solid var(--color-text);
+  transition: background 0.2s linear, border-right 0.2s linear, border-bottom 0.2s linear;
 
   @include media-medium {
     grid-template-columns: 150px 1fr;
@@ -87,6 +87,13 @@ export default defineComponent({
 
   &:hover {
     background: var(--color-bg-deep);
+  }
+}
+
+@include dark-scheme {
+  .creature-card {
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
   }
 }
 
@@ -116,6 +123,7 @@ export default defineComponent({
   grid-column: 1 / -1;
   text-align: center;
   border-bottom: 1px solid var(--color-border);
+  transition: border-bottom 0.2s linear;
 }
 
 .creature-info {
@@ -134,6 +142,7 @@ export default defineComponent({
   align-items: center;
   padding-left: 4px;
   border-bottom: 1px solid var(--color-border);
+  transition: border-bottom 0.2s linear, border-right 0.2s linear;
 
   &:last-child {
     border-bottom: none;

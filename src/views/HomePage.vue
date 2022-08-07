@@ -79,11 +79,13 @@ export default defineComponent({
 <style lang="scss" scoped>
 .home-page {
   display: grid;
-  grid-template-rows: min-content 1fr 30px;
+  grid-template-rows: min-content 1fr min-content;
   gap: 16px;
   min-width: 300px;
   min-height: 100vh;
   margin: 0 auto;
+  content-visibility: auto;
+  contain-intrinsic-size: 100vh;
 
   @include media-medium {
     align-content: center;

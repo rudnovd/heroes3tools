@@ -262,6 +262,8 @@ export default defineComponent({
   grid-template-rows: minmax(50vh, 1fr) 1fr;
   grid-template-columns: 100%;
   box-shadow: 0 0 3px rgba(170, 170, 170, 0.5);
+  content-visibility: auto;
+  contain-intrinsic-size: 80vh;
 
   @include media-large {
     grid-template-rows: minmax(80vh, auto) 1fr;
@@ -345,6 +347,7 @@ export default defineComponent({
 
 .attacker {
   border-bottom: 1px solid var(--color-border);
+  transition: border-bottom 0.2s linear, border-right 0.2s linear;
 
   @include media-large {
     border-right: 1px solid var(--color-border);
@@ -459,6 +462,7 @@ export default defineComponent({
   justify-content: flex-end;
   padding: 5px;
   border-top: 1px solid var(--color-border);
+  transition: border-top 0.2 linear;
 }
 
 .select-terrain {

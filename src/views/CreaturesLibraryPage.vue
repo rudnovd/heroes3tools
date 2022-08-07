@@ -149,6 +149,8 @@ export default defineComponent({
   max-width: 1920px;
   padding: 0 8px 16px;
   margin: 0 auto;
+  content-visibility: auto;
+  contain-intrinsic-size: 100vh;
 
   @include media-medium {
     padding: 0 24px 16px;
@@ -227,7 +229,16 @@ export default defineComponent({
 .creature-card {
   &:nth-child(2),
   &:nth-child(3) {
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-text);
+  }
+}
+
+@include dark-scheme {
+  .creature-card {
+    &:nth-child(2),
+    &:nth-child(3) {
+      border-top: 1px solid var(--color-border);
+    }
   }
 }
 </style>
