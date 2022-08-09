@@ -7,6 +7,10 @@ export const isDark = useDark({
   attribute: 'color-scheme',
   valueDark: 'dark',
   valueLight: 'light',
+  onChanged: (isDark) => {
+    document.querySelector('html')!.style.colorScheme = isDark ? 'dark' : 'light'
+    document.querySelector('body')!.setAttribute('color-scheme', isDark ? 'dark' : 'light')
+  },
 })
 
 export const useLocale = () => {
