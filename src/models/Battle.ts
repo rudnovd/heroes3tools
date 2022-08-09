@@ -329,6 +329,9 @@ export class Battle {
     // Creatures with full magic immunity
     if (target.special?.immunityToSpellLevels?.includes(spell.level)) return true
 
+    // Creature with immunity to spells list
+    if (target.special?.immunity?.includes(spell.id)) return true
+
     // Creatures with fire magic immunity
     if (target.special?.immunityToSpellElement?.includes('fire') && spell.element.id === 'fire') return true
 
