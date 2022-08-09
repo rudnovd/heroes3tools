@@ -18,14 +18,13 @@
 </template>
 
 <script lang="ts">
-import { selectedLanguage, setLanguage } from '@/i18n'
 import { useStore } from '@/store'
 import { watchOnce } from '@vueuse/core'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { computed, defineAsyncComponent, defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
-import { isDark } from './utilities'
+import { isDark, useLocale } from './utilities'
 
 const getDataRoutes = ['/damage', '/magic', '/creatures']
 const keepAliveComponents = ['DamageCalculatorPage', 'MagicCalculatorPage', 'CreaturesLibraryPage']
@@ -40,10 +39,9 @@ export default defineComponent({
     const route = useRoute()
     const { t } = useI18n()
     const store = useStore()
+    const lang = useLocale()
 
     const showBackButton = ref(false)
-
-    setLanguage('en')
 
     const { updateServiceWorker, needRefresh } = useRegisterSW({
       immediate: false,
@@ -64,9 +62,6 @@ export default defineComponent({
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (query) => {
       isDark.value = query.matches
     })
-
-    // Get selected language from localstorage and change i18n language
-    if (selectedLanguage.value !== 'en') setLanguage(selectedLanguage.value)
 
     const notificationsButtons = computed(() => [
       {
@@ -91,7 +86,7 @@ export default defineComponent({
     watchOnce(
       () => route.path,
       (newPath) => {
-        if (!store.isDataLoaded && getDataRoutes.includes(newPath)) store.loadData(selectedLanguage.value)
+        if (!store.isDataLoaded && getDataRoutes.includes(newPath)) store.loadData(lang.value)
       }
     )
 

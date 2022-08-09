@@ -4,9 +4,9 @@
       {{ about.text || t('components.pageFooter.about') }}
     </router-link>
 
-    <select v-model="selectedLocale" @change="changeLocale">
-      <option v-for="locale in locales" :key="locale.name" :value="locale.name">
-        {{ locale.value }}
+    <select v-model="locale">
+      <option v-for="availableLocale in locales" :key="availableLocale.name" :value="availableLocale.name">
+        {{ availableLocale.value }}
       </option>
     </select>
 
@@ -61,9 +61,9 @@
 </template>
 
 <script lang="ts">
-import { selectedLanguage, setLanguage } from '@/i18n'
-import { isDark } from '@/utilities'
-import { defineAsyncComponent, defineComponent, PropType, ref } from 'vue'
+import { useStore } from '@/store'
+import { isDark, useLocale } from '@/utilities'
+import { defineAsyncComponent, defineComponent, PropType, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -86,9 +86,10 @@ export default defineComponent({
     const { t } = useI18n()
     const route = useRoute()
     const router = useRouter()
+    const store = useStore()
+    const locale = useLocale()
 
-    const selectedLocale = ref(selectedLanguage.value)
-    const locales = ref([
+    const locales = [
       {
         name: 'en',
         value: 'English',
@@ -97,12 +98,12 @@ export default defineComponent({
         name: 'ru',
         value: 'Русский',
       },
-    ])
+    ]
 
-    const changeLocale = (event: Event) => {
-      const value = (event.target as HTMLButtonElement).value
-      setLanguage(value).then(() => (document.title = t(route.meta.title as string)))
-    }
+    watch(locale, (newLocale) => {
+      store.loadData(newLocale)
+      document.title = t(route.meta.title as string)
+    })
 
     return {
       t,
@@ -110,10 +111,8 @@ export default defineComponent({
       router,
 
       locales,
-      selectedLocale,
+      locale,
       appVersion: import.meta.env.__APP_VERSION__,
-
-      changeLocale,
     }
   },
 })
