@@ -2567,7 +2567,7 @@ export const creatures: Array<Creature> = [
     special: {
       nonLiving: true,
       vulnerablesToSpells: [Spells.Armageddon, Spells.Fireball, Spells.Inferno],
-      immunityToSpellElement: ['water'],
+      immunity: [Spells.IceBolt, Spells.FrostRing],
     },
     description:
       'Elemental, Ice immunity, Vulnerable to Fireball, Inferno and Armageddon, +100% to basic damage to Fire and Energy Elementals',
@@ -2592,7 +2592,7 @@ export const creatures: Array<Creature> = [
     special: {
       nonLiving: true,
       vulnerablesToSpells: [Spells.Armageddon, Spells.Fireball, Spells.Inferno],
-      immunityToSpellElement: ['water'],
+      immunity: [Spells.IceBolt, Spells.FrostRing],
     },
     description:
       'Ranged (24 shots), Elemental, Ice immunity, Vulnerable to Fireball, Inferno and Armageddon, +100% to basic damage to Fire and Energy Elementals, Casts Protection from Water',
@@ -2693,6 +2693,7 @@ export const creatures: Array<Creature> = [
     special: {
       nonLiving: true,
       vulnerablesToSpells: [Spells.MeteorShower],
+      immunity: [Spells.LightningBolt, Spells.ChainLightning, Spells.Armageddon],
     },
     description:
       'Elemental, Meteor Shower vulnerability, Lightning and Armageddon immunity, +100% to basic damage to Air and Storm Elementals, Casts Protection from Earth',
@@ -3135,6 +3136,7 @@ export const creatures: Array<Creature> = [
     growth: 16,
     special: {
       flying: true,
+      immunity: [Spells.IceBolt, Spells.FrostRing],
     },
     description: 'Teleporting, Immune to ice',
   },
@@ -3157,6 +3159,7 @@ export const creatures: Array<Creature> = [
     growth: 16,
     special: {
       flying: true,
+      immunity: [Spells.IceBolt, Spells.FrostRing],
     },
     description: 'Teleporting, Immune to ice',
   },
