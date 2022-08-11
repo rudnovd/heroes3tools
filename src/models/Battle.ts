@@ -332,11 +332,7 @@ export class Battle {
     // Creature with immunity to spells list
     if (target.special?.immunity?.includes(spell.id)) return true
 
-    // Creatures with fire magic immunity
-    if (target.special?.immunityToSpellElement?.includes('fire') && spell.element.id === 'fire') return true
-
-    // Creatures with water magic immunity
-    if (target.special?.immunityToSpellElement?.includes('water') && spell.element.id === 'water') return true
+    if (target.special?.immunityToSpellElement?.includes(spell.element.id)) return true
 
     const onlyUndeadSpells = [Spells.AnimateDead, Spells.DestroyUndead]
     const onlyLivingSpells = [Spells.DeathRipple, Spells.Resurrection, Spells.Bless]
@@ -346,6 +342,8 @@ export class Battle {
 
     // If spell in list spells that not affected to living creatures
     if (!target.special?.undead && onlyUndeadSpells.includes(spell.id)) return true
+
+    if (spell.id === Spells.Resurrection && target.special?.nonLiving) return true
 
     const warMachines = [Creatures.Ballista, Creatures.Cannon]
     const warMachinesImmunities = [Spells.Implosion, Spells.Resurrection, Spells.DeathRipple, Spells.DestroyUndead]
