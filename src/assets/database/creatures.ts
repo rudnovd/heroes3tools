@@ -2517,6 +2517,7 @@ export const creatures: Array<Creature> = [
     growth: 6,
     special: {
       nonLiving: true,
+      immunity: [Spells.MeteorShower],
       vulnerablesToSpells: [Spells.Armageddon, Spells.LightningBolt, Spells.ChainLightning, Spells.TitansLightningBolt],
     },
     description:
@@ -2668,7 +2669,7 @@ export const creatures: Array<Creature> = [
     special: {
       nonLiving: true,
       vulnerablesToSpells: [Spells.MeteorShower],
-      immunity: [Spells.LightningBolt, Spells.ChainLightning, Spells.Armageddon],
+      immunity: [Spells.LightningBolt, Spells.ChainLightning, Spells.Armageddon, Spells.TitansLightningBolt],
     },
     description:
       'Elemental, Meteor Shower vulnerability, Lightning and Armageddon immunity, +100% to basic damage to Air and Storm Elementals',
@@ -2693,7 +2694,7 @@ export const creatures: Array<Creature> = [
     special: {
       nonLiving: true,
       vulnerablesToSpells: [Spells.MeteorShower],
-      immunity: [Spells.LightningBolt, Spells.ChainLightning, Spells.Armageddon],
+      immunity: [Spells.LightningBolt, Spells.ChainLightning, Spells.Armageddon, Spells.TitansLightningBolt],
     },
     description:
       'Elemental, Meteor Shower vulnerability, Lightning and Armageddon immunity, +100% to basic damage to Air and Storm Elementals, Casts Protection from Earth',
