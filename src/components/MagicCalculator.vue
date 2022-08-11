@@ -77,21 +77,12 @@
           @clear="selectedSpell[sideName] = null"
         >
           <template #selected="{ selected }">
-            <ObjectPortrait
-              :folder="`/images/spells`"
-              :file="{ name: selected.id, alt: selected.name }"
-              height="36px"
-            />
+            <ObjectPortrait :folder="`/images/spells`" :file="{ name: selected.id, alt: selected.name }" width="46px" />
             {{ selected.name }}
           </template>
 
           <template #option="{ option }">
-            <ObjectPortrait
-              :folder="`/images/spells`"
-              :file="{ name: option.id, alt: option.name }"
-              height="36px"
-              :lazy-loading="false"
-            />
+            <ObjectPortrait :folder="`/images/spells`" :file="{ name: option.id, alt: option.name }" width="46px" />
             {{ option.name }}
           </template>
         </BaseSelect>
@@ -105,7 +96,7 @@
           :spell="spell"
           :selected="side.activeCreature?.effects.some((effect) => effect.id === spell.id)"
           @click="onSelectCreatureEffect(side, spell)"
-        ></SpellCard>
+        />
       </section>
 
       <section v-show="selectedSpell[sideName]" class="damage">
@@ -175,7 +166,7 @@ export default defineComponent({
     const heroes = computed(() => store.heroes)
     const levels = computed(() => store.levels)
     const spells = computed(() => {
-      const allowedSpells = [1, 20, 7, 24, 40, 58, 8, 9, 29, 42, 62, 11, 15, 47, 48, 64, 70, 51]
+      const allowedSpells = [1, 7, 24, 40, 58, 8, 9, 29, 42, 62, 11, 15, 47, 48, 64, 70, 51]
       return store.spells.filter((spell) => allowedSpells.includes(spell.id))
     })
     const skills = computed(() => {
@@ -202,7 +193,7 @@ export default defineComponent({
     })
 
     const spellsEffects = computed(() => {
-      const effectsIds = [5, 22, 46, 60, 43]
+      const effectsIds = [5, 22, 46, 60]
       return store.spells.filter((spell) => effectsIds.includes(spell.id))
     })
 
