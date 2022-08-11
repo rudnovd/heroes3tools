@@ -61,6 +61,7 @@
 </template>
 
 <script lang="ts">
+import i18n from '@/i18n'
 import { useStore } from '@/store'
 import { isDark, useLocale } from '@/utilities'
 import { defineAsyncComponent, defineComponent, PropType, watch } from 'vue'
@@ -100,7 +101,7 @@ export default defineComponent({
       },
     ]
 
-    watch(locale, (newLocale) => {
+    watch(i18n.global.locale, (newLocale) => {
       store.loadData(newLocale)
       document.title = t(route.meta.title as string)
     })
