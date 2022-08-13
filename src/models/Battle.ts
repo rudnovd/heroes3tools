@@ -149,11 +149,12 @@ export class Battle {
     defenderCopy = this.getStatsReducing(defenderCopy, attackerCopy)
 
     damage = spellsFunctionsMap[spell.id](attackerCopy)
+
     damage = this.calculateSpellSpecialtyBonus(attackerCopy, target, spell, damage)
     damage = this.calculateSpellBonuses(attackerCopy, target, spell, damage)
     damage = this.calculateSpellReducing(attackerCopy, defenderCopy, target, spell, damage)
 
-    return Math.floor(damage)
+    return Math.ceil(damage)
   }
 
   private calculateWithHeroModificators(hero: HeroInstance, target: CreatureInstance) {
@@ -359,7 +360,7 @@ export class Battle {
     spell: Spell,
     damage: number
   ) {
-    if (target.special?.spellDamageResistance) damage -= (damage / 100) * target.special.spellDamageResistance
+    if (target.special?.spellDamageResistance) damage -= (damage * target.special.spellDamageResistance) / 100
 
     if (spell.element.id !== 'neutral') {
       const protectionsIds = [
@@ -373,7 +374,7 @@ export class Battle {
 
       if (effects.find((effect: Spell) => effect.element.id === spell.element.id)) {
         const schoolLevel = defender.hero?.skills[spell.element.id] || 0
-        damage -= (damage / 100) * schoolLevel ? 75 : 50
+        damage -= damage * schoolLevel ? 0.75 : 0.5
       }
     }
 
@@ -389,18 +390,17 @@ export class Battle {
     if (!initiator.hero) return damage
 
     const { specialtySpell } = initiator.hero
-    let value = damage
 
     if (spell.id === Spells.MagicArrow && specialtySpell === Spells.MagicArrow) {
-      value += damage / 2
+      damage += damage / 2
     } else if (spell.id === Spells.Firewall && specialtySpell === Spells.Firewall) {
-      value += damage
+      damage += damage
     } else if (spell.id === specialtySpell) {
-      const bonus = 1 + (initiator.hero.level / target.level) * 0.03
-      value *= bonus
+      const bonus = Math.floor(initiator.hero.level / target.level) * 0.03
+      damage += damage * bonus
     }
 
-    return Math.ceil(value)
+    return damage
   }
 
   private calculateSpellBonuses(
@@ -411,20 +411,22 @@ export class Battle {
   ) {
     if (!initiator.hero) return damage
 
-    let bonus = 0
-
-    if (target.special?.vulnerablesToSpells && target.special.vulnerablesToSpells.includes(spell.id)) {
-      bonus += damage
-    }
-
     if (initiator.hero.skills.sorcery) {
-      bonus += (damage / 100) * initiator.hero.skills.sorcery * 5
+      let sorceryBonus = initiator.hero.skills.sorcery * 0.05
 
       if (initiator.hero.specialtySkill === SecondarySkills.Sorcery) {
-        bonus += (damage / 100) * initiator.hero.level * 5
+        sorceryBonus += initiator.hero.level * 0.05
       }
+
+      damage += damage * sorceryBonus
+
+      damage = Math.ceil(damage)
     }
 
-    return damage + bonus
+    if (target.special?.vulnerablesToSpells && target.special.vulnerablesToSpells.includes(spell.id)) {
+      damage += damage
+    }
+
+    return damage
   }
 }
