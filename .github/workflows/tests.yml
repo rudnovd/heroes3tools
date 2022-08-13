@@ -2,9 +2,6 @@ name: tests
 
 on:
   push:
-    branches:
-      - preview
-      - test
   pull_request:
 
 jobs:
