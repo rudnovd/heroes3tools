@@ -12,7 +12,7 @@ describe('Base Magic Calculator tests with specified values', () => {
     battle = new Battle()
   })
 
-  describe('Hero without any modificators vs creature without any resistance', () => {
+  describe('Hero without any modificators Cast on creature without any resistance', () => {
     test('Magic arrow', () => {
       const spell = spells.find((spell) => spell.id === SpellsEnum.MagicArrow)!
       battle.attacker.hero = getHeroInstance(Heroes.Orrin)
@@ -20,9 +20,6 @@ describe('Base Magic Calculator tests with specified values', () => {
 
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
       battle.defender.activeCreature = getCreatureInstance(Creatures.StoneGargoyle)
-
-      battle.attacker.activeCreature.count = 1
-      battle.defender.activeCreature.count = 1
 
       const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, spell)
 
@@ -81,8 +78,8 @@ describe('Base Magic Calculator tests with specified values', () => {
     })
   })
 
-  describe('Hero with magic arrow specialty vs creature without any resistance', () => {
-    test('Ciele (3sp, basic water) vs Gogs', () => {
+  describe('Hero with magic arrow specialty cast on creature without any resistance', () => {
+    test('Ciele (3sp, basic water) cast on Gogs', () => {
       const spell = spells.find((spell) => spell.id === SpellsEnum.MagicArrow)!
       battle.attacker.hero = getHeroInstance(Heroes.Ciele)
       battle.attacker.hero.stats.power = 3
@@ -91,15 +88,12 @@ describe('Base Magic Calculator tests with specified values', () => {
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
       battle.defender.activeCreature = getCreatureInstance(Creatures.Gog)
 
-      battle.attacker.activeCreature.count = 1
-      battle.defender.activeCreature.count = 1
-
       const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, spell)
 
       expect(damage).toBe(60)
     })
 
-    test('Ciele (8sp, expert water) vs Behemoth', () => {
+    test('Ciele (8sp, expert water) Cast on Behemoth', () => {
       const spell = spells.find((spell) => spell.id === SpellsEnum.MagicArrow)!
       battle.attacker.hero = getHeroInstance(Heroes.Ciele)
       battle.attacker.hero.stats.power = 8
@@ -108,15 +102,12 @@ describe('Base Magic Calculator tests with specified values', () => {
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
       battle.defender.activeCreature = getCreatureInstance(Creatures.Behemoth)
 
-      battle.attacker.activeCreature.count = 1
-      battle.defender.activeCreature.count = 1
-
       const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, spell)
 
       expect(damage).toBe(165)
     })
 
-    test('Ciele (13sp, expert earth, basic sorcery) vs Behemoth', () => {
+    test('Ciele (13sp, expert earth, basic sorcery) cast on Behemoth', () => {
       const spell = spells.find((spell) => spell.id === SpellsEnum.MagicArrow)!
       battle.attacker.hero = getHeroInstance(Heroes.Ciele)
       battle.attacker.hero.stats.power = 13
@@ -126,17 +117,14 @@ describe('Base Magic Calculator tests with specified values', () => {
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
       battle.defender.activeCreature = getCreatureInstance(Creatures.Nomad)
 
-      battle.attacker.activeCreature.count = 1
-      battle.defender.activeCreature.count = 1
-
       const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, spell)
 
       expect(damage).toBe(252)
     })
   })
 
-  describe('Hero with Frost Ring specialty vs creature without any resistance', () => {
-    test('Adelaide (2sp, level 1) vs Familiar', () => {
+  describe('Hero with Frost Ring specialty cast on creature without any resistance', () => {
+    test('Adelaide (2sp, level 1) cast on Familiar', () => {
       const spell = spells.find((spell) => spell.id === SpellsEnum.FrostRing)!
       battle.attacker.hero = getHeroInstance(Heroes.Adelaide)
       battle.attacker.hero.stats.power = 2
@@ -144,15 +132,12 @@ describe('Base Magic Calculator tests with specified values', () => {
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
       battle.defender.activeCreature = getCreatureInstance(Creatures.Familiar)
 
-      battle.attacker.activeCreature.count = 1
-      battle.defender.activeCreature.count = 1
-
       const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, spell)
 
       expect(damage).toBe(37)
     })
 
-    test('Adelaide (12sp, level 9) vs Familiar', () => {
+    test('Adelaide (12sp, level 9) cast on Familiar', () => {
       const spell = spells.find((spell) => spell.id === SpellsEnum.FrostRing)!
       battle.attacker.hero = getHeroInstance(Heroes.Adelaide)
       battle.attacker.hero.stats.power = 12
@@ -160,9 +145,6 @@ describe('Base Magic Calculator tests with specified values', () => {
 
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
       battle.defender.activeCreature = getCreatureInstance(Creatures.Familiar)
-
-      battle.attacker.activeCreature.count = 1
-      battle.defender.activeCreature.count = 1
 
       const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, spell)
 
