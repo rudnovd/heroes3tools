@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0-beta.1](https://github.com/rudnovd/heroes3tools/compare/v2.1.0-beta.0...v2.1.0-beta.1) (2022-08-13)
+
+
+### Features
+
+* **dark-scheme:** add color-scheme to html ([03aca21](https://github.com/rudnovd/heroes3tools/commit/03aca21c0f23a248984076e073d602f5ee194c68))
+
+
+### Bug Fixes
+
+* **Battle:** fix hasSpellImmunity function ([e9d9628](https://github.com/rudnovd/heroes3tools/commit/e9d9628d67312a5f4a41d2a83be3534079f79a2a))
+* **Battle:** fix spells formulas ([9636beb](https://github.com/rudnovd/heroes3tools/commit/9636bebcbd7d26d1bdec269a4b65532b3a943ab8))
+* **creatures:** fix creatures specials ([4c191cc](https://github.com/rudnovd/heroes3tools/commit/4c191ccf455958fd17c64f4c477df9116d774a4f))
+* **creatures:** update immunity list ([000498a](https://github.com/rudnovd/heroes3tools/commit/000498a012c5016de4d55c7a69557f3d19ca2a19))
+* **PageFooter:** fix document title update ([fc89b37](https://github.com/rudnovd/heroes3tools/commit/fc89b378d6cb23cdab4d869d451199cc0741684b))
+* **spells:** fix Fire Wall values ([d383b97](https://github.com/rudnovd/heroes3tools/commit/d383b97af55c8b0ba6cb8e25089c7f821069bd93))
+
 ## [2.1.0-beta.0](https://github.com/rudnovd/heroes3tools/compare/v2.0.2...v2.1.0-beta.0) (2022-08-07)
 
 
