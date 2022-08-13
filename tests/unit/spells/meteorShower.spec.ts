@@ -101,6 +101,74 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(26)
   })
 
+  test('Deemer (1 level, 3 spell power)', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Deemer)
+    battle.attacker.hero.level = 1
+    battle.attacker.hero.stats.power = 3
+
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.Wight)
+
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
+
+    expect(damage).toBe(100)
+  })
+
+  test('Deemer (4 level, 4 spell power)', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Deemer)
+    battle.attacker.hero.level = 4
+    battle.attacker.hero.stats.power = 4
+
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.Wight)
+
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
+
+    expect(damage).toBe(129)
+  })
+
+  test('Deemer (17 level, 17 spell power, expert earth)', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Deemer)
+    battle.attacker.hero.level = 17
+    battle.attacker.hero.stats.power = 17
+    battle.attacker.hero.skills.earth = 3
+
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.Zombie)
+
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
+
+    expect(damage).toBe(651)
+  })
+
+  test('Deemer (17 level, 17 spell power, expert earth)', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Deemer)
+    battle.attacker.hero.level = 17
+    battle.attacker.hero.stats.power = 17
+    battle.attacker.hero.skills.earth = 3
+
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.Thunderbird)
+
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
+
+    expect(damage).toBe(573)
+  })
+
+  test('Deemer (17 level, 17 spell power, expert earth)', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Deemer)
+    battle.attacker.hero.level = 17
+    battle.attacker.hero.stats.power = 17
+    battle.attacker.hero.skills.earth = 3
+
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.Devil)
+
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
+
+    expect(damage).toBe(557)
+  })
+
   test('Hero with Meteor Shower specialty and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Deemer)
     battle.attacker.hero.stats.power = 34
