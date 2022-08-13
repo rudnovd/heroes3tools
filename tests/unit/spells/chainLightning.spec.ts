@@ -98,7 +98,7 @@ describe('Chain Lightning', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
 
-    expect(damage).toBe(27)
+    expect(damage).toBe(28)
   })
 
   test('Hero with Chain Lightning specialty and high Spell Power', () => {
@@ -137,6 +137,81 @@ describe('Chain Lightning', () => {
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
 
     expect(damage).toBe(1579)
+  })
+
+  test('Solmyr (13 level, basic sorcery, expert air magic, 8 spell power)', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Solmyr)
+    battle.attacker.hero.level = 13
+    battle.attacker.hero.skills.air = 3
+    battle.attacker.hero.stats.power = 8
+    battle.attacker.hero.skills.sorcery = 1
+
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.SeaSerpent)
+
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
+
+    expect(damage).toBe(455)
+  })
+
+  test('Solmyr (14 level, basic sorcery, expert air magic, 8 spell power)', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Solmyr)
+    battle.attacker.hero.level = 14
+    battle.attacker.hero.skills.air = 3
+    battle.attacker.hero.stats.power = 8
+    battle.attacker.hero.skills.sorcery = 1
+
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.InfernalTroglodyte)
+
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
+
+    expect(damage).toBe(627)
+  })
+
+  test('Solmyr (14 level, basic sorcery, expert air magic, 8 spell power)', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Solmyr)
+    battle.attacker.hero.level = 14
+    battle.attacker.hero.skills.air = 3
+    battle.attacker.hero.stats.power = 8
+    battle.attacker.hero.skills.sorcery = 1
+
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.WolfRaider)
+
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
+
+    expect(damage).toBe(534)
+  })
+
+  test('Solmyr (14 level, basic sorcery, expert air magic, 8 spell power)', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Solmyr)
+    battle.attacker.hero.level = 14
+    battle.attacker.hero.skills.air = 3
+    battle.attacker.hero.stats.power = 8
+    battle.attacker.hero.skills.sorcery = 1
+
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.WyvernMonarch)
+
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
+
+    expect(damage).toBe(468)
+  })
+
+  test('Solmyr (14 level, basic sorcery, expert air magic, 8 spell power)', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Solmyr)
+    battle.attacker.hero.level = 14
+    battle.attacker.hero.skills.air = 3
+    battle.attacker.hero.stats.power = 8
+    battle.attacker.hero.skills.sorcery = 1
+
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.GrandElf)
+
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
+
+    expect(damage).toBe(494)
   })
 
   test('Cast on creature with immunity', () => {
