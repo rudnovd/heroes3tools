@@ -98,7 +98,7 @@ describe('Chain Lightning', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
 
-    expect(damage).toBe(28)
+    expect(damage).toBe(27)
   })
 
   test('Hero with Chain Lightning specialty and high Spell Power', () => {

@@ -101,6 +101,18 @@ describe('Ice Bolt', () => {
     expect(damage).toBe(11)
   })
 
+  test('Hero with Ice Bolt specialty and standard Spell Power', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Alagar)
+    battle.attacker.hero.stats.power = 2
+
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, iceBolt)
+
+    expect(damage).toBe(54)
+  })
+
   test('Hero with Ice Bolt specialty and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Alagar)
     battle.attacker.hero.stats.power = 34
@@ -110,7 +122,7 @@ describe('Ice Bolt', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, iceBolt)
 
-    expect(damage).toBe(747)
+    expect(damage).toBe(746)
   })
 
   test('Hero with Ice Bolt specialty, Advanced Water skill and high Spell Power', () => {
@@ -136,7 +148,7 @@ describe('Ice Bolt', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, iceBolt)
 
-    expect(damage).toBe(790)
+    expect(damage).toBe(789)
   })
 
   test('cast on creature with immunity', () => {
@@ -176,6 +188,61 @@ describe('Ice Bolt', () => {
     battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, iceBolt)
     expect(damage).toBe(162)
+  })
+
+  test('Alagar (1 power, level 1, basic sorcery) cast on Imp', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Alagar)
+    battle.attacker.hero.level = 1
+    battle.attacker.hero.stats.power = 1
+    battle.attacker.hero.skills.sorcery = 1
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.Imp)
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, iceBolt)
+    expect(damage).toBe(32)
+  })
+
+  test('Alagar (2 power, level 2, basic sorcery) cast on Imp', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Alagar)
+    battle.attacker.hero.level = 2
+    battle.attacker.hero.stats.power = 2
+    battle.attacker.hero.skills.sorcery = 1
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.Imp)
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, iceBolt)
+    expect(damage).toBe(56)
+  })
+
+  test('Alagar (2 power, level 3, advanced sorcery) cast on Imp', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Alagar)
+    battle.attacker.hero.level = 3
+    battle.attacker.hero.stats.power = 2
+    battle.attacker.hero.skills.sorcery = 2
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.Imp)
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, iceBolt)
+    expect(damage).toBe(60)
+  })
+
+  test('Alagar (2 power, level 4, expert sorcery) cast on Imp', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Alagar)
+    battle.attacker.hero.level = 4
+    battle.attacker.hero.stats.power = 2
+    battle.attacker.hero.skills.sorcery = 3
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.Imp)
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, iceBolt)
+    expect(damage).toBe(64)
+  })
+
+  test('Alagar (2 power, level 4, expert sorcery) cast on Naga', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Alagar)
+    battle.attacker.hero.level = 4
+    battle.attacker.hero.stats.power = 2
+    battle.attacker.hero.skills.sorcery = 3
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.Naga)
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, iceBolt)
+    expect(damage).toBe(57)
   })
 
   test('Alagar (17 power, level 12, basic sorcery) cast on Wolf Raider', () => {
