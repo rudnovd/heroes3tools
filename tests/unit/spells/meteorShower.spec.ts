@@ -169,6 +169,19 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(557)
   })
 
+  test('Deemer (14 level, 18 spell power)', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Deemer)
+    battle.attacker.hero.level = 14
+    battle.attacker.hero.stats.power = 18
+
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.Archangel)
+
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
+
+    expect(damage).toBe(504)
+  })
+
   test('Hero with Meteor Shower specialty and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Deemer)
     battle.attacker.hero.stats.power = 34
