@@ -150,11 +150,17 @@ export class Battle {
 
     damage = spellsFunctionsMap[spell.id](attackerCopy)
 
-    damage = this.calculateSpellSpecialtyBonus(attackerCopy, target, spell, damage)
     damage = this.calculateSpellBonuses(attackerCopy, target, spell, damage)
+    damage = this.calculateSpellSpecialtyBonus(attackerCopy, target, spell, damage)
+
+    if (target.special?.vulnerablesToSpells && target.special.vulnerablesToSpells.includes(spell.id)) {
+      damage += damage
+    }
+
     damage = this.calculateSpellReducing(attackerCopy, defenderCopy, target, spell, damage)
 
-    return Math.ceil(damage)
+    // change Math.round logic (0.5 -> 0 instead 0.5 -> 1)
+    return -Math.round(-damage)
   }
 
   private calculateWithHeroModificators(hero: HeroInstance, target: CreatureInstance) {
@@ -397,7 +403,9 @@ export class Battle {
       damage += damage
     } else if (spell.id === specialtySpell) {
       const bonus = Math.floor(initiator.hero.level / target.level) * 0.03
-      damage += damage * bonus
+      if (bonus) {
+        damage += Math.ceil(damage * bonus)
+      }
     }
 
     return damage
@@ -405,8 +413,8 @@ export class Battle {
 
   private calculateSpellBonuses(
     initiator: DamageCalculatorBattleSide,
-    target: CreatureInstance,
-    spell: Spell,
+    _target: CreatureInstance,
+    _spell: Spell,
     damage: number
   ) {
     if (!initiator.hero) return damage
@@ -418,13 +426,12 @@ export class Battle {
         sorceryBonus += initiator.hero.level * 0.05
       }
 
-      damage += damage * sorceryBonus
-
-      damage = Math.ceil(damage)
+      // Max sorcery bonus
+      if (sorceryBonus > 0.96) {
+        sorceryBonus = 0.96
     }
 
-    if (target.special?.vulnerablesToSpells && target.special.vulnerablesToSpells.includes(spell.id)) {
-      damage += damage
+      damage += damage * sorceryBonus
     }
 
     return damage
