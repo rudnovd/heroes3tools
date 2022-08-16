@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/rudnovd/heroes3tools/compare/v2.1.0-beta.1...v2.1.0) (2022-08-16)
+
+
+### Features
+
+* **CalculatorTabs:** add Magic Calculator title ([264faeb](https://github.com/rudnovd/heroes3tools/commit/264faeb3e81e012d2cc700d81de910ecf1be4dfc))
+
+
+### Bug Fixes
+
+* **Battle:** fix spells calculations ([c242637](https://github.com/rudnovd/heroes3tools/commit/c242637051ffba02cdc8816394b6fabd829c7dbc))
+* **effects:** fix Bless effect ([69e7f74](https://github.com/rudnovd/heroes3tools/commit/69e7f74c7f587decc66f555b870f081f0a5748ba))
+* **PageFooter:** fix dialogs repeating ([49270eb](https://github.com/rudnovd/heroes3tools/commit/49270eba4f01df2701ebec02def822653faee7cc))
+* **router:** fix saved position warnings ([4dd1fae](https://github.com/rudnovd/heroes3tools/commit/4dd1fae08774fffd782df0833996e717644aab04))
+
 ## [2.1.0-beta.1](https://github.com/rudnovd/heroes3tools/compare/v2.1.0-beta.0...v2.1.0-beta.1) (2022-08-13)
 
 
