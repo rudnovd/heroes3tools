@@ -36,7 +36,10 @@ const { t } = useI18n()
   textarea {
     height: 100px;
     font: inherit;
-    border: 1px solid #dee2e6;
+    color: var(--color-text);
+    resize: none;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
   }
 
   .send-error-button {

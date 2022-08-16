@@ -202,7 +202,7 @@ export default defineComponent({
   width: 100%;
   height: v-bind(height);
   line-height: v-bind(height);
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   outline: none;
 }
@@ -235,13 +235,18 @@ export default defineComponent({
   padding: 0;
   padding-left: 8px;
   font: inherit;
+  color: var(--color-text);
+  background-color: var(--color-bg);
   border: 0;
   outline: none;
+
+  &::placeholder {
+    color: var(--color-text);
+  }
 }
 
 .caret {
   position: relative;
-  // z-index: 10;
   flex-grow: 0;
   flex-shrink: 0;
   width: 0.625rem;
@@ -265,6 +270,7 @@ export default defineComponent({
 
 .selected-value {
   display: flex;
+  gap: 8px;
   align-items: center;
 }
 
@@ -283,7 +289,7 @@ export default defineComponent({
   mask-position: center;
 
   &:hover {
-    background-color: black;
+    background-color: var(--color-text);
   }
 }
 
@@ -294,8 +300,8 @@ export default defineComponent({
   z-index: 10;
   max-height: v-bind(optionsMaxHeight);
   overflow-y: auto;
-  background: rgb(255, 255, 255);
-  border: 1px solid #dee2e6;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
   border-top-width: 0;
 
   &.top {
@@ -305,6 +311,7 @@ export default defineComponent({
 
 .option-item {
   display: flex;
+  gap: 8px;
   align-items: center;
   height: 45px;
   padding-left: 8px;
@@ -316,7 +323,7 @@ export default defineComponent({
   transition: background 0.1s;
 
   &:hover {
-    background: rgb(238, 238, 238);
+    background: var(--color-bg-deep);
   }
 
   &.selected {
@@ -325,7 +332,8 @@ export default defineComponent({
 }
 
 .no-options {
-  border: 1px solid #dee2e6;
+  padding-left: 8px;
+  border: 1px solid var(--color-border);
 }
 
 .fade-enter-active,

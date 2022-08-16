@@ -78,16 +78,23 @@ export default defineComponent({
 .creature-card {
   display: grid;
   grid-template-columns: 105px 1fr;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
-  transition: background 0.25s;
+  border-right: 1px solid var(--color-text);
+  border-bottom: 1px solid var(--color-text);
+  transition: background 0.2s linear, border-right 0.2s linear, border-bottom 0.2s linear;
 
   @include media-medium {
     grid-template-columns: 150px 1fr;
   }
 
   &:hover {
-    background: rgb(245, 245, 245);
+    background: var(--color-bg-deep);
+  }
+}
+
+@include dark-scheme {
+  .creature-card {
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
   }
 }
 
@@ -116,7 +123,8 @@ export default defineComponent({
 .creature-name {
   grid-column: 1 / -1;
   text-align: center;
-  border-bottom: 1px solid rgb(222, 226, 230);
+  border-bottom: 1px solid var(--color-border);
+  transition: border-bottom 0.2s linear;
 }
 
 .creature-info {
@@ -134,7 +142,8 @@ export default defineComponent({
   grid-template-columns: minmax(120px, 2fr) 4fr;
   align-items: center;
   padding-left: 4px;
-  border-bottom: 1px solid rgb(222, 226, 230);
+  border-bottom: 1px solid var(--color-border);
+  transition: border-bottom 0.2s linear, border-right 0.2s linear;
 
   &:last-child {
     border-bottom: none;
@@ -147,7 +156,7 @@ export default defineComponent({
   @include media-small {
     grid-template-columns: 2fr 4fr;
     &:nth-last-child(-n + 2) {
-      border-bottom: 1px solid rgb(222, 226, 230);
+      border-bottom: 1px solid var(--color-border);
     }
   }
 
@@ -155,7 +164,7 @@ export default defineComponent({
     grid-template-columns: 125px 1fr;
 
     &:nth-child(even) {
-      border-right: 1px solid rgb(222, 226, 230);
+      border-right: 1px solid var(--color-border);
     }
   }
 }
@@ -168,10 +177,10 @@ export default defineComponent({
 }
 
 .creature-card.selected {
-  box-shadow: 0 0 5px rgb(170, 170, 170);
+  box-shadow: 0 0 5px var(--color-bg-deep);
 
   .creature-info {
-    background: rgb(235, 235, 235);
+    background: var(--color-bg-deep);
   }
 }
 

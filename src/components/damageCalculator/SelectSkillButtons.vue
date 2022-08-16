@@ -74,16 +74,16 @@ export default defineComponent({
 <style lang="scss" scoped>
 .select-skill-buttons {
   display: grid;
-  grid-template-columns: 75px 1fr;
+  grid-template-columns: 100px 1fr;
   align-items: center;
 }
 
 .skill-name {
   display: flex;
   align-items: center;
-  justify-content: center;
   height: 1.5rem;
-  font-size: 0.8rem;
+  padding-left: 2px;
+  font-size: 0.75rem;
   font-weight: 600;
 
   & > span {
@@ -104,7 +104,7 @@ export default defineComponent({
   min-width: 60px;
   height: 100%;
   overflow: hidden;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -114,7 +114,7 @@ export default defineComponent({
 
 @each $color, $color-value in $calculator-colors {
   .skill-buttons.color-#{$color} {
-    color: map.get($calculator-colors-text, $color);
+    color: var(--color-text);
     border-top: 1px solid $color-value;
     border-bottom: 1px solid $color-value;
 
@@ -132,7 +132,6 @@ export default defineComponent({
   .skill-name.color-#{$color} {
     color: map.get($calculator-colors-text, $color);
     background-color: $color-value;
-    border: 1px solid black;
   }
 }
 </style>

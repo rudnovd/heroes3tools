@@ -23,10 +23,8 @@
 </template>
 
 <script lang="ts">
-import { computed } from '@vue/reactivity'
 import { useTemplateRefsList } from '@vueuse/core'
-import type { PropType } from 'vue'
-import { defineComponent, ref, watch } from 'vue'
+import { computed, defineComponent, PropType, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import BaseButton from './base/BaseButton.vue'
 import BaseTooltip from './base/BaseTooltip.vue'
@@ -149,7 +147,7 @@ export default defineComponent({
         ) as HTMLElement
         if (!node) return
 
-        let buttons: Array<{ text: string; action: () => unknown }> = []
+        const buttons: Array<{ text: string; action: () => unknown }> = []
 
         if (step.value === props.steps.length - 1 && index === stepsWithText.length - 1) {
           buttons.push({

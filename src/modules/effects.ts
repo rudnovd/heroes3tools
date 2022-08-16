@@ -12,7 +12,7 @@ export const Effects = {
       if (target.effects.find((effect) => effect.id === Spells.AntiMagic)) return false
 
       // if target has immunity to effect
-      if (target.special?.immunity?.find((spell) => spell.id === effect.id)) return false
+      if (target.special?.immunity?.find((spell) => spell === effect.id)) return false
 
       const undeadImmunitySpells = [
         Spells.Bless,
@@ -67,7 +67,7 @@ export const Effects = {
 
     // if battle side has hero with Bless specialty then add damageBonus value
     if (initiator.hero && initiator.hero.specialtySpell === Spells.Bless) {
-      damageBonus += (0.03 * initiator.hero.level) / target.level
+      damageBonus += Math.floor(initiator.hero.level / target.level) * 0.03
     }
 
     if (!initiator.hero || !initiator.hero.skills.water || initiator.hero.skills.water <= 1) {

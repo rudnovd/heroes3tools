@@ -4,12 +4,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "baseUrl": ".",
-    "types": [
-      "node",
-      "vite/client",
-      "vite-plugin-pwa/client",
-      "@intlify/vite-plugin-vue-i18n/client"
-    ],
+    "types": ["node", "vite/client", "vite-plugin-pwa/client", "@intlify/vite-plugin-vue-i18n/client"],
     "paths": {
       "@/*": ["./src/*"]
     },
@@ -35,13 +30,6 @@
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "skipLibCheck": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.spec.ts",
-    "env.d.ts",
-    "vite.config.ts"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.spec.ts", "env.d.ts", "vite.config.ts"],
   "exclude": ["dist, node_modules", "src/sw.ts"]
 }

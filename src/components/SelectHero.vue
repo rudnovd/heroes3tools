@@ -72,15 +72,7 @@ export default defineComponent({
 
     @include media-medium {
       display: flex;
-      margin-right: 0.5rem;
     }
-  }
-}
-
-.option-item {
-  & picture {
-    display: flex;
-    margin-right: 0.5rem;
   }
 }
 </style>
