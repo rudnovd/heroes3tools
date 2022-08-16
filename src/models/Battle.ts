@@ -429,7 +429,7 @@ export class Battle {
       // Max sorcery bonus
       if (sorceryBonus > 0.96) {
         sorceryBonus = 0.96
-    }
+      }
 
       damage += damage * sorceryBonus
     }
