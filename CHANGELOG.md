@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/rudnovd/heroes3tools/compare/v2.1.0...v2.1.1) (2022-08-16)
+
+
+### Bug Fixes
+
+* **Battle:** fix calculating spell reducing ([9c533b9](https://github.com/rudnovd/heroes3tools/commit/9c533b9dcd0cbc4f16119daaaa3ca5507a43b754))
+
 ## [2.1.0](https://github.com/rudnovd/heroes3tools/compare/v2.1.0-beta.1...v2.1.0) (2022-08-16)
 
 
