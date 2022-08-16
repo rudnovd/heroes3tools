@@ -36,7 +36,12 @@
   </footer>
 
   <RouterView v-slot="{ route }">
-    <BaseDialog v-if="route.hash === '#about'" show size="small" @close="router.go(-1)">
+    <BaseDialog
+      v-if="route.path === staticCurrentRoute && route.hash === '#about'"
+      show
+      size="small"
+      @close="router.push(route.path)"
+    >
       <template #content>
         <slot name="aboutModal"></slot>
       </template>
@@ -44,7 +49,11 @@
   </RouterView>
 
   <RouterView v-slot="{ route }">
-    <BaseDialog v-if="route.hash === '#license'" show @close="router.go(-1)">
+    <BaseDialog
+      v-if="route.path === staticCurrentRoute && route.hash === '#license'"
+      show
+      @close="router.push(route.path)"
+    >
       <template #content>
         <p>{{ t('components.pageFooter.license.1') }}</p>
         <i18n-t keypath="components.pageFooter.license.2" tag="p">
@@ -90,6 +99,7 @@ export default defineComponent({
     const store = useStore()
     const locale = useLocale()
 
+    const staticCurrentRoute = route.path
     const locales = [
       {
         name: 'en',
@@ -110,6 +120,7 @@ export default defineComponent({
       t,
       isDark,
       router,
+      staticCurrentRoute,
 
       locales,
       locale,
