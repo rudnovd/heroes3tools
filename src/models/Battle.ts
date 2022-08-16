@@ -380,7 +380,7 @@ export class Battle {
 
       if (effects.find((effect: Spell) => effect.element.id === spell.element.id)) {
         const schoolLevel = defender.hero?.skills[spell.element.id] || 0
-        damage -= damage * schoolLevel ? 0.75 : 0.5
+        damage -= schoolLevel > 1 ? damage * 0.75 : damage * 0.5
       }
     }
 
