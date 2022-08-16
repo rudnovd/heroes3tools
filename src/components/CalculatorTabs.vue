@@ -34,6 +34,7 @@
 import type { PropType } from 'vue'
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'CalculatorTabs',
@@ -50,11 +51,14 @@ export default defineComponent({
   emits: ['addTab', 'selectTab', 'deleteTab'],
   setup() {
     const { t } = useI18n()
+    const route = useRoute()
 
     const calculatorTitle = (attacker: string | null, defender: string | null) => {
       if (attacker && defender) return `${attacker} — ${defender}`
       else if (attacker) return attacker
       else if (defender) return defender
+      else if (route.path === '/damage') return t('pages.damageCalculator')
+      else if (route.path === '/magic') return t('pages.magicCalculator')
       else return t('pages.damageCalculator')
     }
 
