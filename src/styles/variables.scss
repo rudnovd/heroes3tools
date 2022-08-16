@@ -6,9 +6,9 @@ $grid-breakpoints: (
 );
 
 $color-attacker: rgb(0, 209, 45);
-$color-attacker-text: rgba(0, 0, 0, 0.87);
+$color-attacker-text: var(--color-text);
 $color-defender: rgb(220, 56, 72);
-$color-defender-text: rgb(255, 255, 255);
+$color-defender-text: var(--color-bg);
 
 $calculator-colors: (
   attacker: $color-attacker,

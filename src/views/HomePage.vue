@@ -3,7 +3,7 @@
     <h1>Heroes III tools</h1>
 
     <main class="page-links">
-      <div v-for="page in pages" :key="page.path" class="link-card" :class="{ disabled: page.disabled }">
+      <div v-for="page in pages" :key="page.path" class="link-card">
         <ObjectPortrait
           folder="/images/pages/home"
           :file="{ name: page.image, alt: page.image }"
@@ -13,8 +13,7 @@
         />
 
         <h2>
-          <router-link v-if="!page.disabled" :to="page.path">{{ page.name }}</router-link>
-          <span v-else>{{ page.name }}</span>
+          <router-link :to="page.path">{{ page.name }}</router-link>
         </h2>
       </div>
     </main>
@@ -59,7 +58,6 @@ export default defineComponent({
         name: t('pages.magicCalculator'),
         path: '/magic',
         image: 'Water',
-        disabled: true,
       },
       {
         name: t('pages.creaturesLibrary'),
@@ -81,11 +79,13 @@ export default defineComponent({
 <style lang="scss" scoped>
 .home-page {
   display: grid;
-  grid-template-rows: min-content 1fr 30px;
+  grid-template-rows: min-content 1fr min-content;
   gap: 16px;
   min-width: 300px;
   min-height: 100vh;
   margin: 0 auto;
+  content-visibility: auto;
+  contain-intrinsic-size: 100vh;
 
   @include media-medium {
     align-content: center;
@@ -156,17 +156,11 @@ export default defineComponent({
   a,
   span {
     overflow: hidden;
-    color: black;
+    color: var(--color-text);
     text-decoration: none;
     text-overflow: ellipsis;
     white-space: nowrap;
     transition: transform 0.15s linear;
-  }
-
-  &.disabled {
-    pointer-events: none;
-    filter: grayscale(1);
-    opacity: 0.5;
   }
 
   &:hover {

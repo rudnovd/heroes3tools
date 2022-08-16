@@ -1,42 +1,59 @@
 <template>
   <footer>
-    <div class="left-side">
-      <button v-if="!about.hide" @click="showAboutModal = true">
-        {{ about.text || t('components.pageFooter.about') }}
-      </button>
+    <router-link v-if="!about.hide" to="#about">
+      {{ about.text || t('components.pageFooter.about') }}
+    </router-link>
 
-      <select v-model="selectedLocale" @change="changeLocale">
-        <option v-for="locale in locales" :key="locale.name" :value="locale.name">
-          {{ locale.value }}
-        </option>
-      </select>
+    <select v-model="locale">
+      <option v-for="availableLocale in locales" :key="availableLocale.name" :value="availableLocale.name">
+        {{ availableLocale.value }}
+      </option>
+    </select>
 
-      <slot></slot>
+    <slot></slot>
+
+    <router-link to="send-error" class="send-error-link">
+      {{ t('components.pageFooter.foundAnError') }}
+    </router-link>
+
+    <router-link to="#license">
+      {{ t('components.pageFooter.licenseInformation') }}
+    </router-link>
+
+    <a href="https://github.com/rudnovd/heroes3tools" target="_blank" rel="noopener">
+      {{ t('components.pageFooter.sourceCode') }}
+    </a>
+
+    <span>{{ t('components.pageFooter.appVersion') }}: {{ appVersion }}</span>
+
+    <div class="theme-switch">
+      <input id="mode-input" type="checkbox" :value="isDark" @change="isDark = !isDark" />
+      <label for="mode-input">
+        <span v-if="isDark" role="img" aria-label="Dark mode">🌒</span>
+        <span v-else role="img" aria-label="Light mode">☀️</span>
+      </label>
     </div>
+  </footer>
 
-    <div class="right-side">
-      <router-link to="send-error">
-        {{ t('components.pageFooter.foundAnError') }}
-      </router-link>
-
-      <button @click="showLicenseModal = true">
-        {{ t('components.pageFooter.licenseInformation') }}
-      </button>
-
-      <a href="https://github.com/rudnovd/heroes3tools" target="_blank" rel="noopener">
-        {{ t('components.pageFooter.sourceCode') }}
-      </a>
-
-      <span>{{ t('components.pageFooter.appVersion') }}: {{ appVersion }}</span>
-    </div>
-
-    <BaseDialog v-if="showAboutModal" :show="showAboutModal" size="small" @close="showAboutModal = false">
+  <RouterView v-slot="{ route }">
+    <BaseDialog
+      v-if="route.path === staticCurrentRoute && route.hash === '#about'"
+      show
+      size="small"
+      @close="router.push(route.path)"
+    >
       <template #content>
         <slot name="aboutModal"></slot>
       </template>
     </BaseDialog>
+  </RouterView>
 
-    <BaseDialog v-if="showLicenseModal" :show="showLicenseModal" @close="showLicenseModal = false">
+  <RouterView v-slot="{ route }">
+    <BaseDialog
+      v-if="route.path === staticCurrentRoute && route.hash === '#license'"
+      show
+      @close="router.push(route.path)"
+    >
       <template #content>
         <p>{{ t('components.pageFooter.license.1') }}</p>
         <i18n-t keypath="components.pageFooter.license.2" tag="p">
@@ -49,14 +66,16 @@
         <p>{{ t('components.pageFooter.license.5') }}</p>
       </template>
     </BaseDialog>
-  </footer>
+  </RouterView>
 </template>
 
 <script lang="ts">
-import { selectedLanguage, setLanguage } from '@/i18n'
-import { defineAsyncComponent, defineComponent, PropType, ref } from 'vue'
+import i18n from '@/i18n'
+import { useStore } from '@/store'
+import { isDark, useLocale } from '@/utilities'
+import { defineAsyncComponent, defineComponent, PropType, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'PageFooter',
@@ -70,17 +89,18 @@ export default defineComponent({
     },
     border: {
       type: String,
-      default: '1px solid rgb(222, 226, 230)',
+      default: '1px solid var(--color-border)',
     },
   },
   setup() {
     const { t } = useI18n()
     const route = useRoute()
+    const router = useRouter()
+    const store = useStore()
+    const locale = useLocale()
 
-    const showAboutModal = ref(false)
-    const showLicenseModal = ref(false)
-    const selectedLocale = ref(selectedLanguage.value)
-    const locales = ref([
+    const staticCurrentRoute = route.path
+    const locales = [
       {
         name: 'en',
         value: 'English',
@@ -89,23 +109,22 @@ export default defineComponent({
         name: 'ru',
         value: 'Русский',
       },
-    ])
+    ]
 
-    const changeLocale = (event: Event) => {
-      const value = (event.target as HTMLButtonElement).value
-      setLanguage(value).then(() => (document.title = t(route.meta.title as string)))
-    }
+    watch(i18n.global.locale, (newLocale) => {
+      store.loadData(newLocale)
+      document.title = t(route.meta.title as string)
+    })
 
     return {
       t,
+      isDark,
+      router,
+      staticCurrentRoute,
 
       locales,
-      selectedLocale,
-      showLicenseModal,
-      showAboutModal,
+      locale,
       appVersion: import.meta.env.__APP_VERSION__,
-
-      changeLocale,
     }
   },
 })
@@ -113,22 +132,55 @@ export default defineComponent({
 
 <style lang="scss">
 footer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between;
   min-width: 300px;
   padding: 4px 8px;
   font-size: 0.875rem;
+  color: var(--color-link);
   border-top: v-bind(border);
+  transition: border-top 0.2s linear;
+
+  & > * {
+    flex: 0 0 calc(50% - 8px);
+  }
+
+  & > *:nth-child(even) {
+    text-align: right;
+  }
+
+  @include media-large {
+    gap: 16px;
+
+    & > * {
+      flex: unset;
+      text-align: unset;
+    }
+
+    .send-error-link {
+      margin-left: auto;
+    }
+  }
 
   a,
   button,
   span,
   select {
-    color: rgb(108, 117, 125);
+    color: inherit;
+    text-align: left;
   }
 
-  a,
-  button {
+  select {
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+  }
+
+  a {
     text-decoration: none;
 
     &:hover {
@@ -137,47 +189,16 @@ footer {
   }
 }
 
-footer span {
-  text-align: end;
-}
-
-footer select {
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-}
-
-.left-side,
-.right-side {
-  display: grid;
-  grid-template-columns: max-content;
-  grid-auto-flow: row;
-
-  @include media-medium {
-    grid-auto-flow: column;
-    gap: 0 16px;
+.theme-switch {
+  & > input[type='checkbox'] {
+    display: none;
+    appearance: none;
   }
-}
 
-.left-side {
-  justify-content: start;
-
-  & > * {
-    text-align: left;
+  label {
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
   }
-}
-
-.right-side {
-  justify-content: end;
-
-  & > * {
-    text-align: right;
-  }
-}
-
-.modal-content p {
-  margin-bottom: 1rem;
 }
 </style>

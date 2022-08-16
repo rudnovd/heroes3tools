@@ -6,7 +6,9 @@
 
   <RouterView v-slot="{ Component }">
     <Transition name="router" mode="out-in" @enter="onEnter" @after-leave="afterLeave">
-      <component :is="Component" />
+      <KeepAlive :include="keepAliveComponents">
+        <component :is="Component" />
+      </KeepAlive>
     </Transition>
   </RouterView>
 
@@ -16,12 +18,16 @@
 </template>
 
 <script lang="ts">
-import { selectedLanguage, setLanguage } from '@/i18n'
+import { useStore } from '@/store'
 import { watchOnce } from '@vueuse/core'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { computed, defineAsyncComponent, defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
+import { isDark, useLocale } from './utilities'
+
+const getDataRoutes = ['/damage', '/magic', '/creatures']
+const keepAliveComponents = ['DamageCalculatorPage', 'MagicCalculatorPage', 'CreaturesLibraryPage']
 
 export default defineComponent({
   name: 'App',
@@ -32,6 +38,8 @@ export default defineComponent({
     const router = useRouter()
     const route = useRoute()
     const { t } = useI18n()
+    const store = useStore()
+    const lang = useLocale()
 
     const showBackButton = ref(false)
 
@@ -51,8 +59,9 @@ export default defineComponent({
       },
     })
 
-    // Get selected language from localstorage and change i18n language
-    if (selectedLanguage.value !== 'en') setLanguage(selectedLanguage.value)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (query) => {
+      isDark.value = query.matches
+    })
 
     const notificationsButtons = computed(() => [
       {
@@ -69,10 +78,15 @@ export default defineComponent({
     ])
 
     // Show back button on first visit app
+    watchOnce(router.currentRoute, () => {
+      if (Object.keys(route.meta).length && !route.meta.hideBackButton) showBackButton.value = true
+    })
+
+    // Collect data about game from files when visit one of getDataRoutes array pages
     watchOnce(
-      () => router.currentRoute,
-      () => {
-        if (Object.keys(route.meta).length && !route.meta.hideBackButton) showBackButton.value = true
+      () => route.path,
+      (newPath) => {
+        if (!store.isDataLoaded && getDataRoutes.includes(newPath)) store.loadData(lang.value)
       }
     )
 
@@ -91,6 +105,7 @@ export default defineComponent({
       showBackButton,
       needRefresh,
       notificationsButtons,
+      keepAliveComponents,
 
       onEnter,
       afterLeave,
@@ -110,7 +125,7 @@ export default defineComponent({
   align-items: center;
   padding-left: 5px;
   font-size: 0.8rem;
-  color: rgb(0, 0, 0);
+  color: var(--color-link);
   text-decoration: none;
   opacity: 0.3;
   transition: opacity 0.15s;
@@ -139,5 +154,13 @@ export default defineComponent({
 .router-link-enter-from,
 .router-link-leave-to {
   display: none;
+}
+
+@include dark-scheme {
+  .return-home {
+    img {
+      filter: invert(1);
+    }
+  }
 }
 </style>

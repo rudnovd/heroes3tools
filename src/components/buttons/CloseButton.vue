@@ -11,10 +11,6 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'CloseButton',
   props: {
-    color: {
-      type: String,
-      default: 'black',
-    },
     weight: {
       type: String,
       default: '1px',
@@ -28,7 +24,7 @@ export default defineComponent({
 .cross-first-line,
 .cross-second-line {
   position: absolute;
-  background-color: v-bind(color);
+  background-color: var(--color-text);
   opacity: 0.3;
 }
 
