@@ -16,30 +16,12 @@
     "resolveJsonModule": true,
     "noImplicitAny": false,
     "importsNotUsedAsValues": "error",
-    "types": [
-      "vite-plugin-pwa/client",
-      "@intlify/vite-plugin-vue-i18n/client"
-    ],
+    "types": ["vite-plugin-pwa/client", "@intlify/vite-plugin-vue-i18n/client"],
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
+      "@/*": ["src/*"]
     },
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable",
-      "ScriptHost",
-      "WebWorker"
-    ]
+    "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost", "WebWorker"]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.spec.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.spec.ts"],
+  "exclude": ["node_modules"]
 }

@@ -20,6 +20,13 @@ const router = createRouter({
       },
     },
     {
+      path: '/magic',
+      component: () => import('@/views/MagicCalculatorPage.vue'),
+      meta: {
+        title: 'pages.magicCalculator',
+      },
+    },
+    {
       path: '/creatures',
       component: () => import('@/views/CreaturesLibraryPage.vue'),
       meta: {
@@ -45,9 +52,13 @@ const router = createRouter({
   ],
   scrollBehavior(to, from, savedPosition) {
     return new Promise((resolve) => {
-      if (savedPosition) return resolve(savedPosition)
-      else if (to.hash) return resolve({ el: to.hash })
-      else return resolve({ left: 0, top: 0 })
+      if (savedPosition) {
+        return resolve(savedPosition)
+      } else if (to.hash) {
+        return document.querySelector(to.hash) ? resolve({ el: to.hash }) : undefined
+      } else {
+        return resolve({ left: 0, top: 0 })
+      }
     })
   },
 })

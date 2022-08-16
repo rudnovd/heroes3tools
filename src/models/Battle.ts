@@ -1,12 +1,18 @@
 import { creatures } from '@/assets/database/creatures'
 import { Effects } from '@/modules/effects'
 import { Modificators } from '@/modules/modificators'
+import { spellsFunctionsMap } from '@/modules/spells'
 import { CreatureInstance } from './Creature'
-import { Creatures, Spells } from './enums'
+import { Creatures, Heroes, SecondarySkills, Spells } from './enums'
 import type { HeroInstance } from './Hero'
+import type { Spell } from './Spell'
 import type { Terrain } from './Terrain'
 
 export type BattleSide = 'attacker' | 'defender'
+
+export function getOppositeBattleSide(side: BattleSide): string {
+  return side === 'attacker' ? 'defender' : 'attacker'
+}
 
 export interface DamageCalculatorBattleSide {
   hero: HeroInstance | null
@@ -126,6 +132,37 @@ export class Battle {
     }
   }
 
+  public cast(
+    attacker: DamageCalculatorBattleSide,
+    defender: DamageCalculatorBattleSide,
+    target: CreatureInstance,
+    spell: Spell
+  ) {
+    if (!attacker || !target) throw new Error('initiator and target required')
+
+    let damage = 0
+    if (this.hasSpellImmunity(target, spell)) return damage
+
+    let attackerCopy = JSON.parse(JSON.stringify(attacker))
+    let defenderCopy = JSON.parse(JSON.stringify(defender))
+    attackerCopy = this.getStatsReducing(attackerCopy, defenderCopy)
+    defenderCopy = this.getStatsReducing(defenderCopy, attackerCopy)
+
+    damage = spellsFunctionsMap[spell.id](attackerCopy)
+
+    damage = this.calculateSpellBonuses(attackerCopy, target, spell, damage)
+    damage = this.calculateSpellSpecialtyBonus(attackerCopy, target, spell, damage)
+
+    if (target.special?.vulnerablesToSpells && target.special.vulnerablesToSpells.includes(spell.id)) {
+      damage += damage
+    }
+
+    damage = this.calculateSpellReducing(attackerCopy, defenderCopy, target, spell, damage)
+
+    // change Math.round logic (0.5 -> 0 instead 0.5 -> 1)
+    return -Math.round(-damage)
+  }
+
   private calculateWithHeroModificators(hero: HeroInstance, target: CreatureInstance) {
     if (hero.specialtySpell) target = Modificators.heroSpecialtySpell(hero, target)
     target = Modificators.hero(hero, target)
@@ -137,13 +174,28 @@ export class Battle {
     return target
   }
 
+  private getStatsReducing(attacker: DamageCalculatorBattleSide, defender: DamageCalculatorBattleSide) {
+    if (!attacker.hero || !defender.hero) return attacker
+
+    const { interference } = attacker.hero.skills
+    if (interference) {
+      defender.hero.stats.power -= (defender.hero.stats.power / 100) * interference * 10
+      if (attacker.hero.id === Heroes.Giselle) {
+        defender.hero.stats.power -= (defender.hero.stats.power / 100) * attacker.hero.level * 5
+      }
+      defender.hero.stats.power = Math.ceil(defender.hero.stats.power)
+    }
+
+    return attacker
+  }
+
   private calculateWithPositiveEffects(attacker: DamageCalculatorBattleSide, target: CreatureInstance) {
     if (!target.effects.length) return target
     else if (target.effects.find((effect) => effect.id === Spells.AntiMagic)) return target
 
     // Check for creature spell immunity
     for (const effect of target.effects) {
-      if (target.special?.immunity?.find((spell) => spell.id === effect.id)) return target
+      if (target.special?.immunity?.find((spell) => spell === effect.id)) return target
     }
 
     const positiveEffects: Array<{
@@ -269,5 +321,119 @@ export class Battle {
       maxKills: Math.floor(maxDamage / defender.health),
       averageKills: Math.floor(averageDamage / defender.health),
     }
+  }
+
+  /**
+   * Check creature for immunity to spell
+   * @param target Creature who accept spell
+   * @param spell Spell that cast to target
+   * @return {Boolean} true if creature has immunity to spell
+   */
+  private hasSpellImmunity(target: CreatureInstance, spell: Spell): boolean {
+    // If creature with Antimagic effect spell
+    if (target.effects.find((effect) => effect.id === Spells.AntiMagic)) return true
+
+    // Creatures with full magic immunity
+    if (target.special?.immunityToSpellLevels?.includes(spell.level)) return true
+
+    // Creature with immunity to spells list
+    if (target.special?.immunity?.includes(spell.id)) return true
+
+    if (target.special?.immunityToSpellElement?.includes(spell.element.id)) return true
+
+    const onlyUndeadSpells = [Spells.AnimateDead, Spells.DestroyUndead]
+    const onlyLivingSpells = [Spells.DeathRipple, Spells.Resurrection, Spells.Bless]
+
+    // If spell in list spells that not affected to undead creatures
+    if (target.special?.undead && onlyLivingSpells.includes(spell.id)) return true
+
+    // If spell in list spells that not affected to living creatures
+    if (!target.special?.undead && onlyUndeadSpells.includes(spell.id)) return true
+
+    if (spell.id === Spells.Resurrection && target.special?.nonLiving) return true
+
+    const warMachines = [Creatures.Ballista, Creatures.Cannon]
+    const warMachinesImmunities = [Spells.Implosion, Spells.Resurrection, Spells.DeathRipple, Spells.DestroyUndead]
+    if (warMachinesImmunities.includes(spell.id) && warMachines.includes(target.id)) return true
+
+    return false
+  }
+
+  private calculateSpellReducing(
+    _attacker: DamageCalculatorBattleSide,
+    defender: DamageCalculatorBattleSide,
+    target: CreatureInstance,
+    spell: Spell,
+    damage: number
+  ) {
+    if (target.special?.spellDamageResistance) damage -= (damage * target.special.spellDamageResistance) / 100
+
+    if (spell.element.id !== 'neutral') {
+      const protectionsIds = [
+        Spells.ProtectionFromFire,
+        Spells.ProtectionFromWater,
+        Spells.ProtectionFromEarth,
+        Spells.ProtectionFromAir,
+      ]
+
+      const effects = target.effects.filter((effect) => protectionsIds.includes(effect.id))
+
+      if (effects.find((effect: Spell) => effect.element.id === spell.element.id)) {
+        const schoolLevel = defender.hero?.skills[spell.element.id] || 0
+        damage -= damage * schoolLevel ? 0.75 : 0.5
+      }
+    }
+
+    return damage
+  }
+
+  private calculateSpellSpecialtyBonus(
+    initiator: DamageCalculatorBattleSide,
+    target: CreatureInstance,
+    spell: Spell,
+    damage: number
+  ) {
+    if (!initiator.hero) return damage
+
+    const { specialtySpell } = initiator.hero
+
+    if (spell.id === Spells.MagicArrow && specialtySpell === Spells.MagicArrow) {
+      damage += damage / 2
+    } else if (spell.id === Spells.Firewall && specialtySpell === Spells.Firewall) {
+      damage += damage
+    } else if (spell.id === specialtySpell) {
+      const bonus = Math.floor(initiator.hero.level / target.level) * 0.03
+      if (bonus) {
+        damage += Math.ceil(damage * bonus)
+      }
+    }
+
+    return damage
+  }
+
+  private calculateSpellBonuses(
+    initiator: DamageCalculatorBattleSide,
+    _target: CreatureInstance,
+    _spell: Spell,
+    damage: number
+  ) {
+    if (!initiator.hero) return damage
+
+    if (initiator.hero.skills.sorcery) {
+      let sorceryBonus = initiator.hero.skills.sorcery * 0.05
+
+      if (initiator.hero.specialtySkill === SecondarySkills.Sorcery) {
+        sorceryBonus += initiator.hero.level * 0.05
+      }
+
+      // Max sorcery bonus
+      if (sorceryBonus > 0.96) {
+        sorceryBonus = 0.96
+      }
+
+      damage += damage * sorceryBonus
+    }
+
+    return damage
   }
 }

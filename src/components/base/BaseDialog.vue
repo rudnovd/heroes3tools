@@ -88,7 +88,7 @@ export default defineComponent({
   min-height: 150px;
   margin: 2rem auto 2rem auto;
   overflow: hidden;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--color-bg-deep);
   border-radius: 0.3rem;
   outline: 0;
 
@@ -119,6 +119,9 @@ export default defineComponent({
   pointer-events: auto;
   user-select: none;
   background-clip: padding-box;
+  border: 1px solid var(--color-border);
+
+  border-radius: 8px;
 }
 
 .header {
