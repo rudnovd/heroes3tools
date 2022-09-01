@@ -62,7 +62,7 @@
     "vite-plugin-pwa": "^0.12.3",
     "vitest": "^0.22.0",
     "vue-eslint-parser": "^9.0.3",
-    "vue-tsc": "^0.40.1",
+    "vue-tsc": "^0.40.5",
     "workbox-build": "^6.5.4",
     "workbox-core": "^6.5.4",
     "workbox-precaching": "^6.5.4",
