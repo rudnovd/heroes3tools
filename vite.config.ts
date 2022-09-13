@@ -1,45 +1,29 @@
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
 import vue from '@vitejs/plugin-vue'
-import path from 'path'
-import { defineConfig } from 'vite'
+import { fileURLToPath } from 'url'
+import { defineConfig, loadEnv } from 'vite'
 import type { VitePWAOptions } from 'vite-plugin-pwa'
 import { VitePWA } from 'vite-plugin-pwa'
 
 const pwaOptions: Partial<VitePWAOptions> = {
-  base: '/',
-  includeAssets: [
-    'favicon.svg',
-    'favicon.ico',
-    'robots.txt',
-    'sitemap.txt',
-    'favicon-apple.png',
-    'favicon-192.png',
-    'favicon-maskable-192.png',
-    'favicon-512.png',
-  ],
-  strategies: 'injectManifest',
   srcDir: 'src',
   filename: 'sw.ts',
+  strategies: 'injectManifest',
   manifest: {
-    name: 'Heroes 3 tools',
-    short_name: 'Heroes 3 tools',
-    description: 'Web tools for simplification playing in Heroes of Might and Magic III: Horn of The Abyss',
-    orientation: 'portrait',
-    theme_color: '#c0b675',
-    background_color: '#c0b675',
-    start_url: '/',
-    id: '/',
+    name: 'Heroes 3 Tools',
+    short_name: 'Heroes 3 Tools',
+    description: 'Web tools for simplify calculations in Heroes of Might and Magic III: Horn of The Abyss',
     icons: [
       {
-        src: 'favicon-192.png',
-        sizes: '192x192',
+        src: 'favicon-196.png',
+        sizes: '196x196',
         type: 'image/png',
       },
       {
-        src: 'favicon-maskable-192.png',
+        src: 'favicon-maskable-196.png',
         sizes: '196x196',
         type: 'image/png',
-        purpose: 'any maskable',
+        purpose: 'maskable',
       },
       {
         src: 'favicon-512.png',
@@ -47,36 +31,79 @@ const pwaOptions: Partial<VitePWAOptions> = {
         type: 'image/png',
       },
     ],
+    id: '/',
+    orientation: 'portrait-primary',
+    background_color: '#eade90',
+    theme_color: '#eade90',
+    shortcuts: [
+      {
+        name: 'Damage Calculator',
+        url: '/damage',
+        icons: [
+          {
+            src: 'shortcuts/shortcut-damage-calculator-96.png',
+            sizes: '96x96',
+            type: 'image/png',
+          },
+        ],
+      },
+      {
+        name: 'Magic Calculator',
+        url: '/magic',
+        icons: [
+          {
+            src: 'shortcuts/shortcut-magic-calculator-96.png',
+            sizes: '96x96',
+            type: 'image/png',
+          },
+        ],
+      },
+      {
+        name: 'Library',
+        url: '/library',
+        icons: [
+          {
+            src: 'shortcuts/shortcut-library-96.png',
+            sizes: '96x96',
+            type: 'image/png',
+          },
+        ],
+      },
+    ],
+    categories: ['games'],
   },
+  includeAssets: ['robots.txt', 'sitemap.txt'],
   workbox: {
     sourcemap: true,
   },
 }
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue(), VitePWA(pwaOptions), vueI18n({ include: path.resolve(__dirname, './src/locales/**') })],
-  resolve: {
-    alias: [
-      {
-        find: '@',
-        replacement: path.resolve(__dirname, 'src'),
-      },
-    ],
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `
-          @use "sass:color";
-          @use "sass:map";
-          @import "@/styles/variables";
-          @import "@/styles/mixins";
-        `,
+export default defineConfig(({ mode }) => {
+  const env = { ...process.env, ...loadEnv(mode, process.cwd()) }
+
+  return {
+    plugins: [vue(), VitePWA(pwaOptions), vueI18n({ include: new URL('./src/locales/**', import.meta.url).toJSON() })],
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
-  },
-  define: {
-    'import.meta.env.__APP_VERSION__': JSON.stringify(process.env.npm_package_version),
-  },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `
+            @import "@/styles/variables";
+            @import "@/styles/mixins";
+          `,
+        },
+      },
+    },
+    build: {
+      sourcemap: true,
+    },
+    define: {
+      'import.meta.env.__APP_VERSION__': JSON.stringify(env.npm_package_version),
+    },
+  }
 })
