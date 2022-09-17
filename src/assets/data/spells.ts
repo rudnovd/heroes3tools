@@ -1,8 +1,8 @@
-import type { Spell } from '@/models/Spell'
+import type { Spell } from '@/types'
 
-export const spells: Array<Spell> = [
+const spells: Array<Spell> = [
   {
-    id: 1,
+    key: 'MagicArrow',
     level: 1,
     name: 'Magic Arrow',
     element: {
@@ -11,7 +11,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 2,
+    key: 'Visions',
     level: 1,
     name: 'Visions',
     element: {
@@ -20,7 +20,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 3,
+    key: 'Bloodlust',
     level: 1,
     name: 'Bloodlust',
     element: {
@@ -29,7 +29,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 4,
+    key: 'Curse',
     level: 1,
     name: 'Curse',
     element: {
@@ -38,7 +38,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 5,
+    key: 'ProtectionFromFire',
     level: 1,
     name: 'Protection From Fire',
     element: {
@@ -47,7 +47,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 6,
+    key: 'Blind',
     level: 2,
     name: 'Blind',
     element: {
@@ -57,7 +57,7 @@ export const spells: Array<Spell> = [
     group: ['mind'],
   },
   {
-    id: 7,
+    key: 'FireWall',
     level: 2,
     name: 'Fire wall',
     element: {
@@ -66,7 +66,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 8,
+    key: 'Fireball',
     level: 3,
     name: 'Fireball',
     element: {
@@ -75,7 +75,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 9,
+    key: 'LandMine',
     level: 3,
     name: 'Land Mine',
     element: {
@@ -84,7 +84,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 10,
+    key: 'Misfortune',
     level: 3,
     name: 'Misfortune',
     element: {
@@ -93,7 +93,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 11,
+    key: 'Armageddon',
     level: 4,
     name: 'Armageddon',
     element: {
@@ -102,7 +102,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 12,
+    key: 'Berserk',
     level: 4,
     name: 'Berserk',
     element: {
@@ -112,7 +112,7 @@ export const spells: Array<Spell> = [
     group: ['mind'],
   },
   {
-    id: 13,
+    key: 'FireShield',
     level: 4,
     name: 'Fire Shield',
     element: {
@@ -121,7 +121,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 14,
+    key: 'Frenzy',
     level: 4,
     name: 'Frenzy',
     element: {
@@ -131,7 +131,7 @@ export const spells: Array<Spell> = [
     group: ['mind'],
   },
   {
-    id: 15,
+    key: 'Inferno',
     level: 4,
     name: 'Inferno',
     element: {
@@ -140,7 +140,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 16,
+    key: 'Slayer',
     level: 4,
     name: 'Slayer',
     element: {
@@ -149,7 +149,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 17,
+    key: 'Sacrifice',
     level: 5,
     name: 'Sacrifice',
     element: {
@@ -158,7 +158,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 18,
+    key: 'SummonFireElemental',
     level: 5,
     name: 'Summon Fire Elemental',
     element: {
@@ -167,7 +167,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 19,
+    key: 'Bless',
     level: 1,
     name: 'Bless',
     element: {
@@ -176,7 +176,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 20,
+    key: 'Cure',
     level: 1,
     name: 'Cure',
     element: {
@@ -185,7 +185,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 21,
+    key: 'Dispel',
     level: 1,
     name: 'Dispel',
     element: {
@@ -194,7 +194,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 22,
+    key: 'ProtectionFromWater',
     level: 1,
     name: 'Protection From Water',
     element: {
@@ -203,7 +203,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 23,
+    key: 'SummonBoat',
     level: 1,
     name: 'Summon Boat',
     element: {
@@ -212,7 +212,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 24,
+    key: 'IceBolt',
     level: 2,
     name: 'Ice Bolt',
     element: {
@@ -221,7 +221,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 25,
+    key: 'RemoveObstacle',
     level: 2,
     name: 'Remove Obstacle',
     element: {
@@ -230,7 +230,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 26,
+    key: 'ScuttleBoat',
     level: 2,
     name: 'Scuttle Boat',
     element: {
@@ -239,7 +239,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 27,
+    key: 'Weakness',
     level: 2,
     name: 'Weakness',
     element: {
@@ -248,7 +248,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 28,
+    key: 'Forgetfulness',
     level: 3,
     name: 'Forgetfulness',
     element: {
@@ -258,7 +258,7 @@ export const spells: Array<Spell> = [
     group: ['mind'],
   },
   {
-    id: 29,
+    key: 'FrostRing',
     level: 3,
     name: 'Frost Ring',
     element: {
@@ -267,7 +267,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 30,
+    key: 'Mirth',
     level: 3,
     name: 'Mirth',
     element: {
@@ -277,7 +277,7 @@ export const spells: Array<Spell> = [
     group: ['mind'],
   },
   {
-    id: 31,
+    key: 'Teleport',
     level: 3,
     name: 'Teleport',
     element: {
@@ -286,7 +286,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 32,
+    key: 'Clone',
     level: 4,
     name: 'Clone',
     element: {
@@ -295,7 +295,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 33,
+    key: 'Prayer',
     level: 4,
     name: 'Prayer',
     element: {
@@ -304,7 +304,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 34,
+    key: 'WaterWalk',
     level: 4,
     name: 'Water Walk',
     element: {
@@ -313,7 +313,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 35,
+    key: 'SummonWaterElemental',
     level: 5,
     name: 'Summon Water Elemental',
     element: {
@@ -322,7 +322,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 36,
+    key: 'Shield',
     level: 1,
     name: 'Shield',
     element: {
@@ -331,7 +331,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 37,
+    key: 'Slow',
     level: 1,
     name: 'Slow',
     element: {
@@ -340,7 +340,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 38,
+    key: 'StoneSkin',
     level: 1,
     name: 'Stone Skin',
     element: {
@@ -349,7 +349,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 39,
+    key: 'ViewEarth',
     level: 1,
     name: 'View Earth',
     element: {
@@ -358,7 +358,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 40,
+    key: 'DeathRipple',
     level: 2,
     name: 'Death Ripple',
     element: {
@@ -367,7 +367,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 41,
+    key: 'Quicksand',
     level: 2,
     name: 'Quicksand',
     element: {
@@ -376,7 +376,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 42,
+    key: 'AnimateDead',
     level: 3,
     name: 'Animate Dead',
     element: {
@@ -385,7 +385,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 43,
+    key: 'AntiMagic',
     level: 3,
     name: 'Anti-Magic',
     element: {
@@ -394,7 +394,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 44,
+    key: 'Earthquake',
     level: 3,
     name: 'Earthquake',
     element: {
@@ -403,7 +403,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 45,
+    key: 'ForceField',
     level: 3,
     name: 'Force Field',
     element: {
@@ -412,7 +412,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 46,
+    key: 'ProtectionFromEarth',
     level: 3,
     name: 'Protection From Earth',
     element: {
@@ -421,7 +421,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 47,
+    key: 'MeteorShower',
     level: 4,
     name: 'Meteor Shower',
     element: {
@@ -430,7 +430,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 48,
+    key: 'Resurrection',
     level: 4,
     name: 'Resurrection',
     element: {
@@ -439,7 +439,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 49,
+    key: 'Sorrow',
     level: 4,
     name: 'Sorrow',
     element: {
@@ -449,7 +449,7 @@ export const spells: Array<Spell> = [
     group: ['mind'],
   },
   {
-    id: 50,
+    key: 'TownPortal',
     level: 4,
     name: 'Town Portal',
     element: {
@@ -458,7 +458,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 51,
+    key: 'Implosion',
     level: 5,
     name: 'Implosion',
     element: {
@@ -467,7 +467,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 52,
+    key: 'SummonEarthElemental',
     level: 5,
     name: 'Summon Earth Elemental',
     element: {
@@ -476,7 +476,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 53,
+    key: 'Haste',
     level: 1,
     name: 'Haste',
     element: {
@@ -485,7 +485,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 54,
+    key: 'ViewAir',
     level: 1,
     name: 'View Air',
     element: {
@@ -494,7 +494,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 55,
+    key: 'Disguise',
     level: 2,
     name: 'Disguise',
     element: {
@@ -503,7 +503,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 56,
+    key: 'DisruptingRay',
     level: 2,
     name: 'Disrupting Ray',
     element: {
@@ -512,7 +512,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 57,
+    key: 'Fortune',
     level: 2,
     name: 'Fortune',
     element: {
@@ -521,7 +521,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 58,
+    key: 'LightningBolt',
     level: 2,
     name: 'Lightning Bolt',
     element: {
@@ -530,7 +530,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 59,
+    key: 'Precision',
     level: 2,
     name: 'Precision',
     element: {
@@ -539,7 +539,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 60,
+    key: 'ProtectionFromAir',
     level: 2,
     name: 'Protection From Air',
     element: {
@@ -548,7 +548,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 61,
+    key: 'AirShield',
     level: 3,
     name: 'Air Shield',
     element: {
@@ -557,7 +557,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 62,
+    key: 'DestroyUndead',
     level: 3,
     name: 'Destroy Undead',
     element: {
@@ -566,7 +566,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 63,
+    key: 'Hypnotize',
     level: 3,
     name: 'Hypnotize',
     element: {
@@ -576,7 +576,7 @@ export const spells: Array<Spell> = [
     group: ['mind'],
   },
   {
-    id: 64,
+    key: 'ChainLightning',
     level: 4,
     name: 'Chain Lightning',
     element: {
@@ -585,7 +585,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 65,
+    key: 'Counterstrike',
     level: 4,
     name: 'Counterstrike',
     element: {
@@ -594,7 +594,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 66,
+    key: 'DimensionDoor',
     level: 5,
     name: 'Dimension Door',
     element: {
@@ -603,7 +603,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 67,
+    key: 'Fly',
     level: 5,
     name: 'Fly',
     element: {
@@ -612,7 +612,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 68,
+    key: 'MagicMirror',
     level: 5,
     name: 'Magic Mirror',
     element: {
@@ -621,7 +621,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 69,
+    key: 'SummonAirElemental',
     level: 5,
     name: 'Summon Air Elemental',
     element: {
@@ -630,7 +630,7 @@ export const spells: Array<Spell> = [
     },
   },
   {
-    id: 70,
+    key: 'TitansLightningBolt',
     level: 4,
     name: 'Titans Lightning Bolt',
     element: {
@@ -639,3 +639,5 @@ export const spells: Array<Spell> = [
     },
   },
 ]
+
+export default spells

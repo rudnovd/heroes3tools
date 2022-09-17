@@ -1,48 +1,50 @@
-import type { Town } from '@/models/Town'
+import type { Town } from '@/types'
 
-export const towns: Array<Town> = [
+const towns: Array<Town> = [
   {
-    id: 1,
+    key: 'Castle',
     name: 'Castle',
   },
   {
-    id: 2,
+    key: 'Rampart',
     name: 'Rampart',
   },
   {
-    id: 3,
+    key: 'Tower',
     name: 'Tower',
   },
   {
-    id: 4,
+    key: 'Inferno',
     name: 'Inferno',
   },
   {
-    id: 5,
+    key: 'Necropolis',
     name: 'Necropolis',
   },
   {
-    id: 6,
+    key: 'Dungeon',
     name: 'Dungeon',
   },
   {
-    id: 7,
+    key: 'Stronghold',
     name: 'Stronghold',
   },
   {
-    id: 8,
+    key: 'Fortress',
     name: 'Fortress',
   },
   {
-    id: 9,
+    key: 'Conflux',
     name: 'Conflux',
   },
   {
-    id: 10,
+    key: 'Cove',
     name: 'Cove',
   },
   {
-    id: 11,
+    key: 'Factory',
     name: 'Factory',
   },
 ]
+
+export default towns

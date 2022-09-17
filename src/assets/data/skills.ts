@@ -1,120 +1,122 @@
-import type { Skill } from '@/models/Skill'
+import type { Skill } from '@/types'
 
-export const skills: Array<Skill> = [
+const skills: Array<Skill> = [
   {
-    id: 1,
+    key: 'AirMagic',
     name: 'Air Magic',
   },
   {
-    id: 2,
+    key: 'Archery',
     name: 'Archery',
   },
   {
-    id: 3,
+    key: 'Armorer',
     name: 'Armorer',
   },
   {
-    id: 4,
+    key: 'Artillery',
     name: 'Artillery',
   },
   {
-    id: 5,
+    key: 'Ballistics',
     name: 'Ballistics',
   },
   {
-    id: 6,
+    key: 'Diplomacy',
     name: 'Diplomacy',
   },
   {
-    id: 7,
+    key: 'EagleEye',
     name: 'Eagle Eye',
   },
   {
-    id: 8,
+    key: 'EarthMagic',
     name: 'Earth Magic',
   },
   {
-    id: 9,
+    key: 'Estates',
     name: 'Estates',
   },
   {
-    id: 10,
+    key: 'FireMagic',
     name: 'Fire Magic',
   },
   {
-    id: 11,
+    key: 'FirstAid',
     name: 'First Aid',
   },
   {
-    id: 12,
+    key: 'Intelligence',
     name: 'Intelligence',
   },
   {
-    id: 13,
+    key: 'Leadership',
     name: 'Leadership',
   },
   {
-    id: 14,
+    key: 'Learning',
     name: 'Learning',
   },
   {
-    id: 15,
+    key: 'Logistics',
     name: 'Logistics',
   },
   {
-    id: 16,
+    key: 'Luck',
     name: 'Luck',
   },
   {
-    id: 17,
+    key: 'Mysticism',
     name: 'Mysticism',
   },
   {
-    id: 18,
+    key: 'Navigation',
     name: 'Navigation',
   },
   {
-    id: 19,
+    key: 'Necromancy',
     name: 'Necromancy',
   },
   {
-    id: 20,
+    key: 'Offense',
     name: 'Offense',
   },
   {
-    id: 21,
+    key: 'Pathfinding',
     name: 'Pathfinding',
   },
   {
-    id: 22,
+    key: 'Resistance',
     name: 'Resistance',
   },
   {
-    id: 23,
+    key: 'Scholar',
     name: 'Scholar',
   },
   {
-    id: 24,
+    key: 'Scouting',
     name: 'Scouting',
   },
   {
-    id: 25,
+    key: 'Sorcery',
     name: 'Sorcery',
   },
   {
-    id: 26,
+    key: 'Tactics',
     name: 'Tactics',
   },
   {
-    id: 27,
+    key: 'WaterMagic',
     name: 'Water Magic',
   },
   {
-    id: 28,
+    key: 'Wisdom',
     name: 'Wisdom',
   },
   {
-    id: 29,
+    key: 'Interference',
     name: 'Interference',
   },
 ]
+
+export default skills

@@ -1,8 +1,8 @@
-import type { Class } from '@/models/Class'
+import type { HeroClass } from '@/types'
 
-export const classes: Array<Class> = [
+const classes: Array<HeroClass> = [
   {
-    id: 1,
+    key: 'Knight',
     name: 'Knight',
     attack: 2,
     defense: 2,
@@ -10,7 +10,7 @@ export const classes: Array<Class> = [
     knowledge: 1,
   },
   {
-    id: 2,
+    key: 'Cleric',
     name: 'Cleric',
     attack: 1,
     defense: 0,
@@ -18,7 +18,7 @@ export const classes: Array<Class> = [
     knowledge: 2,
   },
   {
-    id: 3,
+    key: 'Ranger',
     name: 'Ranger',
     attack: 1,
     defense: 3,
@@ -26,7 +26,7 @@ export const classes: Array<Class> = [
     knowledge: 1,
   },
   {
-    id: 4,
+    key: 'Druid',
     name: 'Druid',
     attack: 0,
     defense: 2,
@@ -34,7 +34,7 @@ export const classes: Array<Class> = [
     knowledge: 2,
   },
   {
-    id: 5,
+    key: 'Alchemist',
     name: 'Alchemist',
     attack: 1,
     defense: 1,
@@ -42,7 +42,7 @@ export const classes: Array<Class> = [
     knowledge: 2,
   },
   {
-    id: 6,
+    key: 'Wizard',
     name: 'Wizard',
     attack: 0,
     defense: 0,
@@ -50,7 +50,7 @@ export const classes: Array<Class> = [
     knowledge: 3,
   },
   {
-    id: 7,
+    key: 'Demoniac',
     name: 'Demoniac',
     attack: 2,
     defense: 2,
@@ -58,7 +58,7 @@ export const classes: Array<Class> = [
     knowledge: 1,
   },
   {
-    id: 8,
+    key: 'Heretic',
     name: 'Heretic',
     attack: 1,
     defense: 1,
@@ -66,7 +66,7 @@ export const classes: Array<Class> = [
     knowledge: 1,
   },
   {
-    id: 9,
+    key: 'DeathKnight',
     name: 'Death Knight',
     attack: 1,
     defense: 2,
@@ -74,7 +74,7 @@ export const classes: Array<Class> = [
     knowledge: 1,
   },
   {
-    id: 10,
+    key: 'Necromancer',
     name: 'Necromancer',
     attack: 1,
     defense: 0,
@@ -82,7 +82,7 @@ export const classes: Array<Class> = [
     knowledge: 2,
   },
   {
-    id: 11,
+    key: 'Overlord',
     name: 'Overlord',
     attack: 2,
     defense: 2,
@@ -90,7 +90,7 @@ export const classes: Array<Class> = [
     knowledge: 1,
   },
   {
-    id: 12,
+    key: 'Warlock',
     name: 'Warlock',
     attack: 0,
     defense: 0,
@@ -98,7 +98,7 @@ export const classes: Array<Class> = [
     knowledge: 2,
   },
   {
-    id: 13,
+    key: 'Barbarian',
     name: 'Barbarian',
     attack: 4,
     defense: 0,
@@ -106,7 +106,7 @@ export const classes: Array<Class> = [
     knowledge: 1,
   },
   {
-    id: 14,
+    key: 'BattleMage',
     name: 'Battle Mage',
     attack: 2,
     defense: 1,
@@ -114,7 +114,7 @@ export const classes: Array<Class> = [
     knowledge: 1,
   },
   {
-    id: 15,
+    key: 'Beastmaster',
     name: 'Beastmaster',
     attack: 0,
     defense: 4,
@@ -122,7 +122,7 @@ export const classes: Array<Class> = [
     knowledge: 1,
   },
   {
-    id: 16,
+    key: 'Witch',
     name: 'Witch',
     attack: 0,
     defense: 1,
@@ -130,7 +130,7 @@ export const classes: Array<Class> = [
     knowledge: 2,
   },
   {
-    id: 17,
+    key: 'Planeswalker',
     name: 'Planeswalker',
     attack: 3,
     defense: 1,
@@ -138,7 +138,7 @@ export const classes: Array<Class> = [
     knowledge: 1,
   },
   {
-    id: 18,
+    key: 'Elementalist',
     name: 'Elementalist',
     attack: 0,
     defense: 0,
@@ -146,7 +146,7 @@ export const classes: Array<Class> = [
     knowledge: 3,
   },
   {
-    id: 19,
+    key: 'Captain',
     name: 'Captain',
     attack: 3,
     defense: 0,
@@ -154,7 +154,7 @@ export const classes: Array<Class> = [
     knowledge: 1,
   },
   {
-    id: 20,
+    key: 'Navigator',
     name: 'Navigator',
     attack: 2,
     defense: 0,
@@ -162,3 +162,5 @@ export const classes: Array<Class> = [
     knowledge: 2,
   },
 ]
+
+export default classes
