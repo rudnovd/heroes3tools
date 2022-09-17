@@ -1,84 +1,66 @@
-import type { ClassTranslation } from '@/models/Class'
+import type { HeroClass, HeroClassKey } from '@/types'
 
-export const classes: Array<ClassTranslation> = [
-  {
-    id: 1,
+const classes: Record<HeroClassKey, Pick<HeroClass, 'name'>> = {
+  Knight: {
     name: 'Рыцарь',
   },
-  {
-    id: 2,
+  Cleric: {
     name: 'Священник',
   },
-  {
-    id: 3,
+  Ranger: {
     name: 'Рейнджер',
   },
-  {
-    id: 4,
+  Druid: {
     name: 'Друид',
   },
-  {
-    id: 5,
+  Alchemist: {
     name: 'Алхимик',
   },
-  {
-    id: 6,
+  Wizard: {
     name: 'Маг',
   },
-  {
-    id: 7,
+  Demoniac: {
     name: 'Демон',
   },
-  {
-    id: 8,
+  Heretic: {
     name: 'Еретик',
   },
-  {
-    id: 9,
+  DeathKnight: {
     name: 'Рыцарь смерти',
   },
-  {
-    id: 10,
+  Necromancer: {
     name: 'Некромант',
   },
-  {
-    id: 11,
+  Overlord: {
     name: 'Лорд',
   },
-  {
-    id: 12,
+  Warlock: {
     name: 'Чернокнижник',
   },
-  {
-    id: 13,
+  Barbarian: {
     name: 'Варвар',
   },
-  {
-    id: 14,
+  BattleMage: {
     name: 'Боевой маг',
   },
-  {
-    id: 15,
+  Beastmaster: {
     name: 'Хозяин зверей',
   },
-  {
-    id: 16,
+  Witch: {
     name: 'Ведьма',
   },
-  {
-    id: 17,
+  Planeswalker: {
     name: 'Путешественник',
   },
-  {
-    id: 18,
+  Elementalist: {
     name: 'Элементалист',
   },
-  {
-    id: 19,
+  Captain: {
     name: 'Капитан',
   },
-  {
-    id: 20,
+  Navigator: {
     name: 'Навигатор',
   },
-]
+}
+
+export default classes

@@ -1,120 +1,93 @@
-import type { SkillTranslation } from '@/models/Skill'
+import type { Skill, SkillKey } from '@/types'
 
-export const skills: Array<SkillTranslation> = [
-  {
-    id: 1,
+const skills: Record<SkillKey, Pick<Skill, 'name'>> = {
+  AirMagic: {
     name: 'Магия Воздуха',
   },
-  {
-    id: 2,
+  Archery: {
     name: 'Стрельба',
   },
-  {
-    id: 3,
+  Armorer: {
     name: 'Доспехи',
   },
-  {
-    id: 4,
+  Artillery: {
     name: 'Артиллерия',
   },
-  {
-    id: 5,
+  Ballistics: {
     name: 'Балистика',
   },
-  {
-    id: 6,
+  Diplomacy: {
     name: 'Дипломатия',
   },
-  {
-    id: 7,
+  EagleEye: {
     name: 'Зоркость',
   },
-  {
-    id: 8,
+  EarthMagic: {
     name: 'Магия Земли',
   },
-  {
-    id: 9,
+  Estates: {
     name: 'Имущество',
   },
-  {
-    id: 10,
+  FireMagic: {
     name: 'Магия Огня',
   },
-  {
-    id: 11,
+  FirstAid: {
     name: 'Первая Помощь',
   },
-  {
-    id: 12,
+  Intelligence: {
     name: 'Интеллект',
   },
-  {
-    id: 13,
+  Leadership: {
     name: 'Лидерство',
   },
-  {
-    id: 14,
+  Learning: {
     name: 'Обучение',
   },
-  {
-    id: 15,
+  Logistics: {
     name: 'Логистика',
   },
-  {
-    id: 16,
+  Luck: {
     name: 'Удача',
   },
-  {
-    id: 17,
+  Mysticism: {
     name: 'Мистицизм',
   },
-  {
-    id: 18,
+  Navigation: {
     name: 'Навигация',
   },
-  {
-    id: 19,
+  Necromancy: {
     name: 'Некромантия',
   },
-  {
-    id: 20,
+  Offense: {
     name: 'Атака',
   },
-  {
-    id: 21,
+  Pathfinding: {
     name: 'Поиск пути',
   },
-  {
-    id: 22,
+  Resistance: {
     name: 'Сопротивление',
   },
-  {
-    id: 23,
+  Scholar: {
     name: 'Грамотность',
   },
-  {
-    id: 24,
+  Scouting: {
     name: 'Разведка',
   },
-  {
-    id: 25,
+  Sorcery: {
     name: 'Волшебство',
   },
-  {
-    id: 26,
+  Tactics: {
     name: 'Тактика',
   },
-  {
-    id: 27,
+  WaterMagic: {
     name: 'Магия Воды',
   },
-  {
-    id: 28,
+  Wisdom: {
     name: 'Мудрость',
   },
-  {
-    id: 29,
+  Interference: {
     name: 'Помехи',
   },
-]
+}
+
+export default skills

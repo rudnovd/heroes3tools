@@ -1,648 +1,489 @@
-import type { HeroTranslation } from '@/models/Hero'
+import type { Hero, HeroKey } from '@/types'
 
-export const heroes: Array<HeroTranslation> = [
-  {
-    id: 1,
+const heroes: Record<HeroKey, Pick<Hero, 'name'>> = {
+  Orrin: {
     name: 'Оррин',
   },
-  {
-    id: 2,
+  Valeska: {
     name: 'Валеска',
   },
-  {
-    id: 3,
+  Edric: {
     name: 'Эдрик',
   },
-  {
-    id: 4,
+  Sylvia: {
     name: 'Сильвия',
   },
-  {
-    id: 5,
+  LordHaart: {
     name: 'Лорд Хаарт',
   },
-  {
-    id: 6,
+  Sorsha: {
     name: 'Сорша',
   },
-  {
-    id: 7,
+  Christian: {
     name: 'Кристиан',
   },
-  {
-    id: 8,
+  Tyris: {
     name: 'Турис',
   },
-  {
-    id: 9,
+  Rion: {
     name: 'Рион',
   },
-  {
-    id: 10,
+  Adela: {
     name: 'Адель',
   },
-  {
-    id: 11,
+  Cuthbert: {
     name: 'Катберт',
   },
-  {
-    id: 12,
+  Adelaide: {
     name: 'Аделаида',
   },
-  {
-    id: 13,
+  Ingham: {
     name: 'Инхам',
   },
-  {
-    id: 14,
+  Sanya: {
     name: 'Саня',
   },
-  {
-    id: 15,
+  Loynis: {
     name: 'Лоинс',
   },
-  {
-    id: 16,
+  Caitlin: {
     name: 'Каитлин',
   },
-  {
-    id: 17,
+  Mephala: {
     name: 'Мефала',
   },
-  {
-    id: 18,
+  Ufretin: {
     name: 'Уфретин',
   },
-  {
-    id: 19,
+  Jenova: {
     name: 'Енова',
   },
-  {
-    id: 20,
+  Ryland: {
     name: 'Риланд',
   },
-  {
-    id: 21,
+  Thorgrim: {
     name: 'Торгрим',
   },
-  {
-    id: 22,
+  Ivor: {
     name: 'Ивор',
   },
-  {
-    id: 23,
+  Clancy: {
     name: 'Кланси',
   },
-  {
-    id: 24,
+  Kyrre: {
     name: 'Киррь',
   },
-  {
-    id: 25,
+  Coronius: {
     name: 'Корониус',
   },
-  {
-    id: 26,
+  Uland: {
     name: 'Уланд',
   },
-  {
-    id: 27,
+  Elleshar: {
     name: 'Эллезар',
   },
-  {
-    id: 28,
+  Gem: {
     name: 'Джем',
   },
-  {
-    id: 29,
+  Malcom: {
     name: 'Мальком',
   },
-  {
-    id: 30,
+  Melodia: {
     name: 'Мелодиа',
   },
-  {
-    id: 31,
+  Alagar: {
     name: 'Алагар',
   },
-  {
-    id: 32,
+  Aeris: {
     name: 'Аерис',
   },
-  {
-    id: 33,
+  Piquedram: {
     name: 'Пигедрам',
   },
-  {
-    id: 34,
+  Thane: {
     name: 'Тан',
   },
-  {
-    id: 35,
+  Josephine: {
     name: 'Жосефина',
   },
-  {
-    id: 36,
+  Neela: {
     name: 'Нила',
   },
-  {
-    id: 37,
+  Torosar: {
     name: 'Торосар',
   },
-  {
-    id: 38,
+  Fafner: {
     name: 'Фафнер',
   },
-  {
-    id: 39,
+  Rissa: {
     name: 'Ризза',
   },
-  {
-    id: 40,
+  Iona: {
     name: 'Иона',
   },
-  {
-    id: 41,
+  Astral: {
     name: 'Астрал',
   },
-  {
-    id: 42,
+  Halon: {
     name: 'Халон',
   },
-  {
-    id: 43,
+  Serena: {
     name: 'Серена',
   },
-  {
-    id: 44,
+  Daremyth: {
     name: 'Даремиф',
   },
-  {
-    id: 45,
+  Theodorus: {
     name: 'Теодор',
   },
-  {
-    id: 46,
+  Solmyr: {
     name: 'Солмир',
   },
-  {
-    id: 47,
+  Cyra: {
     name: 'Кира',
   },
-  {
-    id: 48,
+  Aine: {
     name: 'Аин',
   },
-  {
-    id: 49,
+  Fiona: {
     name: 'Фиона',
   },
-  {
-    id: 50,
+  Rashka: {
     name: 'Рашка',
   },
-  {
-    id: 51,
+  Marius: {
     name: 'Мариус',
   },
-  {
-    id: 52,
+  Ignatius: {
     name: 'Игнат',
   },
-  {
-    id: 53,
+  Octavia: {
     name: 'Октавия',
   },
-  {
-    id: 54,
+  Calh: {
     name: 'Калх',
   },
-  {
-    id: 55,
+  Pyre: {
     name: 'Пир',
   },
-  {
-    id: 56,
+  Nymus: {
     name: 'Нимус',
   },
-  {
-    id: 57,
+  Ayden: {
     name: 'Айден',
   },
-  {
-    id: 58,
+  Xyron: {
     name: 'Ксирон',
   },
-  {
-    id: 59,
+  Axsis: {
     name: 'Аксис',
   },
-  {
-    id: 60,
+  Olema: {
     name: 'Олема',
   },
-  {
-    id: 61,
+  Calid: {
     name: 'Калид',
   },
-  {
-    id: 62,
+  Ash: {
     name: 'Аш',
   },
-  {
-    id: 63,
+  Zydar: {
     name: 'Зидар',
   },
-  {
-    id: 64,
+  Xarfax: {
     name: 'Ксарфакс',
   },
-  {
-    id: 65,
+  Straker: {
     name: 'Стракер',
   },
-  {
-    id: 66,
+  Vokial: {
     name: 'Вокиал',
   },
-  {
-    id: 67,
+  Moandor: {
     name: 'Моандор',
   },
-  {
-    id: 68,
+  Charna: {
     name: 'Чарна',
   },
-  {
-    id: 69,
+  Tamika: {
     name: 'Тамика',
   },
-  {
-    id: 70,
+  Isra: {
     name: 'Исра',
   },
-  {
-    id: 71,
+  Clavius: {
     name: 'Клавиус',
   },
-  {
-    id: 72,
+  Galthran: {
     name: 'Галтран',
   },
-  {
-    id: 73,
+  Septienna: {
     name: 'Септиенна',
   },
-  {
-    id: 74,
+  Aislinn: {
     name: 'Аислин',
   },
-  {
-    id: 75,
+  Sandro: {
     name: 'Сандро',
   },
-  {
-    id: 76,
+  Nimbus: {
     name: 'Нимбус',
   },
-  {
-    id: 77,
+  Thant: {
     name: 'Тант',
   },
-  {
-    id: 78,
+  Xsi: {
     name: 'Кси',
   },
-  {
-    id: 79,
+  Vidomina: {
     name: 'Видомина',
   },
-  {
-    id: 80,
+  Nagash: {
     name: 'Нагаш',
   },
-  {
-    id: 81,
+  Lorelei: {
     name: 'Лорелей',
   },
-  {
-    id: 82,
+  Arlach: {
     name: 'Арлаш',
   },
-  {
-    id: 83,
+  Dace: {
     name: 'Дас',
   },
-  {
-    id: 84,
+  Ajit: {
     name: 'Аджит',
   },
-  {
-    id: 85,
+  Damacon: {
     name: 'Дамакон',
   },
-  {
-    id: 86,
+  Gunnar: {
     name: 'Гуннар',
   },
-  {
-    id: 87,
+  Synca: {
     name: 'Синка',
   },
-  {
-    id: 88,
+  Shakti: {
     name: 'Шакти',
   },
-  {
-    id: 89,
+  Alamar: {
     name: 'Аламар',
   },
-  {
-    id: 90,
+  Jaegar: {
     name: 'Жаегар',
   },
-  {
-    id: 91,
+  Malekith: {
     name: 'Малекит',
   },
-  {
-    id: 92,
+  Jeddite: {
     name: 'Жеддит',
   },
-  {
-    id: 93,
+  Geon: {
     name: 'Геон',
   },
-  {
-    id: 94,
+  Deemer: {
     name: 'Деемер',
   },
-  {
-    id: 95,
+  Sephinroth: {
     name: 'Сепхинороф',
   },
-  {
-    id: 96,
+  Darkstorn: {
     name: 'Дарксторн',
   },
-  {
-    id: 97,
+  Yog: {
     name: 'Йог',
   },
-  {
-    id: 98,
+  Gurnisson: {
     name: 'Гурниссон',
   },
-  {
-    id: 99,
+  Jabarkas: {
     name: 'Жабаркас',
   },
-  {
-    id: 100,
+  Shiva: {
     name: 'Шива',
   },
-  {
-    id: 101,
+  Gretchin: {
     name: 'Гретчин',
   },
-  {
-    id: 102,
+  Krellion: {
     name: 'Креллион',
   },
-  {
-    id: 103,
+  CragHack: {
     name: 'Крэг Хэк',
   },
-  {
-    id: 104,
+  Tyraxor: {
     name: 'Тираксор',
   },
-  {
-    id: 105,
+  Gird: {
     name: 'Гирд',
   },
-  {
-    id: 106,
+  Vey: {
     name: 'Вей',
   },
-  {
-    id: 107,
+  Dessa: {
     name: 'Десса',
   },
-  {
-    id: 108,
+  Terek: {
     name: 'Терек',
   },
-  {
-    id: 109,
+  Zubin: {
     name: 'Зубин',
   },
-  {
-    id: 110,
+  Gundula: {
     name: 'Гундула',
   },
-  {
-    id: 111,
+  Oris: {
     name: 'Орис',
   },
-  {
-    id: 112,
+  Saurug: {
     name: 'Сауруг',
   },
-  {
-    id: 113,
+  Bron: {
     name: 'Брон',
   },
-  {
-    id: 114,
+  Drakon: {
     name: 'Дракон',
   },
-  {
-    id: 115,
+  Wystan: {
     name: 'Вистан',
   },
-  {
-    id: 116,
+  Tazar: {
     name: 'Тазар',
   },
-  {
-    id: 117,
+  Alkin: {
     name: 'Алкин',
   },
-  {
-    id: 118,
+  Korbac: {
     name: 'Корбак',
   },
-  {
-    id: 119,
+  Gerwulf: {
     name: 'Гервульф',
   },
-  {
-    id: 120,
+  Broghild: {
     name: 'Брохильд',
   },
-  {
-    id: 121,
+  Mirlanda: {
     name: 'Мирланда',
   },
-  {
-    id: 122,
+  Rosic: {
     name: 'Розик',
   },
-  {
-    id: 123,
+  Voy: {
     name: 'Вой',
   },
-  {
-    id: 124,
+  Verdish: {
     name: 'Вердиш',
   },
-  {
-    id: 125,
+  Merist: {
     name: 'Мерист',
   },
-  {
-    id: 126,
+  Styg: {
     name: 'Стиг',
   },
-  {
-    id: 127,
+  Andra: {
     name: 'Андра',
   },
-  {
-    id: 128,
+  Tiva: {
     name: 'Тива',
   },
-  {
-    id: 129,
+  Pasis: {
     name: 'Пасис',
   },
-  {
-    id: 130,
+  Thunar: {
     name: 'Тунар',
   },
-  {
-    id: 131,
+  Ignissa: {
     name: 'Игнисса',
   },
-  {
-    id: 132,
+  Lacus: {
     name: 'Лакус',
   },
-  {
-    id: 133,
+  Monere: {
     name: 'Монер',
   },
-  {
-    id: 134,
+  Erdamon: {
     name: 'Эрдамон',
   },
-  {
-    id: 135,
+  Fiur: {
     name: 'Фьюр',
   },
-  {
-    id: 136,
+  Kalt: {
     name: 'Кальт',
   },
-  {
-    id: 137,
+  Luna: {
     name: 'Луна',
   },
-  {
-    id: 138,
+  Brissa: {
     name: 'Брисса',
   },
-  {
-    id: 139,
+  Ciele: {
     name: 'Циель',
   },
-  {
-    id: 140,
+  Labetha: {
     name: 'Лабета',
   },
-  {
-    id: 141,
+  Inteus: {
     name: 'Интеус',
   },
-  {
-    id: 142,
+  Aenain: {
     name: 'Аэнаин',
   },
-  {
-    id: 143,
+  Gelare: {
     name: 'Джелар',
   },
-  {
-    id: 144,
+  Grindan: {
     name: 'Гриндан',
   },
-  {
-    id: 145,
+  Cassiopeia: {
     name: 'Кассиопея',
   },
-  {
-    id: 146,
+  Corkes: {
     name: 'Коркес',
   },
-  {
-    id: 147,
+  Jeremy: {
     name: 'Джереми',
   },
-  {
-    id: 148,
+  Illor: {
     name: 'Иллор',
   },
-  {
-    id: 149,
+  Derek: {
     name: 'Дерек',
   },
-  {
-    id: 150,
+  Leena: {
     name: 'Лина',
   },
-  {
-    id: 151,
+  Anabel: {
     name: 'Анабель',
   },
-  {
-    id: 152,
+  Miriam: {
     name: 'Мириам',
   },
-  {
-    id: 153,
+  Casmetra: {
     name: 'Касметра',
   },
-  {
-    id: 154,
+  Eovacius: {
     name: 'Эоваций',
   },
-  {
-    id: 155,
+  Spint: {
     name: 'Спинт',
   },
-  {
-    id: 156,
+  Andal: {
     name: 'Андал',
   },
-  {
-    id: 157,
+  Manfred: {
     name: 'Манфред',
   },
-  {
-    id: 158,
+  Zilare: {
     name: 'Зилар',
   },
-  {
-    id: 159,
+  Astra: {
     name: 'Астра',
   },
-  {
-    id: 160,
+  Dargem: {
     name: 'Даргем',
   },
-  {
-    id: 161,
+  Giselle: {
     name: 'Жизель',
   },
-]
+}
+
+export default heroes

@@ -1,48 +1,39 @@
-import type { TownTranslation } from '@/models/Town'
+import type { Town, TownKey } from '@/types'
 
-export const towns: Array<TownTranslation> = [
-  {
-    id: 1,
+const towns: Record<TownKey, Pick<Town, 'name'>> = {
+  Castle: {
     name: 'Замок',
   },
-  {
-    id: 2,
+  Rampart: {
     name: 'Оплот',
   },
-  {
-    id: 3,
+  Tower: {
     name: 'Башня',
   },
-  {
-    id: 4,
+  Inferno: {
     name: 'Инферно',
   },
-  {
-    id: 5,
+  Necropolis: {
     name: 'Некрополис',
   },
-  {
-    id: 6,
+  Dungeon: {
     name: 'Темница',
   },
-  {
-    id: 7,
+  Fortress: {
     name: 'Цитадель',
   },
-  {
-    id: 8,
+  Stronghold: {
     name: 'Крепость',
   },
-  {
-    id: 9,
+  Conflux: {
     name: 'Сопряжение',
   },
-  {
-    id: 10,
+  Cove: {
     name: 'Причал',
   },
-  {
-    id: 11,
+  Factory: {
     name: 'Фабрика',
   },
-]
+}
+
+export default towns
