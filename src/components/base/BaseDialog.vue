@@ -1,133 +1,97 @@
 <template>
   <teleport to="body">
     <transition name="transition-dialog">
-      <div v-if="show" class="dialog-area" role="dialog">
-        <div ref="baseDialogRef" class="base-dialog" :class="`base-dialog-${size}`">
-          <div class="modal-content">
-            <div class="header">
-              <slot name="header"></slot>
-              <CloseButton @click="$emit('close')" />
-            </div>
+      <dialog v-show="props.show" ref="dialogRef" :class="`size-${size}`">
+        <section ref="dialogContentRef" class="dialog-content">
+          <section class="dialog-header">
+            <slot name="header"></slot>
+            <CloseButton @click="$emit('close')" />
+          </section>
 
-            <slot name="content" class="content"></slot>
-          </div>
-        </div>
-      </div>
+          <slot name="content"></slot>
+        </section>
+      </dialog>
     </transition>
   </teleport>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import CloseButton from '@/components/buttons/CloseButton.vue'
 import { onClickOutside } from '@vueuse/core'
-import type { PropType } from 'vue'
-import { defineComponent, ref, watch } from 'vue'
+import { nextTick, ref, watch } from 'vue'
 
-type BaseDialogSizesProp = 'small' | 'medium' | 'large' | 'maximum'
+const props = withDefaults(
+  defineProps<{
+    show: boolean
+    size?: 'small' | 'medium' | 'large' | 'maximum'
+  }>(),
+  {
+    size: 'large',
+  }
+)
+const emit = defineEmits(['close'])
 
-export default defineComponent({
-  name: 'BaseDialog',
-  components: {
-    CloseButton,
-  },
-  props: {
-    show: {
-      type: Boolean,
-      required: true,
-    },
-    size: {
-      type: String as PropType<BaseDialogSizesProp>,
-      default: 'medium',
-    },
-  },
-  emits: ['close'],
-  setup(props, context) {
-    const baseDialogRef = ref(null)
+const dialogRef = ref<HTMLDialogElement>()
+const dialogContentRef = ref<HTMLElement>()
 
-    onClickOutside(baseDialogRef, () => context.emit('close'))
+watch(
+  () => props.show,
+  (show) => {
+    if (show) {
+      const scrollbarWidth = window.innerWidth - document.body.clientWidth
+      document.body.style.setProperty('padding-right', `${scrollbarWidth}px`)
+      document.body.classList.add('no-scroll')
 
-    watch(
-      () => props.show,
-      (newShowState) => {
-        if (newShowState) {
-          const scrollbarWidth = window.innerWidth - document.body.clientWidth
-          document.body.style.paddingRight = `${scrollbarWidth}px`
-          document.body.classList.add('no-scroll')
-        } else {
-          setTimeout(() => {
-            document.body.classList.remove('no-scroll')
-            document.body.style.paddingRight = ''
-          }, 200)
-        }
-      }
-    )
-
-    return {
-      baseDialogRef,
+      nextTick(() => dialogRef.value?.showModal())
+    } else {
+      setTimeout(() => {
+        dialogRef.value?.close()
+        document.body.classList.remove('no-scroll')
+        document.body.style.removeProperty('padding-right')
+      }, 200)
     }
   },
+  { immediate: true }
+)
+
+onClickOutside(dialogContentRef, () => {
+  emit('close')
 })
 </script>
 
 <style lang="scss" scoped>
-.dialog-area {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 50;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  background: rgba(0, 0, 0, 0.5);
-  outline: 0;
-}
-
-.base-dialog {
-  position: relative;
-  width: 90%;
-  min-width: 320px;
-  min-height: 150px;
-  margin: 2rem auto 2rem auto;
-  overflow: hidden;
-  background-color: var(--color-bg-deep);
-  border-radius: 0.3rem;
-  outline: 0;
-
-  &-small {
-    max-width: map.get($grid-breakpoints, 'small');
-  }
-
-  &-medium {
-    max-width: map.get($grid-breakpoints, 'medium');
-  }
-
-  &-large {
-    max-width: map.get($grid-breakpoints, 'large');
-  }
-
-  &-maximum {
-    max-width: map.get($grid-breakpoints, 'maximum');
-  }
-}
-
-.modal-content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  padding: 24px;
-  pointer-events: auto;
-  user-select: none;
-  background-clip: padding-box;
+dialog {
+  width: calc(100vw - 40px);
   border: 1px solid var(--color-border);
 
-  border-radius: 8px;
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  &.size-small {
+    max-width: $breakpoint-small;
+  }
+
+  &.size-medium {
+    max-width: $breakpoint-medium;
+  }
+
+  &.size-large {
+    max-width: $breakpoint-large;
+  }
+
+  &.size-maximum {
+    max-width: $breakpoint-maximum;
+  }
 }
 
-.header {
+.dialog-content {
+  display: grid;
+  gap: 10px;
+}
+
+.dialog-header {
   display: flex;
-  margin-bottom: 10px;
 
   .close-button {
     margin-left: auto;
@@ -136,19 +100,12 @@ export default defineComponent({
 
 .transition-dialog-enter-active,
 .transition-dialog-leave-active {
-  transition: opacity 0.25s ease-in-out;
-
-  .base-dialog {
-    transition: transform 0.25s ease-in-out;
-  }
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .transition-dialog-enter-from,
 .transition-dialog-leave-to {
   opacity: 0;
-
-  .base-dialog {
-    transform: translateY(-32px);
-  }
+  transform: translateY(-16px);
 }
 </style>
