@@ -1,136 +1,129 @@
 <template>
-  <div v-if="show" class="notification-container">
+  <teleport :to="'.notification-container'">
     <transition name="notification">
-      <div v-if="showNotification" class="notification">
-        <div class="notification-slot"><slot></slot></div>
-        <div v-if="buttons.length" class="notification-buttons">
-          <button
-            v-for="(button, index) in buttons"
-            :key="`button-${index}`"
-            class="notification-button"
-            :style="{ color: button.textColor, background: button.background }"
-            @click="onClick(button)"
-          >
-            {{ button.text }}
-          </button>
-        </div>
+      <div v-show="show" class="notification">
+        <slot></slot>
+        <section v-if="buttons.length || $slots.buttons" class="notification-buttons">
+          <base-button v-for="button in buttons" :key="button" @click="onEmit(button)">
+            {{ button }}
+          </base-button>
+          <slot name="buttons"></slot>
+        </section>
+        <close-button @click="onEmit('close')" />
       </div>
     </transition>
-  </div>
+  </teleport>
 </template>
 
-<script lang="ts">
-import type { PropType } from 'vue'
-import { defineComponent, nextTick, ref } from 'vue'
+<script setup lang="ts">
+import BaseButton from '@/components/base/BaseButton.vue'
+import CloseButton from '@/components/buttons/CloseButton.vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
-interface BaseNotificationButtonProp {
-  text: string
-  textColor?: string
-  background?: string
-  onClick?: () => void
+withDefaults(
+  defineProps<{
+    buttons?: Array<'close' | 'ok' | 'apply' | 'cancel'>
+  }>(),
+  {
+    buttons: () => [],
+  }
+)
+const emit = defineEmits(['close', 'ok', 'apply', 'cancel'])
+
+const show = ref(false)
+
+onMounted(() => {
+  show.value = true
+})
+
+const isContainerExist = document.querySelector('.notification-container')
+if (!isContainerExist) {
+  const node = document.createElement('section')
+  node.classList.add('notification-container')
+  document.body.appendChild(node)
 }
 
-export default defineComponent({
-  name: 'BaseNotification',
-  props: {
-    show: {
-      type: Boolean,
-      required: true,
-    },
-    color: {
-      type: String,
-      default: 'rgb(33, 186, 69)',
-    },
-    textColor: {
-      type: String,
-      default: 'rgb(255, 255, 255)',
-    },
-    buttons: {
-      type: Array as PropType<Array<BaseNotificationButtonProp>>,
-      default: () => [],
-    },
-  },
-  emits: ['close'],
-  setup(_, context) {
-    const showNotification = ref(false)
-    nextTick(() => (showNotification.value = true))
+const onEmit = (event: 'close' | 'ok' | 'apply' | 'cancel') => {
+  show.value = false
+  setTimeout(() => {
+    emit(event)
+  }, 1000)
+}
 
-    const onClick = (button: BaseNotificationButtonProp) => {
-      showNotification.value = false
-      if (button.onClick) button.onClick()
-      context.emit('close')
-    }
-
-    return {
-      showNotification,
-      onClick,
-    }
-  },
+onUnmounted(() => {
+  const container = document.querySelector('.notification-container')
+  if (container && !container.childElementCount) {
+    container.remove()
+  }
 })
 </script>
 
 <style lang="scss" scoped>
-.notification-container {
+:global(.notification-container) {
   position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 2000;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: flex-end;
-  margin-bottom: 10px;
+  z-index: $layer-notification-index;
+  display: grid;
+  grid-auto-columns: min-content;
+  gap: 1rem;
+  justify-content: flex-end;
+  padding: 1rem;
   line-height: 1.5;
   pointer-events: none;
 }
 
 .notification {
+  position: relative;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 2000;
-  box-sizing: inherit;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   grid-gap: 0.5rem;
   align-items: center;
-  min-width: 100px;
-  min-height: 50px;
+  min-width: 250px;
+  min-height: 90px;
   padding: 1rem;
-  margin-right: 10px;
-  margin-bottom: 10px;
   line-height: 1.5;
   pointer-events: all;
-  background-color: v-bind(color);
+  background-image: url('/backgrounds/base-window.webp');
   border-radius: 4px;
-}
-
-.notification-slot {
-  color: v-bind(textColor);
 }
 
 .notification-buttons {
   display: flex;
-  grid-gap: 1rem;
-}
+  gap: 1rem;
 
-.notification-button {
-  padding: 0.5rem 0.5rem;
-  transition: background-color 0.25s;
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+  :slotted(button),
+  button {
+    flex: 1 0 0;
+    text-transform: uppercase;
   }
 }
 
-.notification-enter-active,
-.notification-leave-active {
+:deep(.close-button) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1rem;
+  height: 1rem;
+  transform: translate(-0.5rem, 0.5rem);
+}
+
+.notification-enter-active {
   transition: transform 1s ease;
 }
 
-.notification-enter-from,
-.notification-leave-to {
+.notification-leave-active {
+  transition: transform 0.5s ease;
+}
+
+.notification-enter-from {
   transform: translateY(100px);
+}
+
+.notification-leave-to {
+  transform: translateX(calc(1rem + 100%));
 }
 </style>
