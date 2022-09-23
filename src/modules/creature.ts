@@ -1,75 +1,36 @@
-import type { CreaturesSpecial } from '@/models/CreaturesSpecials'
-import type { Spell } from './Spell'
-
-export interface Creature {
-  aiValue?: number
-  attack: number
-  cost?: {
-    gold?: number
-    gem?: number
-    crystal?: number
-    mercury?: number
-    sulfur?: number
-  }
-  defense: number
-  fightValue?: number
-  growth?: number
-  health: number
-  hits: number
-  id: number
-  level: number
-  maxDamage: number
-  minDamage: number
-  nativeTerrain: number
-  speed: number
-  name: string
-  ranged: boolean
-  townId?: number
-  hexs?: number
-  shots?: number
-  hates?: Array<number>
-  special?: CreaturesSpecial
-  description?: string
-}
-
-export interface CreatureTranslation {
-  id: number
-  name: string
-  description?: string
-}
+import type { Creature, CreatureKey, CreaturesSpecial, Spell, SpellKey, TerrainKey, TownKey } from '@/types'
 
 export class CreatureInstance implements Creature {
-  aiValue?: number
-  cost?: {
-    gold?: number
-    gem?: number
-    crystal?: number
-    mercury?: number
-    sulfur?: number
+  readonly aiValue: number
+  readonly cost: {
+    readonly gold?: number
+    readonly gem?: number
+    readonly crystal?: number
+    readonly mercury?: number
+    readonly sulfur?: number
   }
   attack: number
   defense: number
-  fightValue?: number
-  growth?: number
+  readonly fightValue: number
+  readonly growth?: number
   health: number
   hits: number
-  id: number
-  level: number
+  readonly key: CreatureKey
+  readonly level: number
   maxDamage: number
   minDamage: number
-  nativeTerrain: number
+  readonly nativeTerrain: TerrainKey
   speed: number
   name: string
-  ranged: boolean
-  townId?: number
-  hexs?: number
+  readonly town?: TownKey
+  readonly hexs?: number
   shots?: number
-  hates?: number[]
-  special?: CreaturesSpecial
+  readonly hates?: Array<CreatureKey>
+  readonly special?: Readonly<Partial<CreaturesSpecial>>
   description?: string
 
   count: number
-  effects: Array<Spell>
+  effects: Partial<Record<SpellKey, Spell>>
   calculation: {
     damageBonus: number
     defenseBonus: number
@@ -92,21 +53,20 @@ export class CreatureInstance implements Creature {
     this.growth = creature.growth
     this.health = creature.health
     this.hits = creature.hits
-    this.id = creature.id
+    this.key = creature.key
     this.level = creature.level
     this.maxDamage = creature.maxDamage
     this.minDamage = creature.minDamage
     this.nativeTerrain = creature.nativeTerrain
     this.speed = creature.speed
     this.name = creature.name
-    this.ranged = creature.ranged
-    this.townId = creature.townId
+    this.town = creature.town
     this.hexs = creature.hexs
     this.hates = creature.hates
     this.special = creature.special
     this.description = creature.description
     this.count = 1
-    this.effects = []
+    this.effects = {}
     this.calculation = {
       damageBonus: 0,
       defenseBonus: 0,
@@ -119,7 +79,7 @@ export class CreatureInstance implements Creature {
       averageKills: 0,
     }
 
-    if (creature.ranged) {
+    if (creature.special?.ranged) {
       this.rangePenalty = false
     }
   }
