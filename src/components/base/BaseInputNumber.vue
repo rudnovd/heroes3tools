@@ -1,78 +1,78 @@
 <template>
-  <input :value="currentValue" class="input-number" type="number" :min="min" :max="max" @input="onInput" />
+  <input
+    :value="currentValue"
+    class="input-number"
+    placeholder="1"
+    type="number"
+    :min="min"
+    :max="max"
+    @input="onInput"
+  />
 </template>
 
-<script lang="ts">
-import { useDebounce } from '@vueuse/core'
-import { defineComponent, ref, watch } from 'vue'
+<script setup lang="ts">
+import { useDebounceFn } from '@vueuse/core'
+import { ref, triggerRef, watch } from 'vue'
 
-export default defineComponent({
-  name: 'BaseInputNumber',
-  props: {
-    min: {
-      type: Number,
-      default: 1,
-    },
-    max: {
-      type: Number,
-      default: 99,
-    },
-    value: {
-      type: Number,
-      default: 1,
-      required: true,
-    },
-    debounce: {
-      type: Number,
-      default: 0,
-    },
-  },
-  emits: ['input'],
-  setup(props, context) {
-    const currentValue = ref(props.value)
-    const previousValue = ref(0)
-    const debouncedValue = useDebounce(currentValue, props.debounce)
+const props = withDefaults(
+  defineProps<{
+    min?: number
+    max?: number
+    value: number
+    debounce?: number
+  }>(),
+  {
+    min: 1,
+    max: 99,
+    debounce: 0,
+  }
+)
+const emit = defineEmits(['input'])
 
-    watch(
-      () => props.value,
-      (newValue) => (currentValue.value = newValue)
-    )
+const currentValue = ref<number | null>(props.value)
+const previousValue = ref(1)
 
-    watch(debouncedValue, () => context.emit('input', debouncedValue.value))
+const emitDebouncedValue = useDebounceFn(() => {
+  emit('input', currentValue.value ?? 0)
+}, props.debounce)
 
-    const onInput = (event: Event) => {
-      if (!event.target) return
+watch(
+  () => props.value,
+  (value) => {
+    currentValue.value = value
+    previousValue.value = value
+  }
+)
 
-      const target = event.target as HTMLInputElement
+const onInput = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  let inputValue = parseInt(target.value)
 
-      let targetValue = parseInt(target.value)
-      if (targetValue < props.min || targetValue > props.max) {
-        currentValue.value = previousValue.value
-        targetValue = previousValue.value
-      } else {
-        currentValue.value = targetValue
-        previousValue.value = currentValue.value
-      }
-    }
+  if (!target.value) {
+    currentValue.value = 0
+    return emitDebouncedValue()
+  } else if (isNaN(inputValue) || inputValue < props.min || inputValue > props.max) {
+    inputValue = previousValue.value
+  }
 
-    return {
-      currentValue,
-      onInput,
-    }
-  },
-})
+  if (inputValue === currentValue.value) {
+    return triggerRef(currentValue)
+  } else {
+    previousValue.value = inputValue
+    currentValue.value = inputValue
+  }
+  emitDebouncedValue()
+}
 </script>
 
 <style lang="scss" scoped>
 .input-number {
   width: 100%;
   padding: 0.25rem 0.5rem;
-  font-family: inherit;
-  font-size: inherit;
   font-size: 0.875rem;
   line-height: 1.5;
-  color: var(--color-text);
-  background: var(--color-bg);
+  color: rgb(255, 255, 255);
+  background-image: url('/backgrounds/base-window.webp');
   border: 1px solid var(--color-border);
   border-radius: 0.2rem;
 }
