@@ -1,7 +1,18 @@
-import i18n, { getBrowserLanguage, loadLocaleMessages } from '@/i18n'
+import i18n, { getBrowserLanguage, loadLocaleMessages, type AvailableLocale } from '@/i18n'
 import { useDark, useLocalStorage } from '@vueuse/core'
 import { computed } from 'vue'
 
+export const dataModules = [
+  'artifacts',
+  'classes',
+  'creatures',
+  'heroes',
+  'skills',
+  'levels',
+  'terrains',
+  'spells',
+  'towns',
+]
 export const isDark = useDark({
   selector: 'body',
   attribute: 'color-scheme',
