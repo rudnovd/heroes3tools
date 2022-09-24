@@ -12,6 +12,10 @@ export const isDark = useDark({
     document.querySelector('html')!.style.colorScheme = isDark ? 'dark' : 'light'
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     document.querySelector('body')!.setAttribute('color-scheme', isDark ? 'dark' : 'light')
+    const themeColor = document.querySelector('meta[name=theme-color]')
+    if (themeColor) {
+      themeColor.setAttribute('content', getComputedStyle(document.body).getPropertyValue('--color-bg'))
+    }
   },
 })
 
