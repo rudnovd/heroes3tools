@@ -8,7 +8,9 @@ export const isDark = useDark({
   valueDark: 'dark',
   valueLight: 'light',
   onChanged: (isDark) => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     document.querySelector('html')!.style.colorScheme = isDark ? 'dark' : 'light'
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     document.querySelector('body')!.setAttribute('color-scheme', isDark ? 'dark' : 'light')
   },
 })
