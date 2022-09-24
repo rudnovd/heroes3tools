@@ -14,8 +14,8 @@ export const isDark = useDark({
 })
 
 export const useLocale = () => {
-  const selectedLocale = useLocalStorage('locale', getBrowserLanguage())
-  const locale = computed({
+  const selectedLocale = useLocalStorage<AvailableLocale>('locale', getBrowserLanguage())
+  const locale = computed<AvailableLocale>({
     get() {
       return selectedLocale.value
     },
