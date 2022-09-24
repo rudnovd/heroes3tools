@@ -9,7 +9,6 @@ const router = createRouter({
       component: () => import('@/views/HomePage.vue'),
       meta: {
         title: 'pages.home',
-        hideBackButton: true,
       },
     },
     {
@@ -27,10 +26,10 @@ const router = createRouter({
       },
     },
     {
-      path: '/creatures',
-      component: () => import('@/views/CreaturesLibraryPage.vue'),
+      path: '/library',
+      component: () => import('@/views/LibraryPage.vue'),
       meta: {
-        title: 'pages.creaturesLibrary',
+        title: 'pages.library',
       },
     },
     {
@@ -46,7 +45,6 @@ const router = createRouter({
       component: () => import('@/views/NotFoundPage.vue'),
       meta: {
         title: 'pages.pageNotFound',
-        hideBackButton: true,
       },
     },
   ],
@@ -67,12 +65,6 @@ router.resolve({
   name: 'not-found',
   params: { pathMatch: ['not', 'found'] },
 }).href
-
-router.beforeEach((to, from, next) => {
-  if (to.meta.disabled) next({ path: '/' })
-
-  next()
-})
 
 router.afterEach((to) => {
   document.title = i18n.global.t(to.meta.title as string)
