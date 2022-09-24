@@ -1,19 +1,29 @@
-import { creatures } from '@/assets/database/creatures'
-import { heroes } from '@/assets/database/heroes'
-import type { Battle } from '@/models/Battle'
-import { CreatureInstance } from '@/models/Creature'
-import type { Creatures, Heroes } from '@/models/enums'
-import { HeroInstance } from '@/models/Hero'
-
-export function getCreatureInstance(id: Creatures) {
-  const creature = creatures.find((creature) => creature.id === id)!
-  return new CreatureInstance(creature)
-}
-
-export function getHeroInstance(id: Heroes) {
-  const hero = heroes.find((hero) => hero.id === id)!
-  return new HeroInstance(hero)
-}
+import artifacts from '@/assets/data/artifacts'
+import classes from '@/assets/data/classes'
+import creatures from '@/assets/data/creatures'
+import heroes from '@/assets/data/heroes'
+import spells from '@/assets/data/spells'
+import type { Battle } from '@/modules/battle'
+import type {
+  Artifact,
+  ArtifactKey,
+  Creature,
+  CreatureKey,
+  Hero,
+  HeroClass,
+  HeroClassKey,
+  HeroKey,
+  Level,
+  Skill,
+  SkillKey,
+  SkillLevelKey,
+  Spell,
+  SpellKey,
+  Terrain,
+  TerrainKey,
+  Town,
+  TownKey,
+} from '@/types'
 
 export function getBattleCreatureCalculationResults(battle: Battle) {
   battle.calculate()
@@ -48,4 +58,61 @@ export function getBattleCreatureCalculationResults(battle: Battle) {
       defender: battle.defender.activeCreature.calculation,
     }
   }
+}
+
+export const data = {
+  artifacts: artifacts.reduce((previous, artifact) => {
+    return {
+      ...previous,
+      [artifact.key]: artifact,
+    }
+  }, {}) as Record<ArtifactKey, Artifact>,
+  classes: classes.reduce((previous, heroClass) => {
+    return {
+      ...previous,
+      [heroClass.key]: heroClass,
+    }
+  }, {}) as Record<HeroClassKey, HeroClass>,
+  creatures: creatures.reduce((previous, creature) => {
+    return {
+      ...previous,
+      [creature.key]: creature,
+    }
+  }, {}) as Record<CreatureKey, Creature>,
+  heroes: heroes.reduce((previous, hero) => {
+    return {
+      ...previous,
+      [hero.key]: hero,
+    }
+  }, {}) as Record<HeroKey, Hero>,
+  levels: heroes.reduce((previous, level) => {
+    return {
+      ...previous,
+      [level.key]: level,
+    }
+  }, {}) as Record<SkillLevelKey, Level>,
+  skills: spells.reduce((previous, skill) => {
+    return {
+      ...previous,
+      [skill.key]: skill,
+    }
+  }, {}) as Record<SkillKey, Skill>,
+  spells: spells.reduce((previous, spell) => {
+    return {
+      ...previous,
+      [spell.key]: spell,
+    }
+  }, {}) as Record<SpellKey, Spell>,
+  terrains: spells.reduce((previous, terrain) => {
+    return {
+      ...previous,
+      [terrain.key]: terrain,
+    }
+  }, {}) as Record<TerrainKey, Terrain>,
+  towns: spells.reduce((previous, town) => {
+    return {
+      ...previous,
+      [town.key]: town,
+    }
+  }, {}) as Record<TownKey, Town>,
 }
