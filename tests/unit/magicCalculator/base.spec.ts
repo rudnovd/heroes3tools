@@ -1,9 +1,11 @@
-import { spells } from '@/assets/database/spells'
-import { Battle } from '@/models/Battle'
-import { Creatures, Heroes, SkillLevels, Spells as SpellsEnum } from '@/models/enums'
+import { CreatureInstance } from '@/modules/creature'
+import { HeroInstance } from '@/modules/hero'
+import { SkillLevels } from '@/types'
+
+import { Battle } from '@/modules/battle'
 
 import { beforeEach, describe, expect, test } from 'vitest'
-import { getCreatureInstance, getHeroInstance } from '../helpers'
+import { data } from '../helpers'
 
 describe('Base Magic Calculator tests with specified values', () => {
   let battle: Battle
@@ -14,12 +16,12 @@ describe('Base Magic Calculator tests with specified values', () => {
 
   describe('Hero without any modificators Cast on creature without any resistance', () => {
     test('Magic arrow', () => {
-      const spell = spells.find((spell) => spell.id === SpellsEnum.MagicArrow)!
-      battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+      const spell = data.spells.MagicArrow
+      battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
       battle.attacker.hero.stats.power = 1
 
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      battle.defender.activeCreature = getCreatureInstance(Creatures.StoneGargoyle)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.StoneGargoyle)
 
       const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, spell)
 
@@ -27,13 +29,13 @@ describe('Base Magic Calculator tests with specified values', () => {
     })
 
     test('Magic arrow with advanced fire', () => {
-      const spell = spells.find((spell) => spell.id === SpellsEnum.MagicArrow)!
-      battle.attacker.hero = getHeroInstance(Heroes.Octavia)
+      const spell = data.spells.MagicArrow
+      battle.attacker.hero = new HeroInstance(data.heroes.Octavia)
       battle.attacker.hero.stats.power = 1
-      battle.attacker.hero.skills.fire = 2
+      battle.attacker.hero.skills.fireMagic = 2
 
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      battle.defender.activeCreature = getCreatureInstance(Creatures.StoneGargoyle)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.StoneGargoyle)
 
       battle.attacker.activeCreature.count = 1
       battle.defender.activeCreature.count = 1
@@ -44,13 +46,13 @@ describe('Base Magic Calculator tests with specified values', () => {
     })
 
     test('Fireball with expert fire', () => {
-      const spell = spells.find((spell) => spell.id === SpellsEnum.Fireball)!
-      battle.attacker.hero = getHeroInstance(Heroes.Octavia)
+      const spell = data.spells.Fireball
+      battle.attacker.hero = new HeroInstance(data.heroes.Octavia)
       battle.attacker.hero.stats.power = 9
-      battle.attacker.hero.skills.fire = SkillLevels.Expert
+      battle.attacker.hero.skills.fireMagic = SkillLevels.Expert
 
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Griffin)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Griffin)
 
       battle.attacker.activeCreature.count = 1
       battle.defender.activeCreature.count = 1
@@ -61,13 +63,13 @@ describe('Base Magic Calculator tests with specified values', () => {
     })
 
     test('Armageddon with expert fire', () => {
-      const spell = spells.find((spell) => spell.id === SpellsEnum.Armageddon)!
-      battle.attacker.hero = getHeroInstance(Heroes.Octavia)
+      const spell = data.spells.Armageddon
+      battle.attacker.hero = new HeroInstance(data.heroes.Octavia)
       battle.attacker.hero.stats.power = 9
-      battle.attacker.hero.skills.fire = SkillLevels.Expert
+      battle.attacker.hero.skills.fireMagic = SkillLevels.Expert
 
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Griffin)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Griffin)
 
       battle.attacker.activeCreature.count = 1
       battle.defender.activeCreature.count = 1
@@ -80,13 +82,13 @@ describe('Base Magic Calculator tests with specified values', () => {
 
   describe('Hero with magic arrow specialty cast on creature without any resistance', () => {
     test('Ciele (3sp, basic water) cast on Gogs', () => {
-      const spell = spells.find((spell) => spell.id === SpellsEnum.MagicArrow)!
-      battle.attacker.hero = getHeroInstance(Heroes.Ciele)
+      const spell = data.spells.MagicArrow
+      battle.attacker.hero = new HeroInstance(data.heroes.Ciele)
       battle.attacker.hero.stats.power = 3
-      battle.attacker.hero.skills.water = SkillLevels.Basic
+      battle.attacker.hero.skills.waterMagic = SkillLevels.Basic
 
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Gog)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Gog)
 
       const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, spell)
 
@@ -94,13 +96,13 @@ describe('Base Magic Calculator tests with specified values', () => {
     })
 
     test('Ciele (8sp, expert water) Cast on Behemoth', () => {
-      const spell = spells.find((spell) => spell.id === SpellsEnum.MagicArrow)!
-      battle.attacker.hero = getHeroInstance(Heroes.Ciele)
+      const spell = data.spells.MagicArrow
+      battle.attacker.hero = new HeroInstance(data.heroes.Ciele)
       battle.attacker.hero.stats.power = 8
-      battle.attacker.hero.skills.water = SkillLevels.Expert
+      battle.attacker.hero.skills.waterMagic = SkillLevels.Expert
 
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Behemoth)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Behemoth)
 
       const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, spell)
 
@@ -108,14 +110,14 @@ describe('Base Magic Calculator tests with specified values', () => {
     })
 
     test('Ciele (13sp, expert earth, basic sorcery) cast on Behemoth', () => {
-      const spell = spells.find((spell) => spell.id === SpellsEnum.MagicArrow)!
-      battle.attacker.hero = getHeroInstance(Heroes.Ciele)
+      const spell = data.spells.MagicArrow
+      battle.attacker.hero = new HeroInstance(data.heroes.Ciele)
       battle.attacker.hero.stats.power = 13
-      battle.attacker.hero.skills.earth = SkillLevels.Expert
+      battle.attacker.hero.skills.earthMagic = SkillLevels.Expert
       battle.attacker.hero.skills.sorcery = SkillLevels.Basic
 
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Nomad)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Nomad)
 
       const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, spell)
 
@@ -125,12 +127,12 @@ describe('Base Magic Calculator tests with specified values', () => {
 
   describe('Hero with Frost Ring specialty cast on creature without any resistance', () => {
     test('Adelaide (2sp, level 1) cast on Familiar', () => {
-      const spell = spells.find((spell) => spell.id === SpellsEnum.FrostRing)!
-      battle.attacker.hero = getHeroInstance(Heroes.Adelaide)
+      const spell = data.spells.FrostRing
+      battle.attacker.hero = new HeroInstance(data.heroes.Adelaide)
       battle.attacker.hero.stats.power = 2
 
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Familiar)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Familiar)
 
       const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, spell)
 
@@ -138,13 +140,13 @@ describe('Base Magic Calculator tests with specified values', () => {
     })
 
     test('Adelaide (12sp, level 9) cast on Familiar', () => {
-      const spell = spells.find((spell) => spell.id === SpellsEnum.FrostRing)!
-      battle.attacker.hero = getHeroInstance(Heroes.Adelaide)
+      const spell = data.spells.FrostRing
+      battle.attacker.hero = new HeroInstance(data.heroes.Adelaide)
       battle.attacker.hero.stats.power = 12
       battle.attacker.hero.level = 9
 
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Familiar)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Familiar)
 
       const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, spell)
 

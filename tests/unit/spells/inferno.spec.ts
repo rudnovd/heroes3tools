@@ -1,24 +1,25 @@
-import { spells } from '@/assets/database/spells'
-import { Battle } from '@/models/Battle'
-import { Creatures, Heroes, Spells as SpellsEnum } from '@/models/enums'
+import { Battle } from '@/modules/battle'
+import { CreatureInstance } from '@/modules/creature'
+import { HeroInstance } from '@/modules/hero'
+import type { CreatureKey } from '@/types'
 
 import { beforeEach, describe, expect, test } from 'vitest'
-import { getCreatureInstance, getHeroInstance } from '../helpers'
+import { data } from '../helpers'
 
 describe('Inferno', () => {
   let battle: Battle
-  const inferno = spells.find((spell) => spell.id === SpellsEnum.Inferno)!
+  const inferno = data.spells.Inferno
 
   beforeEach(() => {
     battle = new Battle()
   })
 
   test('Base spell values', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
 
@@ -26,11 +27,11 @@ describe('Inferno', () => {
   })
 
   test('With Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 10
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
 
@@ -38,12 +39,12 @@ describe('Inferno', () => {
   })
 
   test('With Advanced Fire skill', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
-    battle.attacker.hero.skills.fire = 2
+    battle.attacker.hero.skills.fireMagic = 2
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
 
@@ -51,12 +52,12 @@ describe('Inferno', () => {
   })
 
   test('With Advanced Fire skill and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 30
-    battle.attacker.hero.skills.fire = 2
+    battle.attacker.hero.skills.fireMagic = 2
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
 
@@ -64,12 +65,12 @@ describe('Inferno', () => {
   })
 
   test('With Expert Fire skill', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
-    battle.attacker.hero.skills.fire = 3
+    battle.attacker.hero.skills.fireMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
 
@@ -77,12 +78,12 @@ describe('Inferno', () => {
   })
 
   test('With Expert Fire skill and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 30
-    battle.attacker.hero.skills.fire = 3
+    battle.attacker.hero.skills.fireMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
 
@@ -90,11 +91,11 @@ describe('Inferno', () => {
   })
 
   test('Hero with Inferno specialty', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Xyron)
+    battle.attacker.hero = new HeroInstance(data.heroes.Xyron)
     battle.attacker.hero.stats.power = 0
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
 
@@ -102,11 +103,11 @@ describe('Inferno', () => {
   })
 
   test('Hero with Inferno specialty and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Xyron)
+    battle.attacker.hero = new HeroInstance(data.heroes.Xyron)
     battle.attacker.hero.stats.power = 34
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
 
@@ -114,12 +115,12 @@ describe('Inferno', () => {
   })
 
   test('Hero with Inferno specialty, Advanced Fire skill and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Xyron)
+    battle.attacker.hero = new HeroInstance(data.heroes.Xyron)
     battle.attacker.hero.stats.power = 34
-    battle.attacker.hero.skills.fire = 2
+    battle.attacker.hero.skills.fireMagic = 2
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
 
@@ -127,12 +128,12 @@ describe('Inferno', () => {
   })
 
   test('Hero with Inferno specialty, Expert Fire skill and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Xyron)
+    battle.attacker.hero = new HeroInstance(data.heroes.Xyron)
     battle.attacker.hero.stats.power = 34
-    battle.attacker.hero.skills.fire = 3
+    battle.attacker.hero.skills.fireMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
 
@@ -140,25 +141,25 @@ describe('Inferno', () => {
   })
 
   test('Cast on creature with immunity', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Xyron)
+    battle.attacker.hero = new HeroInstance(data.heroes.Xyron)
     battle.attacker.hero.stats.power = 0
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
-    const creaturesWithImmunity = [
-      Creatures.GoldDragon,
-      Creatures.BlackDragon,
-      Creatures.MagicElemental,
-      Creatures.Efreet,
-      Creatures.EfreetSultan,
-      Creatures.FireElemental,
-      Creatures.EnergyElemental,
-      Creatures.Phoenix,
+    const creaturesWithImmunity: Array<CreatureKey> = [
+      'GoldDragon',
+      'BlackDragon',
+      'MagicElemental',
+      'Efreeti',
+      'EfreetSultan',
+      'FireElemental',
+      'EnergyElemental',
+      'Phoenix',
     ]
 
     let totalDamage = 0
-    creaturesWithImmunity.forEach((creature) => {
-      battle.defender.activeCreature = getCreatureInstance(creature)
+    creaturesWithImmunity.forEach((creatureKey) => {
+      battle.defender.activeCreature = new CreatureInstance(data.creatures[creatureKey])
       totalDamage += battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
     })
 
@@ -166,29 +167,29 @@ describe('Inferno', () => {
   })
 
   test('With Expert Fire skill and high Spell Power cast on creature with vulnerable', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 24
-    battle.attacker.hero.skills.fire = 3
+    battle.attacker.hero.skills.fireMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.WaterElemental)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.WaterElemental)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
 
     expect(damage).toBe(640)
   })
 
-  test('Cast on creatures with vulnerable', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+  test('Cast on Creature with vulnerable', () => {
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
-    const creaturesWithVulnerable = [Creatures.WaterElemental, Creatures.IceElemental]
+    const creaturesWithVulnerable: Array<CreatureKey> = ['WaterElemental', 'IceElemental']
 
     let totalDamage = 0
-    creaturesWithVulnerable.forEach((creature) => {
-      battle.defender.activeCreature = getCreatureInstance(creature)
+    creaturesWithVulnerable.forEach((creatureKey) => {
+      battle.defender.activeCreature = new CreatureInstance(data.creatures[creatureKey])
       totalDamage += battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
     })
 

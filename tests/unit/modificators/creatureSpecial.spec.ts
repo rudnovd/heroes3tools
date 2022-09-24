@@ -1,7 +1,7 @@
-import { Battle } from '@/models/Battle'
-import { Creatures } from '@/models/enums'
+import { Battle } from '@/modules/battle'
+import { CreatureInstance } from '@/modules/creature'
 import { beforeEach, describe, expect, test } from 'vitest'
-import { getCreatureInstance } from '../helpers'
+import { data } from '../helpers'
 
 describe('Creature special modificator', () => {
   let battle: Battle
@@ -11,10 +11,10 @@ describe('Creature special modificator', () => {
   })
 
   test('Behemoth vs Angel', () => {
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Behemoth)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Behemoth)
     battle.attacker.activeCreature.count = 1
 
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Angel)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Angel)
     battle.defender.activeCreature.count = 1
 
     const { attacker } = battle.calculate()
@@ -23,10 +23,10 @@ describe('Creature special modificator', () => {
   })
 
   test('Ancient Behemoth vs Angel', () => {
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.AncientBehemoth)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.AncientBehemoth)
     battle.attacker.activeCreature.count = 1
 
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Angel)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Angel)
     battle.defender.activeCreature.count = 1
 
     const { attacker } = battle.calculate()
@@ -35,10 +35,10 @@ describe('Creature special modificator', () => {
   })
 
   test('Angel vs Nix', () => {
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Angel)
     battle.attacker.activeCreature.count = 1
 
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Nix)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Nix)
     battle.defender.activeCreature.count = 1
 
     const { attacker } = battle.calculate()
@@ -47,10 +47,10 @@ describe('Creature special modificator', () => {
   })
 
   test('Angel vs Nix Warrior', () => {
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Angel)
     battle.attacker.activeCreature.count = 1
 
-    battle.defender.activeCreature = getCreatureInstance(Creatures.NixWarrior)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.NixWarrior)
     battle.defender.activeCreature.count = 1
 
     const { attacker } = battle.calculate()

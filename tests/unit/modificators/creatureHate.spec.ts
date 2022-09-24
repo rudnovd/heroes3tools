@@ -1,8 +1,8 @@
-import { terrains } from '@/assets/database/terrains'
-import { Battle } from '@/models/Battle'
-import { Creatures, Heroes, Terrains } from '@/models/enums'
+import { Battle } from '@/modules/battle'
+import { CreatureInstance } from '@/modules/creature'
+import { HeroInstance } from '@/modules/hero'
 import { beforeEach, describe, expect, test } from 'vitest'
-import { getBattleCreatureCalculationResults, getCreatureInstance, getHeroInstance } from '../helpers'
+import { data, getBattleCreatureCalculationResults } from '../helpers'
 
 describe('Creature hate modificator', () => {
   let battle: Battle
@@ -12,10 +12,10 @@ describe('Creature hate modificator', () => {
   })
 
   test('10 Angels vs 10 Devils', () => {
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Angel)
     battle.attacker.activeCreature.count = 10
 
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Devil)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Devil)
     battle.defender.activeCreature.count = 10
 
     const { attacker, defender } = getBattleCreatureCalculationResults(battle)
@@ -25,17 +25,17 @@ describe('Creature hate modificator', () => {
   })
 
   test('3 Angels vs 3 Devils with hero', () => {
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Angel)
     battle.attacker.activeCreature.count = 3
-    battle.attacker.hero = getHeroInstance(Heroes.Adela)
+    battle.attacker.hero = new HeroInstance(data.heroes.Adela)
     battle.attacker.hero.stats.attack = 6
     battle.attacker.hero.stats.defense = 2
 
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Devil)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Devil)
     battle.defender.activeCreature.count = 3
 
-    battle.attacker.terrain = terrains.find((terrain) => terrain.id === Terrains.Lava)!
-    battle.defender.terrain = terrains.find((terrain) => terrain.id === Terrains.Lava)!
+    battle.attacker.terrain = data.terrains.Lava
+    battle.defender.terrain = data.terrains.Lava
 
     const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 

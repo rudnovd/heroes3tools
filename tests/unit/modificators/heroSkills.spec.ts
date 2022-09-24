@@ -1,8 +1,10 @@
-import { Battle } from '@/models/Battle'
-import { Creatures, Heroes, SkillLevels } from '@/models/enums'
+import { Battle } from '@/modules/battle'
+import { CreatureInstance } from '@/modules/creature'
+import { HeroInstance } from '@/modules/hero'
 import { Modificators } from '@/modules/modificators'
+import { SkillLevels } from '@/types'
 import { beforeEach, describe, expect, test } from 'vitest'
-import { getCreatureInstance, getHeroInstance } from '../helpers'
+import { data } from '../helpers'
 
 describe('Hero skills modificator', () => {
   let battle: Battle
@@ -13,8 +15,8 @@ describe('Hero skills modificator', () => {
 
   describe('Offense skill', () => {
     test('damage bonus test', () => {
-      const pikeman = getCreatureInstance(Creatures.Pikeman)
-      const hero = getHeroInstance(Heroes.Sorsha)
+      const pikeman = new CreatureInstance(data.creatures.Pikeman)
+      const hero = new HeroInstance(data.heroes.Sorsha)
       hero.skills.offense = SkillLevels.Basic
       const { calculation } = Modificators.heroSkills(hero, pikeman)
 
@@ -22,12 +24,12 @@ describe('Hero skills modificator', () => {
     })
 
     test('basic level', () => {
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
       battle.attacker.activeCreature.count = 20
-      battle.attacker.hero = getHeroInstance(Heroes.Sorsha)
+      battle.attacker.hero = new HeroInstance(data.heroes.Sorsha)
       battle.attacker.hero.skills.offense = SkillLevels.Basic
 
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Pixie)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Pixie)
 
       const { attacker } = battle.calculate()
 
@@ -35,13 +37,13 @@ describe('Hero skills modificator', () => {
     })
 
     test('advanced level', () => {
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
       battle.attacker.activeCreature.count = 20
-      battle.attacker.hero = getHeroInstance(Heroes.Sorsha)
+      battle.attacker.hero = new HeroInstance(data.heroes.Sorsha)
       battle.attacker.hero.stats.attack = 3
       battle.attacker.hero.skills.offense = SkillLevels.Advanced
 
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Pixie)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Pixie)
 
       const { attacker } = battle.calculate()
 
@@ -49,13 +51,13 @@ describe('Hero skills modificator', () => {
     })
 
     test('expert level', () => {
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
       battle.attacker.activeCreature.count = 20
-      battle.attacker.hero = getHeroInstance(Heroes.Sorsha)
+      battle.attacker.hero = new HeroInstance(data.heroes.Sorsha)
       battle.attacker.hero.stats.attack = 4
       battle.attacker.hero.skills.offense = SkillLevels.Expert
 
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Pixie)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Pixie)
 
       const { attacker } = battle.calculate()
 
@@ -63,14 +65,14 @@ describe('Hero skills modificator', () => {
     })
 
     test('expert level with specialty', () => {
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Roc)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Roc)
       battle.attacker.activeCreature.count = 3
-      battle.attacker.hero = getHeroInstance(Heroes.CragHack)
+      battle.attacker.hero = new HeroInstance(data.heroes.CragHack)
       battle.attacker.hero.stats.attack = 7
       battle.attacker.hero.level = 7
       battle.attacker.hero.skills.offense = SkillLevels.Expert
 
-      battle.defender.activeCreature = getCreatureInstance(Creatures.CrewMate)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.CrewMate)
 
       const { attacker } = battle.calculate()
 
@@ -78,14 +80,14 @@ describe('Hero skills modificator', () => {
     })
 
     test('expert level with specialty with high hero level', () => {
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Roc)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Roc)
       battle.attacker.activeCreature.count = 3
-      battle.attacker.hero = getHeroInstance(Heroes.CragHack)
+      battle.attacker.hero = new HeroInstance(data.heroes.CragHack)
       battle.attacker.hero.stats.attack = 11
       battle.attacker.hero.level = 23
       battle.attacker.hero.skills.offense = SkillLevels.Expert
 
-      battle.defender.activeCreature = getCreatureInstance(Creatures.CrewMate)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.CrewMate)
 
       const { attacker } = battle.calculate()
 
@@ -93,14 +95,14 @@ describe('Hero skills modificator', () => {
     })
 
     test('bonus for ranged creature', () => {
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Archer)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Archer)
       battle.attacker.activeCreature.count = 9
-      battle.attacker.hero = getHeroInstance(Heroes.CragHack)
+      battle.attacker.hero = new HeroInstance(data.heroes.CragHack)
       battle.attacker.hero.stats.attack = 11
       battle.attacker.hero.level = 23
       battle.attacker.hero.skills.offense = SkillLevels.Expert
 
-      battle.defender.activeCreature = getCreatureInstance(Creatures.CrewMate)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.CrewMate)
 
       const { attacker } = battle.calculate()
 
@@ -111,12 +113,12 @@ describe('Hero skills modificator', () => {
   describe('Archery skill (no penalty)', () => {
     // TODO: wrong calculation
     // test('basic level', () => {
-    //   battle.attacker.activeCreature = getCreatureInstance(Creatures.Archer)
+    //   battle.attacker.activeCreature = new CreatureInstance(data.creatures.Archer)
     //   battle.attacker.activeCreature.count = 9
-    //   battle.attacker.hero = getHeroInstance(Heroes.Ivor)
+    //   battle.attacker.hero = new HeroInstance(data.heroes.Ivor)
     //   battle.attacker.hero.skills.archery = SkillLevels.Basic
 
-    //   battle.defender.activeCreature = getCreatureInstance(Creatures.Hobgoblin)
+    //   battle.defender.activeCreature = new CreatureInstance(data.creatures.Hobgoblin)
 
     //   const { attacker } = battle.calculate()
 
@@ -124,13 +126,13 @@ describe('Hero skills modificator', () => {
     // })
 
     test('advanced level', () => {
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Archer)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Archer)
       battle.attacker.activeCreature.attack = 2
       battle.attacker.activeCreature.count = 9
-      battle.attacker.hero = getHeroInstance(Heroes.Ivor)
+      battle.attacker.hero = new HeroInstance(data.heroes.Ivor)
       battle.attacker.hero.skills.archery = SkillLevels.Advanced
 
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Hobgoblin)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Hobgoblin)
 
       const { attacker } = battle.calculate()
 
@@ -139,13 +141,13 @@ describe('Hero skills modificator', () => {
 
     // TODO: wrong calculation
     // test('expert level', () => {
-    //   battle.attacker.activeCreature = getCreatureInstance(Creatures.Archer)
+    //   battle.attacker.activeCreature = new CreatureInstance(data.creatures.Archer)
     //   battle.attacker.activeCreature.attack = 3
     //   battle.attacker.activeCreature.count = 9
-    //   battle.attacker.hero = getHeroInstance(Heroes.Ivor)
+    //   battle.attacker.hero = new HeroInstance(data.heroes.Ivor)
     //   battle.attacker.hero.skills.archery = SkillLevels.Expert
 
-    //   battle.defender.activeCreature = getCreatureInstance(Creatures.Hobgoblin)
+    //   battle.defender.activeCreature = new CreatureInstance(data.creatures.Hobgoblin)
 
     //   const { attacker } = battle.calculate()
 
@@ -154,13 +156,13 @@ describe('Hero skills modificator', () => {
 
     // TODO: wrong calculation
     // test('expert level', () => {
-    //   battle.attacker.activeCreature = getCreatureInstance(Creatures.StormElemental)
+    //   battle.attacker.activeCreature = new CreatureInstance(data.creatures.StormElemental)
     //   battle.attacker.activeCreature.attack = 3
     //   battle.attacker.activeCreature.count = 15
-    //   battle.attacker.hero = getHeroInstance(Heroes.Ivor)
+    //   battle.attacker.hero = new HeroInstance(data.heroes.Ivor)
     //   battle.attacker.hero.skills.archery = SkillLevels.Expert
 
-    //   battle.defender.activeCreature = getCreatureInstance(Creatures.Hobgoblin)
+    //   battle.defender.activeCreature = new CreatureInstance(data.creatures.Hobgoblin)
 
     //   const { attacker } = battle.calculate()
 
@@ -171,26 +173,26 @@ describe('Hero skills modificator', () => {
   // describe('Archery skill (with range penalty)', () => {
   // TODO: wrong calculation
   // test('expert level', () => {
-  //   battle.attacker.activeCreature = getCreatureInstance(Creatures.Archer)
+  //   battle.attacker.activeCreature = new CreatureInstance(data.creatures.Archer)
   //   battle.attacker.activeCreature.rangePenalty = true
   //   battle.attacker.activeCreature.attack = 3
   //   battle.attacker.activeCreature.count = 9
-  //   battle.attacker.hero = getHeroInstance(Heroes.Ivor)
+  //   battle.attacker.hero = new HeroInstance(data.heroes.Ivor)
   //   battle.attacker.hero.skills.archery = SkillLevels.Expert
-  //   battle.defender.activeCreature = getCreatureInstance(Creatures.Hobgoblin)
+  //   battle.defender.activeCreature = new CreatureInstance(data.creatures.Hobgoblin)
   //   const { attacker } = battle.calculate()
   //   expect(attacker.activeCreature.calculation).toContain({ minDamage: 16, maxDamage: 24 })
   // })
   // TODO: wrong calculation
   // test('expert level', () => {
-  //   battle.attacker.activeCreature = getCreatureInstance(Creatures.StormElemental)
+  //   battle.attacker.activeCreature = new CreatureInstance(data.creatures.StormElemental)
   //   battle.attacker.activeCreature.rangePenalty = true
   //   battle.attacker.activeCreature.attack = 3
   //   battle.attacker.activeCreature.count = 15
-  //   battle.attacker.hero = getHeroInstance(Heroes.Ivor)
+  //   battle.attacker.hero = new HeroInstance(data.heroes.Ivor)
   //   battle.attacker.hero.skills.archery = SkillLevels.Expert
   //   battle.attacker.hero.skills.offense = 0
-  //   battle.defender.activeCreature = getCreatureInstance(Creatures.Hobgoblin)
+  //   battle.defender.activeCreature = new CreatureInstance(data.creatures.Hobgoblin)
   //   const { attacker } = battle.calculate()
   //   expect(attacker.activeCreature.calculation).toContain({ minDamage: 29, maxDamage: 117 })
   // })

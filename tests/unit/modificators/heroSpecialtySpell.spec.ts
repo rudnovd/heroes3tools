@@ -1,9 +1,10 @@
-import { Battle } from '@/models/Battle'
-import { Creatures, Heroes } from '@/models/enums'
+import { Battle } from '@/modules/battle'
+import { CreatureInstance } from '@/modules/creature'
 import { Effects } from '@/modules/effects'
+import { HeroInstance } from '@/modules/hero'
 import { Modificators } from '@/modules/modificators'
 import { beforeEach, describe, expect, test } from 'vitest'
-import { getCreatureInstance, getHeroInstance } from '../helpers'
+import { data } from '../helpers'
 
 describe('Hero specialty spell modificator', () => {
   let battle: Battle
@@ -14,8 +15,8 @@ describe('Hero specialty spell modificator', () => {
 
   describe('Bloodlust spell specialty', () => {
     test('Ash with Imp (creature level - 1)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Ash)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Imp)
+      battle.attacker.hero = new HeroInstance(data.heroes.Ash)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Imp)
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -27,8 +28,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Ash with Griffin (creature level - 3)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Ash)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Griffin)
+      battle.attacker.hero = new HeroInstance(data.heroes.Ash)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Griffin)
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -40,8 +41,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Ash with Genie (creature level - 5)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Ash)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Genie)
+      battle.attacker.hero = new HeroInstance(data.heroes.Ash)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Genie)
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -53,8 +54,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Ash with Bone Dragon (creature level - 7)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Ash)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.BoneDragon)
+      battle.attacker.hero = new HeroInstance(data.heroes.Ash)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.BoneDragon)
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -68,8 +69,8 @@ describe('Hero specialty spell modificator', () => {
 
   describe('Prayer spell specialty', () => {
     test('Loynis with Troglodyte (creature level - 1)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Loynis)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Troglodyte)
+      battle.attacker.hero = new HeroInstance(data.heroes.Loynis)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Troglodyte)
 
       const creatureWithModifiedStats = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -81,8 +82,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Loynis with Hell Hound (creature level - 3)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Loynis)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.HellHound)
+      battle.attacker.hero = new HeroInstance(data.heroes.Loynis)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.HellHound)
 
       const creatureWithModifiedStats = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -94,8 +95,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Loynis with Gorgon (creature level - 5)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Loynis)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Gorgon)
+      battle.attacker.hero = new HeroInstance(data.heroes.Loynis)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Gorgon)
 
       const creatureWithModifiedStats = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -107,8 +108,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Loynis with Behemoth (creature level - 7)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Loynis)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Behemoth)
+      battle.attacker.hero = new HeroInstance(data.heroes.Loynis)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Behemoth)
 
       const creatureWithModifiedStats = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -122,8 +123,8 @@ describe('Hero specialty spell modificator', () => {
 
   describe('Precision spell specialty', () => {
     test('Zubin with Archer (creature level - 1)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Zubin)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Archer)
+      battle.attacker.hero = new HeroInstance(data.heroes.Zubin)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Archer)
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -135,8 +136,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Zubin with Wood Elf (creature level - 3)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Zubin)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.WoodElf)
+      battle.attacker.hero = new HeroInstance(data.heroes.Zubin)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.WoodElf)
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -148,8 +149,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Zubin with Monk (creature level - 5)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Zubin)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Monk)
+      battle.attacker.hero = new HeroInstance(data.heroes.Zubin)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Monk)
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -161,8 +162,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Zubin with Titan (creature level - 7)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Zubin)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Titan)
+      battle.attacker.hero = new HeroInstance(data.heroes.Zubin)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Titan)
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -176,8 +177,8 @@ describe('Hero specialty spell modificator', () => {
 
   describe('Stone Skin spell specialty', () => {
     test('Darkstorn with Pikeman (creature level - 1)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Darkstorn)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+      battle.attacker.hero = new HeroInstance(data.heroes.Darkstorn)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -189,8 +190,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Darkstorn with Royal Griffin (creature level - 3)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Darkstorn)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.RoyalGriffin)
+      battle.attacker.hero = new HeroInstance(data.heroes.Darkstorn)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.RoyalGriffin)
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -202,8 +203,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Darkstorn with Dendroid Guard (creature level - 5)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Darkstorn)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.DendroidGuard)
+      battle.attacker.hero = new HeroInstance(data.heroes.Darkstorn)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.DendroidGuard)
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -215,8 +216,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Darkstorn with Gold Dragon (creature level - 7)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Darkstorn)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.GoldDragon)
+      battle.attacker.hero = new HeroInstance(data.heroes.Darkstorn)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.GoldDragon)
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -230,8 +231,8 @@ describe('Hero specialty spell modificator', () => {
 
   describe('Weakness spell specialty', () => {
     test('Mirlanda with Gremlin (creature level - 1)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Mirlanda)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Gremlin)
+      battle.attacker.hero = new HeroInstance(data.heroes.Mirlanda)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Gremlin)
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -243,8 +244,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Mirlanda with Iron Golem (creature level - 3)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Mirlanda)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.IronGolem)
+      battle.attacker.hero = new HeroInstance(data.heroes.Mirlanda)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.IronGolem)
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -256,8 +257,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Mirlanda with Master Genie (creature level - 5)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Mirlanda)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.MasterGenie)
+      battle.attacker.hero = new HeroInstance(data.heroes.Mirlanda)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.MasterGenie)
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -269,8 +270,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Mirlanda with Master Black Dragon (creature level - 7)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Mirlanda)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.BlackDragon)
+      battle.attacker.hero = new HeroInstance(data.heroes.Mirlanda)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.BlackDragon)
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -284,8 +285,8 @@ describe('Hero specialty spell modificator', () => {
 
   describe('Disrupting Ray spell specialty', () => {
     test('Aenain with Skeleton (creature level - 1)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Aenain)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Skeleton)
+      battle.attacker.hero = new HeroInstance(data.heroes.Aenain)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Skeleton)
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -297,8 +298,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Aenain with Wraith (creature level - 3)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Aenain)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Wraith)
+      battle.attacker.hero = new HeroInstance(data.heroes.Aenain)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Wraith)
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -310,8 +311,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Aenain with Power Lich (creature level - 5)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Aenain)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.PowerLich)
+      battle.attacker.hero = new HeroInstance(data.heroes.Aenain)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.PowerLich)
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
@@ -323,8 +324,8 @@ describe('Hero specialty spell modificator', () => {
     })
 
     test('Aenain with Ghost Dragon (creature level - 7)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Aenain)
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.GhostDragon)
+      battle.attacker.hero = new HeroInstance(data.heroes.Aenain)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.GhostDragon)
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,

@@ -1,24 +1,25 @@
-import { spells } from '@/assets/database/spells'
-import { Battle } from '@/models/Battle'
-import { Creatures, Heroes, Spells as SpellsEnum } from '@/models/enums'
+import { Battle } from '@/modules/battle'
+import { CreatureInstance } from '@/modules/creature'
+import { HeroInstance } from '@/modules/hero'
+import type { CreatureKey } from '@/types'
 
 import { beforeEach, describe, expect, test } from 'vitest'
-import { getCreatureInstance, getHeroInstance } from '../helpers'
+import { data } from '../helpers'
 
 describe('Meteor Shower', () => {
   let battle: Battle
-  const meteorShower = spells.find((spell) => spell.id === SpellsEnum.MeteorShower)!
+  const meteorShower = data.spells.MeteorShower
 
   beforeEach(() => {
     battle = new Battle()
   })
 
   test('Base spell values', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -26,11 +27,11 @@ describe('Meteor Shower', () => {
   })
 
   test('With Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 10
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -38,12 +39,12 @@ describe('Meteor Shower', () => {
   })
 
   test('With Advanced Earth skill', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
-    battle.attacker.hero.skills.earth = 2
+    battle.attacker.hero.skills.earthMagic = 2
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -51,12 +52,12 @@ describe('Meteor Shower', () => {
   })
 
   test('With Advanced Earth skill and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 30
-    battle.attacker.hero.skills.earth = 2
+    battle.attacker.hero.skills.earthMagic = 2
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -64,12 +65,12 @@ describe('Meteor Shower', () => {
   })
 
   test('With Expert Earth skill', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
-    battle.attacker.hero.skills.earth = 3
+    battle.attacker.hero.skills.earthMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -77,12 +78,12 @@ describe('Meteor Shower', () => {
   })
 
   test('With Expert Earth skill and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 30
-    battle.attacker.hero.skills.earth = 3
+    battle.attacker.hero.skills.earthMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -90,11 +91,11 @@ describe('Meteor Shower', () => {
   })
 
   test('Hero with Meteor Shower specialty', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Aislinn)
+    battle.attacker.hero = new HeroInstance(data.heroes.Aislinn)
     battle.attacker.hero.stats.power = 0
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -102,12 +103,12 @@ describe('Meteor Shower', () => {
   })
 
   test('Deemer (1 level, 3 spell power)', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Deemer)
+    battle.attacker.hero = new HeroInstance(data.heroes.Deemer)
     battle.attacker.hero.level = 1
     battle.attacker.hero.stats.power = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Wight)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Archangel)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Wight)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -115,12 +116,12 @@ describe('Meteor Shower', () => {
   })
 
   test('Deemer (4 level, 4 spell power)', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Deemer)
+    battle.attacker.hero = new HeroInstance(data.heroes.Deemer)
     battle.attacker.hero.level = 4
     battle.attacker.hero.stats.power = 4
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Wight)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Archangel)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Wight)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -128,13 +129,13 @@ describe('Meteor Shower', () => {
   })
 
   test('Deemer (17 level, 17 spell power, expert earth)', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Deemer)
+    battle.attacker.hero = new HeroInstance(data.heroes.Deemer)
     battle.attacker.hero.level = 17
     battle.attacker.hero.stats.power = 17
-    battle.attacker.hero.skills.earth = 3
+    battle.attacker.hero.skills.earthMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Zombie)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Archangel)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Zombie)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -142,13 +143,13 @@ describe('Meteor Shower', () => {
   })
 
   test('Deemer (17 level, 17 spell power, expert earth)', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Deemer)
+    battle.attacker.hero = new HeroInstance(data.heroes.Deemer)
     battle.attacker.hero.level = 17
     battle.attacker.hero.stats.power = 17
-    battle.attacker.hero.skills.earth = 3
+    battle.attacker.hero.skills.earthMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Thunderbird)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Archangel)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Thunderbird)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -156,13 +157,13 @@ describe('Meteor Shower', () => {
   })
 
   test('Deemer (17 level, 17 spell power, expert earth)', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Deemer)
+    battle.attacker.hero = new HeroInstance(data.heroes.Deemer)
     battle.attacker.hero.level = 17
     battle.attacker.hero.stats.power = 17
-    battle.attacker.hero.skills.earth = 3
+    battle.attacker.hero.skills.earthMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Devil)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Archangel)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Devil)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -170,12 +171,12 @@ describe('Meteor Shower', () => {
   })
 
   test('Deemer (14 level, 18 spell power)', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Deemer)
+    battle.attacker.hero = new HeroInstance(data.heroes.Deemer)
     battle.attacker.hero.level = 14
     battle.attacker.hero.stats.power = 18
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Archangel)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Archangel)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Archangel)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -183,11 +184,11 @@ describe('Meteor Shower', () => {
   })
 
   test('Hero with Meteor Shower specialty and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Deemer)
+    battle.attacker.hero = new HeroInstance(data.heroes.Deemer)
     battle.attacker.hero.stats.power = 34
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -195,12 +196,12 @@ describe('Meteor Shower', () => {
   })
 
   test('Hero with Meteor Shower specialty, Advanced Earth skill and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Aislinn)
+    battle.attacker.hero = new HeroInstance(data.heroes.Aislinn)
     battle.attacker.hero.stats.power = 34
-    battle.attacker.hero.skills.earth = 2
+    battle.attacker.hero.skills.earthMagic = 2
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -208,12 +209,12 @@ describe('Meteor Shower', () => {
   })
 
   test('Hero with Meteor Shower specialty, Expert Earth skill and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Deemer)
+    battle.attacker.hero = new HeroInstance(data.heroes.Deemer)
     battle.attacker.hero.stats.power = 34
-    battle.attacker.hero.skills.earth = 3
+    battle.attacker.hero.skills.earthMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -221,22 +222,22 @@ describe('Meteor Shower', () => {
   })
 
   test('Cast on creature with immunity', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Xyron)
+    battle.attacker.hero = new HeroInstance(data.heroes.Xyron)
     battle.attacker.hero.stats.power = 0
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
-    const creaturesWithImmunity = [
-      Creatures.GoldDragon,
-      Creatures.BlackDragon,
-      Creatures.MagicElemental,
-      Creatures.AirElemental,
-      Creatures.StormElemental,
+    const creaturesWithImmunity: Array<CreatureKey> = [
+      'GoldDragon',
+      'BlackDragon',
+      'MagicElemental',
+      'AirElemental',
+      'StormElemental',
     ]
 
     let totalDamage = 0
-    creaturesWithImmunity.forEach((creature) => {
-      battle.defender.activeCreature = getCreatureInstance(creature)
+    creaturesWithImmunity.forEach((creatureKey) => {
+      battle.defender.activeCreature = new CreatureInstance(data.creatures[creatureKey])
       totalDamage += battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
     })
 
@@ -244,12 +245,12 @@ describe('Meteor Shower', () => {
   })
 
   test('With Expert Earth skill and high Spell Power cast on creature with vulnerable', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 24
-    battle.attacker.hero.skills.earth = 3
+    battle.attacker.hero.skills.earthMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.EarthElemental)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.EarthElemental)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
@@ -257,16 +258,16 @@ describe('Meteor Shower', () => {
   })
 
   test('Cast on creatures with vulnerable', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
-    const creaturesWithVulnerable = [Creatures.EarthElemental, Creatures.MagmaElemental]
+    const creaturesWithVulnerable: Array<CreatureKey> = ['EarthElemental', 'MagmaElemental']
 
     let totalDamage = 0
-    creaturesWithVulnerable.forEach((creature) => {
-      battle.defender.activeCreature = getCreatureInstance(creature)
+    creaturesWithVulnerable.forEach((creatureKey) => {
+      battle.defender.activeCreature = new CreatureInstance(data.creatures[creatureKey])
       totalDamage += battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
     })
 

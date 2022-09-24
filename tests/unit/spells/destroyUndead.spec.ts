@@ -1,25 +1,24 @@
-import { creatures } from '@/assets/database/creatures'
-import { spells } from '@/assets/database/spells'
-import { Battle } from '@/models/Battle'
-import { Creatures, Heroes, Spells as SpellsEnum } from '@/models/enums'
+import { Battle } from '@/modules/battle'
+import { CreatureInstance } from '@/modules/creature'
+import { HeroInstance } from '@/modules/hero'
 
 import { beforeEach, describe, expect, test } from 'vitest'
-import { getCreatureInstance, getHeroInstance } from '../helpers'
+import { data } from '../helpers'
 
 describe('Destroy Undead', () => {
   let battle: Battle
-  const destroyUndead = spells.find((spell) => spell.id === SpellsEnum.DestroyUndead)!
+  const destroyUndead = data.spells.DestroyUndead
 
   beforeEach(() => {
     battle = new Battle()
   })
 
   test('Base spell values', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Skeleton)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Skeleton)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, destroyUndead)
 
@@ -27,11 +26,11 @@ describe('Destroy Undead', () => {
   })
 
   test('Base spell values for not undead', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, destroyUndead)
 
@@ -39,11 +38,11 @@ describe('Destroy Undead', () => {
   })
 
   test('With Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 10
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Skeleton)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Skeleton)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, destroyUndead)
 
@@ -51,12 +50,12 @@ describe('Destroy Undead', () => {
   })
 
   test('With Advanced Air skill', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
-    battle.attacker.hero.skills.air = 2
+    battle.attacker.hero.skills.airMagic = 2
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Skeleton)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Skeleton)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, destroyUndead)
 
@@ -64,12 +63,12 @@ describe('Destroy Undead', () => {
   })
 
   test('With Advanced Air skill and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 30
-    battle.attacker.hero.skills.air = 2
+    battle.attacker.hero.skills.airMagic = 2
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Skeleton)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Skeleton)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, destroyUndead)
 
@@ -77,12 +76,12 @@ describe('Destroy Undead', () => {
   })
 
   test('With Expert Air skill', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
-    battle.attacker.hero.skills.air = 3
+    battle.attacker.hero.skills.airMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Skeleton)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Skeleton)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, destroyUndead)
 
@@ -90,12 +89,12 @@ describe('Destroy Undead', () => {
   })
 
   test('With Expert Air skill and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 30
-    battle.attacker.hero.skills.air = 3
+    battle.attacker.hero.skills.airMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Skeleton)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Skeleton)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, destroyUndead)
 
@@ -103,18 +102,18 @@ describe('Destroy Undead', () => {
   })
 
   test('Cast on creature with immunity', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Septienna)
+    battle.attacker.hero = new HeroInstance(data.heroes.Septienna)
     battle.attacker.hero.stats.power = 0
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const creaturesWithImmunity = [
-      ...creatures.filter((creature) => creature.special?.undead === undefined).map((creature) => creature.id),
+      // ...data.creatures.filter((creature) => creature.special?.undead === undefined).map((creature) => creature.id),
     ]
 
     let totalDamage = 0
     creaturesWithImmunity.forEach((creature) => {
-      battle.defender.activeCreature = getCreatureInstance(creature)
+      battle.defender.activeCreature = new CreatureInstance(creature)
       totalDamage += battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, destroyUndead)
     })
 

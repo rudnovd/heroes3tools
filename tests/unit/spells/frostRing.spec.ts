@@ -1,24 +1,25 @@
-import { spells } from '@/assets/database/spells'
-import { Battle } from '@/models/Battle'
-import { Creatures, Heroes, Spells as SpellsEnum } from '@/models/enums'
+import { Battle } from '@/modules/battle'
+import { CreatureInstance } from '@/modules/creature'
+import { HeroInstance } from '@/modules/hero'
+import type { CreatureKey } from '@/types'
 
 import { beforeEach, describe, expect, test } from 'vitest'
-import { getCreatureInstance, getHeroInstance } from '../helpers'
+import { data } from '../helpers'
 
 describe('Frost Ring', () => {
   let battle: Battle
-  const frostRing = spells.find((spell) => spell.id === SpellsEnum.FrostRing)!
+  const frostRing = data.spells.FrostRing
 
   beforeEach(() => {
     battle = new Battle()
   })
 
   test('Base spell values', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
 
@@ -26,11 +27,11 @@ describe('Frost Ring', () => {
   })
 
   test('With Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 10
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
 
@@ -38,12 +39,12 @@ describe('Frost Ring', () => {
   })
 
   test('With Advanced Water skill', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
-    battle.attacker.hero.skills.water = 2
+    battle.attacker.hero.skills.waterMagic = 2
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
 
@@ -51,12 +52,12 @@ describe('Frost Ring', () => {
   })
 
   test('With Advanced Water skill and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 30
-    battle.attacker.hero.skills.water = 2
+    battle.attacker.hero.skills.waterMagic = 2
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
 
@@ -64,12 +65,12 @@ describe('Frost Ring', () => {
   })
 
   test('With Expert Water skill', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
-    battle.attacker.hero.skills.water = 3
+    battle.attacker.hero.skills.waterMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
 
@@ -77,12 +78,12 @@ describe('Frost Ring', () => {
   })
 
   test('With Expert Water skill and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 30
-    battle.attacker.hero.skills.water = 3
+    battle.attacker.hero.skills.waterMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
 
@@ -90,11 +91,11 @@ describe('Frost Ring', () => {
   })
 
   test('Hero with Frost Ring specialty', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Adelaide)
+    battle.attacker.hero = new HeroInstance(data.heroes.Adelaide)
     battle.attacker.hero.stats.power = 0
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
 
@@ -102,11 +103,11 @@ describe('Frost Ring', () => {
   })
 
   test('Hero with frostRing specialty and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Adelaide)
+    battle.attacker.hero = new HeroInstance(data.heroes.Adelaide)
     battle.attacker.hero.stats.power = 34
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
 
@@ -114,12 +115,12 @@ describe('Frost Ring', () => {
   })
 
   test('Hero with Frost Ring specialty, Advanced Water skill and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Adelaide)
+    battle.attacker.hero = new HeroInstance(data.heroes.Adelaide)
     battle.attacker.hero.stats.power = 34
-    battle.attacker.hero.skills.water = 2
+    battle.attacker.hero.skills.waterMagic = 2
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
 
@@ -127,12 +128,12 @@ describe('Frost Ring', () => {
   })
 
   test('Hero with Frost Ring specialty, Expert Water skill and high Spell Power', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Adelaide)
+    battle.attacker.hero = new HeroInstance(data.heroes.Adelaide)
     battle.attacker.hero.stats.power = 34
-    battle.attacker.hero.skills.water = 3
+    battle.attacker.hero.skills.waterMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
 
@@ -140,26 +141,26 @@ describe('Frost Ring', () => {
   })
 
   test('Cast on creature with immunity', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Adelaide)
+    battle.attacker.hero = new HeroInstance(data.heroes.Adelaide)
     battle.attacker.hero.stats.power = 0
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
     const creaturesWithImmunity = [
-      Creatures.GreenDragon,
-      Creatures.RedDragon,
-      Creatures.AzureDragon,
-      Creatures.GoldDragon,
-      Creatures.BlackDragon,
-      Creatures.WaterElemental,
-      Creatures.IceElemental,
-      Creatures.Nymph,
-      Creatures.Oceanid,
+      'GreenDragon',
+      'RedDragon',
+      'AzureDragon',
+      'GoldDragon',
+      'BlackDragon',
+      'WaterElemental',
+      'IceElemental',
+      'Nymph',
+      'Oceanid',
     ]
 
     let totalDamage = 0
-    creaturesWithImmunity.forEach((creature) => {
-      battle.defender.activeCreature = getCreatureInstance(creature)
+    creaturesWithImmunity.forEach((creatureKey) => {
+      battle.defender.activeCreature = new CreatureInstance(data.creatures[creatureKey])
       totalDamage += battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
     })
 
@@ -167,29 +168,29 @@ describe('Frost Ring', () => {
   })
 
   test('With Expert Water skill and high Spell Power cast on creature with vulnerable', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 24
-    battle.attacker.hero.skills.water = 3
+    battle.attacker.hero.skills.waterMagic = 3
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.FireElemental)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.FireElemental)
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
 
     expect(damage).toBe(600)
   })
 
-  test('Cast on creatures with vulnerable', () => {
-    battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+  test('Cast on Creature with vulnerable', () => {
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
-    const creaturesWithVulnerable = [Creatures.FireElemental, Creatures.EnergyElemental]
+    const creaturesWithVulnerable: Array<CreatureKey> = ['FireElemental', 'EnergyElemental']
 
     let totalDamage = 0
-    creaturesWithVulnerable.forEach((creature) => {
-      battle.defender.activeCreature = getCreatureInstance(creature)
+    creaturesWithVulnerable.forEach((creatureKey) => {
+      battle.defender.activeCreature = new CreatureInstance(data.creatures[creatureKey])
       totalDamage += battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
     })
 

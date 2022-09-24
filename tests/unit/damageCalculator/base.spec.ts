@@ -1,11 +1,9 @@
-import { heroes } from '@/assets/database/heroes'
-import { spells } from '@/assets/database/spells'
-import { terrains } from '@/assets/database/terrains'
-import { Battle } from '@/models/Battle'
-import { Creatures, Heroes, SkillLevels, Spells, Terrains } from '@/models/enums'
-import { HeroInstance } from '@/models/Hero'
+import { Battle } from '@/modules/battle'
+import { CreatureInstance } from '@/modules/creature'
+import { HeroInstance } from '@/modules/hero'
+import { SkillLevels } from '@/types'
 import { beforeEach, describe, expect, test } from 'vitest'
-import { getBattleCreatureCalculationResults, getCreatureInstance, getHeroInstance } from '../helpers'
+import { data, getBattleCreatureCalculationResults } from '../helpers'
 
 describe('Base Damage Calculator tests with specified values', () => {
   let battle: Battle
@@ -16,8 +14,8 @@ describe('Base Damage Calculator tests with specified values', () => {
 
   describe('120 Pikemans vs 3 Devils', () => {
     test('Base', () => {
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Devil)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Devil)
 
       battle.attacker.activeCreature.count = 120
       battle.defender.activeCreature.count = 3
@@ -39,10 +37,10 @@ describe('Base Damage Calculator tests with specified values', () => {
     })
 
     test('With attacker hero', () => {
-      const hero = new HeroInstance(heroes[0])
+      const hero = new HeroInstance(data.heroes.Orrin)
       battle.attacker.hero = hero
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Devil)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Devil)
 
       battle.attacker.activeCreature.count = 120
       battle.defender.activeCreature.count = 3
@@ -65,14 +63,13 @@ describe('Base Damage Calculator tests with specified values', () => {
   })
 
   test('5 Archangels with Hero vs 93 Gold Golems', () => {
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.GoldGolem)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Archangel)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.GoldGolem)
 
     battle.attacker.activeCreature.count = 5
     battle.defender.activeCreature.count = 93
 
-    const hero = heroes.find((hero) => hero.id === Heroes.Orrin)!
-    battle.attacker.hero = new HeroInstance(hero)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.attack = 13
     battle.attacker.hero.stats.defense = 22
     battle.attacker.hero.skills.offense = SkillLevels.Expert
@@ -94,14 +91,13 @@ describe('Base Damage Calculator tests with specified values', () => {
   })
 
   test('5 Archangels with Hero vs 12 Giants', () => {
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Archangel)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Giant)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Archangel)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Giant)
 
     battle.attacker.activeCreature.count = 5
     battle.defender.activeCreature.count = 12
 
-    const hero = heroes.find((hero) => hero.id === Heroes.Orrin)!
-    battle.attacker.hero = new HeroInstance(hero)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.attack = 13
     battle.attacker.hero.stats.defense = 22
     battle.attacker.hero.skills.offense = SkillLevels.Expert
@@ -123,14 +119,13 @@ describe('Base Damage Calculator tests with specified values', () => {
   })
 
   test('20 Wyverns with Hero vs 10 Mighty Gorgon', () => {
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Wyvern)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.MightyGorgon)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Wyvern)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.MightyGorgon)
 
     battle.attacker.activeCreature.count = 20
     battle.defender.activeCreature.count = 10
 
-    const hero = heroes.find((hero) => hero.id === Heroes.Orrin)!
-    battle.attacker.hero = new HeroInstance(hero)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.attack = 20
     battle.attacker.hero.stats.defense = 15
     battle.attacker.hero.skills.offense = SkillLevels.Expert
@@ -152,21 +147,20 @@ describe('Base Damage Calculator tests with specified values', () => {
   })
 
   test('20 Wyverns with Hero vs 10 Gorgon', () => {
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.Wyvern)
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Gorgon)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.Wyvern)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Gorgon)
 
     battle.attacker.activeCreature.count = 20
     battle.defender.activeCreature.count = 10
 
-    const hero = heroes.find((hero) => hero.id === Heroes.Orrin)!
-    battle.attacker.hero = new HeroInstance(hero)
+    battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
     battle.attacker.hero.stats.attack = 20
     battle.attacker.hero.stats.defense = 15
     battle.attacker.hero.skills.offense = SkillLevels.Expert
-    battle.attacker.hero.skills.fire = SkillLevels.Expert
+    battle.attacker.hero.skills.fireMagic = SkillLevels.Expert
 
-    const curse = spells.find((spell) => spell.id === Spells.Curse)!
-    battle.defender.activeCreature.effects.push(curse)
+    const curse = data.spells.Curse
+    battle.defender.activeCreature.effects[curse.key] = curse
 
     const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
@@ -185,18 +179,18 @@ describe('Base Damage Calculator tests with specified values', () => {
   })
 
   test('11 Ogre Magi vs 59 Halberdiers', () => {
-    battle.attacker.activeCreature = getCreatureInstance(Creatures.OgreMage)
+    battle.attacker.activeCreature = new CreatureInstance(data.creatures.OgreMage)
     battle.attacker.activeCreature.count = 11
 
-    battle.attacker.hero = getHeroInstance(Heroes.Adela)
+    battle.attacker.hero = new HeroInstance(data.heroes.Adela)
     battle.attacker.hero.stats.attack = 5
     battle.attacker.hero.stats.defense = 1
     battle.attacker.hero.level = 10
 
-    battle.attacker.terrain = terrains.find((terrain) => terrain.id === Terrains.Sand)!
-    battle.defender.terrain = terrains.find((terrain) => terrain.id === Terrains.Sand)!
+    battle.attacker.terrain = data.terrains.Sand
+    battle.defender.terrain = data.terrains.Sand
 
-    battle.defender.activeCreature = getCreatureInstance(Creatures.Halberdier)
+    battle.defender.activeCreature = new CreatureInstance(data.creatures.Halberdier)
     battle.defender.activeCreature.count = 59
 
     const { attacker } = getBattleCreatureCalculationResults(battle)

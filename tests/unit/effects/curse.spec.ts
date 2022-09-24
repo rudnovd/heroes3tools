@@ -1,11 +1,10 @@
-import { heroes } from '@/assets/database/heroes'
-import { spells } from '@/assets/database/spells'
-import { Battle } from '@/models/Battle'
-import { Creatures, Heroes, SkillLevels, Spells } from '@/models/enums'
-import { HeroInstance } from '@/models/Hero'
+import { Battle } from '@/modules/battle'
+import { CreatureInstance } from '@/modules/creature'
 import { Effects } from '@/modules/effects'
+import { HeroInstance } from '@/modules/hero'
+import { SkillLevels } from '@/types'
 import { beforeEach, describe, expect, test } from 'vitest'
-import { getBattleCreatureCalculationResults, getCreatureInstance, getHeroInstance } from '../helpers'
+import { data, getBattleCreatureCalculationResults } from '../helpers'
 
 describe('Curse spell effect', () => {
   let battle: Battle
@@ -16,14 +15,14 @@ describe('Curse spell effect', () => {
 
   describe('Curse spell effect without any modificators', () => {
     test('Pikeman (different minDamage and maxDamage)', () => {
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
       const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
 
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 1, maxDamage: 1 })
     })
 
     test('Angel creature (equal minDamage and maxDamage)', () => {
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Angel)
       const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
 
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 50, maxDamage: 50 })
@@ -32,18 +31,18 @@ describe('Curse spell effect', () => {
 
   describe('Curse spell effect with hero without fire skill', () => {
     test('Pikeman (different minDamage and maxDamage)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Rion)
+      battle.attacker.hero = new HeroInstance(data.heroes.Rion)
       battle.attacker.hero.stats.attack = 0
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
       const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
 
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 1, maxDamage: 1 })
     })
 
     test('Angel (equal minDamage and maxDamage)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Rion)
+      battle.attacker.hero = new HeroInstance(data.heroes.Rion)
       battle.attacker.hero.stats.attack = 0
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Angel)
       const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
 
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 50, maxDamage: 50 })
@@ -52,20 +51,20 @@ describe('Curse spell effect', () => {
 
   describe('Curse spell effect with hero with base fire skill', () => {
     test('Pikeman (different minDamage and maxDamage)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Rion)
+      battle.attacker.hero = new HeroInstance(data.heroes.Rion)
       battle.attacker.hero.stats.attack = 0
-      battle.attacker.hero.skills.fire = 1
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+      battle.attacker.hero.skills.fireMagic = 1
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
       const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
 
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 1, maxDamage: 1 })
     })
 
     test('Angel (equal minDamage and maxDamage)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Rion)
+      battle.attacker.hero = new HeroInstance(data.heroes.Rion)
       battle.attacker.hero.stats.attack = 0
-      battle.attacker.hero.skills.fire = 1
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
+      battle.attacker.hero.skills.fireMagic = 1
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Angel)
       const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
 
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 50, maxDamage: 50 })
@@ -74,20 +73,20 @@ describe('Curse spell effect', () => {
 
   describe('Curse spell effect with hero with advanced fire skill', () => {
     test('Pikeman (different minDamage and maxDamage)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Rion)
+      battle.attacker.hero = new HeroInstance(data.heroes.Rion)
       battle.attacker.hero.stats.attack = 0
-      battle.attacker.hero.skills.fire = 2
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+      battle.attacker.hero.skills.fireMagic = 2
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
       const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
 
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 1, maxDamage: 1 })
     })
 
     test('Angel (equal minDamage and maxDamage)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Rion)
+      battle.attacker.hero = new HeroInstance(data.heroes.Rion)
       battle.attacker.hero.stats.attack = 0
-      battle.attacker.hero.skills.fire = 2
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
+      battle.attacker.hero.skills.fireMagic = 2
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Angel)
       const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
 
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 49, maxDamage: 49 })
@@ -96,20 +95,20 @@ describe('Curse spell effect', () => {
 
   describe('Curse spell effect with hero with expert fire skill', () => {
     test('Pikeman (different minDamage and maxDamage)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Rion)
+      battle.attacker.hero = new HeroInstance(data.heroes.Rion)
       battle.attacker.hero.stats.attack = 0
-      battle.attacker.hero.skills.fire = 3
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+      battle.attacker.hero.skills.fireMagic = 3
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
       const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
 
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 1, maxDamage: 1 })
     })
 
     test('Angel (equal minDamage and maxDamage)', () => {
-      battle.attacker.hero = getHeroInstance(Heroes.Rion)
+      battle.attacker.hero = new HeroInstance(data.heroes.Rion)
       battle.attacker.hero.stats.attack = 0
-      battle.attacker.hero.skills.fire = 3
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
+      battle.attacker.hero.skills.fireMagic = 3
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Angel)
       const { minDamage, maxDamage } = Effects.curse(battle.attacker, battle.attacker.activeCreature)
 
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 49, maxDamage: 49 })
@@ -118,18 +117,17 @@ describe('Curse spell effect', () => {
 
   describe('Curse in battle', () => {
     test('20 Wyverns with Hero vs 10 Gorgons', () => {
-      const curse = spells.find((spell) => spell.id === Spells.Curse)!
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Wyvern)
+      const curse = data.spells.Curse
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Wyvern)
       battle.attacker.activeCreature.count = 20
 
-      const hero = heroes.find((hero) => hero.id === Heroes.Valeska)!
-      battle.attacker.hero = new HeroInstance(hero)
+      battle.attacker.hero = new HeroInstance(data.heroes.Valeska)
       battle.attacker.hero.stats.attack = 13
       battle.attacker.hero.stats.defense = 13
 
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Gorgon)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Gorgon)
       battle.defender.activeCreature.count = 10
-      battle.defender.activeCreature.effects.push(curse)
+      battle.defender.activeCreature.effects[curse.key] = curse
 
       const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
@@ -148,19 +146,18 @@ describe('Curse spell effect', () => {
     })
 
     test('20 Wyverns with Hero with advanced Fire skill vs 10 Gorgon', () => {
-      const curse = spells.find((spell) => spell.id === Spells.Curse)!
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Wyvern)
+      const curse = data.spells.Curse
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Wyvern)
       battle.attacker.activeCreature.count = 20
 
-      const hero = heroes.find((hero) => hero.id === Heroes.Valeska)!
-      battle.attacker.hero = new HeroInstance(hero)
+      battle.attacker.hero = new HeroInstance(data.heroes.Valeska)
       battle.attacker.hero.stats.attack = 15
       battle.attacker.hero.stats.defense = 16
 
-      battle.attacker.hero.skills.fire = SkillLevels.Advanced
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Gorgon)
+      battle.attacker.hero.skills.fireMagic = SkillLevels.Advanced
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Gorgon)
       battle.defender.activeCreature.count = 10
-      battle.defender.activeCreature.effects.push(curse)
+      battle.defender.activeCreature.effects[curse.key] = curse
 
       const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 

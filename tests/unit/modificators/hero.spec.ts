@@ -1,9 +1,9 @@
-import { spells } from '@/assets/database/spells'
-import { Battle } from '@/models/Battle'
-import { Creatures, Heroes, Spells } from '@/models/enums'
+import { Battle } from '@/modules/battle'
+import { CreatureInstance } from '@/modules/creature'
+import { HeroInstance } from '@/modules/hero'
 import { Modificators } from '@/modules/modificators'
 import { beforeEach, describe, expect, test } from 'vitest'
-import { getCreatureInstance, getHeroInstance } from '../helpers'
+import { data } from '../helpers'
 
 describe('Hero modificator', () => {
   let battle: Battle
@@ -14,18 +14,18 @@ describe('Hero modificator', () => {
 
   describe('hero attack impact to creature attack', () => {
     test('single pikeman', () => {
-      const pikeman = getCreatureInstance(Creatures.Pikeman)
-      const hero = getHeroInstance(Heroes.Orrin)
+      const pikeman = new CreatureInstance(data.creatures.Pikeman)
+      const hero = new HeroInstance(data.heroes.Orrin)
       const { attack } = Modificators.hero(hero, pikeman)
 
       expect(attack).toEqual(6)
     })
 
     test('single pikeman in battle', () => {
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+      battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
 
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
       const { attacker } = battle.calculate()
 
@@ -35,18 +35,18 @@ describe('Hero modificator', () => {
 
   describe('hero defense impact to creature defense', () => {
     test('single pikeman', () => {
-      const pikeman = getCreatureInstance(Creatures.Pikeman)
-      const hero = getHeroInstance(Heroes.Orrin)
+      const pikeman = new CreatureInstance(data.creatures.Pikeman)
+      const hero = new HeroInstance(data.heroes.Orrin)
       const { defense } = Modificators.hero(hero, pikeman)
 
       expect(defense).toEqual(7)
     })
 
     test('single pikeman in battle', () => {
-      battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
-      battle.attacker.hero = getHeroInstance(Heroes.Orrin)
+      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Pikeman)
+      battle.attacker.hero = new HeroInstance(data.heroes.Orrin)
 
-      battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+      battle.defender.activeCreature = new CreatureInstance(data.creatures.Pikeman)
 
       const { attacker } = battle.calculate()
 
@@ -57,11 +57,11 @@ describe('Hero modificator', () => {
   describe('heroes with creatures specialty', () => {
     describe('griffins specialty', () => {
       test('1 level Edric with 4 griffins vs pixies', () => {
-        battle.attacker.hero = getHeroInstance(Heroes.Edric)
-        battle.attacker.activeCreature = getCreatureInstance(Creatures.Griffin)
+        battle.attacker.hero = new HeroInstance(data.heroes.Edric)
+        battle.attacker.activeCreature = new CreatureInstance(data.creatures.Griffin)
         battle.attacker.activeCreature.count = 4
 
-        battle.defender.activeCreature = getCreatureInstance(Creatures.Pixie)
+        battle.defender.activeCreature = new CreatureInstance(data.creatures.Pixie)
 
         const { attacker } = battle.calculate()
 
@@ -70,13 +70,13 @@ describe('Hero modificator', () => {
       })
 
       test('3 level Edric with 4 griffins vs pixies', () => {
-        battle.attacker.hero = getHeroInstance(Heroes.Edric)
+        battle.attacker.hero = new HeroInstance(data.heroes.Edric)
         battle.attacker.hero.stats.attack = 3
         battle.attacker.hero.level = 3
-        battle.attacker.activeCreature = getCreatureInstance(Creatures.Griffin)
+        battle.attacker.activeCreature = new CreatureInstance(data.creatures.Griffin)
         battle.attacker.activeCreature.count = 4
 
-        battle.defender.activeCreature = getCreatureInstance(Creatures.Pixie)
+        battle.defender.activeCreature = new CreatureInstance(data.creatures.Pixie)
 
         const { attacker } = battle.calculate()
 
@@ -85,14 +85,14 @@ describe('Hero modificator', () => {
       })
 
       test('9 level Edric with 4 griffins vs pixies', () => {
-        battle.attacker.hero = getHeroInstance(Heroes.Edric)
+        battle.attacker.hero = new HeroInstance(data.heroes.Edric)
         battle.attacker.hero.stats.attack = 4
         battle.attacker.hero.stats.defense = 6
         battle.attacker.hero.level = 9
-        battle.attacker.activeCreature = getCreatureInstance(Creatures.Griffin)
+        battle.attacker.activeCreature = new CreatureInstance(data.creatures.Griffin)
         battle.attacker.activeCreature.count = 4
 
-        battle.defender.activeCreature = getCreatureInstance(Creatures.Pixie)
+        battle.defender.activeCreature = new CreatureInstance(data.creatures.Pixie)
 
         const { attacker } = battle.calculate()
 
@@ -101,14 +101,14 @@ describe('Hero modificator', () => {
       })
 
       test('15 level Edric with 4 griffins vs pixies', () => {
-        battle.attacker.hero = getHeroInstance(Heroes.Edric)
+        battle.attacker.hero = new HeroInstance(data.heroes.Edric)
         battle.attacker.hero.stats.attack = 6
         battle.attacker.hero.stats.defense = 8
         battle.attacker.hero.level = 15
-        battle.attacker.activeCreature = getCreatureInstance(Creatures.Griffin)
+        battle.attacker.activeCreature = new CreatureInstance(data.creatures.Griffin)
         battle.attacker.activeCreature.count = 4
 
-        battle.defender.activeCreature = getCreatureInstance(Creatures.Pixie)
+        battle.defender.activeCreature = new CreatureInstance(data.creatures.Pixie)
 
         const { attacker } = battle.calculate()
 
@@ -117,14 +117,14 @@ describe('Hero modificator', () => {
       })
 
       test('15 level Edric with 4 royal griffins vs pixies', () => {
-        battle.attacker.hero = getHeroInstance(Heroes.Edric)
+        battle.attacker.hero = new HeroInstance(data.heroes.Edric)
         battle.attacker.hero.stats.attack = 6
         battle.attacker.hero.stats.defense = 8
         battle.attacker.hero.level = 15
-        battle.attacker.activeCreature = getCreatureInstance(Creatures.RoyalGriffin)
+        battle.attacker.activeCreature = new CreatureInstance(data.creatures.RoyalGriffin)
         battle.attacker.activeCreature.count = 4
 
-        battle.defender.activeCreature = getCreatureInstance(Creatures.Pixie)
+        battle.defender.activeCreature = new CreatureInstance(data.creatures.Pixie)
 
         const { attacker } = battle.calculate()
 
@@ -135,17 +135,17 @@ describe('Hero modificator', () => {
 
     describe('gargoyles specialty', () => {
       test('3 level Piquedram with 17 stone gargoyles with bloodlust effect vs pixies', () => {
-        battle.attacker.hero = getHeroInstance(Heroes.Piquedram)
+        battle.attacker.hero = new HeroInstance(data.heroes.Piquedram)
         battle.attacker.hero.stats.attack = 2
         battle.attacker.hero.stats.defense = 1
         battle.attacker.hero.level = 3
-        battle.attacker.activeCreature = getCreatureInstance(Creatures.StoneGargoyle)
+        battle.attacker.activeCreature = new CreatureInstance(data.creatures.StoneGargoyle)
         battle.attacker.activeCreature.count = 17
 
-        const bloodlust = spells.find((spell) => spell.id === Spells.Bloodlust)!
-        battle.attacker.activeCreature.effects.push(bloodlust)
+        const bloodlust = data.spells.Bloodlust
+        battle.attacker.activeCreature.effects[bloodlust.key] = bloodlust
 
-        battle.defender.activeCreature = getCreatureInstance(Creatures.Pixie)
+        battle.defender.activeCreature = new CreatureInstance(data.creatures.Pixie)
 
         const { attacker } = battle.calculate()
 
