@@ -1,55 +1,40 @@
 <template>
-  <section class="send-error-page">
-    <form class="send-error" name="send-error" method="post" data-netlify="true" data-netlify-honeypot="bot-field">
+  <main class="centered-page">
+    <form class="error-form" name="send-error" method="post" data-netlify="true" data-netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="send-error" />
-      <textarea name="error" :placeholder="t('components.pageFooter.sendErrorForm.placeholder')" />
-      <button class="send-error-button" type="submit">
-        {{ t('components.pageFooter.sendErrorForm.button') }}
-      </button>
+      <textarea name="error" :placeholder="t('pages.sendErrorPage.describeError')" />
+      <base-button class="send-error-button" type="submit">
+        {{ t('pages.sendErrorPage.submit') }}
+      </base-button>
     </form>
-  </section>
+  </main>
 </template>
 
 <script setup lang="ts">
+import BaseButton from '@/components/base/BaseButton.vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>
-.send-error-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
-
-.send-error {
-  display: flex;
-  flex-direction: column;
+.error-form {
+  display: grid;
   gap: 8px;
   width: 100%;
   max-width: 600px;
-  padding: 3rem;
-  background: url('/images/windows/base-bg.webp');
 
   textarea {
     height: 100px;
-    font: inherit;
-    color: var(--color-text);
+    padding: 0.5rem;
+    color: rgb(255, 255, 255);
     resize: none;
-    background-color: var(--color-bg);
+    background: url('backgrounds/base-window.webp');
     border: 1px solid var(--color-border);
-  }
 
-  .send-error-button {
-    min-width: 200px;
-    font-weight: bold;
-    line-height: 1.5;
-    color: $color-attacker-text;
-    background-color: $color-attacker;
-    border: 1px solid $color-attacker;
-    border-radius: 5px;
+    &::placeholder {
+      color: rgb(255, 255, 255);
+    }
   }
 }
 </style>
