@@ -1,23 +1,23 @@
 @mixin media-small {
-  @media (min-width: #{map.get($grid-breakpoints, 'small')}) {
+  @media (min-width: #{$breakpoint-small}) {
     @content;
   }
 }
 
 @mixin media-medium {
-  @media (min-width: #{map.get($grid-breakpoints, 'medium')}) {
+  @media (min-width: #{$breakpoint-medium}) {
     @content;
   }
 }
 
 @mixin media-large {
-  @media (min-width: #{map.get($grid-breakpoints, 'large')}) {
+  @media (min-width: #{$breakpoint-large}) {
     @content;
   }
 }
 
 @mixin media-maximum {
-  @media (min-width: #{map.get($grid-breakpoints, 'maximum')}) {
+  @media (min-width: #{$breakpoint-maximum}) {
     @content;
   }
 }
