@@ -13,12 +13,16 @@ export const dataModules = [
   'spells',
   'towns',
 ]
+
 export const isDark = useDark({
   selector: 'body',
   attribute: 'color-scheme',
   valueDark: 'dark',
   valueLight: 'light',
   onChanged: (isDark) => {
+    if (isDark) {
+      import('./styles/dark-scheme.scss')
+    }
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     document.querySelector('html')!.style.colorScheme = isDark ? 'dark' : 'light'
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
