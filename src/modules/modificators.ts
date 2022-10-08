@@ -1,14 +1,13 @@
-import type { CreatureInstance } from '@/models/Creature'
-import { Creatures, SecondarySkills, Spells } from '@/models/enums'
-import type { HeroInstance } from '@/models/Hero'
-import type { Terrain } from '@/models/Terrain'
+import type { CreatureInstance } from '@/modules/creature'
+import type { HeroInstance } from '@/modules/hero'
+import type { Terrain } from '@/types'
 
 export const Modificators = {
   heroSpecialtySpell: (hero: HeroInstance, target: CreatureInstance): CreatureInstance => {
     let { attack, defense } = target
 
     switch (hero.specialtySpell) {
-      case Spells.Bloodlust:
+      case 'Bloodlust':
         if (target.level === 1 || target.level === 2) {
           attack += 3
         } else if (target.level === 3 || target.level === 4) {
@@ -17,7 +16,7 @@ export const Modificators = {
           attack += 1
         }
         break
-      case Spells.Prayer:
+      case 'Prayer':
         if (target.level === 1 || target.level === 2) {
           attack += 3
           defense += 3
@@ -29,7 +28,7 @@ export const Modificators = {
           defense += 1
         }
         break
-      case Spells.Precision:
+      case 'Precision':
         if (target.level === 1 || target.level === 2) {
           attack += 3
         } else if (target.level === 3 || target.level === 4) {
@@ -38,7 +37,7 @@ export const Modificators = {
           attack += 1
         }
         break
-      case Spells.StoneSkin:
+      case 'StoneSkin':
         if (target.level === 1 || target.level === 2) {
           defense += 3
         } else if (target.level === 3 || target.level === 4) {
@@ -47,7 +46,7 @@ export const Modificators = {
           defense += 1
         }
         break
-      case Spells.Weakness:
+      case 'Weakness':
         if (target.level === 1 || target.level === 2) {
           attack -= 3
         } else if (target.level === 3 || target.level === 4) {
@@ -56,7 +55,7 @@ export const Modificators = {
           attack -= 1
         }
         break
-      case Spells.DisruptingRay:
+      case 'DisruptingRay':
         defense -= 2
         break
       default:
@@ -73,7 +72,7 @@ export const Modificators = {
   terrain: (terrain: Terrain, target: CreatureInstance): CreatureInstance => {
     let { attack, defense } = target
 
-    if (terrain.id === target.nativeTerrain) {
+    if (terrain.key === target.nativeTerrain) {
       attack++
       defense++
     }
@@ -88,7 +87,7 @@ export const Modificators = {
   hero: (hero: HeroInstance, target: CreatureInstance): CreatureInstance => {
     let { attack, speed, defense } = target
 
-    if (hero.specialtyUnit?.includes(target.id)) {
+    if (hero.specialtyUnit?.includes(target.key)) {
       attack += Math.ceil(Math.floor(hero.level / target.level) * (attack * 0.05))
       defense += Math.ceil(Math.floor(hero.level / target.level) * (defense * 0.05))
       speed++
@@ -113,10 +112,10 @@ export const Modificators = {
 
     const levelBonus = 1 + 0.05 * hero.level
 
-    if (hero.skills.offense && !target.ranged) {
+    if (hero.skills.offense && !target.special?.ranged) {
       let bonus = 0.1 * hero.skills.offense
 
-      if (hero.specialtySkill && hero.specialtySkill === SecondarySkills.Offense) {
+      if (hero.specialtySkill && hero.specialtySkill === 'Offense') {
         bonus = bonus * levelBonus > 1.92 ? 1.92 : bonus * levelBonus
       }
       damageBonus += bonus
@@ -125,13 +124,13 @@ export const Modificators = {
     if (hero.skills.armorer) {
       let bonus = 0.05 * hero.skills.armorer
 
-      if (hero.specialtySkill && hero.specialtySkill === SecondarySkills.Armorer) {
+      if (hero.specialtySkill && hero.specialtySkill === 'Armorer') {
         bonus = bonus * levelBonus > 0.7 ? 0.7 : bonus * levelBonus
       }
       defenseBonus += bonus
     }
 
-    if (hero.skills.archery && target.ranged) {
+    if (hero.skills.archery && target.special?.ranged) {
       let bonus = 0
       if (hero.skills.archery === 1) {
         bonus = 0.1
@@ -141,14 +140,14 @@ export const Modificators = {
         bonus = 0.5
       }
 
-      if (hero.specialtySkill && hero.specialtySkill === SecondarySkills.Archery) {
+      if (hero.specialtySkill && hero.specialtySkill === 'Archery') {
         bonus = bonus * levelBonus > 3.2 ? 3.2 : bonus * levelBonus
       }
       damageBonus += bonus
     }
 
     if (
-      (target.id === Creatures.Ballista || target.id === Creatures.Cannon) &&
+      (target.key === 'Ballista' || target.key === 'Cannon') &&
       hero.skills.artillery &&
       hero.skills.artillery === 2
     ) {
@@ -171,7 +170,7 @@ export const Modificators = {
       calculation: { damageBonus },
     } = attacker
 
-    if (attacker.hates && attacker.hates.indexOf(defender.id) !== -1) {
+    if (attacker.hates?.includes(defender.key)) {
       damageBonus += 0.5
     }
 
@@ -187,10 +186,10 @@ export const Modificators = {
   artillery: (hero: HeroInstance, target: CreatureInstance): CreatureInstance => {
     let { minDamage, maxDamage } = target
 
-    if (target.id === Creatures.Ballista) {
+    if (target.key === 'Ballista') {
       minDamage = (hero.stats.attack + 1) * 2
       maxDamage = (hero.stats.attack + 1) * 3
-    } else if (target.id === Creatures.Cannon) {
+    } else if (target.key === 'Cannon') {
       minDamage = (hero.stats.attack + 1) * 4
       maxDamage = (hero.stats.attack + 1) * 7
     }
@@ -205,17 +204,17 @@ export const Modificators = {
   creatureSpecial: (attacker: CreatureInstance, defender: CreatureInstance): CreatureInstance => {
     let { attack, defense } = attacker
 
-    switch (defender.id) {
-      case Creatures.Behemoth:
+    switch (defender.key) {
+      case 'Behemoth':
         defense = defense * 0.6 - 1
         break
-      case Creatures.AncientBehemoth:
+      case 'AncientBehemoth':
         defense = defense * 0.2 - 1
         break
-      case Creatures.Nix:
+      case 'Nix':
         attack *= 0.7
         break
-      case Creatures.NixWarrior:
+      case 'NixWarrior':
         attack *= 0.4
         break
       default:

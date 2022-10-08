@@ -1,51 +1,25 @@
-import type { DamageCalculatorBattleSide } from '@/models/Battle'
-import type { CreatureInstance } from '@/models/Creature'
-import { Creatures, Spells } from '@/models/enums'
-import type { Spell } from '@/models/Spell'
+import type { CreatureInstance } from '@/modules/creature'
+import type { CreatureKey, DamageCalculatorBattleSide, Spell } from '@/types'
 
 export const Effects = {
   functions: {
     canAccess: (effect: Spell, target: CreatureInstance) => {
       if (!target) return false
-
       // if target has Anti Magic effect
-      if (target.effects.find((effect) => effect.id === Spells.AntiMagic)) return false
-
+      if (target.effects.AntiMagic) return false
       // if target has immunity to effect
-      if (target.special?.immunity?.find((spell) => spell === effect.id)) return false
-
-      const undeadImmunitySpells = [
-        Spells.Bless,
-        Spells.Curse,
-        Spells.DeathRipple,
-        Spells.Resurrection,
-        Spells.Sacrifice,
-      ]
-      const mindSpells = [
-        Spells.Berserk,
-        Spells.Blind,
-        Spells.Forgetfulness,
-        Spells.Frenzy,
-        Spells.Hypnotize,
-        Spells.Mirth,
-        Spells.Sorrow,
-      ]
-
+      if (target.special?.immunity?.find((spell) => spell === effect.key)) return false
+      const undeadImmunitySpells = ['Bless', 'Curse', 'DeathRipple', 'Resurrection', 'Sacrifice']
+      const mindSpells = ['Berserk', 'Blind', 'Forgetfulness', 'Frenzy', 'Hypnotize', 'Mirth', 'Sorrow']
       // Check undead creatures immunities
       if (target.special?.undead) {
-        if (undeadImmunitySpells.indexOf(effect.id) > -1) return false
-        if (mindSpells.indexOf(effect.id) > -1) return false
+        if (undeadImmunitySpells.includes(effect.key)) return false
+        if (mindSpells.includes(effect.key)) return false
       }
-
       // Check non living creatures immunities
-      if (
-        target.special?.nonLiving &&
-        target.id !== Creatures.StoneGargoyle &&
-        target.id !== Creatures.ObsidianGargoyle
-      ) {
-        if (mindSpells.indexOf(effect.id) > -1) return false
+      if (target.special?.nonLiving && target.key !== 'StoneGargoyle' && target.key !== 'ObsidianGargoyle') {
+        if (mindSpells.includes(effect.key)) return false
       }
-
       return true
     },
   },
@@ -66,13 +40,13 @@ export const Effects = {
     } = target
 
     // if battle side has hero with Bless specialty then add damageBonus value
-    if (initiator.hero && initiator.hero.specialtySpell === Spells.Bless) {
+    if (initiator.hero && initiator.hero.specialtySpell === 'Bless') {
       damageBonus += Math.floor(initiator.hero.level / target.level) * 0.03
     }
 
-    if (!initiator.hero || !initiator.hero.skills.water || initiator.hero.skills.water <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.waterMagic || initiator.hero.skills.waterMagic <= 1) {
       minDamage = maxDamage
-    } else if (initiator.hero.skills.water >= 2) {
+    } else if (initiator.hero.skills.waterMagic >= 2) {
       maxDamage++
       minDamage = maxDamage
     }
@@ -99,9 +73,14 @@ export const Effects = {
     // get creature values for modify them
     let { minDamage, maxDamage } = target
 
-    if (!initiator.hero || !initiator.hero.skills.fire || initiator.hero.skills.fire <= 1 || minDamage === 1) {
+    if (
+      !initiator.hero ||
+      !initiator.hero.skills.fireMagic ||
+      initiator.hero.skills.fireMagic <= 1 ||
+      minDamage === 1
+    ) {
       maxDamage = minDamage
-    } else if (initiator.hero.skills.fire >= 2) {
+    } else if (initiator.hero.skills.fireMagic >= 2) {
       minDamage = minDamage - 1
       maxDamage = minDamage
     }
@@ -124,9 +103,9 @@ export const Effects = {
     // get creature values for modify them
     let { attack } = target
 
-    if (!initiator.hero || !initiator.hero.skills.fire || initiator.hero.skills.fire <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.fireMagic || initiator.hero.skills.fireMagic <= 1) {
       attack += 3
-    } else if (initiator.hero.skills.fire >= 2) {
+    } else if (initiator.hero.skills.fireMagic >= 2) {
       attack += 6
     }
 
@@ -147,11 +126,11 @@ export const Effects = {
     // get creature values for modify them
     let { attack, defense } = target
 
-    if (!initiator.hero || !initiator.hero.skills.fire || initiator.hero.skills.fire <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.fireMagic || initiator.hero.skills.fireMagic <= 1) {
       attack += defense
-    } else if (initiator.hero.skills.fire === 2) {
+    } else if (initiator.hero.skills.fireMagic === 2) {
       attack += defense * 1.5
-    } else if (initiator.hero.skills.fire === 3) {
+    } else if (initiator.hero.skills.fireMagic === 3) {
       attack += defense * 2
     }
 
@@ -180,37 +159,31 @@ export const Effects = {
     // get creature values for modify them
     let { attack } = target
 
-    const slayerCreatures = [
-      Creatures.GreenDragon,
-      Creatures.BoneDragon,
-      Creatures.GhostDragon,
-      Creatures.RedDragon,
-      Creatures.Hydra,
-      Creatures.ChaosHydra,
-      Creatures.Behemoth,
-      Creatures.AncientBehemoth,
-      Creatures.FaerieDragon,
-      Creatures.RustDragon,
-      Creatures.CrystalDragon,
-      Creatures.AzureDragon,
+    const slayerCreatures: Array<CreatureKey> = [
+      'GreenDragon',
+      'BoneDragon',
+      'GhostDragon',
+      'RedDragon',
+      'Hydra',
+      'ChaosHydra',
+      'Behemoth',
+      'AncientBehemoth',
+      'FaerieDragon',
+      'RustDragon',
+      'CrystalDragon',
+      'AzureDragon',
     ]
 
-    if (initiator.hero && initiator.hero.skills.fire) {
-      if (initiator.hero.skills.fire > 1) {
-        slayerCreatures.push(Creatures.Angel, Creatures.Archangel, Creatures.Devil, Creatures.ArchDevil)
+    if (initiator.hero && initiator.hero.skills.fireMagic) {
+      if (initiator.hero.skills.fireMagic > 1) {
+        slayerCreatures.push('Angel', 'Archangel', 'Devil', 'ArchDevil')
       }
-      if (initiator.hero.skills.fire > 2) {
-        slayerCreatures.push(
-          Creatures.Giant,
-          Creatures.Titan,
-          Creatures.Firebird,
-          Creatures.SeaSerpent,
-          Creatures.Haspid
-        )
+      if (initiator.hero.skills.fireMagic > 2) {
+        slayerCreatures.push('Giant', 'Titan', 'Firebird', 'SeaSerpent', 'Haspid')
       }
     }
 
-    if (defender.creatures.find((defenderCreature) => slayerCreatures.indexOf(defenderCreature.id) !== -1)) {
+    if (defender.creatures.find((defenderCreature) => slayerCreatures.indexOf(defenderCreature.key) !== -1)) {
       attack += 8
     }
 
@@ -231,10 +204,10 @@ export const Effects = {
     // get creature values for modify them
     let { attack, defense } = target
 
-    if (!initiator.hero || !initiator.hero.skills.water || initiator.hero.skills.water <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.waterMagic || initiator.hero.skills.waterMagic <= 1) {
       attack += 2
       defense += 2
-    } else if (initiator.hero.skills.water >= 2) {
+    } else if (initiator.hero.skills.waterMagic >= 2) {
       attack += 2
       defense += 4
     }
@@ -257,10 +230,10 @@ export const Effects = {
     // get creature values for modify them
     let { attack } = target
 
-    if (target.ranged) {
-      if (!initiator.hero || !initiator.hero.skills.air || initiator.hero.skills.air <= 1) {
+    if (target.special?.ranged) {
+      if (!initiator.hero || !initiator.hero.skills.airMagic || initiator.hero.skills.airMagic <= 1) {
         attack += 3
-      } else if (initiator.hero.skills.air >= 2) {
+      } else if (initiator.hero.skills.airMagic >= 2) {
         attack += 6
       }
     }
@@ -282,9 +255,9 @@ export const Effects = {
     // get creature values for modify them
     let { defense } = target
 
-    if (!initiator.hero || !initiator.hero.skills.earth || initiator.hero.skills.earth <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.earthMagic || initiator.hero.skills.earthMagic <= 1) {
       defense += 3
-    } else if (initiator.hero.skills.earth >= 2) {
+    } else if (initiator.hero.skills.earthMagic >= 2) {
       defense += 6
     }
 
@@ -305,9 +278,9 @@ export const Effects = {
     // get creature values for modify them
     let { attack } = target
 
-    if (!initiator.hero || !initiator.hero.skills.water || initiator.hero.skills.water <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.waterMagic || initiator.hero.skills.waterMagic <= 1) {
       attack -= 3
-    } else if (initiator.hero.skills.water >= 2) {
+    } else if (initiator.hero.skills.waterMagic >= 2) {
       attack -= 6
     }
 
@@ -332,11 +305,11 @@ export const Effects = {
     // get creature values for modify them
     let { defense } = target
 
-    if (!initiator.hero || !initiator.hero.skills.air || initiator.hero.skills.air <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.airMagic || initiator.hero.skills.airMagic <= 1) {
       defense -= 3
-    } else if (initiator.hero.skills.air === 2) {
+    } else if (initiator.hero.skills.airMagic === 2) {
       defense -= 4
-    } else if (initiator.hero.skills.air === 3) {
+    } else if (initiator.hero.skills.airMagic === 3) {
       defense -= 5
     }
 
@@ -363,9 +336,9 @@ export const Effects = {
       calculation: { defenseMagicBonus },
     } = target
 
-    if (!initiator.hero || !initiator.hero.skills.earth || initiator.hero.skills.earth <= 1) {
+    if (!initiator.hero || !initiator.hero.skills.earthMagic || initiator.hero.skills.earthMagic <= 1) {
       defenseMagicBonus += 0.15
-    } else if (initiator.hero.skills.earth >= 2) {
+    } else if (initiator.hero.skills.earthMagic >= 2) {
       defenseMagicBonus += 0.3
     }
 
@@ -396,10 +369,10 @@ export const Effects = {
       calculation: { defenseMagicBonus },
     } = target
 
-    if (defender.activeCreature?.ranged) {
-      if (!initiator.hero || !initiator.hero.skills.air || initiator.hero.skills.air < 2) {
+    if (defender.activeCreature?.special?.ranged) {
+      if (!initiator.hero || !initiator.hero.skills.airMagic || initiator.hero.skills.airMagic < 2) {
         defenseMagicBonus += 0.25
-      } else if (initiator.hero.skills.air > 1) {
+      } else if (initiator.hero.skills.airMagic > 1) {
         defenseMagicBonus += 0.5
       }
     }
