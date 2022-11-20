@@ -2151,7 +2151,7 @@ const creatures: Array<Creature> = [
     cost: { gold: 1500 },
     growth: 1,
     special: {
-      ignoreEmenyDefencePercents: 40,
+      ignoreEnemyDefensePercents: 40,
     },
     description: 'Defense -40% to enemy target',
   },
@@ -2173,7 +2173,7 @@ const creatures: Array<Creature> = [
     cost: { gold: 3000, crystal: 1 },
     growth: 1,
     special: {
-      ignoreEmenyDefencePercents: 80,
+      ignoreEnemyDefensePercents: 80,
     },
     description: 'Defense -80% to enemy target',
   },
