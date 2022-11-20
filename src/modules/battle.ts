@@ -1,328 +1,176 @@
-import creatures from '@/assets/data/creatures'
 import spells from '@/assets/data/spells'
-import { CreatureInstance } from '@/modules/creature'
-import { Effects } from '@/modules/effects'
-import type { HeroInstance } from '@/modules/hero'
-import { Modificators } from '@/modules/modificators'
-import { spellsFunctionsMap } from '@/modules/spells'
-import type { BattleSide, CreatureKey, DamageCalculatorBattleSide, Spell, SpellKey } from '@/types'
+import type { CreatureInstance } from '@/modules/creature'
+import type { BattleSide, DamageCalculatorBattleSide, Spell, SpellKey, Terrain } from '@/types'
+import { HeroInstance } from './hero'
+import { Skills } from './skills'
 
 export function getOppositeBattleSide(side: BattleSide): BattleSide {
   return side === 'attacker' ? 'defender' : 'attacker'
 }
-
 export class Battle {
   attacker: DamageCalculatorBattleSide
   defender: DamageCalculatorBattleSide
+  terrain: Terrain | { key: 'FakeTerrain'; name: 'FakeTerrain' }
+  activeSide: BattleSide
 
-  constructor(attacker?: DamageCalculatorBattleSide, defender?: DamageCalculatorBattleSide) {
-    this.attacker = attacker || {
-      hero: null,
-      creatures: [],
-      terrain: null,
-      activeCreature: null,
+  constructor(battle: {
+    attacker: Partial<DamageCalculatorBattleSide> & { activeCreature: CreatureInstance }
+    defender: Partial<DamageCalculatorBattleSide> & { activeCreature: CreatureInstance }
+    terrain?: Terrain
+    activeSide?: BattleSide
+  }) {
+    this.attacker = {
+      hero: battle?.attacker?.hero || new HeroInstance('FakeHero'),
+      creatures: battle?.attacker?.creatures || [],
+      activeCreature: battle.attacker.activeCreature,
     }
-    this.defender = defender || {
-      hero: null,
-      creatures: [],
-      terrain: null,
-      activeCreature: null,
+    this.defender = {
+      hero: battle?.defender?.hero || new HeroInstance('FakeHero'),
+      creatures: battle?.defender?.creatures || [],
+      activeCreature: battle.defender.activeCreature,
+    }
+    this.terrain = battle?.terrain || { key: 'FakeTerrain', name: 'FakeTerrain' }
+    this.activeSide = battle?.activeSide || 'attacker'
+
+    if (this.attacker.activeCreature && this.defender.activeCreature) {
+      this.calculate()
     }
   }
 
   public calculate() {
-    if (!this.attacker.activeCreature || !this.defender.activeCreature) {
-      throw new Error('Calculate function require attacker and defender active creatures')
+    for (const side in { attacker: this.attacker, defender: this.defender }) {
+      this.activeSide = side as BattleSide
+      this.calculateCreature(this[side].activeCreature)
     }
 
-    const attackerCreatureOriginal = creatures.find((creature) => creature.key === this.attacker.activeCreature?.key)
-    const defenderCreatureOriginal = creatures.find((creature) => creature.key === this.defender.activeCreature?.key)
-    if (!attackerCreatureOriginal || !defenderCreatureOriginal) throw new Error()
-
-    // clear active creatures values
-    this.attacker.activeCreature = {
-      ...new CreatureInstance(attackerCreatureOriginal),
-      effects: this.attacker.activeCreature.effects,
-      count: this.attacker.activeCreature.count,
-      rangePenalty: this.attacker.activeCreature.rangePenalty,
-      name: this.attacker.activeCreature.name,
-    }
-    this.defender.activeCreature = {
-      ...new CreatureInstance(defenderCreatureOriginal),
-      effects: this.defender.activeCreature.effects,
-      count: this.defender.activeCreature.count,
-      rangePenalty: this.defender.activeCreature.rangePenalty,
-      name: this.defender.activeCreature.name,
+    for (const side in { attacker: this.attacker, defender: this.defender }) {
+      this.activeSide = side as BattleSide
+      this[side].activeCreature.calculation = {
+        ...this[side].activeCreature.calculation,
+        ...this.calculateDamageValues(),
+      }
     }
 
-    // make copy of attacker active creature with modified stats from positive and negative spells
-    let modifiedAttackerCreature = this.calculateWithPositiveEffects(this.attacker, this.attacker.activeCreature)
-    modifiedAttackerCreature = this.calculateWithNegativeEffects(this.defender, modifiedAttackerCreature)
-
-    // make copy of defender active creature with modified stats from positive and negative spells
-    let modifiedDefenderCreature = this.calculateWithPositiveEffects(this.defender, this.defender.activeCreature)
-    modifiedDefenderCreature = this.calculateWithNegativeEffects(this.attacker, modifiedDefenderCreature)
-
-    if (this.attacker.hero) {
-      modifiedAttackerCreature = this.calculateWithHeroModificators(this.attacker.hero, modifiedAttackerCreature)
-    }
-    if (this.defender.hero) {
-      modifiedDefenderCreature = this.calculateWithHeroModificators(this.defender.hero, modifiedDefenderCreature)
-    }
-
-    if (this.attacker.terrain && this.defender.terrain) {
-      modifiedAttackerCreature = Modificators.terrain(this.attacker.terrain, modifiedAttackerCreature)
-      modifiedDefenderCreature = Modificators.terrain(this.defender.terrain, modifiedDefenderCreature)
-    }
-
-    if (modifiedAttackerCreature.hates?.length) {
-      modifiedAttackerCreature = Modificators.creatureHate(modifiedAttackerCreature, modifiedDefenderCreature)
-    }
-    if (modifiedDefenderCreature.hates?.length) {
-      modifiedDefenderCreature = Modificators.creatureHate(modifiedDefenderCreature, modifiedAttackerCreature)
-    }
-
-    if (modifiedAttackerCreature.special) {
-      modifiedAttackerCreature = Modificators.creatureSpecial(modifiedAttackerCreature, modifiedDefenderCreature)
-    }
-    if (modifiedDefenderCreature.special) {
-      modifiedDefenderCreature = Modificators.creatureSpecial(modifiedDefenderCreature, modifiedAttackerCreature)
-    }
-
-    const attackerCalculation = this.calculateDamageValues(modifiedAttackerCreature, modifiedDefenderCreature)
-    const defenderCalculation = this.calculateDamageValues(modifiedDefenderCreature, modifiedAttackerCreature)
-
-    this.attacker.activeCreature = {
-      ...this.attacker.activeCreature,
-      ...modifiedAttackerCreature,
-      calculation: {
-        ...this.attacker.activeCreature.calculation,
-        ...attackerCalculation,
-      },
-    }
-
-    this.defender.activeCreature = {
-      ...this.defender.activeCreature,
-      ...modifiedDefenderCreature,
-      calculation: {
-        ...this.defender.activeCreature.calculation,
-        ...defenderCalculation,
-      },
-    }
+    this.activeSide = 'attacker'
 
     return {
-      attacker: {
-        ...this.attacker,
-        activeCreature: this.attacker.activeCreature,
-      },
-      defender: {
-        ...this.defender,
-        activeCreature: this.defender.activeCreature,
-      },
+      attacker: this.attacker.activeCreature.calculation,
+      defender: this.defender.activeCreature.calculation,
     }
   }
 
-  public cast(
-    attacker: DamageCalculatorBattleSide,
-    defender: DamageCalculatorBattleSide,
-    target: CreatureInstance,
-    spell: Spell
-  ) {
-    if (!attacker || !target) throw new Error('initiator and target required')
+  public calculateCreature(target: CreatureInstance) {
+    const attacker = this[this.activeSide]
+    const defender = this[getOppositeBattleSide(this.activeSide)]
+    const targetEffects = target.effects
+    target.reset()
+    target.effects = targetEffects
+
+    for (const effect in target.effects) {
+      target = attacker.hero.cast(target.effects[effect], { initiator: attacker, target, defender })
+    }
+
+    if (this.terrain.key === target.nativeTerrain) {
+      target.attack++
+      target.defense++
+    }
+
+    const hero = attacker.hero
+    if (hero.specialtyUnit?.includes(target.key)) {
+      target.attack += Math.ceil(Math.floor(hero.level / target.level) * (target.attack * 0.05))
+      target.defense += Math.ceil(Math.floor(hero.level / target.level) * (target.defense * 0.05))
+      target.speed++
+    }
+
+    target.attack += hero.stats.attack
+    target.defense += hero.stats.defense
+
+    for (const skill in hero.skills) {
+      const camelCaseSkillKey = skill[0].toLocaleLowerCase() + skill.slice(1, skill.length)
+      if (!Skills[camelCaseSkillKey]) continue
+      target = Skills[camelCaseSkillKey]({ hero, target })
+    }
+
+    if (target.key === 'Ballista') {
+      target.minDamage = (hero.stats.attack + 1) * 2
+      target.maxDamage = (hero.stats.attack + 1) * 3
+    } else if (target.key === 'Cannon') {
+      target.minDamage = (hero.stats.attack + 1) * 4
+      target.maxDamage = (hero.stats.attack + 1) * 7
+    }
+
+    if (target.hates?.length && target.hates?.includes(defender.activeCreature.key)) {
+      target.calculation.damageBonus += 0.5
+    }
+
+    if (target.special || defender.activeCreature.special) {
+      if (defender.activeCreature.special?.ignoreEnemyDefensePercents) {
+        target.defense = target.defense * (1 - 0.01 * defender.activeCreature.special.ignoreEnemyDefensePercents) - 1
+      } else if (defender.activeCreature.special?.ignoreEnemyAttackPercents) {
+        target.attack = target.attack * (1 - 0.01 * defender.activeCreature.special.ignoreEnemyAttackPercents)
+      }
+    }
+
+    const index = attacker.creatures.findIndex((creature: CreatureInstance) => creature === target)
+    this[this.activeSide].creatures.splice(index, 1, target)
+  }
+
+  public cast(target: CreatureInstance, spell: Spell): number {
+    const attacker = this[this.activeSide]
+    const defender = this[getOppositeBattleSide(this.activeSide)]
+
+    target.reset({ effects: target.effects })
 
     let damage = 0
-    if (this.hasSpellImmunity(target, spell)) return damage
+    if (target.hasSpellImmunity(spell)) {
+      return damage
+    }
 
-    let attackerCopy = JSON.parse(JSON.stringify(attacker))
-    let defenderCopy = JSON.parse(JSON.stringify(defender))
-    attackerCopy = this.getStatsReducing(attackerCopy, defenderCopy)
-    defenderCopy = this.getStatsReducing(defenderCopy, attackerCopy)
+    if (defender.hero?.skills.interference && attacker.hero) {
+      attacker.hero.stats.power -= (attacker.hero.stats.power / 100) * defender.hero.skills.interference * 10
+      if (defender.hero.key === 'Giselle') {
+        attacker.hero.stats.power -= (attacker.hero.stats.power / 100) * defender.hero.level * 5
+      }
+      attacker.hero.stats.power = Math.ceil(attacker.hero.stats.power)
+    }
 
-    damage = spellsFunctionsMap[spell.key](attackerCopy)
+    damage = attacker.hero.cast(spell)
 
-    damage = this.calculateSpellBonuses(attackerCopy, target, spell, damage)
-    damage = this.calculateSpellSpecialtyBonus(attackerCopy, target, spell, damage)
+    if (attacker.hero.skills.sorcery) {
+      const MAX_SORCERY_BONUS = 0.96
+      let sorceryBonus = attacker.hero.skills.sorcery * 0.05
 
-    if (target.special?.vulnerablesToSpells && target.special.vulnerablesToSpells.includes(spell.key)) {
+      if (attacker.hero.specialtySkill === 'Sorcery') {
+        sorceryBonus += attacker.hero.level * 0.05
+      }
+
+      if (sorceryBonus > MAX_SORCERY_BONUS) {
+        sorceryBonus = MAX_SORCERY_BONUS
+      }
+
+      damage += damage * sorceryBonus
+    }
+
+    if (attacker.hero.specialtySpell) {
+      if (spell.key === 'MagicArrow' && attacker.hero.specialtySpell === 'MagicArrow') {
+        damage += damage / 2
+      } else if (spell.key === 'FireWall' && attacker.hero.specialtySpell === 'FireWall') {
+        damage += damage
+      } else if (spell.key === attacker.hero.specialtySpell) {
+        const bonus = Math.floor(attacker.hero.level / target.level) * 0.03
+        if (bonus) {
+          damage += Math.ceil(damage * bonus)
+        }
+      }
+    }
+
+    if (target.special?.vulnerablesToSpells?.includes(spell.key)) {
       damage += damage
     }
 
-    damage = this.calculateSpellReducing(attackerCopy, defenderCopy, target, spell, damage)
-
-    // change Math.round logic (0.5 -> 0 instead 0.5 -> 1)
-    return -Math.round(-damage)
-  }
-
-  private calculateWithHeroModificators(hero: HeroInstance, target: CreatureInstance) {
-    if (hero.specialtySpell) target = Modificators.heroSpecialtySpell(hero, target)
-    target = Modificators.hero(hero, target)
-    target = Modificators.heroSkills(hero, target)
-    if (target.key === 'Ballista' || target.key === 'Cannon') {
-      target = Modificators.artillery(hero, target)
+    if (target.special?.spellDamageResistance) {
+      damage -= (damage * target.special.spellDamageResistance) / 100
     }
-
-    return target
-  }
-
-  private getStatsReducing(attacker: DamageCalculatorBattleSide, defender: DamageCalculatorBattleSide) {
-    if (!attacker.hero || !defender.hero) return attacker
-
-    const { interference } = attacker.hero.skills
-    if (interference) {
-      defender.hero.stats.power -= (defender.hero.stats.power / 100) * interference * 10
-      if (attacker.hero.key === 'Giselle') {
-        defender.hero.stats.power -= (defender.hero.stats.power / 100) * attacker.hero.level * 5
-      }
-      defender.hero.stats.power = Math.ceil(defender.hero.stats.power)
-    }
-
-    return attacker
-  }
-
-  private calculateWithPositiveEffects(attacker: DamageCalculatorBattleSide, target: CreatureInstance) {
-    if (!Object.keys(target.effects).length) return target
-    // else if (target.effects.find((effect) => effect.id === Spells.AntiMagic)) return target
-    else if (target.effects['AntiMagic']) return target
-
-    // Check for creature spell immunity
-    for (const effect in target.effects) {
-      if (target.special?.immunity?.find((spell) => spell === effect)) return target
-    }
-
-    const positiveEffects = {
-      Bless: Effects.bless,
-      Bloodlust: Effects.bloodlust,
-      Frenzy: Effects.frenzy,
-      Prayer: Effects.prayer,
-      Precision: Effects.precision,
-      StoneSkin: Effects.stoneSkin,
-      Shield: Effects.shield,
-    }
-
-    for (const key in positiveEffects) {
-      if (target.effects[key]) {
-        const camelCaseKey = key[0].toLocaleLowerCase() + key.slice(1, key.length)
-        target = Effects[camelCaseKey](attacker, target)
-      }
-    }
-
-    if (target.effects.Slayer) {
-      target = Effects.slayer(attacker, this.defender, target)
-    }
-
-    if (target.effects.AirShield) {
-      target = Effects.airShield(attacker, this.defender, target)
-    }
-
-    return target
-  }
-
-  private calculateWithNegativeEffects(attacker: DamageCalculatorBattleSide, target: CreatureInstance) {
-    const negativeEffects = {
-      Curse: Effects.curse,
-      Weakness: Effects.weakness,
-      DisruptingRay: Effects.disruptingRay,
-    }
-
-    for (const key in negativeEffects) {
-      if (target.effects[key]) {
-        target = negativeEffects[key](attacker, target)
-      }
-    }
-
-    return target
-  }
-
-  private calculateDamageValues(attacker: CreatureInstance, defender: CreatureInstance) {
-    // If ATTACKER attack > DEFENDER defense:
-    // damageBonus = ATTACKER creatures count * ATTACKER creature damage * (1 + 0.05 * (ATTACKER attack - DEFENDER defense))
-
-    // If DEFENDER attack > ATTACKER defense:
-    // damageBonus = DEFENDER creatures count * DEFENDER creature damage * (1 + 0.05 * (DEFENDER attack - ATTACKER defense))
-
-    // If DEFENDER attack < ATTACKER defense:
-    // damageBonus = DEFENDER creatures count * DEFENDER creature damage * (1 - 0.025 * (ATTACKER defense - DEFENDER attack))
-
-    let damageBonus = 0,
-      defenseBonus = 0,
-      defenseMagicBonus = 0,
-      rangePenalty = attacker.rangePenalty ? 0.5 : 0
-
-    if (attacker.attack > defender.defense) {
-      // Max attack cap = 3
-      damageBonus = 0.05 * (attacker.attack - defender.defense)
-      if (damageBonus > 3) damageBonus = 3
-      damageBonus = 1 + damageBonus + attacker.calculation.damageBonus
-    } else if (attacker.attack === defender.defense) {
-      damageBonus = 1 + attacker.calculation.damageBonus
-    } else if (attacker.attack < defender.defense) {
-      damageBonus = (defender.defense - attacker.attack) * 0.025
-      if (damageBonus > 0.7) damageBonus = 0.7
-      damageBonus = 1 - damageBonus + attacker.calculation.damageBonus
-    }
-    defenseBonus = 1 - defender.calculation.defenseBonus
-    defenseMagicBonus = 1 - defender.calculation.defenseMagicBonus
-    rangePenalty = 1 - rangePenalty
-    const totalBonus = damageBonus * defenseBonus * defenseMagicBonus * rangePenalty
-
-    const minDamage = Math.floor(attacker.minDamage * totalBonus * attacker.count)
-    const maxDamage = Math.floor(attacker.maxDamage * totalBonus * attacker.count)
-    const averageDamage = Math.floor((minDamage + maxDamage) / 2)
-
-    return {
-      minDamage,
-      maxDamage,
-      averageDamage,
-      minKills: Math.floor(minDamage / defender.health),
-      maxKills: Math.floor(maxDamage / defender.health),
-      averageKills: Math.floor(averageDamage / defender.health),
-    }
-  }
-
-  /**
-   * Check creature for immunity to spell
-   * @param target Creature who accept spell
-   * @param spell Spell that cast to target
-   * @return {Boolean} true if creature has immunity to spell
-   */
-  private hasSpellImmunity(target: CreatureInstance, spell: Spell): boolean {
-    // If creature with Antimagic effect spell
-    if (target.effects.AntiMagic) return true
-
-    // Creatures with full magic immunity
-    if (target.special?.immunityToSpellLevels?.includes(spell.level)) return true
-
-    // Creature with immunity to spells list
-    if (target.special?.immunity?.includes(spell.key)) return true
-
-    if (target.special?.immunityToSpellElement?.includes(spell.element.id)) return true
-
-    const onlyUndeadSpells: Array<SpellKey> = ['AnimateDead', 'DestroyUndead']
-    const onlyLivingSpells: Array<SpellKey> = ['DeathRipple', 'Resurrection', 'Bless']
-
-    // If spell in list spells that not affected to undead creatures
-    if (target.special?.undead && onlyLivingSpells.includes(spell.key)) return true
-
-    // If spell in list spells that not affected to living creatures
-    if (!target.special?.undead && onlyUndeadSpells.includes(spell.key)) return true
-
-    if (spell.key === 'Resurrection' && target.special?.nonLiving) return true
-
-    const warMachines: Array<CreatureKey> = ['Ballista', 'Cannon']
-    const warMachinesImmunities: Array<SpellKey> = ['Implosion', 'Resurrection', 'DeathRipple', 'DestroyUndead']
-    if (warMachinesImmunities.includes(spell.key) && warMachines.includes(target.key)) return true
-
-    return false
-  }
-
-  private calculateSpellReducing(
-    _attacker: DamageCalculatorBattleSide,
-    defender: DamageCalculatorBattleSide,
-    target: CreatureInstance,
-    spell: Spell,
-    damage: number
-  ) {
-    if (target.special?.spellDamageResistance) damage -= (damage * target.special.spellDamageResistance) / 100
 
     if (spell.element.id !== 'neutral') {
       const protectionsSpellsKeys: Array<SpellKey> = [
@@ -343,56 +191,43 @@ export class Battle {
       }
     }
 
-    return damage
+    // change Math.round logic (0.5 -> 0 instead 0.5 -> 1)
+    return -Math.round(-damage)
   }
 
-  private calculateSpellSpecialtyBonus(
-    initiator: DamageCalculatorBattleSide,
-    target: CreatureInstance,
-    spell: Spell,
-    damage: number
-  ) {
-    if (!initiator.hero) return damage
+  private calculateDamageValues() {
+    const attacker = this[this.activeSide].activeCreature
+    const defender = this[getOppositeBattleSide(this.activeSide)].activeCreature
 
-    const { specialtySpell } = initiator.hero
+    let damageBonus = 0,
+      defenseBonus = 0,
+      defenseMagicBonus = 0,
+      rangePenalty = attacker.rangePenalty ? 0.5 : 0
 
-    if (spell.key === 'MagicArrow' && specialtySpell === 'MagicArrow') {
-      damage += damage / 2
-    } else if (spell.key === 'FireWall' && specialtySpell === 'FireWall') {
-      damage += damage
-    } else if (spell.key === specialtySpell) {
-      const bonus = Math.floor(initiator.hero.level / target.level) * 0.03
-      if (bonus) {
-        damage += Math.ceil(damage * bonus)
-      }
+    if (attacker.attack > defender.defense) {
+      const MAX_DAMAGE_BONUS = 3
+      damageBonus = 0.05 * (attacker.attack - defender.defense)
+      if (damageBonus > MAX_DAMAGE_BONUS) damageBonus = MAX_DAMAGE_BONUS
+      damageBonus = 1 + damageBonus + attacker.calculation.damageBonus
+    } else if (attacker.attack === defender.defense) {
+      damageBonus = 1 + attacker.calculation.damageBonus
+    } else if (attacker.attack < defender.defense) {
+      const MAX_DAMAGE_BONUS = 0.7
+      damageBonus = (defender.defense - attacker.attack) * 0.025
+      if (damageBonus > MAX_DAMAGE_BONUS) damageBonus = MAX_DAMAGE_BONUS
+      damageBonus = 1 - damageBonus + attacker.calculation.damageBonus
     }
+    defenseBonus = 1 - defender.calculation.defenseBonus
+    defenseMagicBonus = 1 - defender.calculation.defenseMagicBonus
+    rangePenalty = 1 - rangePenalty
+    const totalBonus = damageBonus * defenseBonus * defenseMagicBonus * rangePenalty
 
-    return damage
-  }
+    const minDamage = Math.floor(attacker.minDamage * totalBonus * attacker.count)
+    const maxDamage = Math.floor(attacker.maxDamage * totalBonus * attacker.count)
 
-  private calculateSpellBonuses(
-    initiator: DamageCalculatorBattleSide,
-    _target: CreatureInstance,
-    _spell: Spell,
-    damage: number
-  ) {
-    if (!initiator.hero) return damage
-
-    if (initiator.hero.skills.sorcery) {
-      let sorceryBonus = initiator.hero.skills.sorcery * 0.05
-
-      if (initiator.hero.specialtySkill === 'Sorcery') {
-        sorceryBonus += initiator.hero.level * 0.05
-      }
-
-      // Max sorcery bonus
-      if (sorceryBonus > 0.96) {
-        sorceryBonus = 0.96
-      }
-
-      damage += damage * sorceryBonus
+    return {
+      minDamage,
+      maxDamage,
     }
-
-    return damage
   }
 }
