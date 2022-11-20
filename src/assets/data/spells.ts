@@ -9,6 +9,9 @@ const spells: Array<Spell> = [
       id: 'neutral',
       name: 'Neutral',
     },
+    grades: [10, 20, 30],
+    powerBonus: 10,
+    type: 'damage',
   },
   {
     key: 'Visions',
@@ -18,6 +21,7 @@ const spells: Array<Spell> = [
       id: 'neutral',
       name: 'Neutral',
     },
+    type: 'nonbattle',
   },
   {
     key: 'Bloodlust',
@@ -27,6 +31,7 @@ const spells: Array<Spell> = [
       id: 'fire',
       name: 'Fire',
     },
+    type: 'buff',
   },
   {
     key: 'Curse',
@@ -36,6 +41,7 @@ const spells: Array<Spell> = [
       id: 'fire',
       name: 'Fire',
     },
+    type: 'debuff',
   },
   {
     key: 'ProtectionFromFire',
@@ -45,6 +51,7 @@ const spells: Array<Spell> = [
       id: 'fire',
       name: 'Fire',
     },
+    type: 'buff',
   },
   {
     key: 'Blind',
@@ -55,6 +62,7 @@ const spells: Array<Spell> = [
       name: 'Fire',
     },
     group: ['mind'],
+    type: 'debuff',
   },
   {
     key: 'FireWall',
@@ -64,6 +72,9 @@ const spells: Array<Spell> = [
       id: 'fire',
       name: 'Fire',
     },
+    grades: [10, 20, 50],
+    powerBonus: 10,
+    type: 'damage',
   },
   {
     key: 'Fireball',
@@ -73,6 +84,9 @@ const spells: Array<Spell> = [
       id: 'fire',
       name: 'Fire',
     },
+    grades: [15, 30, 60],
+    powerBonus: 10,
+    type: 'damage',
   },
   {
     key: 'LandMine',
@@ -82,6 +96,9 @@ const spells: Array<Spell> = [
       id: 'fire',
       name: 'Fire',
     },
+    grades: [25, 50, 100],
+    powerBonus: 10,
+    type: 'damage',
   },
   {
     key: 'Misfortune',
@@ -91,6 +108,7 @@ const spells: Array<Spell> = [
       id: 'fire',
       name: 'Fire',
     },
+    type: 'debuff',
   },
   {
     key: 'Armageddon',
@@ -100,6 +118,9 @@ const spells: Array<Spell> = [
       id: 'fire',
       name: 'Fire',
     },
+    grades: [30, 60, 120],
+    powerBonus: 40,
+    type: 'massdamage',
   },
   {
     key: 'Berserk',
@@ -110,6 +131,7 @@ const spells: Array<Spell> = [
       name: 'Fire',
     },
     group: ['mind'],
+    type: 'debuff',
   },
   {
     key: 'FireShield',
@@ -119,6 +141,7 @@ const spells: Array<Spell> = [
       id: 'fire',
       name: 'Fire',
     },
+    type: 'buff',
   },
   {
     key: 'Frenzy',
@@ -129,6 +152,7 @@ const spells: Array<Spell> = [
       name: 'Fire',
     },
     group: ['mind'],
+    type: 'buff',
   },
   {
     key: 'Inferno',
@@ -138,6 +162,9 @@ const spells: Array<Spell> = [
       id: 'fire',
       name: 'Fire',
     },
+    grades: [20, 40, 80],
+    powerBonus: 10,
+    type: 'multidamage',
   },
   {
     key: 'Slayer',
@@ -147,6 +174,7 @@ const spells: Array<Spell> = [
       id: 'fire',
       name: 'Fire',
     },
+    type: 'buff',
   },
   {
     key: 'Sacrifice',
@@ -156,6 +184,7 @@ const spells: Array<Spell> = [
       id: 'fire',
       name: 'Fire',
     },
+    type: 'action',
   },
   {
     key: 'SummonFireElemental',
@@ -165,6 +194,7 @@ const spells: Array<Spell> = [
       id: 'fire',
       name: 'Fire',
     },
+    type: 'action',
   },
   {
     key: 'Bless',
@@ -174,6 +204,7 @@ const spells: Array<Spell> = [
       id: 'water',
       name: 'Water',
     },
+    type: 'buff',
   },
   {
     key: 'Cure',
@@ -183,6 +214,9 @@ const spells: Array<Spell> = [
       id: 'water',
       name: 'Water',
     },
+    grades: [-10, -20, -30],
+    powerBonus: -5,
+    type: 'heal',
   },
   {
     key: 'Dispel',
@@ -192,6 +226,7 @@ const spells: Array<Spell> = [
       id: 'water',
       name: 'Water',
     },
+    type: 'action',
   },
   {
     key: 'ProtectionFromWater',
@@ -201,6 +236,7 @@ const spells: Array<Spell> = [
       id: 'water',
       name: 'Water',
     },
+    type: 'buff',
   },
   {
     key: 'SummonBoat',
@@ -210,6 +246,7 @@ const spells: Array<Spell> = [
       id: 'water',
       name: 'Water',
     },
+    type: 'nonbattle',
   },
   {
     key: 'IceBolt',
@@ -219,6 +256,9 @@ const spells: Array<Spell> = [
       id: 'water',
       name: 'Water',
     },
+    grades: [10, 20, 50],
+    powerBonus: 20,
+    type: 'damage',
   },
   {
     key: 'RemoveObstacle',
@@ -228,6 +268,7 @@ const spells: Array<Spell> = [
       id: 'water',
       name: 'Water',
     },
+    type: 'action',
   },
   {
     key: 'ScuttleBoat',
@@ -237,6 +278,7 @@ const spells: Array<Spell> = [
       id: 'water',
       name: 'Water',
     },
+    type: 'nonbattle',
   },
   {
     key: 'Weakness',
@@ -246,6 +288,7 @@ const spells: Array<Spell> = [
       id: 'water',
       name: 'Water',
     },
+    type: 'debuff',
   },
   {
     key: 'Forgetfulness',
@@ -256,6 +299,7 @@ const spells: Array<Spell> = [
       name: 'Water',
     },
     group: ['mind'],
+    type: 'debuff',
   },
   {
     key: 'FrostRing',
@@ -265,6 +309,9 @@ const spells: Array<Spell> = [
       id: 'water',
       name: 'Water',
     },
+    grades: [15, 30, 60],
+    powerBonus: 10,
+    type: 'damage',
   },
   {
     key: 'Mirth',
@@ -275,6 +322,7 @@ const spells: Array<Spell> = [
       name: 'Water',
     },
     group: ['mind'],
+    type: 'buff',
   },
   {
     key: 'Teleport',
@@ -284,6 +332,7 @@ const spells: Array<Spell> = [
       id: 'water',
       name: 'Water',
     },
+    type: 'action',
   },
   {
     key: 'Clone',
@@ -293,6 +342,7 @@ const spells: Array<Spell> = [
       id: 'water',
       name: 'Water',
     },
+    type: 'action',
   },
   {
     key: 'Prayer',
@@ -302,6 +352,7 @@ const spells: Array<Spell> = [
       id: 'water',
       name: 'Water',
     },
+    type: 'buff',
   },
   {
     key: 'WaterWalk',
@@ -311,6 +362,7 @@ const spells: Array<Spell> = [
       id: 'water',
       name: 'Water',
     },
+    type: 'nonbattle',
   },
   {
     key: 'SummonWaterElemental',
@@ -320,6 +372,7 @@ const spells: Array<Spell> = [
       id: 'water',
       name: 'Water',
     },
+    type: 'action',
   },
   {
     key: 'Shield',
@@ -329,6 +382,7 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    type: 'buff',
   },
   {
     key: 'Slow',
@@ -338,6 +392,7 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    type: 'debuff',
   },
   {
     key: 'StoneSkin',
@@ -347,6 +402,7 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    type: 'buff',
   },
   {
     key: 'ViewEarth',
@@ -356,6 +412,7 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    type: 'nonbattle',
   },
   {
     key: 'DeathRipple',
@@ -365,6 +422,9 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    grades: [10, 20, 30],
+    powerBonus: 5,
+    type: 'massdamage',
   },
   {
     key: 'Quicksand',
@@ -374,6 +434,7 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    type: 'action',
   },
   {
     key: 'AnimateDead',
@@ -383,6 +444,9 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    grades: [-30, -60, -160],
+    powerBonus: -50,
+    type: 'heal',
   },
   {
     key: 'AntiMagic',
@@ -392,6 +456,7 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    type: 'buff',
   },
   {
     key: 'Earthquake',
@@ -401,6 +466,7 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    type: 'action',
   },
   {
     key: 'ForceField',
@@ -410,6 +476,7 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    type: 'action',
   },
   {
     key: 'ProtectionFromEarth',
@@ -419,6 +486,7 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    type: 'buff',
   },
   {
     key: 'MeteorShower',
@@ -428,6 +496,9 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    grades: [25, 50, 100],
+    powerBonus: 25,
+    type: 'multidamage',
   },
   {
     key: 'Resurrection',
@@ -437,6 +508,9 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    grades: [-40, -80, -160],
+    powerBonus: -50,
+    type: 'heal',
   },
   {
     key: 'Sorrow',
@@ -447,6 +521,7 @@ const spells: Array<Spell> = [
       name: 'Earth',
     },
     group: ['mind'],
+    type: 'debuff',
   },
   {
     key: 'TownPortal',
@@ -456,6 +531,7 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    type: 'nonbattle',
   },
   {
     key: 'Implosion',
@@ -465,6 +541,9 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    grades: [100, 200, 300],
+    powerBonus: 75,
+    type: 'damage',
   },
   {
     key: 'SummonEarthElemental',
@@ -474,6 +553,7 @@ const spells: Array<Spell> = [
       id: 'earth',
       name: 'Earth',
     },
+    type: 'action',
   },
   {
     key: 'Haste',
@@ -483,6 +563,7 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    type: 'buff',
   },
   {
     key: 'ViewAir',
@@ -492,6 +573,7 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    type: 'nonbattle',
   },
   {
     key: 'Disguise',
@@ -501,6 +583,7 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    type: 'nonbattle',
   },
   {
     key: 'DisruptingRay',
@@ -510,6 +593,7 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    type: 'debuff',
   },
   {
     key: 'Fortune',
@@ -519,6 +603,7 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    type: 'buff',
   },
   {
     key: 'LightningBolt',
@@ -528,6 +613,9 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    grades: [10, 20, 50],
+    powerBonus: 25,
+    type: 'multidamage',
   },
   {
     key: 'Precision',
@@ -537,6 +625,7 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    type: 'buff',
   },
   {
     key: 'ProtectionFromAir',
@@ -546,6 +635,7 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    type: 'buff',
   },
   {
     key: 'AirShield',
@@ -555,6 +645,7 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    type: 'buff',
   },
   {
     key: 'DestroyUndead',
@@ -564,6 +655,9 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    grades: [10, 20, 50],
+    powerBonus: 10,
+    type: 'massdamage',
   },
   {
     key: 'Hypnotize',
@@ -574,6 +668,9 @@ const spells: Array<Spell> = [
       name: 'Air',
     },
     group: ['mind'],
+    grades: [25, 50, 100],
+    powerBonus: 25,
+    type: 'debuff',
   },
   {
     key: 'ChainLightning',
@@ -583,6 +680,9 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    grades: [25, 50, 100],
+    powerBonus: 40,
+    type: 'multidamage',
   },
   {
     key: 'Counterstrike',
@@ -592,6 +692,7 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    type: 'buff',
   },
   {
     key: 'DimensionDoor',
@@ -601,6 +702,7 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    type: 'nonbattle',
   },
   {
     key: 'Fly',
@@ -610,6 +712,7 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    type: 'nonbattle',
   },
   {
     key: 'MagicMirror',
@@ -619,6 +722,7 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    type: 'buff',
   },
   {
     key: 'SummonAirElemental',
@@ -628,6 +732,7 @@ const spells: Array<Spell> = [
       id: 'air',
       name: 'Air',
     },
+    type: 'action',
   },
   {
     key: 'TitansLightningBolt',
@@ -637,6 +742,8 @@ const spells: Array<Spell> = [
       id: 'neutral',
       name: 'neutral',
     },
+    grades: [600, 600, 600],
+    type: 'damage',
   },
 ]
 
