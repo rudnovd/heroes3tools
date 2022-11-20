@@ -25,8 +25,15 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:@intlify/vue-i18n/recommended',
     'plugin:prettier/recommended',
   ],
+  settings: {
+    'vue-i18n': {
+      localeDir: './src/locales/*.json',
+      messageSyntaxVersion: '^9.2.2',
+    },
+  },
   rules: {
     'vue/block-tag-newline': [
       'error',
@@ -53,6 +60,7 @@ module.exports = {
       },
     ],
     'vue/arrow-spacing': ['error'],
+    '@intlify/vue-i18n/no-raw-text': 'off',
   },
   overrides: [
     {
