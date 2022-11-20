@@ -2,8 +2,11 @@ import artifacts from '@/assets/data/artifacts'
 import classes from '@/assets/data/classes'
 import creatures from '@/assets/data/creatures'
 import heroes from '@/assets/data/heroes'
+import levels from '@/assets/data/levels'
+import skills from '@/assets/data/skills'
 import spells from '@/assets/data/spells'
-import type { Battle } from '@/modules/battle'
+import terrains from '@/assets/data/terrains'
+import towns from '@/assets/data/towns'
 import type {
   Artifact,
   ArtifactKey,
@@ -24,41 +27,6 @@ import type {
   Town,
   TownKey,
 } from '@/types'
-
-export function getBattleCreatureCalculationResults(battle: Battle) {
-  battle.calculate()
-  if (!battle.attacker.activeCreature || !battle.defender.activeCreature) {
-    return {
-      attacker: {
-        damageBonus: -1,
-        defenseBonus: -1,
-        defenseMagicBonus: -1,
-        minDamage: -1,
-        maxDamage: -1,
-        averageDamage: -1,
-        minKills: -1,
-        maxKills: -1,
-        averageKills: -1,
-      },
-      defender: {
-        damageBonus: -1,
-        defenseBonus: -1,
-        defenseMagicBonus: -1,
-        minDamage: -1,
-        maxDamage: -1,
-        averageDamage: -1,
-        minKills: -1,
-        maxKills: -1,
-        averageKills: -1,
-      },
-    }
-  } else {
-    return {
-      attacker: battle.attacker.activeCreature.calculation,
-      defender: battle.defender.activeCreature.calculation,
-    }
-  }
-}
 
 export const data = {
   artifacts: artifacts.reduce((previous, artifact) => {
@@ -85,13 +53,13 @@ export const data = {
       [hero.key]: hero,
     }
   }, {}) as Record<HeroKey, Hero>,
-  levels: heroes.reduce((previous, level) => {
+  levels: levels.reduce((previous, level) => {
     return {
       ...previous,
       [level.key]: level,
     }
   }, {}) as Record<SkillLevelKey, Level>,
-  skills: spells.reduce((previous, skill) => {
+  skills: skills.reduce((previous, skill) => {
     return {
       ...previous,
       [skill.key]: skill,
@@ -103,13 +71,13 @@ export const data = {
       [spell.key]: spell,
     }
   }, {}) as Record<SpellKey, Spell>,
-  terrains: spells.reduce((previous, terrain) => {
+  terrains: terrains.reduce((previous, terrain) => {
     return {
       ...previous,
       [terrain.key]: terrain,
     }
   }, {}) as Record<TerrainKey, Terrain>,
-  towns: spells.reduce((previous, town) => {
+  towns: towns.reduce((previous, town) => {
     return {
       ...previous,
       [town.key]: town,

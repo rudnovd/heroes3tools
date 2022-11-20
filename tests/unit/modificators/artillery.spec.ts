@@ -1,103 +1,133 @@
 import { Battle } from '@/modules/battle'
 import { CreatureInstance } from '@/modules/creature'
 import { HeroInstance } from '@/modules/hero'
-import { Modificators } from '@/modules/modificators'
 import { SkillLevels } from '@/types'
-import { beforeEach, describe, expect, test } from 'vitest'
-import { data, getBattleCreatureCalculationResults } from '../helpers'
+import { describe, expect, test } from 'vitest'
+import { data } from '../helpers'
 
 describe('Artillery modificator', () => {
-  let battle: Battle
-
-  beforeEach(() => {
-    battle = new Battle()
-  })
-
   describe('Ballista', () => {
     test('base test with hero', () => {
-      const { minDamage, maxDamage } = Modificators.artillery(
-        new HeroInstance(data.heroes.Rion),
-        new CreatureInstance(data.creatures.Ballista)
-      )
+      const { attacker } = new Battle({
+        attacker: {
+          activeCreature: new CreatureInstance(data.creatures.Ballista),
+          hero: new HeroInstance(data.heroes.Rion),
+        },
+        defender: {
+          activeCreature: new CreatureInstance(data.creatures.Pikeman),
+        },
+      })
 
-      expect({ minDamage, maxDamage }).toEqual({ minDamage: 4, maxDamage: 6 })
+      expect(attacker.activeCreature?.calculation).toContain({ minDamage: 5, maxDamage: 7 })
     })
 
     test('with hero with high attack', () => {
-      const hero = new HeroInstance(data.heroes.Tyris)
-      hero.stats.attack = 15
+      const battle = new Battle({
+        attacker: {
+          hero: new HeroInstance(data.heroes.Tyris, { stats: { attack: 15 } }),
+          activeCreature: new CreatureInstance(data.creatures.Ballista),
+        },
+        defender: {
+          activeCreature: new CreatureInstance(data.creatures.Pikeman),
+        },
+      })
+      const { attacker } = battle.calculate()
 
-      const { minDamage, maxDamage } = Modificators.artillery(hero, new CreatureInstance(data.creatures.Ballista))
-
-      expect({ minDamage, maxDamage }).toEqual({ minDamage: 32, maxDamage: 48 })
+      expect(attacker).toContain({ minDamage: 64, maxDamage: 96 })
     })
 
     test('with hero with high attack vs Naga Queen', () => {
-      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Ballista)
-      battle.attacker.hero = new HeroInstance(data.heroes.Tyris)
-      battle.attacker.hero.stats.attack = 15
-
-      battle.defender.activeCreature = new CreatureInstance(data.creatures.NagaQueen)
-
-      const { attacker } = getBattleCreatureCalculationResults(battle)
+      const battle = new Battle({
+        attacker: {
+          activeCreature: new CreatureInstance(data.creatures.Ballista),
+          hero: new HeroInstance(data.heroes.Tyris, { stats: { attack: 15 } }),
+        },
+        defender: {
+          activeCreature: new CreatureInstance(data.creatures.NagaQueen),
+        },
+      })
+      const { attacker } = battle.calculate()
 
       expect(attacker).toContain({ minDamage: 51, maxDamage: 76 })
     })
 
     test('with hero with advanced artillery', () => {
-      const hero = new HeroInstance(data.heroes.Rion)
-      hero.skills.artillery = SkillLevels.Advanced
+      const battle = new Battle({
+        attacker: {
+          activeCreature: new CreatureInstance(data.creatures.Ballista),
+          hero: new HeroInstance(data.heroes.Rion, { skills: { artillery: SkillLevels.Advanced } }),
+        },
+        defender: {
+          activeCreature: new CreatureInstance(data.creatures.Pikeman),
+        },
+      })
+      const { attacker } = battle.calculate()
 
-      const ballista = new CreatureInstance(data.creatures.Ballista)
-
-      const modifiedBallista = Modificators.heroSkills(hero, ballista)
-      const { minDamage, maxDamage, hits } = Modificators.artillery(hero, modifiedBallista)
-
-      expect({ minDamage, maxDamage, hits }).toEqual({ minDamage: 4, maxDamage: 6, hits: 2 })
+      expect(attacker).toContain({ minDamage: 5, maxDamage: 7 })
+      expect(battle.attacker.activeCreature?.hits).toEqual(2)
     })
   })
 
   describe('Cannon', () => {
     test('base test with hero', () => {
-      const { minDamage, maxDamage } = Modificators.artillery(
-        new HeroInstance(data.heroes.Rion),
-        new CreatureInstance(data.creatures.Cannon)
-      )
+      const battle = new Battle({
+        attacker: {
+          hero: new HeroInstance(data.heroes.Rion),
+          activeCreature: new CreatureInstance(data.creatures.Cannon),
+        },
+        defender: {
+          activeCreature: new CreatureInstance(data.creatures.Pikeman),
+        },
+      })
+      const { attacker } = battle.calculate()
 
-      expect({ minDamage, maxDamage }).toContain({ minDamage: 8, maxDamage: 14 })
+      expect(attacker).toContain({ minDamage: 14, maxDamage: 25 })
     })
 
     test('with hero with high attack', () => {
-      const hero = new HeroInstance(data.heroes.Tyris)
-      hero.stats.attack = 15
+      const battle = new Battle({
+        attacker: {
+          hero: new HeroInstance(data.heroes.Tyris, { stats: { attack: 15 } }),
+          activeCreature: new CreatureInstance(data.creatures.Cannon),
+        },
+        defender: {
+          activeCreature: new CreatureInstance(data.creatures.Pikeman),
+        },
+      })
+      const { attacker } = battle.calculate()
 
-      const { minDamage, maxDamage } = Modificators.artillery(hero, new CreatureInstance(data.creatures.Cannon))
-
-      expect({ minDamage, maxDamage }).toEqual({ minDamage: 64, maxDamage: 112 })
+      expect(attacker).toContain({ minDamage: 160, maxDamage: 280 })
     })
 
     test('with hero with high attack vs Red Dragon', () => {
-      battle.attacker.activeCreature = new CreatureInstance(data.creatures.Cannon)
-      battle.attacker.hero = new HeroInstance(data.heroes.Tyris)
-      battle.attacker.hero.stats.attack = 15
-
-      battle.defender.activeCreature = new CreatureInstance(data.creatures.RedDragon)
-
-      const { attacker } = getBattleCreatureCalculationResults(battle)
+      const battle = new Battle({
+        attacker: {
+          hero: new HeroInstance(data.heroes.Tyris, { stats: { attack: 15 } }),
+          activeCreature: new CreatureInstance(data.creatures.Cannon),
+        },
+        defender: {
+          activeCreature: new CreatureInstance(data.creatures.RedDragon),
+        },
+      })
+      const { attacker } = battle.calculate()
 
       expect(attacker).toContain({ minDamage: 115, maxDamage: 201 })
     })
 
     test('with hero with advanced artillery', () => {
-      const hero = new HeroInstance(data.heroes.Rion)
-      hero.skills.artillery = SkillLevels.Advanced
+      const battle = new Battle({
+        attacker: {
+          activeCreature: new CreatureInstance(data.creatures.Cannon),
+          hero: new HeroInstance(data.heroes.Rion, { skills: { artillery: SkillLevels.Advanced } }),
+        },
+        defender: {
+          activeCreature: new CreatureInstance(data.creatures.Pikeman),
+        },
+      })
+      const { attacker } = battle.calculate()
 
-      const cannon = new CreatureInstance(data.creatures.Cannon)
-
-      const modifiedCannon = Modificators.heroSkills(hero, cannon)
-      const { minDamage, maxDamage, hits } = Modificators.artillery(hero, modifiedCannon)
-
-      expect({ minDamage, maxDamage, hits }).toEqual({ minDamage: 8, maxDamage: 14, hits: 2 })
+      expect(attacker).toContain({ minDamage: 14, maxDamage: 25 })
+      expect(battle.attacker.activeCreature?.hits).toEqual(2)
     })
   })
 })
