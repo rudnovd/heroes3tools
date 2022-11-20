@@ -68,13 +68,14 @@ export interface HeroClass {
 }
 
 export interface Hero {
-  readonly key: HeroKey
+  readonly key: HeroKey | 'FakeHero'
   name: string
   readonly classId: HeroClassKey
   readonly skills: Partial<Record<Uncapitalize<SkillKey>, number>>
   readonly specialtySkill?: SkillKey
   readonly specialtySpell?: SpellKey
   readonly specialtyUnit?: Array<CreatureKey>
+  readonly spells?: Array<SpellKey>
 }
 
 export interface Town {
@@ -109,6 +110,9 @@ export interface Spell {
     name: string
   }
   readonly group?: Array<SpellGroup>
+  readonly grades?: Array<number>
+  readonly powerBonus?: number
+  readonly type: 'buff' | 'debuff' | 'heal' | 'damage' | 'multidamage' | 'massdamage' | 'action' | 'nonbattle'
 }
 
 export interface CreaturesSpecial {
@@ -155,7 +159,7 @@ export interface CreaturesSpecial {
   weakness: boolean
 
   // Behemoth and Ancient Behemoth specials
-  ignoreEmenyDefencePercents: number
+  ignoreEnemyDefensePercents: number
 
   // Nix and Nix warrior specials
   ignoreEnemyAttackPercents: number
@@ -259,8 +263,7 @@ export interface Creature {
 }
 
 export interface DamageCalculatorBattleSide {
-  hero: HeroInstance | null
+  hero: HeroInstance
   creatures: Array<CreatureInstance>
-  activeCreature: CreatureInstance | null
-  terrain: Terrain | null
+  activeCreature: CreatureInstance
 }
