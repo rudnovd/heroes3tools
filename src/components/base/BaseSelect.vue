@@ -8,7 +8,6 @@
           autocomplete="off"
           class="search"
           :placeholder="placeholder"
-          @focus="open"
           @input="searchElement"
         />
         <div v-if="selectedValue && !search.length" class="selected-value">
