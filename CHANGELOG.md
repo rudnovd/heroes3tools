@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.3](https://github.com/rudnovd/heroes3tools/compare/v2.1.2...v2.1.3) (2022-11-27)
+
+
+### Bug Fixes
+
+* **BaseSelect:** remove open on focus ([1e4ec5a](https://github.com/rudnovd/heroes3tools/commit/1e4ec5a7755fcc9c20ba5324edfad6910174bfd4))
+
 ### [2.1.2](https://github.com/rudnovd/heroes3tools/compare/v2.1.1...v2.1.2) (2022-11-27)
 
 
