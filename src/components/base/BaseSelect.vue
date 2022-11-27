@@ -166,7 +166,6 @@ export default defineComponent({
     watch(search, () => {
       if (!optionsList.value.length) {
         wrapperProps.value.style.height = '0px'
-        wrapperProps.value.style.marginTop = '0px'
       }
     })
 
