@@ -42,7 +42,7 @@
     "@vue/test-utils": "^2.2.10",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.33.0",
+    "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier-vue": "^4.2.0",
     "eslint-plugin-vue": "^9.9.0",
