@@ -35,7 +35,7 @@
     "@commitlint/config-conventional": "^17.4.4",
     "@intlify/unplugin-vue-i18n": "^0.8.2",
     "@localazy/cli": "^1.6.8",
-    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.54.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-typescript": "^11.0.2",
