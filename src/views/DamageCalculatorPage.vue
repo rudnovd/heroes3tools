@@ -46,8 +46,9 @@
 import CalculatorTabs from '@/components/CalculatorTabs.vue'
 import DamageCalculator from '@/components/DamageCalculator.vue'
 import { Battle } from '@/models/Battle'
+import { watchIgnorable } from '@vueuse/shared'
 import type { Ref } from 'vue'
-import { computed, defineAsyncComponent, defineComponent, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
@@ -63,7 +64,6 @@ export default defineComponent({
 
     const calculators = ref<Array<Battle>>([new Battle()]) as Ref<Array<Battle>>
     const activeIndex = ref(0)
-    const isStarted = ref(false)
 
     const attacker = computed(() => calculators.value[activeIndex.value].attacker)
     const defender = computed(() => calculators.value[activeIndex.value].defender)
@@ -174,20 +174,14 @@ export default defineComponent({
       ]
     })
 
-    watch(
+    const { ignoreUpdates } = watchIgnorable(
       [attacker, defender],
       () => {
         if (!attacker.value.activeCreature?.id || !defender.value.activeCreature?.id) return
-        else if (isStarted.value) return
-        calculators.value[activeIndex.value].calculate()
-        isStarted.value = true
+        ignoreUpdates(() => calculators.value[activeIndex.value].calculate())
       },
       { deep: true }
     )
-
-    watch(isStarted, (newIsStarted) => {
-      if (newIsStarted) isStarted.value = false
-    })
 
     const addCalculator = () => {
       calculators.value.push(new Battle())
