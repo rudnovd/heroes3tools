@@ -143,7 +143,7 @@ import { HeroInstance } from '@/models/Hero'
 import type { Spell } from '@/models/Spell'
 import type { Terrain } from '@/models/Terrain'
 import { useStore } from '@/store'
-import { computed, defineAsyncComponent, defineComponent, PropType, reactive } from 'vue'
+import { computed, defineAsyncComponent, defineComponent, reactive, type PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({

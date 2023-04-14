@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import type { BattleSide } from '@/models/Battle'
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, type PropType } from 'vue'
 
 export default defineComponent({
   name: 'BaseButton',

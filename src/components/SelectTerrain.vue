@@ -31,7 +31,7 @@
 <script lang="ts">
 import BaseSelect from '@/components/base/BaseSelect.vue'
 import type { Terrain } from '@/models/Terrain'
-import { defineAsyncComponent, defineComponent, PropType } from 'vue'
+import { defineAsyncComponent, defineComponent, type PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({

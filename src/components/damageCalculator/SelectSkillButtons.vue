@@ -20,7 +20,7 @@
 <script lang="ts">
 import type { BattleSide } from '@/models/Battle'
 import type { Level } from '@/models/Level'
-import { defineComponent, PropType, ref, watch } from 'vue'
+import { defineComponent, ref, watch, type PropType } from 'vue'
 
 export default defineComponent({
   name: 'SelectSkillButtons',

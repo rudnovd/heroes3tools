@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { useElementBounding } from '@vueuse/core'
-import { computed, defineComponent, PropType, ref } from 'vue'
+import { computed, defineComponent, ref, type PropType } from 'vue'
 
 export default defineComponent({
   name: 'BaseTooltip',

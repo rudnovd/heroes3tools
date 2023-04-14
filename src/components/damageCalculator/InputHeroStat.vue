@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import BaseInputNumber from '@/components/base/BaseInputNumber.vue'
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, type PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
