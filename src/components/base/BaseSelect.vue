@@ -58,7 +58,7 @@
 <script lang="ts">
 import i18n from '@/i18n'
 import { onClickOutside, useVirtualList } from '@vueuse/core'
-import { computed, defineComponent, PropType, ref, watch } from 'vue'
+import { computed, defineComponent, ref, watch, type PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({

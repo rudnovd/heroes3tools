@@ -16,7 +16,7 @@
 <script lang="ts">
 import ObjectPortrait from '@/components/ObjectPortrait.vue'
 import type { Spell } from '@/models/Spell'
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, type PropType } from 'vue'
 
 export default defineComponent({
   name: 'SpellCard',

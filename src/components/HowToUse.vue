@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import { useTemplateRefsList } from '@vueuse/core'
-import { computed, defineComponent, PropType, ref, watch } from 'vue'
+import { computed, defineComponent, ref, watch, type PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import BaseButton from './base/BaseButton.vue'
 import BaseTooltip from './base/BaseTooltip.vue'

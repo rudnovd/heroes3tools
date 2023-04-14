@@ -42,7 +42,7 @@
 <script lang="ts">
 import CalculatorTabs from '@/components/CalculatorTabs.vue'
 import { Battle } from '@/models/Battle'
-import { defineAsyncComponent, defineComponent, Ref, ref } from 'vue'
+import { defineAsyncComponent, defineComponent, ref, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import MagicCalculator from '../components/MagicCalculator.vue'
 

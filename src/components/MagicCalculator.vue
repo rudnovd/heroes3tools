@@ -123,7 +123,7 @@
 <script lang="ts">
 import PickCreatureButton from '@/components/PickCreatureButton.vue'
 import SelectHero from '@/components/SelectHero.vue'
-import { Battle, BattleSide, DamageCalculatorBattleSide, getOppositeBattleSide } from '@/models/Battle'
+import { Battle, getOppositeBattleSide, type BattleSide, type DamageCalculatorBattleSide } from '@/models/Battle'
 import type { Creature } from '@/models/Creature'
 import { CreatureInstance } from '@/models/Creature'
 import { SecondarySkills, Spells } from '@/models/enums'
@@ -131,7 +131,7 @@ import type { Hero } from '@/models/Hero'
 import { HeroInstance } from '@/models/Hero'
 import type { Spell } from '@/models/Spell'
 import { useStore } from '@/store'
-import { computed, defineAsyncComponent, defineComponent, PropType, reactive, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, defineComponent, reactive, ref, watch, type PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const spellsTargets = {

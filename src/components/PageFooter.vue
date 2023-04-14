@@ -73,7 +73,7 @@
 import i18n from '@/i18n'
 import { useStore } from '@/store'
 import { isDark, useLocale } from '@/utilities'
-import { defineAsyncComponent, defineComponent, PropType, watch } from 'vue'
+import { defineAsyncComponent, defineComponent, watch, type PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 
