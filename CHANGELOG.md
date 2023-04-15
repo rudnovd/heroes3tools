@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.4](https://github.com/rudnovd/heroes3tools/compare/v2.1.3...v2.1.4) (2023-04-15)
+
+
+### Bug Fixes
+
+* **DamageCalculatorPage:** use watchIgnorable instead extra watch target ([0419d6f](https://github.com/rudnovd/heroes3tools/commit/0419d6f7c9ff2253573c158a32199f3e143e9718))
+* **HowToUse:** fix component bugs ([5615f93](https://github.com/rudnovd/heroes3tools/commit/5615f933e93a3d89a8993a209af76e6b4eca80a2))
+
 ### [2.1.3](https://github.com/rudnovd/heroes3tools/compare/v2.1.2...v2.1.3) (2022-11-27)
 
 
