@@ -81,29 +81,18 @@ export default defineComponent({
         }
 
         const elementStyles = getComputedStyle(element)
-        // if (!elementStyles.position.length || elementStyles.position === 'static') {
-        //   element.style.setProperty('position', 'relative')
-        // }
         element.style.setProperty('z-index', '1001')
 
-        if (elementStyles.backgroundColor === 'rgba(0, 0, 0, 0)') {
+        if (
+          elementStyles.backgroundColor === 'rgb(21, 21, 21)' ||
+          elementStyles.backgroundColor === 'rgba(0, 0, 0, 0)'
+        ) {
           element.style.setProperty('background-color', 'rgba(255, 255, 255, 1)')
+          element.style.setProperty('color', 'rgba(0, 0, 0, 1)')
+        } else if (elementStyles.backgroundColor === 'rgb(255, 255, 255)') {
+          element.style.setProperty('background-color', 'rgba(0, 0, 0, 0.5)')
+          element.style.setProperty('color', 'rgba(255, 255, 255, 1)')
         }
-
-        // if (target.insertBackground) {
-        //   const tourBackgroundElement = document.createElement('div')
-        //   tourBackgroundElement.className = 'tour-background-from'
-        //   tourBackgroundElement.style.cssText = `
-        //     position: absolute;
-        //     top: 0;
-        //     left: 0;
-        //     z-index: 1000;
-        //     width: 100%;
-        //     height: 100%;
-        //     background: rgba(0, 0, 0, 0.5);
-        //   `
-        //   element.append(tourBackgroundElement)
-        // }
 
         if (target.eventTriggerNode) {
           const eventTriggerNode = document.querySelector(target.eventTriggerNode) as HTMLElement
@@ -119,13 +108,11 @@ export default defineComponent({
         if (!element) return
         element.style.setProperty('z-index', '')
         element.style.setProperty('background-color', '')
+        element.style.setProperty('color', 'unset')
       })
     }
 
     watch(step, (newStep) => {
-      // const tourBackgroundFromContainers = document.querySelectorAll('.tour-background-from')
-      // tourBackgroundFromContainers.forEach((element) => element.remove())
-
       if (newStep > props.steps.length - 1) {
         isStarted.value = false
       } else {
@@ -199,5 +186,10 @@ export default defineComponent({
   position: fixed;
   top: 32px;
   right: 32px;
+}
+
+:deep(.cross-first-line),
+:deep(.cross-second-line) {
+  opacity: 1;
 }
 </style>
