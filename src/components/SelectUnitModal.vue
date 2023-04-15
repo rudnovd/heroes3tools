@@ -190,6 +190,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  background-color: var(--color-bg-deep);
 }
 
 .search-units {
