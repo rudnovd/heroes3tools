@@ -37,7 +37,7 @@
     "@localazy/cli": "^1.7.1",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
-    "@vitejs/plugin-vue": "^4.1.0",
+    "@vitejs/plugin-vue": "^4.2.3",
     "@vue/eslint-config-typescript": "^11.0.2",
     "@vue/test-utils": "^2.3.2",
     "cross-env": "^7.0.3",
