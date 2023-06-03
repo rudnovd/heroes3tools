@@ -31,7 +31,7 @@
 
         <i18n-t keypath="components.damageCalculatorPage.data.3" tag="p">
           <template #email>
-            <a href="mailto:feedback@heroes3.tools" target="_blank">feedback@heroes3.tools</a>
+            <a href="mailto:7fudz69mu@mozmail.com" target="_blank">7fudz69mu@mozmail.com</a>
           </template>
         </i18n-t>
       </template>
