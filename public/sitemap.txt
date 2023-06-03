@@ -1,3 +1,4 @@
-https://heroes3.tools/
-https://heroes3.tools/damage
-https://heroes3.tools/creatures
+https://heroes3tools.netlify.app/
+https://heroes3tools.netlify.app/damage
+https://heroes3tools.netlify.app/magic
+https://heroes3tools.netlify.app/creatures
