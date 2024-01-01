@@ -130,7 +130,7 @@ export default defineComponent({
       const stepsWithText = currentStep.targets.filter((target) => target.text)
       return stepsWithText.map((target, index) => {
         const node = document.querySelector(
-          target.eventTriggerNode ? target.eventTriggerNode : target.node
+          target.eventTriggerNode ? target.eventTriggerNode : target.node,
         ) as HTMLElement
         if (!node) return
 

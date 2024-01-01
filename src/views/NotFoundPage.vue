@@ -42,8 +42,13 @@ export default defineComponent({
   font-weight: 600;
   color: rgb(255, 255, 255);
   background: url('/images/windows/base-bg.webp');
-  box-shadow: 0 0 0 2px rgb(0, 0, 0), 0 0 0 3px rgb(124, 111, 64), 0 0 0 4px rgb(255, 251, 139),
-    0 0 0 5px rgb(138, 121, 74), 0 0 0 6px rgb(114, 90, 44), 0 0 0 7px rgb(33, 27, 23),
+  box-shadow:
+    0 0 0 2px rgb(0, 0, 0),
+    0 0 0 3px rgb(124, 111, 64),
+    0 0 0 4px rgb(255, 251, 139),
+    0 0 0 5px rgb(138, 121, 74),
+    0 0 0 6px rgb(114, 90, 44),
+    0 0 0 7px rgb(33, 27, 23),
     20px 20px 0 0px rgba(33, 27, 23, 80%);
 
   & > div {

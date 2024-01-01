@@ -132,7 +132,9 @@ export default defineComponent({
   margin-left: auto;
   background: url('@/assets/icons/cross.svg') no-repeat;
   border-radius: 50%;
-  transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  transition:
+    background-color 0.1s ease-in-out,
+    box-shadow 0.1s ease-in-out;
 
   &:hover {
     background-color: var(--color-text);
@@ -151,7 +153,9 @@ export default defineComponent({
   height: 1.5rem;
   background: url('@/assets/icons/plus.svg') no-repeat;
   border-radius: 50%;
-  transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  transition:
+    background-color 0.1s ease-in-out,
+    box-shadow 0.1s ease-in-out;
 
   &:hover {
     background-color: rgb(200, 200, 200, 0.5);

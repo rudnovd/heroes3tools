@@ -99,7 +99,7 @@
             getTotalResultString(
               side.activeCreature.calculation.minDamage,
               side.activeCreature.calculation.maxDamage,
-              side.activeCreature.calculation.averageDamage
+              side.activeCreature.calculation.averageDamage,
             )
           }}
         </strong>
@@ -110,7 +110,7 @@
             getTotalResultString(
               side.activeCreature.calculation.minKills,
               side.activeCreature.calculation.maxKills,
-              side.activeCreature.calculation.averageKills
+              side.activeCreature.calculation.averageKills,
             )
           }}
         </strong>
@@ -221,7 +221,7 @@ export default defineComponent({
         side.activeCreature.effects.push(spell)
       } else {
         side.activeCreature.effects = side.activeCreature.effects.filter(
-          (creatureEffect) => creatureEffect.id !== spell.id
+          (creatureEffect) => creatureEffect.id !== spell.id,
         )
       }
     }
@@ -345,7 +345,9 @@ export default defineComponent({
 
 .attacker {
   border-bottom: 1px solid var(--color-border);
-  transition: border-bottom 0.2s linear, border-right 0.2s linear;
+  transition:
+    border-bottom 0.2s linear,
+    border-right 0.2s linear;
 
   @include media-large {
     border-right: 1px solid var(--color-border);

@@ -136,7 +136,7 @@ export class Battle {
     attacker: DamageCalculatorBattleSide,
     defender: DamageCalculatorBattleSide,
     target: CreatureInstance,
-    spell: Spell
+    spell: Spell,
   ) {
     if (!attacker || !target) throw new Error('initiator and target required')
 
@@ -364,7 +364,7 @@ export class Battle {
     defender: DamageCalculatorBattleSide,
     target: CreatureInstance,
     spell: Spell,
-    damage: number
+    damage: number,
   ) {
     if (target.special?.spellDamageResistance) damage -= (damage * target.special.spellDamageResistance) / 100
 
@@ -391,7 +391,7 @@ export class Battle {
     initiator: DamageCalculatorBattleSide,
     target: CreatureInstance,
     spell: Spell,
-    damage: number
+    damage: number,
   ) {
     if (!initiator.hero) return damage
 
@@ -415,7 +415,7 @@ export class Battle {
     initiator: DamageCalculatorBattleSide,
     _target: CreatureInstance,
     _spell: Spell,
-    damage: number
+    damage: number,
   ) {
     if (!initiator.hero) return damage
 

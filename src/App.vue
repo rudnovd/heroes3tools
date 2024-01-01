@@ -87,7 +87,7 @@ export default defineComponent({
       () => route.path,
       (newPath) => {
         if (!store.isDataLoaded && getDataRoutes.includes(newPath)) store.loadData(lang.value)
-      }
+      },
     )
 
     const onEnter = () => {

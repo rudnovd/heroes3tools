@@ -131,7 +131,10 @@ export default defineComponent({
   max-width: 400px;
   user-select: none;
   box-shadow: 0 0 8px black;
-  transition: filter 1s, box-shadow 1s, transform 1s;
+  transition:
+    filter 1s,
+    box-shadow 1s,
+    transform 1s;
 
   picture {
     display: flex;
