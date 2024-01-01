@@ -65,8 +65,8 @@ describe('Hero modificator', () => {
 
         const { attacker } = battle.calculate()
 
-        expect(attacker.activeCreature).toContain({ attack: 10, defense: 10 })
-        expect(attacker.activeCreature.calculation).toContain({ minDamage: 16, maxDamage: 33 })
+        expect(attacker.activeCreature).toMatchObject({ attack: 10, defense: 10 })
+        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 16, maxDamage: 33 })
       })
 
       test('3 level Edric with 4 griffins vs pixies', () => {
@@ -80,8 +80,8 @@ describe('Hero modificator', () => {
 
         const { attacker } = battle.calculate()
 
-        expect(attacker.activeCreature).toContain({ attack: 12, defense: 11 })
-        expect(attacker.activeCreature.calculation).toContain({ minDamage: 18, maxDamage: 36 })
+        expect(attacker.activeCreature).toMatchObject({ attack: 12, defense: 11 })
+        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 18, maxDamage: 36 })
       })
 
       test('9 level Edric with 4 griffins vs pixies', () => {
@@ -96,8 +96,8 @@ describe('Hero modificator', () => {
 
         const { attacker } = battle.calculate()
 
-        expect(attacker.activeCreature).toContain({ attack: 14, defense: 16, speed: 7 })
-        expect(attacker.activeCreature.calculation).toContain({ minDamage: 19, maxDamage: 38 })
+        expect(attacker.activeCreature).toMatchObject({ attack: 14, defense: 16, speed: 7 })
+        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 19, maxDamage: 38 })
       })
 
       test('15 level Edric with 4 griffins vs pixies', () => {
@@ -112,8 +112,8 @@ describe('Hero modificator', () => {
 
         const { attacker } = battle.calculate()
 
-        expect(attacker.activeCreature).toContain({ attack: 16, defense: 18, speed: 7 })
-        expect(attacker.activeCreature.calculation).toContain({ minDamage: 20, maxDamage: 40 })
+        expect(attacker.activeCreature).toMatchObject({ attack: 16, defense: 18, speed: 7 })
+        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 20, maxDamage: 40 })
       })
 
       test('15 level Edric with 4 royal griffins vs pixies', () => {
@@ -128,8 +128,8 @@ describe('Hero modificator', () => {
 
         const { attacker } = battle.calculate()
 
-        expect(attacker.activeCreature).toContain({ attack: 18, defense: 20, speed: 10 })
-        expect(attacker.activeCreature.calculation).toContain({ minDamage: 21, maxDamage: 43 })
+        expect(attacker.activeCreature).toMatchObject({ attack: 18, defense: 20, speed: 10 })
+        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 21, maxDamage: 43 })
       })
     })
 
@@ -149,8 +149,8 @@ describe('Hero modificator', () => {
 
         const { attacker } = battle.calculate()
 
-        expect(attacker.activeCreature).toContain({ attack: 12, defense: 8, speed: 7 })
-        expect(attacker.activeCreature.calculation).toContain({ minDamage: 51, maxDamage: 76 })
+        expect(attacker.activeCreature).toMatchObject({ attack: 12, defense: 8, speed: 7 })
+        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 51, maxDamage: 76 })
       })
     })
   })

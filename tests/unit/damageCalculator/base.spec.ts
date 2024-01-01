@@ -24,13 +24,13 @@ describe('Base Damage Calculator tests with specified values', () => {
 
       const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-      expect(attacker).toContain({
+      expect(attacker).toMatchObject({
         minDamage: 69,
         maxDamage: 206,
         minKills: 0,
         maxKills: 1,
       })
-      expect(defender).toContain({
+      expect(defender).toMatchObject({
         minDamage: 153,
         maxDamage: 204,
         minKills: 15,
@@ -49,13 +49,13 @@ describe('Base Damage Calculator tests with specified values', () => {
 
       const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-      expect(attacker).toContain({
+      expect(attacker).toMatchObject({
         minDamage: 75,
         maxDamage: 225,
         minKills: 0,
         maxKills: 1,
       })
-      expect(defender).toContain({
+      expect(defender).toMatchObject({
         minDamage: 144,
         maxDamage: 192,
         minKills: 14,
@@ -79,13 +79,13 @@ describe('Base Damage Calculator tests with specified values', () => {
 
     const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-    expect(attacker).toContain({
+    expect(attacker).toMatchObject({
       minDamage: 712,
       maxDamage: 712,
       minKills: 14,
       maxKills: 14,
     })
-    expect(defender).toContain({
+    expect(defender).toMatchObject({
       minDamage: 223,
       maxDamage: 279,
       minKills: 0,
@@ -108,13 +108,13 @@ describe('Base Damage Calculator tests with specified values', () => {
 
     const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-    expect(attacker).toContain({
+    expect(attacker).toMatchObject({
       minDamage: 662,
       maxDamage: 662,
       minKills: 4,
       maxKills: 4,
     })
-    expect(defender).toContain({
+    expect(defender).toMatchObject({
       minDamage: 144,
       maxDamage: 216,
       minKills: 0,
@@ -137,13 +137,13 @@ describe('Base Damage Calculator tests with specified values', () => {
 
     const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-    expect(attacker).toContain({
+    expect(attacker).toMatchObject({
       minDamage: 616,
       maxDamage: 792,
       minKills: 8,
       maxKills: 11,
     })
-    expect(defender).toContain({
+    expect(defender).toMatchObject({
       minDamage: 66,
       maxDamage: 88,
       minKills: 0,
@@ -170,13 +170,13 @@ describe('Base Damage Calculator tests with specified values', () => {
 
     const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-    expect(attacker).toContain({
+    expect(attacker).toMatchObject({
       minDamage: 643,
       maxDamage: 828,
       minKills: 9,
       maxKills: 11,
     })
-    expect(defender).toContain({
+    expect(defender).toMatchObject({
       minDamage: 57,
       maxDamage: 57,
       minKills: 0,
@@ -201,7 +201,7 @@ describe('Base Damage Calculator tests with specified values', () => {
 
     const { attacker } = getBattleCreatureCalculationResults(battle)
 
-    expect(attacker).toContain({
+    expect(attacker).toMatchObject({
       minDamage: 108,
       maxDamage: 217,
       minKills: 10,

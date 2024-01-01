@@ -19,7 +19,7 @@ describe('Creature special modificator', () => {
 
     const { attacker } = battle.calculate()
 
-    expect(attacker.activeCreature.calculation).toContain({ minDamage: 39, maxDamage: 65 })
+    expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 39, maxDamage: 65 })
   })
 
   test('Ancient Behemoth vs Angel', () => {
@@ -31,7 +31,7 @@ describe('Creature special modificator', () => {
 
     const { attacker } = battle.calculate()
 
-    expect(attacker.activeCreature.calculation).toContain({ minDamage: 54, maxDamage: 90 })
+    expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 54, maxDamage: 90 })
   })
 
   test('Angel vs Nix', () => {
@@ -43,7 +43,7 @@ describe('Creature special modificator', () => {
 
     const { attacker } = battle.calculate()
 
-    expect(attacker.activeCreature.calculation).toContain({ minDamage: 47, maxDamage: 47 })
+    expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 47, maxDamage: 47 })
   })
 
   test('Angel vs Nix Warrior', () => {
@@ -55,6 +55,6 @@ describe('Creature special modificator', () => {
 
     const { attacker } = battle.calculate()
 
-    expect(attacker.activeCreature.calculation).toContain({ minDamage: 38, maxDamage: 38 })
+    expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 38, maxDamage: 38 })
   })
 })

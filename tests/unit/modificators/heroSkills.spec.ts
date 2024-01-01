@@ -18,7 +18,7 @@ describe('Hero skills modificator', () => {
       hero.skills.offense = SkillLevels.Basic
       const { calculation } = Modificators.heroSkills(hero, pikeman)
 
-      expect(calculation).toContain({ damageBonus: 0.1 })
+      expect(calculation).toMatchObject({ damageBonus: 0.1 })
     })
 
     test('basic level', () => {
@@ -31,7 +31,7 @@ describe('Hero skills modificator', () => {
 
       const { attacker } = battle.calculate()
 
-      expect(attacker.activeCreature.calculation).toContain({ minDamage: 26, maxDamage: 78 })
+      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 26, maxDamage: 78 })
     })
 
     test('advanced level', () => {
@@ -45,7 +45,7 @@ describe('Hero skills modificator', () => {
 
       const { attacker } = battle.calculate()
 
-      expect(attacker.activeCreature.calculation).toContain({ minDamage: 29, maxDamage: 87 })
+      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 29, maxDamage: 87 })
     })
 
     test('expert level', () => {
@@ -59,7 +59,7 @@ describe('Hero skills modificator', () => {
 
       const { attacker } = battle.calculate()
 
-      expect(attacker.activeCreature.calculation).toContain({ minDamage: 32, maxDamage: 96 })
+      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 32, maxDamage: 96 })
     })
 
     test('expert level with specialty', () => {
@@ -74,7 +74,7 @@ describe('Hero skills modificator', () => {
 
       const { attacker } = battle.calculate()
 
-      expect(attacker.activeCreature.calculation).toContain({ minDamage: 72, maxDamage: 99 })
+      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 72, maxDamage: 99 })
     })
 
     test('expert level with specialty with high hero level', () => {
@@ -89,7 +89,7 @@ describe('Hero skills modificator', () => {
 
       const { attacker } = battle.calculate()
 
-      expect(attacker.activeCreature.calculation).toContain({ minDamage: 87, maxDamage: 119 })
+      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 87, maxDamage: 119 })
     })
 
     test('bonus for ranged creature', () => {
@@ -104,7 +104,7 @@ describe('Hero skills modificator', () => {
 
       const { attacker } = battle.calculate()
 
-      expect(attacker.activeCreature.calculation).toContain({ minDamage: 29, maxDamage: 44 })
+      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 29, maxDamage: 44 })
     })
   })
 
@@ -120,7 +120,7 @@ describe('Hero skills modificator', () => {
 
     //   const { attacker } = battle.calculate()
 
-    //   expect(attacker.activeCreature.calculation).toContain({ minDamage: 22, maxDamage: 34 })
+    //   expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 22, maxDamage: 34 })
     // })
 
     test('advanced level', () => {
@@ -134,7 +134,7 @@ describe('Hero skills modificator', () => {
 
       const { attacker } = battle.calculate()
 
-      expect(attacker.activeCreature.calculation).toContain({ minDamage: 26, maxDamage: 39 })
+      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 26, maxDamage: 39 })
     })
 
     // TODO: wrong calculation
@@ -149,7 +149,7 @@ describe('Hero skills modificator', () => {
 
     //   const { attacker } = battle.calculate()
 
-    //   expect(attacker.activeCreature.calculation).toContain({ minDamage: 32, maxDamage: 48 })
+    //   expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 32, maxDamage: 48 })
     // })
 
     // TODO: wrong calculation
@@ -164,7 +164,7 @@ describe('Hero skills modificator', () => {
 
     //   const { attacker } = battle.calculate()
 
-    //   expect(attacker.activeCreature.calculation).toContain({ minDamage: 58, maxDamage: 234 })
+    //   expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 58, maxDamage: 234 })
     // })
   })
 
@@ -179,7 +179,7 @@ describe('Hero skills modificator', () => {
   //   battle.attacker.hero.skills.archery = SkillLevels.Expert
   //   battle.defender.activeCreature = getCreatureInstance(Creatures.Hobgoblin)
   //   const { attacker } = battle.calculate()
-  //   expect(attacker.activeCreature.calculation).toContain({ minDamage: 16, maxDamage: 24 })
+  //   expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 16, maxDamage: 24 })
   // })
   // TODO: wrong calculation
   // test('expert level', () => {
@@ -192,7 +192,7 @@ describe('Hero skills modificator', () => {
   //   battle.attacker.hero.skills.offense = 0
   //   battle.defender.activeCreature = getCreatureInstance(Creatures.Hobgoblin)
   //   const { attacker } = battle.calculate()
-  //   expect(attacker.activeCreature.calculation).toContain({ minDamage: 29, maxDamage: 117 })
+  //   expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 29, maxDamage: 117 })
   // })
   // })
 })

@@ -15,7 +15,7 @@ describe('Artillery modificator', () => {
     test('base test with hero', () => {
       const { minDamage, maxDamage } = Modificators.artillery(
         getHeroInstance(Heroes.Rion),
-        getCreatureInstance(Creatures.Ballista)
+        getCreatureInstance(Creatures.Ballista),
       )
 
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 4, maxDamage: 6 })
@@ -39,7 +39,7 @@ describe('Artillery modificator', () => {
 
       const { attacker } = getBattleCreatureCalculationResults(battle)
 
-      expect(attacker).toContain({ minDamage: 51, maxDamage: 76 })
+      expect(attacker).toMatchObject({ minDamage: 51, maxDamage: 76 })
     })
 
     test('with hero with advanced artillery', () => {
@@ -59,10 +59,10 @@ describe('Artillery modificator', () => {
     test('base test with hero', () => {
       const { minDamage, maxDamage } = Modificators.artillery(
         getHeroInstance(Heroes.Rion),
-        getCreatureInstance(Creatures.Cannon)
+        getCreatureInstance(Creatures.Cannon),
       )
 
-      expect({ minDamage, maxDamage }).toContain({ minDamage: 8, maxDamage: 14 })
+      expect({ minDamage, maxDamage }).toMatchObject({ minDamage: 8, maxDamage: 14 })
     })
 
     test('with hero with high attack', () => {
@@ -83,7 +83,7 @@ describe('Artillery modificator', () => {
 
       const { attacker } = getBattleCreatureCalculationResults(battle)
 
-      expect(attacker).toContain({ minDamage: 115, maxDamage: 201 })
+      expect(attacker).toMatchObject({ minDamage: 115, maxDamage: 201 })
     })
 
     test('with hero with advanced artillery', () => {
