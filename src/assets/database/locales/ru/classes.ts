@@ -81,4 +81,12 @@ export const classes: Array<ClassTranslation> = [
     id: 20,
     name: 'Навигатор',
   },
+  {
+    id: 21,
+    name: 'Изобретатель',
+  },
+  {
+    id: 22,
+    name: 'Наёмник',
+  },
 ]
