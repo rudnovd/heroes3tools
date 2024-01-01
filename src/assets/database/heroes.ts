@@ -1537,4 +1537,190 @@ export const heroes: Array<Hero> = [
     },
     classId: Classes.Ranger,
   },
+  {
+    id: 162,
+    name: 'Agar',
+    skills: {
+      wisdom: SkillLevels.Advanced,
+    },
+    specialtyUnit: [Creatures.Sandworm, Creatures.OlgoiKhorkhoi],
+    classId: Classes.Artificer,
+  },
+  {
+    id: 163,
+    name: 'Bertram',
+    skills: {
+      wisdom: SkillLevels.Basic,
+    },
+    classId: Classes.Artificer,
+  },
+  {
+    id: 164,
+    name: 'Celestine',
+    skills: {
+      wisdom: SkillLevels.Basic,
+      pathfinding: SkillLevels.Basic,
+    },
+    specialtyUnit: [Creatures.Armadillo, Creatures.BellwetherArmadillo],
+    classId: Classes.Artificer,
+  },
+  {
+    id: 165,
+    name: 'Dury',
+    skills: {
+      armorer: SkillLevels.Basic,
+      offense: SkillLevels.Basic,
+    },
+    specialtySkill: SecondarySkills.Armorer,
+    classId: Classes.Mercenary,
+  },
+  {
+    id: 166,
+    name: 'Eanswythe',
+    skills: {
+      wisdom: SkillLevels.Basic,
+      estates: SkillLevels.Basic,
+    },
+    specialtySpell: Spells.Weakness,
+    classId: Classes.Artificer,
+  },
+  {
+    id: 167,
+    name: 'Floribert',
+    skills: {
+      firstAid: SkillLevels.Basic,
+      armorer: SkillLevels.Basic,
+    },
+    specialtySkill: SecondarySkills.FirstAid,
+    classId: Classes.Mercenary,
+  },
+  {
+    id: 168,
+    name: 'Frederick',
+    skills: {
+      wisdom: SkillLevels.Basic,
+      intelligence: SkillLevels.Basic,
+    },
+    specialtyUnit: [Creatures.Automaton, Creatures.SentinelAutomaton],
+    classId: Classes.Artificer,
+  },
+  {
+    id: 169,
+    name: 'Henrietta',
+    skills: {
+      leadership: SkillLevels.Basic,
+      luck: SkillLevels.Basic,
+    },
+    specialtyUnit: [Creatures.HalflingWasteland, Creatures.HalflingGrenadier],
+    classId: Classes.Mercenary,
+  },
+  {
+    id: 170,
+    name: 'Melchior',
+    skills: {
+      leadership: SkillLevels.Basic,
+      diplomacy: SkillLevels.Basic,
+    },
+    specialtySkill: SecondarySkills.Diplomacy,
+    classId: Classes.Mercenary,
+  },
+  {
+    id: 171,
+    name: 'Morton',
+    skills: {
+      artillery: SkillLevels.Basic,
+      ballistics: SkillLevels.Basic,
+    },
+    specialtyUnit: [Creatures.Ballista],
+    classId: Classes.Mercenary,
+  },
+  {
+    id: 172,
+    name: 'Murdoch',
+    skills: {
+      archery: SkillLevels.Basic,
+      tactics: SkillLevels.Basic,
+    },
+    specialtySkill: SecondarySkills.Archery,
+    classId: Classes.Mercenary,
+  },
+  {
+    id: 173,
+    name: 'Sam',
+    skills: {
+      offense: SkillLevels.Basic,
+      tactics: SkillLevels.Basic,
+    },
+    specialtyUnit: [Creatures.Mechanic, Creatures.Engineer],
+    classId: Classes.Mercenary,
+  },
+  {
+    id: 174,
+    name: 'Tancred',
+    skills: {
+      archery: SkillLevels.Advanced,
+    },
+    specialtyUnit: [Creatures.Gunslinger, Creatures.BountyHunter],
+    classId: Classes.Mercenary,
+  },
+  {
+    id: 175,
+    name: 'Tavin',
+    skills: {
+      offense: SkillLevels.Basic,
+      scouting: SkillLevels.Basic,
+    },
+    specialtySkill: SecondarySkills.Offense,
+    classId: Classes.Mercenary,
+  },
+  {
+    id: 176,
+    name: 'Todd',
+    skills: {
+      offense: SkillLevels.Basic,
+      scouting: SkillLevels.Basic,
+    },
+    specialtyUnit: [Creatures.Automaton, Creatures.SentinelAutomaton],
+    classId: Classes.Artificer,
+  },
+  {
+    id: 177,
+    name: 'Victoria',
+    skills: {
+      wisdom: SkillLevels.Basic,
+      learning: SkillLevels.Basic,
+    },
+    specialtySpell: Spells.LandMine,
+    classId: Classes.Artificer,
+  },
+  {
+    id: 178,
+    name: 'Wrathmont',
+    skills: {
+      wisdom: SkillLevels.Basic,
+      intelligence: SkillLevels.Basic,
+    },
+    specialtySpell: Spells.Frenzy,
+    classId: Classes.Artificer,
+  },
+  {
+    id: 179,
+    name: 'Wynona',
+    skills: {
+      archery: SkillLevels.Basic,
+      scouting: SkillLevels.Basic,
+    },
+    specialtySkill: SecondarySkills.Scouting,
+    classId: Classes.Mercenary,
+  },
+  {
+    id: 180,
+    name: 'Ziph',
+    skills: {
+      wisdom: SkillLevels.Basic,
+      sorcery: SkillLevels.Basic,
+    },
+    specialtySpell: Spells.LightningBolt,
+    classId: Classes.Artificer,
+  },
 ]
