@@ -231,7 +231,7 @@ export default defineComponent({
         side.activeCreature.effects.push(spell)
       } else {
         side.activeCreature.effects = side.activeCreature.effects.filter(
-          (creatureEffect) => creatureEffect.id !== spell.id
+          (creatureEffect) => creatureEffect.id !== spell.id,
         )
       }
     }
@@ -244,7 +244,7 @@ export default defineComponent({
       },
       {
         deep: true,
-      }
+      },
     )
 
     const onSelectSpell = (sideName: BattleSide, spell: Spell) => {
@@ -269,7 +269,7 @@ export default defineComponent({
           defender,
           attacker,
           battle[sideName as string].activeCreature,
-          spell
+          spell,
         )
       } else if (spellsTargets.self.includes(spell.id)) {
         spellDamages.value[sideName] = battle.cast(attacker, attacker, battle[sideName as string].activeCreature, spell)

@@ -79,7 +79,10 @@ export default defineComponent({
   grid-template-columns: 105px 1fr;
   border-right: 1px solid var(--color-text);
   border-bottom: 1px solid var(--color-text);
-  transition: background 0.2s linear, border-right 0.2s linear, border-bottom 0.2s linear;
+  transition:
+    background 0.2s linear,
+    border-right 0.2s linear,
+    border-bottom 0.2s linear;
 
   @include media-medium {
     grid-template-columns: 150px 1fr;
@@ -142,7 +145,9 @@ export default defineComponent({
   align-items: center;
   padding-left: 4px;
   border-bottom: 1px solid var(--color-border);
-  transition: border-bottom 0.2s linear, border-right 0.2s linear;
+  transition:
+    border-bottom 0.2s linear,
+    border-right 0.2s linear;
 
   &:last-child {
     border-bottom: none;

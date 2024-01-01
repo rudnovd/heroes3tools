@@ -180,7 +180,10 @@ export default defineComponent({
     border-radius: 0.2rem;
     opacity: 0.5;
     transition: opacity 0.25s;
-    transition: color 0.2s linear, background-color 0.2s linear, border 0.2s linear;
+    transition:
+      color 0.2s linear,
+      background-color 0.2s linear,
+      border 0.2s linear;
 
     &:hover {
       opacity: 1;

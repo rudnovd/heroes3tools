@@ -93,7 +93,7 @@ export default defineComponent({
       () => props.show,
       (newShowState) => {
         if (newShowState) nextTick(() => searchInput.value.focus())
-      }
+      },
     )
 
     const searchCreatures = computed(() => {
@@ -183,7 +183,10 @@ export default defineComponent({
   background-color: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: 0.2rem;
-  transition: color 0.2s linear, background-color 0.2s linear, border 0.2s linear;
+  transition:
+    color 0.2s linear,
+    background-color 0.2s linear,
+    border 0.2s linear;
 }
 
 .units {
@@ -212,7 +215,9 @@ export default defineComponent({
   height: auto;
   cursor: pointer;
   border-radius: 5px;
-  transition: box-shadow 0.25s, transform 0.25s;
+  transition:
+    box-shadow 0.25s,
+    transform 0.25s;
 
   @include media-medium {
     width: 58px;

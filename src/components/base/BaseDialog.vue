@@ -58,7 +58,7 @@ export default defineComponent({
             document.body.style.paddingRight = ''
           }, 200)
         }
-      }
+      },
     )
 
     return {

@@ -35,7 +35,7 @@ export default defineComponent({
 
     watch(
       () => props.value,
-      (newValue) => (currentValue.value = newValue)
+      (newValue) => (currentValue.value = newValue),
     )
 
     watch(debouncedValue, () => context.emit('input', debouncedValue.value))

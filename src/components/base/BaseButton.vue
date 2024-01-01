@@ -31,7 +31,9 @@ export default defineComponent({
   font-weight: bold;
   line-height: 1.5;
   border-radius: 5px;
-  transition: background-color 0.25s linear, border-color 0.25s linear;
+  transition:
+    background-color 0.25s linear,
+    border-color 0.25s linear;
 
   &:hover {
     cursor: pointer;

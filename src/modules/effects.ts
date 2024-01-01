@@ -175,7 +175,7 @@ export const Effects = {
   slayer: (
     initiator: DamageCalculatorBattleSide,
     defender: DamageCalculatorBattleSide,
-    target: CreatureInstance
+    target: CreatureInstance,
   ): CreatureInstance => {
     // get creature values for modify them
     let { attack } = target
@@ -205,7 +205,7 @@ export const Effects = {
           Creatures.Titan,
           Creatures.Firebird,
           Creatures.SeaSerpent,
-          Creatures.Haspid
+          Creatures.Haspid,
         )
       }
     }
@@ -389,7 +389,7 @@ export const Effects = {
   airShield: (
     initiator: DamageCalculatorBattleSide,
     defender: DamageCalculatorBattleSide,
-    target: CreatureInstance
+    target: CreatureInstance,
   ): CreatureInstance => {
     // get creature values for modify them
     let {

@@ -180,7 +180,7 @@ export default defineComponent({
         if (!attacker.value.activeCreature?.id || !defender.value.activeCreature?.id) return
         ignoreUpdates(() => calculators.value[activeIndex.value].calculate())
       },
-      { deep: true }
+      { deep: true },
     )
 
     const addCalculator = () => {

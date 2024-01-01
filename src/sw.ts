@@ -30,7 +30,7 @@ registerRoute(
         maxAgeSeconds: 365 * 24 * 60 * 60,
       }),
     ],
-  })
+  }),
 )
 registerRoute(
   ({ request }) => request.destination === 'font',
@@ -44,5 +44,5 @@ registerRoute(
         maxAgeSeconds: 365 * 24 * 60 * 60,
       }),
     ],
-  })
+  }),
 )

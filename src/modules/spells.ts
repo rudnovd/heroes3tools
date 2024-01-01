@@ -5,7 +5,7 @@ function getSpellDamage(
   initiator: DamageCalculatorBattleSide,
   element: string,
   damageGrades: Array<number>,
-  powerBonus: number
+  powerBonus: number,
 ) {
   const power = initiator.hero?.stats.power || 0
   const skillLevel = initiator.hero?.skills[element] || 0

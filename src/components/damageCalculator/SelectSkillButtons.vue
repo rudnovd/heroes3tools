@@ -49,7 +49,7 @@ export default defineComponent({
 
     watch(
       () => props.value,
-      (newValue) => (selectedLevel.value = newValue)
+      (newValue) => (selectedLevel.value = newValue),
     )
 
     const onClick = (level: number) => {
@@ -108,7 +108,10 @@ export default defineComponent({
   text-overflow: ellipsis;
   white-space: nowrap;
   background-color: transparent;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
 }
 
 @each $color, $color-value in $calculator-colors {
