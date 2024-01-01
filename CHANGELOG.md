@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.1](https://github.com/rudnovd/heroes3tools/compare/v2.1.5...v2.2.1) (2024-01-01)
+
+
+### Features
+
+* apply HotA 1.7.0 changes ([60d2168](https://github.com/rudnovd/heroes3tools/commit/60d2168f3aa4daeeee4de2dfacace93ca225f11d))
+* **assets:** add Factory assets ([f977951](https://github.com/rudnovd/heroes3tools/commit/f97795111a76a4984952693e22dd9b680c51c63a))
+* **classes:** add Factory classes ([28be49b](https://github.com/rudnovd/heroes3tools/commit/28be49b97dd9df522e77639ce12caec313083497))
+* **creatures:** add Factory creatures ([5eb8d15](https://github.com/rudnovd/heroes3tools/commit/5eb8d154ea0f5476363e5be7ff68cf01970f039f))
+* **CreaturesLibraryPage:** unlock Factory ([50acdf4](https://github.com/rudnovd/heroes3tools/commit/50acdf44f69f799e1cc69e804da0faac54abd1ab))
+* **heroes:** add Factory heroes ([8240a0c](https://github.com/rudnovd/heroes3tools/commit/8240a0cddc06c180030d09e58dbe3ee874e2a28f))
+* **locales:** add 'ru' locale for Factory data ([d4342bd](https://github.com/rudnovd/heroes3tools/commit/d4342bd68e7c58e45998c4c52c3c0847ace1413a))
+
+
+### Bug Fixes
+
+* **creatures:** fix creatures description ([65f07e2](https://github.com/rudnovd/heroes3tools/commit/65f07e23a15115765a78e0ade15d0453e17bed6d))
+
 ## [2.2.0](https://github.com/rudnovd/heroes3tools/compare/v2.1.5...v2.2.0) (2024-01-01)
 
 
