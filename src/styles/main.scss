@@ -22,7 +22,9 @@ html {
 body {
   color: var(--color-text);
   background: var(--color-bg);
-  transition: background-color 0.2s linear, color 0.2s linear;
+  transition:
+    background-color 0.2s linear,
+    color 0.2s linear;
 }
 
 body[color-scheme='dark'] {
@@ -81,9 +83,15 @@ button {
   background: none;
   border: none;
   outline: none;
-  transition: color 0.2s linear, background 0.2s linear, border 0.2s linear;
+  transition:
+    color 0.2s linear,
+    background 0.2s linear,
+    border 0.2s linear;
 }
 
 input {
-  transition: color 0.2s linear, background 0.2s linear, border 0.2s linear;
+  transition:
+    color 0.2s linear,
+    background 0.2s linear,
+    border 0.2s linear;
 }
