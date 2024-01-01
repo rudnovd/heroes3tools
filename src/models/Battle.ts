@@ -400,7 +400,7 @@ export class Battle {
     if (spell.id === Spells.MagicArrow && specialtySpell === Spells.MagicArrow) {
       damage += damage / 2
     } else if (spell.id === Spells.Firewall && specialtySpell === Spells.Firewall) {
-      damage += damage
+      damage += damage * 0.25
     } else if (spell.id === specialtySpell) {
       const bonus = Math.floor(initiator.hero.level / target.level) * 0.03
       if (bonus) {

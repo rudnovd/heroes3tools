@@ -53,7 +53,7 @@ export const Spells = {
   },
 
   fireWall: (initiator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initiator, 'fire', [10, 20, 50], 10)
+    return getSpellDamage(initiator, 'fire', [10, 20, 50], 15)
   },
 
   iceBolt: (initiator: DamageCalculatorBattleSide) => {
