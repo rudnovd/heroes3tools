@@ -273,6 +273,8 @@ export enum Classes {
   Elementalist,
   Captain,
   Navigator,
+  Artificer,
+  Mercenary,
 }
 
 export enum Towns {
