@@ -13,105 +13,86 @@
   </RouterView>
 
   <BaseNotification v-if="needRefresh" :show="needRefresh" :buttons="notificationsButtons">
-    {{ t('common.newContentIsAvailable') }}.
+    {{ t('common.newVersionAvailable') }}.
   </BaseNotification>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useStore } from '@/store'
 import { watchOnce } from '@vueuse/core'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
-import { computed, defineAsyncComponent, defineComponent, ref } from 'vue'
+import { computed, defineAsyncComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { isDark, useLocale } from './utilities'
+const BaseNotification = defineAsyncComponent(() => import('@/components/base/BaseNotification.vue'))
 
 const getDataRoutes = ['/damage', '/magic', '/creatures']
 const keepAliveComponents = ['DamageCalculatorPage', 'MagicCalculatorPage', 'CreaturesLibraryPage']
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    BaseNotification: defineAsyncComponent(() => import('@/components/base/BaseNotification.vue')),
+const router = useRouter()
+const route = useRoute()
+const { t } = useI18n()
+const store = useStore()
+const lang = useLocale()
+
+const showBackButton = ref(false)
+
+const { updateServiceWorker, needRefresh } = useRegisterSW({
+  immediate: false,
+  onRegistered(registration) {
+    if (registration) {
+      /* eslint-disable no-console */
+      console.log('Service worker registered')
+    }
   },
-  setup() {
-    const router = useRouter()
-    const route = useRoute()
-    const { t } = useI18n()
-    const store = useStore()
-    const lang = useLocale()
-
-    const showBackButton = ref(false)
-
-    const { updateServiceWorker, needRefresh } = useRegisterSW({
-      immediate: false,
-      onRegistered(registration) {
-        if (registration) {
-          /* eslint-disable no-console */
-          console.log('Service worker registered')
-        }
-      },
-      onRegisterError(error) {
-        if (error) {
-          /* eslint-disable no-console */
-          console.log(`Service worker registartion error: ${error}`)
-        }
-      },
-    })
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (query) => {
-      isDark.value = query.matches
-    })
-
-    const notificationsButtons = computed(() => [
-      {
-        text: t('common.updateApp'),
-        onClick: () => {
-          updateServiceWorker(true)
-        },
-        textColor: 'rgb(255, 255, 255)',
-      },
-      {
-        text: t('common.dismiss'),
-        textColor: 'rgb(255, 255, 255)',
-      },
-    ])
-
-    // Show back button on first visit app
-    watchOnce(router.currentRoute, () => {
-      if (Object.keys(route.meta).length && !route.meta.hideBackButton) showBackButton.value = true
-    })
-
-    // Collect data about game from files when visit one of getDataRoutes array pages
-    watchOnce(
-      () => route.path,
-      (newPath) => {
-        if (!store.isDataLoaded && getDataRoutes.includes(newPath)) store.loadData(lang.value)
-      },
-    )
-
-    const onEnter = () => {
-      if (Object.keys(route.meta).length && !route.meta.hideBackButton) showBackButton.value = true
-      else if (showBackButton.value) showBackButton.value = false
-    }
-
-    const afterLeave = () => {
-      if (showBackButton.value && route.meta.hideBackButton) showBackButton.value = false
-    }
-
-    return {
-      t,
-
-      showBackButton,
-      needRefresh,
-      notificationsButtons,
-      keepAliveComponents,
-
-      onEnter,
-      afterLeave,
+  onRegisterError(error) {
+    if (error) {
+      /* eslint-disable no-console */
+      console.log(`Service worker registartion error: ${error}`)
     }
   },
 })
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (query) => {
+  isDark.value = query.matches
+})
+
+const notificationsButtons = computed(() => [
+  {
+    text: t('common.update'),
+    onClick: () => {
+      updateServiceWorker(true)
+    },
+    textColor: 'rgb(255, 255, 255)',
+  },
+  {
+    text: t('common.dismiss'),
+    textColor: 'rgb(255, 255, 255)',
+  },
+])
+
+// Show back button on first visit app
+watchOnce(router.currentRoute, () => {
+  if (Object.keys(route.meta).length && !route.meta.hideBackButton) showBackButton.value = true
+})
+
+// Collect data about game from files when visit one of getDataRoutes array pages
+watchOnce(
+  () => route.path,
+  (newPath) => {
+    if (!store.isDataLoaded && getDataRoutes.includes(newPath)) store.loadData(lang.value)
+  },
+)
+
+const onEnter = () => {
+  if (Object.keys(route.meta).length && !route.meta.hideBackButton) showBackButton.value = true
+  else if (showBackButton.value) showBackButton.value = false
+}
+
+const afterLeave = () => {
+  if (showBackButton.value && route.meta.hideBackButton) showBackButton.value = false
+}
 </script>
 
 <style lang="scss">

@@ -98,8 +98,8 @@
   },
   "common": {
     "homePage": "Home page",
-    "newContentIsAvailable": "New content is available",
-    "updateApp": "Update app",
+    "newVersionAvailable": "A new version is available",
+    "update": "Update",
     "dismiss": "Dismiss",
     "newCalculatorAnnounce": {
       "announce": {
