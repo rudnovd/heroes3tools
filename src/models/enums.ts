@@ -288,6 +288,7 @@ export enum Towns {
   Fortress,
   Conflux,
   Cove,
+  Factory,
 }
 
 export enum Terrains {
@@ -497,6 +498,25 @@ export enum Heroes {
   Astra,
   Dargem,
   Giselle,
+  Agar,
+  Bertram,
+  Celestine,
+  Dury,
+  Eanswythe,
+  Floribert,
+  Frederick,
+  Henrietta,
+  Melchior,
+  Morton,
+  Murdoch,
+  Sam,
+  Tancred,
+  Tavin,
+  Todd,
+  Victoria,
+  Wrathmont,
+  Wynona,
+  Zilp,
 }
 
 export enum SkillLevels {
