@@ -161,6 +161,22 @@ export enum Creatures {
   Leprechaun,
   Cannon,
   SteelGolem,
+  HalflingWasteland,
+  HalflingGrenadier,
+  Mechanic,
+  Engineer,
+  Armadillo,
+  BellwetherArmadillo,
+  Automaton,
+  SentinelAutomaton,
+  Sandworm,
+  OlgoiKhorkhoi,
+  Gunslinger,
+  BountyHunter,
+  Couatl,
+  CrimsonCouatl,
+  Dreadnought,
+  Juggernaut,
 }
 
 export enum Spells {
