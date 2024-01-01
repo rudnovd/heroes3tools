@@ -143,7 +143,7 @@ describe('Bless spell effect', () => {
 
     //   const { attacker } = battle.calculate()
 
-    //   expect(attacker.activeCreature.calculation).toContain({ minDamage: 53, maxDamage: 53 })
+    //   expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 53, maxDamage: 53 })
     // })
 
     // test('Demon', () => {
@@ -162,7 +162,7 @@ describe('Bless spell effect', () => {
 
     //   const { attacker } = battle.calculate()
 
-    //   expect(attacker.activeCreature.calculation).toContain({ minDamage: 43, maxDamage: 43 })
+    //   expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 43, maxDamage: 43 })
     // })
 
     // test('2 Unicorn vs 51 CrewMate', () => {
@@ -182,7 +182,7 @@ describe('Bless spell effect', () => {
 
     //   const { attacker } = battle.calculate()
 
-    //   expect(attacker.activeCreature.calculation).toContain({ minDamage: 80, maxDamage: 80 })
+    //   expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 80, maxDamage: 80 })
     // })
 
     test('2 Unicorn vs 10 Seaman', () => {
@@ -200,7 +200,7 @@ describe('Bless spell effect', () => {
 
       const { attacker } = battle.calculate()
 
-      expect(attacker.activeCreature.calculation).toContain({ minDamage: 75, maxDamage: 75 })
+      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 75, maxDamage: 75 })
     })
 
     test('11 Ogre Magi vs 59 Halberdiers', () => {
@@ -219,7 +219,7 @@ describe('Bless spell effect', () => {
 
       const { attacker } = battle.calculate()
 
-      expect(attacker.activeCreature.calculation).toContain({ minDamage: 225, maxDamage: 225 })
+      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 225, maxDamage: 225 })
     })
 
     test('11 Ogre Magi vs 20 Halberdiers', () => {
@@ -238,7 +238,7 @@ describe('Bless spell effect', () => {
 
       const { attacker } = battle.calculate()
 
-      expect(attacker.activeCreature.calculation).toContain({ minDamage: 245, maxDamage: 245 })
+      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 245, maxDamage: 245 })
     })
   })
 
@@ -258,7 +258,7 @@ describe('Bless spell effect', () => {
 
       const { attacker } = battle.calculate()
 
-      expect(attacker.activeCreature.calculation).toContain({ minDamage: 324, maxDamage: 324 })
+      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 324, maxDamage: 324 })
     })
   })
 })

@@ -34,7 +34,7 @@ describe('Fire Wall', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, fireWall)
 
-    expect(damage).toBe(110)
+    expect(damage).toBe(160)
   })
 
   test('With Advanced Fire skill', () => {
@@ -60,7 +60,7 @@ describe('Fire Wall', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, fireWall)
 
-    expect(damage).toBe(320)
+    expect(damage).toBe(470)
   })
 
   test('With Expert Fire skill', () => {
@@ -86,7 +86,7 @@ describe('Fire Wall', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, fireWall)
 
-    expect(damage).toBe(350)
+    expect(damage).toBe(500)
   })
 
   test('Hero with Fire Wall specialty', () => {
@@ -98,7 +98,7 @@ describe('Fire Wall', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, fireWall)
 
-    expect(damage).toBe(20)
+    expect(damage).toBe(12)
   })
 
   test('Hero with Fire Wall specialty and high Spell Power', () => {
@@ -110,7 +110,7 @@ describe('Fire Wall', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, fireWall)
 
-    expect(damage).toBe(700)
+    expect(damage).toBe(650)
   })
 
   test('Hero with Fire Wall specialty, Advanced Fire skill and high Spell Power', () => {
@@ -123,7 +123,7 @@ describe('Fire Wall', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, fireWall)
 
-    expect(damage).toBe(720)
+    expect(damage).toBe(662)
   })
 
   test('Hero with Fire Wall specialty, Expert Fire skill and high Spell Power', () => {
@@ -136,7 +136,7 @@ describe('Fire Wall', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, fireWall)
 
-    expect(damage).toBe(780)
+    expect(damage).toBe(700)
   })
 
   test('Cast on creature with immunity', () => {

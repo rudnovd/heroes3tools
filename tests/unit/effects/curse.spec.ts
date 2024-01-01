@@ -133,13 +133,13 @@ describe('Curse spell effect', () => {
 
       const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-      expect(attacker).toContain({
+      expect(attacker).toMatchObject({
         minDamage: 461,
         maxDamage: 594,
         minKills: 6,
         maxKills: 8,
       })
-      expect(defender).toContain({
+      expect(defender).toMatchObject({
         minDamage: 69,
         maxDamage: 69,
         minKills: 0,
@@ -164,13 +164,13 @@ describe('Curse spell effect', () => {
 
       const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-      expect(attacker).toContain({
+      expect(attacker).toMatchObject({
         minDamage: 490,
         maxDamage: 630,
         minKills: 7,
         maxKills: 9,
       })
-      expect(defender).toContain({
+      expect(defender).toMatchObject({
         minDamage: 55,
         maxDamage: 55,
         minKills: 0,

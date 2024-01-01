@@ -20,8 +20,8 @@ describe('Creature hate modificator', () => {
 
     const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-    expect(attacker).toContain({ minDamage: 737, maxDamage: 737 })
-    expect(defender).toContain({ minDamage: 442, maxDamage: 590 })
+    expect(attacker).toMatchObject({ minDamage: 737, maxDamage: 737 })
+    expect(defender).toMatchObject({ minDamage: 442, maxDamage: 590 })
   })
 
   test('3 Angels vs 3 Devils with hero', () => {
@@ -39,7 +39,7 @@ describe('Creature hate modificator', () => {
 
     const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
-    expect(attacker).toContain({ minDamage: 255, maxDamage: 255 })
-    expect(defender).toContain({ minDamage: 130, maxDamage: 174 })
+    expect(attacker).toMatchObject({ minDamage: 255, maxDamage: 255 })
+    expect(defender).toMatchObject({ minDamage: 130, maxDamage: 174 })
   })
 })
