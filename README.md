@@ -22,7 +22,3 @@ If you would like to help translate into other languages, read [translation guid
 ## License
 
 This project is licensed under the [MIT](./LICENSE.md).
-
-## Support
-
-Project does not purpose commercial benefits, but [heroes3.tools](heroes3.tools) domain required renewal in early 2023 year. You can support this project on [Ko-fi](https://ko-fi.com/rudnovd), all funds will be spent on domain renewal.
