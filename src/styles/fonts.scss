@@ -3,7 +3,9 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: local('Open Sans Regular'), local('OpenSans-Regular'),
+  src:
+    local('Open Sans Regular'),
+    local('OpenSans-Regular'),
     url('@/assets/fonts/opensans/open-sans-v28-latin_cyrillic-regular.woff2') format('woff2');
   font-display: fallback;
 }
@@ -13,7 +15,9 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
-  src: local('Open Sans Bold'), local('OpenSans-Bold'),
+  src:
+    local('Open Sans Bold'),
+    local('OpenSans-Bold'),
     url('@/assets/fonts/opensans/open-sans-v28-latin_cyrillic-600.woff2') format('woff2');
   font-display: fallback;
 }
@@ -23,7 +27,9 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
-  src: local('Open Sans Bold'), local('OpenSans-Bold'),
+  src:
+    local('Open Sans Bold'),
+    local('OpenSans-Bold'),
     url('@/assets/fonts/opensans/open-sans-v28-latin_cyrillic-700.woff2') format('woff2');
   font-display: fallback;
 }
@@ -33,7 +39,9 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 800;
-  src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold'),
+  src:
+    local('Open Sans ExtraBold'),
+    local('OpenSans-ExtraBold'),
     url('@/assets/fonts/opensans/open-sans-v28-latin_cyrillic-800.woff2') format('woff2');
   font-display: fallback;
 }
