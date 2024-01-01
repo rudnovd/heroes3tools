@@ -3574,7 +3574,7 @@ export const creatures: Array<Creature> = [
     cost: {
       gold: 40,
     },
-    description: 'Ranged (24 shots), always has +1 luck',
+    description: 'Ranged (24 shots), Positive luck',
   },
   {
     name: 'Halfling Grenadier',
@@ -3595,7 +3595,7 @@ export const creatures: Array<Creature> = [
     cost: {
       gold: 65,
     },
-    description: "Ranged (24 shots), Always has +1 luck, Ranged attack ignores 20% of enemy's defense skill",
+    description: "Ranged (24 shots), Positive luck, Ranged attack ignores 20% of enemy's defense skill",
   },
   {
     name: 'Mechanic',
@@ -3615,7 +3615,7 @@ export const creatures: Array<Creature> = [
     cost: {
       gold: 140,
     },
-    description: 'Breath attack, Repairs mechanical creatures',
+    description: 'Breath attack, Repairs mechanical creatures (10 hit points per Mechanic)',
   },
   {
     name: 'Engineer',
@@ -3635,7 +3635,7 @@ export const creatures: Array<Creature> = [
     cost: {
       gold: 170,
     },
-    description: 'Breath attack, Repairs mechanical creatures',
+    description: 'Breath attack, Repairs mechanical creatures (20 hit points per Engineer)',
   },
   {
     name: 'Armadillo',
@@ -3718,7 +3718,7 @@ export const creatures: Array<Creature> = [
     special: {
       noEnemyRetaliation: true,
     },
-    description: 'Mechanical, Detonation at death, No enemy retaliation',
+    description: 'Mechanical, No enemy retaliation, Detonation at death',
   },
   {
     name: 'Sandworm',
@@ -3742,7 +3742,7 @@ export const creatures: Array<Creature> = [
     special: {
       immunity: [Spells.Blind],
     },
-    description: 'Immune to blinding, Immune to petrification',
+    description: 'Moves underground, Immune to Blinding, Immune to Petrification',
   },
   {
     name: 'Olgoi-Khorkhoi',
@@ -3766,7 +3766,8 @@ export const creatures: Array<Creature> = [
     special: {
       immunity: [Spells.Blind],
     },
-    description: 'Immune to blinding, Immune to petrification, Devours corpses for additional strikes',
+    description:
+      'Moves underground, Immune to blinding, Immune to Petrification, Devours corpses for additional strikes',
   },
   {
     name: 'Gunslinger',
@@ -3787,7 +3788,7 @@ export const creatures: Array<Creature> = [
     cost: {
       gold: 800,
     },
-    description: 'Ranged attack (16 shots), Preemptive shot once per round',
+    description: 'Ranged attack (16 shots), Preemptive shot (once per round)',
   },
   {
     name: 'Bounty Hunter',
@@ -3808,7 +3809,7 @@ export const creatures: Array<Creature> = [
     cost: {
       gold: 1100,
     },
-    description: 'Ranged attack (24 shots), Preemptive shot once per round',
+    description: 'Ranged attack (24 shots), Preemptive shot (unlimited)',
   },
   {
     name: 'Couatl',
@@ -3832,7 +3833,7 @@ export const creatures: Array<Creature> = [
     special: {
       flying: true,
     },
-    description: 'Meditation but skips a turn',
+    description: 'Flies, Skips a turn to get temporary invulnerability',
   },
   {
     name: 'Crimson Couatl',
@@ -3857,7 +3858,7 @@ export const creatures: Array<Creature> = [
     special: {
       flying: true,
     },
-    description: 'Meditation without skipping a turn',
+    description: 'Flies, Gets temporary invulnerability without skipping a turn',
   },
   {
     name: 'Dreadnought',
@@ -3879,7 +3880,7 @@ export const creatures: Array<Creature> = [
       gold: 2500,
       crystal: 1,
     },
-    description: 'Mechanical, Heat stroke',
+    description: 'Mechanical, Can attack with a Heat stroke instead of moving',
   },
   {
     name: 'Juggernaut',
@@ -3901,6 +3902,6 @@ export const creatures: Array<Creature> = [
       gold: 4000,
       crystal: 2,
     },
-    description: 'Mechanical, Heat stroke',
+    description: 'Mechanical, Can attack with a Heat stroke instead of moving',
   },
 ]

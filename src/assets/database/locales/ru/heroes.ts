@@ -687,7 +687,7 @@ export const heroes: Array<HeroTranslation> = [
   },
   {
     id: 172,
-    name: 'Мурдок',
+    name: 'Мердок',
   },
   {
     id: 173,
