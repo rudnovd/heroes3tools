@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "start": "vite",
-    "build": "cross-env NODE_ENV=production npm run lint && vue-tsc --noEmit && vite build",
+    "build": "cross-env NODE_ENV=production npm run lint && npm run stylelint && vue-tsc --noEmit && vite build",
     "serve": "vite preview",
     "test": "vitest",
     "lint": "cross-env NODE_ENV=production eslint --ext .ts,.vue src",
@@ -21,6 +21,7 @@
     "commit": "npx git-cz",
     "localazy:upload": "localazy upload -k localazy.keys.json",
     "localazy:download": "localazy download -k localazy.keys.json",
+    "prerelease": "npm run build",
     "release": "standard-version"
   },
   "dependencies": {
