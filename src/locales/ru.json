@@ -36,8 +36,8 @@
         }
       }
     },
-    "newContentIsAvailable": "Доступен новый контент",
-    "updateApp": "Обновить приложение"
+    "newVersionAvailable": "Новая версия доступна",
+    "update": "Обновить"
   },
   "components": {
     "base": {
