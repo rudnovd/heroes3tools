@@ -4,7 +4,7 @@
       {{ about.text || t('components.pageFooter.about') }}
     </router-link>
 
-    <select v-model="locale">
+    <select v-model="locale" name="select-locale">
       <option v-for="availableLocale in locales" :key="availableLocale.name" :value="availableLocale.name">
         {{ availableLocale.value }}
       </option>

@@ -7,6 +7,7 @@
           :value="search"
           autocomplete="off"
           class="search"
+          :name="`input-${label}`"
           :placeholder="placeholder"
           @input="searchElement"
         />

@@ -1,5 +1,13 @@
 <template>
-  <input :value="currentValue" class="input-number" type="number" :min="min" :max="max" @input="onInput" />
+  <input
+    :value="currentValue"
+    class="input-number"
+    type="number"
+    name="input-number"
+    :min="min"
+    :max="max"
+    @input="onInput"
+  />
 </template>
 
 <script lang="ts">

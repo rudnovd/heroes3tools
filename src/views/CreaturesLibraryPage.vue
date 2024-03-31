@@ -23,6 +23,7 @@
       <div class="search-creature">
         <input
           ref="searchInput"
+          name="search-creatures"
           :value="search"
           :placeholder="t('components.selectUnitModal.searchCreature')"
           @input="setSearch"
