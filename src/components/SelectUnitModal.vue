@@ -3,19 +3,18 @@
     <template #header>
       <input
         ref="searchInput"
-        :value="search"
+        v-model="search"
         type="text"
         class="search-input"
         name="search-creatures"
         :placeholder="t('components.selectUnitModal.searchCreature')"
         @keyup.enter="selectFirstFounded"
-        @input="searchCreature"
       />
     </template>
 
     <template #content>
       <div class="units-modal-content">
-        <div v-if="!search" class="units">
+        <div v-if="!debouncedSearch" class="units">
           <div v-for="town in towns" :key="town.name" class="town">
             <ObjectPortrait
               v-for="creature in creaturesByTowns[town.id]"
@@ -64,6 +63,7 @@
 import BaseDialog from '@/components/base/BaseDialog.vue'
 import type { Creature } from '@/models/Creature'
 import { useStore } from '@/store'
+import { refDebounced } from '@vueuse/core'
 import { computed, defineAsyncComponent, defineComponent, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -88,6 +88,7 @@ export default defineComponent({
     const towns = computed(() => store.towns)
 
     const search = ref('')
+    const debouncedSearch = refDebounced(search, 200)
     const searchInput = ref()
 
     watch(
@@ -98,10 +99,9 @@ export default defineComponent({
     )
 
     const searchCreatures = computed(() => {
-      return creatures.value.filter((creature: Creature) => {
-        const searchText = search.value.toLowerCase()
-        const creatureName = creature.name.toLowerCase()
-        return creatureName.indexOf(searchText) > -1
+      const searchText = debouncedSearch.value.toLowerCase()
+      return creatures.value.filter(({ name }: Creature) => {
+        return name.toLowerCase().includes(searchText)
       })
     })
 
@@ -141,16 +141,12 @@ export default defineComponent({
       context.emit('close')
     }
 
-    const searchCreature = (event: Event) => {
-      const target = event.currentTarget as HTMLInputElement
-      search.value = target.value
-    }
-
     return {
       t,
 
       towns,
       search,
+      debouncedSearch,
       creaturesByTowns,
       searchCreatures,
       searchInput,
@@ -158,7 +154,6 @@ export default defineComponent({
       selectUnit,
       selectFirstFounded,
       onClose,
-      searchCreature,
     }
   },
 })
