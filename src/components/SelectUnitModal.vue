@@ -6,6 +6,7 @@
         :value="search"
         type="text"
         class="search-input"
+        name="search-creatures"
         :placeholder="t('components.selectUnitModal.searchCreature')"
         @keyup.enter="selectFirstFounded"
         @input="searchCreature"

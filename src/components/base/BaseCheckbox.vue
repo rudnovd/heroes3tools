@@ -6,6 +6,7 @@
       :value="value"
       :checked="value"
       :disabled="disabled"
+      :name="`${label}-checkbox`"
       @change="$emit('change', value)"
     />
     <svg class="checkbox" viewBox="0 0 20 20">
