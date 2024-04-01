@@ -33,47 +33,33 @@
   </section>
 </template>
 
-<script lang="ts">
-import { computed, defineAsyncComponent, defineComponent } from 'vue'
+<script setup lang="ts">
+import { computed, defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
+const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 
-export default defineComponent({
-  name: 'HomePage',
-  components: {
-    ObjectPortrait: defineAsyncComponent(() => import('@/components/ObjectPortrait.vue')),
-    PageFooter: defineAsyncComponent(() => import('@/components/PageFooter.vue')),
+const { t } = useI18n()
+const router = useRouter()
+
+const pages = computed(() => [
+  {
+    name: t('pages.damageCalculator'),
+    path: '/damage',
+    image: 'Tactics',
   },
-  setup() {
-    const { t } = useI18n()
-    const router = useRouter()
-
-    const pages = computed(() => [
-      {
-        name: t('pages.damageCalculator'),
-        path: '/damage',
-        image: 'Tactics',
-      },
-      {
-        name: t('pages.magicCalculator'),
-        path: '/magic',
-        image: 'Water',
-      },
-      {
-        name: t('pages.creaturesLibrary'),
-        path: '/creatures',
-        image: 'Scholar',
-      },
-    ])
-
-    return {
-      t,
-      router,
-
-      pages,
-    }
+  {
+    name: t('pages.magicCalculator'),
+    path: '/magic',
+    image: 'Water',
   },
-})
+  {
+    name: t('pages.creaturesLibrary'),
+    path: '/creatures',
+    image: 'Scholar',
+  },
+])
 </script>
 
 <style lang="scss" scoped>

@@ -1,23 +1,13 @@
 <template>
-  <button class="close-button" aria-label="close button" @click="$emit('click')">
+  <button class="close-button" aria-label="close button" @click="emit('click')">
     <span class="cross-first-line" />
     <span class="cross-second-line" />
   </button>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'CloseButton',
-  props: {
-    weight: {
-      type: String,
-      default: '1px',
-    },
-  },
-  emits: ['click'],
-})
+<script setup lang="ts">
+withDefaults(defineProps<{ width?: string }>(), { width: '1px' })
+const emit = defineEmits<{ click: [] }>()
 </script>
 
 <style lang="scss" scoped>
@@ -32,14 +22,14 @@ export default defineComponent({
   top: 50%;
   left: 0;
   width: 100%;
-  height: v-bind(weight);
+  height: v-bind(width);
   transform: translate(0%, -50%) rotate(45deg);
 }
 
 .cross-second-line {
   top: 0;
   left: 50%;
-  width: v-bind(weight);
+  width: v-bind(width);
   height: 100%;
   transform: translate(-50%, 0%) rotate(45deg);
 }

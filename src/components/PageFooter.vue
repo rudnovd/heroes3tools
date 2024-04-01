@@ -35,25 +35,16 @@
     </div>
   </footer>
 
-  <RouterView v-slot="{ route }">
-    <BaseDialog
-      v-if="route.path === staticCurrentRoute && route.hash === '#about'"
-      show
-      size="small"
-      @close="router.push(route.path)"
-    >
+  <RouterView v-slot="{ route: { hash, path } }">
+    <BaseDialog v-if="path === staticCurrentRoute && hash === '#about'" show size="small" @close="router.back">
       <template #content>
         <slot name="aboutModal"></slot>
       </template>
     </BaseDialog>
   </RouterView>
 
-  <RouterView v-slot="{ route }">
-    <BaseDialog
-      v-if="route.path === staticCurrentRoute && route.hash === '#license'"
-      show
-      @close="router.push(route.path)"
-    >
+  <RouterView v-slot="{ route: { hash, path } }">
+    <BaseDialog v-if="path === staticCurrentRoute && hash === '#license'" show @close="router.back">
       <template #content>
         <p>{{ t('components.pageFooter.license.1') }}</p>
         <i18n-t keypath="components.pageFooter.license.2" tag="p">
@@ -69,65 +60,50 @@
   </RouterView>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import i18n from '@/i18n'
 import { useStore } from '@/store'
 import { isDark, useLocale } from '@/utilities'
-import { defineAsyncComponent, defineComponent, watch, type PropType } from 'vue'
+import { defineAsyncComponent, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
+const BaseDialog = defineAsyncComponent(() => import('@/components/base/BaseDialog.vue'))
 
-export default defineComponent({
-  name: 'PageFooter',
-  components: {
-    BaseDialog: defineAsyncComponent(() => import('@/components/base/BaseDialog.vue')),
+withDefaults(
+  defineProps<{
+    about?: { hide?: boolean; text?: string | null }
+    border?: string
+  }>(),
+  {
+    about: () => ({ hide: false, text: null }),
+    border: '1px solid var(--color-border)',
   },
-  props: {
-    about: {
-      type: Object as PropType<{ hide?: boolean; text?: string }>,
-      default: () => ({ hide: false, text: null }),
-    },
-    border: {
-      type: String,
-      default: '1px solid var(--color-border)',
-    },
+)
+
+const { t } = useI18n()
+const route = useRoute()
+const router = useRouter()
+const store = useStore()
+const locale = useLocale()
+
+const staticCurrentRoute = route.path
+const locales = [
+  {
+    name: 'en',
+    value: 'English',
   },
-  setup() {
-    const { t } = useI18n()
-    const route = useRoute()
-    const router = useRouter()
-    const store = useStore()
-    const locale = useLocale()
-
-    const staticCurrentRoute = route.path
-    const locales = [
-      {
-        name: 'en',
-        value: 'English',
-      },
-      {
-        name: 'ru',
-        value: 'Русский',
-      },
-    ]
-
-    watch(i18n.global.locale, (newLocale) => {
-      store.loadData(newLocale)
-      document.title = t(route.meta.title as string)
-    })
-
-    return {
-      t,
-      isDark,
-      router,
-      staticCurrentRoute,
-
-      locales,
-      locale,
-      appVersion: import.meta.env.__APP_VERSION__,
-    }
+  {
+    name: 'ru',
+    value: 'Русский',
   },
+]
+
+watch(i18n.global.locale, (newLocale) => {
+  store.loadData(newLocale)
+  document.title = t(route.meta.title as string)
 })
+
+const appVersion = import.meta.env.__APP_VERSION__
 </script>
 
 <style lang="scss">

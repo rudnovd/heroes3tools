@@ -39,62 +39,44 @@
   </section>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import CalculatorTabs from '@/components/CalculatorTabs.vue'
 import { Battle } from '@/models/Battle'
-import { defineAsyncComponent, defineComponent, ref, type Ref } from 'vue'
+import { defineAsyncComponent, ref, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import MagicCalculator from '../components/MagicCalculator.vue'
+const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 
-export default defineComponent({
-  name: 'MagicCalculatorPage',
-  components: {
-    CalculatorTabs,
-    MagicCalculator,
-    PageFooter: defineAsyncComponent(() => import('@/components/PageFooter.vue')),
-  },
-  setup() {
-    const { t } = useI18n()
+const { t } = useI18n()
 
-    const calculators = ref<Array<Battle>>([new Battle()]) as Ref<Array<Battle>>
-    const activeIndex = ref(0)
+const calculators = ref<Array<Battle>>([new Battle()]) as Ref<Array<Battle>>
+const activeIndex = ref(0)
 
-    const addCalculator = () => {
-      calculators.value.push(new Battle())
-      activeIndex.value = calculators.value.length - 1
+const addCalculator = () => {
+  calculators.value.push(new Battle())
+  activeIndex.value = calculators.value.length - 1
+}
+
+const deleteCalculator = (index: number) => {
+  // Cancel changing activeIndex in <li class="tab"> onClick event
+  // event.stopPropagation()
+
+  // Delete calculator instance
+  calculators.value.splice(index, 1)
+
+  // If current calculator selected for delete
+  if (activeIndex.value === index) {
+    if (index > 0 && index < calculators.value.length - 1) {
+      activeIndex.value = index + 1
+    } else if (index > 0 && index !== calculators.value.length - 1) {
+      activeIndex.value = index - 1
+    } else if (index < calculators.value.length - 1) {
+      activeIndex.value = 0
     }
-
-    const deleteCalculator = (index: number) => {
-      // Cancel changing activeIndex in <li class="tab"> onClick event
-      // event.stopPropagation()
-
-      // Delete calculator instance
-      calculators.value.splice(index, 1)
-
-      // If current calculator selected for delete
-      if (activeIndex.value === index) {
-        if (index > 0 && index < calculators.value.length - 1) {
-          activeIndex.value = index + 1
-        } else if (index > 0 && index !== calculators.value.length - 1) {
-          activeIndex.value = index - 1
-        } else if (index < calculators.value.length - 1) {
-          activeIndex.value = 0
-        }
-      } else if (index < activeIndex.value) {
-        activeIndex.value = calculators.value.length - 1
-      }
-    }
-
-    return {
-      t,
-      calculators,
-      activeIndex,
-
-      addCalculator,
-      deleteCalculator,
-    }
-  },
-})
+  } else if (index < activeIndex.value) {
+    activeIndex.value = calculators.value.length - 1
+  }
+}
 </script>
 
 <style lang="scss" scoped>

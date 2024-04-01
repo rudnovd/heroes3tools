@@ -31,37 +31,17 @@
   </BaseSelect>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import BaseSelect from '@/components/base/BaseSelect.vue'
 import type { Hero, HeroInstance } from '@/models/Hero'
-import { defineAsyncComponent, defineComponent, type PropType } from 'vue'
+import { defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
+const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
 
-export default defineComponent({
-  name: 'SelectHero',
-  components: {
-    BaseSelect,
-    ObjectPortrait: defineAsyncComponent(() => import('@/components/ObjectPortrait.vue')),
-  },
-  props: {
-    heroes: {
-      type: Array as PropType<Array<Hero>>,
-      required: true,
-    },
-    value: {
-      type: null as unknown as PropType<Hero | HeroInstance | null>,
-      required: true,
-    },
-  },
-  emits: ['select', 'clear'],
-  setup() {
-    const { t } = useI18n()
+defineProps<{ heroes: Array<Hero>; value: Hero | HeroInstance | null }>()
+defineEmits<{ select: [hero: Hero]; clear: [] }>()
 
-    return {
-      t,
-    }
-  },
-})
+const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>

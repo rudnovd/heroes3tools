@@ -10,18 +10,9 @@
   </main>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-
-export default defineComponent({
-  name: 'NotFoundPage',
-  setup() {
-    const { t } = useI18n()
-
-    return { t }
-  },
-})
+const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>

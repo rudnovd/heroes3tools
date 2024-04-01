@@ -19,8 +19,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, nextTick, ref, type PropType } from 'vue'
+<script setup lang="ts">
+import { nextTick, ref } from 'vue'
 
 interface BaseNotificationButtonProp {
   text: string
@@ -29,43 +29,29 @@ interface BaseNotificationButtonProp {
   onClick?: () => void
 }
 
-export default defineComponent({
-  name: 'BaseNotification',
-  props: {
-    show: {
-      type: Boolean,
-      required: true,
-    },
-    color: {
-      type: String,
-      default: 'rgb(33, 186, 69)',
-    },
-    textColor: {
-      type: String,
-      default: 'rgb(255, 255, 255)',
-    },
-    buttons: {
-      type: Array as PropType<Array<BaseNotificationButtonProp>>,
-      default: () => [],
-    },
+withDefaults(
+  defineProps<{
+    show: boolean
+    color?: string
+    textColor?: string
+    buttons?: Array<BaseNotificationButtonProp>
+  }>(),
+  {
+    color: 'rgb(33, 186, 69)',
+    textColor: 'rgb(255, 255, 255)',
+    buttons: () => [],
   },
-  emits: ['close'],
-  setup(_, context) {
-    const showNotification = ref(false)
-    nextTick(() => (showNotification.value = true))
+)
+const emit = defineEmits<{ close: [] }>()
 
-    const onClick = (button: BaseNotificationButtonProp) => {
-      showNotification.value = false
-      if (button.onClick) button.onClick()
-      context.emit('close')
-    }
+const showNotification = ref(false)
+nextTick(() => (showNotification.value = true))
 
-    return {
-      showNotification,
-      onClick,
-    }
-  },
-})
+const onClick = (button: BaseNotificationButtonProp) => {
+  showNotification.value = false
+  if (button.onClick) button.onClick()
+  emit('close')
+}
 </script>
 
 <style lang="scss" scoped>

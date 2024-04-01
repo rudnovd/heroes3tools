@@ -13,32 +13,24 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import ObjectPortrait from '@/components/ObjectPortrait.vue'
 import type { Spell } from '@/models/Spell'
-import { defineComponent, type PropType } from 'vue'
 
-export default defineComponent({
-  name: 'SpellCard',
-  components: { ObjectPortrait },
-  props: {
-    spell: {
-      type: Object as PropType<Spell>,
-      required: true,
-    },
-    selected: {
-      type: Boolean,
-      default: false,
-    },
-    imageSizes: {
-      type: Object as PropType<{ height: string | 'auto'; width: string | 'auto' }>,
-      default() {
-        return { height: 'auto', width: 'auto' }
-      },
+withDefaults(
+  defineProps<{
+    spell: Spell
+    selected?: boolean
+    imageSizes?: { height: string | 'auto'; width: string | 'auto' }
+  }>(),
+  {
+    selected: false,
+    imageSizes: () => {
+      return { height: 'auto', width: 'auto' }
     },
   },
-  emits: ['click'],
-})
+)
+defineEmits<{ click: [spell: Spell] }>()
 </script>
 
 <style lang="scss" scoped>

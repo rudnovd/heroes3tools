@@ -10,65 +10,51 @@
   />
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useDebounce } from '@vueuse/core'
-import { defineComponent, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 
-export default defineComponent({
-  name: 'BaseInputNumber',
-  props: {
-    min: {
-      type: Number,
-      default: 1,
-    },
-    max: {
-      type: Number,
-      default: 99,
-    },
-    value: {
-      type: Number,
-      default: 1,
-      required: true,
-    },
-    debounce: {
-      type: Number,
-      default: 0,
-    },
+const props = withDefaults(
+  defineProps<{
+    min?: number
+    max?: number
+    value?: number
+    debounce?: number
+  }>(),
+  {
+    min: 1,
+    max: 99,
+    value: 1,
+    debounce: 0,
   },
-  emits: ['input'],
-  setup(props, context) {
-    const currentValue = ref(props.value)
-    const previousValue = ref(0)
-    const debouncedValue = useDebounce(currentValue, props.debounce)
+)
+const emit = defineEmits<{ input: [number: number] }>()
 
-    watch(
-      () => props.value,
-      (newValue) => (currentValue.value = newValue),
-    )
+const currentValue = ref(props.value)
+const previousValue = ref(0)
+const debouncedValue = useDebounce(currentValue, props.debounce)
 
-    watch(debouncedValue, () => context.emit('input', debouncedValue.value))
+watch(
+  () => props.value,
+  (newValue) => (currentValue.value = newValue),
+)
 
-    const onInput = (event: Event) => {
-      if (!event.target) return
+watch(debouncedValue, () => emit('input', debouncedValue.value))
 
-      const target = event.target as HTMLInputElement
+const onInput = (event: Event) => {
+  if (!event.target) return
 
-      let targetValue = parseInt(target.value)
-      if (targetValue < props.min || targetValue > props.max) {
-        currentValue.value = previousValue.value
-        targetValue = previousValue.value
-      } else {
-        currentValue.value = targetValue
-        previousValue.value = currentValue.value
-      }
-    }
+  const target = event.target as HTMLInputElement
 
-    return {
-      currentValue,
-      onInput,
-    }
-  },
-})
+  let targetValue = parseInt(target.value)
+  if (targetValue < props.min || targetValue > props.max) {
+    currentValue.value = previousValue.value
+    targetValue = previousValue.value
+  } else {
+    currentValue.value = targetValue
+    previousValue.value = currentValue.value
+  }
+}
 </script>
 
 <style lang="scss" scoped>

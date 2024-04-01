@@ -7,7 +7,7 @@
         class="tab"
         :class="{ active: index === activeIndex }"
         :title="calculatorTitle(calculator.attacker, calculator.defender)"
-        @click="$emit('selectTab', index)"
+        @click="emit('selectTab', index)"
       >
         <span class="tab-title">
           {{ calculatorTitle(calculator.attacker, calculator.defender) }}
@@ -16,7 +16,7 @@
         <button
           class="tab-close-button"
           :class="{ disabled: calculators.length < 2 }"
-          @click="$emit('deleteTab', index)"
+          @click="emit('deleteTab', index)"
         />
       </li>
     </ul>
@@ -25,48 +25,36 @@
       class="tab-add-button"
       :class="{ disabled: calculators.length >= 7 }"
       title="Add new Calculator tab"
-      @click="$emit('addTab')"
+      @click="emit('addTab')"
     />
   </section>
 </template>
 
-<script lang="ts">
-import type { PropType } from 'vue'
-import { defineComponent } from 'vue'
+<script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
-export default defineComponent({
-  name: 'CalculatorTabs',
-  props: {
-    calculators: {
-      type: Array as PropType<Array<{ attacker: string | null; defender: string | null }>>,
-      required: true,
-    },
-    activeIndex: {
-      type: Number,
-      required: true,
-    },
-  },
-  emits: ['addTab', 'selectTab', 'deleteTab'],
-  setup() {
-    const { t } = useI18n()
-    const route = useRoute()
+defineProps<{
+  calculators: Array<{ attacker: string | null; defender: string | null }>
+  activeIndex: number
+}>()
+const emit = defineEmits<{
+  addTab: []
+  selectTab: [index: number]
+  deleteTab: [index: number]
+}>()
 
-    const calculatorTitle = (attacker: string | null, defender: string | null) => {
-      if (attacker && defender) return `${attacker} — ${defender}`
-      else if (attacker) return attacker
-      else if (defender) return defender
-      else if (route.path === '/damage') return t('pages.damageCalculator')
-      else if (route.path === '/magic') return t('pages.magicCalculator')
-      else return t('pages.damageCalculator')
-    }
+const { t } = useI18n()
+const route = useRoute()
 
-    return {
-      calculatorTitle,
-    }
-  },
-})
+const calculatorTitle = (attacker: string | null, defender: string | null) => {
+  if (attacker && defender) return `${attacker} — ${defender}`
+  else if (attacker) return attacker
+  else if (defender) return defender
+  else if (route.path === '/damage') return t('pages.damageCalculator')
+  else if (route.path === '/magic') return t('pages.magicCalculator')
+  else return t('pages.damageCalculator')
+}
 </script>
 
 <style lang="scss" scoped>

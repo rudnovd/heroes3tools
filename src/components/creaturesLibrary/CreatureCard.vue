@@ -1,5 +1,5 @@
 <template>
-  <div :id="creature.name" class="creature-card" @click="$emit('click', creature)">
+  <div :id="creature.name" class="creature-card" @click="emit('click', creature)">
     <div class="creature-image">
       <ObjectPortrait :file="{ name: creature.id, alt: creature.name }" folder="/images/creatures/models" />
     </div>
@@ -47,30 +47,15 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { Creature } from '@/models/Creature'
-import { defineComponent, type PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import ObjectPortrait from '../ObjectPortrait.vue'
 
-export default defineComponent({
-  name: 'CreatureCard',
-  components: { ObjectPortrait },
-  props: {
-    creature: {
-      type: Object as PropType<Creature>,
-      required: true,
-    },
-  },
-  emits: ['click'],
-  setup() {
-    const { t } = useI18n()
+defineProps<{ creature: Creature }>()
+const emit = defineEmits<{ click: [creature: Creature] }>()
 
-    return {
-      t,
-    }
-  },
-})
+const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>

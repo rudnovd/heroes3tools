@@ -28,37 +28,17 @@
   </BaseSelect>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import BaseSelect from '@/components/base/BaseSelect.vue'
 import type { Terrain } from '@/models/Terrain'
-import { defineAsyncComponent, defineComponent, type PropType } from 'vue'
+import { defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
+const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
 
-export default defineComponent({
-  name: 'SelectTerrain',
-  components: {
-    BaseSelect,
-    ObjectPortrait: defineAsyncComponent(() => import('@/components/ObjectPortrait.vue')),
-  },
-  props: {
-    value: {
-      type: null as unknown as PropType<Terrain | null>,
-      required: true,
-    },
-    terrains: {
-      type: Array as PropType<Array<Terrain>>,
-      required: true,
-    },
-  },
-  emits: ['select'],
-  setup() {
-    const { t } = useI18n()
+defineProps<{ value: Terrain | null; terrains: Array<Terrain> }>()
+defineEmits<{ select: [terrain: Terrain | null] }>()
 
-    return {
-      t,
-    }
-  },
-})
+const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>

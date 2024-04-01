@@ -120,7 +120,7 @@
   </section>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import PickCreatureButton from '@/components/PickCreatureButton.vue'
 import SelectHero from '@/components/SelectHero.vue'
 import { Battle, getOppositeBattleSide, type BattleSide, type DamageCalculatorBattleSide } from '@/models/Battle'
@@ -131,7 +131,7 @@ import type { Hero } from '@/models/Hero'
 import { HeroInstance } from '@/models/Hero'
 import type { Spell } from '@/models/Spell'
 import { useStore } from '@/store'
-import { computed, defineAsyncComponent, defineComponent, reactive, ref, watch, type PropType } from 'vue'
+import { computed, defineAsyncComponent, reactive, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const spellsTargets = {
@@ -139,191 +139,151 @@ const spellsTargets = {
   self: [Spells.AnimateDead, Spells.Cure, Spells.Resurrection],
 }
 
-export default defineComponent({
-  name: 'MagicCalculator',
-  components: {
-    PickCreatureButton,
-    SelectHero,
-    ObjectPortrait: defineAsyncComponent(() => import('@/components/ObjectPortrait.vue')),
-    BaseInputNumber: defineAsyncComponent(() => import('@/components/base/BaseInputNumber.vue')),
-    InputHeroStat: defineAsyncComponent(() => import('@/components/damageCalculator/InputHeroStat.vue')),
-    SelectSkillButtons: defineAsyncComponent(() => import('@/components/damageCalculator/SelectSkillButtons.vue')),
-    SpellCard: defineAsyncComponent(() => import('@/components/SpellCard.vue')),
-    BaseSelect: defineAsyncComponent(() => import('@/components/base/BaseSelect.vue')),
-  },
-  props: {
-    battleValue: {
-      type: Object as PropType<Battle>,
-      required: true,
-    },
-  },
-  setup(props) {
-    const { t } = useI18n()
-    const store = useStore()
+const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
+const BaseInputNumber = defineAsyncComponent(() => import('@/components/base/BaseInputNumber.vue'))
+const InputHeroStat = defineAsyncComponent(() => import('@/components/damageCalculator/InputHeroStat.vue'))
+const SelectSkillButtons = defineAsyncComponent(() => import('@/components/damageCalculator/SelectSkillButtons.vue'))
+const SpellCard = defineAsyncComponent(() => import('@/components/SpellCard.vue'))
+const BaseSelect = defineAsyncComponent(() => import('@/components/base/BaseSelect.vue'))
 
-    const battle = reactive(props.battleValue)
+const props = defineProps<{
+  battleValue: Battle
+}>()
+const { t } = useI18n()
+const store = useStore()
 
-    const heroes = computed(() => store.heroes)
-    const levels = computed(() => store.levels)
-    const spells = computed(() => {
-      const allowedSpells = [1, 7, 24, 40, 58, 8, 9, 29, 42, 62, 11, 15, 47, 48, 64, 70, 51]
-      return store.spells.filter((spell) => allowedSpells.includes(spell.id))
-    })
-    const skills = computed(() => {
-      const skills = {
-        air: '',
-        earth: '',
-        fire: '',
-        water: '',
-        sorcery: '',
-      }
-      const magicSkillsIds = [
-        SecondarySkills.FireMagic,
-        SecondarySkills.EarthMagic,
-        SecondarySkills.AirMagic,
-        SecondarySkills.Sorcery,
-        SecondarySkills.WaterMagic,
-        SecondarySkills.Interference,
-      ]
-      const skillsNames = ['air', 'earth', 'fire', 'sorcery', 'water', 'interference']
-      store.skills
-        .filter((skill) => magicSkillsIds.indexOf(skill.id) !== -1)
-        .forEach((skill, index) => (skills[skillsNames[index]] = skill.name))
-      return skills
-    })
+const battle = reactive(props.battleValue)
 
-    const spellsEffects = computed(() => {
-      const effectsIds = [5, 22, 46, 60]
-      return store.spells.filter((spell) => effectsIds.includes(spell.id))
-    })
-
-    const spellDamages = ref({
-      attacker: 0,
-      defender: 0,
-    })
-
-    const selectedSpell = ref<{ attacker: Spell | null; defender: Spell | null }>({
-      attacker: null,
-      defender: null,
-    })
-
-    const hasOtherSideCreature = (side: BattleSide) => {
-      const oppositeSide = getOppositeBattleSide(side)
-      return !!battle[oppositeSide].activeCreature
-    }
-
-    const onSelectCreature = (side: DamageCalculatorBattleSide, creature: Creature) => {
-      const creatureInstance = new CreatureInstance(creature)
-      if (side.activeCreature) creatureInstance.count = side.activeCreature.count
-      side.activeCreature = creatureInstance
-      side.creatures[0] = creatureInstance
-    }
-
-    const onSelectHero = (side: DamageCalculatorBattleSide, hero: Hero) => {
-      side.hero = new HeroInstance(hero)
-    }
-
-    const onSelectCreatureEffect = (side: DamageCalculatorBattleSide, spell: Spell) => {
-      if (!side.activeCreature) return
-
-      const isEnabled = side.activeCreature.effects.find((effect) => effect.id === spell.id)
-      if (!isEnabled) {
-        side.activeCreature.effects.push(spell)
-      } else {
-        side.activeCreature.effects = side.activeCreature.effects.filter(
-          (creatureEffect) => creatureEffect.id !== spell.id,
-        )
-      }
-    }
-
-    watch(
-      [battle.attacker, battle.defender, selectedSpell],
-      () => {
-        if (selectedSpell.value.attacker) calculateSpell('attacker', selectedSpell.value.attacker)
-        if (selectedSpell.value.defender) calculateSpell('defender', selectedSpell.value.defender)
-      },
-      {
-        deep: true,
-      },
-    )
-
-    const onSelectSpell = (sideName: BattleSide, spell: Spell) => {
-      if (selectedSpell.value[sideName]?.id === spell.id) {
-        selectedSpell.value[sideName] = null
-        spellDamages.value[sideName] = 0
-        return
-      } else {
-        selectedSpell.value[sideName] = spell
-      }
-    }
-
-    const calculateSpell = (sideName: BattleSide, spell: Spell) => {
-      if (!battle.attacker.activeCreature || !battle.defender.activeCreature) return
-      const oppositeSide = getOppositeBattleSide(sideName)
-      const attacker = battle[sideName]
-      const defender = battle[oppositeSide]
-
-      if (spellsTargets.all.includes(spell.id)) {
-        spellDamages.value[sideName] = battle.cast(attacker, defender, defender.activeCreature, spell)
-        spellDamages.value[oppositeSide] = battle.cast(
-          defender,
-          attacker,
-          battle[sideName as string].activeCreature,
-          spell,
-        )
-      } else if (spellsTargets.self.includes(spell.id)) {
-        spellDamages.value[sideName] = battle.cast(attacker, attacker, battle[sideName as string].activeCreature, spell)
-      } else {
-        spellDamages.value[sideName] = battle.cast(attacker, defender, defender.activeCreature, spell)
-      }
-    }
-
-    const getSpellKillsValue = (sideName: BattleSide) => {
-      const oppositeSide = getOppositeBattleSide(sideName)
-      const kills = Math.floor(spellDamages.value[sideName] / battle[oppositeSide].activeCreature?.health)
-      return Math.abs(kills) || 0
-    }
-
-    const getSpellTargets = (sideName: BattleSide) => {
-      const oppositeSide = getOppositeBattleSide(sideName)
-      const spellId = selectedSpell.value[sideName]?.id
-      const attacker = battle[sideName].activeCreature?.name || ''
-      const defender = battle[oppositeSide].activeCreature?.name || ''
-
-      if (!spellId) {
-        return ''
-      } else if (spellsTargets.all.includes(spellId)) {
-        return `${defender}, ${attacker}`
-      } else if (spellsTargets.self.includes(spellId)) {
-        return attacker
-      } else {
-        return defender
-      }
-    }
-
-    return {
-      t,
-
-      battle,
-      heroes,
-      levels,
-      skills,
-      spells,
-
-      spellDamages,
-      selectedSpell,
-      spellsEffects,
-
-      onSelectCreature,
-      onSelectHero,
-      onSelectCreatureEffect,
-      onSelectSpell,
-      getSpellKillsValue,
-      getSpellTargets,
-      hasOtherSideCreature,
-    }
-  },
+const heroes = computed(() => store.heroes)
+const levels = computed(() => store.levels)
+const spells = computed(() => {
+  const allowedSpells = [1, 7, 24, 40, 58, 8, 9, 29, 42, 62, 11, 15, 47, 48, 64, 70, 51]
+  return store.spells.filter((spell) => allowedSpells.includes(spell.id))
 })
+const skills = computed(() => {
+  const skills = {
+    air: '',
+    earth: '',
+    fire: '',
+    water: '',
+    sorcery: '',
+  }
+  const magicSkillsIds = [
+    SecondarySkills.FireMagic,
+    SecondarySkills.EarthMagic,
+    SecondarySkills.AirMagic,
+    SecondarySkills.Sorcery,
+    SecondarySkills.WaterMagic,
+    SecondarySkills.Interference,
+  ]
+  const skillsNames = ['air', 'earth', 'fire', 'sorcery', 'water', 'interference']
+  store.skills
+    .filter((skill) => magicSkillsIds.indexOf(skill.id) !== -1)
+    .forEach((skill, index) => (skills[skillsNames[index]] = skill.name))
+  return skills
+})
+
+const spellsEffects = computed(() => {
+  const effectsIds = [5, 22, 46, 60]
+  return store.spells.filter((spell) => effectsIds.includes(spell.id))
+})
+
+const spellDamages = ref({
+  attacker: 0,
+  defender: 0,
+})
+
+const selectedSpell = ref<{ attacker: Spell | null; defender: Spell | null }>({
+  attacker: null,
+  defender: null,
+})
+
+const hasOtherSideCreature = (side: BattleSide) => {
+  const oppositeSide = getOppositeBattleSide(side)
+  return !!battle[oppositeSide].activeCreature
+}
+
+const onSelectCreature = (side: DamageCalculatorBattleSide, creature: Creature) => {
+  const creatureInstance = new CreatureInstance(creature)
+  if (side.activeCreature) creatureInstance.count = side.activeCreature.count
+  side.activeCreature = creatureInstance
+  side.creatures[0] = creatureInstance
+}
+
+const onSelectHero = (side: DamageCalculatorBattleSide, hero: Hero) => {
+  side.hero = new HeroInstance(hero)
+}
+
+const onSelectCreatureEffect = (side: DamageCalculatorBattleSide, spell: Spell) => {
+  if (!side.activeCreature) return
+
+  const isEnabled = side.activeCreature.effects.find((effect) => effect.id === spell.id)
+  if (!isEnabled) {
+    side.activeCreature.effects.push(spell)
+  } else {
+    side.activeCreature.effects = side.activeCreature.effects.filter((creatureEffect) => creatureEffect.id !== spell.id)
+  }
+}
+
+watch(
+  [battle.attacker, battle.defender, selectedSpell],
+  () => {
+    if (selectedSpell.value.attacker) calculateSpell('attacker', selectedSpell.value.attacker)
+    if (selectedSpell.value.defender) calculateSpell('defender', selectedSpell.value.defender)
+  },
+  {
+    deep: true,
+  },
+)
+
+const onSelectSpell = (sideName: BattleSide, spell: Spell) => {
+  if (selectedSpell.value[sideName]?.id === spell.id) {
+    selectedSpell.value[sideName] = null
+    spellDamages.value[sideName] = 0
+    return
+  } else {
+    selectedSpell.value[sideName] = spell
+  }
+}
+
+const calculateSpell = (sideName: BattleSide, spell: Spell) => {
+  if (!battle.attacker.activeCreature || !battle.defender.activeCreature) return
+  const oppositeSide = getOppositeBattleSide(sideName)
+  const attacker = battle[sideName]
+  const defender = battle[oppositeSide]
+
+  if (spellsTargets.all.includes(spell.id)) {
+    spellDamages.value[sideName] = battle.cast(attacker, defender, defender.activeCreature, spell)
+    spellDamages.value[oppositeSide] = battle.cast(defender, attacker, battle[sideName as string].activeCreature, spell)
+  } else if (spellsTargets.self.includes(spell.id)) {
+    spellDamages.value[sideName] = battle.cast(attacker, attacker, battle[sideName as string].activeCreature, spell)
+  } else {
+    spellDamages.value[sideName] = battle.cast(attacker, defender, defender.activeCreature, spell)
+  }
+}
+
+const getSpellKillsValue = (sideName: BattleSide) => {
+  const oppositeSide = getOppositeBattleSide(sideName)
+  const kills = Math.floor(spellDamages.value[sideName] / battle[oppositeSide].activeCreature?.health)
+  return Math.abs(kills) || 0
+}
+
+const getSpellTargets = (sideName: BattleSide) => {
+  const oppositeSide = getOppositeBattleSide(sideName)
+  const spellId = selectedSpell.value[sideName]?.id
+  const attacker = battle[sideName].activeCreature?.name || ''
+  const defender = battle[oppositeSide].activeCreature?.name || ''
+
+  if (!spellId) {
+    return ''
+  } else if (spellsTargets.all.includes(spellId)) {
+    return `${defender}, ${attacker}`
+  } else if (spellsTargets.self.includes(spellId)) {
+    return attacker
+  } else {
+    return defender
+  }
+}
 </script>
 
 <style lang="scss" scoped>

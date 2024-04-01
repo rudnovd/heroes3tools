@@ -6,28 +6,16 @@
   <SelectUnitModal :show="showSelectUnitModal" @close="showSelectUnitModal = false" @select="$emit('select', $event)" />
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { BattleSide } from '@/models/Battle'
-import { defineAsyncComponent, defineComponent, ref, type PropType } from 'vue'
+import type { Creature } from '@/models/Creature'
+import { defineAsyncComponent, ref } from 'vue'
+const SelectUnitModal = defineAsyncComponent(() => import('@/components/SelectUnitModal.vue'))
 
-export default defineComponent({
-  name: 'PickCreatureButton',
-  components: {
-    SelectUnitModal: defineAsyncComponent(() => import('@/components/SelectUnitModal.vue')),
-  },
-  props: {
-    color: {
-      type: String as PropType<BattleSide>,
-      required: true,
-    },
-  },
-  emits: ['click', 'select'],
-  setup() {
-    return {
-      showSelectUnitModal: ref(false),
-    }
-  },
-})
+defineProps<{ color: BattleSide }>()
+defineEmits<{ click: []; select: [creature: Creature] }>()
+
+const showSelectUnitModal = ref(false)
 </script>
 
 <style lang="scss" scoped>
