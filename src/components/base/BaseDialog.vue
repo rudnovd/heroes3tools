@@ -17,55 +17,40 @@
   </teleport>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import CloseButton from '@/components/buttons/CloseButton.vue'
 import { onClickOutside } from '@vueuse/core'
-import { defineComponent, ref, watch, type PropType } from 'vue'
+import { ref, watch } from 'vue'
 
-type BaseDialogSizesProp = 'small' | 'medium' | 'large' | 'maximum'
-
-export default defineComponent({
-  name: 'BaseDialog',
-  components: {
-    CloseButton,
+const props = withDefaults(
+  defineProps<{
+    show: boolean
+    size?: 'small' | 'medium' | 'large' | 'maximum'
+  }>(),
+  {
+    size: 'medium',
   },
-  props: {
-    show: {
-      type: Boolean,
-      required: true,
-    },
-    size: {
-      type: String as PropType<BaseDialogSizesProp>,
-      default: 'medium',
-    },
-  },
-  emits: ['close'],
-  setup(props, context) {
-    const baseDialogRef = ref(null)
+)
+const emit = defineEmits<{ close: [] }>()
 
-    onClickOutside(baseDialogRef, () => context.emit('close'))
+const baseDialogRef = ref(null)
+onClickOutside(baseDialogRef, () => emit('close'))
 
-    watch(
-      () => props.show,
-      (newShowState) => {
-        if (newShowState) {
-          const scrollbarWidth = window.innerWidth - document.body.clientWidth
-          document.body.style.paddingRight = `${scrollbarWidth}px`
-          document.body.classList.add('no-scroll')
-        } else {
-          setTimeout(() => {
-            document.body.classList.remove('no-scroll')
-            document.body.style.paddingRight = ''
-          }, 200)
-        }
-      },
-    )
-
-    return {
-      baseDialogRef,
+watch(
+  () => props.show,
+  (newShowState) => {
+    if (newShowState) {
+      const scrollbarWidth = window.innerWidth - document.body.clientWidth
+      document.body.style.paddingRight = `${scrollbarWidth}px`
+      document.body.classList.add('no-scroll')
+    } else {
+      setTimeout(() => {
+        document.body.classList.remove('no-scroll')
+        document.body.style.paddingRight = ''
+      }, 200)
     }
   },
-})
+)
 </script>
 
 <style lang="scss" scoped>

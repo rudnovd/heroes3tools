@@ -4,49 +4,38 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useElementBounding } from '@vueuse/core'
-import { computed, defineComponent, ref, type PropType } from 'vue'
+import { computed, ref } from 'vue'
 
-export default defineComponent({
-  name: 'BaseTooltip',
-  props: {
-    anchor: {
-      type: Object as PropType<HTMLElement>,
-      required: true,
-    },
-    placement: {
-      type: String as PropType<'top' | 'bottom' | 'left' | 'right'>,
-      default: 'bottom',
-    },
+const props = withDefaults(
+  defineProps<{
+    anchor: HTMLElement
+    placement?: 'top' | 'bottom' | 'left' | 'right'
+  }>(),
+  {
+    placement: 'bottom',
   },
-  setup(props) {
-    const tooltip = ref<HTMLElement>()
+)
 
-    const { width: tooltipWidth } = useElementBounding(tooltip)
-    const { top, left, height, width } = useElementBounding(props.anchor)
+const tooltip = ref<HTMLElement>()
 
-    const tooltipX = computed(() => {
-      if (props.placement === 'top' || props.placement === 'bottom')
-        return `${left.value + width.value / 2 - tooltipWidth.value / 2}px`
-      else if (props.placement === 'left') return `${left.value - tooltipWidth.value - 8}px`
-      else if (props.placement === 'right') return `${left.value + width.value + 8}px`
-      else return `0px`
-    })
+const { width: tooltipWidth } = useElementBounding(tooltip)
+const { top, left, height, width } = useElementBounding(props.anchor)
 
-    const tooltipY = computed(() => {
-      if (props.placement === 'top') return `${top.value - height.value * 2}px`
-      if (props.placement === 'bottom') return `${top.value + height.value + 8}px`
-      else if (props.placement === 'left' || props.placement === 'right') return `${top.value - height.value / 2}px`
-      else return `0px`
-    })
+const tooltipX = computed(() => {
+  if (props.placement === 'top' || props.placement === 'bottom')
+    return `${left.value + width.value / 2 - tooltipWidth.value / 2}px`
+  else if (props.placement === 'left') return `${left.value - tooltipWidth.value - 8}px`
+  else if (props.placement === 'right') return `${left.value + width.value + 8}px`
+  else return `0px`
+})
 
-    return {
-      tooltip,
-      tooltipX,
-      tooltipY,
-    }
-  },
+const tooltipY = computed(() => {
+  if (props.placement === 'top') return `${top.value - height.value * 2}px`
+  if (props.placement === 'bottom') return `${top.value + height.value + 8}px`
+  else if (props.placement === 'left' || props.placement === 'right') return `${top.value - height.value / 2}px`
+  else return `0px`
 })
 </script>
 

@@ -17,57 +17,34 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { BattleSide } from '@/models/Battle'
 import type { Level } from '@/models/Level'
-import { defineComponent, ref, watch, type PropType } from 'vue'
+import { ref, watch } from 'vue'
 
-export default defineComponent({
-  name: 'SelectSkillButtons',
-  props: {
-    color: {
-      type: String as PropType<BattleSide>,
-      required: true,
-    },
-    name: {
-      type: String,
-      default: '',
-      required: true,
-    },
-    levels: {
-      type: Array as PropType<Array<Level>>,
-      required: true,
-    },
-    value: {
-      type: Number,
-      required: true,
-    },
-  },
-  emits: ['click'],
-  setup(props, context) {
-    const selectedLevel = ref(props.value)
+const props = defineProps<{
+  color: BattleSide
+  name: string
+  levels: Array<Level>
+  value: number
+}>()
+const emit = defineEmits<{ click: [level: number] }>()
 
-    watch(
-      () => props.value,
-      (newValue) => (selectedLevel.value = newValue),
-    )
+const selectedLevel = ref(props.value)
 
-    const onClick = (level: number) => {
-      if (level === selectedLevel.value) {
-        selectedLevel.value = 0
-      } else {
-        selectedLevel.value = level
-      }
-      context.emit('click', selectedLevel.value)
-    }
+watch(
+  () => props.value,
+  (newValue) => (selectedLevel.value = newValue),
+)
 
-    return {
-      selectedLevel,
-
-      onClick,
-    }
-  },
-})
+const onClick = (level: number) => {
+  if (level === selectedLevel.value) {
+    selectedLevel.value = 0
+  } else {
+    selectedLevel.value = level
+  }
+  emit('click', selectedLevel.value)
+}
 </script>
 
 <style lang="scss" scoped>

@@ -56,141 +56,109 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts" generic="T extends Record<string, any>">
 import i18n from '@/i18n'
 import { onClickOutside, useVirtualList } from '@vueuse/core'
-import { computed, defineComponent, ref, watch, type PropType } from 'vue'
+import type { Ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-export default defineComponent({
-  name: 'BaseSelect',
-  props: {
-    value: {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      type: null as unknown as PropType<Record<string, any> | null>,
-      required: true,
-    },
-    label: {
-      type: String,
-      default: 'name',
-    },
-    options: {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      type: Array as PropType<Array<Record<string, any>>>,
-      required: true,
-    },
-    optionsMaxHeight: {
-      type: String,
-      default: '300px',
-    },
-    preloadOptionsCount: {
-      type: Number,
-      default: 5,
-    },
-    useVirtualScoll: {
-      type: Boolean,
-      default: false,
-    },
-    height: {
-      type: String,
-      default: '42px',
-    },
-    dropdownPosition: {
-      type: String as PropType<'top' | 'bottom'>,
-      default: 'bottom',
-    },
-    placeholder: {
-      type: String,
-      default: i18n.global.t('components.base.baseSelect.selectOptions'),
+const props = withDefaults(
+  defineProps<{
+    value: T | null
+    label?: string
+    options: T[]
+    optionsMaxHeight?: string
+    preloadOptionsCount?: number
+    useVirtualScroll?: boolean
+    height?: string
+    dropdownPosition?: 'top' | 'bottom'
+    placeholder?: string
+  }>(),
+  {
+    label: 'name',
+    optionsMaxHeight: '300px',
+    preloadOptionsCount: 5,
+    useVirtualScroll: false,
+    height: '42px',
+    dropdownPosition: 'bottom',
+    placeholder: () => {
+      return i18n.global.t('components.base.baseSelect.selectOptions')
     },
   },
-  emits: ['click', 'select', 'clear'],
-  setup(props, context) {
-    const { t } = useI18n()
+)
+const emit = defineEmits<{
+  click: [option: T | null]
+  select: [option: T]
+  clear: []
+}>()
 
-    const opened = ref(false)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const selectedValue = ref<Record<string, any> | null>(props.value)
-    const search = ref('')
+const { t } = useI18n()
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const onSelect = (item: Record<string, any>) => {
-      selectedValue.value = item
-      opened.value = false
-      search.value = ''
-      context.emit('select', item)
-    }
+const opened = ref(false)
+const selectedValue: Ref<T | null> = ref(null)
+selectedValue.value = props.value
+const search = ref('')
 
-    const onClear = () => {
-      selectedValue.value = null
-      search.value = ''
-      if (opened.value) opened.value = false
-      context.emit('clear')
-    }
+const onSelect = (item: T) => {
+  selectedValue.value = item
+  opened.value = false
+  search.value = ''
+  emit('select', item)
+}
 
-    const open = () => {
-      if (!opened.value) opened.value = true
-    }
+const onClear = () => {
+  selectedValue.value = null
+  search.value = ''
+  if (opened.value) opened.value = false
+  emit('clear')
+}
 
-    const searchElement = (event: Event) => {
-      const target = event.currentTarget as HTMLInputElement
-      search.value = target.value
-    }
+const open = () => {
+  if (!opened.value) opened.value = true
+}
 
-    const firstOptions = computed(() => {
-      if (search.value.length) {
-        return props.options
-          .filter((option) => {
-            const optionString = option[props.label] as string
-            return optionString.toLowerCase().indexOf(search.value.toLowerCase()) > -1
-          })
-          .map((data, index) => ({ data, index }))
-      } else {
-        return props.options.map((data, index) => ({ data, index }))
-      }
-    })
+const searchElement = (event: Event) => {
+  const target = event.currentTarget as HTMLInputElement
+  search.value = target.value
+}
 
-    const { list, containerProps, wrapperProps } = useVirtualList(firstOptions, {
-      itemHeight: parseInt(props.height),
-      overscan: props.preloadOptionsCount,
-    })
+const firstOptions = computed(() => {
+  if (search.value.length) {
+    return props.options
+      .filter((option) => {
+        const optionString = option[props.label] as string
+        return optionString.toLowerCase().indexOf(search.value.toLowerCase()) > -1
+      })
+      .map((data, index) => ({ data, index }))
+  } else {
+    return props.options.map((data, index) => ({ data, index }))
+  }
+})
 
-    const optionsList = computed(() => {
-      if (props.useVirtualScoll) {
-        return list.value.map((item) => ({ ...item.data, index: item.index }))
-      } else {
-        return firstOptions.value
-      }
-    })
+const { list, containerProps, wrapperProps } = useVirtualList(firstOptions, {
+  itemHeight: parseInt(props.height),
+  overscan: props.preloadOptionsCount,
+})
 
-    watch(search, () => {
-      if (!optionsList.value.length) {
-        wrapperProps.value.style.height = '0px'
-      }
-    })
+const optionsList = computed(() => {
+  if (props.useVirtualScroll) {
+    return list.value.map((item) => ({ ...item.data, index: item.index }))
+  } else {
+    return firstOptions.value
+  }
+})
 
-    onClickOutside(containerProps.ref, () => {
-      setTimeout(() => {
-        opened.value = false
-      }, 100)
-    })
+watch(search, () => {
+  if (!optionsList.value.length) {
+    wrapperProps.value.style.height = '0px'
+  }
+})
 
-    return {
-      t,
-
-      opened,
-      selectedValue,
-      search,
-      optionsList,
-      containerProps,
-      wrapperProps,
-
-      open,
-      searchElement,
-      onSelect,
-      onClear,
-    }
-  },
+onClickOutside(containerProps.ref, () => {
+  setTimeout(() => {
+    opened.value = false
+  }, 100)
 })
 </script>
 

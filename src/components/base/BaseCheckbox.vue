@@ -7,7 +7,7 @@
       :checked="value"
       :disabled="disabled"
       :name="`${label}-checkbox`"
-      @change="$emit('change', value)"
+      @change="emit('change', value)"
     />
     <svg class="checkbox" viewBox="0 0 20 20">
       <rect class="check-focus" x="0.5" y="0.5" width="19" height="19" rx="4" />
@@ -18,31 +18,21 @@
   </label>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'BaseCheckbox',
-  props: {
-    label: {
-      type: String,
-      required: true,
-    },
-    value: {
-      type: Boolean,
-      default: false,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    color: {
-      type: String,
-      default: 'default',
-    },
+<script setup lang="ts">
+withDefaults(
+  defineProps<{
+    label: string
+    value?: boolean
+    disabled?: boolean
+    color?: string
+  }>(),
+  {
+    value: false,
+    disabled: false,
+    color: 'default',
   },
-  emits: ['change'],
-})
+)
+const emit = defineEmits<{ change: [value: boolean] }>()
 </script>
 
 <style lang="scss" scoped>

@@ -3,39 +3,21 @@
     <label class="stat-name">
       {{ t(`data.${stat}`) }}
     </label>
-    <BaseInputNumber :min="0" :max="99" :value="value" :debounce="50" @input="$emit('input', $event)" />
+    <BaseInputNumber :min="0" :max="99" :value="value" :debounce="50" @input="emit('input', $event)" />
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import BaseInputNumber from '@/components/base/BaseInputNumber.vue'
-import { defineComponent, type PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-export default defineComponent({
-  name: 'InputHeroStat',
-  components: {
-    BaseInputNumber,
-  },
-  props: {
-    stat: {
-      type: String as PropType<'attack' | 'defense' | 'power' | 'knowledge' | string>,
-      required: true,
-    },
-    value: {
-      type: Number,
-      required: true,
-    },
-  },
-  emits: ['input'],
-  setup() {
-    const { t } = useI18n()
+defineProps<{
+  stat: 'attack' | 'defense' | 'power' | 'knowledge' | string
+  value: number
+}>()
+const emit = defineEmits<{ input: [number: number] }>()
 
-    return {
-      t,
-    }
-  },
-})
+const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>

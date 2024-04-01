@@ -11,39 +11,27 @@
   </picture>
 </template>
 
-<script lang="ts">
-import { defineComponent, type PropType } from 'vue'
-
-export default defineComponent({
-  name: 'ObjectPortrait',
-  props: {
-    file: {
-      type: Object as PropType<{ name: string | number; alt?: string }>,
-      required: true,
-    },
-    folder: {
-      type: String,
-      required: true,
-    },
-    width: {
-      type: [Number, String],
-      default: 'auto',
-    },
-    height: {
-      type: [Number, String],
-      default: 'auto',
-    },
-    lazyLoading: {
-      type: Boolean,
-      default: true,
-    },
-    sizes: {
-      type: String,
-      default: null,
-    },
+<script setup lang="ts">
+withDefaults(
+  defineProps<{
+    file: { name: string | number; alt?: string }
+    folder: string
+    width?: string | number
+    height?: string | number
+    lazyLoading?: boolean
+    sizes?: string
+  }>(),
+  {
+    lazyLoading: true,
+    width: 'auto',
+    height: 'auto',
+    sizes: undefined,
   },
-  emits: ['click', 'clickPicture'],
-})
+)
+defineEmits<{
+  click: [name: string | number]
+  clickPicture: []
+}>()
 </script>
 
 <style lang="scss" scoped>

@@ -59,104 +59,77 @@
   </BaseDialog>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import BaseDialog from '@/components/base/BaseDialog.vue'
 import type { Creature } from '@/models/Creature'
 import { useStore } from '@/store'
 import { refDebounced } from '@vueuse/core'
-import { computed, defineAsyncComponent, defineComponent, nextTick, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
 
-export default defineComponent({
-  name: 'SelectUnitModal',
-  components: {
-    BaseDialog,
-    ObjectPortrait: defineAsyncComponent(() => import('@/components/ObjectPortrait.vue')),
+const props = defineProps<{ show: boolean }>()
+const emit = defineEmits<{ close: []; select: [creature: Creature] }>()
+
+const { t } = useI18n()
+const store = useStore()
+
+const creatures = computed(() => store.creatures)
+const towns = computed(() => store.towns)
+
+const search = ref('')
+const debouncedSearch = refDebounced(search, 200)
+const searchInput = ref()
+
+watch(
+  () => props.show,
+  (newShowState) => {
+    if (newShowState) nextTick(() => searchInput.value.focus())
   },
-  props: {
-    show: {
-      type: Boolean,
-      required: true,
-    },
-  },
-  emits: ['close', 'select'],
-  setup(props, context) {
-    const { t } = useI18n()
-    const store = useStore()
+)
 
-    const creatures = computed(() => store.creatures)
-    const towns = computed(() => store.towns)
-
-    const search = ref('')
-    const debouncedSearch = refDebounced(search, 200)
-    const searchInput = ref()
-
-    watch(
-      () => props.show,
-      (newShowState) => {
-        if (newShowState) nextTick(() => searchInput.value.focus())
-      },
-    )
-
-    const searchCreatures = computed(() => {
-      const searchText = debouncedSearch.value.toLowerCase()
-      return creatures.value.filter(({ name }: Creature) => {
-        return name.toLowerCase().includes(searchText)
-      })
-    })
-
-    const creaturesByTowns = computed(() => {
-      const map: {
-        [key: number]: Array<Creature>
-      } = {
-        0: [],
-      }
-
-      towns.value.forEach((town) => (map[town.id] = []))
-      creatures.value.forEach((creature) => {
-        if (creature.townId) {
-          map[creature.townId].push(creature)
-        } else {
-          map[0].push(creature)
-        }
-      })
-
-      return map
-    })
-
-    const selectUnit = (value: Creature) => {
-      search.value = ''
-      context.emit('select', value)
-      context.emit('close')
-    }
-
-    const selectFirstFounded = () => {
-      context.emit('select', searchCreatures.value[0])
-      context.emit('close')
-      search.value = ''
-    }
-
-    const onClose = () => {
-      search.value = ''
-      context.emit('close')
-    }
-
-    return {
-      t,
-
-      towns,
-      search,
-      debouncedSearch,
-      creaturesByTowns,
-      searchCreatures,
-      searchInput,
-
-      selectUnit,
-      selectFirstFounded,
-      onClose,
-    }
-  },
+const searchCreatures = computed(() => {
+  const searchText = debouncedSearch.value.toLowerCase()
+  return creatures.value.filter(({ name }: Creature) => {
+    return name.toLowerCase().includes(searchText)
+  })
 })
+
+const creaturesByTowns = computed(() => {
+  const map: {
+    [key: number]: Array<Creature>
+  } = {
+    0: [],
+  }
+
+  towns.value.forEach((town) => (map[town.id] = []))
+  creatures.value.forEach((creature) => {
+    if (creature.townId) {
+      map[creature.townId].push(creature)
+    } else {
+      map[0].push(creature)
+    }
+  })
+
+  return map
+})
+
+const selectUnit = (value: Creature) => {
+  search.value = ''
+  emit('select', value)
+  emit('close')
+}
+
+const selectFirstFounded = () => {
+  emit('select', searchCreatures.value[0])
+  emit('close')
+  search.value = ''
+}
+
+const onClose = () => {
+  search.value = ''
+  emit('close')
+}
 </script>
 
 <style lang="scss" scoped>

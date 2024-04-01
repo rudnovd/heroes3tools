@@ -1,27 +1,23 @@
 <template>
-  <button class="base-button" :class="`color-${color}`" @click="$emit('click')">
+  <button class="base-button" :class="`color-${color}`" @click="emit('click')">
     <slot />
   </button>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { BattleSide } from '@/models/Battle'
-import { defineComponent, type PropType } from 'vue'
 
-export default defineComponent({
-  name: 'BaseButton',
-  props: {
-    color: {
-      type: String as PropType<BattleSide>,
-      default: 'attacker',
-    },
-    width: {
-      type: String,
-      default: '100%',
-    },
+withDefaults(
+  defineProps<{
+    color?: BattleSide
+    width?: string
+  }>(),
+  {
+    color: 'attacker',
+    width: '100%',
   },
-  emits: ['click'],
-})
+)
+const emit = defineEmits<{ click: [] }>()
 </script>
 
 <style lang="scss" scoped>

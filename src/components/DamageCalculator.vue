@@ -130,7 +130,7 @@
   </section>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import PickCreatureButton from '@/components/PickCreatureButton.vue'
 import SelectHero from '@/components/SelectHero.vue'
 import SelectTerrain from '@/components/SelectTerrain.vue'
@@ -143,117 +143,82 @@ import { HeroInstance } from '@/models/Hero'
 import type { Spell } from '@/models/Spell'
 import type { Terrain } from '@/models/Terrain'
 import { useStore } from '@/store'
-import { computed, defineAsyncComponent, defineComponent, reactive, type PropType } from 'vue'
+import { computed, defineAsyncComponent, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-export default defineComponent({
-  name: 'DamageCalculator',
-  components: {
-    PickCreatureButton,
-    SelectHero,
-    SelectTerrain,
-    ObjectPortrait: defineAsyncComponent(() => import('@/components/ObjectPortrait.vue')),
-    BaseInputNumber: defineAsyncComponent(() => import('@/components/base/BaseInputNumber.vue')),
-    InputHeroStat: defineAsyncComponent(() => import('@/components/damageCalculator/InputHeroStat.vue')),
-    SelectSkillButtons: defineAsyncComponent(() => import('@/components/damageCalculator/SelectSkillButtons.vue')),
-    BaseCheckbox: defineAsyncComponent(() => import('@/components/base/BaseCheckbox.vue')),
-  },
-  props: {
-    battleValue: {
-      type: Object as PropType<Battle>,
-      required: true,
-    },
-  },
-  setup(props) {
-    const { t } = useI18n()
-    const store = useStore()
+const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
+const BaseInputNumber = defineAsyncComponent(() => import('@/components/base/BaseInputNumber.vue'))
+const InputHeroStat = defineAsyncComponent(() => import('@/components/damageCalculator/InputHeroStat.vue'))
+const SelectSkillButtons = defineAsyncComponent(() => import('@/components/damageCalculator/SelectSkillButtons.vue'))
+const BaseCheckbox = defineAsyncComponent(() => import('@/components/base/BaseCheckbox.vue'))
 
-    const battle = reactive(props.battleValue)
-    const heroes = computed(() => store.heroes)
-    const terrains = computed(() => store.terrains)
-    const levels = computed(() => store.levels)
-    const skills = computed(() => {
-      const damageCalculatorSkillsIds = [
-        SecondarySkills.Offense,
-        SecondarySkills.AirMagic,
-        SecondarySkills.Armorer,
-        SecondarySkills.FireMagic,
-        SecondarySkills.Archery,
-        SecondarySkills.EarthMagic,
-        SecondarySkills.Artillery,
-        SecondarySkills.WaterMagic,
-      ]
-      const damageCalculatorSkills = ['air', 'archery', 'armorer', 'artillery', 'earth', 'fire', 'offense', 'water']
-      const skills = {}
-      store.skills
-        .filter((skill) => damageCalculatorSkillsIds.includes(skill.id))
-        .forEach((skill, index) => (skills[damageCalculatorSkills[index]] = skill.name))
-      return skills
-    })
-    const effects = computed(() => [
-      store.attackPositiveEffects,
-      store.defensePositiveEffects,
-      store.attackNegativeEffects,
-    ])
+const props = defineProps<{
+  battleValue: Battle
+}>()
 
-    // Return string of total damage or total kills
-    const getTotalResultString = (min: number, max: number, average: number) => {
-      if (min !== max) return `${min} — ${max} (~ ${average})`
-      else if (min === max) return min
-      else return 0
-    }
+const { t } = useI18n()
+const store = useStore()
 
-    const onSelectCreature = (side: DamageCalculatorBattleSide, creature: Creature) => {
-      const creatureInstance = new CreatureInstance(creature)
-      if (side.activeCreature) creatureInstance.count = side.activeCreature.count
-      side.activeCreature = creatureInstance
-      side.creatures[0] = creatureInstance
-    }
-
-    const onSelectHero = (side: DamageCalculatorBattleSide, hero: Hero) => {
-      side.hero = new HeroInstance(hero)
-    }
-
-    const onSelectCreatureEffect = (side: DamageCalculatorBattleSide, spell: Spell, effectEnabled: boolean) => {
-      if (!side.activeCreature) return
-
-      if (!effectEnabled) {
-        side.activeCreature.effects.push(spell)
-      } else {
-        side.activeCreature.effects = side.activeCreature.effects.filter(
-          (creatureEffect) => creatureEffect.id !== spell.id,
-        )
-      }
-    }
-
-    const isEffectEnabled = (side: DamageCalculatorBattleSide, spell: Spell) => {
-      return side.activeCreature?.effects.findIndex((creatureEffect) => creatureEffect.id === spell.id) !== -1
-    }
-
-    const onSelectTerrain = (terrain: Terrain | null) => {
-      battle.attacker.terrain = terrain
-      battle.defender.terrain = terrain
-    }
-
-    return {
-      t,
-
-      battle,
-      heroes,
-      terrains,
-      levels,
-      skills,
-      effects,
-
-      getTotalResultString,
-      onSelectCreature,
-      onSelectHero,
-      onSelectCreatureEffect,
-      isEffectEnabled,
-      onSelectTerrain,
-    }
-  },
+const battle = reactive(props.battleValue)
+const heroes = computed(() => store.heroes)
+const terrains = computed(() => store.terrains)
+const levels = computed(() => store.levels)
+const skills = computed(() => {
+  const damageCalculatorSkillsIds = [
+    SecondarySkills.Offense,
+    SecondarySkills.AirMagic,
+    SecondarySkills.Armorer,
+    SecondarySkills.FireMagic,
+    SecondarySkills.Archery,
+    SecondarySkills.EarthMagic,
+    SecondarySkills.Artillery,
+    SecondarySkills.WaterMagic,
+  ]
+  const damageCalculatorSkills = ['air', 'archery', 'armorer', 'artillery', 'earth', 'fire', 'offense', 'water']
+  const skills = {}
+  store.skills
+    .filter((skill) => damageCalculatorSkillsIds.includes(skill.id))
+    .forEach((skill, index) => (skills[damageCalculatorSkills[index]] = skill.name))
+  return skills
 })
+const effects = computed(() => [store.attackPositiveEffects, store.defensePositiveEffects, store.attackNegativeEffects])
+
+// Return string of total damage or total kills
+const getTotalResultString = (min: number, max: number, average: number) => {
+  if (min !== max) return `${min} — ${max} (~ ${average})`
+  else if (min === max) return min
+  else return 0
+}
+
+const onSelectCreature = (side: DamageCalculatorBattleSide, creature: Creature) => {
+  const creatureInstance = new CreatureInstance(creature)
+  if (side.activeCreature) creatureInstance.count = side.activeCreature.count
+  side.activeCreature = creatureInstance
+  side.creatures[0] = creatureInstance
+}
+
+const onSelectHero = (side: DamageCalculatorBattleSide, hero: Hero) => {
+  side.hero = new HeroInstance(hero)
+}
+
+const onSelectCreatureEffect = (side: DamageCalculatorBattleSide, spell: Spell, effectEnabled: boolean) => {
+  if (!side.activeCreature) return
+
+  if (!effectEnabled) {
+    side.activeCreature.effects.push(spell)
+  } else {
+    side.activeCreature.effects = side.activeCreature.effects.filter((creatureEffect) => creatureEffect.id !== spell.id)
+  }
+}
+
+const isEffectEnabled = (side: DamageCalculatorBattleSide, spell: Spell) => {
+  return side.activeCreature?.effects.findIndex((creatureEffect) => creatureEffect.id === spell.id) !== -1
+}
+
+const onSelectTerrain = (terrain: Terrain | null) => {
+  battle.attacker.terrain = terrain
+  battle.defender.terrain = terrain
+}
 </script>
 
 <style lang="scss" scoped>

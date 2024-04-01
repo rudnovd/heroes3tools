@@ -42,185 +42,165 @@
   </section>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import CalculatorTabs from '@/components/CalculatorTabs.vue'
 import DamageCalculator from '@/components/DamageCalculator.vue'
 import { Battle } from '@/models/Battle'
 import { watchIgnorable } from '@vueuse/shared'
 import type { Ref } from 'vue'
-import { computed, defineAsyncComponent, defineComponent, ref } from 'vue'
+import { computed, defineAsyncComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
+const HowToUse = defineAsyncComponent(() => import('@/components/HowToUse.vue'))
 
-export default defineComponent({
-  name: 'DamageCalculatorPage',
-  components: {
-    CalculatorTabs,
-    DamageCalculator,
-    PageFooter: defineAsyncComponent(() => import('@/components/PageFooter.vue')),
-    HowToUse: defineAsyncComponent(() => import('@/components/HowToUse.vue')),
-  },
-  setup() {
-    const { t } = useI18n()
+const { t } = useI18n()
 
-    const calculators = ref<Array<Battle>>([new Battle()]) as Ref<Array<Battle>>
-    const activeIndex = ref(0)
+const calculators = ref<Array<Battle>>([new Battle()]) as Ref<Array<Battle>>
+const activeIndex = ref(0)
 
-    const attacker = computed(() => calculators.value[activeIndex.value].attacker)
-    const defender = computed(() => calculators.value[activeIndex.value].defender)
-    const howToUseSteps = computed(() => {
-      return [
+const attacker = computed(() => calculators.value[activeIndex.value].attacker)
+const defender = computed(() => calculators.value[activeIndex.value].defender)
+const howToUseSteps = computed(() => {
+  return [
+    {
+      name: 'Pick attacker creature',
+      targets: [
         {
-          name: 'Pick attacker creature',
-          targets: [
-            {
-              node: 'section.attacker button.pick-creature-button',
-              eventTriggerNode: 'section.attacker button.pick-creature-button',
-              text: t('common.howToUseSteps.selectAttackerCreature'),
-            },
-          ],
+          node: 'section.attacker button.pick-creature-button',
+          eventTriggerNode: 'section.attacker button.pick-creature-button',
+          text: t('common.howToUseSteps.selectAttackerCreature'),
+        },
+      ],
+    },
+    {
+      name: 'Select attacker creature',
+      targets: [
+        {
+          node: 'div.dialog-area',
+          //   insertBackground: true,
         },
         {
-          name: 'Select attacker creature',
-          targets: [
-            {
-              node: 'div.dialog-area',
-              //   insertBackground: true,
-            },
-            {
-              node: 'div.dialog-area div.units',
-              eventTriggerNode: 'div.dialog-area div.units',
-            },
-          ],
+          node: 'div.dialog-area div.units',
+          eventTriggerNode: 'div.dialog-area div.units',
+        },
+      ],
+    },
+    {
+      name: 'Open hero list',
+      targets: [
+        {
+          node: 'section.attacker div.select',
+          eventTriggerNode: 'section.attacker div.select',
+          text: t('common.howToUseSteps.selectAttackerHero'),
+        },
+      ],
+    },
+    {
+      name: 'Pick hero',
+      targets: [
+        {
+          node: 'section.attacker div.select > div.items',
+          eventTriggerNode: 'section.attacker div.select > div.items',
+        },
+      ],
+    },
+    {
+      name: 'Click to "pick creature" defender button',
+      targets: [
+        {
+          node: 'section.defender button.pick-creature-button',
+          eventTriggerNode: 'section.defender button.pick-creature-button',
+          text: t('common.howToUseSteps.selectDefenderCreature'),
+        },
+      ],
+    },
+    {
+      name: 'Select defender creature',
+      targets: [
+        {
+          node: 'div.dialog-area',
+          //   insertBackground: true,
         },
         {
-          name: 'Open hero list',
-          targets: [
-            {
-              node: 'section.attacker div.select',
-              eventTriggerNode: 'section.attacker div.select',
-              text: t('common.howToUseSteps.selectAttackerHero'),
-            },
-          ],
+          node: 'div.dialog-area div.units',
+          eventTriggerNode: 'div.dialog-area div.units',
+        },
+      ],
+    },
+    {
+      name: 'Open hero list',
+      targets: [
+        {
+          node: 'section.defender div.select',
+          eventTriggerNode: 'section.defender div.select',
+          text: t('common.howToUseSteps.selectDefenderHero'),
+        },
+      ],
+    },
+    {
+      name: 'Pick hero',
+      targets: [
+        {
+          node: 'section.defender div.select > div.items',
+          eventTriggerNode: 'section.defender div.select > div.items',
+        },
+      ],
+    },
+    {
+      name: 'Check values',
+      targets: [
+        {
+          node: 'section.attacker section.damage > strong',
         },
         {
-          name: 'Pick hero',
-          targets: [
-            {
-              node: 'section.attacker div.select > div.items',
-              eventTriggerNode: 'section.attacker div.select > div.items',
-            },
-          ],
+          node: 'section.attacker section.damage > strong:nth-child(2)',
+          text: t('common.howToUseSteps.damage'),
         },
         {
-          name: 'Click to "pick creature" defender button',
-          targets: [
-            {
-              node: 'section.defender button.pick-creature-button',
-              eventTriggerNode: 'section.defender button.pick-creature-button',
-              text: t('common.howToUseSteps.selectDefenderCreature'),
-            },
-          ],
+          node: 'section.defender section.damage > strong',
         },
         {
-          name: 'Select defender creature',
-          targets: [
-            {
-              node: 'div.dialog-area',
-              //   insertBackground: true,
-            },
-            {
-              node: 'div.dialog-area div.units',
-              eventTriggerNode: 'div.dialog-area div.units',
-            },
-          ],
+          node: 'section.defender section.damage > strong:nth-child(2)',
         },
-        {
-          name: 'Open hero list',
-          targets: [
-            {
-              node: 'section.defender div.select',
-              eventTriggerNode: 'section.defender div.select',
-              text: t('common.howToUseSteps.selectDefenderHero'),
-            },
-          ],
-        },
-        {
-          name: 'Pick hero',
-          targets: [
-            {
-              node: 'section.defender div.select > div.items',
-              eventTriggerNode: 'section.defender div.select > div.items',
-            },
-          ],
-        },
-        {
-          name: 'Check values',
-          targets: [
-            {
-              node: 'section.attacker section.damage > strong',
-            },
-            {
-              node: 'section.attacker section.damage > strong:nth-child(2)',
-              text: t('common.howToUseSteps.damage'),
-            },
-            {
-              node: 'section.defender section.damage > strong',
-            },
-            {
-              node: 'section.defender section.damage > strong:nth-child(2)',
-            },
-          ],
-        },
-      ]
-    })
-
-    const { ignoreUpdates } = watchIgnorable(
-      [attacker, defender],
-      () => {
-        if (!attacker.value.activeCreature?.id || !defender.value.activeCreature?.id) return
-        ignoreUpdates(() => calculators.value[activeIndex.value].calculate())
-      },
-      { deep: true },
-    )
-
-    const addCalculator = () => {
-      calculators.value.push(new Battle())
-      activeIndex.value = calculators.value.length - 1
-    }
-
-    const deleteCalculator = (index: number) => {
-      // Cancel changing activeIndex in <li class="tab"> onClick event
-      // event.stopPropagation()
-
-      // Delete calculator instance
-      calculators.value.splice(index, 1)
-
-      // If current calculator selected for delete
-      if (activeIndex.value === index) {
-        if (index > 0 && index < calculators.value.length - 1) {
-          activeIndex.value = index + 1
-        } else if (index > 0 && index !== calculators.value.length - 1) {
-          activeIndex.value = index - 1
-        } else if (index < calculators.value.length - 1) {
-          activeIndex.value = 0
-        }
-      } else if (index < activeIndex.value) {
-        activeIndex.value = calculators.value.length - 1
-      }
-    }
-
-    return {
-      t,
-
-      calculators,
-      activeIndex,
-      howToUseSteps,
-
-      addCalculator,
-      deleteCalculator,
-    }
-  },
+      ],
+    },
+  ]
 })
+
+const { ignoreUpdates } = watchIgnorable(
+  [attacker, defender],
+  () => {
+    if (!attacker.value.activeCreature?.id || !defender.value.activeCreature?.id) return
+    ignoreUpdates(() => calculators.value[activeIndex.value].calculate())
+  },
+  { deep: true },
+)
+
+const addCalculator = () => {
+  calculators.value.push(new Battle())
+  activeIndex.value = calculators.value.length - 1
+}
+
+const deleteCalculator = (index: number) => {
+  // Cancel changing activeIndex in <li class="tab"> onClick event
+  // event.stopPropagation()
+
+  // Delete calculator instance
+  calculators.value.splice(index, 1)
+
+  // If current calculator selected for delete
+  if (activeIndex.value === index) {
+    if (index > 0 && index < calculators.value.length - 1) {
+      activeIndex.value = index + 1
+    } else if (index > 0 && index !== calculators.value.length - 1) {
+      activeIndex.value = index - 1
+    } else if (index < calculators.value.length - 1) {
+      activeIndex.value = 0
+    }
+  } else if (index < activeIndex.value) {
+    activeIndex.value = calculators.value.length - 1
+  }
+}
 </script>
 
 <style lang="scss" scoped>
