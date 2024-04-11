@@ -67,8 +67,7 @@ const activeIndex = ref(0)
 
 const attacker = computed(() => calculators.value[activeIndex.value].attacker)
 const defender = computed(() => calculators.value[activeIndex.value].defender)
-const howToUseSteps = computed(() => {
-  return [
+const howToUseSteps = [
     {
       name: 'Pick attacker creature',
       targets: [
@@ -172,7 +171,6 @@ const howToUseSteps = computed(() => {
       ],
     },
   ]
-})
 
 const { ignoreUpdates } = watchIgnorable(
   [attacker, defender],

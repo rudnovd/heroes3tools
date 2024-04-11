@@ -50,7 +50,7 @@ import(`../locales/head/pages/home-page/${selectedLocale.value}.json`).then((jso
 const { t } = useI18n()
 const router = useRouter()
 
-const pages = computed(() => [
+const pages = [
   {
     name: t('pages.damageCalculator'),
     path: '/damage',
@@ -58,15 +58,15 @@ const pages = computed(() => [
   },
   {
     name: t('pages.magicCalculator'),
-    path: '/magic',
+    path: 'magic',
     image: 'Water',
   },
   {
     name: t('pages.creaturesLibrary'),
-    path: '/creatures',
+    path: 'creatures',
     image: 'Scholar',
   },
-])
+]
 </script>
 
 <style lang="scss" scoped>
@@ -75,7 +75,7 @@ const pages = computed(() => [
   grid-template-rows: min-content 1fr min-content;
   gap: 16px;
   min-width: 300px;
-  min-height: 100vh;
+  min-height: calc(100dvh - 2rem);
   margin: 0 auto;
   content-visibility: auto;
   contain-intrinsic-size: 100vh;
