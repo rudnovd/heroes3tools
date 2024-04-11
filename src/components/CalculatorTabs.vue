@@ -16,7 +16,7 @@
         <button
           class="tab-close-button"
           :class="{ disabled: calculators.length < 2 }"
-          @click="emit('deleteTab', index)"
+          @click.stop="emit('deleteTab', index)"
         />
       </li>
     </ul>

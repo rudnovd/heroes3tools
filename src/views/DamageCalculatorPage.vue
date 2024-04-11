@@ -187,24 +187,19 @@ const addCalculator = () => {
 }
 
 const deleteCalculator = (index: number) => {
-  // Cancel changing activeIndex in <li class="tab"> onClick event
-  // event.stopPropagation()
-
-  // Delete calculator instance
-  calculators.value.splice(index, 1)
-
-  // If current calculator selected for delete
+  const calculatorsCountAfterDelete = calculators.value.length - 1
   if (activeIndex.value === index) {
-    if (index > 0 && index < calculators.value.length - 1) {
+    if (index > 0 && index < calculatorsCountAfterDelete - 1) {
       activeIndex.value = index + 1
-    } else if (index > 0 && index !== calculators.value.length - 1) {
+    } else if (index > 0 && index !== calculatorsCountAfterDelete - 1) {
       activeIndex.value = index - 1
-    } else if (index < calculators.value.length - 1) {
+    } else if (index < calculatorsCountAfterDelete - 1) {
       activeIndex.value = 0
     }
   } else if (index < activeIndex.value) {
-    activeIndex.value = calculators.value.length - 1
+    activeIndex.value = calculatorsCountAfterDelete - 1
   }
+  calculators.value.splice(index, 1)
 }
 </script>
 
