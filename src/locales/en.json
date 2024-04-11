@@ -50,7 +50,8 @@
         "button": "Send Error",
         "placeholder": "Describe error or paste links to screenshots (for example from https://imgur.com)"
       },
-      "appVersion": "App version"
+      "appVersion": "App version",
+      "hotaVersion": "HotA version"
     },
     "homePage": {
       "data": {

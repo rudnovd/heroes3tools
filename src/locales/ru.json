@@ -94,6 +94,7 @@
     "pageFooter": {
       "about": "О проекте",
       "appVersion": "Версия приложения",
+      "hotaVersion": "Версия HotA",
       "foundAnError": "Нашли ошибку?",
       "howToUse": "Как пользоваться",
       "language": "Язык",
