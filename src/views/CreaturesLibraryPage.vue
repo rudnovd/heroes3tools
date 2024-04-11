@@ -60,6 +60,8 @@
 import ObjectPortrait from '@/components/ObjectPortrait.vue'
 import type { Creature } from '@/models/Creature'
 import { useStore } from '@/store'
+import { getHead, metaEmptyProperties, selectedLocale } from '@/utilities'
+import { useHead } from '@unhead/vue'
 import { useDebounce } from '@vueuse/core'
 import { computed, defineAsyncComponent, onUnmounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -67,6 +69,11 @@ import { useRoute, useRouter } from 'vue-router'
 const CreatureCard = defineAsyncComponent(() => import('@/components/creaturesLibrary/CreatureCard.vue'))
 const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 
+const head = useHead(metaEmptyProperties)
+import(`../locales/head/pages/creatures-library-page/${selectedLocale.value}.json`).then((json) => {
+  const data = json.default
+  head?.patch(getHead(data))
+})
 const store = useStore()
 const router = useRouter()
 const route = useRoute()

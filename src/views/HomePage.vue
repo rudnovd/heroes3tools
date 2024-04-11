@@ -34,12 +34,19 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineAsyncComponent } from 'vue'
+import { getHead, metaEmptyProperties, selectedLocale } from '@/utilities'
+import { useHead } from '@unhead/vue'
+import { defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
 const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 
+const head = useHead(metaEmptyProperties)
+import(`../locales/head/pages/home-page/${selectedLocale.value}.json`).then((json) => {
+  const data = json.default
+  head?.patch({ ...getHead(data), titleTemplate: '' })
+})
 const { t } = useI18n()
 const router = useRouter()
 

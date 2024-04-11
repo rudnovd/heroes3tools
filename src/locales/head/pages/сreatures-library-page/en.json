@@ -1,0 +1,7 @@
+{
+  "title": "Creatures library",
+  "description": "Creatures library stores information about creatures properties, costs and features",
+  "image": "https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true",
+  "locale": "en_US",
+  "url": "https://heroes3tools.netlify.app/creatures-library"
+}

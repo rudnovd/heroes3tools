@@ -3,7 +3,7 @@
   "version": "2.2.1",
   "private": true,
   "type": "module",
-  "description": "Web tools for simplify calculations in Heroes of Might and Magic III: Horn of The Abyss",
+  "description": "Web tools to make playing Heroes of Might and Magic III: Horn of The Abyss easier: damage calculator, magic calculator, creature library for simplify calculations in Heroes of Might and Magic III: Horn of The Abyss",
   "homepage": "https://heroes3tools.netlify.app/",
   "bugs": {
     "url": "https://github.com/rudnovd/heroes3tools/issues"
@@ -26,6 +26,7 @@
     "release": "standard-version"
   },
   "dependencies": {
+    "@unhead/vue": "^1.9.4",
     "@vueuse/core": "^10.9.0",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
@@ -39,6 +40,7 @@
     "@localazy/cli": "^1.7.8",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
+    "@unhead/addons": "^1.9.4",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/eslint-config-typescript": "^13.0.0",
     "@vue/test-utils": "^2.4.5",

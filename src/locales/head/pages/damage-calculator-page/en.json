@@ -1,0 +1,7 @@
+{
+  "title": "Damage calculator",
+  "description": "Damage calculator helps calculate damage dealt by creatures, including hero skills and spells modifiers",
+  "image": "https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true",
+  "locale": "en_US",
+  "url": "https://heroes3tools.netlify.app/damage-calculator"
+}
