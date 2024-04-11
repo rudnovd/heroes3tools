@@ -18,10 +18,9 @@
       {{ t('components.pageFooter.licenseInformation') }}
     </router-link>
     <a href="https://github.com/rudnovd/heroes3tools" target="_blank" rel="noopener">
-      {{ t('components.pageFooter.sourceCode') }}
+      🌟{{ t('components.pageFooter.sourceCode') }}
     </a>
-
-    <span>{{ t('components.pageFooter.appVersion') }}: {{ appVersion }}</span>
+    <span>{{ t('components.pageFooter.hotaVersion') }}: 1.7.0</span>
 
     <div class="theme-switch">
       <input id="mode-input" type="checkbox" :value="isDark" @change="isDark = !isDark" />
