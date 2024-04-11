@@ -72,7 +72,7 @@
           :value="selectedSpell[sideName]"
           :options="spells"
           :placeholder="t('components.magicCalculator.selectSpell')"
-          use-virtual-scoll
+          virtual-scroll
           @select="onSelectSpell(sideName, $event)"
           @clear="selectedSpell[sideName] = null"
         >
@@ -382,7 +382,7 @@ const getSpellTargets = (sideName: BattleSide) => {
 .spell {
   display: grid;
   grid-template-areas: 'target select';
-  grid-template-columns: minmax(auto, 33.3%) 1fr;
+  grid-template-columns: minmax(auto, 40%) 1fr;
   gap: 8px;
   align-items: center;
 
@@ -411,18 +411,18 @@ const getSpellTargets = (sideName: BattleSide) => {
   }
 
   .title {
-    grid-template-columns: minmax(auto, 33.3%) 1fr;
+    grid-template-columns: minmax(auto, 40%) 1fr;
   }
 
   .main {
-    grid-template-columns: minmax(auto, 33.3%) 1fr;
+    grid-template-columns: minmax(auto, 40%) 1fr;
   }
 }
 
 .defender {
   .title {
     grid-template-areas: 'button title';
-    grid-template-columns: 1fr minmax(auto, 33.3%);
+    grid-template-columns: 1fr minmax(auto, 40%);
   }
   .title > h2 {
     grid-area: title;
@@ -431,7 +431,7 @@ const getSpellTargets = (sideName: BattleSide) => {
 
   .main {
     grid-template-areas: 'hero creature';
-    grid-template-columns: auto minmax(auto, 33.3%);
+    grid-template-columns: auto minmax(auto, 40%);
   }
 
   .creature {
@@ -440,7 +440,7 @@ const getSpellTargets = (sideName: BattleSide) => {
   }
 
   .spell {
-    grid-template-columns: 1fr minmax(auto, 33.3%);
+    grid-template-columns: 1fr minmax(auto, 40%);
 
     div:nth-child(1) {
       grid-area: select;

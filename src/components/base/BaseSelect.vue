@@ -26,19 +26,18 @@
     <Transition name="fade">
       <div
         v-if="opened"
-        :ref="containerProps.ref"
+        v-bind="virtualScroll ? virtualScrollContainer : void 0"
         class="items"
         :class="dropdownPosition"
         tabindex="-1"
-        @scroll="containerProps.onScroll"
       >
-        <ul v-bind="wrapperProps">
+        <ul v-bind="virtualScroll ? wrapperProps : void 0">
           <li
             v-for="{ index, data } in optionsList"
-            :key="index"
+            :key="data[label]"
             class="option-item"
             :class="{ selected: selectedValue && selectedValue[label] === data[label] }"
-            @click="onSelect(data)"
+            @click="onSelect(data, index)"
           >
             <slot name="option" :option="data">{{ data[label] }}</slot>
           </li>
@@ -60,7 +59,7 @@
 import i18n from '@/i18n'
 import { onClickOutside, useVirtualList } from '@vueuse/core'
 import type { Ref } from 'vue'
-import { computed, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const props = withDefaults(
@@ -70,7 +69,7 @@ const props = withDefaults(
     options: T[]
     optionsMaxHeight?: string
     preloadOptionsCount?: number
-    useVirtualScroll?: boolean
+    virtualScroll?: boolean
     height?: string
     dropdownPosition?: 'top' | 'bottom'
     placeholder?: string
@@ -79,7 +78,7 @@ const props = withDefaults(
     label: 'name',
     optionsMaxHeight: '300px',
     preloadOptionsCount: 5,
-    useVirtualScroll: false,
+    virtualScroll: false,
     height: '42px',
     dropdownPosition: 'bottom',
     placeholder: () => {
@@ -98,24 +97,35 @@ const { t } = useI18n()
 const opened = ref(false)
 const selectedValue: Ref<T | null> = ref(null)
 selectedValue.value = props.value
+let selectedIndex = 0
 const search = ref('')
 
-const onSelect = (item: T) => {
+const onSelect = (item: T, index: number) => {
   selectedValue.value = item
   opened.value = false
   search.value = ''
+  selectedIndex = index
   emit('select', item)
 }
 
 const onClear = () => {
   selectedValue.value = null
   search.value = ''
-  if (opened.value) opened.value = false
+  if (opened.value) {
+    opened.value = false
+    selectedIndex = 0
+  }
   emit('clear')
 }
 
 const open = () => {
-  if (!opened.value) opened.value = true
+  if (!opened.value) {
+    opened.value = true
+    nextTick(() => {
+      const top = selectedIndex ? selectedIndex * parseInt(props.height) : 0
+      if (props.virtualScroll) virtualScrollContainer.ref.value?.scrollTo({ top })
+    })
+  }
 }
 
 const searchElement = (event: Event) => {
@@ -125,10 +135,11 @@ const searchElement = (event: Event) => {
 
 const firstOptions = computed(() => {
   if (search.value.length) {
+    const searchQuery = search.value.toLowerCase()
     return props.options
       .filter((option) => {
         const optionString = option[props.label] as string
-        return optionString.toLowerCase().indexOf(search.value.toLowerCase()) > -1
+        return optionString.toLowerCase().includes(searchQuery)
       })
       .map((data, index) => ({ data, index }))
   } else {
@@ -136,13 +147,17 @@ const firstOptions = computed(() => {
   }
 })
 
-const { list, containerProps, wrapperProps } = useVirtualList(firstOptions, {
+const {
+  list,
+  containerProps: virtualScrollContainer,
+  wrapperProps,
+} = useVirtualList(firstOptions, {
   itemHeight: parseInt(props.height),
   overscan: props.preloadOptionsCount,
 })
 
 const optionsList = computed(() => {
-  if (props.useVirtualScroll) {
+  if (props.virtualScroll) {
     return list.value.map((item) => ({ ...item.data, index: item.index }))
   } else {
     return firstOptions.value
@@ -155,7 +170,7 @@ watch(search, () => {
   }
 })
 
-onClickOutside(containerProps.ref, () => {
+onClickOutside(virtualScrollContainer.ref, () => {
   setTimeout(() => {
     opened.value = false
   }, 100)
