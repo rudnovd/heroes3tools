@@ -4,22 +4,19 @@
       {{ about.text || t('components.pageFooter.about') }}
     </router-link>
 
-    <select v-model="locale" name="select-locale">
+    <select :value="selectedLocale" name="select-locale" @change="updatePage">
       <option v-for="availableLocale in locales" :key="availableLocale.name" :value="availableLocale.name">
         {{ availableLocale.value }}
       </option>
     </select>
 
     <slot></slot>
-
     <router-link to="send-error" class="send-error-link">
       {{ t('components.pageFooter.foundAnError') }}
     </router-link>
-
     <router-link to="#license">
       {{ t('components.pageFooter.licenseInformation') }}
     </router-link>
-
     <a href="https://github.com/rudnovd/heroes3tools" target="_blank" rel="noopener">
       {{ t('components.pageFooter.sourceCode') }}
     </a>
@@ -61,8 +58,8 @@
 </template>
 
 <script setup lang="ts">
-import i18n from '@/i18n'
-import { useStore } from '@/store'
+import { type AvailableLocale } from '@/i18n'
+import { isDark, selectedLocale } from '@/utilities'
 import { isDark, useLocale } from '@/utilities'
 import { defineAsyncComponent, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -86,22 +83,16 @@ const router = useRouter()
 const store = useStore()
 const locale = useLocale()
 
-const staticCurrentRoute = route.path
-const locales = [
-  {
-    name: 'en',
-    value: 'English',
-  },
-  {
-    name: 'ru',
-    value: 'Русский',
-  },
+const locales: ReadonlyArray<{ name: AvailableLocale; value: string }> = [
+  { name: 'en', value: 'English' },
+  { name: 'ru', value: 'Русский' },
 ]
 
-watch(i18n.global.locale, (newLocale) => {
-  store.loadData(newLocale)
-  document.title = t(route.meta.title as string)
-})
+async function updatePage(event: Event) {
+  const locale = (event.target as HTMLInputElement).value as AvailableLocale
+  selectedLocale.value = locale
+  router.go(0)
+}
 
 const appVersion = import.meta.env.__APP_VERSION__
 </script>
