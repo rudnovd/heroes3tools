@@ -1,0 +1,7 @@
+{
+  "title": "Библиотека существ",
+  "description": "Библиотека существ хранит информацию о характеристиках существ, их стоимости и особенностях",
+  "image": "https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true",
+  "locale": "ru_RU",
+  "url": "https://heroes3tools.netlify.app/ru/creatures-library"
+}

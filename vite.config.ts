@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import { defineConfig } from 'vite'
 import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa'
+import UnheadVite from '@unhead/addons/vite'
 
 const pwaOptions: Partial<VitePWAOptions> = {
   base: '/',
@@ -22,7 +23,8 @@ const pwaOptions: Partial<VitePWAOptions> = {
   manifest: {
     name: 'Heroes 3 tools',
     short_name: 'Heroes 3 tools',
-    description: 'Web tools for simplification playing in Heroes of Might and Magic III: Horn of The Abyss',
+    description:
+      'Tools to make playing Heroes of Might and Magic III: Horn of The Abyss easier: damage calculator, magic calculator, creature library',
     orientation: 'portrait',
     theme_color: '#c0b675',
     background_color: '#c0b675',
@@ -54,7 +56,12 @@ const pwaOptions: Partial<VitePWAOptions> = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), VitePWA(pwaOptions), VueI18nPlugin({ include: path.resolve(__dirname, './src/locales/**') })],
+  plugins: [
+    vue(),
+    VitePWA(pwaOptions),
+    VueI18nPlugin({ include: path.resolve(__dirname, './src/locales/*.json') }),
+    UnheadVite(),
+  ],
   resolve: {
     alias: [
       {
@@ -77,5 +84,8 @@ export default defineConfig({
   },
   define: {
     'import.meta.env.__APP_VERSION__': JSON.stringify(process.env.npm_package_version),
+  },
+  server: {
+    port: 5555,
   },
 })

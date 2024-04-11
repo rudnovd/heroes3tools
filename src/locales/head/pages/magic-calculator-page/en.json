@@ -1,0 +1,7 @@
+{
+  "title": "Magic calculator",
+  "description": "Magic calculator helps calculate damage dealt from hero casted spells",
+  "image": "https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true",
+  "locale": "en_US",
+  "url": "https://heroes3tools.netlify.app/magic-calculator"
+}

@@ -1,6 +1,6 @@
-import i18n, { getBrowserLanguage, loadLocaleMessages } from '@/i18n'
+import { getBrowserLanguage, type AvailableLocale } from '@/i18n'
+import type { UseHeadInput } from '@unhead/vue'
 import { useDark, useLocalStorage } from '@vueuse/core'
-import { computed } from 'vue'
 
 export const isDark = useDark({
   selector: 'body',
@@ -13,25 +13,82 @@ export const isDark = useDark({
   },
 })
 
-export const useLocale = () => {
-  const selectedLocale = useLocalStorage('locale', getBrowserLanguage())
-  const locale = computed({
-    get() {
-      return selectedLocale.value
-    },
-    async set(value) {
-      selectedLocale.value = value
-      const messages = await loadLocaleMessages(selectedLocale.value)
-      i18n.global.setLocaleMessage(selectedLocale.value, messages.default)
-      i18n.global.locale.value = selectedLocale.value
-      document.querySelector('html')?.setAttribute('lang', selectedLocale.value)
-    },
-  })
+export const selectedLocale = useLocalStorage<AvailableLocale>('locale', getBrowserLanguage(), {
+  listenToStorageChanges: false,
+})
 
-  // load initial locale messages
-  if (!Object.keys(i18n.global.getLocaleMessage(selectedLocale.value)).length) {
-    locale.value = selectedLocale.value
+const metaSharedProperties = [
+  { name: 'creator', content: 'https://github.com/rudnovd' },
+  { name: 'format-detection', content: 'telephone=no' },
+  { property: 'og:site:name', content: 'Heroes 3 tools' },
+  { property: 'og:type', content: 'website' },
+] as const
+
+export const metaEmptyProperties: UseHeadInput = {
+  title: 'Heroes 3 tools',
+  meta: [
+    ...metaSharedProperties,
+    { name: 'application-name', content: 'Heroes 3 tools' },
+    {
+      name: 'description',
+      content:
+        'Tools to make playing Heroes of Might and Magic III: Horn of The Abyss easier: damage calculator, magic calculator, creature library',
+    },
+    {
+      property: 'og:description',
+      content:
+        'Tools to make playing Heroes of Might and Magic III: Horn of The Abyss easier: damage calculator, magic calculator, creature library',
+    },
+    { property: 'og:url', content: 'https://heroes3tools.netlify.app' },
+    {
+      property: 'og:image',
+      content: 'https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true',
+    },
+    { property: 'og:locale', content: 'en_US' },
+    { property: 'og:locale:alternate', content: 'ru_RU' },
+    { property: 'og:title', content: 'Heroes 3 tools' },
+    {
+      name: 'twitter:description',
+      content:
+        'Tools to make playing Heroes of Might and Magic III: Horn of The Abyss easier: damage calculator, magic calculator, creature library',
+    },
+    {
+      name: 'twitter:image',
+      content: 'https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true',
+    },
+    { name: 'twitter:title', content: 'Heroes 3 tools' },
+  ],
+} as const
+
+export function getHead({
+  title,
+  description,
+  image,
+  locale,
+  url,
+}: {
+  title: string
+  description: string
+  image: string
+  locale: string
+  url: string
+}): UseHeadInput {
+  return {
+    ...metaSharedProperties,
+    title,
+    titleTemplate: '%s | Heroes 3 tools',
+    meta: [
+      { name: 'application-name', content: title },
+      { name: 'description', content: description },
+      { property: 'og:title', content: title },
+      { property: 'og:description', content: description },
+      { property: 'og:url', content: url },
+      { property: 'og:image', content: image },
+      { property: 'og:locale', content: locale },
+      { property: 'og:locale:alternate', content: locale === 'en_US' ? 'ru_RU' : 'en_US' },
+      { name: 'twitter:title', content: title },
+      { name: 'twitter:description', content: description },
+      { name: 'twitter:image', content: image },
+    ],
   }
-
-  return locale
 }
