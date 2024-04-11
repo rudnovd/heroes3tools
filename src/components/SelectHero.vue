@@ -3,7 +3,7 @@
     :value="value"
     :options="heroes"
     :preload-options-count="20"
-    use-virtual-scoll
+    virtual-scroll
     :placeholder="t('components.selectHero.placeholder')"
     @select="$emit('select', $event)"
     @clear="$emit('clear')"
