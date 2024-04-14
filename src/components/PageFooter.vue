@@ -79,7 +79,7 @@ const router = useRouter()
 const needRefresh = inject('needRefresh', ref(false))
 const isNewVersionNotificationActive = inject('isNewVersionNotificationActive', ref(false))
 function activateNewVersionNotification() {
-  if (needRefresh) {
+  if (needRefresh.value) {
     isNewVersionNotificationDisabled.value = false
     isNewVersionNotificationActive.value = true
   }
