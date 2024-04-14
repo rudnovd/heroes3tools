@@ -8,7 +8,6 @@
             v-for="(button, index) in buttons"
             :key="`button-${index}`"
             class="notification-button"
-            :style="{ color: button.textColor, background: button.background }"
             @click="onClick(button)"
           >
             {{ button.text }}
@@ -24,21 +23,15 @@ import { nextTick, ref } from 'vue'
 
 interface BaseNotificationButtonProp {
   text: string
-  textColor?: string
-  background?: string
   onClick?: () => void
 }
 
 withDefaults(
   defineProps<{
     show: boolean
-    color?: string
-    textColor?: string
     buttons?: Array<BaseNotificationButtonProp>
   }>(),
   {
-    color: 'rgb(33, 186, 69)',
-    textColor: 'rgb(255, 255, 255)',
     buttons: () => [],
   },
 )
@@ -60,12 +53,12 @@ const onClick = (button: BaseNotificationButtonProp) => {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 2000;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: flex-end;
-  margin-bottom: 10px;
+  margin-bottom: 28px;
   line-height: 1.5;
   pointer-events: none;
 }
@@ -74,7 +67,7 @@ const onClick = (button: BaseNotificationButtonProp) => {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 2000;
+  z-index: 10;
   box-sizing: inherit;
   display: flex;
   flex-direction: column;
@@ -87,12 +80,19 @@ const onClick = (button: BaseNotificationButtonProp) => {
   margin-bottom: 10px;
   line-height: 1.5;
   pointer-events: all;
-  background-color: v-bind(color);
+  background: url('/images/windows/base-bg.webp');
   border-radius: 4px;
+  box-shadow:
+    0 0 0 2px rgb(0, 0, 0),
+    0 0 0 3px rgb(124, 111, 64),
+    0 0 0 4px rgb(255, 251, 139),
+    0 0 0 5px rgb(138, 121, 74),
+    0 0 0 6px rgb(114, 90, 44),
+    0 0 0 7px rgb(33, 27, 23);
 }
 
 .notification-slot {
-  color: v-bind(textColor);
+  color: rgb(255, 255, 255);
 }
 
 .notification-buttons {
@@ -101,11 +101,16 @@ const onClick = (button: BaseNotificationButtonProp) => {
 }
 
 .notification-button {
-  padding: 0.5rem 0.5rem;
-  transition: background-color 0.25s;
+  padding: 0.25rem 0.5rem;
+  color: rgb(255, 255, 255);
+  text-transform: lowercase;
+  background: url('/images/windows/base-dark-bg.webp');
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 4px;
+  transition: border-color 0.25s;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
   }
 }
 
@@ -116,6 +121,6 @@ const onClick = (button: BaseNotificationButtonProp) => {
 
 .notification-enter-from,
 .notification-leave-to {
-  transform: translateY(100px);
+  transform: translateY(150px);
 }
 </style>

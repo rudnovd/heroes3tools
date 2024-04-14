@@ -17,6 +17,8 @@ export const selectedLocale = useLocalStorage<AvailableLocale>('locale', getBrow
   listenToStorageChanges: false,
 })
 
+export const isNewVersionNotificationDisabled = useLocalStorage('isNewVersionNotificationDisabled', false)
+
 const metaSharedProperties = [
   { name: 'creator', content: 'https://github.com/rudnovd' },
   { name: 'format-detection', content: 'telephone=no' },

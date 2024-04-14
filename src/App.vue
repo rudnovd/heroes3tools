@@ -1,9 +1,9 @@
 <template>
   <header>
     <router-link v-show="router.currentRoute.value.path !== '/'" class="return-home" to="/">
-    <img src="@/assets/icons/arrow_back.svg" alt="back" width="16" height="16" />
-    {{ t('common.homePage') }}
-  </router-link>
+      <img src="@/assets/icons/arrow_back.svg" alt="back" width="16" height="16" />
+      {{ t('common.homePage') }}
+    </router-link>
   </header>
 
   <RouterView v-slot="{ Component }">
@@ -14,32 +14,49 @@
     </Transition>
   </RouterView>
 
-  <BaseNotification v-if="needRefresh" :show="needRefresh" :buttons="notificationsButtons">
-    {{ t('common.newVersionAvailable') }}.
+  <BaseNotification
+    v-if="isNewVersionNotificationActive && !isNewVersionNotificationDisabled"
+    show
+    :buttons="notificationsButtons"
+  >
+    {{ t('common.newVersionAvailable') }}
   </BaseNotification>
 </template>
 
 <script setup lang="ts">
 import { useStore } from '@/store'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
-import { computed, defineAsyncComponent, ref } from 'vue'
+import { computed, defineAsyncComponent, provide } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import { isDark, selectedLocale } from '@/utilities'
+import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
 import { setLocale } from '@/i18n'
-import { watchOnce } from '@vueuse/core'
+import { watch } from 'vue'
+import { ref } from 'vue'
 const BaseNotification = defineAsyncComponent(() => import('@/components/base/BaseNotification.vue'))
 
-const getDataRoutes = ['/damage', '/magic', '/creatures']
 const keepAliveComponents = ['DamageCalculatorPage', 'MagicCalculatorPage', 'CreaturesLibraryPage']
 
 const router = useRouter()
-const route = useRoute()
 const { t } = useI18n()
 const store = useStore()
+const { updateServiceWorker, needRefresh } = useRegisterSW({ immediate: false })
+provide('needRefresh', needRefresh)
+
 setLocale(selectedLocale.value)
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => (isDark.value = matches))
+
+const isNewVersionNotificationActive = ref(false)
+provide('isNewVersionNotificationActive', isNewVersionNotificationActive)
+watch(needRefresh, (value) => (isNewVersionNotificationActive.value = value), { immediate: true, once: true })
 const notificationsButtons = computed(() => [
+  {
+    text: t('common.dismiss'),
+    textColor: 'rgb(255, 255, 255)',
+    onClick: () => {
+      isNewVersionNotificationDisabled.value = true
+    },
+  },
   {
     text: t('common.update'),
     onClick: () => {
@@ -47,6 +64,7 @@ const notificationsButtons = computed(() => [
     },
     textColor: 'rgb(255, 255, 255)',
   },
+])
 
 // Collect initial data about game
 const stop = watch(router.currentRoute, ({ path }) => {
