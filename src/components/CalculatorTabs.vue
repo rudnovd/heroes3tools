@@ -24,6 +24,7 @@
     <button
       class="tab-add-button"
       :class="{ disabled: calculators.length >= 7 }"
+      data-umami-event="damage calculator: new tab"
       title="Add new Calculator tab"
       @click="emit('addTab')"
     />

@@ -22,6 +22,7 @@
       <ObjectPortrait
         :folder="`/images/heroes/portraits/small`"
         :file="{ name: option.id, alt: option.name }"
+        :data-umami-event="`damage calculator: select ${$options.name} hero`"
         :width="46"
         :height="30"
         :lazy-loading="false"
