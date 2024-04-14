@@ -30,7 +30,6 @@ import { computed, defineAsyncComponent, provide } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
-import { setLocale } from '@/i18n'
 import { watch } from 'vue'
 import { ref } from 'vue'
 const BaseNotification = defineAsyncComponent(() => import('@/components/base/BaseNotification.vue'))
@@ -43,7 +42,6 @@ const store = useStore()
 const { updateServiceWorker, needRefresh } = useRegisterSW({ immediate: false })
 provide('needRefresh', needRefresh)
 
-setLocale(selectedLocale.value)
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => (isDark.value = matches))
 
 const isNewVersionNotificationActive = ref(false)
