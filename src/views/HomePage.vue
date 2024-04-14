@@ -20,14 +20,7 @@
 
     <PageFooter>
       <template #aboutModal>
-        <h2>{{ t('components.homePage.data.1') }}</h2>
-        <p>{{ t('components.homePage.data.2') }}</p>
-
-        <i18n-t keypath="components.homePage.data.3" tag="p">
-          <template #email>
-            <a href="mailto:7fudz69mu@mozmail.com" target="_blank">7fudz69mu@mozmail.com</a>
-          </template>
-        </i18n-t>
+        <p>{{ t('components.homePage.aboutModal') }}</p>
       </template>
     </PageFooter>
   </section>

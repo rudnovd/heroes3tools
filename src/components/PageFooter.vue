@@ -31,26 +31,20 @@
     </div>
   </footer>
 
-  <RouterView v-slot="{ route: { hash, path } }">
-    <BaseDialog v-if="path === staticCurrentRoute && hash === '#about'" show size="small" @close="router.back">
+  <RouterView v-slot="{ route: { hash } }">
+    <BaseDialog v-if="hash === '#about'" show size="small" @close="router.back">
       <template #content>
         <slot name="aboutModal"></slot>
       </template>
     </BaseDialog>
   </RouterView>
 
-  <RouterView v-slot="{ route: { hash, path } }">
-    <BaseDialog v-if="path === staticCurrentRoute && hash === '#license'" show @close="router.back">
+  <RouterView v-slot="{ route: { hash } }">
+    <BaseDialog v-if="hash === '#license'" show @close="router.back">
       <template #content>
-        <p>{{ t('components.pageFooter.license.1') }}</p>
-        <i18n-t keypath="components.pageFooter.license.2" tag="p">
-          <template #url>
-            <a href="https://github.com/rudnovd" target="_blank">https://github.com/rudnovd</a>
-          </template>
-        </i18n-t>
-        <p>{{ t('components.pageFooter.license.3') }}</p>
-        <p>{{ t('components.pageFooter.license.4') }}</p>
-        <p>{{ t('components.pageFooter.license.5') }}</p>
+        <p>
+          {{ t('components.pageFooter.license') }}
+        </p>
       </template>
     </BaseDialog>
   </RouterView>
