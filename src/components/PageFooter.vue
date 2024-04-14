@@ -21,8 +21,12 @@
       🌟{{ t('components.pageFooter.sourceCode') }}
     </a>
     <span>{{ t('components.pageFooter.hotaVersion') }}: 1.7.0</span>
+    <component :is="needRefresh ? 'button' : 'span'" :class="{ needRefresh }" @click="activateNewVersionNotification">
+      <template v-if="needRefresh">❗</template>
+      {{ t('components.pageFooter.appVersion') }}: {{ appVersion }}
+    </component>
 
-    <div class="theme-switch">
+    <div class="theme-switch" title="Toggle dark mode">
       <input id="mode-input" type="checkbox" :value="isDark" @change="isDark = !isDark" />
       <label for="mode-input">
         <span v-if="isDark" role="img" aria-label="Dark mode">🌒</span>
@@ -52,11 +56,11 @@
 
 <script setup lang="ts">
 import { type AvailableLocale } from '@/i18n'
-import { isDark, selectedLocale } from '@/utilities'
-import { isDark, useLocale } from '@/utilities'
-import { defineAsyncComponent, watch } from 'vue'
+import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
+import { ref } from 'vue'
+import { defineAsyncComponent, inject } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 const BaseDialog = defineAsyncComponent(() => import('@/components/base/BaseDialog.vue'))
 
 withDefaults(
@@ -71,10 +75,15 @@ withDefaults(
 )
 
 const { t } = useI18n()
-const route = useRoute()
 const router = useRouter()
-const store = useStore()
-const locale = useLocale()
+const needRefresh = inject('needRefresh', ref(false))
+const isNewVersionNotificationActive = inject('isNewVersionNotificationActive', ref(false))
+function activateNewVersionNotification() {
+  if (needRefresh) {
+    isNewVersionNotificationDisabled.value = false
+    isNewVersionNotificationActive.value = true
+  }
+}
 
 const locales: ReadonlyArray<{ name: AvailableLocale; value: string }> = [
   { name: 'en', value: 'English' },
@@ -142,6 +151,14 @@ footer {
 
   a {
     text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .need-refresh {
+    color: red;
 
     &:hover {
       text-decoration: underline;
