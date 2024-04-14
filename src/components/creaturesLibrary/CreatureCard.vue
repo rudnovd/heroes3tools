@@ -62,6 +62,7 @@ const { t } = useI18n()
 .creature-card {
   display: grid;
   grid-template-columns: 105px 1fr;
+  gap: 4px;
   border-right: 1px solid var(--color-text);
   border-bottom: 1px solid var(--color-text);
   transition:

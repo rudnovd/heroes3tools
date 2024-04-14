@@ -55,6 +55,11 @@ const { t } = useI18n()
   color: rgb(255, 255, 255);
   text-align: center;
   background: url('/images/windows/base-dark-bg.webp');
-  border: 2px solid black;
+  border: 1px solid black;
+  transition: border-color 0.25s;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
 }
 </style>

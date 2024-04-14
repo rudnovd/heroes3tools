@@ -93,6 +93,8 @@ const pages = [
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
   }
 }
 
@@ -123,11 +125,17 @@ const pages = [
   width: 100%;
   max-width: 400px;
   user-select: none;
-  box-shadow: 0 0 8px black;
+  box-shadow:
+    0 0 0 2px rgb(0, 0, 0),
+    0 0 0 3px rgb(124, 111, 64),
+    0 0 0 4px rgb(255, 251, 139),
+    0 0 0 5px rgb(138, 121, 74),
+    0 0 0 6px rgb(114, 90, 44),
+    0 0 0 7px rgb(33, 27, 23);
   transition:
-    filter 1s,
-    box-shadow 1s,
-    transform 1s;
+    filter 0.5s,
+    box-shadow 0.5s,
+    transform 0.5s;
 
   picture {
     display: flex;
@@ -161,7 +169,13 @@ const pages = [
 
   &:hover {
     filter: contrast(110%);
-    box-shadow: 0 0 20px black;
+    box-shadow:
+      0 0 0 2px rgb(0, 0, 0),
+      0 0 0 3px rgb(124, 111, 64),
+      0 0 0 6px rgb(255, 251, 139),
+      0 0 0 5px rgb(138, 121, 74),
+      0 0 0 6px rgb(114, 90, 44),
+      0 0 0 7px rgb(33, 27, 23);
     transform: translateY(-5px);
 
     h2 {
