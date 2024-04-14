@@ -39,13 +39,8 @@
       "foundAnError": "Found an error?",
       "licenseInformation": "License information",
       "sourceCode": "Source code",
-      "license": {
-        "1": "MIT LICENSE",
-        "2": "Copyright (c) 2019 {url}",
-        "3": "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:",
-        "4": "The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.",
-        "5": "THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
-      },
+      "license":
+        "MIT LICENSE\n\nCopyright (c) 2019 — 2024 https://github.com/rudnovd\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
       "sendErrorForm": {
         "button": "Send Error",
         "placeholder": "Describe error or paste links to screenshots (for example from https://imgur.com)"
@@ -54,19 +49,11 @@
       "hotaVersion": "HotA version"
     },
     "homePage": {
-      "data": {
-        "1": "Heroes 3 tools",
-        "2": "Heroes 3 tools - set of tools to simplify calculations in Heroes of Might and Magic III: Horn of The Abyss.",
-        "3": "Send ideas or improvements to {email}"
-      }
+      "aboutModal": "Heroes 3 tools\n\nHeroes 3 tools - set of tools to simplify calculations in Heroes of Might and Magic III: Horn of The Abyss.\n\nSend ideas or improvements to 7fudz69mu{'@'}mozmail.com"
     },
     "damageCalculatorPage": {
       "about": "About Damage Calculator",
-      "data": {
-        "1": "Heroes 3 tools",
-        "2": "Heroes 3 tools - set of tools to simplify calculations in Heroes of Might and Magic III: Horn of The Abyss.",
-        "3": "Send ideas or improvements to {email}"
-      }
+      "aboutModal": "Heroes 3 tools\n\nHeroes 3 tools - set of tools to simplify calculations in Heroes of Might and Magic III: Horn of The Abyss.\n\nSend ideas or improvements to 7fudz69mu{'@'}mozmail.com"
     },
     "errorPage": {
       "returnToHomeButton": "Return to Home page",
@@ -102,33 +89,6 @@
     "newVersionAvailable": "A new version is available",
     "update": "Update",
     "dismiss": "Dismiss",
-    "newCalculatorAnnounce": {
-      "announce": {
-        "text": "Damage calculator has been updated. {whatsNew}? Old version available {here}.",
-        "whatsNew": "Whats new",
-        "here": "here"
-      },
-      "modal": {
-        "steps": {
-          "1": {
-            "title": "Tabs.",
-            "text": "Now Damage Calculator can contain several tabs for calculations."
-          },
-          "2": {
-            "title": "Desktop app.",
-            "text": "Install the app from browser and use it as a desktop app (also available offline)."
-          },
-          "3": {
-            "title": "Calculations.",
-            "text": "Fixed many calculation errors.",
-            "oldVersionText": "Old version available {here}.",
-            "startCalculating": "Start calculating"
-          }
-        },
-        "previous": "Previous",
-        "next": "Next"
-      }
-    },
     "howToUseSteps": {
       "selectAttackerCreature": "Click to select attacker creature",
       "selectAttackerHero": "Click to select attacker hero",

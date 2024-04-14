@@ -29,14 +29,7 @@
     <PageFooter :about="{ text: t('components.damageCalculatorPage.about') }" border="none">
       <HowToUse :steps="howToUseSteps" />
       <template #aboutModal>
-        <h2>{{ t('components.damageCalculatorPage.data.1') }}</h2>
-        <p>{{ t('components.damageCalculatorPage.data.2') }}</p>
-
-        <i18n-t keypath="components.damageCalculatorPage.data.3" tag="p">
-          <template #email>
-            <a href="mailto:7fudz69mu@mozmail.com" target="_blank">7fudz69mu@mozmail.com</a>
-          </template>
-        </i18n-t>
+        <p>{{ t('components.damageCalculatorPage.aboutModal') }}</p>
       </template>
     </PageFooter>
   </section>
@@ -68,109 +61,109 @@ const activeIndex = ref(0)
 const attacker = computed(() => calculators.value[activeIndex.value].attacker)
 const defender = computed(() => calculators.value[activeIndex.value].defender)
 const howToUseSteps = [
-    {
-      name: 'Pick attacker creature',
-      targets: [
-        {
-          node: 'section.attacker button.pick-creature-button',
-          eventTriggerNode: 'section.attacker button.pick-creature-button',
-          text: t('common.howToUseSteps.selectAttackerCreature'),
-        },
-      ],
-    },
-    {
-      name: 'Select attacker creature',
-      targets: [
-        {
-          node: 'div.dialog-area',
-          //   insertBackground: true,
-        },
-        {
-          node: 'div.dialog-area div.units',
-          eventTriggerNode: 'div.dialog-area div.units',
-        },
-      ],
-    },
-    {
-      name: 'Open hero list',
-      targets: [
-        {
-          node: 'section.attacker div.select',
-          eventTriggerNode: 'section.attacker div.select',
-          text: t('common.howToUseSteps.selectAttackerHero'),
-        },
-      ],
-    },
-    {
-      name: 'Pick hero',
-      targets: [
-        {
-          node: 'section.attacker div.select > div.items',
-          eventTriggerNode: 'section.attacker div.select > div.items',
-        },
-      ],
-    },
-    {
-      name: 'Click to "pick creature" defender button',
-      targets: [
-        {
-          node: 'section.defender button.pick-creature-button',
-          eventTriggerNode: 'section.defender button.pick-creature-button',
-          text: t('common.howToUseSteps.selectDefenderCreature'),
-        },
-      ],
-    },
-    {
-      name: 'Select defender creature',
-      targets: [
-        {
-          node: 'div.dialog-area',
-          //   insertBackground: true,
-        },
-        {
-          node: 'div.dialog-area div.units',
-          eventTriggerNode: 'div.dialog-area div.units',
-        },
-      ],
-    },
-    {
-      name: 'Open hero list',
-      targets: [
-        {
-          node: 'section.defender div.select',
-          eventTriggerNode: 'section.defender div.select',
-          text: t('common.howToUseSteps.selectDefenderHero'),
-        },
-      ],
-    },
-    {
-      name: 'Pick hero',
-      targets: [
-        {
-          node: 'section.defender div.select > div.items',
-          eventTriggerNode: 'section.defender div.select > div.items',
-        },
-      ],
-    },
-    {
-      name: 'Check values',
-      targets: [
-        {
-          node: 'section.attacker section.damage > strong',
-        },
-        {
-          node: 'section.attacker section.damage > strong:nth-child(2)',
-          text: t('common.howToUseSteps.damage'),
-        },
-        {
-          node: 'section.defender section.damage > strong',
-        },
-        {
-          node: 'section.defender section.damage > strong:nth-child(2)',
-        },
-      ],
-    },
-  ]
+  {
+    name: 'Pick attacker creature',
+    targets: [
+      {
+        node: 'section.attacker button.pick-creature-button',
+        eventTriggerNode: 'section.attacker button.pick-creature-button',
+        text: t('common.howToUseSteps.selectAttackerCreature'),
+      },
+    ],
+  },
+  {
+    name: 'Select attacker creature',
+    targets: [
+      {
+        node: 'div.dialog-area',
+        //   insertBackground: true,
+      },
+      {
+        node: 'div.dialog-area div.units',
+        eventTriggerNode: 'div.dialog-area div.units',
+      },
+    ],
+  },
+  {
+    name: 'Open hero list',
+    targets: [
+      {
+        node: 'section.attacker div.select',
+        eventTriggerNode: 'section.attacker div.select',
+        text: t('common.howToUseSteps.selectAttackerHero'),
+      },
+    ],
+  },
+  {
+    name: 'Pick hero',
+    targets: [
+      {
+        node: 'section.attacker div.select > div.items',
+        eventTriggerNode: 'section.attacker div.select > div.items',
+      },
+    ],
+  },
+  {
+    name: 'Click to "pick creature" defender button',
+    targets: [
+      {
+        node: 'section.defender button.pick-creature-button',
+        eventTriggerNode: 'section.defender button.pick-creature-button',
+        text: t('common.howToUseSteps.selectDefenderCreature'),
+      },
+    ],
+  },
+  {
+    name: 'Select defender creature',
+    targets: [
+      {
+        node: 'div.dialog-area',
+        //   insertBackground: true,
+      },
+      {
+        node: 'div.dialog-area div.units',
+        eventTriggerNode: 'div.dialog-area div.units',
+      },
+    ],
+  },
+  {
+    name: 'Open hero list',
+    targets: [
+      {
+        node: 'section.defender div.select',
+        eventTriggerNode: 'section.defender div.select',
+        text: t('common.howToUseSteps.selectDefenderHero'),
+      },
+    ],
+  },
+  {
+    name: 'Pick hero',
+    targets: [
+      {
+        node: 'section.defender div.select > div.items',
+        eventTriggerNode: 'section.defender div.select > div.items',
+      },
+    ],
+  },
+  {
+    name: 'Check values',
+    targets: [
+      {
+        node: 'section.attacker section.damage > strong',
+      },
+      {
+        node: 'section.attacker section.damage > strong:nth-child(2)',
+        text: t('common.howToUseSteps.damage'),
+      },
+      {
+        node: 'section.defender section.damage > strong',
+      },
+      {
+        node: 'section.defender section.damage > strong:nth-child(2)',
+      },
+    ],
+  },
+]
 
 const { ignoreUpdates } = watchIgnorable(
   [attacker, defender],
