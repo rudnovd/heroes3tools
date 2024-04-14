@@ -320,18 +320,18 @@ const onSelectTerrain = (terrain: Terrain | null) => {
   }
 
   .title {
-    grid-template-columns: minmax(auto, 33.3%) 1fr;
+    grid-template-columns: minmax(auto, 40%) 1fr;
   }
 
   .main {
-    grid-template-columns: minmax(auto, 33.3%) 1fr;
+    grid-template-columns: minmax(auto, 40%) 1fr;
   }
 }
 
 .defender {
   .title {
     grid-template-areas: 'button title';
-    grid-template-columns: 1fr minmax(auto, 33.3%);
+    grid-template-columns: 1fr minmax(auto, 40%);
   }
   .title > h2 {
     grid-area: title;
@@ -340,7 +340,7 @@ const onSelectTerrain = (terrain: Terrain | null) => {
 
   .main {
     grid-template-areas: 'hero creature';
-    grid-template-columns: auto minmax(auto, 33.3%);
+    grid-template-columns: auto minmax(auto, 40%);
   }
 
   .creature {
@@ -409,10 +409,10 @@ const onSelectTerrain = (terrain: Terrain | null) => {
 .damage {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
   align-items: flex-end;
   justify-content: flex-end;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   text-align: right;
 }
 

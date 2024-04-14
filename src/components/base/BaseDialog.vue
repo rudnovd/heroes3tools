@@ -102,7 +102,6 @@ watch(
   height: 100%;
   padding: 24px;
   pointer-events: auto;
-  user-select: none;
   background-clip: padding-box;
   border: 1px solid var(--color-border);
 

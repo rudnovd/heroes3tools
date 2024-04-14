@@ -160,10 +160,8 @@ const onSelectCreature = (creature: Creature) => {
     font-size: 0.875rem;
     line-height: 1.5;
     color: var(--color-text);
-    background-color: var(--color-bg);
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-text);
     border-radius: 0.2rem;
-    opacity: 0.5;
     transition: opacity 0.25s;
     transition:
       color 0.2s linear,
