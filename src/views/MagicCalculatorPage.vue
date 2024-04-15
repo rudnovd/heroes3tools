@@ -26,14 +26,7 @@
 
     <PageFooter :about="{ text: t('components.damageCalculatorPage.about') }" border="none">
       <template #aboutModal>
-        <h2>{{ t('components.damageCalculatorPage.data.1') }}</h2>
-        <p>{{ t('components.damageCalculatorPage.data.2') }}</p>
-
-        <i18n-t keypath="components.damageCalculatorPage.data.3" tag="p">
-          <template #email>
-            <a href="mailto:7fudz69mu@mozmail.com" target="_blank">7fudz69mu@mozmail.com</a>
-          </template>
-        </i18n-t>
+        <p>{{ t('components.damageCalculatorPage.aboutModal') }}</p>
       </template>
     </PageFooter>
   </section>
@@ -65,24 +58,19 @@ const addCalculator = () => {
 }
 
 const deleteCalculator = (index: number) => {
-  // Cancel changing activeIndex in <li class="tab"> onClick event
-  // event.stopPropagation()
-
-  // Delete calculator instance
-  calculators.value.splice(index, 1)
-
-  // If current calculator selected for delete
+  const calculatorsCountAfterDelete = calculators.value.length - 1
   if (activeIndex.value === index) {
-    if (index > 0 && index < calculators.value.length - 1) {
+    if (index > 0 && index < calculatorsCountAfterDelete - 1) {
       activeIndex.value = index + 1
-    } else if (index > 0 && index !== calculators.value.length - 1) {
+    } else if (index > 0 && index !== calculatorsCountAfterDelete - 1) {
       activeIndex.value = index - 1
-    } else if (index < calculators.value.length - 1) {
+    } else if (index < calculatorsCountAfterDelete - 1) {
       activeIndex.value = 0
     }
   } else if (index < activeIndex.value) {
-    activeIndex.value = calculators.value.length - 1
+    activeIndex.value = calculatorsCountAfterDelete - 1
   }
+  calculators.value.splice(index, 1)
 }
 </script>
 
