@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/rudnovd/heroes3tools/compare/v2.2.1...v2.3.0) (2024-04-15)
+
+
+### Features
+
+* change applications update process ([f262c05](https://github.com/rudnovd/heroes3tools/commit/f262c057f89a6b4936bfc11623a13bb760115aa5))
+* dynamic update head tag with @uhead/vue ([3425188](https://github.com/rudnovd/heroes3tools/commit/3425188a3f787ef81ccb09b7267791dbfe6fe70b))
+* **PageFooter:** add HotA version ([5651d7e](https://github.com/rudnovd/heroes3tools/commit/5651d7e2c6fa07753b2f45f8761921e560c508e9))
+* remove useLocale composition and use router based locale selection ([e715b98](https://github.com/rudnovd/heroes3tools/commit/e715b98678b2de4976b643f840471b749ade7e4a))
+
+
+### Bug Fixes
+
+* **base-select:** fix virtual list props ([a5cb839](https://github.com/rudnovd/heroes3tools/commit/a5cb83914cb2498cdf3ddf9a19d5d5f79ba2ddff))
+* **DamagaCalculator:** fix tab deleting ([5ebbf3c](https://github.com/rudnovd/heroes3tools/commit/5ebbf3c7bd9a83870b2191613b2ac7f17e2bd2a5))
+* **MagicCalculatorPage:** fix delete tab function ([a137ba0](https://github.com/rudnovd/heroes3tools/commit/a137ba04c0b2ab1ed62fe2695b227ce4a4f5c565))
+* **PageFooter:** fix ref condition ([3108374](https://github.com/rudnovd/heroes3tools/commit/3108374980ddf1e96c0915488bf441aef554f015))
+
 ### [2.2.1](https://github.com/rudnovd/heroes3tools/compare/v2.1.5...v2.2.1) (2024-01-01)
 
 
