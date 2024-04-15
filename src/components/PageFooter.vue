@@ -35,16 +35,21 @@
     </div>
   </footer>
 
-  <RouterView v-slot="{ route: { hash } }">
-    <BaseDialog v-if="hash === '#about'" show size="small" @close="router.back">
+  <RouterView v-slot="{ route: { hash, path } }">
+    <BaseDialog
+      v-if="path === initialPath && hash === '#about'"
+      show
+      size="small"
+      @close="router.replace({ path: route.path })"
+    >
       <template #content>
         <slot name="aboutModal"></slot>
       </template>
     </BaseDialog>
   </RouterView>
 
-  <RouterView v-slot="{ route: { hash } }">
-    <BaseDialog v-if="hash === '#license'" show @close="router.back">
+  <RouterView v-slot="{ route: { hash, path } }">
+    <BaseDialog v-if="path === initialPath && hash === '#license'" show @close="router.replace({ path: route.path })">
       <template #content>
         <p>
           {{ t('components.pageFooter.license') }}
@@ -60,7 +65,7 @@ import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/util
 import { ref } from 'vue'
 import { defineAsyncComponent, inject } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 const BaseDialog = defineAsyncComponent(() => import('@/components/base/BaseDialog.vue'))
 
 withDefaults(
@@ -76,6 +81,8 @@ withDefaults(
 
 const { t } = useI18n()
 const router = useRouter()
+const route = useRoute()
+const initialPath = route.path
 const needRefresh = inject('needRefresh', ref(false))
 const isNewVersionNotificationActive = inject('isNewVersionNotificationActive', ref(false))
 function activateNewVersionNotification() {
