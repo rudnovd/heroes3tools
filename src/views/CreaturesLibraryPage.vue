@@ -60,7 +60,6 @@
 import ObjectPortrait from '@/components/ObjectPortrait.vue'
 import type { Creature } from '@/models/Creature'
 import { useStore } from '@/store'
-import { getHead, metaEmptyProperties, selectedLocale } from '@/utilities'
 import { useHead } from '@unhead/vue'
 import { useDebounce } from '@vueuse/core'
 import { computed, defineAsyncComponent, onUnmounted, ref, watch } from 'vue'
@@ -69,11 +68,9 @@ import { useRoute, useRouter } from 'vue-router'
 const CreatureCard = defineAsyncComponent(() => import('@/components/creaturesLibrary/CreatureCard.vue'))
 const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 
-const head = useHead(metaEmptyProperties)
-import(`../locales/head/pages/creatures-library-page/${selectedLocale.value}.json`).then((json) => {
-  const data = json.default
-  head?.patch(getHead(data))
-})
+const props = defineProps<{ head: string }>()
+useHead(JSON.parse(props.head))
+
 const store = useStore()
 const router = useRouter()
 const route = useRoute()
@@ -106,11 +103,11 @@ watch(debouncedSearch, (searchValue) => {
   if (!searchValue.length) return
 
   const searchQuery = searchValue.trim().toLowerCase()
-    const foundCreature = creatures.value.find((creature: Creature) => {
+  const foundCreature = creatures.value.find((creature: Creature) => {
     return creature.name.toLowerCase().includes(searchQuery)
-    })
+  })
 
-    if (foundCreature) {
+  if (foundCreature) {
     router.replace({ hash: `#${foundCreature.name.replaceAll(' ', '')}` })
   }
 })

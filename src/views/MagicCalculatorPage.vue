@@ -39,14 +39,11 @@ import { defineAsyncComponent, ref, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import MagicCalculator from '../components/MagicCalculator.vue'
 import { useHead } from '@unhead/vue'
-import { getHead, metaEmptyProperties, selectedLocale } from '@/utilities'
 const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 
-const head = useHead(metaEmptyProperties)
-import(`../locales/head/pages/magic-calculator-page/${selectedLocale.value}.json`).then((json) => {
-  const data = json.default
-  head?.patch(getHead(data))
-})
+const props = defineProps<{ head: string }>()
+useHead(JSON.parse(props.head))
+
 const { t } = useI18n()
 
 const calculators = ref<Array<Battle>>([new Battle()]) as Ref<Array<Battle>>

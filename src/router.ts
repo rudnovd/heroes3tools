@@ -1,8 +1,10 @@
-import { AVAILABLE_LOCALES, DEFAULT_LOCALE } from '@/i18n'
 import { createRouter, createWebHistory } from 'vue-router'
+import { getHead } from './utilities'
 import { AVAILABLE_LOCALES, DEFAULT_LOCALE } from './constants'
 import i18n from './i18n'
+
 const BASE_PATH = i18n.global.locale.value !== DEFAULT_LOCALE ? i18n.global.locale.value : '/'
+const PAGES_WITH_HEADERS = ['home', 'damage-calculator', 'magic-calculator', 'creatures-library']
 
 const router = createRouter({
   history: createWebHistory(BASE_PATH),
@@ -10,10 +12,30 @@ const router = createRouter({
     {
       path: '/',
       children: [
-        { path: '', component: () => import('@/views/HomePage.vue') },
-        { path: 'damage', component: () => import('@/views/DamageCalculatorPage.vue') },
-        { path: 'magic', component: () => import('@/views/MagicCalculatorPage.vue') },
-        { path: 'creatures', component: () => import('@/views/CreaturesLibraryPage.vue') },
+        {
+          path: '',
+          name: 'home',
+          props: true,
+          component: () => import('@/views/HomePage.vue'),
+        },
+        {
+          path: 'damage',
+          name: 'damage-calculator',
+          props: true,
+          component: () => import('@/views/DamageCalculatorPage.vue'),
+        },
+        {
+          path: 'magic',
+          name: 'magic-calculator',
+          props: true,
+          component: () => import('@/views/MagicCalculatorPage.vue'),
+        },
+        {
+          path: 'creatures',
+          props: true,
+          name: 'creatures-library',
+          component: () => import('@/views/CreaturesLibraryPage.vue'),
+        },
         { path: 'send-error', component: () => import('@/views/SendErrorPage.vue') },
         {
           path: `:locale(${AVAILABLE_LOCALES.join('|')})/:path(.*)`,
@@ -38,6 +60,14 @@ const router = createRouter({
       }
     })
   },
+})
+
+router.beforeEach(async (to, _from, next) => {
+  const page = to.name?.toString()
+  if (!page || !PAGES_WITH_HEADERS.includes(page)) return next()
+  const json = await import(`./locales/head/pages/${page}/${i18n.global.locale.value}.json`)
+  to.params.head = JSON.stringify(getHead(json.default))
+  next()
 })
 
 router.resolve({
