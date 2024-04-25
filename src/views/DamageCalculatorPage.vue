@@ -42,17 +42,14 @@ import { Battle } from '@/models/Battle'
 import { useHead } from '@unhead/vue'
 import { watchIgnorable } from '@vueuse/shared'
 import type { Ref } from 'vue'
-import { getHead, metaEmptyProperties, selectedLocale } from '@/utilities'
 import { computed, defineAsyncComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 const HowToUse = defineAsyncComponent(() => import('@/components/HowToUse.vue'))
 
-const head = useHead(metaEmptyProperties)
-import(`../locales/head/pages/damage-calculator-page/${selectedLocale.value}.json`).then((json) => {
-  const data = json.default
-  head?.patch(getHead(data))
-})
+const props = defineProps<{ head: string }>()
+useHead(JSON.parse(props.head))
+
 const { t } = useI18n()
 
 const calculators = ref<Array<Battle>>([new Battle()]) as Ref<Array<Battle>>
