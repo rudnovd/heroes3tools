@@ -103,14 +103,15 @@ onUnmounted(() => {
 })
 
 watch(debouncedSearch, (searchValue) => {
-  if (searchValue.length) {
+  if (!searchValue.length) return
+
+  const searchQuery = searchValue.trim().toLowerCase()
     const foundCreature = creatures.value.find((creature: Creature) => {
-      return creature.name.toLowerCase().indexOf(searchValue.trim().toLowerCase()) > -1
+    return creature.name.toLowerCase().includes(searchQuery)
     })
 
     if (foundCreature) {
-      router.replace({ hash: `#${foundCreature.name}` })
-    }
+    router.replace({ hash: `#${foundCreature.name.replaceAll(' ', '')}` })
   }
 })
 

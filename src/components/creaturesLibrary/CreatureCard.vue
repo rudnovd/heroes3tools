@@ -1,5 +1,5 @@
 <template>
-  <div :id="creature.name" class="creature-card" @click="emit('click', creature)">
+  <div :id="creature.name.replaceAll(' ', '')" class="creature-card" @click="emit('click', creature)">
     <div class="creature-image">
       <ObjectPortrait :file="{ name: creature.id, alt: creature.name }" folder="/images/creatures/models" />
     </div>
