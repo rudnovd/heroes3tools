@@ -32,6 +32,7 @@ import { useRouter } from 'vue-router'
 import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
 import { watch } from 'vue'
 import { ref } from 'vue'
+import { INITIAL_LOCATION_LOCALE } from './constants'
 const BaseNotification = defineAsyncComponent(() => import('@/components/base/BaseNotification.vue'))
 
 const keepAliveComponents = ['DamageCalculatorPage', 'MagicCalculatorPage', 'CreaturesLibraryPage']
@@ -67,7 +68,7 @@ const notificationsButtons = computed(() => [
 // Collect initial data about game
 const stop = watch(router.currentRoute, ({ path }) => {
   if (!store.isDataLoaded && ['/damage', '/magic', '/creatures'].includes(path)) {
-    store.loadData(selectedLocale.value)
+    store.loadData(selectedLocale.value ?? INITIAL_LOCATION_LOCALE)
     stop()
   }
 })

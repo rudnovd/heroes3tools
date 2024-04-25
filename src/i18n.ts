@@ -1,13 +1,10 @@
 import { createI18n } from 'vue-i18n'
 import { selectedLocale } from './utilities'
-
-export type AvailableLocale = 'en' | 'ru'
-export const DEFAULT_LOCALE: AvailableLocale = 'en'
-export const AVAILABLE_LOCALES: Readonly<Array<AvailableLocale>> = ['en', 'ru']
+import { AVAILABLE_LOCALES, DEFAULT_LOCALE, INITIAL_LOCATION_LOCALE, type AvailableLocale } from './constants'
 
 const i18n = createI18n({
   legacy: false,
-  locale: DEFAULT_LOCALE,
+  locale: getAppLocale(),
   availableLocales: AVAILABLE_LOCALES,
 })
 
@@ -16,8 +13,6 @@ export async function loadLocaleMessages(locale: string) {
 }
 
 export function getBrowserLanguage(): AvailableLocale {
-  if (!navigator.language) return DEFAULT_LOCALE
-
   // get first language code (e.g. get 'en' from en-US)
   const browserLanguage = navigator.language.trim().split(/-|_/)[0]
   if (AVAILABLE_LOCALES.some((language) => language === browserLanguage)) {
@@ -25,6 +20,12 @@ export function getBrowserLanguage(): AvailableLocale {
   } else {
     return DEFAULT_LOCALE
   }
+}
+
+export function getAppLocale(): AvailableLocale {
+  if (INITIAL_LOCATION_LOCALE !== DEFAULT_LOCALE) return INITIAL_LOCATION_LOCALE
+  else if (selectedLocale.value) return selectedLocale.value
+  else return getBrowserLanguage()
 }
 
 export async function setLocale(locale: AvailableLocale) {
