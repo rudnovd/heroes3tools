@@ -1,6 +1,6 @@
-import { getBrowserLanguage, type AvailableLocale } from '@/i18n'
 import type { UseHeadInput } from '@unhead/vue'
 import { useDark, useLocalStorage } from '@vueuse/core'
+import { type AvailableLocale } from './constants'
 
 export const isDark = useDark({
   selector: 'body',
@@ -13,7 +13,7 @@ export const isDark = useDark({
   },
 })
 
-export const selectedLocale = useLocalStorage<AvailableLocale>('locale', getBrowserLanguage(), {
+export const selectedLocale = useLocalStorage<AvailableLocale | null>('locale', null, {
   listenToStorageChanges: false,
 })
 

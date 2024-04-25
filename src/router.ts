@@ -1,9 +1,11 @@
 import { AVAILABLE_LOCALES, DEFAULT_LOCALE } from '@/i18n'
 import { createRouter, createWebHistory } from 'vue-router'
-import { selectedLocale } from './utilities'
+import { AVAILABLE_LOCALES, DEFAULT_LOCALE } from './constants'
+import i18n from './i18n'
+const BASE_PATH = i18n.global.locale.value !== DEFAULT_LOCALE ? i18n.global.locale.value : '/'
 
 const router = createRouter({
-  history: createWebHistory(selectedLocale.value === DEFAULT_LOCALE ? '/' : `${selectedLocale.value}`),
+  history: createWebHistory(BASE_PATH),
   routes: [
     {
       path: '/',

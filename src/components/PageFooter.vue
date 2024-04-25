@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { type AvailableLocale } from '@/i18n'
+import type { AvailableLocale } from '@/constants'
 import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
 import { ref } from 'vue'
 import { defineAsyncComponent, inject } from 'vue'
@@ -100,7 +100,7 @@ const locales: ReadonlyArray<{ name: AvailableLocale; value: string }> = [
 async function updatePage(event: Event) {
   const locale = (event.target as HTMLInputElement).value as AvailableLocale
   selectedLocale.value = locale
-  router.go(0)
+  location.replace(location.origin)
 }
 
 const appVersion = import.meta.env.__APP_VERSION__
