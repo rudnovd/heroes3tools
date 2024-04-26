@@ -33,6 +33,7 @@ import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/util
 import { watch } from 'vue'
 import { ref } from 'vue'
 import { INITIAL_LOCATION_LOCALE } from './constants'
+import { whenever } from '@vueuse/core'
 const BaseNotification = defineAsyncComponent(() => import('@/components/base/BaseNotification.vue'))
 
 const keepAliveComponents = ['DamageCalculatorPage', 'MagicCalculatorPage', 'CreaturesLibraryPage']
@@ -47,7 +48,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ 
 
 const isNewVersionNotificationActive = ref(false)
 provide('isNewVersionNotificationActive', isNewVersionNotificationActive)
-watch(needRefresh, (value) => (isNewVersionNotificationActive.value = value), { immediate: true, once: true })
+whenever(needRefresh, () => (isNewVersionNotificationActive.value = true), { immediate: true, once: true })
 const notificationsButtons = computed(() => [
   {
     text: t('common.dismiss'),
