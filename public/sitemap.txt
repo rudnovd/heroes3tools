@@ -3,6 +3,7 @@ https://heroes3tools.netlify.app/damage
 https://heroes3tools.netlify.app/magic
 https://heroes3tools.netlify.app/creatures
 https://heroes3tools.netlify.app/send-error
+https://heroes3tools.netlify.app/ru/
 https://heroes3tools.netlify.app/ru/damage
 https://heroes3tools.netlify.app/ru/magic
 https://heroes3tools.netlify.app/ru/creatures
