@@ -21,7 +21,11 @@
       🌟{{ t('components.pageFooter.sourceCode') }}
     </a>
     <span>{{ t('components.pageFooter.hotaVersion') }}: 1.7.0</span>
-    <component :is="needRefresh ? 'button' : 'span'" :class="{ needRefresh }" @click="activateNewVersionNotification">
+    <component
+      :is="needRefresh ? 'button' : 'span'"
+      :class="{ 'need-refresh': needRefresh }"
+      @click="activateNewVersionNotification"
+    >
       <template v-if="needRefresh">❗</template>
       {{ t('components.pageFooter.appVersion') }}: {{ appVersion }}
     </component>
