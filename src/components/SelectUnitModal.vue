@@ -16,46 +16,55 @@
       <div class="units-modal-content">
         <div v-if="!debouncedSearch" class="units">
           <div v-for="town in towns" :key="town.name" class="town">
-            <ObjectPortrait
+            <button
               v-for="creature in creaturesByTowns[town.id]"
               :key="creature.id"
-              class="creature-img"
-              folder="/images/creatures/portraits/big"
-              :data-umami-event="`damage calculator: select ${creature.name} creature`"
-              :file="{ name: creature.id, alt: creature.name }"
-              :width="58"
-              :height="64"
+              :data-umami-event="`pick ${creature.name} creature`"
               @click="selectUnit(creature)"
-            />
+            >
+              <ObjectPortrait
+                class="creature-img"
+                folder="/images/creatures/portraits/big"
+                :file="{ name: creature.id, alt: creature.name }"
+                :width="58"
+                :height="64"
+              />
+            </button>
           </div>
 
           <div class="town">
-            <ObjectPortrait
+            <button
               v-for="neutralCreature in creaturesByTowns[0]"
               :key="neutralCreature.id"
-              class="creature-img"
-              folder="/images/creatures/portraits/big"
-              :data-umami-event="`damage calculator: select ${neutralCreature.name} creature`"
-              :file="{ name: neutralCreature.id, alt: neutralCreature.name }"
-              :width="58"
-              :height="64"
+              :data-umami-event="`pick ${neutralCreature.name} creature`"
               @click="selectUnit(neutralCreature)"
-            />
+            >
+              <ObjectPortrait
+                class="creature-img"
+                folder="/images/creatures/portraits/big"
+                :file="{ name: neutralCreature.id, alt: neutralCreature.name }"
+                :width="58"
+                :height="64"
+              />
+            </button>
           </div>
         </div>
 
         <div v-else class="search-units">
-          <ObjectPortrait
+          <button
             v-for="creature in searchCreatures"
             :key="creature.id"
-            class="creature-img"
-            folder="/images/creatures/portraits/big"
-            :data-umami-event="`damage calculator: select ${creature.name} creature`"
-            :file="{ name: creature.id, alt: creature.name }"
-            :width="58"
-            :height="64"
+            :data-umami-event="`pick ${creature.name} creature (from search)`"
             @click="selectUnit(creature)"
-          />
+          >
+            <ObjectPortrait
+              class="creature-img"
+              folder="/images/creatures/portraits/big"
+              :file="{ name: creature.id, alt: creature.name }"
+              :width="58"
+              :height="64"
+            />
+          </button>
         </div>
       </div>
     </template>
