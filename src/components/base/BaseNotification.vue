@@ -6,6 +6,7 @@
         <div v-if="buttons.length" class="notification-buttons">
           <button
             v-for="(button, index) in buttons"
+            v-bind="button.attrs"
             :key="`button-${index}`"
             class="notification-button"
             @click="onClick(button)"
@@ -23,6 +24,7 @@ import { nextTick, ref } from 'vue'
 
 interface BaseNotificationButtonProp {
   text: string
+  attrs?: Record<string, string>
   onClick?: () => void
 }
 

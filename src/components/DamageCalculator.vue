@@ -85,7 +85,7 @@
               :color="sideName"
               :value="isEffectEnabled(side, effect)"
               :label="effect.name"
-              :data-umami-event="`damage calculator: select ${effect.name} effect`"
+              :data-umami-event="`check ${effect.name} effect`"
               @change="onSelectCreatureEffect(side, effect, $event)"
             />
           </template>

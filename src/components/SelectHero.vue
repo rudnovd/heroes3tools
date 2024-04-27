@@ -18,16 +18,15 @@
       {{ selected.name }}
     </template>
 
-    <template #option="{ option }">
+    <template #option="{ option: hero }">
       <ObjectPortrait
         :folder="`/images/heroes/portraits/small`"
-        :file="{ name: option.id, alt: option.name }"
-        :data-umami-event="`damage calculator: select ${$options.name} hero`"
+        :file="{ name: hero.id, alt: hero.name }"
         :width="46"
         :height="30"
         :lazy-loading="false"
       />
-      {{ option.name }}
+      {{ hero.name }}
     </template>
   </BaseSelect>
 </template>
