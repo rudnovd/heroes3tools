@@ -59,6 +59,9 @@ const notificationsButtons = computed(() => [
   },
   {
     text: t('common.update'),
+    attrs: {
+      'data-umami-event': `update service worker from version ${import.meta.env.__APP_VERSION__}`,
+    },
     onClick: () => {
       updateServiceWorker(true)
     },

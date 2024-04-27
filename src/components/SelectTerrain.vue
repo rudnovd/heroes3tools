@@ -16,14 +16,14 @@
       {{ selected.name }}
     </template>
 
-    <template #option="{ option }">
+    <template #option="{ option: terrain }">
       <ObjectPortrait
         :folder="`/images/terrains`"
-        :file="{ name: option.id, alt: option.name }"
+        :file="{ name: terrain.id, alt: terrain.name }"
         width="46px"
         height="30px"
       />
-      {{ option.name }}
+      {{ terrain.name }}
     </template>
   </BaseSelect>
 </template>

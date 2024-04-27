@@ -8,7 +8,7 @@
         v-for="level in levels"
         :key="level.id"
         class="skill-button"
-        :data-umami-event="`damage calculator: select skill ${name}, level ${level.value}`"
+        :data-umami-event="`select skill ${name}, level ${level.value}`"
         :class="{ active: selectedLevel === level.value }"
         @click="onClick(level.value)"
       >

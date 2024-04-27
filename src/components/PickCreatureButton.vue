@@ -1,7 +1,7 @@
 <template>
   <button
     class="pick-creature-button"
-    :data-umami-event="`damage calculator: pick ${color} creature`"
+    :data-umami-event="`pick ${color} creature`"
     :class="`color-${color}`"
     @click="showSelectUnitModal = true"
   >
