@@ -11,15 +11,11 @@
           :placeholder="placeholder"
           @input="searchElement"
         />
-        <div v-if="selectedValue && !search.length" class="selected-value">
+        <button v-if="selectedValue && !search.length" class="selected-value">
           <slot name="selected" :selected="selectedValue">{{ selectedValue }}</slot>
-        </div>
+        </button>
       </div>
-
-      <!-- Clear value button -->
       <button v-if="selectedValue" class="clear-button" @click="onClear"></button>
-
-      <!-- Caret button -->
       <button ref="caretRef" class="caret" :class="{ 'is-open': opened }" @click="opened = !opened"></button>
     </div>
 
@@ -32,14 +28,17 @@
         tabindex="-1"
       >
         <ul v-bind="virtualScroll ? wrapperProps : void 0">
-          <li
-            v-for="{ index, data } in optionsList"
-            :key="data[label]"
-            class="option-item"
-            :class="{ selected: selectedValue && selectedValue[label] === data[label] }"
-            @click="onSelect(data, index)"
-          >
-            <slot name="option" :option="data">{{ data[label] }}</slot>
+          <li v-for="{ index, data } in optionsList" :key="data[label]">
+            <button
+              class="option-item"
+              :class="{ selected: selectedValue && selectedValue[label] === data[label] }"
+              :data-umami-event="`select ${data[label]}`"
+              @click="onSelect(data, index)"
+            >
+              <slot name="option" :option="data">
+                {{ data[label] }}
+              </slot>
+            </button>
           </li>
         </ul>
       </div>
@@ -198,13 +197,6 @@ onClickOutside(virtualScrollContainer.ref, () => {
   padding-right: 16px;
 }
 
-.selected {
-  height: 100%;
-  padding-left: 8px;
-  cursor: pointer;
-  user-select: none;
-}
-
 .search {
   position: absolute;
   top: 0px;
@@ -253,6 +245,8 @@ onClickOutside(virtualScrollContainer.ref, () => {
   display: flex;
   gap: 8px;
   align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .clear-button {
@@ -294,13 +288,13 @@ onClickOutside(virtualScrollContainer.ref, () => {
   display: flex;
   gap: 8px;
   align-items: center;
-  height: 45px;
+  width: 100%;
+  height: v-bind(height);
   padding-left: 8px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: pointer;
-  user-select: none;
   transition: background 0.1s;
 
   &:hover {
