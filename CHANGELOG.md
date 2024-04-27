@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.2](https://github.com/rudnovd/heroes3tools/compare/v2.3.1...v2.3.2) (2024-04-27)
+
+
+### Features
+
+* **BaseSelect:** use buttons for select items ([c9c568b](https://github.com/rudnovd/heroes3tools/commit/c9c568b91315600c8b87568b5b8117a6ba736d43))
+* **styles:** reset list styles, change 'bg-deep' color ([fa4f43d](https://github.com/rudnovd/heroes3tools/commit/fa4f43d4e74d040e8b53bc1331a941354d5da2d6))
+
+
+### Bug Fixes
+
+* **SelectUnitModals:** wrap creatures images in buttons ([20a4dba](https://github.com/rudnovd/heroes3tools/commit/20a4dbab85cee4fea6a546a9ce9405252965cb9a))
+* **sw:** fix service worker updating notification ([5819a48](https://github.com/rudnovd/heroes3tools/commit/5819a482768ce479fcb0fb79c50d44e6f875fead))
+
 ### [2.3.1](https://github.com/rudnovd/heroes3tools/compare/v2.3.0...v2.3.1) (2024-04-25)
 
 
