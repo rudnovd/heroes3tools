@@ -43,7 +43,7 @@ export type CreaturesSpecial = Readonly<
     weakness: boolean
 
     // Behemoth and Ancient Behemoth specials
-    ignoreEmenyDefencePercents: number
+    ignoreEnemyDefensePercents: number
 
     // Nix and Nix warrior specials
     ignoreEnemyAttackPercents: number

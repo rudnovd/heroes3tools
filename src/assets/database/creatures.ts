@@ -2427,7 +2427,7 @@ export const creatures: Array<Creature> = [
     cost: { gold: 1500 },
     growth: 1,
     special: {
-      ignoreEmenyDefencePercents: 40,
+      ignoreEnemyDefensePercents: 40,
     },
     description: 'Defense -40% to enemy target',
   },
@@ -2449,13 +2449,13 @@ export const creatures: Array<Creature> = [
     cost: { gold: 3000, crystal: 1 },
     growth: 1,
     special: {
-      ignoreEmenyDefencePercents: 80,
+      ignoreEnemyDefensePercents: 80,
     },
     description: 'Defense -80% to enemy target',
   },
   {
     name: 'Pixie',
-    nativeTerrain: Terrains.Hightlands,
+    nativeTerrain: Terrains.Highlands,
     townId: Towns.Conflux,
     id: 113,
     minDamage: 1,
@@ -2477,7 +2477,7 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Sprite',
-    nativeTerrain: Terrains.Hightlands,
+    nativeTerrain: Terrains.Highlands,
     townId: Towns.Conflux,
     id: 114,
     minDamage: 1,
@@ -2500,7 +2500,7 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Air Elemental',
-    nativeTerrain: Terrains.Hightlands,
+    nativeTerrain: Terrains.Highlands,
     townId: Towns.Conflux,
     id: 115,
     minDamage: 2,
@@ -2525,7 +2525,7 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Storm Elemental',
-    nativeTerrain: Terrains.Hightlands,
+    nativeTerrain: Terrains.Highlands,
     townId: Towns.Conflux,
     id: 116,
     minDamage: 2,
@@ -2550,7 +2550,7 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Water Elemental',
-    nativeTerrain: Terrains.Hightlands,
+    nativeTerrain: Terrains.Highlands,
     townId: Towns.Conflux,
     id: 117,
     minDamage: 3,
@@ -2575,7 +2575,7 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Ice Elemental',
-    nativeTerrain: Terrains.Hightlands,
+    nativeTerrain: Terrains.Highlands,
     townId: Towns.Conflux,
     id: 118,
     minDamage: 3,
@@ -2600,7 +2600,7 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Fire Elemental',
-    nativeTerrain: Terrains.Hightlands,
+    nativeTerrain: Terrains.Highlands,
     townId: Towns.Conflux,
     id: 119,
     minDamage: 4,
@@ -2625,7 +2625,7 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Energy Elemental',
-    nativeTerrain: Terrains.Hightlands,
+    nativeTerrain: Terrains.Highlands,
     townId: Towns.Conflux,
     id: 120,
     minDamage: 4,
@@ -2651,7 +2651,7 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Earth Elemental',
-    nativeTerrain: Terrains.Hightlands,
+    nativeTerrain: Terrains.Highlands,
     townId: Towns.Conflux,
     id: 121,
     minDamage: 4,
@@ -2676,7 +2676,7 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Magma Elemental',
-    nativeTerrain: Terrains.Hightlands,
+    nativeTerrain: Terrains.Highlands,
     townId: Towns.Conflux,
     id: 122,
     minDamage: 6,
@@ -2701,7 +2701,7 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Psychic Elemental',
-    nativeTerrain: Terrains.Hightlands,
+    nativeTerrain: Terrains.Highlands,
     townId: Towns.Conflux,
     id: 123,
     minDamage: 10,
@@ -2724,7 +2724,7 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Magic Elemental',
-    nativeTerrain: Terrains.Hightlands,
+    nativeTerrain: Terrains.Highlands,
     townId: Towns.Conflux,
     id: 124,
     minDamage: 15,
@@ -2748,7 +2748,7 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Firebird',
-    nativeTerrain: Terrains.Hightlands,
+    nativeTerrain: Terrains.Highlands,
     townId: Towns.Conflux,
     id: 125,
     minDamage: 30,
@@ -2770,7 +2770,7 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Phoenix',
-    nativeTerrain: Terrains.Hightlands,
+    nativeTerrain: Terrains.Highlands,
     townId: Towns.Conflux,
     id: 126,
     minDamage: 30,
@@ -2794,7 +2794,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Peasant',
-    nativeTerrain: 0,
     id: 127,
     townId: 0,
     minDamage: 1,
@@ -2812,7 +2811,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Halfling',
-    nativeTerrain: 0,
     id: 128,
     townId: 0,
     minDamage: 1,
@@ -2831,7 +2829,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Boar',
-    nativeTerrain: 0,
     id: 129,
     townId: 0,
     minDamage: 2,
@@ -2849,7 +2846,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Rogue',
-    nativeTerrain: 0,
     id: 130,
     townId: 0,
     minDamage: 2,
@@ -2868,7 +2864,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Nomad',
-    nativeTerrain: 0,
     id: 131,
     townId: 0,
     minDamage: 2,
@@ -2887,7 +2882,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Mummy',
-    nativeTerrain: 0,
     id: 132,
     townId: 0,
     minDamage: 3,
@@ -2909,7 +2903,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Sharpshooter',
-    nativeTerrain: 0,
     id: 133,
     townId: 0,
     minDamage: 8,
@@ -2928,7 +2921,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Troll',
-    nativeTerrain: 0,
     id: 134,
     townId: 0,
     minDamage: 10,
@@ -2947,7 +2939,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Gold Golem',
-    nativeTerrain: 0,
     id: 135,
     townId: 0,
     minDamage: 8,
@@ -2970,7 +2961,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Diamond Golem',
-    nativeTerrain: 0,
     id: 136,
     townId: 0,
     minDamage: 10,
@@ -2993,7 +2983,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Enchanter',
-    nativeTerrain: 0,
     id: 137,
     townId: 0,
     minDamage: 14,
@@ -3012,7 +3001,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Faerie Dragon',
-    nativeTerrain: 0,
     id: 138,
     townId: 0,
     minDamage: 20,
@@ -3034,7 +3022,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Rust Dragon',
-    nativeTerrain: 0,
     id: 139,
     townId: 0,
     minDamage: 50,
@@ -3056,7 +3043,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Crystal Dragon',
-    nativeTerrain: 0,
     id: 140,
     townId: 0,
     minDamage: 60,
@@ -3078,7 +3064,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Azure Dragon',
-    nativeTerrain: 0,
     id: 141,
     townId: 0,
     minDamage: 70,
@@ -3101,7 +3086,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Ballista',
-    nativeTerrain: 0,
     id: 142,
     townId: 0,
     minDamage: 2,
@@ -3112,7 +3096,7 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: true,
-    hexs: 2,
+    hexes: 2,
     speed: 0,
     cost: { gold: 2500 },
     shots: 24,
@@ -3454,7 +3438,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Fangarm',
-    nativeTerrain: 0,
     id: 158,
     minDamage: 8,
     maxDamage: 12,
@@ -3475,7 +3458,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Satyr',
-    nativeTerrain: 0,
     townId: 0,
     id: 159,
     minDamage: 6,
@@ -3507,14 +3489,12 @@ export const creatures: Array<Creature> = [
     level: 2,
     maxDamage: 5,
     minDamage: 3,
-    nativeTerrain: 0,
     speed: 5,
     ranged: false,
     description: 'Doubles friendly unit Luck chance, Casts Fortune',
   },
   {
     name: 'Cannon',
-    nativeTerrain: 0,
     id: 161,
     townId: 0,
     minDamage: 4,
@@ -3525,7 +3505,7 @@ export const creatures: Array<Creature> = [
     defense: 10,
     hits: 1,
     ranged: true,
-    hexs: 2,
+    hexes: 2,
     speed: 0,
     cost: { gold: 4000 },
     shots: 8,
@@ -3533,7 +3513,6 @@ export const creatures: Array<Creature> = [
   },
   {
     name: 'Steel Golem',
-    nativeTerrain: 0,
     id: 162,
     townId: 0,
     minDamage: 6,
@@ -3651,7 +3630,7 @@ export const creatures: Array<Creature> = [
     growth: 6,
     hits: 1,
     level: 3,
-    hexs: 2,
+    hexes: 2,
     ranged: false,
     cost: {
       gold: 200,
@@ -3669,7 +3648,7 @@ export const creatures: Array<Creature> = [
     health: 25,
     speed: 6,
     growth: 6,
-    hexs: 2,
+    hexes: 2,
     hits: 1,
     level: 3,
     ranged: false,
@@ -3732,7 +3711,7 @@ export const creatures: Array<Creature> = [
     health: 50,
     speed: 8,
     growth: 3,
-    hexs: 2,
+    hexes: 2,
     hits: 1,
     level: 5,
     ranged: false,
@@ -3756,7 +3735,7 @@ export const creatures: Array<Creature> = [
     health: 60,
     speed: 10,
     growth: 3,
-    hexs: 2,
+    hexes: 2,
     hits: 1,
     level: 5,
     ranged: false,
@@ -3822,7 +3801,7 @@ export const creatures: Array<Creature> = [
     maxDamage: 45,
     health: 160,
     speed: 11,
-    hexs: 2,
+    hexes: 2,
     growth: 1,
     hits: 1,
     level: 7,
@@ -3846,7 +3825,7 @@ export const creatures: Array<Creature> = [
     maxDamage: 45,
     health: 200,
     speed: 15,
-    hexs: 2,
+    hexes: 2,
     growth: 1,
     hits: 1,
     level: 7,
@@ -3871,7 +3850,7 @@ export const creatures: Array<Creature> = [
     maxDamage: 50,
     health: 200,
     speed: 6,
-    hexs: 2,
+    hexes: 2,
     growth: 1,
     hits: 1,
     level: 7,
@@ -3893,7 +3872,7 @@ export const creatures: Array<Creature> = [
     maxDamage: 50,
     health: 300,
     speed: 7,
-    hexs: 2,
+    hexes: 2,
     growth: 1,
     hits: 1,
     level: 7,

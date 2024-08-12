@@ -247,10 +247,14 @@ const onSelectSpell = (sideName: BattleSide, spell: Spell) => {
 }
 
 const calculateSpell = (sideName: BattleSide, spell: Spell) => {
-  if (!battle.attacker.activeCreature || !battle.defender.activeCreature) return
   const oppositeSide = getOppositeBattleSide(sideName)
   const attacker = battle[sideName]
   const defender = battle[oppositeSide]
+  if (!attacker.activeCreature || !defender.activeCreature) {
+    return console.warn(
+      `No active creature: attacker - ${attacker.activeCreature}, defender - ${defender.activeCreature}`,
+    )
+  }
 
   if (spellsTargets.all.includes(spell.id)) {
     spellDamages.value[sideName] = battle.cast(attacker, defender, defender.activeCreature, spell)
@@ -264,6 +268,7 @@ const calculateSpell = (sideName: BattleSide, spell: Spell) => {
 
 const getSpellKillsValue = (sideName: BattleSide) => {
   const oppositeSide = getOppositeBattleSide(sideName)
+  if (!battle[oppositeSide].activeCreature) return 0
   const kills = Math.floor(spellDamages.value[sideName] / battle[oppositeSide].activeCreature?.health)
   return Math.abs(kills) || 0
 }

@@ -10,7 +10,7 @@ import type { Terrain } from './Terrain'
 
 export type BattleSide = 'attacker' | 'defender'
 
-export function getOppositeBattleSide(side: BattleSide): string {
+export function getOppositeBattleSide(side: BattleSide): BattleSide {
   return side === 'attacker' ? 'defender' : 'attacker'
 }
 
