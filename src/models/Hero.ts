@@ -1,4 +1,5 @@
 import { classes } from '@/assets/database/classes'
+import type { SkillLevel } from './Skill'
 
 export interface Hero {
   id: number
@@ -16,36 +17,36 @@ export interface HeroTranslation {
 }
 
 interface Skills {
-  [key: string]: number
-  offense: number
-  armorer: number
-  archery: number
-  artillery: number
-  air: number
-  fire: number
-  earth: number
-  water: number
-  ballistics: number
-  diplomacy: number
-  eagleEye: number
-  estates: number
-  firstAid: number
-  intelligence: number
-  learning: number
-  logistics: number
-  luck: number
-  mysticism: number
-  navigation: number
-  necromancy: number
-  pathfinding: number
-  resistance: number
-  scholar: number
-  scouting: number
-  sorcery: number
-  tactics: number
-  wisdom: number
-  interference: number
-  leadership: number
+  [key: string]: SkillLevel
+  offense: SkillLevel
+  armorer: SkillLevel
+  archery: SkillLevel
+  artillery: SkillLevel
+  air: SkillLevel
+  fire: SkillLevel
+  earth: SkillLevel
+  water: SkillLevel
+  ballistics: SkillLevel
+  diplomacy: SkillLevel
+  eagleEye: SkillLevel
+  estates: SkillLevel
+  firstAid: SkillLevel
+  intelligence: SkillLevel
+  learning: SkillLevel
+  logistics: SkillLevel
+  luck: SkillLevel
+  mysticism: SkillLevel
+  navigation: SkillLevel
+  necromancy: SkillLevel
+  pathfinding: SkillLevel
+  resistance: SkillLevel
+  scholar: SkillLevel
+  scouting: SkillLevel
+  sorcery: SkillLevel
+  tactics: SkillLevel
+  wisdom: SkillLevel
+  interference: SkillLevel
+  leadership: SkillLevel
 }
 
 export class HeroInstance implements Hero {

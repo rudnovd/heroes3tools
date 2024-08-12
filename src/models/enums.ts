@@ -299,7 +299,7 @@ export enum Terrains {
   Subterranean,
   Rough,
   Swamp,
-  Hightlands,
+  Highlands,
   Sand,
   Wasteland,
 }

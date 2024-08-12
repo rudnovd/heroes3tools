@@ -1,5 +1,6 @@
 import type { CreaturesSpecial } from '@/models/CreaturesSpecials'
 import type { Spell } from './Spell'
+import type { Terrains } from './enums'
 
 export interface Creature {
   aiValue?: number
@@ -15,17 +16,17 @@ export interface Creature {
   fightValue?: number
   growth?: number
   health: number
-  hits: number
+  hits: 1 | 2
   id: number
   level: number
   maxDamage: number
   minDamage: number
-  nativeTerrain: number
+  nativeTerrain?: Terrains
   speed: number
   name: string
   ranged: boolean
   townId?: number
-  hexs?: number
+  hexes?: 1 | 2
   shots?: number
   hates?: Array<number>
   special?: CreaturesSpecial
@@ -52,17 +53,17 @@ export class CreatureInstance implements Creature {
   fightValue?: number
   growth?: number
   health: number
-  hits: number
+  hits: 1 | 2
   id: number
   level: number
   maxDamage: number
   minDamage: number
-  nativeTerrain: number
+  nativeTerrain?: Terrains
   speed: number
   name: string
   ranged: boolean
   townId?: number
-  hexs?: number
+  hexes?: 1 | 2
   shots?: number
   hates?: number[]
   special?: CreaturesSpecial
@@ -101,7 +102,7 @@ export class CreatureInstance implements Creature {
     this.name = creature.name
     this.ranged = creature.ranged
     this.townId = creature.townId
-    this.hexs = creature.hexs
+    this.hexes = creature.hexes
     this.hates = creature.hates
     this.special = creature.special
     this.description = creature.description
