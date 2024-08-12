@@ -1,7 +1,9 @@
+import type { SkillLevel } from './Skill'
+
 export interface Level {
   id: number
   name: string
-  value: number
+  value: SkillLevel
 }
 
 export interface LevelTranslation {

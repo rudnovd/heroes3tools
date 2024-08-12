@@ -135,7 +135,7 @@ import { computed, defineAsyncComponent, reactive, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const spellsTargets = {
-  all: [Spells.Armageddon, Spells.DeathRipple, Spells.DestroyUndead] as Array<number>,
+  all: [Spells.Armageddon, Spells.DeathRipple, Spells.DestroyUndead],
   self: [Spells.AnimateDead, Spells.Cure, Spells.Resurrection],
 }
 
@@ -157,7 +157,25 @@ const battle = reactive(props.battleValue)
 const heroes = computed(() => store.heroes)
 const levels = computed(() => store.levels)
 const spells = computed(() => {
-  const allowedSpells = [1, 7, 24, 40, 58, 8, 9, 29, 42, 62, 11, 15, 47, 48, 64, 70, 51]
+  const allowedSpells = [
+    Spells.MagicArrow,
+    Spells.Firewall,
+    Spells.IceBolt,
+    Spells.DeathRipple,
+    Spells.LightningBolt,
+    Spells.Fireball,
+    Spells.LandMine,
+    Spells.FrostRing,
+    Spells.AnimateDead,
+    Spells.DestroyUndead,
+    Spells.Armageddon,
+    Spells.Inferno,
+    Spells.MeteorShower,
+    Spells.Resurrection,
+    Spells.ChainLightning,
+    Spells.TitansLightningBolt,
+    Spells.Implosion,
+  ]
   return store.spells.filter((spell) => allowedSpells.includes(spell.id))
 })
 const skills = computed(() => {
@@ -184,7 +202,12 @@ const skills = computed(() => {
 })
 
 const spellsEffects = computed(() => {
-  const effectsIds = [5, 22, 46, 60]
+  const effectsIds = [
+    Spells.ProtectionFromFire,
+    Spells.ProtectionFromWater,
+    Spells.ProtectionFromEarth,
+    Spells.ProtectionFromAir,
+  ]
   return store.spells.filter((spell) => effectsIds.includes(spell.id))
 })
 
