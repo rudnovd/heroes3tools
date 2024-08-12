@@ -21,24 +21,25 @@
 <script setup lang="ts">
 import type { BattleSide } from '@/models/Battle'
 import type { Level } from '@/models/Level'
+import type { SkillLevel } from '@/models/Skill'
 import { ref, watch } from 'vue'
 
 const props = defineProps<{
   color: BattleSide
   name: string
   levels: Array<Level>
-  value: number
+  value: SkillLevel
 }>()
-const emit = defineEmits<{ click: [level: number] }>()
+const emit = defineEmits<{ click: [level: SkillLevel] }>()
 
-const selectedLevel = ref(props.value)
+const selectedLevel = ref<SkillLevel>(props.value)
 
 watch(
   () => props.value,
   (newValue) => (selectedLevel.value = newValue),
 )
 
-const onClick = (level: number) => {
+const onClick = (level: SkillLevel) => {
   if (level === selectedLevel.value) {
     selectedLevel.value = 0
   } else {
