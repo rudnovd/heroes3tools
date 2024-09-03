@@ -12,8 +12,9 @@ All rights for the original Heroes of Might and Magic III game and static resour
 
 1. Install [Nodejs](https://nodejs.org/en/download/)
 1. Clone repository
-1. Install dependencies: `npm install`
-1. Run app: `npm start`
+1. Install pnpm `npm i -g pnpm"
+1. Install dependencies: `pnpm install`
+1. Run app: `pnpm start`
 
 ## Translation
 
