@@ -19,7 +19,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack } = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
 
@@ -32,7 +32,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack } = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
 
@@ -45,7 +45,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack } = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
 
@@ -58,7 +58,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack } = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
 
@@ -73,7 +73,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedStats = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack, defense } = Effects.prayer(battle.attacker, creatureWithModifiedStats)
 
@@ -86,7 +86,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedStats = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack, defense } = Effects.prayer(battle.attacker, creatureWithModifiedStats)
 
@@ -99,7 +99,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedStats = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack, defense } = Effects.prayer(battle.attacker, creatureWithModifiedStats)
 
@@ -112,7 +112,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedStats = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack, defense } = Effects.prayer(battle.attacker, creatureWithModifiedStats)
 
@@ -127,7 +127,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack } = Effects.precision(battle.attacker, creatureWithModifiedAttack)
 
@@ -140,7 +140,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack } = Effects.precision(battle.attacker, creatureWithModifiedAttack)
 
@@ -153,7 +153,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack } = Effects.precision(battle.attacker, creatureWithModifiedAttack)
 
@@ -166,7 +166,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack } = Effects.precision(battle.attacker, creatureWithModifiedAttack)
 
@@ -181,7 +181,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { defense } = Effects.stoneSkin(battle.attacker, creatureWithModifiedDefense)
 
@@ -194,7 +194,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { defense } = Effects.stoneSkin(battle.attacker, creatureWithModifiedDefense)
 
@@ -207,7 +207,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { defense } = Effects.stoneSkin(battle.attacker, creatureWithModifiedDefense)
 
@@ -220,7 +220,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { defense } = Effects.stoneSkin(battle.attacker, creatureWithModifiedDefense)
 
@@ -235,7 +235,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack } = Effects.weakness(battle.attacker, creatureWithModifiedAttack)
 
@@ -248,7 +248,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack } = Effects.weakness(battle.attacker, creatureWithModifiedAttack)
 
@@ -261,7 +261,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack } = Effects.weakness(battle.attacker, creatureWithModifiedAttack)
 
@@ -274,7 +274,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedAttack = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { attack } = Effects.weakness(battle.attacker, creatureWithModifiedAttack)
 
@@ -289,7 +289,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { defense } = Effects.disruptingRay(battle.attacker, creatureWithModifiedDefense)
 
@@ -302,7 +302,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { defense } = Effects.disruptingRay(battle.attacker, creatureWithModifiedDefense)
 
@@ -315,7 +315,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { defense } = Effects.disruptingRay(battle.attacker, creatureWithModifiedDefense)
 
@@ -328,7 +328,7 @@ describe('Hero specialty spell modificator', () => {
 
       const creatureWithModifiedDefense = Modificators.heroSpecialtySpell(
         battle.attacker.hero,
-        battle.attacker.activeCreature
+        battle.attacker.activeCreature,
       )
       const { defense } = Effects.disruptingRay(battle.attacker, creatureWithModifiedDefense)
 

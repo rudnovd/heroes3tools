@@ -70,6 +70,7 @@ router.beforeEach(async (to, _from, next) => {
   next()
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 router.resolve({
   name: 'not-found',
   params: { pathMatch: ['not', 'found'] },
