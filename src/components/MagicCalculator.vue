@@ -48,7 +48,7 @@
               :class="`parameter-${stat}`"
               :stat="stat"
               :value="side.hero.stats[stat]"
-              @input="side.hero!.stats[stat] = $event"
+              @input="side.hero.stats[stat] = $event"
             />
           </div>
         </div>

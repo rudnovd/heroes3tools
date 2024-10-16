@@ -34,7 +34,7 @@
             :max="9999"
             :value="side.activeCreature.count"
             :debounce="50"
-            @input="side.activeCreature!.count = $event"
+            @input="side.activeCreature.count = $event"
           />
         </div>
 
@@ -60,7 +60,7 @@
               :class="`parameter-${stat}`"
               :stat="stat"
               :value="side.hero.stats[stat]"
-              @input="side.hero!.stats[stat] = $event"
+              @input="side.hero.stats[stat] = $event"
             />
           </div>
         </div>
@@ -74,7 +74,7 @@
           :name="skill"
           :value="side.hero.skills[key] || 0"
           :levels="levels.slice(1, levels.length)"
-          @click="side.hero!.skills[key] = $event"
+          @click="side.hero.skills[key] = $event"
         />
       </section>
 
