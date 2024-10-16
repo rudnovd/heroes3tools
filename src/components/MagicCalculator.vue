@@ -36,10 +36,16 @@
 
           <div v-if="side.hero" class="hero-parameters">
             <div>
-              <label class="stat-name">
+              <label :for="`${sideName}-hero-level-input-${id}`" class="stat-name">
                 {{ t('data.level') }}
               </label>
-              <BaseInputNumber :max="99" :value="side.hero.level" :debounce="50" @input="side.hero!.level = $event" />
+              <BaseInputNumber
+                :id="`${sideName}-hero-level-input-${id}`"
+                :max="99"
+                :value="side.hero.level"
+                :debounce="50"
+                @input="side.hero.level = $event"
+              />
             </div>
 
             <InputHeroStat
@@ -62,7 +68,7 @@
           :name="skill"
           :value="side.hero.skills[key] || 0"
           :levels="levels.slice(1, levels.length)"
-          @click="side.hero!.skills[key] = $event"
+          @click="side.hero.skills[key] = $event"
         />
       </section>
 
@@ -131,7 +137,7 @@ import type { Hero } from '@/models/Hero'
 import { HeroInstance } from '@/models/Hero'
 import type { Spell } from '@/models/Spell'
 import { useStore } from '@/store'
-import { computed, defineAsyncComponent, reactive, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, reactive, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const spellsTargets = {
@@ -151,6 +157,7 @@ const props = defineProps<{
 }>()
 const { t } = useI18n()
 const store = useStore()
+const id = useId()
 
 const battle = reactive(props.battleValue)
 

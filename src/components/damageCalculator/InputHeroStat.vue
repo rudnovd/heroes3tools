@@ -1,14 +1,22 @@
 <template>
   <div class="input-stat">
-    <label class="stat-name">
+    <label :for="`${stat}-hero-stat-input-${id}`" class="stat-name">
       {{ t(`data.${stat}`) }}
     </label>
-    <BaseInputNumber :min="0" :max="99" :value="value" :debounce="50" @input="emit('input', $event)" />
+    <BaseInputNumber
+      :id="`${stat}-hero-stat-input-${id}`"
+      :min="0"
+      :max="99"
+      :value="value"
+      :debounce="50"
+      @input="emit('input', $event)"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import BaseInputNumber from '@/components/base/BaseInputNumber.vue'
+import { useId } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 defineProps<{
@@ -18,6 +26,7 @@ defineProps<{
 const emit = defineEmits<{ input: [number: number] }>()
 
 const { t } = useI18n()
+const id = useId()
 </script>
 
 <style lang="scss" scoped>
