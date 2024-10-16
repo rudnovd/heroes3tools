@@ -20,7 +20,7 @@
         <DamageCalculator
           v-for="(calculator, index) in calculators"
           v-show="activeIndex === index"
-          :key="`damage-calculator-tab-${index}-${Math.random()}`"
+          :key="`damage-calculator-tab-${index}-${useId()}`"
           :battle-value="calculator"
         />
       </TransitionGroup>
@@ -42,7 +42,7 @@ import { Battle } from '@/models/Battle'
 import { useHead } from '@unhead/vue'
 import { watchIgnorable } from '@vueuse/shared'
 import type { Ref } from 'vue'
-import { computed, defineAsyncComponent, ref } from 'vue'
+import { computed, defineAsyncComponent, ref, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
 const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 const HowToUse = defineAsyncComponent(() => import('@/components/HowToUse.vue'))

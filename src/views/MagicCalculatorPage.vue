@@ -18,7 +18,7 @@
         <MagicCalculator
           v-for="(calculator, index) in calculators"
           v-show="activeIndex === index"
-          :key="`magic-calculator-tab-${index}-${Math.random()}`"
+          :key="`magic-calculator-tab-${index}-${useId()}`"
           :battle-value="calculator"
         />
       </TransitionGroup>
@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import CalculatorTabs from '@/components/CalculatorTabs.vue'
 import { Battle } from '@/models/Battle'
-import { defineAsyncComponent, ref, type Ref } from 'vue'
+import { defineAsyncComponent, ref, useId, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import MagicCalculator from '../components/MagicCalculator.vue'
 import { useHead } from '@unhead/vue'
