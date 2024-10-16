@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.7](https://github.com/rudnovd/heroes3tools/compare/v2.3.6...v2.3.7) (2024-10-16)
+
+
+### Bug Fixes
+
+* **CreaturesLibraryPage:** add token for 'neutral creatures' ([d433466](https://github.com/rudnovd/heroes3tools/commit/d4334664f538d68c514aace48b4537881f7d26fa))
+
 ### [2.3.6](https://github.com/rudnovd/heroes3tools/compare/v2.3.5...v2.3.6) (2024-09-03)
 
 ### [2.3.5](https://github.com/rudnovd/heroes3tools/compare/v2.3.4...v2.3.5) (2024-08-12)
