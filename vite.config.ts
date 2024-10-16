@@ -73,6 +73,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
+        api: 'modern',
         additionalData: `
           @use "sass:color";
           @use "sass:map";
