@@ -42,7 +42,7 @@
       />
     </div>
     <div class="town">
-      <h2 id="Neutral" class="town-name">Neutral</h2>
+      <h2 id="Neutral" class="town-name">{{ t('common.neutralCreatures') }}</h2>
       <CreatureCard
         v-for="creature in creatures.filter((creature) => creature.townId === 0)"
         :key="creature.id"

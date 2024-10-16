@@ -10,7 +10,8 @@
       "selectDefenderHero": "Нажмите, чтобы выбрать защищающегося героя"
     },
     "update": "Обновить",
-    "newVersionAvailable": "Доступна новая версия"
+    "newVersionAvailable": "Доступна новая версия",
+    "neutralCreatures": "Нейтральные существа"
   },
   "components": {
     "base": {

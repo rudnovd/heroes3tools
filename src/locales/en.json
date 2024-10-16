@@ -95,6 +95,7 @@
       "selectDefenderCreature": "Click to select defender creature",
       "selectDefenderHero": "Click to select defender hero",
       "damage": "Damage values displays here"
-    }
+    },
+    "neutralCreatures": "Neutral creatures"
   }
 }
