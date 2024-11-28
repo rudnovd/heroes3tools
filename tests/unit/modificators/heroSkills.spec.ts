@@ -1,18 +1,18 @@
 import { Battle } from '@/models/Battle'
 import { Creatures, Heroes, SkillLevels } from '@/models/enums'
 import { Modificators } from '@/modules/modificators'
-import { beforeEach, describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { getCreatureInstance, getHeroInstance } from '../helpers'
 
-describe('Hero skills modificator', () => {
+describe('hero skills modificator', () => {
   let battle: Battle
 
   beforeEach(() => {
     battle = new Battle()
   })
 
-  describe('Offense skill', () => {
-    test('damage bonus test', () => {
+  describe('offense skill', () => {
+    it('damage bonus test', () => {
       const pikeman = getCreatureInstance(Creatures.Pikeman)
       const hero = getHeroInstance(Heroes.Sorsha)
       hero.skills.offense = SkillLevels.Basic
@@ -21,7 +21,7 @@ describe('Hero skills modificator', () => {
       expect(calculation).toMatchObject({ damageBonus: 0.1 })
     })
 
-    test('basic level', () => {
+    it('basic level', () => {
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
       battle.attacker.activeCreature.count = 20
       battle.attacker.hero = getHeroInstance(Heroes.Sorsha)
@@ -34,7 +34,7 @@ describe('Hero skills modificator', () => {
       expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 26, maxDamage: 78 })
     })
 
-    test('advanced level', () => {
+    it('advanced level', () => {
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
       battle.attacker.activeCreature.count = 20
       battle.attacker.hero = getHeroInstance(Heroes.Sorsha)
@@ -48,7 +48,7 @@ describe('Hero skills modificator', () => {
       expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 29, maxDamage: 87 })
     })
 
-    test('expert level', () => {
+    it('expert level', () => {
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
       battle.attacker.activeCreature.count = 20
       battle.attacker.hero = getHeroInstance(Heroes.Sorsha)
@@ -62,7 +62,7 @@ describe('Hero skills modificator', () => {
       expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 32, maxDamage: 96 })
     })
 
-    test('expert level with specialty', () => {
+    it('expert level with specialty', () => {
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Roc)
       battle.attacker.activeCreature.count = 3
       battle.attacker.hero = getHeroInstance(Heroes.CragHack)
@@ -77,7 +77,7 @@ describe('Hero skills modificator', () => {
       expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 72, maxDamage: 99 })
     })
 
-    test('expert level with specialty with high hero level', () => {
+    it('expert level with specialty with high hero level', () => {
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Roc)
       battle.attacker.activeCreature.count = 3
       battle.attacker.hero = getHeroInstance(Heroes.CragHack)
@@ -92,7 +92,7 @@ describe('Hero skills modificator', () => {
       expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 87, maxDamage: 119 })
     })
 
-    test('bonus for ranged creature', () => {
+    it('bonus for ranged creature', () => {
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Archer)
       battle.attacker.activeCreature.count = 9
       battle.attacker.hero = getHeroInstance(Heroes.CragHack)
@@ -108,7 +108,7 @@ describe('Hero skills modificator', () => {
     })
   })
 
-  describe('Archery skill (no penalty)', () => {
+  describe('archery skill (no penalty)', () => {
     // TODO: wrong calculation
     // test('basic level', () => {
     //   battle.attacker.activeCreature = getCreatureInstance(Creatures.Archer)
@@ -123,7 +123,7 @@ describe('Hero skills modificator', () => {
     //   expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 22, maxDamage: 34 })
     // })
 
-    test('advanced level', () => {
+    it('advanced level', () => {
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Archer)
       battle.attacker.activeCreature.attack = 2
       battle.attacker.activeCreature.count = 9

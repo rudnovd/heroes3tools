@@ -2,18 +2,18 @@ import { spells } from '@/assets/database/spells'
 import { Battle } from '@/models/Battle'
 import { Creatures, Heroes, Spells as SpellsEnum } from '@/models/enums'
 
-import { beforeEach, describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { getCreatureInstance, getHeroInstance } from '../helpers'
 
-describe('Fireball', () => {
+describe('fireball', () => {
   let battle: Battle
-  const fireball = spells.find((spell) => spell.id === SpellsEnum.Fireball)!
+  const fireball = spells.find(spell => spell.id === SpellsEnum.Fireball)!
 
   beforeEach(() => {
     battle = new Battle()
   })
 
-  test('Base spell values', () => {
+  it('base spell values', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
@@ -25,7 +25,7 @@ describe('Fireball', () => {
     expect(damage).toBe(15)
   })
 
-  test('With Spell Power', () => {
+  it('with Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 10
 
@@ -37,7 +37,7 @@ describe('Fireball', () => {
     expect(damage).toBe(115)
   })
 
-  test('With Advanced Fire skill', () => {
+  it('with Advanced Fire skill', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
     battle.attacker.hero.skills.fire = 2
@@ -50,7 +50,7 @@ describe('Fireball', () => {
     expect(damage).toBe(30)
   })
 
-  test('With Advanced Fire skill and high Spell Power', () => {
+  it('with Advanced Fire skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 30
     battle.attacker.hero.skills.fire = 2
@@ -63,7 +63,7 @@ describe('Fireball', () => {
     expect(damage).toBe(330)
   })
 
-  test('With Expert Fire skill', () => {
+  it('with Expert Fire skill', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
     battle.attacker.hero.skills.fire = 3
@@ -76,7 +76,7 @@ describe('Fireball', () => {
     expect(damage).toBe(60)
   })
 
-  test('With Expert Fire skill and high Spell Power', () => {
+  it('with Expert Fire skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 30
     battle.attacker.hero.skills.fire = 3
@@ -89,7 +89,7 @@ describe('Fireball', () => {
     expect(damage).toBe(360)
   })
 
-  test('Hero with Fireball specialty', () => {
+  it('hero with Fireball specialty', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Xarfax)
     battle.attacker.hero.stats.power = 0
 
@@ -101,7 +101,7 @@ describe('Fireball', () => {
     expect(damage).toBe(16)
   })
 
-  test('Hero with Fireball specialty and high Spell Power', () => {
+  it('hero with Fireball specialty and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Manfred)
     battle.attacker.hero.stats.power = 34
 
@@ -113,7 +113,7 @@ describe('Fireball', () => {
     expect(damage).toBe(366)
   })
 
-  test('Hero with Fireball specialty, Advanced Fire skill and high Spell Power', () => {
+  it('hero with Fireball specialty, Advanced Fire skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Xarfax)
     battle.attacker.hero.stats.power = 34
     battle.attacker.hero.skills.fire = 2
@@ -126,7 +126,7 @@ describe('Fireball', () => {
     expect(damage).toBe(382)
   })
 
-  test('Hero with Fireball specialty, Expert Fire skill and high Spell Power', () => {
+  it('hero with Fireball specialty, Expert Fire skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Manfred)
     battle.attacker.hero.stats.power = 34
     battle.attacker.hero.skills.fire = 3
@@ -139,7 +139,7 @@ describe('Fireball', () => {
     expect(damage).toBe(412)
   })
 
-  test('Cast on creature with immunity', () => {
+  it('cast on creature with immunity', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
@@ -167,7 +167,7 @@ describe('Fireball', () => {
     expect(totalDamage).toBe(0)
   })
 
-  test('With Expert Fire skill and high Spell Power cast on creature with vulnerable', () => {
+  it('with Expert Fire skill and high Spell Power cast on creature with vulnerable', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 24
     battle.attacker.hero.skills.fire = 3
@@ -180,7 +180,7 @@ describe('Fireball', () => {
     expect(damage).toBe(600)
   })
 
-  test('Cast on creatures with vulnerable', () => {
+  it('cast on creatures with vulnerable', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 

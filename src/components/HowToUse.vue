@@ -1,5 +1,7 @@
 <template>
-  <button @click="startTour">{{ t('components.howToUse.howToUse') }}?</button>
+  <button @click="startTour">
+    {{ t('components.howToUse.howToUse') }}?
+  </button>
   <teleport v-if="isStarted" to="body">
     <div class="tour-background">
       <CloseButton color="white" weight="3px" @click="isStarted = false" />
@@ -57,18 +59,19 @@ const isStarted = ref(false)
 const step = ref(props.firstStep)
 const refs = useTemplateRefsList<HTMLDivElement>()
 
-const startTour = () => {
+function startTour() {
   isStarted.value = true
-  if (step.value === props.firstStep) displayStep(props.firstStep)
+  if (step.value === props.firstStep)
+    displayStep(props.firstStep)
   step.value = props.firstStep
 }
 
-const triggerStep = () => {
+function triggerStep() {
   returnElementStyles(step.value)
   step.value++
 }
 
-const displayStep = (stepToDisplay: number) => {
+function displayStep(stepToDisplay: number) {
   const currentStep = props.steps[stepToDisplay]
   currentStep.targets.forEach((target) => {
     const element = document.querySelector(target.node) as HTMLElement
@@ -83,23 +86,26 @@ const displayStep = (stepToDisplay: number) => {
     if (elementStyles.backgroundColor === 'rgb(21, 21, 21)' || elementStyles.backgroundColor === 'rgba(0, 0, 0, 0)') {
       element.style.setProperty('background-color', 'rgba(255, 255, 255, 1)')
       element.style.setProperty('color', 'rgba(0, 0, 0, 1)')
-    } else if (elementStyles.backgroundColor === 'rgb(255, 255, 255)') {
+    }
+    else if (elementStyles.backgroundColor === 'rgb(255, 255, 255)') {
       element.style.setProperty('background-color', 'rgba(0, 0, 0, 0.5)')
       element.style.setProperty('color', 'rgba(255, 255, 255, 1)')
     }
 
     if (target.eventTriggerNode) {
       const eventTriggerNode = document.querySelector(target.eventTriggerNode) as HTMLElement
-      if (!eventTriggerNode) return
+      if (!eventTriggerNode)
+        return
       eventTriggerNode.addEventListener('click', triggerStep, { once: true })
     }
   })
 }
 
-const returnElementStyles = (stepToClear: number) => {
+function returnElementStyles(stepToClear: number) {
   props.steps[stepToClear].targets.forEach((target) => {
     const element = document.querySelector(target.node) as HTMLElement
-    if (!element) return
+    if (!element)
+      return
     element.style.setProperty('z-index', '')
     element.style.setProperty('background-color', '')
     element.style.setProperty('color', 'unset')
@@ -109,24 +115,28 @@ const returnElementStyles = (stepToClear: number) => {
 watch(step, (newStep) => {
   if (newStep > props.steps.length - 1) {
     isStarted.value = false
-  } else {
+  }
+  else {
     displayStep(newStep)
   }
 })
 
 watch(isStarted, (newIsStarted) => {
-  if (!newIsStarted && step.value <= props.steps.length - 1) returnElementStyles(step.value)
+  if (!newIsStarted && step.value <= props.steps.length - 1)
+    returnElementStyles(step.value)
 })
 
 const tourContainers = computed(() => {
-  if (!isStarted.value) return []
+  if (!isStarted.value)
+    return []
   const currentStep = props.steps[step.value]
-  const stepsWithText = currentStep.targets.filter((target) => target.text)
+  const stepsWithText = currentStep.targets.filter(target => target.text)
   return stepsWithText.map((target, index) => {
     const node = document.querySelector(target.eventTriggerNode ? target.eventTriggerNode : target.node) as HTMLElement
-    if (!node) return
+    if (!node)
+      throw new Error('Node not found')
 
-    const buttons: Array<{ text: string; action: () => unknown }> = []
+    const buttons: Array<{ text: string, action: () => unknown }> = []
 
     if (step.value === props.steps.length - 1 && index === stepsWithText.length - 1) {
       buttons.push({

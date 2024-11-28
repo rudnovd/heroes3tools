@@ -1,5 +1,5 @@
-import { classes } from '@/assets/database/classes'
 import type { SkillLevel } from './Skill'
+import { classes } from '@/assets/database/classes'
 
 export interface Hero {
   id: number
@@ -65,6 +65,7 @@ export class HeroInstance implements Hero {
     power: number
     knowledge: number
   }
+
   skills: Partial<Skills>
 
   constructor(hero: Hero) {
@@ -94,7 +95,7 @@ export class HeroInstance implements Hero {
       ...hero.skills,
     }
 
-    const heroClass = classes.find((classObject) => classObject.id === this.classId)
+    const heroClass = classes.find(classObject => classObject.id === this.classId)
     if (heroClass) {
       this.stats = {
         attack: heroClass.attack,

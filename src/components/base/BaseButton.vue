@@ -21,6 +21,10 @@ const emit = defineEmits<{ click: [] }>()
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:color';
+@use 'sass:map';
+@use '@/styles/variables';
+
 .base-button {
   width: v-bind(width);
   font-size: 0.875rem;
@@ -36,9 +40,9 @@ const emit = defineEmits<{ click: [] }>()
   }
 }
 
-@each $color, $color-value in $calculator-colors {
+@each $color, $color-value in variables.$calculator-colors {
   .color-#{$color} {
-    color: map.get($calculator-colors-text, $color);
+    color: map.get(variables.$calculator-colors-text, $color);
     background-color: $color-value;
     border: 1px solid $color-value;
 

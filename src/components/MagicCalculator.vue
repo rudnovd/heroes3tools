@@ -83,12 +83,12 @@
           @clear="selectedSpell[sideName] = null"
         >
           <template #selected="{ selected }">
-            <ObjectPortrait :folder="`/images/spells`" :file="{ name: selected.id, alt: selected.name }" width="46px" />
+            <ObjectPortrait folder="/images/spells" :file="{ name: selected.id, alt: selected.name }" width="46px" />
             {{ selected.name }}
           </template>
 
           <template #option="{ option }">
-            <ObjectPortrait :folder="`/images/spells`" :file="{ name: option.id, alt: option.name }" width="46px" />
+            <ObjectPortrait folder="/images/spells" :file="{ name: option.id, alt: option.name }" width="46px" />
             {{ option.name }}
           </template>
         </BaseSelect>
@@ -127,18 +127,22 @@
 </template>
 
 <script setup lang="ts">
+import type { Creature } from '@/models/Creature'
+import type { Hero } from '@/models/Hero'
+import type { Spell } from '@/models/Spell'
 import PickCreatureButton from '@/components/PickCreatureButton.vue'
 import SelectHero from '@/components/SelectHero.vue'
-import { Battle, getOppositeBattleSide, type BattleSide, type DamageCalculatorBattleSide } from '@/models/Battle'
-import type { Creature } from '@/models/Creature'
+import { type Battle, type BattleSide, type DamageCalculatorBattleSide, getOppositeBattleSide } from '@/models/Battle'
 import { CreatureInstance } from '@/models/Creature'
 import { SecondarySkills, Spells } from '@/models/enums'
-import type { Hero } from '@/models/Hero'
 import { HeroInstance } from '@/models/Hero'
-import type { Spell } from '@/models/Spell'
 import { useStore } from '@/store'
 import { computed, defineAsyncComponent, reactive, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+
+const props = defineProps<{
+  battleValue: Battle
+}>()
 
 const spellsTargets = {
   all: [Spells.Armageddon, Spells.DeathRipple, Spells.DestroyUndead],
@@ -152,9 +156,6 @@ const SelectSkillButtons = defineAsyncComponent(() => import('@/components/damag
 const SpellCard = defineAsyncComponent(() => import('@/components/SpellCard.vue'))
 const BaseSelect = defineAsyncComponent(() => import('@/components/base/BaseSelect.vue'))
 
-const props = defineProps<{
-  battleValue: Battle
-}>()
 const { t } = useI18n()
 const store = useStore()
 const id = useId()
@@ -183,7 +184,7 @@ const spells = computed(() => {
     Spells.TitansLightningBolt,
     Spells.Implosion,
   ]
-  return store.spells.filter((spell) => allowedSpells.includes(spell.id))
+  return store.spells.filter(spell => allowedSpells.includes(spell.id))
 })
 const skills = computed(() => {
   const skills = {
@@ -203,7 +204,7 @@ const skills = computed(() => {
   ]
   const skillsNames = ['air', 'earth', 'fire', 'sorcery', 'water', 'interference']
   store.skills
-    .filter((skill) => magicSkillsIds.indexOf(skill.id) !== -1)
+    .filter(skill => magicSkillsIds.includes(skill.id))
     .forEach((skill, index) => (skills[skillsNames[index]] = skill.name))
   return skills
 })
@@ -215,7 +216,7 @@ const spellsEffects = computed(() => {
     Spells.ProtectionFromEarth,
     Spells.ProtectionFromAir,
   ]
-  return store.spells.filter((spell) => effectsIds.includes(spell.id))
+  return store.spells.filter(spell => effectsIds.includes(spell.id))
 })
 
 const spellDamages = ref({
@@ -223,60 +224,65 @@ const spellDamages = ref({
   defender: 0,
 })
 
-const selectedSpell = ref<{ attacker: Spell | null; defender: Spell | null }>({
+const selectedSpell = ref<{ attacker: Spell | null, defender: Spell | null }>({
   attacker: null,
   defender: null,
 })
 
-const hasOtherSideCreature = (side: BattleSide) => {
+function hasOtherSideCreature(side: BattleSide) {
   const oppositeSide = getOppositeBattleSide(side)
   return !!battle[oppositeSide].activeCreature
 }
 
-const onSelectCreature = (side: DamageCalculatorBattleSide, creature: Creature) => {
+function onSelectCreature(side: DamageCalculatorBattleSide, creature: Creature) {
   const creatureInstance = new CreatureInstance(creature)
-  if (side.activeCreature) creatureInstance.count = side.activeCreature.count
+  if (side.activeCreature)
+    creatureInstance.count = side.activeCreature.count
   side.activeCreature = creatureInstance
   side.creatures[0] = creatureInstance
 }
 
-const onSelectHero = (side: DamageCalculatorBattleSide, hero: Hero) => {
+function onSelectHero(side: DamageCalculatorBattleSide, hero: Hero) {
   side.hero = new HeroInstance(hero)
 }
 
-const onSelectCreatureEffect = (side: DamageCalculatorBattleSide, spell: Spell) => {
-  if (!side.activeCreature) return
+function onSelectCreatureEffect(side: DamageCalculatorBattleSide, spell: Spell) {
+  if (!side.activeCreature)
+    return
 
-  const isEnabled = side.activeCreature.effects.find((effect) => effect.id === spell.id)
+  const isEnabled = side.activeCreature.effects.find(effect => effect.id === spell.id)
   if (!isEnabled) {
     side.activeCreature.effects.push(spell)
-  } else {
-    side.activeCreature.effects = side.activeCreature.effects.filter((creatureEffect) => creatureEffect.id !== spell.id)
+  }
+  else {
+    side.activeCreature.effects = side.activeCreature.effects.filter(creatureEffect => creatureEffect.id !== spell.id)
   }
 }
 
 watch(
   [battle.attacker, battle.defender, selectedSpell],
   () => {
-    if (selectedSpell.value.attacker) calculateSpell('attacker', selectedSpell.value.attacker)
-    if (selectedSpell.value.defender) calculateSpell('defender', selectedSpell.value.defender)
+    if (selectedSpell.value.attacker)
+      calculateSpell('attacker', selectedSpell.value.attacker)
+    if (selectedSpell.value.defender)
+      calculateSpell('defender', selectedSpell.value.defender)
   },
   {
     deep: true,
   },
 )
 
-const onSelectSpell = (sideName: BattleSide, spell: Spell) => {
+function onSelectSpell(sideName: BattleSide, spell: Spell) {
   if (selectedSpell.value[sideName]?.id === spell.id) {
     selectedSpell.value[sideName] = null
     spellDamages.value[sideName] = 0
-    return
-  } else {
+  }
+  else {
     selectedSpell.value[sideName] = spell
   }
 }
 
-const calculateSpell = (sideName: BattleSide, spell: Spell) => {
+function calculateSpell(sideName: BattleSide, spell: Spell) {
   const oppositeSide = getOppositeBattleSide(sideName)
   const attacker = battle[sideName]
   const defender = battle[oppositeSide]
@@ -289,21 +295,24 @@ const calculateSpell = (sideName: BattleSide, spell: Spell) => {
   if (spellsTargets.all.includes(spell.id)) {
     spellDamages.value[sideName] = battle.cast(attacker, defender, defender.activeCreature, spell)
     spellDamages.value[oppositeSide] = battle.cast(defender, attacker, battle[sideName as string].activeCreature, spell)
-  } else if (spellsTargets.self.includes(spell.id)) {
+  }
+  else if (spellsTargets.self.includes(spell.id)) {
     spellDamages.value[sideName] = battle.cast(attacker, attacker, battle[sideName as string].activeCreature, spell)
-  } else {
+  }
+  else {
     spellDamages.value[sideName] = battle.cast(attacker, defender, defender.activeCreature, spell)
   }
 }
 
-const getSpellKillsValue = (sideName: BattleSide) => {
+function getSpellKillsValue(sideName: BattleSide) {
   const oppositeSide = getOppositeBattleSide(sideName)
-  if (!battle[oppositeSide].activeCreature) return 0
+  if (!battle[oppositeSide].activeCreature)
+    return 0
   const kills = Math.floor(spellDamages.value[sideName] / battle[oppositeSide].activeCreature?.health)
   return Math.abs(kills) || 0
 }
 
-const getSpellTargets = (sideName: BattleSide) => {
+function getSpellTargets(sideName: BattleSide) {
   const oppositeSide = getOppositeBattleSide(sideName)
   const spellId = selectedSpell.value[sideName]?.id
   const attacker = battle[sideName].activeCreature?.name || ''
@@ -311,17 +320,22 @@ const getSpellTargets = (sideName: BattleSide) => {
 
   if (!spellId) {
     return ''
-  } else if (spellsTargets.all.includes(spellId)) {
+  }
+  else if (spellsTargets.all.includes(spellId)) {
     return `${defender}, ${attacker}`
-  } else if (spellsTargets.self.includes(spellId)) {
+  }
+  else if (spellsTargets.self.includes(spellId)) {
     return attacker
-  } else {
+  }
+  else {
     return defender
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/mixins';
+
 .magic-calculator {
   display: grid;
   grid-template-rows: minmax(50vh, 1fr) 1fr;
@@ -330,12 +344,12 @@ const getSpellTargets = (sideName: BattleSide) => {
   content-visibility: auto;
   contain-intrinsic-size: 80vh;
 
-  @include media-large {
+  @include mixins.media-large {
     grid-template-rows: minmax(80vh, auto);
     grid-template-columns: 50% 50%;
   }
 
-  @include media-maximum {
+  @include mixins.media-maximum {
     grid-template-rows: minmax(84vh, auto);
   }
 }
@@ -347,7 +361,7 @@ const getSpellTargets = (sideName: BattleSide) => {
   gap: 1rem;
   padding: 10px;
 
-  @include media-large {
+  @include mixins.media-large {
     padding: 20px;
   }
 }
@@ -392,7 +406,7 @@ const getSpellTargets = (sideName: BattleSide) => {
   grid-template-columns: 1fr;
   gap: 1rem 0;
 
-  @include media-medium {
+  @include mixins.media-medium {
     grid-template-columns: 1fr 1fr;
     gap: 1rem 1rem;
   }
@@ -440,7 +454,7 @@ const getSpellTargets = (sideName: BattleSide) => {
 .attacker {
   border-bottom: 1px solid var(--color-border);
 
-  @include media-large {
+  @include mixins.media-large {
     border-right: 1px solid var(--color-border);
     border-bottom: 0;
   }
@@ -527,7 +541,7 @@ const getSpellTargets = (sideName: BattleSide) => {
 }
 
 .select-skill-buttons {
-  @include media-large {
+  @include mixins.media-large {
     &:nth-child(even) {
       text-align: center;
     }

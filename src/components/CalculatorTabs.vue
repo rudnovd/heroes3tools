@@ -36,7 +36,7 @@ import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
 defineProps<{
-  calculators: Array<{ attacker: string | null; defender: string | null }>
+  calculators: Array<{ attacker: string | null, defender: string | null }>
   activeIndex: number
 }>()
 const emit = defineEmits<{
@@ -48,17 +48,24 @@ const emit = defineEmits<{
 const { t } = useI18n()
 const route = useRoute()
 
-const calculatorTitle = (attacker: string | null, defender: string | null) => {
-  if (attacker && defender) return `${attacker} — ${defender}`
-  else if (attacker) return attacker
-  else if (defender) return defender
-  else if (route.path === '/damage') return t('pages.damageCalculator')
-  else if (route.path === '/magic') return t('pages.magicCalculator')
+function calculatorTitle(attacker: string | null, defender: string | null) {
+  if (attacker && defender)
+    return `${attacker} — ${defender}`
+  else if (attacker)
+    return attacker
+  else if (defender)
+    return defender
+  else if (route.path === '/damage')
+    return t('pages.damageCalculator')
+  else if (route.path === '/magic')
+    return t('pages.magicCalculator')
   else return t('pages.damageCalculator')
 }
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/mixins';
+
 .calculator-nav {
   display: grid;
   grid-template-columns: auto min-content;
@@ -73,15 +80,15 @@ const calculatorTitle = (attacker: string | null, defender: string | null) => {
   justify-content: flex-start;
   user-select: none;
 
-  @include media-small {
+  @include mixins.media-small {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @include media-medium {
+  @include mixins.media-medium {
     grid-template-columns: repeat(auto-fit, 200px);
   }
 
-  @include media-large {
+  @include mixins.media-large {
     grid-template-columns: repeat(auto-fit, 300px);
   }
 }
@@ -157,7 +164,7 @@ const calculatorTitle = (attacker: string | null, defender: string | null) => {
   }
 }
 
-@include dark-scheme {
+@include mixins.dark-scheme {
   .tab-close-button,
   .tab-add-button {
     filter: invert(1);

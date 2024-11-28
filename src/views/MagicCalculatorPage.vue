@@ -35,13 +35,15 @@
 <script setup lang="ts">
 import CalculatorTabs from '@/components/CalculatorTabs.vue'
 import { Battle } from '@/models/Battle'
-import { defineAsyncComponent, ref, useId, type Ref } from 'vue'
+import { useHead } from '@unhead/vue'
+import { defineAsyncComponent, ref, type Ref, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
 import MagicCalculator from '../components/MagicCalculator.vue'
-import { useHead } from '@unhead/vue'
-const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 
 const props = defineProps<{ head: string }>()
+
+const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
+
 useHead(JSON.parse(props.head))
 
 const { t } = useI18n()
@@ -49,22 +51,25 @@ const { t } = useI18n()
 const calculators = ref<Array<Battle>>([new Battle()]) as Ref<Array<Battle>>
 const activeIndex = ref(0)
 
-const addCalculator = () => {
+function addCalculator() {
   calculators.value.push(new Battle())
   activeIndex.value = calculators.value.length - 1
 }
 
-const deleteCalculator = (index: number) => {
+function deleteCalculator(index: number) {
   const calculatorsCountAfterDelete = calculators.value.length - 1
   if (activeIndex.value === index) {
     if (index > 0 && index < calculatorsCountAfterDelete - 1) {
       activeIndex.value = index + 1
-    } else if (index > 0 && index !== calculatorsCountAfterDelete - 1) {
+    }
+    else if (index > 0 && index !== calculatorsCountAfterDelete - 1) {
       activeIndex.value = index - 1
-    } else if (index < calculatorsCountAfterDelete - 1) {
+    }
+    else if (index < calculatorsCountAfterDelete - 1) {
       activeIndex.value = 0
     }
-  } else if (index < activeIndex.value) {
+  }
+  else if (index < activeIndex.value) {
     activeIndex.value = calculatorsCountAfterDelete - 1
   }
   calculators.value.splice(index, 1)
@@ -72,6 +77,8 @@ const deleteCalculator = (index: number) => {
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/mixins';
+
 .magic-calculator-page {
   display: grid;
   min-width: 300px;
@@ -79,7 +86,7 @@ const deleteCalculator = (index: number) => {
   padding: 0 8px;
   margin: 0 auto;
 
-  @include media-medium {
+  @include mixins.media-medium {
     padding: 0 24px;
   }
 }

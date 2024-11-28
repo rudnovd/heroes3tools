@@ -13,7 +13,9 @@
         />
 
         <h2>
-          <router-link :to="page.path">{{ page.name }}</router-link>
+          <router-link :to="page.path">
+            {{ page.name }}
+          </router-link>
         </h2>
       </div>
     </main>
@@ -31,10 +33,11 @@ import { useHead } from '@unhead/vue'
 import { defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+
+const props = defineProps<{ head: string }>()
 const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
 const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 
-const props = defineProps<{ head: string }>()
 useHead(JSON.parse(props.head))
 
 const { t } = useI18n()
@@ -60,6 +63,8 @@ const pages = [
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/mixins';
+
 .home-page {
   display: grid;
   grid-template-rows: min-content 1fr min-content;
@@ -70,12 +75,12 @@ const pages = [
   content-visibility: auto;
   contain-intrinsic-size: 100vh;
 
-  @include media-medium {
+  @include mixins.media-medium {
     align-content: center;
     padding-bottom: unset;
   }
 
-  @include media-large {
+  @include mixins.media-large {
     grid-template-rows: 1fr 2fr 30px;
   }
 
@@ -97,12 +102,12 @@ const pages = [
   justify-items: center;
   padding: 0px 16px 16px;
 
-  @include media-medium {
+  @include mixins.media-medium {
     grid-template-columns: repeat(2, minmax(300px, 1fr));
     justify-content: center;
   }
 
-  @include media-large {
+  @include mixins.media-large {
     grid-template-columns: repeat(3, minmax(300px, 400px));
     gap: 3rem;
     padding: 0;

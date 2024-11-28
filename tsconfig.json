@@ -1,26 +1,26 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
-    "strict": true,
     "jsx": "preserve",
-    "importHelpers": true,
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost", "WebWorker"],
     "baseUrl": ".",
-    "removeComments": true,
-    "resolveJsonModule": true,
-    "noImplicitAny": false,
-    "verbatimModuleSyntax": true,
-    "types": ["vite-plugin-pwa/client", "@intlify/unplugin-vue-i18n/messages"],
+    "module": "esnext",
+    "moduleResolution": "node",
     "paths": {
       "@/*": ["src/*"]
     },
-    "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost", "WebWorker"]
+    "resolveJsonModule": true,
+    "types": ["vite-plugin-pwa/client", "@intlify/unplugin-vue-i18n/messages"],
+    "allowJs": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "importHelpers": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*.ts", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.spec.ts"],
   "exclude": ["node_modules"]

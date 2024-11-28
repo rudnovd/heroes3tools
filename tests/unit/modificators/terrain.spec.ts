@@ -1,24 +1,24 @@
 import { terrains } from '@/assets/database/terrains'
 import { Battle } from '@/models/Battle'
 import { Creatures, Terrains } from '@/models/enums'
-import { beforeEach, describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { getBattleCreatureCalculationResults, getCreatureInstance } from '../helpers'
 
-describe('Terrain modificator', () => {
+describe('terrain modificator', () => {
   let battle: Battle
 
   beforeEach(() => {
     battle = new Battle()
   })
 
-  test('12 Green Dragons vs 24 Efreets on Grass terrain', () => {
+  it('12 Green Dragons vs 24 Efreets on Grass terrain', () => {
     battle.attacker.activeCreature = getCreatureInstance(Creatures.GreenDragon)
     battle.attacker.activeCreature.count = 12
-    battle.attacker.terrain = terrains.find((terrain) => terrain.id === Terrains.Grass)!
+    battle.attacker.terrain = terrains.find(terrain => terrain.id === Terrains.Grass)!
 
     battle.defender.activeCreature = getCreatureInstance(Creatures.Efreet)
     battle.defender.activeCreature.count = 24
-    battle.defender.terrain = terrains.find((terrain) => terrain.id === Terrains.Grass)!
+    battle.defender.terrain = terrains.find(terrain => terrain.id === Terrains.Grass)!
 
     const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 
@@ -26,14 +26,14 @@ describe('Terrain modificator', () => {
     expect(defender).toMatchObject({ minDamage: 355, maxDamage: 532, minKills: 1, maxKills: 2 })
   })
 
-  test('12 Green Dragons vs 24 Efreets on Lava terrain', () => {
+  it('12 Green Dragons vs 24 Efreets on Lava terrain', () => {
     battle.attacker.activeCreature = getCreatureInstance(Creatures.GreenDragon)
     battle.attacker.activeCreature.count = 12
-    battle.attacker.terrain = terrains.find((terrain) => terrain.id === Terrains.Lava)!
+    battle.attacker.terrain = terrains.find(terrain => terrain.id === Terrains.Lava)!
 
     battle.defender.activeCreature = getCreatureInstance(Creatures.Efreet)
     battle.defender.activeCreature.count = 24
-    battle.defender.terrain = terrains.find((terrain) => terrain.id === Terrains.Lava)!
+    battle.defender.terrain = terrains.find(terrain => terrain.id === Terrains.Lava)!
 
     const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 

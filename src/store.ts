@@ -1,13 +1,13 @@
-import { defineStore } from 'pinia'
 import type { Class } from './models/Class'
 import type { Creature } from './models/Creature'
-import { Spells } from './models/enums'
 import type { Hero } from './models/Hero'
 import type { Level } from './models/Level'
 import type { Skill } from './models/Skill'
 import type { Spell } from './models/Spell'
 import type { Terrain } from './models/Terrain'
 import type { Town } from './models/Town'
+import { defineStore } from 'pinia'
+import { Spells } from './models/enums'
 
 export interface StoreState {
   classes: Array<Class>
@@ -45,15 +45,15 @@ export const useStore = defineStore('data', {
         Spells.Precision,
         Spells.Slayer,
       ]
-      return this.spells.filter((spell) => attackPositiveEffectsIds.indexOf(spell.id) !== -1)
+      return this.spells.filter(spell => attackPositiveEffectsIds.includes(spell.id))
     },
     defensePositiveEffects(): Array<Spell> {
       const defensePositiveEffectsIds = [Spells.Shield, Spells.StoneSkin, Spells.AirShield]
-      return this.spells.filter((spell) => defensePositiveEffectsIds.indexOf(spell.id) !== -1)
+      return this.spells.filter(spell => defensePositiveEffectsIds.includes(spell.id))
     },
     attackNegativeEffects(): Array<Spell> {
       const attackNegativeEffectsIds = [Spells.Curse, Spells.Weakness, Spells.DisruptingRay]
-      return this.spells.filter((spell) => attackNegativeEffectsIds.indexOf(spell.id) !== -1)
+      return this.spells.filter(spell => attackNegativeEffectsIds.includes(spell.id))
     },
   },
   actions: {
@@ -67,7 +67,8 @@ export const useStore = defineStore('data', {
           const originalData = await import(`./assets/database/${table}.ts`)
           this[table] = originalData[table]
         }
-        if (locale === 'en') return
+        if (locale === 'en')
+          return
 
         // load translation data
         const data = await import(`./assets/database/locales/${locale}/${table}.ts`)

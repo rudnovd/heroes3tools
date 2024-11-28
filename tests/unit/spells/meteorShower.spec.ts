@@ -2,18 +2,18 @@ import { spells } from '@/assets/database/spells'
 import { Battle } from '@/models/Battle'
 import { Creatures, Heroes, Spells as SpellsEnum } from '@/models/enums'
 
-import { beforeEach, describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { getCreatureInstance, getHeroInstance } from '../helpers'
 
-describe('Meteor Shower', () => {
+describe('meteor Shower', () => {
   let battle: Battle
-  const meteorShower = spells.find((spell) => spell.id === SpellsEnum.MeteorShower)!
+  const meteorShower = spells.find(spell => spell.id === SpellsEnum.MeteorShower)!
 
   beforeEach(() => {
     battle = new Battle()
   })
 
-  test('Base spell values', () => {
+  it('base spell values', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
@@ -25,7 +25,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(25)
   })
 
-  test('With Spell Power', () => {
+  it('with Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 10
 
@@ -37,7 +37,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(275)
   })
 
-  test('With Advanced Earth skill', () => {
+  it('with Advanced Earth skill', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
     battle.attacker.hero.skills.earth = 2
@@ -50,7 +50,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(50)
   })
 
-  test('With Advanced Earth skill and high Spell Power', () => {
+  it('with Advanced Earth skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 30
     battle.attacker.hero.skills.earth = 2
@@ -63,7 +63,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(800)
   })
 
-  test('With Expert Earth skill', () => {
+  it('with Expert Earth skill', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
     battle.attacker.hero.skills.earth = 3
@@ -76,7 +76,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(100)
   })
 
-  test('With Expert Earth skill and high Spell Power', () => {
+  it('with Expert Earth skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 30
     battle.attacker.hero.skills.earth = 3
@@ -89,7 +89,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(850)
   })
 
-  test('Hero with Meteor Shower specialty', () => {
+  it('hero with Meteor Shower specialty', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Aislinn)
     battle.attacker.hero.stats.power = 0
 
@@ -101,7 +101,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(26)
   })
 
-  test('Deemer (1 level, 3 spell power)', () => {
+  it('deemer (1 level, 3 spell power)', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Deemer)
     battle.attacker.hero.level = 1
     battle.attacker.hero.stats.power = 3
@@ -114,7 +114,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(100)
   })
 
-  test('Deemer (4 level, 4 spell power)', () => {
+  it('deemer (4 level, 4 spell power)', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Deemer)
     battle.attacker.hero.level = 4
     battle.attacker.hero.stats.power = 4
@@ -127,7 +127,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(129)
   })
 
-  test('Deemer (17 level, 17 spell power, expert earth)', () => {
+  it('deemer (17 level, 17 spell power, expert earth)', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Deemer)
     battle.attacker.hero.level = 17
     battle.attacker.hero.stats.power = 17
@@ -141,7 +141,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(651)
   })
 
-  test('Deemer (17 level, 17 spell power, expert earth)', () => {
+  it('deemer (17 level, 17 spell power, expert earth, archangel vs thunderbird)', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Deemer)
     battle.attacker.hero.level = 17
     battle.attacker.hero.stats.power = 17
@@ -155,7 +155,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(573)
   })
 
-  test('Deemer (17 level, 17 spell power, expert earth)', () => {
+  it('deemer (17 level, 17 spell power, expert earth, archangel vs devil)', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Deemer)
     battle.attacker.hero.level = 17
     battle.attacker.hero.stats.power = 17
@@ -169,7 +169,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(557)
   })
 
-  test('Deemer (14 level, 18 spell power)', () => {
+  it('deemer (14 level, 18 spell power)', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Deemer)
     battle.attacker.hero.level = 14
     battle.attacker.hero.stats.power = 18
@@ -182,7 +182,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(504)
   })
 
-  test('Hero with Meteor Shower specialty and high Spell Power', () => {
+  it('hero with Meteor Shower specialty and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Deemer)
     battle.attacker.hero.stats.power = 34
 
@@ -194,7 +194,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(902)
   })
 
-  test('Hero with Meteor Shower specialty, Advanced Earth skill and high Spell Power', () => {
+  it('hero with Meteor Shower specialty, Advanced Earth skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Aislinn)
     battle.attacker.hero.stats.power = 34
     battle.attacker.hero.skills.earth = 2
@@ -207,7 +207,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(927)
   })
 
-  test('Hero with Meteor Shower specialty, Expert Earth skill and high Spell Power', () => {
+  it('hero with Meteor Shower specialty, Expert Earth skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Deemer)
     battle.attacker.hero.stats.power = 34
     battle.attacker.hero.skills.earth = 3
@@ -220,7 +220,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(979)
   })
 
-  test('Cast on creature with immunity', () => {
+  it('cast on creature with immunity', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Xyron)
     battle.attacker.hero.stats.power = 0
 
@@ -243,7 +243,7 @@ describe('Meteor Shower', () => {
     expect(totalDamage).toBe(0)
   })
 
-  test('With Expert Earth skill and high Spell Power cast on creature with vulnerable', () => {
+  it('with Expert Earth skill and high Spell Power cast on creature with vulnerable', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 24
     battle.attacker.hero.skills.earth = 3
@@ -256,7 +256,7 @@ describe('Meteor Shower', () => {
     expect(damage).toBe(1400)
   })
 
-  test('Cast on creatures with vulnerable', () => {
+  it('cast on creatures with vulnerable', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 

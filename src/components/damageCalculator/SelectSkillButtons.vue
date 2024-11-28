@@ -36,13 +36,14 @@ const selectedLevel = ref<SkillLevel>(props.value)
 
 watch(
   () => props.value,
-  (newValue) => (selectedLevel.value = newValue),
+  newValue => (selectedLevel.value = newValue),
 )
 
-const onClick = (level: SkillLevel) => {
+function onClick(level: SkillLevel) {
   if (level === selectedLevel.value) {
     selectedLevel.value = 0
-  } else {
+  }
+  else {
     selectedLevel.value = level
   }
   emit('click', selectedLevel.value)
@@ -50,6 +51,9 @@ const onClick = (level: SkillLevel) => {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:map';
+@use '@/styles/variables';
+
 .select-skill-buttons {
   display: grid;
   grid-template-columns: 100px 1fr;
@@ -93,7 +97,7 @@ const onClick = (level: SkillLevel) => {
     border-color 0.15s ease-in-out;
 }
 
-@each $color, $color-value in $calculator-colors {
+@each $color, $color-value in variables.$calculator-colors {
   .skill-buttons.color-#{$color} {
     color: var(--color-text);
     border-top: 1px solid $color-value;
@@ -101,7 +105,7 @@ const onClick = (level: SkillLevel) => {
 
     .skill-button:hover,
     .skill-button.active {
-      color: map.get($calculator-colors-text, $color);
+      color: map.get(variables.$calculator-colors-text, $color);
       background-color: $color-value;
     }
 
@@ -111,7 +115,7 @@ const onClick = (level: SkillLevel) => {
   }
 
   .skill-name.color-#{$color} {
-    color: map.get($calculator-colors-text, $color);
+    color: map.get(variables.$calculator-colors-text, $color);
     background-color: $color-value;
   }
 }

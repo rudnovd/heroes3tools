@@ -3574,7 +3574,7 @@ export const creatures: Array<Creature> = [
     cost: {
       gold: 65,
     },
-    description: "Ranged (24 shots), Positive luck, Ranged attack ignores 20% of enemy's defense skill",
+    description: 'Ranged (24 shots), Positive luck, Ranged attack ignores 20% of enemy\'s defense skill',
   },
   {
     name: 'Mechanic',

@@ -5,11 +5,11 @@
         <div ref="baseDialogRef" class="base-dialog" :class="`base-dialog-${size}`">
           <div class="modal-content">
             <div class="header">
-              <slot name="header"></slot>
+              <slot name="header" />
               <CloseButton @click="$emit('close')" />
             </div>
 
-            <slot name="content" class="content"></slot>
+            <slot name="content" class="content" />
           </div>
         </div>
       </div>
@@ -43,7 +43,8 @@ watch(
       const scrollbarWidth = window.innerWidth - document.body.clientWidth
       document.body.style.paddingRight = `${scrollbarWidth}px`
       document.body.classList.add('no-scroll')
-    } else {
+    }
+    else {
       setTimeout(() => {
         document.body.classList.remove('no-scroll')
         document.body.style.paddingRight = ''
@@ -54,6 +55,9 @@ watch(
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:map';
+@use '@/styles/variables';
+
 .dialog-area {
   position: fixed;
   top: 0;
@@ -78,19 +82,19 @@ watch(
   outline: 0;
 
   &-small {
-    max-width: map.get($grid-breakpoints, 'small');
+    max-width: map.get(variables.$grid-breakpoints, 'small');
   }
 
   &-medium {
-    max-width: map.get($grid-breakpoints, 'medium');
+    max-width: map.get(variables.$grid-breakpoints, 'medium');
   }
 
   &-large {
-    max-width: map.get($grid-breakpoints, 'large');
+    max-width: map.get(variables.$grid-breakpoints, 'large');
   }
 
   &-maximum {
-    max-width: map.get($grid-breakpoints, 'maximum');
+    max-width: map.get(variables.$grid-breakpoints, 'maximum');
   }
 }
 

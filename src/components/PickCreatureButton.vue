@@ -15,15 +15,21 @@
 import type { BattleSide } from '@/models/Battle'
 import type { Creature } from '@/models/Creature'
 import { defineAsyncComponent, ref } from 'vue'
-const SelectUnitModal = defineAsyncComponent(() => import('@/components/SelectUnitModal.vue'))
 
 defineProps<{ color: BattleSide }>()
-defineEmits<{ click: []; select: [creature: Creature] }>()
+
+defineEmits<{ click: [], select: [creature: Creature] }>()
+
+const SelectUnitModal = defineAsyncComponent(() => import('@/components/SelectUnitModal.vue'))
 
 const showSelectUnitModal = ref(false)
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:map';
+@use 'sass:color';
+@use '@/styles/variables';
+
 .pick-creature-button {
   position: relative;
   z-index: 1;
@@ -76,9 +82,9 @@ const showSelectUnitModal = ref(false)
   }
 }
 
-@each $color, $color-value in $calculator-colors {
+@each $color, $color-value in variables.$calculator-colors {
   .color-#{$color} {
-    color: map.get($calculator-colors-text, $color);
+    color: map.get(variables.$calculator-colors-text, $color);
     background-color: $color-value;
     border: 1px solid $color-value;
 

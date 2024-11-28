@@ -1,6 +1,6 @@
 import type { CreaturesSpecial } from '@/models/CreaturesSpecials'
-import type { Spell } from './Spell'
 import type { Terrains } from './enums'
+import type { Spell } from './Spell'
 
 export interface Creature {
   aiValue?: number
@@ -48,6 +48,7 @@ export class CreatureInstance implements Creature {
     mercury?: number
     sulfur?: number
   }
+
   attack: number
   defense: number
   fightValue?: number
@@ -82,6 +83,7 @@ export class CreatureInstance implements Creature {
     maxKills: number
     averageKills: number
   }
+
   rangePenalty?: boolean
 
   constructor(creature: Creature) {

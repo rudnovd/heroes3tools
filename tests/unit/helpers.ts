@@ -1,17 +1,17 @@
+import type { Battle } from '@/models/Battle'
+import type { Creatures, Heroes } from '@/models/enums'
 import { creatures } from '@/assets/database/creatures'
 import { heroes } from '@/assets/database/heroes'
-import type { Battle } from '@/models/Battle'
 import { CreatureInstance } from '@/models/Creature'
-import type { Creatures, Heroes } from '@/models/enums'
 import { HeroInstance } from '@/models/Hero'
 
 export function getCreatureInstance(id: Creatures) {
-  const creature = creatures.find((creature) => creature.id === id)!
+  const creature = creatures.find(creature => creature.id === id)!
   return new CreatureInstance(creature)
 }
 
 export function getHeroInstance(id: Heroes) {
-  const hero = heroes.find((hero) => hero.id === id)!
+  const hero = heroes.find(hero => hero.id === id)!
   return new HeroInstance(hero)
 }
 
@@ -42,7 +42,8 @@ export function getBattleCreatureCalculationResults(battle: Battle) {
         averageKills: -1,
       },
     }
-  } else {
+  }
+  else {
     return {
       attacker: battle.attacker.activeCreature.calculation,
       defender: battle.defender.activeCreature.calculation,

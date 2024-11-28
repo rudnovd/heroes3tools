@@ -3,18 +3,18 @@ import { spells } from '@/assets/database/spells'
 import { Battle } from '@/models/Battle'
 import { Creatures, Heroes, Spells as SpellsEnum } from '@/models/enums'
 
-import { beforeEach, describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { getCreatureInstance, getHeroInstance } from '../helpers'
 
-describe('Destroy Undead', () => {
+describe('destroy Undead', () => {
   let battle: Battle
-  const destroyUndead = spells.find((spell) => spell.id === SpellsEnum.DestroyUndead)!
+  const destroyUndead = spells.find(spell => spell.id === SpellsEnum.DestroyUndead)!
 
   beforeEach(() => {
     battle = new Battle()
   })
 
-  test('Base spell values', () => {
+  it('base spell values', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
@@ -26,7 +26,7 @@ describe('Destroy Undead', () => {
     expect(damage).toBe(10)
   })
 
-  test('Base spell values for not undead', () => {
+  it('base spell values for not undead', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
@@ -38,7 +38,7 @@ describe('Destroy Undead', () => {
     expect(damage).toBe(0)
   })
 
-  test('With Spell Power', () => {
+  it('with Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 10
 
@@ -50,7 +50,7 @@ describe('Destroy Undead', () => {
     expect(damage).toBe(110)
   })
 
-  test('With Advanced Air skill', () => {
+  it('with Advanced Air skill', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
     battle.attacker.hero.skills.air = 2
@@ -63,7 +63,7 @@ describe('Destroy Undead', () => {
     expect(damage).toBe(20)
   })
 
-  test('With Advanced Air skill and high Spell Power', () => {
+  it('with Advanced Air skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 30
     battle.attacker.hero.skills.air = 2
@@ -76,7 +76,7 @@ describe('Destroy Undead', () => {
     expect(damage).toBe(320)
   })
 
-  test('With Expert Air skill', () => {
+  it('with Expert Air skill', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
     battle.attacker.hero.skills.air = 3
@@ -89,7 +89,7 @@ describe('Destroy Undead', () => {
     expect(damage).toBe(50)
   })
 
-  test('With Expert Air skill and high Spell Power', () => {
+  it('with Expert Air skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 30
     battle.attacker.hero.skills.air = 3
@@ -102,14 +102,14 @@ describe('Destroy Undead', () => {
     expect(damage).toBe(350)
   })
 
-  test('Cast on creature with immunity', () => {
+  it('cast on creature with immunity', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Septienna)
     battle.attacker.hero.stats.power = 0
 
     battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
 
     const creaturesWithImmunity = [
-      ...creatures.filter((creature) => creature.special?.undead === undefined).map((creature) => creature.id),
+      ...creatures.filter(creature => creature.special?.undead === undefined).map(creature => creature.id),
     ]
 
     let totalDamage = 0

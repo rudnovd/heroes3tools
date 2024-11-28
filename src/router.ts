@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { getHead } from './utilities'
 import { AVAILABLE_LOCALES, DEFAULT_LOCALE } from './constants'
 import i18n from './i18n'
+import { getHead } from './utilities'
 
 const BASE_PATH = i18n.global.locale.value !== DEFAULT_LOCALE ? i18n.global.locale.value : '/'
 const PAGES_WITH_HEADERS = ['home', 'damage-calculator', 'magic-calculator', 'creatures-library']
@@ -39,7 +39,7 @@ const router = createRouter({
         { path: 'send-error', component: () => import('@/views/SendErrorPage.vue') },
         {
           path: `:locale(${AVAILABLE_LOCALES.join('|')})/:path(.*)`,
-          redirect: (to) => to.path.replace(`/${to.params.locale}`, ''),
+          redirect: to => to.path.replace(`/${to.params.locale}`, ''),
         },
       ],
     },
@@ -53,9 +53,11 @@ const router = createRouter({
     return new Promise((resolve) => {
       if (to.hash) {
         return document.querySelector(to.hash) ? resolve({ el: to.hash, behavior: 'smooth' }) : undefined
-      } else if (savedPosition) {
+      }
+      else if (savedPosition) {
         return resolve(savedPosition)
-      } else {
+      }
+      else {
         return resolve({ left: 0, top: 0 })
       }
     })
@@ -64,13 +66,14 @@ const router = createRouter({
 
 router.beforeEach(async (to, _from, next) => {
   const page = to.name?.toString()
-  if (!page || !PAGES_WITH_HEADERS.includes(page)) return next()
+  if (!page || !PAGES_WITH_HEADERS.includes(page))
+    return next()
   const json = await import(`./locales/head/pages/${page}/${i18n.global.locale.value}.json`)
   to.params.head = JSON.stringify(getHead(json.default))
   next()
 })
 
-// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+// eslint-disable-next-line ts/no-unused-expressions
 router.resolve({
   name: 'not-found',
   params: { pathMatch: ['not', 'found'] },

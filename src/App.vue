@@ -1,13 +1,25 @@
 <template>
   <header>
-    <router-link v-show="router.currentRoute.value.path !== '/'" class="return-home" to="/">
-      <img src="@/assets/icons/arrow_back.svg" alt="back" width="16" height="16" />
+    <router-link
+      v-show="router.currentRoute.value.path !== '/'"
+      class="return-home"
+      to="/"
+    >
+      <img
+        src="@/assets/icons/arrow_back.svg"
+        alt="back"
+        width="16"
+        height="16"
+      >
       {{ t('common.homePage') }}
     </router-link>
   </header>
 
   <RouterView v-slot="{ Component }">
-    <Transition name="router" mode="out-in">
+    <Transition
+      name="router"
+      mode="out-in"
+    >
       <KeepAlive :include="keepAliveComponents">
         <component :is="Component" />
       </KeepAlive>
@@ -25,15 +37,14 @@
 
 <script setup lang="ts">
 import { useStore } from '@/store'
+import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
+import { whenever } from '@vueuse/core'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
-import { computed, defineAsyncComponent, provide } from 'vue'
+import { computed, defineAsyncComponent, provide, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
-import { watch } from 'vue'
-import { ref } from 'vue'
 import { INITIAL_LOCATION_LOCALE } from './constants'
-import { whenever } from '@vueuse/core'
+
 const BaseNotification = defineAsyncComponent(() => import('@/components/base/BaseNotification.vue'))
 
 const keepAliveComponents = ['DamageCalculatorPage', 'MagicCalculatorPage', 'CreaturesLibraryPage']
@@ -79,11 +90,12 @@ const stop = watch(router.currentRoute, ({ path }) => {
 </script>
 
 <style lang="scss">
-@import '@/styles/main';
-@import '@/styles/fonts';
+@use './styles/main';
+@use './styles/fonts';
 </style>
 
 <style lang="scss" scoped>
+@use '@/styles/mixins';
 header {
   height: 1.5rem;
   padding-left: 5px;
@@ -125,7 +137,7 @@ header {
   display: none;
 }
 
-@include dark-scheme {
+@include mixins.dark-scheme {
   .return-home {
     img {
       filter: invert(1);

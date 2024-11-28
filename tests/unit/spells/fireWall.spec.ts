@@ -2,18 +2,18 @@ import { spells } from '@/assets/database/spells'
 import { Battle } from '@/models/Battle'
 import { Creatures, Heroes, Spells as SpellsEnum } from '@/models/enums'
 
-import { beforeEach, describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { getCreatureInstance, getHeroInstance } from '../helpers'
 
-describe('Fire Wall', () => {
+describe('fire Wall', () => {
   let battle: Battle
-  const fireWall = spells.find((spell) => spell.id === SpellsEnum.Firewall)!
+  const fireWall = spells.find(spell => spell.id === SpellsEnum.Firewall)!
 
   beforeEach(() => {
     battle = new Battle()
   })
 
-  test('Base spell values', () => {
+  it('base spell values', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
@@ -25,7 +25,7 @@ describe('Fire Wall', () => {
     expect(damage).toBe(10)
   })
 
-  test('With Spell Power', () => {
+  it('with Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 10
 
@@ -37,7 +37,7 @@ describe('Fire Wall', () => {
     expect(damage).toBe(160)
   })
 
-  test('With Advanced Fire skill', () => {
+  it('with Advanced Fire skill', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
     battle.attacker.hero.skills.fire = 2
@@ -50,7 +50,7 @@ describe('Fire Wall', () => {
     expect(damage).toBe(20)
   })
 
-  test('With Advanced Fire skill and high Spell Power', () => {
+  it('with Advanced Fire skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 30
     battle.attacker.hero.skills.fire = 2
@@ -63,7 +63,7 @@ describe('Fire Wall', () => {
     expect(damage).toBe(470)
   })
 
-  test('With Expert Fire skill', () => {
+  it('with Expert Fire skill', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
     battle.attacker.hero.skills.fire = 3
@@ -76,7 +76,7 @@ describe('Fire Wall', () => {
     expect(damage).toBe(50)
   })
 
-  test('With Expert Fire skill and high Spell Power', () => {
+  it('with Expert Fire skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 30
     battle.attacker.hero.skills.fire = 3
@@ -89,7 +89,7 @@ describe('Fire Wall', () => {
     expect(damage).toBe(500)
   })
 
-  test('Hero with Fire Wall specialty', () => {
+  it('hero with Fire Wall specialty', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Luna)
     battle.attacker.hero.stats.power = 0
 
@@ -101,7 +101,7 @@ describe('Fire Wall', () => {
     expect(damage).toBe(12)
   })
 
-  test('Hero with Fire Wall specialty and high Spell Power', () => {
+  it('hero with Fire Wall specialty and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Luna)
     battle.attacker.hero.stats.power = 34
 
@@ -113,7 +113,7 @@ describe('Fire Wall', () => {
     expect(damage).toBe(650)
   })
 
-  test('Hero with Fire Wall specialty, Advanced Fire skill and high Spell Power', () => {
+  it('hero with Fire Wall specialty, Advanced Fire skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Luna)
     battle.attacker.hero.stats.power = 34
     battle.attacker.hero.skills.fire = 2
@@ -126,7 +126,7 @@ describe('Fire Wall', () => {
     expect(damage).toBe(662)
   })
 
-  test('Hero with Fire Wall specialty, Expert Fire skill and high Spell Power', () => {
+  it('hero with Fire Wall specialty, Expert Fire skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Luna)
     battle.attacker.hero.stats.power = 34
     battle.attacker.hero.skills.fire = 3
@@ -139,7 +139,7 @@ describe('Fire Wall', () => {
     expect(damage).toBe(700)
   })
 
-  test('Cast on creature with immunity', () => {
+  it('cast on creature with immunity', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Luna)
     battle.attacker.hero.stats.power = 0
 

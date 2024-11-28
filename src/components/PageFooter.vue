@@ -10,7 +10,7 @@
       </option>
     </select>
 
-    <slot></slot>
+    <slot />
     <router-link to="send-error" class="send-error-link">
       {{ t('components.pageFooter.foundAnError') }}
     </router-link>
@@ -26,12 +26,14 @@
       :class="{ 'need-refresh': needRefresh }"
       @click="activateNewVersionNotification"
     >
-      <template v-if="needRefresh">❗</template>
+      <template v-if="needRefresh">
+        ❗
+      </template>
       {{ t('components.pageFooter.appVersion') }}: {{ appVersion }}
     </component>
 
     <div class="theme-switch" title="Toggle dark mode">
-      <input id="mode-input" type="checkbox" :value="isDark" @change="isDark = !isDark" />
+      <input id="mode-input" type="checkbox" :value="isDark" @change="isDark = !isDark">
       <label for="mode-input">
         <span v-if="isDark" role="img" aria-label="Dark mode">🌒</span>
         <span v-else role="img" aria-label="Light mode">☀️</span>
@@ -47,7 +49,7 @@
       @close="router.replace({ path: route.path })"
     >
       <template #content>
-        <slot name="aboutModal"></slot>
+        <slot name="aboutModal" />
       </template>
     </BaseDialog>
   </RouterView>
@@ -66,15 +68,13 @@
 <script setup lang="ts">
 import type { AvailableLocale } from '@/constants'
 import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
-import { ref } from 'vue'
-import { defineAsyncComponent, inject } from 'vue'
+import { defineAsyncComponent, inject, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
-const BaseDialog = defineAsyncComponent(() => import('@/components/base/BaseDialog.vue'))
 
 withDefaults(
   defineProps<{
-    about?: { hide?: boolean; text?: string | null }
+    about?: { hide?: boolean, text?: string | null }
     border?: string
   }>(),
   {
@@ -82,6 +82,8 @@ withDefaults(
     border: '1px solid var(--color-border)',
   },
 )
+
+const BaseDialog = defineAsyncComponent(() => import('@/components/base/BaseDialog.vue'))
 
 const { t } = useI18n()
 const router = useRouter()
@@ -96,7 +98,7 @@ function activateNewVersionNotification() {
   }
 }
 
-const locales: ReadonlyArray<{ name: AvailableLocale; value: string }> = [
+const locales: ReadonlyArray<{ name: AvailableLocale, value: string }> = [
   { name: 'en', value: 'English' },
   { name: 'ru', value: 'Русский' },
 ]
@@ -111,6 +113,8 @@ const appVersion = import.meta.env.__APP_VERSION__
 </script>
 
 <style lang="scss">
+@use '@/styles/mixins';
+
 footer {
   display: flex;
   flex-wrap: wrap;
@@ -131,7 +135,7 @@ footer {
     text-align: right;
   }
 
-  @include media-large {
+  @include mixins.media-large {
     gap: 16px;
 
     & > * {

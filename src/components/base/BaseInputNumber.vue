@@ -7,7 +7,7 @@
     :min="min"
     :max="max"
     @input="onInput"
-  />
+  >
 </template>
 
 <script setup lang="ts">
@@ -36,21 +36,23 @@ const debouncedValue = useDebounce(currentValue, props.debounce)
 
 watch(
   () => props.value,
-  (newValue) => (currentValue.value = newValue),
+  newValue => (currentValue.value = newValue),
 )
 
 watch(debouncedValue, () => emit('input', debouncedValue.value))
 
-const onInput = (event: Event) => {
-  if (!event.target) return
+function onInput(event: Event) {
+  if (!event.target)
+    return
 
   const target = event.target as HTMLInputElement
 
-  let targetValue = parseInt(target.value)
+  let targetValue = Number.parseInt(target.value)
   if (targetValue < props.min || targetValue > props.max) {
     currentValue.value = previousValue.value
     targetValue = previousValue.value
-  } else {
+  }
+  else {
     currentValue.value = targetValue
     previousValue.value = currentValue.value
   }

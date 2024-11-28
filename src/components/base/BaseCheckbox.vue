@@ -8,7 +8,7 @@
       :disabled="disabled"
       :name="`${label}-checkbox`"
       @change="emit('change', value)"
-    />
+    >
     <svg class="checkbox" viewBox="0 0 20 20">
       <rect class="check-focus" x="0.5" y="0.5" width="19" height="19" rx="4" />
       <rect class="check-square" x="3" y="3" width="14" height="14" rx="2" />
@@ -36,6 +36,10 @@ const emit = defineEmits<{ change: [value: boolean] }>()
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:map';
+@use 'sass:color';
+@use '@/styles/variables';
+
 .option {
   display: block;
   width: fit-content;
@@ -107,10 +111,10 @@ const emit = defineEmits<{ change: [value: boolean] }>()
   }
 }
 
-@each $color, $color-value in $calculator-colors {
+@each $color, $color-value in variables.$calculator-colors {
   .check-color-#{$color} {
     .check-input:checked + * .check-mark {
-      stroke: map.get($calculator-colors-text, $color);
+      stroke: map.get(variables.$calculator-colors-text, $color);
     }
 
     .check-input:checked + * .check-square {

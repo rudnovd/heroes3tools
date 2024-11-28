@@ -138,30 +138,29 @@
 </template>
 
 <script setup lang="ts">
+import type { Battle, DamageCalculatorBattleSide } from '@/models/Battle'
+import type { Creature } from '@/models/Creature'
+import type { Hero } from '@/models/Hero'
+import type { Spell } from '@/models/Spell'
+import type { Terrain } from '@/models/Terrain'
 import PickCreatureButton from '@/components/PickCreatureButton.vue'
 import SelectHero from '@/components/SelectHero.vue'
 import SelectTerrain from '@/components/SelectTerrain.vue'
-import type { Battle, DamageCalculatorBattleSide } from '@/models/Battle'
-import type { Creature } from '@/models/Creature'
 import { CreatureInstance } from '@/models/Creature'
 import { SecondarySkills } from '@/models/enums'
-import type { Hero } from '@/models/Hero'
 import { HeroInstance } from '@/models/Hero'
-import type { Spell } from '@/models/Spell'
-import type { Terrain } from '@/models/Terrain'
 import { useStore } from '@/store'
 import { computed, defineAsyncComponent, reactive, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+const props = defineProps<{
+  battleValue: Battle
+}>()
 const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
 const BaseInputNumber = defineAsyncComponent(() => import('@/components/base/BaseInputNumber.vue'))
 const InputHeroStat = defineAsyncComponent(() => import('@/components/damageCalculator/InputHeroStat.vue'))
 const SelectSkillButtons = defineAsyncComponent(() => import('@/components/damageCalculator/SelectSkillButtons.vue'))
 const BaseCheckbox = defineAsyncComponent(() => import('@/components/base/BaseCheckbox.vue'))
-
-const props = defineProps<{
-  battleValue: Battle
-}>()
 
 const { t } = useI18n()
 const store = useStore()
@@ -185,63 +184,70 @@ const skills = computed(() => {
   const damageCalculatorSkills = ['air', 'archery', 'armorer', 'artillery', 'earth', 'fire', 'offense', 'water']
   const skills = {}
   store.skills
-    .filter((skill) => damageCalculatorSkillsIds.includes(skill.id))
+    .filter(skill => damageCalculatorSkillsIds.includes(skill.id))
     .forEach((skill, index) => (skills[damageCalculatorSkills[index]] = skill.name))
   return skills
 })
 const effects = computed(() => [store.attackPositiveEffects, store.defensePositiveEffects, store.attackNegativeEffects])
 
 // Return string of total damage or total kills
-const getTotalResultString = (min: number, max: number, average: number) => {
-  if (min !== max) return `${min} — ${max} (~ ${average})`
-  else if (min === max) return min
+function getTotalResultString(min: number, max: number, average: number) {
+  if (min !== max)
+    return `${min} — ${max} (~ ${average})`
+  else if (min === max)
+    return min
   else return 0
 }
 
-const onSelectCreature = (side: DamageCalculatorBattleSide, creature: Creature) => {
+function onSelectCreature(side: DamageCalculatorBattleSide, creature: Creature) {
   const creatureInstance = new CreatureInstance(creature)
-  if (side.activeCreature) creatureInstance.count = side.activeCreature.count
+  if (side.activeCreature)
+    creatureInstance.count = side.activeCreature.count
   side.activeCreature = creatureInstance
   side.creatures[0] = creatureInstance
 }
 
-const onSelectHero = (side: DamageCalculatorBattleSide, hero: Hero) => {
+function onSelectHero(side: DamageCalculatorBattleSide, hero: Hero) {
   side.hero = new HeroInstance(hero)
 }
 
-const onSelectCreatureEffect = (side: DamageCalculatorBattleSide, spell: Spell, effectEnabled: boolean) => {
-  if (!side.activeCreature) return
+function onSelectCreatureEffect(side: DamageCalculatorBattleSide, spell: Spell, effectEnabled: boolean) {
+  if (!side.activeCreature)
+    return
 
   if (!effectEnabled) {
     side.activeCreature.effects.push(spell)
-  } else {
-    side.activeCreature.effects = side.activeCreature.effects.filter((creatureEffect) => creatureEffect.id !== spell.id)
+  }
+  else {
+    side.activeCreature.effects = side.activeCreature.effects.filter(creatureEffect => creatureEffect.id !== spell.id)
   }
 }
 
-const isEffectEnabled = (side: DamageCalculatorBattleSide, spell: Spell) => {
-  return side.activeCreature?.effects.findIndex((creatureEffect) => creatureEffect.id === spell.id) !== -1
+function isEffectEnabled(side: DamageCalculatorBattleSide, spell: Spell) {
+  return side.activeCreature?.effects.findIndex(creatureEffect => creatureEffect.id === spell.id) !== -1
 }
 
-const onSelectTerrain = (terrain: Terrain | null) => {
+function onSelectTerrain(terrain: Terrain | null) {
   battle.attacker.terrain = terrain
   battle.defender.terrain = terrain
 }
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/mixins';
+
 .damage-calculator {
   display: grid;
   grid-template-rows: minmax(50vh, 1fr) 1fr;
   grid-template-columns: 100%;
   box-shadow: 0 0 3px rgba(170, 170, 170, 0.5);
 
-  @include media-large {
+  @include mixins.media-large {
     grid-template-rows: minmax(80vh, auto) 1fr;
     grid-template-columns: 50% 50%;
   }
 
-  @include media-maximum {
+  @include mixins.media-maximum {
     grid-template-rows: minmax(84vh, auto) 1fr;
   }
 }
@@ -253,7 +259,7 @@ const onSelectTerrain = (terrain: Terrain | null) => {
   gap: 1rem;
   padding: 10px;
 
-  @include media-large {
+  @include mixins.media-large {
     padding: 20px;
   }
 }
@@ -310,7 +316,7 @@ const onSelectTerrain = (terrain: Terrain | null) => {
   grid-template-columns: 1fr;
   gap: 1rem 0;
 
-  @include media-medium {
+  @include mixins.media-medium {
     grid-template-columns: 1fr 1fr;
     gap: 1rem 1rem;
   }
@@ -322,7 +328,7 @@ const onSelectTerrain = (terrain: Terrain | null) => {
     border-bottom 0.2s linear,
     border-right 0.2s linear;
 
-  @include media-large {
+  @include mixins.media-large {
     border-right: 1px solid var(--color-border);
     border-bottom: 0;
   }
@@ -393,7 +399,7 @@ const onSelectTerrain = (terrain: Terrain | null) => {
 }
 
 .select-skill-buttons {
-  @include media-large {
+  @include mixins.media-large {
     &:nth-child(even) {
       text-align: center;
     }

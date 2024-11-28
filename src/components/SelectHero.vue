@@ -10,7 +10,7 @@
   >
     <template #selected="{ selected }">
       <ObjectPortrait
-        :folder="`/images/heroes/portraits/small`"
+        folder="/images/heroes/portraits/small"
         :file="{ name: selected.id, alt: selected.name }"
         :width="46"
         :height="30"
@@ -20,7 +20,7 @@
 
     <template #option="{ option: hero }">
       <ObjectPortrait
-        :folder="`/images/heroes/portraits/small`"
+        folder="/images/heroes/portraits/small"
         :file="{ name: hero.id, alt: hero.name }"
         :width="46"
         :height="30"
@@ -32,24 +32,28 @@
 </template>
 
 <script setup lang="ts">
-import BaseSelect from '@/components/base/BaseSelect.vue'
 import type { Hero, HeroInstance } from '@/models/Hero'
+import BaseSelect from '@/components/base/BaseSelect.vue'
 import { defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
-const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
 
-defineProps<{ heroes: Array<Hero>; value: Hero | HeroInstance | null }>()
-defineEmits<{ select: [hero: Hero]; clear: [] }>()
+defineProps<{ heroes: Array<Hero>, value: Hero | HeroInstance | null }>()
+
+defineEmits<{ select: [hero: Hero], clear: [] }>()
+
+const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
 
 const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/mixins';
+
 .selected-value {
   & picture {
     display: none;
 
-    @include media-medium {
+    @include mixins.media-medium {
       display: flex;
     }
   }

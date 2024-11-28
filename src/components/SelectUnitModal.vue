@@ -9,7 +9,7 @@
         name="search-creatures"
         :placeholder="t('components.selectUnitModal.searchCreature')"
         @keyup.enter="selectFirstFounded"
-      />
+      >
     </template>
 
     <template #content>
@@ -72,16 +72,18 @@
 </template>
 
 <script setup lang="ts">
-import BaseDialog from '@/components/base/BaseDialog.vue'
 import type { Creature } from '@/models/Creature'
+import BaseDialog from '@/components/base/BaseDialog.vue'
 import { useStore } from '@/store'
 import { refDebounced } from '@vueuse/core'
 import { computed, defineAsyncComponent, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
 
 const props = defineProps<{ show: boolean }>()
-const emit = defineEmits<{ close: []; select: [creature: Creature] }>()
+
+const emit = defineEmits<{ close: [], select: [creature: Creature] }>()
+
+const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
 
 const { t } = useI18n()
 const store = useStore()
@@ -96,7 +98,8 @@ const searchInput = ref()
 watch(
   () => props.show,
   (newShowState) => {
-    if (newShowState) nextTick(() => searchInput.value.focus())
+    if (newShowState)
+      nextTick(() => searchInput.value.focus())
   },
 )
 
@@ -114,11 +117,12 @@ const creaturesByTowns = computed(() => {
     0: [],
   }
 
-  towns.value.forEach((town) => (map[town.id] = []))
+  towns.value.forEach(town => (map[town.id] = []))
   creatures.value.forEach((creature) => {
     if (creature.townId) {
       map[creature.townId].push(creature)
-    } else {
+    }
+    else {
       map[0].push(creature)
     }
   })
@@ -126,25 +130,27 @@ const creaturesByTowns = computed(() => {
   return map
 })
 
-const selectUnit = (value: Creature) => {
+function selectUnit(value: Creature) {
   search.value = ''
   emit('select', value)
   emit('close')
 }
 
-const selectFirstFounded = () => {
+function selectFirstFounded() {
   emit('select', searchCreatures.value[0])
   emit('close')
   search.value = ''
 }
 
-const onClose = () => {
+function onClose() {
   search.value = ''
   emit('close')
 }
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/mixins';
+
 .units-modal-content {
   flex-direction: column;
   width: 100%;
@@ -200,7 +206,7 @@ const onClose = () => {
     box-shadow 0.25s,
     transform 0.25s;
 
-  @include media-medium {
+  @include mixins.media-medium {
     width: 58px;
   }
 
