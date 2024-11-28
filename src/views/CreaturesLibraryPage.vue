@@ -27,12 +27,14 @@
           :value="search"
           :placeholder="t('components.selectUnitModal.searchCreature')"
           @input="setSearch"
-        />
+        >
       </div>
     </section>
 
     <div v-for="town in towns" :key="town.name" class="town">
-      <h2 :id="town.name" class="town-name">{{ town.name }}</h2>
+      <h2 :id="town.name" class="town-name">
+        {{ town.name }}
+      </h2>
       <CreatureCard
         v-for="creature in creatures.filter((creature) => creature.townId === town.id)"
         :key="creature.id"
@@ -42,7 +44,9 @@
       />
     </div>
     <div class="town">
-      <h2 id="Neutral" class="town-name">{{ t('common.neutralCreatures') }}</h2>
+      <h2 id="Neutral" class="town-name">
+        {{ t('common.neutralCreatures') }}
+      </h2>
       <CreatureCard
         v-for="creature in creatures.filter((creature) => creature.townId === 0)"
         :key="creature.id"
@@ -57,18 +61,19 @@
 </template>
 
 <script setup lang="ts">
-import ObjectPortrait from '@/components/ObjectPortrait.vue'
 import type { Creature } from '@/models/Creature'
+import ObjectPortrait from '@/components/ObjectPortrait.vue'
 import { useStore } from '@/store'
 import { useHead } from '@unhead/vue'
 import { useDebounce } from '@vueuse/core'
 import { computed, defineAsyncComponent, onUnmounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
+
+const props = defineProps<{ head: string }>()
 const CreatureCard = defineAsyncComponent(() => import('@/components/creaturesLibrary/CreatureCard.vue'))
 const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 
-const props = defineProps<{ head: string }>()
 useHead(JSON.parse(props.head))
 
 const store = useStore()
@@ -84,11 +89,12 @@ const search = ref('')
 const debouncedSearch = useDebounce(search, 500)
 const searchInput = ref()
 
-const keyboardSearch = (value: KeyboardEvent) => {
+function keyboardSearch(value: KeyboardEvent) {
   if (value.key === 'Enter') {
     if (search.value.length > 0) {
       search.value = ''
-    } else if (route.hash.length > 0) {
+    }
+    else if (route.hash.length > 0) {
       router.replace({ hash: '' })
     }
   }
@@ -100,7 +106,8 @@ onUnmounted(() => {
 })
 
 watch(debouncedSearch, (searchValue) => {
-  if (!searchValue.length) return
+  if (!searchValue.length)
+    return
 
   const searchQuery = searchValue.trim().toLowerCase()
   const foundCreature = creatures.value.find((creature: Creature) => {
@@ -112,21 +119,24 @@ watch(debouncedSearch, (searchValue) => {
   }
 })
 
-const setSearch = (event: Event) => {
+function setSearch(event: Event) {
   const target = event.target as HTMLInputElement
   search.value = target.value
 }
 
-const onSelectCreature = (creature: Creature) => {
+function onSelectCreature(creature: Creature) {
   if (selectedCreature.value && selectedCreature.value.id === creature.id) {
     selectedCreature.value = null
-  } else {
+  }
+  else {
     selectedCreature.value = creature
   }
 }
 </script>
 
 <style lang="scss">
+@use '@/styles/mixins';
+
 .creatures-library-page {
   min-width: 320px;
   max-width: 1920px;
@@ -135,7 +145,7 @@ const onSelectCreature = (creature: Creature) => {
   content-visibility: auto;
   contain-intrinsic-size: 100vh;
 
-  @include media-medium {
+  @include mixins.media-medium {
     padding: 0 24px 16px;
   }
 }
@@ -170,7 +180,7 @@ const onSelectCreature = (creature: Creature) => {
       opacity: 1;
     }
 
-    @include media-medium {
+    @include mixins.media-medium {
       width: 170px;
     }
   }
@@ -199,7 +209,7 @@ const onSelectCreature = (creature: Creature) => {
     margin-bottom: 0;
   }
 
-  @include media-medium {
+  @include mixins.media-medium {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -217,7 +227,7 @@ const onSelectCreature = (creature: Creature) => {
   }
 }
 
-@include dark-scheme {
+@include mixins.dark-scheme {
   .creature-card {
     &:nth-child(2),
     &:nth-child(3) {

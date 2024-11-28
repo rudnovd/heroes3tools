@@ -2,18 +2,18 @@ import { spells } from '@/assets/database/spells'
 import { Battle } from '@/models/Battle'
 import { Creatures, Heroes, Spells as SpellsEnum } from '@/models/enums'
 
-import { beforeEach, describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { getCreatureInstance, getHeroInstance } from '../helpers'
 
-describe('Frost Ring', () => {
+describe('frost Ring', () => {
   let battle: Battle
-  const frostRing = spells.find((spell) => spell.id === SpellsEnum.FrostRing)!
+  const frostRing = spells.find(spell => spell.id === SpellsEnum.FrostRing)!
 
   beforeEach(() => {
     battle = new Battle()
   })
 
-  test('Base spell values', () => {
+  it('base spell values', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
@@ -25,7 +25,7 @@ describe('Frost Ring', () => {
     expect(damage).toBe(15)
   })
 
-  test('With Spell Power', () => {
+  it('with Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 10
 
@@ -37,7 +37,7 @@ describe('Frost Ring', () => {
     expect(damage).toBe(115)
   })
 
-  test('With Advanced Water skill', () => {
+  it('with Advanced Water skill', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
     battle.attacker.hero.skills.water = 2
@@ -50,7 +50,7 @@ describe('Frost Ring', () => {
     expect(damage).toBe(30)
   })
 
-  test('With Advanced Water skill and high Spell Power', () => {
+  it('with Advanced Water skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 30
     battle.attacker.hero.skills.water = 2
@@ -63,7 +63,7 @@ describe('Frost Ring', () => {
     expect(damage).toBe(330)
   })
 
-  test('With Expert Water skill', () => {
+  it('with Expert Water skill', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
     battle.attacker.hero.skills.water = 3
@@ -76,7 +76,7 @@ describe('Frost Ring', () => {
     expect(damage).toBe(60)
   })
 
-  test('With Expert Water skill and high Spell Power', () => {
+  it('with Expert Water skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 30
     battle.attacker.hero.skills.water = 3
@@ -89,7 +89,7 @@ describe('Frost Ring', () => {
     expect(damage).toBe(360)
   })
 
-  test('Hero with Frost Ring specialty', () => {
+  it('hero with Frost Ring specialty', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Adelaide)
     battle.attacker.hero.stats.power = 0
 
@@ -101,7 +101,7 @@ describe('Frost Ring', () => {
     expect(damage).toBe(16)
   })
 
-  test('Hero with frostRing specialty and high Spell Power', () => {
+  it('hero with frostRing specialty and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Adelaide)
     battle.attacker.hero.stats.power = 34
 
@@ -113,7 +113,7 @@ describe('Frost Ring', () => {
     expect(damage).toBe(366)
   })
 
-  test('Hero with Frost Ring specialty, Advanced Water skill and high Spell Power', () => {
+  it('hero with Frost Ring specialty, Advanced Water skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Adelaide)
     battle.attacker.hero.stats.power = 34
     battle.attacker.hero.skills.water = 2
@@ -126,7 +126,7 @@ describe('Frost Ring', () => {
     expect(damage).toBe(382)
   })
 
-  test('Hero with Frost Ring specialty, Expert Water skill and high Spell Power', () => {
+  it('hero with Frost Ring specialty, Expert Water skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Adelaide)
     battle.attacker.hero.stats.power = 34
     battle.attacker.hero.skills.water = 3
@@ -139,7 +139,7 @@ describe('Frost Ring', () => {
     expect(damage).toBe(412)
   })
 
-  test('Cast on creature with immunity', () => {
+  it('cast on creature with immunity', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Adelaide)
     battle.attacker.hero.stats.power = 0
 
@@ -166,7 +166,7 @@ describe('Frost Ring', () => {
     expect(totalDamage).toBe(0)
   })
 
-  test('With Expert Water skill and high Spell Power cast on creature with vulnerable', () => {
+  it('with Expert Water skill and high Spell Power cast on creature with vulnerable', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 24
     battle.attacker.hero.skills.water = 3
@@ -179,7 +179,7 @@ describe('Frost Ring', () => {
     expect(damage).toBe(600)
   })
 
-  test('Cast on creatures with vulnerable', () => {
+  it('cast on creatures with vulnerable', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 

@@ -35,11 +35,14 @@ export const Spells = {
 
     if (!initiator.hero) {
       damage = 10
-    } else if (schoolLevel <= SkillLevels.Basic) {
+    }
+    else if (schoolLevel <= SkillLevels.Basic) {
       damage = 10 + initiator.hero.stats.power * 10
-    } else if (schoolLevel <= SkillLevels.Advanced) {
+    }
+    else if (schoolLevel <= SkillLevels.Advanced) {
       damage = 20 + initiator.hero.stats.power * 10
-    } else if (schoolLevel <= SkillLevels.Expert) {
+    }
+    else if (schoolLevel <= SkillLevels.Expert) {
       damage = 30 + initiator.hero.stats.power * 10
     }
 

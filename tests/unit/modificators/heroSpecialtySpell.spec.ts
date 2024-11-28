@@ -2,18 +2,18 @@ import { Battle } from '@/models/Battle'
 import { Creatures, Heroes } from '@/models/enums'
 import { Effects } from '@/modules/effects'
 import { Modificators } from '@/modules/modificators'
-import { beforeEach, describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { getCreatureInstance, getHeroInstance } from '../helpers'
 
-describe('Hero specialty spell modificator', () => {
+describe('hero specialty spell modificator', () => {
   let battle: Battle
 
   beforeEach(() => {
     battle = new Battle()
   })
 
-  describe('Bloodlust spell specialty', () => {
-    test('Ash with Imp (creature level - 1)', () => {
+  describe('bloodlust spell specialty', () => {
+    it('ash with Imp (creature level - 1)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Ash)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Imp)
 
@@ -26,7 +26,7 @@ describe('Hero specialty spell modificator', () => {
       expect(attack).toBe(8)
     })
 
-    test('Ash with Griffin (creature level - 3)', () => {
+    it('ash with Griffin (creature level - 3)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Ash)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Griffin)
 
@@ -39,7 +39,7 @@ describe('Hero specialty spell modificator', () => {
       expect(attack).toBe(13)
     })
 
-    test('Ash with Genie (creature level - 5)', () => {
+    it('ash with Genie (creature level - 5)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Ash)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Genie)
 
@@ -52,7 +52,7 @@ describe('Hero specialty spell modificator', () => {
       expect(attack).toBe(16)
     })
 
-    test('Ash with Bone Dragon (creature level - 7)', () => {
+    it('ash with Bone Dragon (creature level - 7)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Ash)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.BoneDragon)
 
@@ -66,8 +66,8 @@ describe('Hero specialty spell modificator', () => {
     })
   })
 
-  describe('Prayer spell specialty', () => {
-    test('Loynis with Troglodyte (creature level - 1)', () => {
+  describe('prayer spell specialty', () => {
+    it('loynis with Troglodyte (creature level - 1)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Loynis)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Troglodyte)
 
@@ -80,7 +80,7 @@ describe('Hero specialty spell modificator', () => {
       expect({ attack, defense }).toEqual({ attack: 9, defense: 8 })
     })
 
-    test('Loynis with Hell Hound (creature level - 3)', () => {
+    it('loynis with Hell Hound (creature level - 3)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Loynis)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.HellHound)
 
@@ -93,7 +93,7 @@ describe('Hero specialty spell modificator', () => {
       expect({ attack, defense }).toEqual({ attack: 14, defense: 10 })
     })
 
-    test('Loynis with Gorgon (creature level - 5)', () => {
+    it('loynis with Gorgon (creature level - 5)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Loynis)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Gorgon)
 
@@ -106,7 +106,7 @@ describe('Hero specialty spell modificator', () => {
       expect({ attack, defense }).toEqual({ attack: 13, defense: 17 })
     })
 
-    test('Loynis with Behemoth (creature level - 7)', () => {
+    it('loynis with Behemoth (creature level - 7)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Loynis)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Behemoth)
 
@@ -120,8 +120,8 @@ describe('Hero specialty spell modificator', () => {
     })
   })
 
-  describe('Precision spell specialty', () => {
-    test('Zubin with Archer (creature level - 1)', () => {
+  describe('precision spell specialty', () => {
+    it('zubin with Archer (creature level - 1)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Zubin)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Archer)
 
@@ -134,7 +134,7 @@ describe('Hero specialty spell modificator', () => {
       expect(attack).toBe(12)
     })
 
-    test('Zubin with Wood Elf (creature level - 3)', () => {
+    it('zubin with Wood Elf (creature level - 3)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Zubin)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.WoodElf)
 
@@ -147,7 +147,7 @@ describe('Hero specialty spell modificator', () => {
       expect(attack).toBe(14)
     })
 
-    test('Zubin with Monk (creature level - 5)', () => {
+    it('zubin with Monk (creature level - 5)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Zubin)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Monk)
 
@@ -160,7 +160,7 @@ describe('Hero specialty spell modificator', () => {
       expect(attack).toBe(16)
     })
 
-    test('Zubin with Titan (creature level - 7)', () => {
+    it('zubin with Titan (creature level - 7)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Zubin)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Titan)
 
@@ -174,8 +174,8 @@ describe('Hero specialty spell modificator', () => {
     })
   })
 
-  describe('Stone Skin spell specialty', () => {
-    test('Darkstorn with Pikeman (creature level - 1)', () => {
+  describe('stone Skin spell specialty', () => {
+    it('darkstorn with Pikeman (creature level - 1)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Darkstorn)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
 
@@ -188,7 +188,7 @@ describe('Hero specialty spell modificator', () => {
       expect(defense).toBe(11)
     })
 
-    test('Darkstorn with Royal Griffin (creature level - 3)', () => {
+    it('darkstorn with Royal Griffin (creature level - 3)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Darkstorn)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.RoyalGriffin)
 
@@ -201,7 +201,7 @@ describe('Hero specialty spell modificator', () => {
       expect(defense).toBe(14)
     })
 
-    test('Darkstorn with Dendroid Guard (creature level - 5)', () => {
+    it('darkstorn with Dendroid Guard (creature level - 5)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Darkstorn)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.DendroidGuard)
 
@@ -214,7 +214,7 @@ describe('Hero specialty spell modificator', () => {
       expect(defense).toBe(16)
     })
 
-    test('Darkstorn with Gold Dragon (creature level - 7)', () => {
+    it('darkstorn with Gold Dragon (creature level - 7)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Darkstorn)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.GoldDragon)
 
@@ -228,8 +228,8 @@ describe('Hero specialty spell modificator', () => {
     })
   })
 
-  describe('Weakness spell specialty', () => {
-    test('Mirlanda with Gremlin (creature level - 1)', () => {
+  describe('weakness spell specialty', () => {
+    it('mirlanda with Gremlin (creature level - 1)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Mirlanda)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Gremlin)
 
@@ -242,7 +242,7 @@ describe('Hero specialty spell modificator', () => {
       expect(attack).toBe(0)
     })
 
-    test('Mirlanda with Iron Golem (creature level - 3)', () => {
+    it('mirlanda with Iron Golem (creature level - 3)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Mirlanda)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.IronGolem)
 
@@ -255,7 +255,7 @@ describe('Hero specialty spell modificator', () => {
       expect(attack).toBe(4)
     })
 
-    test('Mirlanda with Master Genie (creature level - 5)', () => {
+    it('mirlanda with Master Genie (creature level - 5)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Mirlanda)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.MasterGenie)
 
@@ -268,7 +268,7 @@ describe('Hero specialty spell modificator', () => {
       expect(attack).toBe(8)
     })
 
-    test('Mirlanda with Master Black Dragon (creature level - 7)', () => {
+    it('mirlanda with Master Black Dragon (creature level - 7)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Mirlanda)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.BlackDragon)
 
@@ -282,8 +282,8 @@ describe('Hero specialty spell modificator', () => {
     })
   })
 
-  describe('Disrupting Ray spell specialty', () => {
-    test('Aenain with Skeleton (creature level - 1)', () => {
+  describe('disrupting Ray spell specialty', () => {
+    it('aenain with Skeleton (creature level - 1)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Aenain)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Skeleton)
 
@@ -296,7 +296,7 @@ describe('Hero specialty spell modificator', () => {
       expect(defense).toBe(0)
     })
 
-    test('Aenain with Wraith (creature level - 3)', () => {
+    it('aenain with Wraith (creature level - 3)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Aenain)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Wraith)
 
@@ -309,7 +309,7 @@ describe('Hero specialty spell modificator', () => {
       expect(defense).toBe(2)
     })
 
-    test('Aenain with Power Lich (creature level - 5)', () => {
+    it('aenain with Power Lich (creature level - 5)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Aenain)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.PowerLich)
 
@@ -322,7 +322,7 @@ describe('Hero specialty spell modificator', () => {
       expect(defense).toBe(5)
     })
 
-    test('Aenain with Ghost Dragon (creature level - 7)', () => {
+    it('aenain with Ghost Dragon (creature level - 7)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Aenain)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.GhostDragon)
 

@@ -1,9 +1,25 @@
 <template>
   <section class="send-error-page">
-    <form class="send-error" name="send-error" method="post" data-netlify="true" data-netlify-honeypot="bot-field">
-      <input type="hidden" name="send-error" value="send-error" />
-      <textarea name="error" :placeholder="t('components.pageFooter.sendErrorForm.placeholder')" />
-      <button class="send-error-button" type="submit">
+    <form
+      class="send-error"
+      name="send-error"
+      method="post"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+    >
+      <input
+        type="hidden"
+        name="send-error"
+        value="send-error"
+      >
+      <textarea
+        name="error"
+        :placeholder="t('components.pageFooter.sendErrorForm.placeholder')"
+      />
+      <button
+        class="send-error-button"
+        type="submit"
+      >
         {{ t('components.pageFooter.sendErrorForm.button') }}
       </button>
     </form>
@@ -17,6 +33,8 @@ const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/variables';
+
 .send-error-page {
   display: flex;
   align-items: center;
@@ -46,9 +64,9 @@ const { t } = useI18n()
     min-width: 200px;
     font-weight: bold;
     line-height: 1.5;
-    color: $color-attacker-text;
-    background-color: $color-attacker;
-    border: 1px solid $color-attacker;
+    color: variables.$color-attacker-text;
+    background-color: variables.$color-attacker;
+    border: 1px solid variables.$color-attacker;
     border-radius: 5px;
   }
 }

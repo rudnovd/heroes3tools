@@ -14,14 +14,14 @@
 </template>
 
 <script setup lang="ts">
-import ObjectPortrait from '@/components/ObjectPortrait.vue'
 import type { Spell } from '@/models/Spell'
+import ObjectPortrait from '@/components/ObjectPortrait.vue'
 
 withDefaults(
   defineProps<{
     spell: Spell
     selected?: boolean
-    imageSizes?: { height: string | 'auto'; width: string | 'auto' }
+    imageSizes?: { height: string | 'auto', width: string | 'auto' }
   }>(),
   {
     selected: false,

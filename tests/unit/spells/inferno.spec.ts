@@ -2,18 +2,18 @@ import { spells } from '@/assets/database/spells'
 import { Battle } from '@/models/Battle'
 import { Creatures, Heroes, Spells as SpellsEnum } from '@/models/enums'
 
-import { beforeEach, describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { getCreatureInstance, getHeroInstance } from '../helpers'
 
-describe('Inferno', () => {
+describe('inferno', () => {
   let battle: Battle
-  const inferno = spells.find((spell) => spell.id === SpellsEnum.Inferno)!
+  const inferno = spells.find(spell => spell.id === SpellsEnum.Inferno)!
 
   beforeEach(() => {
     battle = new Battle()
   })
 
-  test('Base spell values', () => {
+  it('base spell values', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
@@ -25,7 +25,7 @@ describe('Inferno', () => {
     expect(damage).toBe(20)
   })
 
-  test('With Spell Power', () => {
+  it('with Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 10
 
@@ -37,7 +37,7 @@ describe('Inferno', () => {
     expect(damage).toBe(120)
   })
 
-  test('With Advanced Fire skill', () => {
+  it('with Advanced Fire skill', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
     battle.attacker.hero.skills.fire = 2
@@ -50,7 +50,7 @@ describe('Inferno', () => {
     expect(damage).toBe(40)
   })
 
-  test('With Advanced Fire skill and high Spell Power', () => {
+  it('with Advanced Fire skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 30
     battle.attacker.hero.skills.fire = 2
@@ -63,7 +63,7 @@ describe('Inferno', () => {
     expect(damage).toBe(340)
   })
 
-  test('With Expert Fire skill', () => {
+  it('with Expert Fire skill', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
     battle.attacker.hero.skills.fire = 3
@@ -76,7 +76,7 @@ describe('Inferno', () => {
     expect(damage).toBe(80)
   })
 
-  test('With Expert Fire skill and high Spell Power', () => {
+  it('with Expert Fire skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 30
     battle.attacker.hero.skills.fire = 3
@@ -89,7 +89,7 @@ describe('Inferno', () => {
     expect(damage).toBe(380)
   })
 
-  test('Hero with Inferno specialty', () => {
+  it('hero with Inferno specialty', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Xyron)
     battle.attacker.hero.stats.power = 0
 
@@ -101,7 +101,7 @@ describe('Inferno', () => {
     expect(damage).toBe(21)
   })
 
-  test('Hero with Inferno specialty and high Spell Power', () => {
+  it('hero with Inferno specialty and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Xyron)
     battle.attacker.hero.stats.power = 34
 
@@ -113,7 +113,7 @@ describe('Inferno', () => {
     expect(damage).toBe(371)
   })
 
-  test('Hero with Inferno specialty, Advanced Fire skill and high Spell Power', () => {
+  it('hero with Inferno specialty, Advanced Fire skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Xyron)
     battle.attacker.hero.stats.power = 34
     battle.attacker.hero.skills.fire = 2
@@ -126,7 +126,7 @@ describe('Inferno', () => {
     expect(damage).toBe(392)
   })
 
-  test('Hero with Inferno specialty, Expert Fire skill and high Spell Power', () => {
+  it('hero with Inferno specialty, Expert Fire skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Xyron)
     battle.attacker.hero.stats.power = 34
     battle.attacker.hero.skills.fire = 3
@@ -139,7 +139,7 @@ describe('Inferno', () => {
     expect(damage).toBe(433)
   })
 
-  test('Cast on creature with immunity', () => {
+  it('cast on creature with immunity', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Xyron)
     battle.attacker.hero.stats.power = 0
 
@@ -165,7 +165,7 @@ describe('Inferno', () => {
     expect(totalDamage).toBe(0)
   })
 
-  test('With Expert Fire skill and high Spell Power cast on creature with vulnerable', () => {
+  it('with Expert Fire skill and high Spell Power cast on creature with vulnerable', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 24
     battle.attacker.hero.skills.fire = 3
@@ -178,7 +178,7 @@ describe('Inferno', () => {
     expect(damage).toBe(640)
   })
 
-  test('Cast on creatures with vulnerable', () => {
+  it('cast on creatures with vulnerable', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 

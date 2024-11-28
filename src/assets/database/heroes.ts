@@ -1,5 +1,5 @@
-import { Classes, Creatures, SecondarySkills, SkillLevels, Spells } from '@/models/enums'
 import type { Hero } from '@/models/Hero'
+import { Classes, Creatures, SecondarySkills, SkillLevels, Spells } from '@/models/enums'
 
 export const heroes: Array<Hero> = [
   {

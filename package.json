@@ -1,15 +1,18 @@
 {
   "name": "heroes3tools",
+  "type": "module",
   "version": "2.3.7",
   "private": true,
-  "type": "module",
   "description": "Web tools to make playing Heroes of Might and Magic III: Horn of The Abyss easier: damage calculator, magic calculator, creature library for simplify calculations in Heroes of Might and Magic III: Horn of The Abyss",
+  "license": "MIT",
   "homepage": "https://heroes3tools.netlify.app/",
+  "repository": "github:rudnovd/heroes3tools",
   "bugs": {
     "url": "https://github.com/rudnovd/heroes3tools/issues"
   },
-  "repository": "github:rudnovd/heroes3tools",
-  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "start": "vite",
@@ -27,67 +30,52 @@
     "release": "standard-version"
   },
   "dependencies": {
-    "@unhead/vue": "^1.11.10",
-    "@vueuse/core": "^11.1.0",
-    "@vueuse/shared": "^11.1.0",
-    "pinia": "^2.2.4",
-    "vue": "^3.5.12",
-    "vue-i18n": "^10.0.4",
-    "vue-router": "^4.4.5"
+    "@unhead/vue": "^1.11.13",
+    "@vueuse/core": "^12.0.0",
+    "@vueuse/shared": "^12.0.0",
+    "pinia": "^2.2.8",
+    "vue": "^3.5.13",
+    "vue-i18n": "^10.0.5",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.5.0",
-    "@commitlint/config-conventional": "^19.5.0",
-    "@intlify/unplugin-vue-i18n": "^5.2.0",
+    "@antfu/eslint-config": "^3.11.2",
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@intlify/unplugin-vue-i18n": "^6.0.0",
     "@localazy/cli": "^1.7.14",
-    "@typescript-eslint/eslint-plugin": "^8.9.0",
-    "@typescript-eslint/parser": "^8.9.0",
-    "@unhead/addons": "^1.11.10",
-    "@vitejs/plugin-vue": "^5.1.4",
-    "@vue/eslint-config-typescript": "^13.0.0",
+    "@unhead/addons": "^1.11.13",
+    "@vitejs/plugin-vue": "^5.2.1",
     "@vue/test-utils": "^2.4.6",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^9.12.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier-vue": "^5.0.0",
-    "eslint-plugin-vue": "^9.29.0",
-    "globals": "^15.11.0",
-    "husky": "^9.1.6",
-    "prettier": "^3.3.3",
-    "sass": "^1.79.5",
+    "eslint": "^9.15.0",
+    "globals": "^15.12.0",
+    "husky": "^9.1.7",
+    "sass": "^1.81.0",
     "standard-version": "^9.5.0",
-    "stylelint": "^16.10.0",
+    "stylelint": "^16.11.0",
     "stylelint-config-recess-order": "^5.1.1",
     "stylelint-config-recommended-scss": "^14.1.0",
     "stylelint-config-recommended-vue": "^1.5.0",
-    "stylelint-prettier": "^5.0.2",
-    "stylelint-scss": "^6.7.0",
-    "typescript": "^5.6.3",
-    "vite": "^5.4.9",
-    "vite-plugin-pwa": "^0.20.5",
-    "vitest": "^2.1.3",
-    "vue-eslint-parser": "^9.4.3",
-    "vue-tsc": "^2.1.6",
-    "workbox-build": "^7.1.1",
-    "workbox-cacheable-response": "^7.1.0",
-    "workbox-core": "^7.1.0",
-    "workbox-expiration": "^7.1.0",
-    "workbox-precaching": "^7.1.0",
-    "workbox-routing": "^7.1.0",
-    "workbox-strategies": "^7.1.0",
-    "workbox-window": "^7.1.0"
+    "stylelint-scss": "^6.10.0",
+    "typescript": "5.6.3",
+    "vite": "^6.0.1",
+    "vite-plugin-pwa": "^0.21.0",
+    "vitest": "^2.1.6",
+    "vue-tsc": "^2.1.10",
+    "workbox-build": "^7.3.0",
+    "workbox-cacheable-response": "^7.3.0",
+    "workbox-core": "^7.3.0",
+    "workbox-expiration": "^7.3.0",
+    "workbox-precaching": "^7.3.0",
+    "workbox-routing": "^7.3.0",
+    "workbox-strategies": "^7.3.0",
+    "workbox-window": "^7.3.0"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "engines": {
-    "node": ">=20"
-  },
-  "funding": {
-    "type": "Ko-fi",
-    "url": "https://ko-fi.com/rudnovd"
   }
 }

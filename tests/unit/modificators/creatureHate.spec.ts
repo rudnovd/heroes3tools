@@ -1,17 +1,17 @@
 import { terrains } from '@/assets/database/terrains'
 import { Battle } from '@/models/Battle'
 import { Creatures, Heroes, Terrains } from '@/models/enums'
-import { beforeEach, describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { getBattleCreatureCalculationResults, getCreatureInstance, getHeroInstance } from '../helpers'
 
-describe('Creature hate modificator', () => {
+describe('creature hate modificator', () => {
   let battle: Battle
 
   beforeEach(() => {
     battle = new Battle()
   })
 
-  test('10 Angels vs 10 Devils', () => {
+  it('10 Angels vs 10 Devils', () => {
     battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
     battle.attacker.activeCreature.count = 10
 
@@ -24,7 +24,7 @@ describe('Creature hate modificator', () => {
     expect(defender).toMatchObject({ minDamage: 442, maxDamage: 590 })
   })
 
-  test('3 Angels vs 3 Devils with hero', () => {
+  it('3 Angels vs 3 Devils with hero', () => {
     battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
     battle.attacker.activeCreature.count = 3
     battle.attacker.hero = getHeroInstance(Heroes.Adela)
@@ -34,8 +34,8 @@ describe('Creature hate modificator', () => {
     battle.defender.activeCreature = getCreatureInstance(Creatures.Devil)
     battle.defender.activeCreature.count = 3
 
-    battle.attacker.terrain = terrains.find((terrain) => terrain.id === Terrains.Lava)!
-    battle.defender.terrain = terrains.find((terrain) => terrain.id === Terrains.Lava)!
+    battle.attacker.terrain = terrains.find(terrain => terrain.id === Terrains.Lava)!
+    battle.defender.terrain = terrains.find(terrain => terrain.id === Terrains.Lava)!
 
     const { attacker, defender } = getBattleCreatureCalculationResults(battle)
 

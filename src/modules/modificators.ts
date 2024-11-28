@@ -1,7 +1,7 @@
 import type { CreatureInstance } from '@/models/Creature'
-import { Creatures, SecondarySkills, Spells } from '@/models/enums'
 import type { HeroInstance } from '@/models/Hero'
 import type { Terrain } from '@/models/Terrain'
+import { Creatures, SecondarySkills, Spells } from '@/models/enums'
 
 export const Modificators = {
   heroSpecialtySpell: (hero: HeroInstance, target: CreatureInstance): CreatureInstance => {
@@ -11,9 +11,11 @@ export const Modificators = {
       case Spells.Bloodlust:
         if (target.level === 1 || target.level === 2) {
           attack += 3
-        } else if (target.level === 3 || target.level === 4) {
+        }
+        else if (target.level === 3 || target.level === 4) {
           attack += 2
-        } else if (target.level === 5 || target.level === 6) {
+        }
+        else if (target.level === 5 || target.level === 6) {
           attack += 1
         }
         break
@@ -21,10 +23,12 @@ export const Modificators = {
         if (target.level === 1 || target.level === 2) {
           attack += 3
           defense += 3
-        } else if (target.level === 3 || target.level === 4) {
+        }
+        else if (target.level === 3 || target.level === 4) {
           attack += 2
           defense += 2
-        } else if (target.level === 5 || target.level === 6) {
+        }
+        else if (target.level === 5 || target.level === 6) {
           attack += 1
           defense += 1
         }
@@ -32,27 +36,33 @@ export const Modificators = {
       case Spells.Precision:
         if (target.level === 1 || target.level === 2) {
           attack += 3
-        } else if (target.level === 3 || target.level === 4) {
+        }
+        else if (target.level === 3 || target.level === 4) {
           attack += 2
-        } else if (target.level === 5 || target.level === 6) {
+        }
+        else if (target.level === 5 || target.level === 6) {
           attack += 1
         }
         break
       case Spells.StoneSkin:
         if (target.level === 1 || target.level === 2) {
           defense += 3
-        } else if (target.level === 3 || target.level === 4) {
+        }
+        else if (target.level === 3 || target.level === 4) {
           defense += 2
-        } else if (target.level === 5 || target.level === 6) {
+        }
+        else if (target.level === 5 || target.level === 6) {
           defense += 1
         }
         break
       case Spells.Weakness:
         if (target.level === 1 || target.level === 2) {
           attack -= 3
-        } else if (target.level === 3 || target.level === 4) {
+        }
+        else if (target.level === 3 || target.level === 4) {
           attack -= 2
-        } else if (target.level === 5 || target.level === 6) {
+        }
+        else if (target.level === 5 || target.level === 6) {
           attack -= 1
         }
         break
@@ -135,9 +145,11 @@ export const Modificators = {
       let bonus = 0
       if (hero.skills.archery === 1) {
         bonus = 0.1
-      } else if (hero.skills.archery === 2) {
+      }
+      else if (hero.skills.archery === 2) {
         bonus = 0.25
-      } else if (hero.skills.archery === 3) {
+      }
+      else if (hero.skills.archery === 3) {
         bonus = 0.5
       }
 
@@ -148,9 +160,9 @@ export const Modificators = {
     }
 
     if (
-      (target.id === Creatures.Ballista || target.id === Creatures.Cannon) &&
-      hero.skills.artillery &&
-      hero.skills.artillery === 2
+      (target.id === Creatures.Ballista || target.id === Creatures.Cannon)
+      && hero.skills.artillery
+      && hero.skills.artillery === 2
     ) {
       hits = 2
     }
@@ -171,7 +183,7 @@ export const Modificators = {
       calculation: { damageBonus },
     } = attacker
 
-    if (attacker.hates && attacker.hates.indexOf(defender.id) !== -1) {
+    if (attacker.hates && attacker.hates.includes(defender.id)) {
       damageBonus += 0.5
     }
 
@@ -190,7 +202,8 @@ export const Modificators = {
     if (target.id === Creatures.Ballista) {
       minDamage = (hero.stats.attack + 1) * 2
       maxDamage = (hero.stats.attack + 1) * 3
-    } else if (target.id === Creatures.Cannon) {
+    }
+    else if (target.id === Creatures.Cannon) {
       minDamage = (hero.stats.attack + 1) * 4
       maxDamage = (hero.stats.attack + 1) * 7
     }
@@ -222,7 +235,8 @@ export const Modificators = {
         break
     }
 
-    if (defense <= 0) defense = 1
+    if (defense <= 0)
+      defense = 1
 
     return {
       ...attacker,

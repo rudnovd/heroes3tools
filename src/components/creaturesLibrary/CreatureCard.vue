@@ -5,7 +5,9 @@
     </div>
 
     <div class="creature-info">
-      <div class="creature-name">{{ creature.name }}</div>
+      <div class="creature-name">
+        {{ creature.name }}
+      </div>
 
       <div v-for="parameter in ['attack', 'defense', 'health', 'speed']" :key="parameter" class="parameter">
         <span>{{ t(`data.${parameter}`) }}:</span>
@@ -59,6 +61,8 @@ const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/mixins';
+
 .creature-card {
   display: grid;
   grid-template-columns: 105px 1fr;
@@ -70,7 +74,7 @@ const { t } = useI18n()
     border-right 0.2s linear,
     border-bottom 0.2s linear;
 
-  @include media-medium {
+  @include mixins.media-medium {
     grid-template-columns: 150px 1fr;
   }
 
@@ -79,7 +83,7 @@ const { t } = useI18n()
   }
 }
 
-@include dark-scheme {
+@include mixins.dark-scheme {
   .creature-card {
     border-right: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
@@ -120,7 +124,7 @@ const { t } = useI18n()
   grid-template-rows: repeat(5, minmax(30px, auto)) 1fr;
   grid-template-columns: 100%;
 
-  @include media-medium {
+  @include mixins.media-medium {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -143,14 +147,14 @@ const { t } = useI18n()
     text-transform: capitalize;
   }
 
-  @include media-small {
+  @include mixins.media-small {
     grid-template-columns: 2fr 4fr;
     &:nth-last-child(-n + 2) {
       border-bottom: 1px solid var(--color-border);
     }
   }
 
-  @include media-medium {
+  @include mixins.media-medium {
     grid-template-columns: 125px 1fr;
 
     &:nth-child(even) {

@@ -1,9 +1,11 @@
+import type { VitePWAOptions } from 'vite-plugin-pwa'
+import path from 'node:path'
+import process from 'node:process'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
-import vue from '@vitejs/plugin-vue'
-import path from 'path'
-import { defineConfig } from 'vite'
-import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa'
 import UnheadVite from '@unhead/addons/vite'
+import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
+import { VitePWA } from 'vite-plugin-pwa'
 
 const pwaOptions: Partial<VitePWAOptions> = {
   base: '/',
@@ -63,24 +65,8 @@ export default defineConfig({
     UnheadVite(),
   ],
   resolve: {
-    alias: [
-      {
-        find: '@',
-        replacement: path.resolve(__dirname, 'src'),
-      },
-    ],
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        api: 'modern',
-        additionalData: `
-          @use "sass:color";
-          @use "sass:map";
-          @import "@/styles/variables";
-          @import "@/styles/mixins";
-        `,
-      },
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
     },
   },
   define: {

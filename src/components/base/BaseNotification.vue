@@ -2,7 +2,9 @@
   <div v-if="show" class="notification-container">
     <transition name="notification">
       <div v-if="showNotification" class="notification">
-        <div class="notification-slot"><slot></slot></div>
+        <div class="notification-slot">
+          <slot />
+        </div>
         <div v-if="buttons.length" class="notification-buttons">
           <button
             v-for="(button, index) in buttons"
@@ -42,9 +44,10 @@ const emit = defineEmits<{ close: [] }>()
 const showNotification = ref(false)
 nextTick(() => (showNotification.value = true))
 
-const onClick = (button: BaseNotificationButtonProp) => {
+function onClick(button: BaseNotificationButtonProp) {
   showNotification.value = false
-  if (button.onClick) button.onClick()
+  if (button.onClick)
+    button.onClick()
   emit('close')
 }
 </script>

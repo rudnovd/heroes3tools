@@ -8,7 +8,7 @@
   >
     <template #selected="{ selected }">
       <ObjectPortrait
-        :folder="`/images/terrains`"
+        folder="/images/terrains"
         :file="{ name: selected.id, alt: selected.name }"
         width="46px"
         height="30px"
@@ -18,7 +18,7 @@
 
     <template #option="{ option: terrain }">
       <ObjectPortrait
-        :folder="`/images/terrains`"
+        folder="/images/terrains"
         :file="{ name: terrain.id, alt: terrain.name }"
         width="46px"
         height="30px"
@@ -29,14 +29,16 @@
 </template>
 
 <script setup lang="ts">
-import BaseSelect from '@/components/base/BaseSelect.vue'
 import type { Terrain } from '@/models/Terrain'
+import BaseSelect from '@/components/base/BaseSelect.vue'
 import { defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
-const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
 
-defineProps<{ value: Terrain | null; terrains: Array<Terrain> }>()
+defineProps<{ value: Terrain | null, terrains: Array<Terrain> }>()
+
 defineEmits<{ select: [terrain: Terrain | null] }>()
+
+const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
 
 const { t } = useI18n()
 </script>

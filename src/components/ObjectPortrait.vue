@@ -1,20 +1,20 @@
 <template>
   <picture @click="$emit('clickPicture')">
-    <source :srcset="`${folder}/${file.name}.webp`" type="image/webp" />
+    <source :srcset="`${folder}/${file.name}.webp`" type="image/webp">
     <img
       :alt="file.alt || file.name.toString()"
       :title="file.alt"
       :loading="lazyLoading ? 'lazy' : 'eager'"
       :sizes="sizes"
       @click="$emit('click', file.name)"
-    />
+    >
   </picture>
 </template>
 
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    file: { name: string | number; alt?: string }
+    file: { name: string | number, alt?: string }
     folder: string
     width?: string | number
     height?: string | number

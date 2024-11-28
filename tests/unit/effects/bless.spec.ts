@@ -2,25 +2,25 @@ import { spells } from '@/assets/database/spells'
 import { Battle } from '@/models/Battle'
 import { Creatures, Heroes, Spells } from '@/models/enums'
 import { Effects } from '@/modules/effects'
-import { beforeEach, describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { getCreatureInstance, getHeroInstance } from '../helpers'
 
-describe('Bless spell effect', () => {
+describe('bless spell effect', () => {
   let battle: Battle
 
   beforeEach(() => {
     battle = new Battle()
   })
 
-  describe('Bless spell effect without any modificators', () => {
-    test('Pikeman (different minDamage and maxDamage)', () => {
+  describe('bless spell effect without any modificators', () => {
+    it('pikeman (different minDamage and maxDamage)', () => {
       const pikeman = getCreatureInstance(Creatures.Pikeman)
       const { minDamage, maxDamage } = Effects.bless(battle.attacker, pikeman)
 
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 3, maxDamage: 3 })
     })
 
-    test('Angel (equal minDamage and maxDamage)', () => {
+    it('angel (equal minDamage and maxDamage)', () => {
       const angel = getCreatureInstance(Creatures.Angel)
       const { minDamage, maxDamage } = Effects.bless(battle.attacker, angel)
 
@@ -28,8 +28,8 @@ describe('Bless spell effect', () => {
     })
   })
 
-  describe('Bless spell effect with hero without water skill', () => {
-    test('Pikeman (different minDamage and maxDamage)', () => {
+  describe('bless spell effect with hero without water skill', () => {
+    it('pikeman (different minDamage and maxDamage)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Rion)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
       const { minDamage, maxDamage } = Effects.bless(battle.attacker, battle.attacker.activeCreature)
@@ -37,7 +37,7 @@ describe('Bless spell effect', () => {
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 3, maxDamage: 3 })
     })
 
-    test('Angel (equal minDamage and maxDamage)', () => {
+    it('angel (equal minDamage and maxDamage)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Rion)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
       const { minDamage, maxDamage } = Effects.bless(battle.attacker, battle.attacker.activeCreature)
@@ -46,8 +46,8 @@ describe('Bless spell effect', () => {
     })
   })
 
-  describe('Bless spell effect with hero with base water skill', () => {
-    test('Pikeman (different minDamage and maxDamage)', () => {
+  describe('bless spell effect with hero with base water skill', () => {
+    it('pikeman (different minDamage and maxDamage)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Rion)
       battle.attacker.hero.skills.water = 1
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
@@ -56,7 +56,7 @@ describe('Bless spell effect', () => {
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 3, maxDamage: 3 })
     })
 
-    test('Angel (equal minDamage and maxDamage)', () => {
+    it('angel (equal minDamage and maxDamage)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Rion)
       battle.attacker.hero.skills.water = 1
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
@@ -66,8 +66,8 @@ describe('Bless spell effect', () => {
     })
   })
 
-  describe('Bless spell effect with hero with advanced water skill', () => {
-    test('Pikeman (different minDamage and maxDamage)', () => {
+  describe('bless spell effect with hero with advanced water skill', () => {
+    it('pikeman (different minDamage and maxDamage)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Rion)
       battle.attacker.hero.skills.water = 2
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
@@ -76,7 +76,7 @@ describe('Bless spell effect', () => {
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 4, maxDamage: 4 })
     })
 
-    test('Angel (equal minDamage and maxDamage)', () => {
+    it('angel (equal minDamage and maxDamage)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Rion)
       battle.attacker.hero.skills.water = 2
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
@@ -86,8 +86,8 @@ describe('Bless spell effect', () => {
     })
   })
 
-  describe('Bless spell effect with hero with expert water skill', () => {
-    test('Pikeman (different minDamage and maxDamage)', () => {
+  describe('bless spell effect with hero with expert water skill', () => {
+    it('pikeman (different minDamage and maxDamage)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Rion)
       battle.attacker.hero.skills.water = 3
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
@@ -96,7 +96,7 @@ describe('Bless spell effect', () => {
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 4, maxDamage: 4 })
     })
 
-    test('Angel (equal minDamage and maxDamage)', () => {
+    it('angel (equal minDamage and maxDamage)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Rion)
       battle.attacker.hero.skills.water = 3
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
@@ -106,8 +106,8 @@ describe('Bless spell effect', () => {
     })
   })
 
-  describe('Bless spell effect with hero without water skill and Bless spell specialty', () => {
-    test('Pikeman (different minDamage and maxDamage)', () => {
+  describe('bless spell effect with hero without water skill and Bless spell specialty', () => {
+    it('pikeman (different minDamage and maxDamage)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Adela)
       battle.attacker.hero.level = 1
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
@@ -116,7 +116,7 @@ describe('Bless spell effect', () => {
       expect({ minDamage, maxDamage }).toEqual({ minDamage: 3, maxDamage: 3 })
     })
 
-    test('Angel (equal minDamage and maxDamage)', () => {
+    it('angel (equal minDamage and maxDamage)', () => {
       battle.attacker.hero = getHeroInstance(Heroes.Rion)
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Angel)
       const { minDamage, maxDamage } = Effects.bless(battle.attacker, battle.attacker.activeCreature)
@@ -125,7 +125,7 @@ describe('Bless spell effect', () => {
     })
   })
 
-  describe('Bless spell effect with hero without water skill and Bless spell specialty in battle', () => {
+  describe('bless spell effect with hero without water skill and Bless spell specialty in battle', () => {
     // TODO: wrong calculation
     // test('Pikeman', () => {
     //   const bless = spells.find((spell) => spell.id === Spells.Bless)!
@@ -185,8 +185,8 @@ describe('Bless spell effect', () => {
     //   expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 80, maxDamage: 80 })
     // })
 
-    test('2 Unicorn vs 10 Seaman', () => {
-      const bless = spells.find((spell) => spell.id === Spells.Bless)!
+    it('2 Unicorn vs 10 Seaman', () => {
+      const bless = spells.find(spell => spell.id === Spells.Bless)!
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Unicorn)
       battle.attacker.activeCreature.count = 2
       battle.attacker.activeCreature.effects.push(bless)
@@ -203,8 +203,8 @@ describe('Bless spell effect', () => {
       expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 75, maxDamage: 75 })
     })
 
-    test('11 Ogre Magi vs 59 Halberdiers', () => {
-      const bless = spells.find((spell) => spell.id === Spells.Bless)!
+    it('11 Ogre Magi vs 59 Halberdiers', () => {
+      const bless = spells.find(spell => spell.id === Spells.Bless)!
       battle.attacker.activeCreature = getCreatureInstance(Creatures.OgreMage)
       battle.attacker.activeCreature.count = 11
       battle.attacker.activeCreature.effects.push(bless)
@@ -222,8 +222,8 @@ describe('Bless spell effect', () => {
       expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 225, maxDamage: 225 })
     })
 
-    test('11 Ogre Magi vs 20 Halberdiers', () => {
-      const bless = spells.find((spell) => spell.id === Spells.Bless)!
+    it('11 Ogre Magi vs 20 Halberdiers', () => {
+      const bless = spells.find(spell => spell.id === Spells.Bless)!
       battle.attacker.activeCreature = getCreatureInstance(Creatures.OgreMage)
       battle.attacker.activeCreature.count = 11
       battle.attacker.activeCreature.effects.push(bless)
@@ -242,9 +242,9 @@ describe('Bless spell effect', () => {
     })
   })
 
-  describe('Bless spell effect with hero without water skill in battle', () => {
-    test('10 Wyverns vs 22 Familiars', () => {
-      const bless = spells.find((spell) => spell.id === Spells.Bless)!
+  describe('bless spell effect with hero without water skill in battle', () => {
+    it('10 Wyverns vs 22 Familiars', () => {
+      const bless = spells.find(spell => spell.id === Spells.Bless)!
       battle.attacker.activeCreature = getCreatureInstance(Creatures.Wyvern)
       battle.attacker.activeCreature.count = 10
       battle.attacker.activeCreature.effects.push(bless)

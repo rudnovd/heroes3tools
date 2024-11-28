@@ -5,13 +5,19 @@
         <span>{{ t('components.errorPage.data.nothingHere') }}</span>
         <span>{{ t('components.errorPage.data.whereCouldItBe') }}</span>
       </div>
-      <router-link class="home-link" to="/">{{ t('components.errorPage.returnToHomeButton') }}</router-link>
+      <router-link
+        class="home-link"
+        to="/"
+      >
+        {{ t('components.errorPage.returnToHomeButton') }}
+      </router-link>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+
 const { t } = useI18n()
 </script>
 

@@ -1,23 +1,26 @@
+@use './variables';
+@use 'sass:map';
+
 @mixin media-small {
-  @media (min-width: #{map.get($grid-breakpoints, 'small')}) {
+  @media (min-width: #{map.get(variables.$grid-breakpoints, 'small')}) {
     @content;
   }
 }
 
 @mixin media-medium {
-  @media (min-width: #{map.get($grid-breakpoints, 'medium')}) {
+  @media (min-width: #{map.get(variables.$grid-breakpoints, 'medium')}) {
     @content;
   }
 }
 
 @mixin media-large {
-  @media (min-width: #{map.get($grid-breakpoints, 'large')}) {
+  @media (min-width: #{map.get(variables.$grid-breakpoints, 'large')}) {
     @content;
   }
 }
 
 @mixin media-maximum {
-  @media (min-width: #{map.get($grid-breakpoints, 'maximum')}) {
+  @media (min-width: #{map.get(variables.$grid-breakpoints, 'maximum')}) {
     @content;
   }
 }

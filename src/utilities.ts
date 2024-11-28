@@ -1,6 +1,6 @@
 import type { UseHeadInput } from '@unhead/vue'
+import type { AvailableLocale } from './constants'
 import { useDark, useLocalStorage } from '@vueuse/core'
-import { type AvailableLocale } from './constants'
 
 export const isDark = useDark({
   selector: 'body',

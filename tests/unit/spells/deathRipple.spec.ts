@@ -3,18 +3,18 @@ import { spells } from '@/assets/database/spells'
 import { Battle } from '@/models/Battle'
 import { Creatures, Heroes, Spells as SpellsEnum } from '@/models/enums'
 
-import { beforeEach, describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { getCreatureInstance, getHeroInstance } from '../helpers'
 
-describe('Death Ripple', () => {
+describe('death Ripple', () => {
   let battle: Battle
-  const deathRipple = spells.find((spell) => spell.id === SpellsEnum.DeathRipple)!
+  const deathRipple = spells.find(spell => spell.id === SpellsEnum.DeathRipple)!
 
   beforeEach(() => {
     battle = new Battle()
   })
 
-  test('Base spell values', () => {
+  it('base spell values', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
@@ -26,7 +26,7 @@ describe('Death Ripple', () => {
     expect(damage).toBe(10)
   })
 
-  test('Base spell values for undead', () => {
+  it('base spell values for undead', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
 
@@ -38,7 +38,7 @@ describe('Death Ripple', () => {
     expect(damage).toBe(0)
   })
 
-  test('With Spell Power', () => {
+  it('with Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 10
 
@@ -50,7 +50,7 @@ describe('Death Ripple', () => {
     expect(damage).toBe(60)
   })
 
-  test('With Advanced Earth skill', () => {
+  it('with Advanced Earth skill', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
     battle.attacker.hero.skills.earth = 2
@@ -63,7 +63,7 @@ describe('Death Ripple', () => {
     expect(damage).toBe(20)
   })
 
-  test('With Advanced Earth skill and high Spell Power', () => {
+  it('with Advanced Earth skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 30
     battle.attacker.hero.skills.earth = 2
@@ -76,7 +76,7 @@ describe('Death Ripple', () => {
     expect(damage).toBe(170)
   })
 
-  test('With Expert Earth skill', () => {
+  it('with Expert Earth skill', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 0
     battle.attacker.hero.skills.earth = 3
@@ -89,7 +89,7 @@ describe('Death Ripple', () => {
     expect(damage).toBe(30)
   })
 
-  test('With Expert Earth skill and high Spell Power', () => {
+  it('with Expert Earth skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Orrin)
     battle.attacker.hero.stats.power = 30
     battle.attacker.hero.skills.earth = 3
@@ -102,7 +102,7 @@ describe('Death Ripple', () => {
     expect(damage).toBe(180)
   })
 
-  test('Hero with Death Ripple specialty', () => {
+  it('hero with Death Ripple specialty', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Septienna)
     battle.attacker.hero.stats.power = 0
 
@@ -114,7 +114,7 @@ describe('Death Ripple', () => {
     expect(damage).toBe(10)
   })
 
-  test('Hero with Death Ripple specialty and high Spell Power', () => {
+  it('hero with Death Ripple specialty and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Septienna)
     battle.attacker.hero.stats.power = 34
 
@@ -126,7 +126,7 @@ describe('Death Ripple', () => {
     expect(damage).toBe(180)
   })
 
-  test('Hero with Death Ripple specialty, Advanced Earth skill and high Spell Power', () => {
+  it('hero with Death Ripple specialty, Advanced Earth skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Septienna)
     battle.attacker.hero.stats.power = 34
     battle.attacker.hero.skills.earth = 2
@@ -139,7 +139,7 @@ describe('Death Ripple', () => {
     expect(damage).toBe(190)
   })
 
-  test('Hero with Death Ripple specialty, Expert Earth skill and high Spell Power', () => {
+  it('hero with Death Ripple specialty, Expert Earth skill and high Spell Power', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Septienna)
     battle.attacker.hero.stats.power = 34
     battle.attacker.hero.skills.earth = 3
@@ -152,7 +152,7 @@ describe('Death Ripple', () => {
     expect(damage).toBe(200)
   })
 
-  test('Cast on creature with immunity', () => {
+  it('cast on creature with immunity', () => {
     battle.attacker.hero = getHeroInstance(Heroes.Septienna)
     battle.attacker.hero.stats.power = 0
 
@@ -167,7 +167,7 @@ describe('Death Ripple', () => {
       Creatures.MagicElemental,
       Creatures.Ballista,
       Creatures.Cannon,
-      ...creatures.filter((creature) => creature.special?.undead).map((creature) => creature.id),
+      ...creatures.filter(creature => creature.special?.undead).map(creature => creature.id),
     ]
 
     let totalDamage = 0

@@ -10,13 +10,15 @@
           :name="`input-${label}`"
           :placeholder="placeholder"
           @input="searchElement"
-        />
+        >
         <button v-if="selectedValue && !search.length" class="selected-value">
-          <slot name="selected" :selected="selectedValue">{{ selectedValue }}</slot>
+          <slot name="selected" :selected="selectedValue">
+            {{ selectedValue }}
+          </slot>
         </button>
       </div>
-      <button v-if="selectedValue" class="clear-button" @click="onClear"></button>
-      <button ref="caretRef" class="caret" :class="{ 'is-open': opened }" @click="opened = !opened"></button>
+      <button v-if="selectedValue" class="clear-button" @click="onClear" />
+      <button class="caret" :class="{ 'is-open': opened }" @click="opened = !opened" />
     </div>
 
     <Transition name="fade">
@@ -45,19 +47,23 @@
     </Transition>
 
     <div v-if="opened && !options.length" class="no-options">
-      <slot name="noOptions">{{ t('components.base.baseSelect.noOptions') }}</slot>
+      <slot name="noOptions">
+        {{ t('components.base.baseSelect.noOptions') }}
+      </slot>
     </div>
 
     <div v-if="opened && search.length && !optionsList.length" class="no-options">
-      <slot name="noOptionsFound">{{ t('components.base.baseSelect.noOptionsFound') }}</slot>
+      <slot name="noOptionsFound">
+        {{ t('components.base.baseSelect.noOptionsFound') }}
+      </slot>
     </div>
   </div>
 </template>
 
 <script setup lang="ts" generic="T extends Record<string, any>">
+import type { Ref } from 'vue'
 import i18n from '@/i18n'
 import { onClickOutside, useVirtualList } from '@vueuse/core'
-import type { Ref } from 'vue'
 import { computed, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -99,7 +105,7 @@ selectedValue.value = props.value
 let selectedIndex = 0
 const search = ref('')
 
-const onSelect = (item: T, index: number) => {
+function onSelect(item: T, index: number) {
   selectedValue.value = item
   opened.value = false
   search.value = ''
@@ -107,7 +113,7 @@ const onSelect = (item: T, index: number) => {
   emit('select', item)
 }
 
-const onClear = () => {
+function onClear() {
   selectedValue.value = null
   search.value = ''
   if (opened.value) {
@@ -117,17 +123,7 @@ const onClear = () => {
   emit('clear')
 }
 
-const open = () => {
-  if (!opened.value) {
-    opened.value = true
-    nextTick(() => {
-      const top = selectedIndex ? selectedIndex * parseInt(props.height) : 0
-      if (props.virtualScroll) virtualScrollContainer.ref.value?.scrollTo({ top })
-    })
-  }
-}
-
-const searchElement = (event: Event) => {
+function searchElement(event: Event) {
   const target = event.currentTarget as HTMLInputElement
   search.value = target.value
 }
@@ -141,7 +137,8 @@ const firstOptions = computed(() => {
         return optionString.toLowerCase().includes(searchQuery)
       })
       .map((data, index) => ({ data, index }))
-  } else {
+  }
+  else {
     return props.options.map((data, index) => ({ data, index }))
   }
 })
@@ -151,14 +148,26 @@ const {
   containerProps: virtualScrollContainer,
   wrapperProps,
 } = useVirtualList(firstOptions, {
-  itemHeight: parseInt(props.height),
+  itemHeight: Number.parseInt(props.height),
   overscan: props.preloadOptionsCount,
 })
 
+function open() {
+  if (!opened.value) {
+    opened.value = true
+    nextTick(() => {
+      const top = selectedIndex ? selectedIndex * Number.parseInt(props.height) : 0
+      if (props.virtualScroll)
+        virtualScrollContainer.ref.value?.scrollTo({ top })
+    })
+  }
+}
+
 const optionsList = computed(() => {
   if (props.virtualScroll) {
-    return list.value.map((item) => ({ ...item.data, index: item.index }))
-  } else {
+    return list.value.map(item => ({ ...item.data, index: item.index }))
+  }
+  else {
     return firstOptions.value
   }
 })

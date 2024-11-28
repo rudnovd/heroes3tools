@@ -36,18 +36,19 @@
 </template>
 
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import CalculatorTabs from '@/components/CalculatorTabs.vue'
 import DamageCalculator from '@/components/DamageCalculator.vue'
 import { Battle } from '@/models/Battle'
 import { useHead } from '@unhead/vue'
 import { watchIgnorable } from '@vueuse/shared'
-import type { Ref } from 'vue'
 import { computed, defineAsyncComponent, ref, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
+
+const props = defineProps<{ head: string }>()
 const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 const HowToUse = defineAsyncComponent(() => import('@/components/HowToUse.vue'))
 
-const props = defineProps<{ head: string }>()
 useHead(JSON.parse(props.head))
 
 const { t } = useI18n()
@@ -165,28 +166,32 @@ const howToUseSteps = [
 const { ignoreUpdates } = watchIgnorable(
   [attacker, defender],
   () => {
-    if (!attacker.value.activeCreature?.id || !defender.value.activeCreature?.id) return
+    if (!attacker.value.activeCreature?.id || !defender.value.activeCreature?.id)
+      return
     ignoreUpdates(() => calculators.value[activeIndex.value].calculate())
   },
   { deep: true },
 )
 
-const addCalculator = () => {
+function addCalculator() {
   calculators.value.push(new Battle())
   activeIndex.value = calculators.value.length - 1
 }
 
-const deleteCalculator = (index: number) => {
+function deleteCalculator(index: number) {
   const calculatorsCountAfterDelete = calculators.value.length - 1
   if (activeIndex.value === index) {
     if (index > 0 && index < calculatorsCountAfterDelete - 1) {
       activeIndex.value = index + 1
-    } else if (index > 0 && index !== calculatorsCountAfterDelete - 1) {
+    }
+    else if (index > 0 && index !== calculatorsCountAfterDelete - 1) {
       activeIndex.value = index - 1
-    } else if (index < calculatorsCountAfterDelete - 1) {
+    }
+    else if (index < calculatorsCountAfterDelete - 1) {
       activeIndex.value = 0
     }
-  } else if (index < activeIndex.value) {
+  }
+  else if (index < activeIndex.value) {
     activeIndex.value = calculatorsCountAfterDelete - 1
   }
   calculators.value.splice(index, 1)
@@ -194,6 +199,8 @@ const deleteCalculator = (index: number) => {
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/mixins';
+
 .damage-calculator-page {
   display: grid;
   min-width: 300px;
@@ -201,7 +208,7 @@ const deleteCalculator = (index: number) => {
   padding: 0 8px;
   margin: 0 auto;
 
-  @include media-medium {
+  @include mixins.media-medium {
     padding: 0 24px;
   }
 }

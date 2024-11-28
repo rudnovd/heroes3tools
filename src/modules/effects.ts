@@ -1,18 +1,21 @@
 import type { DamageCalculatorBattleSide } from '@/models/Battle'
 import type { CreatureInstance } from '@/models/Creature'
-import { Creatures, Spells } from '@/models/enums'
 import type { Spell } from '@/models/Spell'
+import { Creatures, Spells } from '@/models/enums'
 
 export const Effects = {
   functions: {
     canAccess: (effect: Spell, target: CreatureInstance) => {
-      if (!target) return false
+      if (!target)
+        return false
 
       // if target has Anti Magic effect
-      if (target.effects.find((effect) => effect.id === Spells.AntiMagic)) return false
+      if (target.effects.find(effect => effect.id === Spells.AntiMagic))
+        return false
 
       // if target has immunity to effect
-      if (target.special?.immunity?.find((spell) => spell === effect.id)) return false
+      if (target.special?.immunity?.find(spell => spell === effect.id))
+        return false
 
       const undeadImmunitySpells = [
         Spells.Bless,
@@ -33,17 +36,20 @@ export const Effects = {
 
       // Check undead creatures immunities
       if (target.special?.undead) {
-        if (undeadImmunitySpells.indexOf(effect.id) > -1) return false
-        if (mindSpells.indexOf(effect.id) > -1) return false
+        if (undeadImmunitySpells.includes(effect.id))
+          return false
+        if (mindSpells.includes(effect.id))
+          return false
       }
 
       // Check non living creatures immunities
       if (
-        target.special?.nonLiving &&
-        target.id !== Creatures.StoneGargoyle &&
-        target.id !== Creatures.ObsidianGargoyle
+        target.special?.nonLiving
+        && target.id !== Creatures.StoneGargoyle
+        && target.id !== Creatures.ObsidianGargoyle
       ) {
-        if (mindSpells.indexOf(effect.id) > -1) return false
+        if (mindSpells.includes(effect.id))
+          return false
       }
 
       return true
@@ -72,7 +78,8 @@ export const Effects = {
 
     if (!initiator.hero || !initiator.hero.skills.water || initiator.hero.skills.water <= 1) {
       minDamage = maxDamage
-    } else if (initiator.hero.skills.water >= 2) {
+    }
+    else if (initiator.hero.skills.water >= 2) {
       maxDamage++
       minDamage = maxDamage
     }
@@ -101,7 +108,8 @@ export const Effects = {
 
     if (!initiator.hero || !initiator.hero.skills.fire || initiator.hero.skills.fire <= 1 || minDamage === 1) {
       maxDamage = minDamage
-    } else if (initiator.hero.skills.fire >= 2) {
+    }
+    else if (initiator.hero.skills.fire >= 2) {
       minDamage = minDamage - 1
       maxDamage = minDamage
     }
@@ -126,7 +134,8 @@ export const Effects = {
 
     if (!initiator.hero || !initiator.hero.skills.fire || initiator.hero.skills.fire <= 1) {
       attack += 3
-    } else if (initiator.hero.skills.fire >= 2) {
+    }
+    else if (initiator.hero.skills.fire >= 2) {
       attack += 6
     }
 
@@ -149,9 +158,11 @@ export const Effects = {
 
     if (!initiator.hero || !initiator.hero.skills.fire || initiator.hero.skills.fire <= 1) {
       attack += defense
-    } else if (initiator.hero.skills.fire === 2) {
+    }
+    else if (initiator.hero.skills.fire === 2) {
       attack += defense * 1.5
-    } else if (initiator.hero.skills.fire === 3) {
+    }
+    else if (initiator.hero.skills.fire === 3) {
       attack += defense * 2
     }
 
@@ -210,7 +221,7 @@ export const Effects = {
       }
     }
 
-    if (defender.creatures.find((defenderCreature) => slayerCreatures.indexOf(defenderCreature.id) !== -1)) {
+    if (defender.creatures.find(defenderCreature => slayerCreatures.includes(defenderCreature.id))) {
       attack += 8
     }
 
@@ -234,7 +245,8 @@ export const Effects = {
     if (!initiator.hero || !initiator.hero.skills.water || initiator.hero.skills.water <= 1) {
       attack += 2
       defense += 2
-    } else if (initiator.hero.skills.water >= 2) {
+    }
+    else if (initiator.hero.skills.water >= 2) {
       attack += 2
       defense += 4
     }
@@ -260,7 +272,8 @@ export const Effects = {
     if (target.ranged) {
       if (!initiator.hero || !initiator.hero.skills.air || initiator.hero.skills.air <= 1) {
         attack += 3
-      } else if (initiator.hero.skills.air >= 2) {
+      }
+      else if (initiator.hero.skills.air >= 2) {
         attack += 6
       }
     }
@@ -284,7 +297,8 @@ export const Effects = {
 
     if (!initiator.hero || !initiator.hero.skills.earth || initiator.hero.skills.earth <= 1) {
       defense += 3
-    } else if (initiator.hero.skills.earth >= 2) {
+    }
+    else if (initiator.hero.skills.earth >= 2) {
       defense += 6
     }
 
@@ -307,7 +321,8 @@ export const Effects = {
 
     if (!initiator.hero || !initiator.hero.skills.water || initiator.hero.skills.water <= 1) {
       attack -= 3
-    } else if (initiator.hero.skills.water >= 2) {
+    }
+    else if (initiator.hero.skills.water >= 2) {
       attack -= 6
     }
 
@@ -334,9 +349,11 @@ export const Effects = {
 
     if (!initiator.hero || !initiator.hero.skills.air || initiator.hero.skills.air <= 1) {
       defense -= 3
-    } else if (initiator.hero.skills.air === 2) {
+    }
+    else if (initiator.hero.skills.air === 2) {
       defense -= 4
-    } else if (initiator.hero.skills.air === 3) {
+    }
+    else if (initiator.hero.skills.air === 3) {
       defense -= 5
     }
 
@@ -365,7 +382,8 @@ export const Effects = {
 
     if (!initiator.hero || !initiator.hero.skills.earth || initiator.hero.skills.earth <= 1) {
       defenseMagicBonus += 0.15
-    } else if (initiator.hero.skills.earth >= 2) {
+    }
+    else if (initiator.hero.skills.earth >= 2) {
       defenseMagicBonus += 0.3
     }
 
@@ -382,8 +400,8 @@ export const Effects = {
    * Set Air Shield effect to creature
    * (Air Shield reduces damage taken from ranged attacks)
    * @param initiator Battle side (attacker or defender) who casts effect
-   * @param target Creature who accept effect
    * @param defender Battle side who deal damage
+   * @param target Creature who accept effect
    * @return {CreatureInstance} Creature with Air Shield effect
    */
   airShield: (
@@ -399,7 +417,8 @@ export const Effects = {
     if (defender.activeCreature?.ranged) {
       if (!initiator.hero || !initiator.hero.skills.air || initiator.hero.skills.air < 2) {
         defenseMagicBonus += 0.25
-      } else if (initiator.hero.skills.air > 1) {
+      }
+      else if (initiator.hero.skills.air > 1) {
         defenseMagicBonus += 0.5
       }
     }
