@@ -20,7 +20,7 @@
     <a href="https://github.com/rudnovd/heroes3tools" target="_blank" rel="noopener">
       🌟{{ t('components.pageFooter.sourceCode') }}
     </a>
-    <span>{{ t('components.pageFooter.hotaVersion') }}: 1.7.0</span>
+    <span>{{ t('components.pageFooter.hotaVersion') }}: 1.7.1</span>
     <component
       :is="needRefresh ? 'button' : 'span'"
       :class="{ 'need-refresh': needRefresh }"
