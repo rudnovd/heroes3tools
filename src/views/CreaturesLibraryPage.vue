@@ -12,11 +12,11 @@
           @click="router.replace(`#${town.name}`)"
         />
         <ObjectPortrait
-          :file="{ name: 0, alt: 'Neutral' }"
+          :file="{ name: 0, alt: t('common.neutralTown') }"
           folder="/images/towns/portraits/large"
           width="80px"
           height="70px"
-          @click="router.replace(`#Neutral`)"
+          @click="router.replace(`#${t('common.neutralTown')}`)"
         />
       </div>
 
@@ -44,7 +44,7 @@
       />
     </div>
     <div class="town">
-      <h2 id="Neutral" class="town-name">
+      <h2 :id="t('common.neutralTown')" class="town-name">
         {{ t('common.neutralCreatures') }}
       </h2>
       <CreatureCard
