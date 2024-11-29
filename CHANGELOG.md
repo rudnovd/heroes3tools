@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/rudnovd/heroes3tools/compare/v2.3.7...v2.4.0) (2024-11-29)
+
+
+### Features
+
+* **PageFooter:** add telegram link ([12ad2bc](https://github.com/rudnovd/heroes3tools/commit/12ad2bc9b0e4105edc34b4a87362925b0da9b8c5))
+
+
+### Bug Fixes
+
+* **BaseSelect:** fix component styles ([59a3512](https://github.com/rudnovd/heroes3tools/commit/59a3512014c76391c561bae37464cf156b51bc6d))
+* **CreaturesLibraryPage:** use i18n token for neutral town ([7e0f1e8](https://github.com/rudnovd/heroes3tools/commit/7e0f1e88d1ab45dea7476d025221c052d8ef5755))
+
 ### [2.3.7](https://github.com/rudnovd/heroes3tools/compare/v2.3.6...v2.3.7) (2024-10-16)
 
 
