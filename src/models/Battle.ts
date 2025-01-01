@@ -185,7 +185,7 @@ export class Battle {
   }
 
   private calculateWithHeroModifiers(hero: HeroInstance, target: CreatureInstance) {
-    if (hero.specialtySpell)
+    if (hero.specialtySpell && target.effects.find(({ id }) => id === hero.specialtySpell))
       target = Modificators.heroSpecialtySpell(hero, target)
 
     target = Modificators.hero(hero, target)
