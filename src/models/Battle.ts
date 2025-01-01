@@ -75,10 +75,10 @@ export class Battle {
     modifiedDefenderCreature = this.calculateWithNegativeEffects(this.attacker, modifiedDefenderCreature)
 
     if (this.attacker.hero) {
-      modifiedAttackerCreature = this.calculateWithHeroModificators(this.attacker.hero, modifiedAttackerCreature)
+      modifiedAttackerCreature = this.calculateWithHeroModifiers(this.attacker.hero, modifiedAttackerCreature)
     }
     if (this.defender.hero) {
-      modifiedDefenderCreature = this.calculateWithHeroModificators(this.defender.hero, modifiedDefenderCreature)
+      modifiedDefenderCreature = this.calculateWithHeroModifiers(this.defender.hero, modifiedDefenderCreature)
     }
 
     if (this.attacker.terrain && this.defender.terrain) {
@@ -102,6 +102,24 @@ export class Battle {
 
     const attackerCalculation = this.calculateDamageValues(modifiedAttackerCreature, modifiedDefenderCreature)
     const defenderCalculation = this.calculateDamageValues(modifiedDefenderCreature, modifiedAttackerCreature)
+
+    const isMachine = modifiedAttackerCreature.id === Creatures.Cannon || modifiedAttackerCreature.id === Creatures.Ballista
+    if (this.attacker.hero?.skills.artillery && isMachine) {
+      defenderCalculation.minDamage = Math.floor(defenderCalculation.minDamage * 0.4)
+      defenderCalculation.maxDamage = Math.floor(defenderCalculation.maxDamage * 0.4)
+      defenderCalculation.averageDamage = Math.floor(defenderCalculation.averageDamage * 0.4)
+      defenderCalculation.minKills = Math.floor(defenderCalculation.minDamage / modifiedDefenderCreature.health)
+      defenderCalculation.maxKills = Math.floor(defenderCalculation.maxDamage / modifiedDefenderCreature.health)
+      defenderCalculation.averageKills = Math.floor(defenderCalculation.averageDamage / modifiedDefenderCreature.health)
+    }
+    if (this.defender.hero?.skills.artillery && isMachine) {
+      attackerCalculation.minDamage = Math.floor(attackerCalculation.minDamage * 0.4)
+      attackerCalculation.maxDamage = Math.floor(attackerCalculation.maxDamage * 0.4)
+      attackerCalculation.averageDamage = Math.floor(attackerCalculation.averageDamage * 0.4)
+      attackerCalculation.minKills = Math.floor(attackerCalculation.minDamage / modifiedAttackerCreature.health)
+      attackerCalculation.maxKills = Math.floor(attackerCalculation.maxDamage / modifiedAttackerCreature.health)
+      attackerCalculation.averageKills = Math.floor(attackerCalculation.averageDamage / modifiedAttackerCreature.health)
+    }
 
     this.attacker.activeCreature = {
       ...this.attacker.activeCreature,
@@ -166,9 +184,10 @@ export class Battle {
     return -Math.round(-damage)
   }
 
-  private calculateWithHeroModificators(hero: HeroInstance, target: CreatureInstance) {
+  private calculateWithHeroModifiers(hero: HeroInstance, target: CreatureInstance) {
     if (hero.specialtySpell)
       target = Modificators.heroSpecialtySpell(hero, target)
+
     target = Modificators.hero(hero, target)
     target = Modificators.heroSkills(hero, target)
     if (target.id === Creatures.Ballista || target.id === Creatures.Cannon) {
@@ -426,7 +445,13 @@ export class Battle {
       damage += damage * 0.25
     }
     else if (spell.id === specialtySpell) {
-      const bonus = Math.floor(initiator.hero.level / target.level) * 0.03
+      let bonus: number
+      if ([Spells.MeteorShower, Spells.ChainLightning, Spells.Resurrection, Spells.AnimateDead].includes(spell.id)) {
+        bonus = Math.floor(initiator.hero.level / target.level) * 0.05
+      }
+      else {
+        bonus = Math.floor(initiator.hero.level / target.level) * 0.1
+      }
       if (bonus) {
         damage += Math.ceil(damage * bonus)
       }
@@ -445,15 +470,12 @@ export class Battle {
       return damage
 
     if (initiator.hero.skills.sorcery) {
-      let sorceryBonus = initiator.hero.skills.sorcery * 0.05
+      let sorceryBonus = initiator.hero.skills.sorcery * 0.1
 
       if (initiator.hero.specialtySkill === SecondarySkills.Sorcery) {
-        sorceryBonus += initiator.hero.level * 0.05
-      }
-
-      // Max sorcery bonus
-      if (sorceryBonus > 0.96) {
-        sorceryBonus = 0.96
+        const bonus = initiator.hero.level * 0.05
+        const MAX_SORCERY_BONUS = 0.96
+        sorceryBonus += initiator.hero.level * bonus > MAX_SORCERY_BONUS ? MAX_SORCERY_BONUS : bonus
       }
 
       damage += damage * sorceryBonus

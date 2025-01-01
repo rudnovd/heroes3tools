@@ -98,7 +98,7 @@ describe('meteor Shower', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
-    expect(damage).toBe(26)
+    expect(damage).toBe(27)
   })
 
   it('deemer (1 level, 3 spell power)', () => {
@@ -124,7 +124,7 @@ describe('meteor Shower', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
-    expect(damage).toBe(129)
+    expect(damage).toBe(132)
   })
 
   it('deemer (17 level, 17 spell power, expert earth)', () => {
@@ -138,7 +138,7 @@ describe('meteor Shower', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
-    expect(damage).toBe(651)
+    expect(damage).toBe(735)
   })
 
   it('deemer (17 level, 17 spell power, expert earth, archangel vs thunderbird)', () => {
@@ -152,7 +152,7 @@ describe('meteor Shower', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
-    expect(damage).toBe(573)
+    expect(damage).toBe(604)
   })
 
   it('deemer (17 level, 17 spell power, expert earth, archangel vs devil)', () => {
@@ -166,7 +166,7 @@ describe('meteor Shower', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
-    expect(damage).toBe(557)
+    expect(damage).toBe(578)
   })
 
   it('deemer (14 level, 18 spell power)', () => {
@@ -179,7 +179,7 @@ describe('meteor Shower', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
-    expect(damage).toBe(504)
+    expect(damage).toBe(523)
   })
 
   it('hero with Meteor Shower specialty and high Spell Power', () => {
@@ -191,7 +191,7 @@ describe('meteor Shower', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
-    expect(damage).toBe(902)
+    expect(damage).toBe(919)
   })
 
   it('hero with Meteor Shower specialty, Advanced Earth skill and high Spell Power', () => {
@@ -204,7 +204,7 @@ describe('meteor Shower', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
-    expect(damage).toBe(927)
+    expect(damage).toBe(945)
   })
 
   it('hero with Meteor Shower specialty, Expert Earth skill and high Spell Power', () => {
@@ -217,7 +217,7 @@ describe('meteor Shower', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, meteorShower)
 
-    expect(damage).toBe(979)
+    expect(damage).toBe(998)
   })
 
   it('cast on creature with immunity', () => {

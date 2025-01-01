@@ -80,8 +80,8 @@ describe('hero modificator', () => {
 
         const { attacker } = battle.calculate()
 
-        expect(attacker.activeCreature).toMatchObject({ attack: 12, defense: 11 })
-        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 18, maxDamage: 36 })
+        expect(attacker.activeCreature).toMatchObject({ attack: 13, defense: 12 })
+        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 18, maxDamage: 37 })
       })
 
       it('9 level Edric with 4 griffins vs pixies', () => {
@@ -96,8 +96,8 @@ describe('hero modificator', () => {
 
         const { attacker } = battle.calculate()
 
-        expect(attacker.activeCreature).toMatchObject({ attack: 14, defense: 16, speed: 7 })
-        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 19, maxDamage: 38 })
+        expect(attacker.activeCreature).toMatchObject({ attack: 17, defense: 19, speed: 7 })
+        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 21, maxDamage: 42 })
       })
 
       it('15 level Edric with 4 griffins vs pixies', () => {
@@ -112,8 +112,8 @@ describe('hero modificator', () => {
 
         const { attacker } = battle.calculate()
 
-        expect(attacker.activeCreature).toMatchObject({ attack: 16, defense: 18, speed: 7 })
-        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 20, maxDamage: 40 })
+        expect(attacker.activeCreature).toMatchObject({ attack: 22, defense: 24, speed: 7 })
+        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 24, maxDamage: 48 })
       })
 
       it('15 level Edric with 4 royal griffins vs pixies', () => {
@@ -128,8 +128,8 @@ describe('hero modificator', () => {
 
         const { attacker } = battle.calculate()
 
-        expect(attacker.activeCreature).toMatchObject({ attack: 18, defense: 20, speed: 10 })
-        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 21, maxDamage: 43 })
+        expect(attacker.activeCreature).toMatchObject({ attack: 24, defense: 26, speed: 10 })
+        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 25, maxDamage: 50 })
       })
     })
 
@@ -149,8 +149,8 @@ describe('hero modificator', () => {
 
         const { attacker } = battle.calculate()
 
-        expect(attacker.activeCreature).toMatchObject({ attack: 12, defense: 8, speed: 7 })
-        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 51, maxDamage: 76 })
+        expect(attacker.activeCreature).toMatchObject({ attack: 13, defense: 9, speed: 7 })
+        expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 52, maxDamage: 79 })
       })
     })
   })

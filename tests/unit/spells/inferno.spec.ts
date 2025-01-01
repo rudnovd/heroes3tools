@@ -98,7 +98,7 @@ describe('inferno', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
 
-    expect(damage).toBe(21)
+    expect(damage).toBe(22)
   })
 
   it('hero with Inferno specialty and high Spell Power', () => {
@@ -110,7 +110,7 @@ describe('inferno', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
 
-    expect(damage).toBe(371)
+    expect(damage).toBe(396)
   })
 
   it('hero with Inferno specialty, Advanced Fire skill and high Spell Power', () => {
@@ -123,7 +123,7 @@ describe('inferno', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
 
-    expect(damage).toBe(392)
+    expect(damage).toBe(418)
   })
 
   it('hero with Inferno specialty, Expert Fire skill and high Spell Power', () => {
@@ -136,7 +136,7 @@ describe('inferno', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, inferno)
 
-    expect(damage).toBe(433)
+    expect(damage).toBe(462)
   })
 
   it('cast on creature with immunity', () => {

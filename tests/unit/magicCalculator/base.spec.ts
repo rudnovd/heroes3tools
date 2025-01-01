@@ -119,7 +119,7 @@ describe('base Magic Calculator tests with specified values', () => {
 
       const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, spell)
 
-      expect(damage).toBe(252)
+      expect(damage).toBe(264)
     })
   })
 
@@ -134,7 +134,7 @@ describe('base Magic Calculator tests with specified values', () => {
 
       const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, spell)
 
-      expect(damage).toBe(37)
+      expect(damage).toBe(39)
     })
 
     it('adelaide (12sp, level 9) cast on Familiar', () => {
@@ -148,7 +148,7 @@ describe('base Magic Calculator tests with specified values', () => {
 
       const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, spell)
 
-      expect(damage).toBe(172)
+      expect(damage).toBe(257)
     })
   })
 })

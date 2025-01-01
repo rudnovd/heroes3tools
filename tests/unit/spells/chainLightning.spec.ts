@@ -98,7 +98,7 @@ describe('chain Lightning', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
 
-    expect(damage).toBe(27)
+    expect(damage).toBe(29)
   })
 
   it('hero with Chain Lightning specialty and high Spell Power', () => {
@@ -110,7 +110,7 @@ describe('chain Lightning', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
 
-    expect(damage).toBe(1498)
+    expect(damage).toBe(1600)
   })
 
   it('hero with Chain Lightning specialty, Advanced Air skill and high Spell Power', () => {
@@ -123,7 +123,7 @@ describe('chain Lightning', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
 
-    expect(damage).toBe(1525)
+    expect(damage).toBe(1629)
   })
 
   it('hero with Chain Lightning specialty, Expert Air skill and high Spell Power', () => {
@@ -136,7 +136,7 @@ describe('chain Lightning', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
 
-    expect(damage).toBe(1579)
+    expect(damage).toBe(1687)
   })
 
   it('solmyr (13 level, basic sorcery, expert air magic, 8 spell power)', () => {
@@ -151,7 +151,7 @@ describe('chain Lightning', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
 
-    expect(damage).toBe(455)
+    expect(damage).toBe(486)
   })
 
   it('solmyr (14 level, basic sorcery, expert air magic, 8 spell power)', () => {
@@ -166,7 +166,7 @@ describe('chain Lightning', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
 
-    expect(damage).toBe(627)
+    expect(damage).toBe(786)
   })
 
   it('solmyr (14 level, basic sorcery, expert air magic, 8 spell power, arhangel vs wolf raider)', () => {
@@ -181,7 +181,7 @@ describe('chain Lightning', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
 
-    expect(damage).toBe(534)
+    expect(damage).toBe(624)
   })
 
   it('solmyr (14 level, basic sorcery, expert air magic, 8 spell power archangel vs wyvern monarch)', () => {
@@ -196,7 +196,7 @@ describe('chain Lightning', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
 
-    expect(damage).toBe(468)
+    expect(damage).toBe(509)
   })
 
   it('solmyr (14 level, basic sorcery, expert air magic, 8 spell power archangel vs grand elf)', () => {
@@ -211,7 +211,7 @@ describe('chain Lightning', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, chainLightning)
 
-    expect(damage).toBe(494)
+    expect(damage).toBe(555)
   })
 
   it('cast on creature with immunity', () => {
