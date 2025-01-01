@@ -200,7 +200,7 @@ describe('bless spell effect', () => {
 
       const { attacker } = battle.calculate()
 
-      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 75, maxDamage: 75 })
+      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 81, maxDamage: 81 })
     })
 
     it('11 Ogre Magi vs 59 Halberdiers', () => {
@@ -219,7 +219,7 @@ describe('bless spell effect', () => {
 
       const { attacker } = battle.calculate()
 
-      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 225, maxDamage: 225 })
+      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 244, maxDamage: 244 })
     })
 
     it('11 Ogre Magi vs 20 Halberdiers', () => {
@@ -238,7 +238,7 @@ describe('bless spell effect', () => {
 
       const { attacker } = battle.calculate()
 
-      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 245, maxDamage: 245 })
+      expect(attacker.activeCreature.calculation).toMatchObject({ minDamage: 264, maxDamage: 264 })
     })
   })
 

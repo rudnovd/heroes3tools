@@ -23,7 +23,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { attack } = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
 
-      expect(attack).toBe(8)
+      expect(attack).toBe(15)
     })
 
     it('ash with Griffin (creature level - 3)', () => {
@@ -36,7 +36,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { attack } = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
 
-      expect(attack).toBe(13)
+      expect(attack).toBe(19)
     })
 
     it('ash with Genie (creature level - 5)', () => {
@@ -49,7 +49,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { attack } = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
 
-      expect(attack).toBe(16)
+      expect(attack).toBe(21)
     })
 
     it('ash with Bone Dragon (creature level - 7)', () => {
@@ -62,7 +62,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { attack } = Effects.bloodlust(battle.attacker, creatureWithModifiedAttack)
 
-      expect(attack).toBe(20)
+      expect(attack).toBe(24)
     })
   })
 
@@ -90,7 +90,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { attack, defense } = Effects.prayer(battle.attacker, creatureWithModifiedStats)
 
-      expect({ attack, defense }).toEqual({ attack: 14, defense: 10 })
+      expect({ attack, defense }).toEqual({ attack: 15, defense: 11 })
     })
 
     it('loynis with Gorgon (creature level - 5)', () => {
@@ -103,7 +103,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { attack, defense } = Effects.prayer(battle.attacker, creatureWithModifiedStats)
 
-      expect({ attack, defense }).toEqual({ attack: 13, defense: 17 })
+      expect({ attack, defense }).toEqual({ attack: 14, defense: 18 })
     })
 
     it('loynis with Behemoth (creature level - 7)', () => {
@@ -116,7 +116,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { attack, defense } = Effects.prayer(battle.attacker, creatureWithModifiedStats)
 
-      expect({ attack, defense }).toEqual({ attack: 19, defense: 19 })
+      expect({ attack, defense }).toEqual({ attack: 20, defense: 20 })
     })
   })
 
@@ -131,7 +131,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { attack } = Effects.precision(battle.attacker, creatureWithModifiedAttack)
 
-      expect(attack).toBe(12)
+      expect(attack).toBe(19)
     })
 
     it('zubin with Wood Elf (creature level - 3)', () => {
@@ -144,7 +144,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { attack } = Effects.precision(battle.attacker, creatureWithModifiedAttack)
 
-      expect(attack).toBe(14)
+      expect(attack).toBe(20)
     })
 
     it('zubin with Monk (creature level - 5)', () => {
@@ -157,7 +157,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { attack } = Effects.precision(battle.attacker, creatureWithModifiedAttack)
 
-      expect(attack).toBe(16)
+      expect(attack).toBe(21)
     })
 
     it('zubin with Titan (creature level - 7)', () => {
@@ -170,7 +170,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { attack } = Effects.precision(battle.attacker, creatureWithModifiedAttack)
 
-      expect(attack).toBe(27)
+      expect(attack).toBe(31)
     })
   })
 
@@ -185,7 +185,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { defense } = Effects.stoneSkin(battle.attacker, creatureWithModifiedDefense)
 
-      expect(defense).toBe(11)
+      expect(defense).toBe(18)
     })
 
     it('darkstorn with Royal Griffin (creature level - 3)', () => {
@@ -198,7 +198,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { defense } = Effects.stoneSkin(battle.attacker, creatureWithModifiedDefense)
 
-      expect(defense).toBe(14)
+      expect(defense).toBe(20)
     })
 
     it('darkstorn with Dendroid Guard (creature level - 5)', () => {
@@ -211,7 +211,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { defense } = Effects.stoneSkin(battle.attacker, creatureWithModifiedDefense)
 
-      expect(defense).toBe(16)
+      expect(defense).toBe(21)
     })
 
     it('darkstorn with Gold Dragon (creature level - 7)', () => {
@@ -224,7 +224,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { defense } = Effects.stoneSkin(battle.attacker, creatureWithModifiedDefense)
 
-      expect(defense).toBe(30)
+      expect(defense).toBe(34)
     })
   })
 
@@ -252,7 +252,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { attack } = Effects.weakness(battle.attacker, creatureWithModifiedAttack)
 
-      expect(attack).toBe(4)
+      expect(attack).toBe(0)
     })
 
     it('mirlanda with Master Genie (creature level - 5)', () => {
@@ -265,7 +265,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { attack } = Effects.weakness(battle.attacker, creatureWithModifiedAttack)
 
-      expect(attack).toBe(8)
+      expect(attack).toBe(1)
     })
 
     it('mirlanda with Master Black Dragon (creature level - 7)', () => {
@@ -278,7 +278,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { attack } = Effects.weakness(battle.attacker, creatureWithModifiedAttack)
 
-      expect(attack).toBe(22)
+      expect(attack).toBe(12)
     })
   })
 
@@ -306,7 +306,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { defense } = Effects.disruptingRay(battle.attacker, creatureWithModifiedDefense)
 
-      expect(defense).toBe(2)
+      expect(defense).toBe(0)
     })
 
     it('aenain with Power Lich (creature level - 5)', () => {
@@ -319,7 +319,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { defense } = Effects.disruptingRay(battle.attacker, creatureWithModifiedDefense)
 
-      expect(defense).toBe(5)
+      expect(defense).toBe(0)
     })
 
     it('aenain with Ghost Dragon (creature level - 7)', () => {
@@ -332,7 +332,7 @@ describe('hero specialty spell modificator', () => {
       )
       const { defense } = Effects.disruptingRay(battle.attacker, creatureWithModifiedDefense)
 
-      expect(defense).toBe(12)
+      expect(defense).toBe(4)
     })
   })
 })

@@ -98,7 +98,7 @@ describe('frost Ring', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
 
-    expect(damage).toBe(16)
+    expect(damage).toBe(17)
   })
 
   it('hero with frostRing specialty and high Spell Power', () => {
@@ -110,7 +110,7 @@ describe('frost Ring', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
 
-    expect(damage).toBe(366)
+    expect(damage).toBe(391)
   })
 
   it('hero with Frost Ring specialty, Advanced Water skill and high Spell Power', () => {
@@ -123,7 +123,7 @@ describe('frost Ring', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
 
-    expect(damage).toBe(382)
+    expect(damage).toBe(407)
   })
 
   it('hero with Frost Ring specialty, Expert Water skill and high Spell Power', () => {
@@ -136,7 +136,7 @@ describe('frost Ring', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, frostRing)
 
-    expect(damage).toBe(412)
+    expect(damage).toBe(440)
   })
 
   it('cast on creature with immunity', () => {

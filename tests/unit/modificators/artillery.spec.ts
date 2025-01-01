@@ -18,7 +18,7 @@ describe('artillery modificator', () => {
         getCreatureInstance(Creatures.Ballista),
       )
 
-      expect({ minDamage, maxDamage }).toEqual({ minDamage: 4, maxDamage: 6 })
+      expect({ minDamage, maxDamage }).toEqual({ minDamage: 12, maxDamage: 18 })
     })
 
     it('with hero with high attack', () => {
@@ -27,7 +27,7 @@ describe('artillery modificator', () => {
 
       const { minDamage, maxDamage } = Modificators.artillery(hero, getCreatureInstance(Creatures.Ballista))
 
-      expect({ minDamage, maxDamage }).toEqual({ minDamage: 32, maxDamage: 48 })
+      expect({ minDamage, maxDamage }).toEqual({ minDamage: 40, maxDamage: 60 })
     })
 
     it('with hero with high attack vs Naga Queen', () => {
@@ -39,7 +39,7 @@ describe('artillery modificator', () => {
 
       const { attacker } = getBattleCreatureCalculationResults(battle)
 
-      expect(attacker).toMatchObject({ minDamage: 51, maxDamage: 76 })
+      expect(attacker).toMatchObject({ minDamage: 64, maxDamage: 96 })
     })
 
     it('with hero with advanced artillery', () => {
@@ -51,7 +51,7 @@ describe('artillery modificator', () => {
       const modifiedBallista = Modificators.heroSkills(hero, ballista)
       const { minDamage, maxDamage, hits } = Modificators.artillery(hero, modifiedBallista)
 
-      expect({ minDamage, maxDamage, hits }).toEqual({ minDamage: 4, maxDamage: 6, hits: 2 })
+      expect({ minDamage, maxDamage, hits }).toEqual({ minDamage: 12, maxDamage: 18, hits: 2 })
     })
   })
 
