@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.1](https://github.com/rudnovd/heroes3tools/compare/v2.5.0...v2.5.1) (2025-01-01)
+
+
+### Bug Fixes
+
+* **Battle:** fix specialty spell modifiers calculation ([026cb21](https://github.com/rudnovd/heroes3tools/commit/026cb2135f8111df4f82a711b4dbf0938d2524aa))
+
 ## [2.5.0](https://github.com/rudnovd/heroes3tools/compare/v2.4.0...v2.5.0) (2025-01-01)
 
 
