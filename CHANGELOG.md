@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/rudnovd/heroes3tools/compare/v2.4.0...v2.5.0) (2025-01-01)
+
+
+### Features
+
+* apply HotA 1.7.2 changes ([7e26088](https://github.com/rudnovd/heroes3tools/commit/7e26088eed39ed5cfd1d4cf48f7638b9170bff12))
+
 ## [2.4.0](https://github.com/rudnovd/heroes3tools/compare/v2.3.7...v2.4.0) (2024-11-29)
 
 
