@@ -117,15 +117,17 @@ const creaturesByTowns = computed(() => {
     0: [],
   }
 
-  towns.value.forEach(town => (map[town.id] = []))
-  creatures.value.forEach((creature) => {
+  for (const town of towns.value) {
+    map[town.id] = []
+  }
+  for (const creature of creatures.value) {
     if (creature.townId) {
       map[creature.townId].push(creature)
     }
     else {
       map[0].push(creature)
     }
-  })
+  }
 
   return map
 })

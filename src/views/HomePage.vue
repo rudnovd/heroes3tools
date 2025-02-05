@@ -155,15 +155,14 @@ const pages = [
   a,
   span {
     overflow: hidden;
-    color: var(--color-text);
-    text-decoration: none;
     text-overflow: ellipsis;
+    color: var(--color-text);
     white-space: nowrap;
+    text-decoration: none;
     transition: transform 0.15s linear;
   }
 
   &:hover {
-    filter: contrast(110%);
     box-shadow:
       0 0 0 2px rgb(0, 0, 0),
       0 0 0 3px rgb(124, 111, 64),
@@ -171,6 +170,7 @@ const pages = [
       0 0 0 5px rgb(138, 121, 74),
       0 0 0 6px rgb(114, 90, 44),
       0 0 0 7px rgb(33, 27, 23);
+    filter: contrast(110%);
     transform: translateY(-5px);
 
     h2 {

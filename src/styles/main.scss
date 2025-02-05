@@ -85,9 +85,9 @@ button {
   text-align: center;
   cursor: pointer;
   user-select: none;
+  outline: none;
   background: none;
   border: none;
-  outline: none;
   transition:
     color 0.2s linear,
     background 0.2s linear,

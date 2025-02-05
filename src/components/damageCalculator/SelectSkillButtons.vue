@@ -36,7 +36,7 @@ const selectedLevel = ref<SkillLevel>(props.value)
 
 watch(
   () => props.value,
-  newValue => (selectedLevel.value = newValue),
+  (newValue) => { selectedLevel.value = newValue },
 )
 
 function onClick(level: SkillLevel) {
@@ -86,9 +86,9 @@ function onClick(level: SkillLevel) {
   min-width: 60px;
   height: 100%;
   overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 0.75rem;
   font-weight: 600;
-  text-overflow: ellipsis;
   white-space: nowrap;
   background-color: transparent;
   transition:

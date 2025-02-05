@@ -48,8 +48,8 @@ const emit = defineEmits<{ click: [] }>()
 
   &:active .cross-first-line,
   &:active .cross-second-line {
-    transition: transform 0.3s;
     transform: rotate(55deg);
+    transition: transform 0.3s;
   }
 }
 </style>

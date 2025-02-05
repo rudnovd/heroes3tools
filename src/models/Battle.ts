@@ -175,7 +175,7 @@ export class Battle {
     damage = this.calculateSpellBonuses(attackerCopy, target, spell, damage)
     damage = this.calculateSpellSpecialtyBonus(attackerCopy, target, spell, damage)
 
-    if (target.special?.vulnerablesToSpells && target.special.vulnerablesToSpells.includes(spell.id)) {
+    if (target.special?.vulnerablesToSpells?.includes(spell.id)) {
       damage += damage
     }
 

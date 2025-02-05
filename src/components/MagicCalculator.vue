@@ -127,12 +127,13 @@
 </template>
 
 <script setup lang="ts">
+import type { Battle, BattleSide, DamageCalculatorBattleSide } from '@/models/Battle'
 import type { Creature } from '@/models/Creature'
 import type { Hero } from '@/models/Hero'
 import type { Spell } from '@/models/Spell'
 import PickCreatureButton from '@/components/PickCreatureButton.vue'
 import SelectHero from '@/components/SelectHero.vue'
-import { type Battle, type BattleSide, type DamageCalculatorBattleSide, getOppositeBattleSide } from '@/models/Battle'
+import { getOppositeBattleSide } from '@/models/Battle'
 import { CreatureInstance } from '@/models/Creature'
 import { SecondarySkills, Spells } from '@/models/enums'
 import { HeroInstance } from '@/models/Hero'
@@ -205,7 +206,7 @@ const skills = computed(() => {
   const skillsNames = ['air', 'earth', 'fire', 'sorcery', 'water', 'interference']
   store.skills
     .filter(skill => magicSkillsIds.includes(skill.id))
-    .forEach((skill, index) => (skills[skillsNames[index]] = skill.name))
+    .forEach((skill, index) => { skills[skillsNames[index]] = skill.name })
   return skills
 })
 
@@ -321,15 +322,13 @@ function getSpellTargets(sideName: BattleSide) {
   if (!spellId) {
     return ''
   }
-  else if (spellsTargets.all.includes(spellId)) {
+  if (spellsTargets.all.includes(spellId)) {
     return `${defender}, ${attacker}`
   }
-  else if (spellsTargets.self.includes(spellId)) {
+  if (spellsTargets.self.includes(spellId)) {
     return attacker
   }
-  else {
-    return defender
-  }
+  return defender
 }
 </script>
 
@@ -526,8 +525,8 @@ function getSpellTargets(sideName: BattleSide) {
   }
 
   &:hover::after {
-    transition: transform 0.45s ease-in-out;
     transform: translate3d(200%, 0, 0) rotate(35deg);
+    transition: transform 0.45s ease-in-out;
   }
 }
 

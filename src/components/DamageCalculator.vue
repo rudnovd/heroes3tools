@@ -185,7 +185,7 @@ const skills = computed(() => {
   const skills = {}
   store.skills
     .filter(skill => damageCalculatorSkillsIds.includes(skill.id))
-    .forEach((skill, index) => (skills[damageCalculatorSkills[index]] = skill.name))
+    .forEach((skill, index) => { skills[damageCalculatorSkills[index]] = skill.name })
   return skills
 })
 const effects = computed(() => [store.attackPositiveEffects, store.defensePositiveEffects, store.attackNegativeEffects])
@@ -194,9 +194,9 @@ const effects = computed(() => [store.attackPositiveEffects, store.defensePositi
 function getTotalResultString(min: number, max: number, average: number) {
   if (min !== max)
     return `${min} — ${max} (~ ${average})`
-  else if (min === max)
+  if (min === max)
     return min
-  else return 0
+  return 0
 }
 
 function onSelectCreature(side: DamageCalculatorBattleSide, creature: Creature) {
@@ -384,8 +384,8 @@ function onSelectTerrain(terrain: Terrain | null) {
   }
 
   &:hover::after {
-    transition: transform 0.45s ease-in-out;
     transform: translate3d(200%, 0, 0) rotate(35deg);
+    transition: transform 0.45s ease-in-out;
   }
 }
 
@@ -441,7 +441,7 @@ function onSelectTerrain(terrain: Terrain | null) {
   justify-content: flex-end;
   padding: 5px;
   border-top: 1px solid var(--color-border);
-  transition: border-top 0.2 linear;
+  transition: border-top 0.2s linear;
 }
 
 .select-terrain {

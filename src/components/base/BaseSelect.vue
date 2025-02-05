@@ -138,9 +138,7 @@ const firstOptions = computed(() => {
       })
       .map((data, index) => ({ data, index }))
   }
-  else {
-    return props.options.map((data, index) => ({ data, index }))
-  }
+  return props.options.map((data, index) => ({ data, index }))
 })
 
 const {
@@ -167,9 +165,7 @@ const optionsList = computed(() => {
   if (props.virtualScroll) {
     return list.value.map(item => ({ ...item.data, index: item.index }))
   }
-  else {
-    return firstOptions.value
-  }
+  return firstOptions.value
 })
 
 watch(search, () => {
@@ -191,9 +187,9 @@ onClickOutside(virtualScrollContainer.ref, () => {
   width: 100%;
   height: v-bind(height);
   line-height: v-bind(height);
+  outline: none;
   border: 1px solid var(--color-border);
   border-radius: 4px;
-  outline: none;
 }
 
 .container {
@@ -218,9 +214,9 @@ onClickOutside(virtualScrollContainer.ref, () => {
   padding-left: 8px;
   font: inherit;
   color: var(--color-text);
+  outline: none;
   background-color: var(--color-bg);
   border: 0;
-  outline: none;
 
   &::placeholder {
     color: var(--color-text);
@@ -241,8 +237,8 @@ onClickOutside(virtualScrollContainer.ref, () => {
   mask-repeat: no-repeat;
   -webkit-mask-position: center;
   mask-position: center;
-  transition: 0.3s transform;
   transform: rotate(0deg);
+  transition: 0.3s transform;
 
   &.is-open {
     pointer-events: auto;

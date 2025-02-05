@@ -42,7 +42,9 @@ withDefaults(
 const emit = defineEmits<{ close: [] }>()
 
 const showNotification = ref(false)
-nextTick(() => (showNotification.value = true))
+nextTick(() => {
+  showNotification.value = true
+})
 
 function onClick(button: BaseNotificationButtonProp) {
   showNotification.value = false
