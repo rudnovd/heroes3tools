@@ -103,8 +103,8 @@ export class Battle {
     const attackerCalculation = this.calculateDamageValues(modifiedAttackerCreature, modifiedDefenderCreature)
     const defenderCalculation = this.calculateDamageValues(modifiedDefenderCreature, modifiedAttackerCreature)
 
-    const isMachine = modifiedAttackerCreature.id === Creatures.Cannon || modifiedAttackerCreature.id === Creatures.Ballista
-    if (this.attacker.hero?.skills.artillery && isMachine) {
+    const isAttackerMachine = modifiedAttackerCreature.id === Creatures.Cannon || modifiedAttackerCreature.id === Creatures.Ballista
+    if (this.attacker.hero?.skills.artillery && isAttackerMachine) {
       defenderCalculation.minDamage = Math.floor(defenderCalculation.minDamage * 0.4)
       defenderCalculation.maxDamage = Math.floor(defenderCalculation.maxDamage * 0.4)
       defenderCalculation.averageDamage = Math.floor(defenderCalculation.averageDamage * 0.4)
@@ -112,7 +112,8 @@ export class Battle {
       defenderCalculation.maxKills = Math.floor(defenderCalculation.maxDamage / modifiedDefenderCreature.health)
       defenderCalculation.averageKills = Math.floor(defenderCalculation.averageDamage / modifiedDefenderCreature.health)
     }
-    if (this.defender.hero?.skills.artillery && isMachine) {
+    const isDefenderMachine = modifiedDefenderCreature.id === Creatures.Cannon || modifiedDefenderCreature.id === Creatures.Ballista
+    if (this.defender.hero?.skills.artillery && isDefenderMachine) {
       attackerCalculation.minDamage = Math.floor(attackerCalculation.minDamage * 0.4)
       attackerCalculation.maxDamage = Math.floor(attackerCalculation.maxDamage * 0.4)
       attackerCalculation.averageDamage = Math.floor(attackerCalculation.averageDamage * 0.4)
