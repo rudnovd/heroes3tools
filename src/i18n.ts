@@ -1,5 +1,6 @@
+import type { AvailableLocale } from './constants'
 import { createI18n } from 'vue-i18n'
-import { AVAILABLE_LOCALES, type AvailableLocale, DEFAULT_LOCALE, INITIAL_LOCATION_LOCALE } from './constants'
+import { AVAILABLE_LOCALES, DEFAULT_LOCALE, INITIAL_LOCATION_LOCALE } from './constants'
 import { selectedLocale } from './utilities'
 
 const i18n = createI18n({

@@ -51,15 +51,15 @@ const route = useRoute()
 function calculatorTitle(attacker: string | null, defender: string | null) {
   if (attacker && defender)
     return `${attacker} — ${defender}`
-  else if (attacker)
+  if (attacker)
     return attacker
-  else if (defender)
+  if (defender)
     return defender
-  else if (route.path === '/damage')
+  if (route.path === '/damage')
     return t('pages.damageCalculator')
-  else if (route.path === '/magic')
+  if (route.path === '/magic')
     return t('pages.magicCalculator')
-  else return t('pages.damageCalculator')
+  return t('pages.damageCalculator')
 }
 </script>
 

@@ -36,7 +36,7 @@ const debouncedValue = useDebounce(currentValue, props.debounce)
 
 watch(
   () => props.value,
-  newValue => (currentValue.value = newValue),
+  (newValue) => { currentValue.value = newValue },
 )
 
 watch(debouncedValue, () => emit('input', debouncedValue.value))

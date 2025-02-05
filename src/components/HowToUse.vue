@@ -73,7 +73,7 @@ function triggerStep() {
 
 function displayStep(stepToDisplay: number) {
   const currentStep = props.steps[stepToDisplay]
-  currentStep.targets.forEach((target) => {
+  for (const target of currentStep.targets) {
     const element = document.querySelector(target.node) as HTMLElement
     if (!element) {
       step.value++
@@ -98,18 +98,18 @@ function displayStep(stepToDisplay: number) {
         return
       eventTriggerNode.addEventListener('click', triggerStep, { once: true })
     }
-  })
+  }
 }
 
 function returnElementStyles(stepToClear: number) {
-  props.steps[stepToClear].targets.forEach((target) => {
+  for (const target of props.steps[stepToClear].targets) {
     const element = document.querySelector(target.node) as HTMLElement
     if (!element)
       return
     element.style.setProperty('z-index', '')
     element.style.setProperty('background-color', '')
     element.style.setProperty('color', 'unset')
-  })
+  }
 }
 
 watch(step, (newStep) => {

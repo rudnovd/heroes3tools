@@ -66,8 +66,8 @@ watch(
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  background: rgba(0, 0, 0, 0.5);
   outline: 0;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .base-dialog {
@@ -77,9 +77,9 @@ watch(
   min-height: 150px;
   margin: 2rem auto 2rem auto;
   overflow: hidden;
+  outline: 0;
   background-color: var(--color-bg-deep);
   border-radius: 0.3rem;
-  outline: 0;
 
   &-small {
     max-width: map.get(variables.$grid-breakpoints, 'small');

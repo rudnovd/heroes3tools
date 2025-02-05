@@ -53,8 +53,8 @@ const showSelectUnitModal = ref(false)
     z-index: -1;
     content: '';
     border-radius: 5px;
-    transition: transform 0.25s ease-in-out;
     transform: scaleX(0);
+    transition: transform 0.25s ease-in-out;
   }
 
   &:hover::before {
