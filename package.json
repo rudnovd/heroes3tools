@@ -6,12 +6,13 @@
   "description": "Web tools to make playing Heroes of Might and Magic III: Horn of The Abyss easier: damage calculator, magic calculator, creature library for simplify calculations in Heroes of Might and Magic III: Horn of The Abyss",
   "license": "MIT",
   "homepage": "https://heroes3tools.netlify.app/",
-  "repository": "github:rudnovd/heroes3tools",
-  "bugs": {
-    "url": "https://github.com/rudnovd/heroes3tools/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudnovd/heroes3tools.git"
   },
+  "bugs": "https://github.com/rudnovd/heroes3tools/issues",
   "engines": {
-    "node": ">=20"
+    "node": ">=22.12.0"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
