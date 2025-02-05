@@ -136,6 +136,7 @@ footer {
   }
 
   & > *:nth-child(even) {
+    justify-content: flex-end;
     text-align: right;
   }
 
