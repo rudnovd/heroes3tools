@@ -1,8 +1,8 @@
+import { beforeEach, describe, expect, it } from 'vitest'
 import { Battle } from '@/models/Battle'
 import { Creatures, Heroes } from '@/models/enums'
 import { Effects } from '@/modules/effects'
 import { Modificators } from '@/modules/modificators'
-import { beforeEach, describe, expect, it } from 'vitest'
 import { getCreatureInstance, getHeroInstance } from '../helpers'
 
 describe('hero specialty spell modificator', () => {

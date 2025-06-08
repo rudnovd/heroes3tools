@@ -36,13 +36,13 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from '@/store'
-import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
 import { whenever } from '@vueuse/core'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { computed, defineAsyncComponent, provide, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import { useStore } from '@/store'
+import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
 import { INITIAL_LOCATION_LOCALE } from './constants'
 
 const BaseNotification = defineAsyncComponent(() => import('@/components/base/BaseNotification.vue'))

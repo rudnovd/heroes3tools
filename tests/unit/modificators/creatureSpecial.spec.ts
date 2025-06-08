@@ -1,6 +1,6 @@
+import { beforeEach, describe, expect, it } from 'vitest'
 import { Battle } from '@/models/Battle'
 import { Creatures } from '@/models/enums'
-import { beforeEach, describe, expect, it } from 'vitest'
 import { getCreatureInstance } from '../helpers'
 
 describe('creature special modificator', () => {

@@ -71,10 +71,10 @@
 
 <script setup lang="ts">
 import type { AvailableLocale } from '@/constants'
-import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
 import { defineAsyncComponent, inject, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
+import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
 
 withDefaults(
   defineProps<{

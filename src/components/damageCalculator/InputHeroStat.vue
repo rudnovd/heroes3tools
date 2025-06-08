@@ -15,9 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import BaseInputNumber from '@/components/base/BaseInputNumber.vue'
 import { useId } from 'vue'
 import { useI18n } from 'vue-i18n'
+import BaseInputNumber from '@/components/base/BaseInputNumber.vue'
 
 defineProps<{
   stat: 'attack' | 'defense' | 'power' | 'knowledge' | string

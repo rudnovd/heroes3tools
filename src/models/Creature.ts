@@ -1,6 +1,6 @@
-import type { CreaturesSpecial } from '@/models/CreaturesSpecials'
 import type { Terrains } from './enums'
 import type { Spell } from './Spell'
+import type { CreaturesSpecial } from '@/models/CreaturesSpecials'
 
 export interface Creature {
   aiValue?: number

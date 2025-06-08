@@ -34,11 +34,11 @@
 
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import CalculatorTabs from '@/components/CalculatorTabs.vue'
-import { Battle } from '@/models/Battle'
 import { useHead } from '@unhead/vue'
 import { defineAsyncComponent, ref, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
+import CalculatorTabs from '@/components/CalculatorTabs.vue'
+import { Battle } from '@/models/Battle'
 import MagicCalculator from '../components/MagicCalculator.vue'
 
 const props = defineProps<{ head: string }>()
