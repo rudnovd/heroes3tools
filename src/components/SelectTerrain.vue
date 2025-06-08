@@ -30,9 +30,9 @@
 
 <script setup lang="ts">
 import type { Terrain } from '@/models/Terrain'
-import BaseSelect from '@/components/base/BaseSelect.vue'
 import { defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
+import BaseSelect from '@/components/base/BaseSelect.vue'
 
 defineProps<{ value: Terrain | null, terrains: Array<Terrain> }>()
 

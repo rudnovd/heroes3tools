@@ -1,10 +1,10 @@
+import { beforeEach, describe, expect, it } from 'vitest'
 import { heroes } from '@/assets/database/heroes'
 import { spells } from '@/assets/database/spells'
 import { terrains } from '@/assets/database/terrains'
 import { Battle } from '@/models/Battle'
 import { Creatures, Heroes, SkillLevels, Spells, Terrains } from '@/models/enums'
 import { HeroInstance } from '@/models/Hero'
-import { beforeEach, describe, expect, it } from 'vitest'
 import { getBattleCreatureCalculationResults, getCreatureInstance, getHeroInstance } from '../helpers'
 
 describe('base Damage Calculator tests with specified values', () => {

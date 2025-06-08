@@ -143,6 +143,8 @@ import type { Creature } from '@/models/Creature'
 import type { Hero } from '@/models/Hero'
 import type { Spell } from '@/models/Spell'
 import type { Terrain } from '@/models/Terrain'
+import { computed, defineAsyncComponent, reactive, useId } from 'vue'
+import { useI18n } from 'vue-i18n'
 import PickCreatureButton from '@/components/PickCreatureButton.vue'
 import SelectHero from '@/components/SelectHero.vue'
 import SelectTerrain from '@/components/SelectTerrain.vue'
@@ -150,8 +152,6 @@ import { CreatureInstance } from '@/models/Creature'
 import { SecondarySkills } from '@/models/enums'
 import { HeroInstance } from '@/models/Hero'
 import { useStore } from '@/store'
-import { computed, defineAsyncComponent, reactive, useId } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   battleValue: Battle
@@ -307,7 +307,7 @@ function onSelectTerrain(terrain: Terrain | null) {
   & > div {
     overflow: hidden;
     text-overflow: ellipsis;
-    word-break: break-word;
+    word-break: break-all;
   }
 }
 

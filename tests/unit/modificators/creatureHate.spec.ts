@@ -1,7 +1,7 @@
+import { beforeEach, describe, expect, it } from 'vitest'
 import { terrains } from '@/assets/database/terrains'
 import { Battle } from '@/models/Battle'
 import { Creatures, Heroes, Terrains } from '@/models/enums'
-import { beforeEach, describe, expect, it } from 'vitest'
 import { getBattleCreatureCalculationResults, getCreatureInstance, getHeroInstance } from '../helpers'
 
 describe('creature hate modificator', () => {

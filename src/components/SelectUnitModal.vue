@@ -73,11 +73,11 @@
 
 <script setup lang="ts">
 import type { Creature } from '@/models/Creature'
-import BaseDialog from '@/components/base/BaseDialog.vue'
-import { useStore } from '@/store'
 import { refDebounced } from '@vueuse/core'
 import { computed, defineAsyncComponent, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import BaseDialog from '@/components/base/BaseDialog.vue'
+import { useStore } from '@/store'
 
 const props = defineProps<{ show: boolean }>()
 

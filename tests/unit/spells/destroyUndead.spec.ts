@@ -1,9 +1,9 @@
+import { beforeEach, describe, expect, it } from 'vitest'
 import { creatures } from '@/assets/database/creatures'
 import { spells } from '@/assets/database/spells'
 import { Battle } from '@/models/Battle'
-import { Creatures, Heroes, Spells as SpellsEnum } from '@/models/enums'
 
-import { beforeEach, describe, expect, it } from 'vitest'
+import { Creatures, Heroes, Spells as SpellsEnum } from '@/models/enums'
 import { getCreatureInstance, getHeroInstance } from '../helpers'
 
 describe('destroy Undead', () => {

@@ -37,13 +37,13 @@
 
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import CalculatorTabs from '@/components/CalculatorTabs.vue'
-import DamageCalculator from '@/components/DamageCalculator.vue'
-import { Battle } from '@/models/Battle'
 import { useHead } from '@unhead/vue'
 import { watchIgnorable } from '@vueuse/shared'
 import { computed, defineAsyncComponent, ref, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
+import CalculatorTabs from '@/components/CalculatorTabs.vue'
+import DamageCalculator from '@/components/DamageCalculator.vue'
+import { Battle } from '@/models/Battle'
 
 const props = defineProps<{ head: string }>()
 const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))

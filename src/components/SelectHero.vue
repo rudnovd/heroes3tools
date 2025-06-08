@@ -33,9 +33,9 @@
 
 <script setup lang="ts">
 import type { Hero, HeroInstance } from '@/models/Hero'
-import BaseSelect from '@/components/base/BaseSelect.vue'
 import { defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
+import BaseSelect from '@/components/base/BaseSelect.vue'
 
 defineProps<{ heroes: Array<Hero>, value: Hero | HeroInstance | null }>()
 

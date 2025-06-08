@@ -62,10 +62,10 @@
 
 <script setup lang="ts" generic="T extends Record<string, any>">
 import type { Ref } from 'vue'
-import i18n from '@/i18n'
 import { onClickOutside, useVirtualList } from '@vueuse/core'
 import { computed, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import i18n from '@/i18n'
 
 const props = withDefaults(
   defineProps<{

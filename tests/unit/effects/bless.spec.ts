@@ -1,8 +1,8 @@
+import { beforeEach, describe, expect, it } from 'vitest'
 import { spells } from '@/assets/database/spells'
 import { Battle } from '@/models/Battle'
 import { Creatures, Heroes, Spells } from '@/models/enums'
 import { Effects } from '@/modules/effects'
-import { beforeEach, describe, expect, it } from 'vitest'
 import { getCreatureInstance, getHeroInstance } from '../helpers'
 
 describe('bless spell effect', () => {

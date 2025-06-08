@@ -18,9 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import CloseButton from '@/components/buttons/CloseButton.vue'
 import { onClickOutside } from '@vueuse/core'
 import { ref, watch } from 'vue'
+import CloseButton from '@/components/buttons/CloseButton.vue'
 
 const props = withDefaults(
   defineProps<{

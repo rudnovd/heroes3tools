@@ -131,6 +131,8 @@ import type { Battle, BattleSide, DamageCalculatorBattleSide } from '@/models/Ba
 import type { Creature } from '@/models/Creature'
 import type { Hero } from '@/models/Hero'
 import type { Spell } from '@/models/Spell'
+import { computed, defineAsyncComponent, reactive, ref, useId, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import PickCreatureButton from '@/components/PickCreatureButton.vue'
 import SelectHero from '@/components/SelectHero.vue'
 import { getOppositeBattleSide } from '@/models/Battle'
@@ -138,8 +140,6 @@ import { CreatureInstance } from '@/models/Creature'
 import { SecondarySkills, Spells } from '@/models/enums'
 import { HeroInstance } from '@/models/Hero'
 import { useStore } from '@/store'
-import { computed, defineAsyncComponent, reactive, ref, useId, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   battleValue: Battle
