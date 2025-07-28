@@ -71,9 +71,9 @@ const pages = [
   gap: 16px;
   min-width: 300px;
   min-height: calc(100dvh - 2rem);
+  contain-intrinsic-size: 100vh;
   margin: 0 auto;
   content-visibility: auto;
-  contain-intrinsic-size: 100vh;
 
   @include mixins.media-medium {
     align-content: center;

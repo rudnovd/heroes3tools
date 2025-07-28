@@ -140,10 +140,10 @@ function onSelectCreature(creature: Creature) {
 .creatures-library-page {
   min-width: 320px;
   max-width: 1920px;
+  contain-intrinsic-size: 100vh;
   padding: 0 8px 16px;
   margin: 0 auto;
   content-visibility: auto;
-  contain-intrinsic-size: 100vh;
 
   @include mixins.media-medium {
     padding: 0 24px 16px;
