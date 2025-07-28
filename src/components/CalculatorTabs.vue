@@ -12,8 +12,8 @@
         <span class="tab-title">
           {{ calculatorTitle(calculator.attacker, calculator.defender) }}
         </span>
-
         <button
+          v-if="calculators.length > 1"
           class="tab-close-button"
           :class="{ disabled: calculators.length < 2 }"
           @click.stop="emit('deleteTab', index)"
