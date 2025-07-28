@@ -36,7 +36,7 @@
             <button
               v-for="neutralCreature in creaturesByTowns[0]"
               :key="neutralCreature.id"
-              :data-umami-event="`pick ${neutralCreature.name} creature`"
+              :data-umami-event="`pick neutral ${neutralCreature.name} creature`"
               @click="selectUnit(neutralCreature)"
             >
               <ObjectPortrait

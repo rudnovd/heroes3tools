@@ -74,7 +74,7 @@ const notificationsButtons = computed(() => [
       'data-umami-event': `update service worker from version ${import.meta.env.__APP_VERSION__}`,
     },
     onClick: () => {
-      setTimeout(() => updateServiceWorker(true), 500)
+      setTimeout(() => updateServiceWorker(true), 1000)
     },
     textColor: 'rgb(255, 255, 255)',
   },

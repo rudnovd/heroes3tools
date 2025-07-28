@@ -34,7 +34,6 @@
             <button
               class="option-item"
               :class="{ selected: selectedValue && selectedValue[label] === data[label] }"
-              :data-umami-event="`select ${data[label]}`"
               @click="onSelect(data, index)"
             >
               <slot name="option" :option="data">
