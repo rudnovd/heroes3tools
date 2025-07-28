@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.2](https://github.com/rudnovd/heroes3tools/compare/v2.5.1...v2.5.2) (2025-07-28)
+
+
+### Bug Fixes
+
+* **Battle:** use correct sides when calculate damage to cannon and ballista ([374eaf4](https://github.com/rudnovd/heroes3tools/commit/374eaf47207cd18cf70b84e02694160373034354))
+* **CalculatorTabs:** do not display the close button for a single instance ([ab488b4](https://github.com/rudnovd/heroes3tools/commit/ab488b493c8c5c5f205aae2e54ddfa622e933145))
+* **PageFooter:** fix component styles ([caeb4d0](https://github.com/rudnovd/heroes3tools/commit/caeb4d07728e0fc4369fc3c4ab1d91a866eae4fe))
+
 ### [2.5.1](https://github.com/rudnovd/heroes3tools/compare/v2.5.0...v2.5.1) (2025-01-01)
 
 
