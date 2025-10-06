@@ -78,7 +78,7 @@ function onClick(button: BaseNotificationButtonProp) {
   box-sizing: inherit;
   display: flex;
   flex-direction: column;
-  grid-gap: 0.5rem;
+  gap: 0.5rem;
   align-items: center;
   min-width: 100px;
   min-height: 50px;
@@ -104,7 +104,7 @@ function onClick(button: BaseNotificationButtonProp) {
 
 .notification-buttons {
   display: flex;
-  grid-gap: 1rem;
+  gap: 1rem;
 }
 
 .notification-button {

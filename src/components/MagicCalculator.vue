@@ -415,7 +415,7 @@ function getSpellTargets(sideName: BattleSide) {
   display: grid;
   grid-auto-columns: max-content;
   grid-auto-flow: column;
-  grid-gap: 8px;
+  gap: 8px;
   justify-content: flex-end;
 
   & > div {

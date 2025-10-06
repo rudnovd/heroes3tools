@@ -409,7 +409,7 @@ function onSelectTerrain(terrain: Terrain | null) {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-auto-flow: column;
-  grid-gap: 8px;
+  gap: 8px;
 
   & > div {
     width: 64px;
