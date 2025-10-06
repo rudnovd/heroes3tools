@@ -181,12 +181,12 @@ const { t } = useI18n()
 .paramater-with-resources {
   display: flex;
   flex-wrap: wrap;
-  grid-gap: 8px;
+  gap: 8px;
   align-items: center;
 
   div {
     display: flex;
-    grid-gap: 4px;
+    gap: 4px;
     align-items: center;
   }
 

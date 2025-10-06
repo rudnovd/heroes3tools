@@ -189,7 +189,7 @@ function onSelectCreature(creature: Creature) {
 .towns-anchors {
   display: grid;
   grid-template-columns: repeat(4, 80px);
-  grid-gap: 5px;
+  gap: 5px;
 
   img {
     cursor: pointer;
