@@ -11,9 +11,9 @@
     </select>
 
     <slot />
-    <router-link to="send-error" class="send-error-link">
+    <a :href="selectedLocale === 'en' ? 'https://forms.gle/8Vy2Ssx42zhjvQJd9' : 'https://forms.gle/1sy4MzqqgHewsDUb9'" target="_blank" class="send-error-link">
       {{ t('components.pageFooter.foundAnError') }}
-    </router-link>
+    </a>
     <router-link to="#license">
       {{ t('components.pageFooter.licenseInformation') }}
     </router-link>

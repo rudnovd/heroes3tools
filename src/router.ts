@@ -36,7 +36,6 @@ const router = createRouter({
           name: 'creatures-library',
           component: () => import('@/views/CreaturesLibraryPage.vue'),
         },
-        { path: 'send-error', component: () => import('@/views/SendErrorPage.vue') },
         {
           path: `:locale(${AVAILABLE_LOCALES.join('|')})/:path(.*)`,
           redirect: to => to.path.replace(`/${to.params.locale}`, ''),
