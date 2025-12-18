@@ -33,7 +33,7 @@
       <template v-if="needRefresh">
         ❗
       </template>
-      {{ t('components.pageFooter.appVersion') }}: {{ appVersion }}
+      {{ t('components.pageFooter.appVersion') }}: 2.5.3
     </component>
 
     <div class="theme-switch" title="Toggle dark mode">
@@ -112,8 +112,6 @@ async function updatePage(event: Event) {
   selectedLocale.value = locale
   location.replace(location.origin)
 }
-
-const appVersion = import.meta.env.__APP_VERSION__
 </script>
 
 <style lang="scss">

@@ -1,6 +1,5 @@
 import type { VitePWAOptions } from 'vite-plugin-pwa'
 import path from 'node:path'
-import process from 'node:process'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import UnheadVite from '@unhead/addons/vite'
 import vue from '@vitejs/plugin-vue'
@@ -68,9 +67,6 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
-  },
-  define: {
-    'import.meta.env.__APP_VERSION__': JSON.stringify(process.env.npm_package_version),
   },
   server: {
     port: 5555,
