@@ -64,19 +64,12 @@ const notificationsButtons = computed(() => [
   {
     text: t('common.dismiss'),
     textColor: 'rgb(255, 255, 255)',
-    onClick: () => {
-      isNewVersionNotificationDisabled.value = true
-    },
+    onClick: () => { isNewVersionNotificationDisabled.value = true },
   },
   {
     text: t('common.update'),
-    attrs: {
-      'data-umami-event': `update service worker from version ${import.meta.env.__APP_VERSION__}`,
-    },
-    onClick: () => {
-      setTimeout(() => updateServiceWorker(true), 1000)
-    },
     textColor: 'rgb(255, 255, 255)',
+    onClick: () => { updateServiceWorker(true) },
   },
 ])
 
