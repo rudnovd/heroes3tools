@@ -3550,6 +3550,7 @@ export const creatures: Array<Creature> = [
     level: 1,
     ranged: true,
     shots: 24,
+    aiValue: 75,
     cost: {
       gold: 40,
     },
@@ -3571,6 +3572,7 @@ export const creatures: Array<Creature> = [
     level: 1,
     ranged: true,
     shots: 24,
+    aiValue: 95,
     cost: {
       gold: 65,
     },
@@ -3591,6 +3593,7 @@ export const creatures: Array<Creature> = [
     hits: 1,
     level: 2,
     ranged: false,
+    aiValue: 186,
     cost: {
       gold: 140,
     },
@@ -3611,6 +3614,7 @@ export const creatures: Array<Creature> = [
     hits: 1,
     level: 2,
     ranged: false,
+    aiValue: 278,
     cost: {
       gold: 170,
     },
@@ -3632,6 +3636,7 @@ export const creatures: Array<Creature> = [
     level: 3,
     hexes: 2,
     ranged: false,
+    aiValue: 198,
     cost: {
       gold: 200,
     },
@@ -3652,6 +3657,7 @@ export const creatures: Array<Creature> = [
     hits: 1,
     level: 3,
     ranged: false,
+    aiValue: 256,
     cost: {
       gold: 230,
     },
@@ -3671,6 +3677,7 @@ export const creatures: Array<Creature> = [
     hits: 1,
     level: 4,
     ranged: false,
+    aiValue: 669,
     cost: {
       gold: 350,
     },
@@ -3691,6 +3698,7 @@ export const creatures: Array<Creature> = [
     hits: 1,
     level: 4,
     ranged: false,
+    aiValue: 947,
     cost: {
       gold: 450,
     },
@@ -3715,6 +3723,7 @@ export const creatures: Array<Creature> = [
     hits: 1,
     level: 5,
     ranged: false,
+    aiValue: 991,
     cost: {
       gold: 575,
     },
@@ -3739,6 +3748,7 @@ export const creatures: Array<Creature> = [
     hits: 1,
     level: 5,
     ranged: false,
+    aiValue: 1220,
     cost: {
       gold: 650,
     },
@@ -3764,6 +3774,7 @@ export const creatures: Array<Creature> = [
     hits: 1,
     level: 6,
     ranged: true,
+    aiValue: 1351,
     cost: {
       gold: 800,
     },
@@ -3785,6 +3796,7 @@ export const creatures: Array<Creature> = [
     hits: 1,
     level: 6,
     ranged: true,
+    aiValue: 1454,
     cost: {
       gold: 1100,
     },
@@ -3806,6 +3818,7 @@ export const creatures: Array<Creature> = [
     hits: 1,
     level: 7,
     ranged: false,
+    aiValue: 3574,
     cost: {
       gold: 2000,
     },
@@ -3830,6 +3843,7 @@ export const creatures: Array<Creature> = [
     hits: 1,
     level: 7,
     ranged: false,
+    aiValue: 5341,
     cost: {
       gold: 3500,
       crystal: 1,
@@ -3855,6 +3869,7 @@ export const creatures: Array<Creature> = [
     hits: 1,
     level: 7,
     ranged: false,
+    aiValue: 3879,
     cost: {
       gold: 2200,
       crystal: 1,
@@ -3877,6 +3892,7 @@ export const creatures: Array<Creature> = [
     hits: 1,
     level: 7,
     ranged: false,
+    aiValue: 6433,
     cost: {
       gold: 3500,
       crystal: 2,
