@@ -177,4 +177,20 @@ export const classes: Array<Class> = [
     power: 1,
     knowledge: 1,
   },
+  {
+    id: 23,
+    name: 'Chieftain',
+    attack: 0,
+    defense: 4,
+    power: 1,
+    knowledge: 1,
+  },
+  {
+    id: 24,
+    name: 'Elder',
+    attack: 0,
+    defense: 1,
+    power: 1,
+    knowledge: 3,
+  },
 ]

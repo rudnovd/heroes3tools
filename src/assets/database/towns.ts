@@ -45,4 +45,8 @@ export const towns: Array<Town> = [
     id: 11,
     name: 'Factory',
   },
+  {
+    id: 12,
+    name: 'Bulwark',
+  },
 ]
