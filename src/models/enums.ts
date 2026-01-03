@@ -177,6 +177,20 @@ export enum Creatures {
   CrimsonCouatl,
   Dreadnought,
   Juggernaut,
+  Kobold,
+  KoboldForeman,
+  MountainRam,
+  Argali,
+  SnowElf,
+  SteelElf,
+  Yeti,
+  YetiRunemaster,
+  Shaman,
+  GreatShaman,
+  Mammoth,
+  WarMammoth,
+  Jotunn,
+  JotunnWarlord,
 }
 
 export enum Spells {
@@ -275,6 +289,8 @@ export enum Classes {
   Navigator,
   Artificer,
   Mercenary,
+  Chieftain,
+  Elder,
 }
 
 export enum Towns {
@@ -289,6 +305,7 @@ export enum Towns {
   Conflux,
   Cove,
   Factory,
+  Bulwark,
 }
 
 export enum Terrains {
@@ -517,6 +534,23 @@ export enum Heroes {
   Wrathmont,
   Wynona,
   Zilp,
+  Dhuin,
+  Oidana,
+  Neia,
+  Eikthum,
+  Creyle,
+  Spadum,
+  Kynr,
+  Ergon,
+  Kriv,
+  Glacius,
+  Sial,
+  Dalton,
+  Biarma,
+  Haugir,
+  Akka,
+  Vehr,
+  Allora,
 }
 
 export enum SkillLevels {

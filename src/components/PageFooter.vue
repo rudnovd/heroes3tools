@@ -24,7 +24,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
       Telegram version
     </a>
-    <span>{{ t('components.pageFooter.hotaVersion') }}: 1.7.2</span>
+    <span>{{ t('components.pageFooter.hotaVersion') }}: 1.8.0</span>
     <component
       :is="needRefresh ? 'button' : 'span'"
       :class="{ 'need-refresh': needRefresh }"
@@ -33,7 +33,7 @@
       <template v-if="needRefresh">
         ❗
       </template>
-      {{ t('components.pageFooter.appVersion') }}: 2.5.3
+      {{ t('components.pageFooter.appVersion') }}: 2.6.0
     </component>
 
     <div class="theme-switch" title="Toggle dark mode">

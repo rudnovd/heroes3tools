@@ -1723,4 +1723,170 @@ export const heroes: Array<Hero> = [
     specialtySpell: Spells.LightningBolt,
     classId: Classes.Artificer,
   },
+  {
+    id: 181,
+    name: 'Dhuin',
+    skills: {
+      archery: SkillLevels.Basic,
+      pathfinding: SkillLevels.Basic,
+    },
+    specialtyUnit: [Creatures.SnowElf, Creatures.SteelElf],
+    classId: Classes.Chieftain,
+  },
+  {
+    id: 182,
+    name: 'Oidana',
+    skills: {
+      archery: SkillLevels.Basic,
+      diplomacy: SkillLevels.Basic,
+    },
+    specialtySkill: SecondarySkills.Diplomacy,
+    classId: Classes.Chieftain,
+  },
+  {
+    id: 183,
+    name: 'Neia',
+    skills: {
+      archery: SkillLevels.Advanced,
+    },
+    specialtySkill: SecondarySkills.Archery,
+    classId: Classes.Chieftain,
+  },
+  {
+    id: 184,
+    name: 'Eikthurn',
+    skills: {
+      armorer: SkillLevels.Basic,
+      logistics: SkillLevels.Basic,
+    },
+    specialtyUnit: [Creatures.MountainRam, Creatures.Argali],
+    classId: Classes.Chieftain,
+  },
+  {
+    id: 185,
+    name: 'Creyle',
+    skills: {
+      armorer: SkillLevels.Advanced,
+    },
+    specialtyUnit: [Creatures.Mammoth, Creatures.WarMammoth],
+    classId: Classes.Chieftain,
+  },
+  {
+    id: 186,
+    name: 'Spadum',
+    skills: {
+      leadership: SkillLevels.Basic,
+      pathfinding: SkillLevels.Basic,
+    },
+    specialtyUnit: [Creatures.Yeti, Creatures.YetiRunemaster],
+    classId: Classes.Chieftain,
+  },
+  {
+    id: 187,
+    name: 'Kynr',
+    skills: {
+      estates: SkillLevels.Basic,
+      tactics: SkillLevels.Basic,
+    },
+    specialtyUnit: [Creatures.Kobold, Creatures.KoboldForeman],
+    classId: Classes.Chieftain,
+  },
+  {
+    id: 188,
+    name: 'Ergon',
+    skills: {
+      pathfinding: SkillLevels.Basic,
+      scholar: SkillLevels.Basic,
+    },
+    specialtySkill: SecondarySkills.Pathfinding,
+    classId: Classes.Chieftain,
+  },
+  {
+    id: 189,
+    name: 'Kriv',
+    skills: {
+      wisdom: SkillLevels.Advanced,
+    },
+    specialtyUnit: [Creatures.Shaman, Creatures.GreatShaman],
+    classId: Classes.Elder,
+  },
+  {
+    id: 190,
+    name: 'Glacius',
+    skills: {
+      learning: SkillLevels.Basic,
+      wisdom: SkillLevels.Basic,
+    },
+    specialtySpell: Spells.FrostRing,
+    classId: Classes.Elder,
+  },
+  {
+    id: 191,
+    name: 'Sial',
+    skills: {
+      intelligence: SkillLevels.Basic,
+      wisdom: SkillLevels.Basic,
+    },
+    specialtySpell: Spells.IceBolt,
+    classId: Classes.Elder,
+  },
+  {
+    id: 192,
+    name: 'Dalton',
+    skills: {
+      armorer: SkillLevels.Basic,
+      wisdom: SkillLevels.Basic,
+    },
+    specialtySpell: Spells.Shield,
+    classId: Classes.Elder,
+  },
+  {
+    id: 193,
+    name: 'Biarma',
+    skills: {
+      firstAid: SkillLevels.Basic,
+      wisdom: SkillLevels.Basic,
+    },
+    specialtySkill: SecondarySkills.FirstAid,
+    classId: Classes.Elder,
+  },
+  {
+    id: 194,
+    name: 'Haugir',
+    skills: {
+      navigation: SkillLevels.Basic,
+      wisdom: SkillLevels.Basic,
+    },
+    specialtySkill: SecondarySkills.Navigation,
+    classId: Classes.Elder,
+  },
+  {
+    id: 195,
+    name: 'Akka',
+    skills: {
+      mysticism: SkillLevels.Basic,
+      wisdom: SkillLevels.Basic,
+    },
+    specialtySpell: Spells.Bloodlust,
+    classId: Classes.Elder,
+  },
+  {
+    id: 196,
+    name: 'Vehr',
+    skills: {
+      eagleEye: SkillLevels.Basic,
+      wisdom: SkillLevels.Basic,
+    },
+    classId: Classes.Elder,
+  },
+  {
+    id: 197,
+    name: 'Allora',
+    skills: {
+      sorcery: SkillLevels.Basic,
+      wisdom: SkillLevels.Basic,
+    },
+    specialtySkill: SecondarySkills.Sorcery,
+    classId: Classes.Elder,
+  },
 ]
