@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/rudnovd/heroes3tools/compare/v2.5.3...v2.6.0) (2026-01-03)
+
+
+### Features
+
+* apply HotA 1.8.0 changes ([90b87cc](https://github.com/rudnovd/heroes3tools/commit/90b87cc075169ae3d9a50d20ff60fd38473783e2))
+* **creatures:** add Wasteland ai values ([c22f32a](https://github.com/rudnovd/heroes3tools/commit/c22f32a9a664f7e4054eb29eaee0e17ae45ab3e7))
+
 ### [2.5.3](https://github.com/rudnovd/heroes3tools/compare/v2.5.2...v2.5.3) (2025-10-06)
 
 ### [2.5.2](https://github.com/rudnovd/heroes3tools/compare/v2.5.1...v2.5.2) (2025-07-28)
