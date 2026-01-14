@@ -24,18 +24,15 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
       Telegram version
     </a>
-    <span>{{ t('components.pageFooter.hotaVersion') }}: 1.8.0</span>
-    <component
-      :is="needRefresh ? 'button' : 'span'"
-      :class="{ 'need-refresh': needRefresh }"
-      @click="activateNewVersionNotification"
-    >
-      <template v-if="needRefresh">
-        ❗
-      </template>
-      {{ t('components.pageFooter.appVersion') }}: 2.6.0
-    </component>
-
+    <a :href="hotaChangelogLink" target="_blank" rel="noopener">
+      {{ t('components.pageFooter.hotaVersion') }}: 1.8.0
+    </a>
+    <button v-if="needRefresh" class="need-refresh" @click="activateNewVersionNotification">
+      ❗ {{ appVersion }}
+    </button>
+    <a v-else href="https://github.com/rudnovd/heroes3tools/blob/master/CHANGELOG.md" target="_blank" rel="noopener">
+      {{ appVersion }}
+    </a>
     <div class="theme-switch" title="Toggle dark mode">
       <input id="mode-input" type="checkbox" :value="isDark" @change="isDark = !isDark">
       <label for="mode-input">
@@ -96,10 +93,8 @@ const initialPath = route.path
 const needRefresh = inject('needRefresh', ref(false))
 const isNewVersionNotificationActive = inject('isNewVersionNotificationActive', ref(false))
 function activateNewVersionNotification() {
-  if (needRefresh.value) {
-    isNewVersionNotificationDisabled.value = false
-    isNewVersionNotificationActive.value = true
-  }
+  isNewVersionNotificationDisabled.value = false
+  isNewVersionNotificationActive.value = true
 }
 
 const locales: ReadonlyArray<{ name: AvailableLocale, value: string }> = [
@@ -112,6 +107,8 @@ async function updatePage(event: Event) {
   selectedLocale.value = locale
   location.replace(location.origin)
 }
+const appVersion = `${t('components.pageFooter.appVersion')}: 2.6.0`
+const hotaChangelogLink = `https://download.h3hota.com/upd/changelogs/${selectedLocale.value === 'ru' ? 'rus' : 'eng'}.txt`
 </script>
 
 <style lang="scss">
