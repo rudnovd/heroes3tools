@@ -936,7 +936,6 @@ export const creatures: Array<CreatureTranslation> = [
   {
     id: 181,
     name: 'Горный Баран',
-    description: 'Приносит 1 золото в день',
   },
   {
     id: 182,
