@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.0](https://github.com/rudnovd/heroes3tools/compare/v2.6.0...v2.8.0) (2026-02-22)
+
+
+### Features
+
+* **PageFooter:** add changelog links ([32d929c](https://github.com/rudnovd/heroes3tools/commit/32d929cd3c69c89acc227c0016fd1215ac5499cf))
+
+
+### Bug Fixes
+
+* **heroes:** fix Anabel specialty units ([6e59638](https://github.com/rudnovd/heroes3tools/commit/6e59638f3d0920684023f8afba4147e7b359ff40))
+* **locales:** fix creature description ([c715b0a](https://github.com/rudnovd/heroes3tools/commit/c715b0a1f4a294e8ae0914d7cb55dea1e776c4b9))
+
 ## [2.7.0](https://github.com/rudnovd/heroes3tools/compare/v2.6.0...v2.7.0) (2026-01-14)
 
 
