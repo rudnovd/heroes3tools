@@ -1443,7 +1443,7 @@ export const heroes: Array<Hero> = [
       offense: SkillLevels.Basic,
       archery: SkillLevels.Basic,
     },
-    specialtyUnit: [Creatures.Pirate, Creatures.Corsair, Creatures.Pirate],
+    specialtyUnit: [Creatures.Pirate, Creatures.Corsair, Creatures.SeaDog],
   },
   {
     id: 152,
