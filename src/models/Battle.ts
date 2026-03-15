@@ -186,7 +186,7 @@ export class Battle {
   }
 
   private calculateWithHeroModifiers(hero: HeroInstance, target: CreatureInstance) {
-    if (hero.specialtySpell && target.effects.find(({ id }) => id === hero.specialtySpell))
+    if (hero.specialtySpell && target.effects.some(({ id }) => id === hero.specialtySpell))
       target = Modificators.heroSpecialtySpell(hero, target)
 
     target = Modificators.hero(hero, target)
@@ -217,7 +217,7 @@ export class Battle {
   private calculateWithPositiveEffects(attacker: DamageCalculatorBattleSide, target: CreatureInstance) {
     if (!target.effects.length)
       return target
-    else if (target.effects.find(effect => effect.id === Spells.AntiMagic))
+    else if (target.effects.some(effect => effect.id === Spells.AntiMagic))
       return target
 
     // Check for creature spell immunity
@@ -261,16 +261,16 @@ export class Battle {
     ]
 
     positiveEffects.forEach((effect) => {
-      if (target.effects.find(creatureEffect => creatureEffect.id === effect.id)) {
+      if (target.effects.some(creatureEffect => creatureEffect.id === effect.id)) {
         target = effect.effectFunction(attacker, target)
       }
     })
 
-    if (target.effects.find(effect => effect.id === Spells.Slayer)) {
+    if (target.effects.some(effect => effect.id === Spells.Slayer)) {
       target = Effects.slayer(attacker, this.defender, target)
     }
 
-    if (target.effects.find(effect => effect.id === Spells.AirShield)) {
+    if (target.effects.some(effect => effect.id === Spells.AirShield)) {
       target = Effects.airShield(attacker, this.defender, target)
     }
 
@@ -297,7 +297,7 @@ export class Battle {
     ]
 
     negativeEffects.forEach((effect) => {
-      if (target.effects.find(creatureEffect => creatureEffect.id === effect.id)) {
+      if (target.effects.some(creatureEffect => creatureEffect.id === effect.id)) {
         target = effect.effectFunction(attacker, target)
       }
     })
@@ -363,7 +363,7 @@ export class Battle {
    */
   private hasSpellImmunity(target: CreatureInstance, spell: Spell): boolean {
     // If creature with Antimagic effect spell
-    if (target.effects.find(effect => effect.id === Spells.AntiMagic))
+    if (target.effects.some(effect => effect.id === Spells.AntiMagic))
       return true
 
     // Creatures with full magic immunity
@@ -419,7 +419,7 @@ export class Battle {
 
       const effects = target.effects.filter(effect => protectionsIds.includes(effect.id))
 
-      if (effects.find((effect: Spell) => effect.element.id === spell.element.id)) {
+      if (effects.some((effect: Spell) => effect.element.id === spell.element.id)) {
         const schoolLevel = defender.hero?.skills[spell.element.id] || 0
         damage -= schoolLevel > 1 ? damage * 0.75 : damage * 0.5
       }

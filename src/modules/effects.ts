@@ -10,7 +10,7 @@ export const Effects = {
         return false
 
       // if target has Anti Magic effect
-      if (target.effects.find(effect => effect.id === Spells.AntiMagic))
+      if (target.effects.some(effect => effect.id === Spells.AntiMagic))
         return false
 
       // if target has immunity to effect
@@ -221,7 +221,7 @@ export const Effects = {
       }
     }
 
-    if (defender.creatures.find(defenderCreature => slayerCreatures.includes(defenderCreature.id))) {
+    if (defender.creatures.some(defenderCreature => slayerCreatures.includes(defenderCreature.id))) {
       attack += 8
     }
 

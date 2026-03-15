@@ -15,6 +15,7 @@ export async function loadLocaleMessages(locale: string) {
 
 export function getBrowserLanguage(): AvailableLocale {
   // get first language code (e.g. get 'en' from en-US)
+  // eslint-disable-next-line e18e/prefer-static-regex
   const browserLanguage = navigator.language.trim().split(/-|_/)[0]
   if (AVAILABLE_LOCALES.includes(browserLanguage as AvailableLocale)) {
     return browserLanguage as AvailableLocale
