@@ -187,13 +187,15 @@ const spells = computed(() => {
   ]
   return store.spells.filter(spell => allowedSpells.includes(spell.id))
 })
+type SpellSkills = 'air' | 'earth' | 'fire' | 'water' | 'sorcery' | 'interference'
 const skills = computed(() => {
-  const skills = {
+  const skills: Record<SpellSkills, string> = {
     air: '',
     earth: '',
     fire: '',
     water: '',
     sorcery: '',
+    interference: '',
   }
   const magicSkillsIds = [
     SecondarySkills.FireMagic,
@@ -203,7 +205,7 @@ const skills = computed(() => {
     SecondarySkills.WaterMagic,
     SecondarySkills.Interference,
   ]
-  const skillsNames = ['air', 'earth', 'fire', 'sorcery', 'water', 'interference']
+  const skillsNames: Array<SpellSkills> = ['air', 'earth', 'fire', 'sorcery', 'water', 'interference']
   store.skills
     .filter(skill => magicSkillsIds.includes(skill.id))
     .forEach((skill, index) => { skills[skillsNames[index]] = skill.name })
@@ -295,10 +297,10 @@ function calculateSpell(sideName: BattleSide, spell: Spell) {
 
   if (spellsTargets.all.includes(spell.id)) {
     spellDamages.value[sideName] = battle.cast(attacker, defender, defender.activeCreature, spell)
-    spellDamages.value[oppositeSide] = battle.cast(defender, attacker, battle[sideName as string].activeCreature, spell)
+    spellDamages.value[oppositeSide] = battle.cast(defender, attacker, battle[sideName].activeCreature!, spell)
   }
   else if (spellsTargets.self.includes(spell.id)) {
-    spellDamages.value[sideName] = battle.cast(attacker, attacker, battle[sideName as string].activeCreature, spell)
+    spellDamages.value[sideName] = battle.cast(attacker, attacker, battle[sideName].activeCreature!, spell)
   }
   else {
     spellDamages.value[sideName] = battle.cast(attacker, defender, defender.activeCreature, spell)

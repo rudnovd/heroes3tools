@@ -169,6 +169,7 @@ const battle = reactive(props.battleValue)
 const heroes = computed(() => store.heroes)
 const terrains = computed(() => store.terrains)
 const levels = computed(() => store.levels)
+type SecondarySkillKey = 'air' | 'archery' | 'armorer' | 'artillery' | 'earth' | 'fire' | 'offense' | 'water'
 const skills = computed(() => {
   const damageCalculatorSkillsIds = [
     SecondarySkills.Offense,
@@ -180,8 +181,8 @@ const skills = computed(() => {
     SecondarySkills.Artillery,
     SecondarySkills.WaterMagic,
   ]
-  const damageCalculatorSkills = ['air', 'archery', 'armorer', 'artillery', 'earth', 'fire', 'offense', 'water']
-  const skills = {}
+  const damageCalculatorSkills: SecondarySkillKey[] = ['air', 'archery', 'armorer', 'artillery', 'earth', 'fire', 'offense', 'water']
+  const skills: Record<SecondarySkillKey, string> = {} as Record<SecondarySkillKey, string>
   store.skills
     .filter(skill => damageCalculatorSkillsIds.includes(skill.id))
     .forEach((skill, index) => { skills[damageCalculatorSkills[index]] = skill.name })

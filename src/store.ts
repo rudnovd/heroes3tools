@@ -58,10 +58,10 @@ export const useStore = defineStore('data', {
   },
   actions: {
     loadData(locale = 'en') {
-      const tables = ['classes', 'creatures', 'heroes', 'skills', 'levels', 'terrains', 'spells', 'towns']
+      const tables: Array<Exclude<keyof StoreState, 'isDataLoaded'>> = ['classes', 'creatures', 'heroes', 'skills', 'levels', 'terrains', 'spells', 'towns']
 
       // dynamic load data modules
-      const promises = tables.map(async (table: string) => {
+      const promises = tables.map(async (table: Exclude<keyof StoreState, 'isDataLoaded'>) => {
         // load original data if this not exist in store
         if (!this[table].length || locale === 'en') {
           const originalData = await import(`./assets/database/${table}.ts`)

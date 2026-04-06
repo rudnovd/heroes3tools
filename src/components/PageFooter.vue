@@ -11,8 +11,11 @@
     </select>
 
     <slot />
-    <a :href="selectedLocale === 'en' ? 'https://forms.gle/8Vy2Ssx42zhjvQJd9' : 'https://forms.gle/1sy4MzqqgHewsDUb9'" target="_blank" class="send-error-link">
+    <a :href="selectedLocale === 'en' ? 'https://forms.gle/8Vy2Ssx42zhjvQJd9' : 'https://forms.gle/1sy4MzqqgHewsDUb9'" target="_blank" class="send-error-link" rel="noopener">
       {{ t('components.pageFooter.foundAnError') }}
+    </a>
+    <a href="https://t.me/heroes3tools?direct" target="_blank" rel="noopener">
+      {{ t('components.pageFooter.feedback') }}
     </a>
     <router-link to="#license">
       {{ t('components.pageFooter.licenseInformation') }}

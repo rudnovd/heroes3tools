@@ -170,7 +170,7 @@ export class Battle {
     attackerCopy = this.getStatsReducing(attackerCopy, defenderCopy)
     defenderCopy = this.getStatsReducing(defenderCopy, attackerCopy)
 
-    damage = spellsFunctionsMap[spell.id](attackerCopy)
+    damage = spellsFunctionsMap[spell.id as keyof typeof spellsFunctionsMap](attackerCopy)
 
     damage = this.calculateSpellBonuses(attackerCopy, target, spell, damage)
     damage = this.calculateSpellSpecialtyBonus(attackerCopy, target, spell, damage)

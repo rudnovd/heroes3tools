@@ -9,7 +9,7 @@
         {{ creature.name }}
       </div>
 
-      <div v-for="parameter in ['attack', 'defense', 'health', 'speed']" :key="parameter" class="parameter">
+      <div v-for="parameter of parameters" :key="parameter" class="parameter">
         <span>{{ t(`data.${parameter}`) }}:</span>
         <span>{{ creature[parameter] }}</span>
       </div>
@@ -58,6 +58,8 @@ defineProps<{ creature: Creature }>()
 const emit = defineEmits<{ click: [creature: Creature] }>()
 
 const { t } = useI18n()
+type CreatureParameter = 'attack' | 'defense' | 'health' | 'speed'
+const parameters: Array<CreatureParameter> = ['attack', 'defense', 'health', 'speed']
 </script>
 
 <style lang="scss" scoped>
