@@ -11,31 +11,37 @@
     </select>
 
     <slot />
-    <a :href="selectedLocale === 'en' ? 'https://forms.gle/8Vy2Ssx42zhjvQJd9' : 'https://forms.gle/1sy4MzqqgHewsDUb9'" target="_blank" class="send-error-link" rel="noopener">
+    <ExternalLink
+      :href="selectedLocale === 'en' ? 'https://forms.gle/8Vy2Ssx42zhjvQJd9' : 'https://forms.gle/1sy4MzqqgHewsDUb9'"
+      class="send-error-link"
+    >
       {{ t('components.pageFooter.foundAnError') }}
-    </a>
-    <a href="https://t.me/heroes3tools?direct" target="_blank" rel="noopener">
+    </ExternalLink>
+    <ExternalLink href="https://t.me/heroes3tools?direct">
       {{ t('components.pageFooter.feedback') }}
-    </a>
+    </ExternalLink>
     <router-link to="#license">
       {{ t('components.pageFooter.licenseInformation') }}
     </router-link>
-    <a href="https://github.com/rudnovd/heroes3tools" target="_blank" rel="noopener">
+    <ExternalLink href="https://github.com/rudnovd/heroes3tools">
       🌟{{ t('components.pageFooter.sourceCode') }}
-    </a>
-    <a href="https://t.me/heroes3toolsbot" class="telegram-link" target="_blank" rel="noopener">
+    </ExternalLink>
+    <ExternalLink href="https://github.com/rudnovd/heroes3tools/releases">
+      {{ t('components.pageFooter.downloadOfflineVersion') }}
+    </ExternalLink>
+    <ExternalLink href="https://t.me/heroes3toolsbot" class="telegram-link">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
       Telegram version
-    </a>
-    <a :href="hotaChangelogLink" target="_blank" rel="noopener">
+    </ExternalLink>
+    <ExternalLink :href="hotaChangelogLink">
       {{ t('components.pageFooter.hotaVersion') }}: 1.8.0
-    </a>
+    </ExternalLink>
     <button v-if="needRefresh" class="need-refresh" @click="activateNewVersionNotification">
       ❗ {{ appVersion }}
     </button>
-    <a v-else href="https://github.com/rudnovd/heroes3tools/blob/master/CHANGELOG.md" target="_blank" rel="noopener">
+    <ExternalLink v-else href="https://github.com/rudnovd/heroes3tools/blob/master/CHANGELOG.md">
       {{ appVersion }}
-    </a>
+    </ExternalLink>
     <div class="theme-switch" title="Toggle dark mode">
       <input id="mode-input" type="checkbox" :value="isDark" @change="isDark = !isDark">
       <label for="mode-input">
@@ -75,6 +81,7 @@ import { defineAsyncComponent, inject, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
+import ExternalLink from './ExternalLink.vue'
 
 withDefaults(
   defineProps<{

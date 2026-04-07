@@ -1,7 +1,6 @@
-/// <reference types="vite/client" />
-
 interface ImportMetaEnv {
   VITE_APP_TITLE: string
+  IS_TAURI_BUILD: string
 }
 
 interface ImportMeta {

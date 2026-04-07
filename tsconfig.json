@@ -13,5 +13,6 @@
     "verbatimModuleSyntax": true,
     "skipLibCheck": true
   },
+  "references": [{ "path": "./tsconfig.node.json" }],
   "include": ["src/**/*.ts", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.spec.ts"]
 }
