@@ -1,5 +1,7 @@
 import type { VitePWAOptions } from 'vite-plugin-pwa'
 import path from 'node:path'
+import process from 'node:process'
+import { fileURLToPath } from 'node:url'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import UnheadVite from '@unhead/addons/vite'
 import vue from '@vitejs/plugin-vue'
@@ -7,6 +9,7 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 const pwaOptions: Partial<VitePWAOptions> = {
+  disable: process.env.IS_TAURI_BUILD === 'true',
   base: '/',
   includeAssets: [
     'favicon.svg',
@@ -55,6 +58,8 @@ const pwaOptions: Partial<VitePWAOptions> = {
   },
 }
 
+const host = process.env.TAURI_DEV_HOST
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -65,10 +70,23 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@': fileURLToPath(new URL('src', import.meta.url)),
     },
   },
+  clearScreen: false, // prevent Vite from obscuring rust errors
   server: {
-    port: 5555,
+    port: 1420,
+    strictPort: true,
+    host: host || false,
+    hmr: host
+      ? {
+          protocol: 'ws',
+          host,
+          port: 1421,
+        }
+      : undefined,
+    watch: {
+      ignored: ['**/src-tauri/**'],
+    },
   },
 })
