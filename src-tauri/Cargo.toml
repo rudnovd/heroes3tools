@@ -1,6 +1,6 @@
 [package]
 name = "heroes3tools"
-version = "0.1.0"
+version = "2.9.0"
 description = "Heroes 3 tools Tauri"
 authors = ["rudnovd"]
 license = "MIT"

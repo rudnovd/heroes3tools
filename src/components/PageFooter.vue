@@ -117,7 +117,7 @@ async function updatePage(event: Event) {
   selectedLocale.value = locale
   location.replace(location.origin)
 }
-const appVersion = `${t('components.pageFooter.appVersion')}: 2.8.0`
+const appVersion = `${t('components.pageFooter.appVersion')}: 2.9.0`
 const hotaChangelogLink = `https://download.h3hota.com/upd/changelogs/${selectedLocale.value === 'ru' ? 'rus' : 'eng'}.txt`
 </script>
 
