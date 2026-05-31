@@ -9,5 +9,5 @@ export default antfu({
     }],
     'vue/block-order': ['error', { order: ['template', 'script', 'style'] }],
   },
-  ignores: ['*.md'],
+  ignores: ['*.md', 'src-tauri'],
 })
