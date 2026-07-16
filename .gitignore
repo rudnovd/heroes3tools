@@ -23,5 +23,3 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
-
-localazy.keys.json
