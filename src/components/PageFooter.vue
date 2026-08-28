@@ -28,7 +28,7 @@
       {{ t('components.pageFooter.downloadOfflineVersion') }}
     </ExternalLink>
     <ExternalLink :href="hotaChangelogLink">
-      {{ t('components.pageFooter.hotaVersion') }}: 1.8.0
+      {{ t('components.pageFooter.hotaVersion') }}: 1.8.1
     </ExternalLink>
     <button v-if="needRefresh" class="need-refresh" @click="activateNewVersionNotification">
       ❗ {{ appVersion }}

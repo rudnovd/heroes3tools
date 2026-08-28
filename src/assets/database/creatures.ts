@@ -4159,7 +4159,7 @@ export const creatures: Array<Creature> = [
     hits: 1,
     level: 6,
     ranged: false,
-    aiValue: 1601,
+    aiValue: 1672,
     cost: {
       gold: 1000,
     },
