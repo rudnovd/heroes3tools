@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.10.0](https://github.com/rudnovd/heroes3tools/compare/v2.9.0...v2.10.0) (2026-08-28)
+
+
+### Features
+
+* add typed-router, update unhead ([7cf4216](https://github.com/rudnovd/heroes3tools/commit/7cf42169a1d18602159b911159aa664e4c3b4cd0))
+* apply HotA 1.8.1 changes ([74ab6ef](https://github.com/rudnovd/heroes3tools/commit/74ab6efd70fe902a56910b6f39255fe86b1b552c))
+* **PageFooter:** get app version from package ([7703a82](https://github.com/rudnovd/heroes3tools/commit/7703a82116e6916068f8f5c99b7d49cc454b0fce))
+* **PageFooter:** update link to release ([75e5d96](https://github.com/rudnovd/heroes3tools/commit/75e5d9651d35441b6ef40da4b6890fe0e269d1f9))
+
 ## [2.9.0](https://github.com/rudnovd/heroes3tools/compare/v2.8.0...v2.9.0) (2026-04-07)
 
 ## [2.8.0](https://github.com/rudnovd/heroes3tools/compare/v2.6.0...v2.8.0) (2026-02-22)
