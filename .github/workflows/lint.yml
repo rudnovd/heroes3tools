@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   lint:
-    if: "!startsWith(github.event.head_commit.message, 'chore(main): release')"
+    if: "!startsWith(github.event.head_commit.message, 'chore(master): release')"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
