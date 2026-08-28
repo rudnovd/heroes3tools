@@ -1,3 +1,5 @@
 {
-  "target": "semver"
+  "$schema": "https://raw.githubusercontent.com/raineorshine/npm-check-updates/main/src/types/RunOptions.json",
+  "target": "semver",
+  "cooldown": "7d"
 }

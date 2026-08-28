@@ -1,20 +1,7 @@
-minimumReleaseAgeExclude:
-  - '@vue/compiler-core@3.5.40'
-  - '@vue/compiler-dom@3.5.40'
-  - '@vue/compiler-sfc@3.5.40'
-  - '@vue/compiler-ssr@3.5.40'
-  - '@vue/reactivity@3.5.40'
-  - '@vue/runtime-core@3.5.40'
-  - '@vue/runtime-dom@3.5.40'
-  - '@vue/server-renderer@3.5.40'
-  - '@vue/shared@3.5.40'
-  - vite@8.1.5
-  - vue-router@5.2.0
-  - vue@3.5.40
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+minimumReleaseAge: 10080
 shellEmulator: true
 
-trustPolicy: no-downgrade
-
-allowBuilds:
-  '@parcel/watcher': false
-  esbuild: false
+trustPolicy: off

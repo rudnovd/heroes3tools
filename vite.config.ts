@@ -1,5 +1,4 @@
 import type { VitePWAOptions } from 'vite-plugin-pwa'
-import path from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
@@ -65,7 +64,7 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA(pwaOptions),
-    VueI18nPlugin({ include: path.resolve(__dirname, './src/locales/*.json') }),
+    VueI18nPlugin({ include: fileURLToPath(new URL('locales/*.json', import.meta.url)) }),
     UnheadVite(),
   ],
   resolve: {
