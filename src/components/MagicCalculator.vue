@@ -336,139 +336,113 @@ function getSpellTargets(sideName: BattleSide) {
 
 <style lang="scss" scoped>
 @use '@/styles/mixins';
-
 .magic-calculator {
   display: grid;
   grid-template-rows: minmax(50vh, 1fr) 1fr;
   grid-template-columns: 100%;
   contain-intrinsic-size: 80vh;
   content-visibility: auto;
-  box-shadow: 0 0 3px rgba(170, 170, 170, 0.5);
-
+  box-shadow: 0 0 3px rgb(170 170 170 / 50%);
   @include mixins.media-large {
     grid-template-rows: minmax(80vh, auto);
     grid-template-columns: 50% 50%;
   }
-
   @include mixins.media-maximum {
     grid-template-rows: minmax(84vh, auto);
   }
 }
-
 .attacker,
 .defender {
   display: grid;
   grid-template-rows: repeat(5, min-content) auto;
   gap: 1rem;
   padding: 10px;
-
   @include mixins.media-large {
     padding: 20px;
   }
 }
-
 .title {
   display: grid;
   grid-template-areas: 'title button';
   column-gap: 0.5rem;
   align-items: center;
-
   & > h2 {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 }
-
 .main {
   display: grid;
   column-gap: 0.5rem;
 }
-
 .creature {
   display: grid;
   gap: 0.5rem;
-
   .creature-input {
     width: 65px;
     height: 32px;
   }
 }
-
 .hero {
   display: grid;
   grid-template-columns: auto;
   grid-auto-rows: auto auto;
   gap: 1rem;
 }
-
 .skills {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem 0;
-
   @include mixins.media-medium {
     grid-template-columns: 1fr 1fr;
-    gap: 1rem 1rem;
+    gap: 1rem;
   }
 }
-
 .hero-parameters {
   display: grid;
   grid-auto-columns: max-content;
   grid-auto-flow: column;
   gap: 8px;
   justify-content: flex-end;
-
   & > div {
     width: 100px;
   }
-
   .parameter-attack {
     margin-left: auto;
   }
 }
-
 .spell {
   display: grid;
   grid-template-areas: 'target select';
   grid-template-columns: minmax(auto, 40%) 1fr;
   gap: 8px;
   align-items: center;
-
   div:nth-child(1) {
     font-size: 0.9rem;
   }
 }
-
 .spells-effects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 8px;
-
   & > span {
-    grid-column-start: 1;
-    grid-column-end: -1;
+    grid-column: 1 / -1;
   }
 }
-
 .attacker {
   border-bottom: 1px solid var(--color-border);
-
   @include mixins.media-large {
     border-right: 1px solid var(--color-border);
     border-bottom: 0;
   }
-
   .title {
     grid-template-columns: minmax(auto, 40%) 1fr;
   }
-
   .main {
     grid-template-columns: minmax(auto, 40%) 1fr;
   }
 }
-
 .defender {
   .title {
     grid-template-areas: 'button title';
@@ -478,34 +452,27 @@ function getSpellTargets(sideName: BattleSide) {
     grid-area: title;
     text-align: right;
   }
-
   .main {
     grid-template-areas: 'hero creature';
     grid-template-columns: auto minmax(auto, 40%);
   }
-
   .creature {
     grid-area: creature;
     justify-content: end;
   }
-
   .spell {
     grid-template-columns: 1fr minmax(auto, 40%);
-
     div:nth-child(1) {
       grid-area: select;
     }
-
     div:nth-child(2) {
       grid-area: target;
     }
   }
-
   .hero-parameters {
     justify-content: flex-start;
   }
 }
-
 .creature-button {
   position: relative;
   z-index: 1;
@@ -514,7 +481,6 @@ function getSpellTargets(sideName: BattleSide) {
   height: 64px;
   padding: 0;
   overflow: hidden;
-
   &::after {
     position: absolute;
     top: -50%;
@@ -522,25 +488,21 @@ function getSpellTargets(sideName: BattleSide) {
     z-index: -1;
     width: 1.25em;
     content: '';
-    background-color: hsla(0, 0%, 100%, 0.2);
+    background-color: hsl(0deg 0% 100% / 20%);
     transform: translate3d(-525%, 0, 0) rotate(35deg);
   }
-
   &:hover::after {
     transform: translate3d(200%, 0, 0) rotate(35deg);
     transition: transform 0.45s ease-in-out;
   }
 }
-
 .creature-img {
   position: relative;
   z-index: -1;
 }
-
 .unit-effect-checkbox {
   margin-bottom: 1rem;
 }
-
 .select-skill-buttons {
   @include mixins.media-large {
     &:nth-child(even) {
@@ -548,7 +510,6 @@ function getSpellTargets(sideName: BattleSide) {
     }
   }
 }
-
 .damage {
   display: flex;
   flex-direction: column;
@@ -558,7 +519,6 @@ function getSpellTargets(sideName: BattleSide) {
   font-size: 1.2rem;
   text-align: right;
 }
-
 .stat-name {
   display: block;
   margin-bottom: 10px;

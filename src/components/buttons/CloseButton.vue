@@ -17,7 +17,6 @@ const emit = defineEmits<{ click: [] }>()
   background-color: var(--color-text);
   opacity: 0.3;
 }
-
 .cross-first-line {
   top: 50%;
   left: 0;
@@ -25,7 +24,6 @@ const emit = defineEmits<{ click: [] }>()
   height: v-bind(width);
   transform: translate(0%, -50%) rotate(45deg);
 }
-
 .cross-second-line {
   top: 0;
   left: 50%;
@@ -40,12 +38,10 @@ const emit = defineEmits<{ click: [] }>()
   cursor: pointer;
   background-color: transparent;
   border-color: transparent;
-
   &:hover .cross-first-line,
   &:hover .cross-second-line {
     opacity: 0.7;
   }
-
   &:active .cross-first-line,
   &:active .cross-second-line {
     transform: rotate(55deg);

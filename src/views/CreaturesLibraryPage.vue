@@ -136,7 +136,6 @@ function onSelectCreature(creature: Creature) {
 
 <style lang="scss">
 @use '@/styles/mixins';
-
 .creatures-library-page {
   min-width: 320px;
   max-width: 1920px;
@@ -144,21 +143,17 @@ function onSelectCreature(creature: Creature) {
   padding: 0 8px 16px;
   margin: 0 auto;
   content-visibility: auto;
-
   @include mixins.media-medium {
     padding: 0 24px 16px;
   }
 }
-
 .library-header {
   display: flex;
   flex-direction: row;
 }
-
 .search-creature {
   position: fixed;
   right: 16px;
-
   input {
     width: 120px;
     height: 32px;
@@ -175,58 +170,47 @@ function onSelectCreature(creature: Creature) {
       color 0.2s linear,
       background-color 0.2s linear,
       border 0.2s linear;
-
     &:hover {
       opacity: 1;
     }
-
     @include mixins.media-medium {
       width: 170px;
     }
   }
 }
-
 .towns-anchors {
   display: grid;
   grid-template-columns: repeat(4, 80px);
   gap: 5px;
-
   img {
     cursor: pointer;
-
     &:hover {
       filter: contrast(110%);
     }
   }
 }
-
 .town {
   display: grid;
   grid-template-columns: 100%;
   margin-bottom: 3rem;
-
   &:nth-last-child(-n + 2) {
     margin-bottom: 0;
   }
-
   @include mixins.media-medium {
     grid-template-columns: 1fr 1fr;
   }
 }
-
 .town-name {
   grid-column: 1 / -1;
   margin-bottom: 1rem;
   text-align: center;
 }
-
 .creature-card {
   &:nth-child(2),
   &:nth-child(3) {
     border-top: 1px solid var(--color-text);
   }
 }
-
 @include mixins.dark-scheme {
   .creature-card {
     &:nth-child(2),

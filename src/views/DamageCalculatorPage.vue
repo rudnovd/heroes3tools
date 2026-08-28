@@ -200,29 +200,24 @@ function deleteCalculator(index: number) {
 
 <style lang="scss" scoped>
 @use '@/styles/mixins';
-
 .damage-calculator-page {
   display: grid;
   min-width: 300px;
   max-width: 1920px;
   padding: 0 8px;
   margin: 0 auto;
-
   @include mixins.media-medium {
     padding: 0 24px;
   }
 }
-
 .calculator-change-tab-enter-active,
 .calculator-change-tab-leave-active {
   transition: blur 0.2s ease;
 }
-
 .calculator-change-tab-enter-from,
 .calculator-change-tab-enter-to {
   display: none;
 }
-
 .calculator-change-tab-leave-from,
 .calculator-change-tab-leave-to {
   filter: blur(1px);

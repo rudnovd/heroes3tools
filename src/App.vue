@@ -94,7 +94,6 @@ header {
   padding-left: 5px;
   margin-bottom: 0.5rem;
 }
-
 .return-home {
   display: inline-flex;
   align-items: center;
@@ -103,33 +102,27 @@ header {
   text-decoration: none;
   opacity: 0.7;
   transition: opacity 0.15s;
-
   &:hover {
     opacity: 1;
   }
-
   &::before {
     width: 2rem;
     height: 2rem;
     background: url('@/assets/icons/arrow_back.svg');
   }
 }
-
 .router-enter-active,
 .router-leave-active {
   transition: opacity 0.25s ease;
 }
-
 .router-enter-from,
 .router-leave-to {
   opacity: 0;
 }
-
 .router-link-enter-from,
 .router-link-leave-to {
   display: none;
 }
-
 @include mixins.dark-scheme {
   .return-home {
     img {

@@ -152,7 +152,6 @@ function onClose() {
 
 <style lang="scss" scoped>
 @use '@/styles/mixins';
-
 .units-modal-content {
   flex-direction: column;
   width: 100%;
@@ -161,7 +160,6 @@ function onClose() {
   user-select: none;
   background-clip: padding-box;
 }
-
 .search-input {
   padding: 0.25rem 0.5rem;
   font-family: inherit;
@@ -177,28 +175,22 @@ function onClose() {
     background-color 0.2s linear,
     border 0.2s linear;
 }
-
 .units {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   background-color: var(--color-bg-deep);
 }
-
 .search-units {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
-
 .town {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   gap: 8px;
   margin-bottom: 8px;
 }
-
 .creature-img:deep(img) {
   width: 50px;
   height: auto;
@@ -207,11 +199,9 @@ function onClose() {
   transition:
     box-shadow 0.25s,
     transform 0.25s;
-
   @include mixins.media-medium {
     width: 58px;
   }
-
   &:hover {
     box-shadow: 0 0 10px 3px black;
     transform: translateY(-2px);

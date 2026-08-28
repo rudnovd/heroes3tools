@@ -123,7 +123,6 @@ const hotaChangelogLink = `https://download.h3hota.com/upd/changelogs/${selected
 
 <style lang="scss">
 @use '@/styles/mixins';
-
 footer {
   display: flex;
   flex-wrap: wrap;
@@ -135,29 +134,23 @@ footer {
   color: var(--color-link);
   border-top: v-bind(border);
   transition: border-top 0.2s linear;
-
   & > * {
     flex: 0 0 calc(50% - 8px);
   }
-
   & > *:nth-child(even) {
     justify-content: flex-end;
     text-align: right;
   }
-
   @include mixins.media-large {
     gap: 16px;
-
     & > * {
       flex: unset;
       text-align: unset;
     }
-
     .send-error-link {
       margin-left: auto;
     }
   }
-
   a,
   button,
   span,
@@ -165,7 +158,6 @@ footer {
     color: inherit;
     text-align: left;
   }
-
   select {
     padding: 0;
     font: inherit;
@@ -173,36 +165,29 @@ footer {
     background-color: transparent;
     border: none;
   }
-
   a {
     text-decoration: none;
-
     &:hover {
       text-decoration: underline;
     }
   }
-
   .telegram-link {
     display: inline-flex;
     gap: 2px;
     align-items: center;
   }
-
   .need-refresh {
     color: red;
-
     &:hover {
       text-decoration: underline;
     }
   }
 }
-
 .theme-switch {
   & > input[type='checkbox'] {
     display: none;
     appearance: none;
   }
-
   label {
     font-size: 14px;
     cursor: pointer;

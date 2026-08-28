@@ -190,7 +190,6 @@ onClickOutside(virtualScrollContainer.ref, () => {
   border: 1px solid var(--color-border);
   border-radius: 4px;
 }
-
 .container {
   display: grid;
   grid-template-columns: 1fr;
@@ -200,13 +199,9 @@ onClickOutside(virtualScrollContainer.ref, () => {
   height: inherit;
   padding-right: 16px;
 }
-
 .search {
   position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+  inset: 0;
   width: 100%;
   height: 100%;
   padding: 0;
@@ -216,12 +211,10 @@ onClickOutside(virtualScrollContainer.ref, () => {
   outline: none;
   background-color: var(--color-bg);
   border: 0;
-
   &::placeholder {
     color: var(--color-text);
   }
 }
-
 .caret {
   position: relative;
   flex-grow: 0;
@@ -229,22 +222,17 @@ onClickOutside(virtualScrollContainer.ref, () => {
   width: 0.625rem;
   height: 1.125rem;
   height: 100%;
-  background-color: #999999;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E");
+  background-color: #999;
   mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E");
-  -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-position: center;
   mask-position: center;
   transform: rotate(0deg);
   transition: 0.3s transform;
-
   &.is-open {
     pointer-events: auto;
     transform: rotate(180deg);
   }
 }
-
 .selected-value {
   display: flex;
   gap: 8px;
@@ -253,42 +241,34 @@ onClickOutside(virtualScrollContainer.ref, () => {
   height: 100%;
   padding: 0 8px;
 }
-
 .clear-button {
   display: inline-block;
   width: 0.625rem;
   height: 1.125rem;
   height: 100%;
-  background-color: #999999;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E");
+  background-color: #999;
   mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E");
-  -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-position: center;
   mask-position: center;
   transition: 0.3s;
-
   &:hover {
     background-color: var(--color-text);
   }
 }
-
 .items {
   position: absolute;
   right: 0;
   left: 0;
   z-index: 10;
-  max-height: v-bind(optionsMaxHeight);
+  max-height: v-bind('optionsMaxHeight');
   overflow-y: auto;
   background: var(--color-bg);
   border: 1px solid var(--color-border);
   border-top-width: 0;
-
   &.top {
     transform: translate(0, calc(-301px - v-bind(height)));
   }
 }
-
 .option-item {
   display: flex;
   gap: 8px;
@@ -301,26 +281,21 @@ onClickOutside(virtualScrollContainer.ref, () => {
   white-space: nowrap;
   cursor: pointer;
   transition: background 0.1s;
-
   &:hover {
     background: var(--color-bg-deep);
   }
-
   &.selected {
     background: #26c08e;
   }
 }
-
 .no-options {
   padding-left: 8px;
   border: 1px solid var(--color-border);
 }
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;
 }
-
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;

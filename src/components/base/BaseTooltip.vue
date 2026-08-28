@@ -47,8 +47,8 @@ const tooltipY = computed(() => {
 <style lang="scss" scoped>
 .tooltip {
   position: absolute;
-  top: v-bind(tooltipY);
-  left: v-bind(tooltipX);
+  top: v-bind('tooltipY');
+  left: v-bind('tooltipX');
   padding: 0.5rem;
   font-size: 0.875rem;
   font-weight: bold;

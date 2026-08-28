@@ -40,7 +40,6 @@ picture {
   align-items: center;
   justify-content: center;
 }
-
 img {
   width: v-bind(width);
   height: v-bind(height);

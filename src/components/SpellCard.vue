@@ -44,12 +44,10 @@ defineEmits<{ click: [spell: Spell] }>()
   border: 3px solid transparent;
   border-radius: 16px;
   transition: border 0.1s linear;
-
   &.selected-spell {
-    border-color: rgba(var(--color-text), 0.7);
+    border-color: rgb(var(--color-text), 0.7);
   }
 }
-
 .spell-button {
   position: relative;
   z-index: 1;
@@ -60,7 +58,7 @@ defineEmits<{ click: [spell: Spell] }>()
   padding: 8px;
   font-size: 0.7rem;
   font-weight: bold;
-  color: rgb(241, 220, 123);
+  color: rgb(241 220 123);
   text-shadow: 0 0 3px #000;
 }
 </style>
