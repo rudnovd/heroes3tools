@@ -3,13 +3,11 @@
     <router-link v-if="!about.hide" to="#about">
       {{ about.text || t('components.pageFooter.about') }}
     </router-link>
-
     <select :value="selectedLocale" name="select-locale" @change="updatePage">
       <option v-for="availableLocale in locales" :key="availableLocale.name" :value="availableLocale.name">
         {{ availableLocale.value }}
       </option>
     </select>
-
     <slot />
     <ExternalLink
       :href="selectedLocale === 'en' ? 'https://forms.gle/8Vy2Ssx42zhjvQJd9' : 'https://forms.gle/1sy4MzqqgHewsDUb9'"
@@ -28,10 +26,6 @@
     </ExternalLink>
     <ExternalLink href="https://github.com/rudnovd/heroes3tools/releases">
       {{ t('components.pageFooter.downloadOfflineVersion') }}
-    </ExternalLink>
-    <ExternalLink href="https://t.me/heroes3toolsbot" class="telegram-link">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
-      Telegram version
     </ExternalLink>
     <ExternalLink :href="hotaChangelogLink">
       {{ t('components.pageFooter.hotaVersion') }}: 1.8.0
@@ -170,11 +164,6 @@ footer {
     &:hover {
       text-decoration: underline;
     }
-  }
-  .telegram-link {
-    display: inline-flex;
-    gap: 2px;
-    align-items: center;
   }
   .need-refresh {
     color: red;
