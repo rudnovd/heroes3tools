@@ -1,7 +1,6 @@
 <template>
   <section class="home-page">
     <h1>Heroes III tools</h1>
-
     <main class="page-links">
       <div v-for="page in pages" :key="page.path" class="link-card">
         <ObjectPortrait
@@ -11,7 +10,6 @@
           :height="198"
           @click-picture="router.push(page.path)"
         />
-
         <h2>
           <router-link :to="page.path">
             {{ page.name }}
@@ -19,7 +17,6 @@
         </h2>
       </div>
     </main>
-
     <PageFooter>
       <template #aboutModal>
         <p>{{ t('components.homePage.aboutModal') }}</p>
@@ -33,16 +30,36 @@ import { useHead } from '@unhead/vue'
 import { defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import { getAppLocale } from '@/i18n'
+import { getHead } from '@/utilities'
 
-const props = defineProps<{ head: string }>()
 const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
 const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 
-useHead(JSON.parse(props.head))
+definePage({
+  meta: {
+    head: {
+      en: {
+        title: 'Damage calculator',
+        description: 'Damage calculator helps calculate damage dealt by creatures, including hero skills and spells modifiers',
+        image: 'https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true',
+        locale: 'en_US',
+        url: 'https://heroes3tools.netlify.app/damage-calculator',
+      },
+      ru: {
+        title: 'Калькулятор урона',
+        description: 'Калькулятор урона помогает рассчитать урон, наносимый существами, с учетом модификаторов навыков героя и заклинаний',
+        image: 'https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true',
+        locale: 'ru_RU',
+        url: 'https://heroes3tools.netlify.app/ru/damage-calculator',
+      },
+    },
+  },
+})
+const router = useRouter()
+useHead(getHead(router.currentRoute.value.meta.head[getAppLocale()]))
 
 const { t } = useI18n()
-const router = useRouter()
-
 const pages = [
   {
     name: t('pages.damageCalculator'),

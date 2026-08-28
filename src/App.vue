@@ -43,7 +43,7 @@ import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useStore } from '@/store'
 import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
-import { INITIAL_LOCATION_LOCALE } from './constants'
+import { getAppLocale } from './i18n'
 
 const BaseNotification = defineAsyncComponent(() => import('@/components/base/BaseNotification.vue'))
 
@@ -76,7 +76,7 @@ const notificationsButtons = computed(() => [
 // Collect initial data about game
 const stop = watch(router.currentRoute, ({ path }) => {
   if (!store.isDataLoaded && ['/damage', '/magic', '/creatures'].includes(path)) {
-    store.loadData(selectedLocale.value ?? INITIAL_LOCATION_LOCALE)
+    store.loadData(selectedLocale.value ?? getAppLocale())
     stop()
   }
 })

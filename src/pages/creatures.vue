@@ -68,16 +68,37 @@ import { computed, defineAsyncComponent, onUnmounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import ObjectPortrait from '@/components/ObjectPortrait.vue'
+import { getAppLocale } from '@/i18n'
 import { useStore } from '@/store'
+import { getHead } from '@/utilities'
 
-const props = defineProps<{ head: string }>()
 const CreatureCard = defineAsyncComponent(() => import('@/components/creaturesLibrary/CreatureCard.vue'))
 const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 
-useHead(JSON.parse(props.head))
+definePage({
+  meta: {
+    head: {
+      en: {
+        title: 'Creatures library',
+        description: 'Creatures library stores information about creatures properties, costs and features',
+        image: 'https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true',
+        locale: 'en_US',
+        url: 'https://heroes3tools.netlify.app/creatures-library',
+      },
+      ru: {
+        title: 'Библиотека существ',
+        description: 'Библиотека существ хранит информацию о характеристиках существ, их стоимости и особенностях',
+        image: 'https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true',
+        locale: 'ru_RU',
+        url: 'https://heroes3tools.netlify.app/ru/creatures-library',
+      },
+    },
+  },
+})
+const router = useRouter()
+useHead(getHead(router.currentRoute.value.meta.head[getAppLocale()]))
 
 const store = useStore()
-const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
 

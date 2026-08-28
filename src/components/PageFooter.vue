@@ -76,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-import type { AvailableLocale } from '@/constants'
+import type { Locale } from 'vue-i18n'
 import { defineAsyncComponent, inject, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
@@ -107,13 +107,13 @@ function activateNewVersionNotification() {
   isNewVersionNotificationActive.value = true
 }
 
-const locales: ReadonlyArray<{ name: AvailableLocale, value: string }> = [
+const locales: ReadonlyArray<{ name: Locale, value: string }> = [
   { name: 'en', value: 'English' },
   { name: 'ru', value: 'Русский' },
 ]
 
 async function updatePage(event: Event) {
-  const locale = (event.target as HTMLInputElement).value as AvailableLocale
+  const locale = (event.target as HTMLInputElement).value as Locale
   selectedLocale.value = locale
   location.replace(location.origin)
 }
