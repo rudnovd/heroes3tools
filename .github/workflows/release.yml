@@ -1,18 +1,20 @@
-name: release
-
 on:
   push:
-    tags:
-      - 'v*.*.*'
+    branches:
+      - master
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+name: release
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Release
-        uses: softprops/action-gh-release@v2
+      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
         with:
-          body: |
-            Please refer to [changelog](https://github.com/rudnovd/heroes3tools/blob/master/CHANGELOG.md) for details.
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          release-type: node
