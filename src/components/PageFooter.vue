@@ -24,7 +24,7 @@
     <ExternalLink href="https://github.com/rudnovd/heroes3tools">
       🌟{{ t('components.pageFooter.sourceCode') }}
     </ExternalLink>
-    <ExternalLink href="https://github.com/rudnovd/heroes3tools/releases">
+    <ExternalLink href="https://github.com/rudnovd/heroes3tools/releases/latest">
       {{ t('components.pageFooter.downloadOfflineVersion') }}
     </ExternalLink>
     <ExternalLink :href="hotaChangelogLink">
