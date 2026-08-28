@@ -4,7 +4,7 @@ interface ViteTypeOptions {
   strictImportMetaEnv: unknown
 }
 interface ImportMetaEnv {
-  IS_TAURI_BUILD: string
+  VITE_IS_TAURI?: string
 }
 interface ImportMeta {
   readonly env: ImportMetaEnv

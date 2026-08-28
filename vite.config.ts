@@ -8,7 +8,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import VueRouter from 'vue-router/vite'
 
 const pwaOptions: Partial<VitePWAOptions> = {
-  disable: process.env.IS_TAURI_BUILD === 'true',
+  disable: process.env.VITE_IS_TAURI_BUILD === 'true',
   base: '/',
   includeAssets: [
     'favicon.svg',

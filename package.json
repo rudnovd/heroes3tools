@@ -23,7 +23,7 @@
     "preinstall": "npx only-allow pnpm",
     "start": "vite",
     "build": "vue-tsc && vite build",
-    "build:app": "vue-tsc && cross-env IS_TAURI_BUILD=true vite build",
+    "build:app": "vue-tsc && cross-env VITE_IS_TAURI=true vite build",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
     "preview": "vite preview",
