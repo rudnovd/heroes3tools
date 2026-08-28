@@ -13,9 +13,9 @@ export async function loadLocaleMessages(locale: string) {
   return await import(`./locales/${locale}.json`)
 }
 
-const naviatorLanguageRegExp = /-|_/
 export function getBrowserLanguage(): AvailableLocale {
-  const browserLanguage = navigator.language.trim().split(naviatorLanguageRegExp)[0]
+  const navigatorLanguageRegExp = /-|_/
+  const browserLanguage = navigator.language.trim().split(navigatorLanguageRegExp)[0]
   if (AVAILABLE_LOCALES.includes(browserLanguage as AvailableLocale)) {
     return browserLanguage as AvailableLocale
   }

@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "module": "es2022",
     "lib": ["ES2022", "DOM", "ScriptHost", "WebWorker"],
+    "module": "es2022",
     "moduleResolution": "bundler",
     "paths": { "@/*": ["./src/*"] },
     "resolveJsonModule": true,
