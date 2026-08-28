@@ -6,6 +6,7 @@ import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import VueRouter from 'vue-router/vite'
+import packageJson from './package.json' with { type: 'json' }
 
 const pwaOptions: Partial<VitePWAOptions> = {
   disable: process.env.VITE_IS_TAURI_BUILD === 'true',
@@ -71,6 +72,9 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('src', import.meta.url)),
     },
+  },
+  define: {
+    'import.meta.env.VITE_APP_VERSION': JSON.stringify(packageJson.version),
   },
   clearScreen: false, // prevent Vite from obscuring rust errors
   server: {

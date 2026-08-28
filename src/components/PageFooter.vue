@@ -31,9 +31,12 @@
       {{ t('components.pageFooter.hotaVersion') }}: 1.8.1
     </ExternalLink>
     <button v-if="needRefresh" class="need-refresh" @click="activateNewVersionNotification">
-      ❗ {{ appVersion }}
+      ❗
+      <template v-if="VITE_APP_VERSION">
+        {{ appVersion }}
+      </template>
     </button>
-    <ExternalLink v-else href="https://github.com/rudnovd/heroes3tools/blob/master/CHANGELOG.md">
+    <ExternalLink v-else-if="VITE_APP_VERSION" href="https://github.com/rudnovd/heroes3tools/blob/master/CHANGELOG.md">
       {{ appVersion }}
     </ExternalLink>
     <div class="theme-switch" title="Toggle dark mode">
@@ -111,7 +114,8 @@ async function updatePage(event: Event) {
   selectedLocale.value = locale
   location.replace(location.origin)
 }
-const appVersion = `${t('components.pageFooter.appVersion')}: 2.9.0`
+const { VITE_APP_VERSION } = import.meta.env
+const appVersion = `${t('components.pageFooter.appVersion')}: ${VITE_APP_VERSION}`
 const hotaChangelogLink = `https://download.h3hota.com/upd/changelogs/${selectedLocale.value === 'ru' ? 'rus' : 'eng'}.txt`
 </script>
 
