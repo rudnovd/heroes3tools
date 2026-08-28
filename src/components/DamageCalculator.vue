@@ -235,113 +235,93 @@ function onSelectTerrain(terrain: Terrain | null) {
 
 <style lang="scss" scoped>
 @use '@/styles/mixins';
-
 .damage-calculator {
   display: grid;
   grid-template-rows: minmax(50vh, 1fr) 1fr;
   grid-template-columns: 100%;
-  box-shadow: 0 0 3px rgba(170, 170, 170, 0.5);
-
+  box-shadow: 0 0 3px rgb(170 170 170 / 50%);
   @include mixins.media-large {
     grid-template-rows: minmax(80vh, auto) 1fr;
     grid-template-columns: 50% 50%;
   }
-
   @include mixins.media-maximum {
     grid-template-rows: minmax(84vh, auto) 1fr;
   }
 }
-
 .attacker,
 .defender {
   display: grid;
   grid-template-rows: repeat(4, min-content) auto;
   gap: 1rem;
   padding: 10px;
-
   @include mixins.media-large {
     padding: 20px;
   }
 }
-
 .title {
   display: grid;
   grid-template-areas: 'title button';
   column-gap: 0.5rem;
   align-items: center;
-
   & > h2 {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 }
-
 .main {
   display: grid;
   column-gap: 0.5rem;
 }
-
 .creature {
   display: grid;
   gap: 0.5rem;
-
   .creature-input {
     width: 65px;
     height: 32px;
   }
 }
-
 .hero {
   display: grid;
   grid-template-columns: auto;
   grid-auto-rows: auto auto;
   gap: 1rem;
 }
-
 .effects {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding-left: 4px;
-
   & > div {
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: break-all;
   }
 }
-
 .skills {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem 0;
-
   @include mixins.media-medium {
     grid-template-columns: 1fr 1fr;
-    gap: 1rem 1rem;
+    gap: 1rem;
   }
 }
-
 .attacker {
   border-bottom: 1px solid var(--color-border);
   transition:
     border-bottom 0.2s linear,
     border-right 0.2s linear;
-
   @include mixins.media-large {
     border-right: 1px solid var(--color-border);
     border-bottom: 0;
   }
-
   .title {
     grid-template-columns: minmax(auto, 40%) 1fr;
   }
-
   .main {
     grid-template-columns: minmax(auto, 40%) 1fr;
   }
 }
-
 .defender {
   .title {
     grid-template-areas: 'button title';
@@ -351,18 +331,15 @@ function onSelectTerrain(terrain: Terrain | null) {
     grid-area: title;
     text-align: right;
   }
-
   .main {
     grid-template-areas: 'hero creature';
     grid-template-columns: auto minmax(auto, 40%);
   }
-
   .creature {
     grid-area: creature;
     justify-content: end;
   }
 }
-
 .creature-button {
   position: relative;
   z-index: 1;
@@ -371,7 +348,6 @@ function onSelectTerrain(terrain: Terrain | null) {
   height: 64px;
   padding: 0;
   overflow: hidden;
-
   &::after {
     position: absolute;
     top: -50%;
@@ -379,25 +355,21 @@ function onSelectTerrain(terrain: Terrain | null) {
     z-index: -1;
     width: 1.25em;
     content: '';
-    background-color: hsla(0, 0%, 100%, 0.2);
+    background-color: hsl(0deg 0% 100% / 20%);
     transform: translate3d(-525%, 0, 0) rotate(35deg);
   }
-
   &:hover::after {
     transform: translate3d(200%, 0, 0) rotate(35deg);
     transition: transform 0.45s ease-in-out;
   }
 }
-
 .creature-img {
   position: relative;
   z-index: -1;
 }
-
 .unit-effect-checkbox {
   margin-bottom: 1rem;
 }
-
 .select-skill-buttons {
   @include mixins.media-large {
     &:nth-child(even) {
@@ -405,17 +377,14 @@ function onSelectTerrain(terrain: Terrain | null) {
     }
   }
 }
-
 .hero-parameters {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-auto-flow: column;
   gap: 8px;
-
   & > div {
     width: 64px;
   }
-
   .parameter-attack {
     margin-left: auto;
   }
@@ -429,12 +398,10 @@ function onSelectTerrain(terrain: Terrain | null) {
   font-size: 1.5rem;
   text-align: right;
 }
-
 .stat-name {
   display: block;
   margin-bottom: 10px;
 }
-
 .calculator-footer {
   display: flex;
   grid-column: 1 / -1;
@@ -443,7 +410,6 @@ function onSelectTerrain(terrain: Terrain | null) {
   border-top: 1px solid var(--color-border);
   transition: border-top 0.2s linear;
 }
-
 .select-terrain {
   width: 300px;
 }

@@ -164,20 +164,17 @@ const tourContainers = computed(() => {
   z-index: 1000;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgb(0 0 0 / 50%);
 }
-
 .tour-content {
   display: grid;
   gap: 1rem;
 }
-
 .close-button {
   position: fixed;
   top: 32px;
   right: 32px;
 }
-
 :deep(.cross-first-line),
 :deep(.cross-second-line) {
   opacity: 1;

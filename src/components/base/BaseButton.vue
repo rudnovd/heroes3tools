@@ -24,7 +24,6 @@ const emit = defineEmits<{ click: [] }>()
 @use 'sass:color';
 @use 'sass:map';
 @use '@/styles/variables';
-
 .base-button {
   width: v-bind(width);
   font-size: 0.875rem;
@@ -34,18 +33,15 @@ const emit = defineEmits<{ click: [] }>()
   transition:
     background-color 0.25s linear,
     border-color 0.25s linear;
-
   &:hover {
     cursor: pointer;
   }
 }
-
 @each $color, $color-value in variables.$calculator-colors {
   .color-#{$color} {
     color: map.get(variables.$calculator-colors-text, $color);
     background-color: $color-value;
     border: 1px solid $color-value;
-
     &:hover {
       background-color: color.adjust($color-value, $red: -10, $green: -10, $blue: -10);
       border-color: color.adjust($color-value, $red: -10, $green: -10, $blue: -10);

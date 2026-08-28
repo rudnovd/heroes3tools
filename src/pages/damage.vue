@@ -41,15 +41,38 @@ import { useHead } from '@unhead/vue'
 import { watchIgnorable } from '@vueuse/shared'
 import { computed, defineAsyncComponent, ref, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
 import CalculatorTabs from '@/components/CalculatorTabs.vue'
 import DamageCalculator from '@/components/DamageCalculator.vue'
+import { getAppLocale } from '@/i18n'
 import { Battle } from '@/models/Battle'
+import { getHead } from '@/utilities'
 
-const props = defineProps<{ head: string }>()
 const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 const HowToUse = defineAsyncComponent(() => import('@/components/HowToUse.vue'))
 
-useHead(JSON.parse(props.head))
+definePage({
+  meta: {
+    head: {
+      en: {
+        title: 'Damage calculator',
+        description: 'Damage calculator helps calculate damage dealt by creatures, including hero skills and spells modifiers',
+        image: 'https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true',
+        locale: 'en_US',
+        url: 'https://heroes3tools.netlify.app/damage-calculator',
+      },
+      ru: {
+        title: 'Калькулятор урона',
+        description: 'Калькулятор урона помогает рассчитать урон, наносимый существами, с учетом модификаторов навыков героя и заклинаний',
+        image: 'https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true',
+        locale: 'ru_RU',
+        url: 'https://heroes3tools.netlify.app/ru/damage-calculator',
+      },
+    },
+  },
+})
+const router = useRouter()
+useHead(getHead(router.currentRoute.value.meta.head[getAppLocale()]))
 
 const { t } = useI18n()
 
@@ -200,29 +223,24 @@ function deleteCalculator(index: number) {
 
 <style lang="scss" scoped>
 @use '@/styles/mixins';
-
 .damage-calculator-page {
   display: grid;
   min-width: 300px;
   max-width: 1920px;
   padding: 0 8px;
   margin: 0 auto;
-
   @include mixins.media-medium {
     padding: 0 24px;
   }
 }
-
 .calculator-change-tab-enter-active,
 .calculator-change-tab-leave-active {
   transition: blur 0.2s ease;
 }
-
 .calculator-change-tab-enter-from,
 .calculator-change-tab-enter-to {
   display: none;
 }
-
 .calculator-change-tab-leave-from,
 .calculator-change-tab-leave-to {
   filter: blur(1px);

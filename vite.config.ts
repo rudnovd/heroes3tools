@@ -1,15 +1,15 @@
 import type { VitePWAOptions } from 'vite-plugin-pwa'
-import path from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
-import UnheadVite from '@unhead/addons/vite'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import VueRouter from 'vue-router/vite'
+import packageJson from './package.json' with { type: 'json' }
 
 const pwaOptions: Partial<VitePWAOptions> = {
-  disable: process.env.IS_TAURI_BUILD === 'true',
+  disable: process.env.VITE_IS_TAURI_BUILD === 'true',
   base: '/',
   includeAssets: [
     'favicon.svg',
@@ -64,14 +64,17 @@ const host = process.env.TAURI_DEV_HOST
 export default defineConfig({
   plugins: [
     vue(),
+    VueRouter(),
     VitePWA(pwaOptions),
-    VueI18nPlugin({ include: path.resolve(__dirname, './src/locales/*.json') }),
-    UnheadVite(),
+    VueI18nPlugin({ include: fileURLToPath(new URL('locales/*.json', import.meta.url)) }),
   ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('src', import.meta.url)),
     },
+  },
+  define: {
+    'import.meta.env.VITE_APP_VERSION': JSON.stringify(packageJson.version),
   },
   clearScreen: false, // prevent Vite from obscuring rust errors
   server: {

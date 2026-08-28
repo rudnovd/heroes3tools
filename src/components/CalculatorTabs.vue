@@ -65,13 +65,11 @@ function calculatorTitle(attacker: string | null, defender: string | null) {
 
 <style lang="scss" scoped>
 @use '@/styles/mixins';
-
 .calculator-nav {
   display: grid;
   grid-template-columns: auto min-content;
   align-items: center;
 }
-
 .calculator-tabs {
   display: grid;
   grid-template-rows: repeat(auto-fit, 36px);
@@ -79,20 +77,16 @@ function calculatorTitle(attacker: string | null, defender: string | null) {
   gap: 4px;
   justify-content: flex-start;
   user-select: none;
-
   @include mixins.media-small {
     grid-template-columns: repeat(3, 1fr);
   }
-
   @include mixins.media-medium {
     grid-template-columns: repeat(auto-fit, 200px);
   }
-
   @include mixins.media-large {
     grid-template-columns: repeat(auto-fit, 300px);
   }
 }
-
 .tab {
   display: flex;
   align-items: center;
@@ -102,26 +96,22 @@ function calculatorTitle(attacker: string | null, defender: string | null) {
   cursor: pointer;
   border: none;
   border-radius: 5px 5px 0 0;
-  box-shadow: 0 0 5px rgb(170, 170, 170);
+  box-shadow: 0 0 5px rgb(170 170 170);
   opacity: 0.6;
-
   &:first-child {
     padding: 0 0.5rem 0 20px;
   }
-
   &.active,
   &:hover {
     opacity: 1;
   }
 }
-
 .tab-title {
   max-width: 90%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 .tab-close-button {
   width: 0.5rem;
   height: 0.5rem;
@@ -131,19 +121,16 @@ function calculatorTitle(attacker: string | null, defender: string | null) {
   transition:
     background-color 0.1s ease-in-out,
     box-shadow 0.1s ease-in-out;
-
   &:hover {
     background-color: var(--color-text);
     box-shadow: 0 0 0 3px var(--color-bg);
     opacity: 0.5;
   }
-
   &.disabled {
     pointer-events: none;
     opacity: 0.5;
   }
 }
-
 .tab-add-button {
   width: 1.5rem;
   height: 1.5rem;
@@ -152,18 +139,15 @@ function calculatorTitle(attacker: string | null, defender: string | null) {
   transition:
     background-color 0.1s ease-in-out,
     box-shadow 0.1s ease-in-out;
-
   &:hover {
-    background-color: rgb(200, 200, 200, 0.5);
-    box-shadow: 0 0 0 3px rgb(200, 200, 200, 0.5);
+    background-color: rgb(200 200 200 / 50%);
+    box-shadow: 0 0 0 3px rgb(200 200 200 / 50%);
   }
-
   &.disabled {
     pointer-events: none;
     opacity: 0.5;
   }
 }
-
 @include mixins.dark-scheme {
   .tab-close-button,
   .tab-add-button {

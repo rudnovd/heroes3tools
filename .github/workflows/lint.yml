@@ -1,0 +1,44 @@
+name: lint
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    if: "!startsWith(github.event.head_commit.message, 'chore(master): release')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: install pnpm
+        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
+        with:
+          cache: true
+
+      - name: validate commits
+        if: github.event_name == 'push' && github.event.forced == false
+        run: pnpm exec commitlint --from ${{ github.event.before }} --to ${{ github.event.after }} --verbose
+
+      - name: validate pull request commits
+        if: github.event_name == 'pull_request'
+        run: pnpm exec commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
+      - name: run eslint
+        run: pnpm run lint
+
+      - name: run stylelint
+        run: pnpm run stylelint
+
+      - name: run tests
+        run: pnpm run test
+
+      - name: run build
+        run: pnpm run build

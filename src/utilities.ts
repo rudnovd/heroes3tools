@@ -1,5 +1,5 @@
-import type { UseHeadInput } from '@unhead/vue'
-import type { AvailableLocale } from './constants'
+import type { ReactiveHead, UseHeadInput } from '@unhead/vue'
+import type { Locale } from 'vue-i18n'
 import { useDark, useLocalStorage } from '@vueuse/core'
 
 export const isDark = useDark({
@@ -13,7 +13,7 @@ export const isDark = useDark({
   },
 })
 
-export const selectedLocale = useLocalStorage<AvailableLocale | null>('locale', null, {
+export const selectedLocale = useLocalStorage<Locale | null>('locale', null, {
   listenToStorageChanges: false,
 })
 
@@ -74,7 +74,7 @@ export function getHead({
   image: string
   locale: string
   url: string
-}): UseHeadInput {
+}): ReactiveHead {
   return {
     ...metaSharedProperties,
     title,

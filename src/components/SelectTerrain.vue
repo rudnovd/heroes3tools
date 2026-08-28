@@ -50,7 +50,6 @@ const { t } = useI18n()
     margin-right: 0.5rem;
   }
 }
-
 .option-item {
   & picture {
     display: flex;

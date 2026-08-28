@@ -12,7 +12,6 @@
       @delete-tab="deleteCalculator($event)"
       @select-tab="activeIndex = $event"
     />
-
     <main v-if="calculators.length">
       <TransitionGroup name="calculator-change-tab">
         <MagicCalculator
@@ -23,7 +22,6 @@
         />
       </TransitionGroup>
     </main>
-
     <PageFooter :about="{ text: t('components.damageCalculatorPage.about') }" border="none">
       <template #aboutModal>
         <p>{{ t('components.damageCalculatorPage.aboutModal') }}</p>
@@ -37,15 +35,37 @@ import type { Ref } from 'vue'
 import { useHead } from '@unhead/vue'
 import { defineAsyncComponent, ref, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
 import CalculatorTabs from '@/components/CalculatorTabs.vue'
+import { getAppLocale } from '@/i18n'
 import { Battle } from '@/models/Battle'
+import { getHead } from '@/utilities'
 import MagicCalculator from '../components/MagicCalculator.vue'
-
-const props = defineProps<{ head: string }>()
 
 const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 
-useHead(JSON.parse(props.head))
+definePage({
+  meta: {
+    head: {
+      en: {
+        title: 'Magic calculator',
+        description: 'Magic calculator helps calculate damage dealt from hero casted spells',
+        image: 'https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true',
+        locale: 'en_US',
+        url: 'https://heroes3tools.netlify.app/magic-calculator',
+      },
+      ru: {
+        title: 'Калькулятор магии',
+        description: 'Калькулятор магии помогает рассчитать урон, наносимый заклинаниями героя',
+        image: 'https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true',
+        locale: 'ru_RU',
+        url: 'https://heroes3tools.netlify.app/ru/magic-calculator',
+      },
+    },
+  },
+})
+const router = useRouter()
+useHead(getHead(router.currentRoute.value.meta.head[getAppLocale()]))
 
 const { t } = useI18n()
 
@@ -79,29 +99,24 @@ function deleteCalculator(index: number) {
 
 <style lang="scss" scoped>
 @use '@/styles/mixins';
-
 .magic-calculator-page {
   display: grid;
   min-width: 300px;
   max-width: 1920px;
   padding: 0 8px;
   margin: 0 auto;
-
   @include mixins.media-medium {
     padding: 0 24px;
   }
 }
-
 .calculator-change-tab-enter-active,
 .calculator-change-tab-leave-active {
   transition: blur 0.2s ease;
 }
-
 .calculator-change-tab-enter-from,
 .calculator-change-tab-enter-to {
   display: none;
 }
-
 .calculator-change-tab-leave-from,
 .calculator-change-tab-leave-to {
   filter: blur(1px);

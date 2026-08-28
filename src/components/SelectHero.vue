@@ -48,11 +48,9 @@ const { t } = useI18n()
 
 <style lang="scss" scoped>
 @use '@/styles/mixins';
-
 .selected-value {
   & picture {
     display: none;
-
     @include mixins.media-medium {
       display: flex;
     }

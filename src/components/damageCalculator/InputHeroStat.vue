@@ -34,7 +34,6 @@ const id = useId()
   display: block;
   margin-bottom: 10px;
 }
-
 .stat-input {
   min-width: 3.75rem;
 }

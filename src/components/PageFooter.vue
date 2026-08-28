@@ -3,13 +3,11 @@
     <router-link v-if="!about.hide" to="#about">
       {{ about.text || t('components.pageFooter.about') }}
     </router-link>
-
     <select :value="selectedLocale" name="select-locale" @change="updatePage">
       <option v-for="availableLocale in locales" :key="availableLocale.name" :value="availableLocale.name">
         {{ availableLocale.value }}
       </option>
     </select>
-
     <slot />
     <ExternalLink
       :href="selectedLocale === 'en' ? 'https://forms.gle/8Vy2Ssx42zhjvQJd9' : 'https://forms.gle/1sy4MzqqgHewsDUb9'"
@@ -26,20 +24,19 @@
     <ExternalLink href="https://github.com/rudnovd/heroes3tools">
       🌟{{ t('components.pageFooter.sourceCode') }}
     </ExternalLink>
-    <ExternalLink href="https://github.com/rudnovd/heroes3tools/releases">
+    <ExternalLink href="https://github.com/rudnovd/heroes3tools/releases/latest">
       {{ t('components.pageFooter.downloadOfflineVersion') }}
     </ExternalLink>
-    <ExternalLink href="https://t.me/heroes3toolsbot" class="telegram-link">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
-      Telegram version
-    </ExternalLink>
     <ExternalLink :href="hotaChangelogLink">
-      {{ t('components.pageFooter.hotaVersion') }}: 1.8.0
+      {{ t('components.pageFooter.hotaVersion') }}: 1.8.1
     </ExternalLink>
     <button v-if="needRefresh" class="need-refresh" @click="activateNewVersionNotification">
-      ❗ {{ appVersion }}
+      ❗
+      <template v-if="VITE_APP_VERSION">
+        {{ appVersion }}
+      </template>
     </button>
-    <ExternalLink v-else href="https://github.com/rudnovd/heroes3tools/blob/master/CHANGELOG.md">
+    <ExternalLink v-else-if="VITE_APP_VERSION" href="https://github.com/rudnovd/heroes3tools/blob/master/CHANGELOG.md">
       {{ appVersion }}
     </ExternalLink>
     <div class="theme-switch" title="Toggle dark mode">
@@ -76,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import type { AvailableLocale } from '@/constants'
+import type { Locale } from 'vue-i18n'
 import { defineAsyncComponent, inject, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
@@ -107,23 +104,23 @@ function activateNewVersionNotification() {
   isNewVersionNotificationActive.value = true
 }
 
-const locales: ReadonlyArray<{ name: AvailableLocale, value: string }> = [
+const locales: ReadonlyArray<{ name: Locale, value: string }> = [
   { name: 'en', value: 'English' },
   { name: 'ru', value: 'Русский' },
 ]
 
 async function updatePage(event: Event) {
-  const locale = (event.target as HTMLInputElement).value as AvailableLocale
+  const locale = (event.target as HTMLInputElement).value as Locale
   selectedLocale.value = locale
   location.replace(location.origin)
 }
-const appVersion = `${t('components.pageFooter.appVersion')}: 2.9.0`
+const { VITE_APP_VERSION } = import.meta.env
+const appVersion = `${t('components.pageFooter.appVersion')}: ${VITE_APP_VERSION}`
 const hotaChangelogLink = `https://download.h3hota.com/upd/changelogs/${selectedLocale.value === 'ru' ? 'rus' : 'eng'}.txt`
 </script>
 
 <style lang="scss">
 @use '@/styles/mixins';
-
 footer {
   display: flex;
   flex-wrap: wrap;
@@ -135,29 +132,23 @@ footer {
   color: var(--color-link);
   border-top: v-bind(border);
   transition: border-top 0.2s linear;
-
   & > * {
     flex: 0 0 calc(50% - 8px);
   }
-
   & > *:nth-child(even) {
     justify-content: flex-end;
     text-align: right;
   }
-
   @include mixins.media-large {
     gap: 16px;
-
     & > * {
       flex: unset;
       text-align: unset;
     }
-
     .send-error-link {
       margin-left: auto;
     }
   }
-
   a,
   button,
   span,
@@ -165,7 +156,6 @@ footer {
     color: inherit;
     text-align: left;
   }
-
   select {
     padding: 0;
     font: inherit;
@@ -173,36 +163,24 @@ footer {
     background-color: transparent;
     border: none;
   }
-
   a {
     text-decoration: none;
-
     &:hover {
       text-decoration: underline;
     }
   }
-
-  .telegram-link {
-    display: inline-flex;
-    gap: 2px;
-    align-items: center;
-  }
-
   .need-refresh {
     color: red;
-
     &:hover {
       text-decoration: underline;
     }
   }
 }
-
 .theme-switch {
   & > input[type='checkbox'] {
     display: none;
     appearance: none;
   }
-
   label {
     font-size: 14px;
     cursor: pointer;

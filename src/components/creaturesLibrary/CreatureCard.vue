@@ -64,7 +64,6 @@ const parameters: Array<CreatureParameter> = ['attack', 'defense', 'health', 'sp
 
 <style lang="scss" scoped>
 @use '@/styles/mixins';
-
 .creature-card {
   display: grid;
   grid-template-columns: 105px 1fr;
@@ -75,29 +74,24 @@ const parameters: Array<CreatureParameter> = ['attack', 'defense', 'health', 'sp
     background 0.2s linear,
     border-right 0.2s linear,
     border-bottom 0.2s linear;
-
   @include mixins.media-medium {
     grid-template-columns: 150px 1fr;
   }
-
   &:hover {
     background: var(--color-bg-deep);
   }
 }
-
 @include mixins.dark-scheme {
   .creature-card {
     border-right: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
   }
 }
-
 .creature-image {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-
   &::before {
     position: absolute;
     top: 0;
@@ -108,29 +102,24 @@ const parameters: Array<CreatureParameter> = ['attack', 'defense', 'health', 'sp
     background: url('/images/pages/home/links-background.webp');
     filter: brightness(110%);
   }
-
   picture {
-    filter: drop-shadow(1px 1px 1px rgba(255, 255, 255, 0.3));
+    filter: drop-shadow(1px 1px 1px rgb(255 255 255 / 30%));
   }
 }
-
 .creature-name {
   grid-column: 1 / -1;
   text-align: center;
   border-bottom: 1px solid var(--color-border);
   transition: border-bottom 0.2s linear;
 }
-
 .creature-info {
   display: grid;
   grid-template-rows: repeat(5, minmax(30px, auto)) 1fr;
   grid-template-columns: 100%;
-
   @include mixins.media-medium {
     grid-template-columns: 1fr 1fr;
   }
 }
-
 .parameter {
   display: grid;
   grid-template-columns: minmax(120px, 2fr) 4fr;
@@ -140,58 +129,47 @@ const parameters: Array<CreatureParameter> = ['attack', 'defense', 'health', 'sp
   transition:
     border-bottom 0.2s linear,
     border-right 0.2s linear;
-
   &:last-child {
     border-bottom: none;
   }
-
   span:first-child {
     text-transform: capitalize;
   }
-
   @include mixins.media-small {
     grid-template-columns: 2fr 4fr;
     &:nth-last-child(-n + 2) {
       border-bottom: 1px solid var(--color-border);
     }
   }
-
   @include mixins.media-medium {
     grid-template-columns: 125px 1fr;
-
     &:nth-child(even) {
       border-right: 1px solid var(--color-border);
     }
   }
 }
-
 .creature-description {
   grid-column: 1 / -1;
   padding-left: 4px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .creature-card.selected {
   box-shadow: 0 0 5px var(--color-bg-deep);
-
   .creature-info {
     background: var(--color-bg-deep);
   }
 }
-
 .paramater-with-resources {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
-
   div {
     display: flex;
     gap: 4px;
     align-items: center;
   }
-
   picture {
     display: flex;
   }

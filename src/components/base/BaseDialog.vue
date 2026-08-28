@@ -57,7 +57,6 @@ watch(
 <style lang="scss" scoped>
 @use 'sass:map';
 @use '@/styles/variables';
-
 .dialog-area {
   position: fixed;
   top: 0;
@@ -67,37 +66,31 @@ watch(
   height: 100%;
   overflow-y: auto;
   outline: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgb(0 0 0 / 50%);
 }
-
 .base-dialog {
   position: relative;
   width: 90%;
   min-width: 320px;
   min-height: 150px;
-  margin: 2rem auto 2rem auto;
+  margin: 2rem auto;
   overflow: hidden;
   outline: 0;
   background-color: var(--color-bg-deep);
   border-radius: 0.3rem;
-
   &-small {
     max-width: map.get(variables.$grid-breakpoints, 'small');
   }
-
   &-medium {
     max-width: map.get(variables.$grid-breakpoints, 'medium');
   }
-
   &-large {
     max-width: map.get(variables.$grid-breakpoints, 'large');
   }
-
   &-maximum {
     max-width: map.get(variables.$grid-breakpoints, 'maximum');
   }
 }
-
 .modal-content {
   position: relative;
   display: flex;
@@ -108,32 +101,25 @@ watch(
   pointer-events: auto;
   background-clip: padding-box;
   border: 1px solid var(--color-border);
-
   border-radius: 8px;
 }
-
 .header {
   display: flex;
   margin-bottom: 10px;
-
   .close-button {
     margin-left: auto;
   }
 }
-
 .transition-dialog-enter-active,
 .transition-dialog-leave-active {
   transition: opacity 0.25s ease-in-out;
-
   .base-dialog {
     transition: transform 0.25s ease-in-out;
   }
 }
-
 .transition-dialog-enter-from,
 .transition-dialog-leave-to {
   opacity: 0;
-
   .base-dialog {
     transform: translateY(-32px);
   }
