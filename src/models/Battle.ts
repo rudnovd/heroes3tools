@@ -472,13 +472,9 @@ export class Battle {
 
     if (initiator.hero.skills.sorcery) {
       let sorceryBonus = initiator.hero.skills.sorcery * 0.1
-
       if (initiator.hero.specialtySkill === SecondarySkills.Sorcery) {
-        const bonus = initiator.hero.level * 0.05
-        const MAX_SORCERY_BONUS = 0.96
-        sorceryBonus += initiator.hero.level * bonus > MAX_SORCERY_BONUS ? MAX_SORCERY_BONUS : bonus
+        sorceryBonus = sorceryBonus * (1 + initiator.hero.level * 0.05)
       }
-
       damage += damage * sorceryBonus
     }
 
