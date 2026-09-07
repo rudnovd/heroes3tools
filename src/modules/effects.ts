@@ -261,7 +261,7 @@ export const Effects = {
       defense += 2
     }
     else if (initiator.hero.skills.water >= 2) {
-      attack += 2
+      attack += 4
       defense += 4
     }
 
