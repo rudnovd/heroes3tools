@@ -1,19 +1,11 @@
 {
-  "compilerOptions": {
-    "target": "es2022",
-    "lib": ["ES2022", "DOM", "ScriptHost", "WebWorker"],
-    "module": "es2022",
-    "moduleResolution": "bundler",
-    "paths": { "@/*": ["./src/*"] },
-    "resolveJsonModule": true,
-    "types": ["vite-plugin-pwa/client", "@intlify/unplugin-vue-i18n/messages"],
-    "importHelpers": true,
-    "noEmit": true,
-    "removeComments": true,
-    "sourceMap": true,
-    "verbatimModuleSyntax": true,
-    "skipLibCheck": true
-  },
-  "references": [{ "path": "./tsconfig.node.json" }],
-  "include": ["src/**/*.ts", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.spec.ts", "./typed-router.d.ts"]
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ],
+  "files": []
 }
