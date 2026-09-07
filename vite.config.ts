@@ -63,8 +63,8 @@ const host = process.env.TAURI_DEV_HOST
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
     VueRouter(),
+    vue(),
     VitePWA(pwaOptions),
     VueI18nPlugin({ include: fileURLToPath(new URL('locales/*.json', import.meta.url)) }),
   ],
