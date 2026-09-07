@@ -2,9 +2,10 @@ import type { CreatureInstance } from '@/models/Creature'
 import type { HeroInstance } from '@/models/Hero'
 import type { Terrain } from '@/models/Terrain'
 import { Creatures, SecondarySkills, Spells } from '@/models/enums'
+import { SLAYER_CREATURES_LEVEL_1, SLAYER_CREATURES_LEVEL_2, SLAYER_CREATURES_LEVEL_3 } from './effects'
 
 export const Modificators = {
-  heroSpecialtySpell: (hero: HeroInstance, target: CreatureInstance): CreatureInstance => {
+  heroSpecialtySpell: (hero: HeroInstance, target: CreatureInstance, defenderCreature: CreatureInstance): CreatureInstance => {
     let { attack, defense } = target
 
     switch (hero.specialtySpell) {
@@ -81,7 +82,19 @@ export const Modificators = {
       case Spells.DisruptingRay:
         defense -= 10
         break
-      case Spells.Slayer:
+      case Spells.Slayer: {
+        const targetCreatures = [...SLAYER_CREATURES_LEVEL_1]
+        if (hero.skills.fire) {
+          if (hero.skills.fire > 1) {
+            targetCreatures.push(...SLAYER_CREATURES_LEVEL_2)
+          }
+          if (hero.skills.fire > 2) {
+            targetCreatures.push(...SLAYER_CREATURES_LEVEL_3)
+          }
+        }
+        if (!targetCreatures.includes(defenderCreature.id)) {
+          break
+        }
         if (target.level === 1 || target.level === 2) {
           attack += 20
         }
@@ -95,6 +108,7 @@ export const Modificators = {
           attack += 8
         }
         break
+      }
       default:
         break
     }

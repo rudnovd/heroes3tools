@@ -1,7 +1,42 @@
 import type { DamageCalculatorBattleSide } from '@/models/Battle'
-import type { CreatureInstance } from '@/models/Creature'
+import type { Creature, CreatureInstance } from '@/models/Creature'
 import type { Spell } from '@/models/Spell'
 import { Creatures, Spells } from '@/models/enums'
+
+export const SLAYER_CREATURES_LEVEL_1 = [
+  Creatures.GreenDragon,
+  Creatures.BoneDragon,
+  Creatures.GhostDragon,
+  Creatures.RedDragon,
+  Creatures.Hydra,
+  Creatures.ChaosHydra,
+  Creatures.Behemoth,
+  Creatures.AncientBehemoth,
+  Creatures.FaerieDragon,
+  Creatures.RustDragon,
+  Creatures.CrystalDragon,
+  Creatures.AzureDragon,
+  Creatures.Firebird,
+  Creatures.Phoenix,
+  Creatures.SeaSerpent,
+  Creatures.Haspid,
+  Creatures.Couatl,
+  Creatures.CrimsonCouatl,
+] as const as Array<Creature['id']>
+export const SLAYER_CREATURES_LEVEL_2 = [
+  Creatures.Angel,
+  Creatures.Archangel,
+  Creatures.Devil,
+  Creatures.ArchDevil,
+] as const as Array<Creature['id']>
+export const SLAYER_CREATURES_LEVEL_3 = [
+  Creatures.Giant,
+  Creatures.Titan,
+  Creatures.Dreadnought,
+  Creatures.Juggernaut,
+  Creatures.Jotunn,
+  Creatures.JotunnWarlord,
+] as const as Array<Creature['id']>
 
 export const Effects = {
   functions: {
@@ -191,37 +226,16 @@ export const Effects = {
     // get creature values for modify them
     let { attack } = target
 
-    const slayerCreatures = [
-      Creatures.GreenDragon,
-      Creatures.BoneDragon,
-      Creatures.GhostDragon,
-      Creatures.RedDragon,
-      Creatures.Hydra,
-      Creatures.ChaosHydra,
-      Creatures.Behemoth,
-      Creatures.AncientBehemoth,
-      Creatures.FaerieDragon,
-      Creatures.RustDragon,
-      Creatures.CrystalDragon,
-      Creatures.AzureDragon,
-    ]
-
+    const targetCreatures = [...SLAYER_CREATURES_LEVEL_1]
     if (initiator.hero && initiator.hero.skills.fire) {
       if (initiator.hero.skills.fire > 1) {
-        slayerCreatures.push(Creatures.Angel, Creatures.Archangel, Creatures.Devil, Creatures.ArchDevil)
+        targetCreatures.push(...SLAYER_CREATURES_LEVEL_2)
       }
       if (initiator.hero.skills.fire > 2) {
-        slayerCreatures.push(
-          Creatures.Giant,
-          Creatures.Titan,
-          Creatures.Firebird,
-          Creatures.SeaSerpent,
-          Creatures.Haspid,
-        )
+        targetCreatures.push(...SLAYER_CREATURES_LEVEL_3)
       }
     }
-
-    if (defender.creatures.some(defenderCreature => slayerCreatures.includes(defenderCreature.id))) {
+    if (defender.creatures.some(defenderCreature => targetCreatures.includes(defenderCreature.id))) {
       attack += 8
     }
 

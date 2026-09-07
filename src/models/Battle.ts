@@ -75,10 +75,10 @@ export class Battle {
     modifiedDefenderCreature = this.calculateWithNegativeEffects(this.attacker, modifiedDefenderCreature)
 
     if (this.attacker.hero) {
-      modifiedAttackerCreature = this.calculateWithHeroModifiers(this.attacker.hero, modifiedAttackerCreature)
+      modifiedAttackerCreature = this.calculateWithHeroModifiers(this.attacker.hero, modifiedAttackerCreature, modifiedDefenderCreature)
     }
     if (this.defender.hero) {
-      modifiedDefenderCreature = this.calculateWithHeroModifiers(this.defender.hero, modifiedDefenderCreature)
+      modifiedDefenderCreature = this.calculateWithHeroModifiers(this.defender.hero, modifiedDefenderCreature, modifiedAttackerCreature)
     }
 
     if (this.attacker.terrain && this.defender.terrain) {
@@ -185,9 +185,9 @@ export class Battle {
     return -Math.round(-damage)
   }
 
-  private calculateWithHeroModifiers(hero: HeroInstance, target: CreatureInstance) {
+  private calculateWithHeroModifiers(hero: HeroInstance, target: CreatureInstance, defenderCreature: CreatureInstance) {
     if (hero.specialtySpell && target.effects.some(({ id }) => id === hero.specialtySpell))
-      target = Modificators.heroSpecialtySpell(hero, target)
+      target = Modificators.heroSpecialtySpell(hero, target, defenderCreature)
 
     target = Modificators.hero(hero, target)
     target = Modificators.heroSkills(hero, target)
