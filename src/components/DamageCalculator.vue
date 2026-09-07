@@ -53,7 +53,7 @@
               </label>
               <BaseInputNumber
                 :id="`${sideName}-hero-level-input-${id}`"
-                :max="99"
+                :max="74"
                 :value="side.hero.level"
                 :debounce="50"
                 @input="side.hero.level = $event"
