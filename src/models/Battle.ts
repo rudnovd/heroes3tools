@@ -353,9 +353,9 @@ export class Battle {
     const averageDamage = Math.floor((minDamage + maxDamage) / 2)
 
     return {
-      minDamage,
-      maxDamage,
-      averageDamage,
+      minDamage: minDamage > 0 ? minDamage : 1,
+      maxDamage: maxDamage > 0 ? maxDamage : 1,
+      averageDamage: averageDamage > 0 ? averageDamage : 1,
       minKills: Math.floor(minDamage / defender.health),
       maxKills: Math.floor(maxDamage / defender.health),
       averageKills: Math.floor(averageDamage / defender.health),

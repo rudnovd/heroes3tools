@@ -401,6 +401,11 @@ export const Effects = {
       defenseMagicBonus += 0.3
     }
 
+    if (initiator.hero && initiator.hero.specialtySpell === Spells.Shield) {
+      defenseMagicBonus = defenseMagicBonus * (1 + (initiator.hero.level / target.level) * 0.1)
+      defenseMagicBonus = defenseMagicBonus > 1 ? 1 : defenseMagicBonus
+    }
+
     return {
       ...target,
       calculation: {
@@ -435,6 +440,7 @@ export const Effects = {
       else if (initiator.hero.skills.air > 1) {
         defenseMagicBonus += 0.5
       }
+      defenseMagicBonus = defenseMagicBonus > 1 ? 1 : defenseMagicBonus
     }
 
     return {
