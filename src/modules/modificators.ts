@@ -2,9 +2,10 @@ import type { CreatureInstance } from '@/models/Creature'
 import type { HeroInstance } from '@/models/Hero'
 import type { Terrain } from '@/models/Terrain'
 import { Creatures, SecondarySkills, Spells } from '@/models/enums'
+import { SLAYER_CREATURES_LEVEL_1, SLAYER_CREATURES_LEVEL_2, SLAYER_CREATURES_LEVEL_3 } from './effects'
 
 export const Modificators = {
-  heroSpecialtySpell: (hero: HeroInstance, target: CreatureInstance): CreatureInstance => {
+  heroPositiveSpecialtySpell: (hero: HeroInstance, target: CreatureInstance, defenderCreature?: CreatureInstance): CreatureInstance => {
     let { attack, defense } = target
 
     switch (hero.specialtySpell) {
@@ -64,24 +65,22 @@ export const Modificators = {
           defense += 4
         }
         break
-      case Spells.Weakness:
-        if (target.level === 1 || target.level === 2) {
-          attack -= 4
+      case Spells.Slayer: {
+        if (!defenderCreature) {
+          break
         }
-        else if (target.level === 3 || target.level === 4) {
-          attack -= 6
+        const targetCreatures = [...SLAYER_CREATURES_LEVEL_1]
+        if (hero.skills.fire) {
+          if (hero.skills.fire > 1) {
+            targetCreatures.push(...SLAYER_CREATURES_LEVEL_2)
+          }
+          if (hero.skills.fire > 2) {
+            targetCreatures.push(...SLAYER_CREATURES_LEVEL_3)
+          }
         }
-        else if (target.level === 5 || target.level === 6) {
-          attack -= 8
+        if (!targetCreatures.includes(defenderCreature.id)) {
+          break
         }
-        else if (target.level === 7) {
-          attack -= 10
-        }
-        break
-      case Spells.DisruptingRay:
-        defense -= 10
-        break
-      case Spells.Slayer:
         if (target.level === 1 || target.level === 2) {
           attack += 20
         }
@@ -95,6 +94,41 @@ export const Modificators = {
           attack += 8
         }
         break
+      }
+      default:
+        break
+    }
+
+    return {
+      ...target,
+      attack,
+      defense,
+    }
+  },
+
+  heroNegativeSpecialtySpell: (hero: HeroInstance, target: CreatureInstance): CreatureInstance => {
+    let { attack, defense } = target
+
+    switch (hero.specialtySpell) {
+      case Spells.Weakness: {
+        if (target.level === 1 || target.level === 2) {
+          attack -= 4
+        }
+        else if (target.level === 3 || target.level === 4) {
+          attack -= 6
+        }
+        else if (target.level === 5 || target.level === 6) {
+          attack -= 8
+        }
+        else if (target.level === 7) {
+          attack -= 10
+        }
+        break
+      }
+      case Spells.DisruptingRay: {
+        defense -= 10
+        break
+      }
       default:
         break
     }
