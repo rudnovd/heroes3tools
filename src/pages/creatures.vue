@@ -22,7 +22,6 @@
 
       <div class="search-creature">
         <input
-          ref="searchInput"
           name="search-creatures"
           :value="search"
           :placeholder="t('components.selectUnitModal.searchCreature')"
@@ -63,7 +62,7 @@
 <script setup lang="ts">
 import type { Creature } from '@/models/Creature'
 import { useHead } from '@unhead/vue'
-import { useDebounce } from '@vueuse/core'
+import { refDebounced } from '@vueuse/core'
 import { computed, defineAsyncComponent, onUnmounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
@@ -107,8 +106,7 @@ const creatures = computed(() => store.creatures)
 
 const selectedCreature = ref<Creature | null>(null)
 const search = ref('')
-const debouncedSearch = useDebounce(search, 500)
-const searchInput = ref()
+const debouncedSearch = refDebounced(search, 500)
 
 function keyboardSearch(value: KeyboardEvent) {
   if (value.key === 'Enter') {
