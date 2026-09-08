@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.11.0](https://github.com/rudnovd/heroes3tools/compare/v2.10.0...v2.11.0) (2026-09-08)
+
+
+### Features
+
+* **Battle:** add Shield specialty calculation ([4b46c4f](https://github.com/rudnovd/heroes3tools/commit/4b46c4f35ae95fc4f200906cf5eb3dc59bcb379c))
+
+
+### Bug Fixes
+
+* **Battle:** assess hero fire skill level when calculating `Slayer` specialty ([189d8d6](https://github.com/rudnovd/heroes3tools/commit/189d8d6f57f83416ef98235aa8755f0dfc3b8fc5))
+* **Battle:** fix sorcery bonus calculation ([c143396](https://github.com/rudnovd/heroes3tools/commit/c1433963f77173b176834b739e44c4a24a33c273))
+* **Battle:** fix Weakness and DisruptingRay specialty calculation ([bec37c7](https://github.com/rudnovd/heroes3tools/commit/bec37c7e95e3a34d9381d782fc6b4110e13efb57))
+* **creatures-page:** remove unused ref ([6d8e501](https://github.com/rudnovd/heroes3tools/commit/6d8e5012b15430363844cf2f22d3e55b53dd575d))
+* **DamageCalculator:** set max input level to `74` ([1cb285a](https://github.com/rudnovd/heroes3tools/commit/1cb285acb6b0118af6a7bb0dff4749ac4bbcb01a))
+* **effects:** fix prayer attack bonus ([13e7da6](https://github.com/rudnovd/heroes3tools/commit/13e7da610a92ea995b1fca50c242ad0aa512c9ef))
+* **MagicCalculator:** set max input level to `74` ([9823d58](https://github.com/rudnovd/heroes3tools/commit/9823d581ccbd00c680dec08b0ce916737315d7e5))
+
 ## [2.10.0](https://github.com/rudnovd/heroes3tools/compare/v2.9.0...v2.10.0) (2026-08-28)
 
 
