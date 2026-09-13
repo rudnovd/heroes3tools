@@ -1,7 +1,7 @@
+minimumReleaseAge: 10080
+trustPolicy: off
+shellEmulator: true
+
 allowBuilds:
   '@parcel/watcher': true
   esbuild: true
-minimumReleaseAge: 10080
-shellEmulator: true
-
-trustPolicy: off
