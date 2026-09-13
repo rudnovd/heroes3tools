@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.11.1](https://github.com/rudnovd/heroes3tools/compare/v2.11.0...v2.11.1) (2026-09-13)
+
+
+### Bug Fixes
+
+* **heroes:** update Septienna specialty ([8f07f7a](https://github.com/rudnovd/heroes3tools/commit/8f07f7aa3fce89d873f7269adcc7a52323ce4c00))
+* **portraits:** change Septienna portrait ([87e6d5a](https://github.com/rudnovd/heroes3tools/commit/87e6d5a19447f77dafe5a99b0fe4450dd8e31b0e))
+* **utilities:** set default `locale` value in `useLocalStorage` composable ([32c76d8](https://github.com/rudnovd/heroes3tools/commit/32c76d886c2a44efa13de44b9de29b923ff9f765))
+
 ## [2.11.0](https://github.com/rudnovd/heroes3tools/compare/v2.10.0...v2.11.0) (2026-09-08)
 
 
