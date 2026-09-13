@@ -695,7 +695,7 @@ export const heroes: Array<Hero> = [
       necromancy: SkillLevels.Basic,
       scholar: SkillLevels.Basic,
     },
-    specialtySpell: Spells.DestroyUndead,
+    specialtySpell: Spells.DeathRipple,
   },
   {
     id: 74,
