@@ -111,7 +111,7 @@ describe('death Ripple', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, deathRipple)
 
-    expect(damage).toBe(10)
+    expect(damage).toBe(11)
   })
 
   it('hero with Death Ripple specialty and high Spell Power', () => {
@@ -123,7 +123,7 @@ describe('death Ripple', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, deathRipple)
 
-    expect(damage).toBe(180)
+    expect(damage).toBe(198)
   })
 
   it('hero with Death Ripple specialty, Advanced Earth skill and high Spell Power', () => {
@@ -136,7 +136,7 @@ describe('death Ripple', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, deathRipple)
 
-    expect(damage).toBe(190)
+    expect(damage).toBe(209)
   })
 
   it('hero with Death Ripple specialty, Expert Earth skill and high Spell Power', () => {
@@ -149,7 +149,19 @@ describe('death Ripple', () => {
 
     const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, deathRipple)
 
-    expect(damage).toBe(200)
+    expect(damage).toBe(220)
+  })
+  it('hero with Death Ripple specialty, with 21 level and 15 power', () => {
+    battle.attacker.hero = getHeroInstance(Heroes.Septienna)
+    battle.attacker.hero.level = 21
+    battle.attacker.hero.stats.power = 15
+
+    battle.attacker.activeCreature = getCreatureInstance(Creatures.Pikeman)
+    battle.defender.activeCreature = getCreatureInstance(Creatures.Pikeman)
+
+    const damage = battle.cast(battle.attacker, battle.defender, battle.defender.activeCreature, deathRipple)
+
+    expect(damage).toBe(264)
   })
 
   it('cast on creature with immunity', () => {

@@ -49,50 +49,62 @@ export const Spells = {
     return damage
   },
   cure: (initiator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initiator, 'water', [-10, -20, -30], -5)
+    const BONUS_PER_POWER_POINT = -5
+    return getSpellDamage(initiator, 'water', [-10, -20, -30], BONUS_PER_POWER_POINT)
   },
   lightningBolt: (initiator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initiator, 'air', [10, 20, 50], 25)
+    const BONUS_PER_POWER_POINT = 25
+    return getSpellDamage(initiator, 'air', [10, 20, 50], BONUS_PER_POWER_POINT)
   },
 
   fireWall: (initiator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initiator, 'fire', [10, 20, 50], 15)
+    const BONUS_PER_POWER_POINT = 15
+    return getSpellDamage(initiator, 'fire', [10, 20, 50], BONUS_PER_POWER_POINT)
   },
 
   iceBolt: (initiator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initiator, 'water', [10, 20, 50], 20)
+    const BONUS_PER_POWER_POINT = 20
+    return getSpellDamage(initiator, 'water', [10, 20, 50], BONUS_PER_POWER_POINT)
   },
 
   deathRipple: (initiator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initiator, 'earth', [10, 20, 30], 5)
+    const BONUS_PER_POWER_POINT = 5
+    return getSpellDamage(initiator, 'earth', [10, 20, 30], BONUS_PER_POWER_POINT)
   },
 
   fireball: (initiator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initiator, 'fire', [15, 30, 60], 10)
+    const BONUS_PER_POWER_POINT = 10
+    return getSpellDamage(initiator, 'fire', [15, 30, 60], BONUS_PER_POWER_POINT)
   },
 
   landMine: (initiator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initiator, 'fire', [25, 50, 100], 10)
+    const BONUS_PER_POWER_POINT = 10
+    return getSpellDamage(initiator, 'fire', [25, 50, 100], BONUS_PER_POWER_POINT)
   },
 
   frostRing: (initiator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initiator, 'water', [15, 30, 60], 10)
+    const BONUS_PER_POWER_POINT = 10
+    return getSpellDamage(initiator, 'water', [15, 30, 60], BONUS_PER_POWER_POINT)
   },
 
   destroyUndead: (initiator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initiator, 'air', [10, 20, 50], 10)
+    const BONUS_PER_POWER_POINT = 10
+    return getSpellDamage(initiator, 'air', [10, 20, 50], BONUS_PER_POWER_POINT)
   },
 
   inferno: (initiator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initiator, 'fire', [20, 40, 80], 10)
+    const BONUS_PER_POWER_POINT = 10
+    return getSpellDamage(initiator, 'fire', [20, 40, 80], BONUS_PER_POWER_POINT)
   },
 
   meteorShower: (initiator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initiator, 'earth', [25, 50, 100], 25)
+    const BONUS_PER_POWER_POINT = 25
+    return getSpellDamage(initiator, 'earth', [25, 50, 100], BONUS_PER_POWER_POINT)
   },
 
   chainLightning: (initiator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initiator, 'air', [25, 50, 100], 40)
+    const BONUS_PER_POWER_POINT = 40
+    return getSpellDamage(initiator, 'air', [25, 50, 100], BONUS_PER_POWER_POINT)
   },
 
   titansLightningBolt: () => {
@@ -100,19 +112,23 @@ export const Spells = {
   },
 
   implosion: (initiator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initiator, 'earth', [100, 200, 300], 75)
+    const BONUS_PER_POWER_POINT = 75
+    return getSpellDamage(initiator, 'earth', [100, 200, 300], BONUS_PER_POWER_POINT)
   },
 
   armageddon: (initiator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initiator, 'fire', [30, 60, 120], 40)
+    const BONUS_PER_POWER_POINT = 40
+    return getSpellDamage(initiator, 'fire', [30, 60, 120], BONUS_PER_POWER_POINT)
   },
 
-  animateDead: (initator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initator, 'earth', [-30, -60, -160], -50)
+  animateDead: (initiator: DamageCalculatorBattleSide) => {
+    const BONUS_PER_POWER_POINT = -50
+    return getSpellDamage(initiator, 'earth', [-30, -60, -160], BONUS_PER_POWER_POINT)
   },
 
-  resurrection: (initator: DamageCalculatorBattleSide) => {
-    return getSpellDamage(initator, 'earth', [-40, -80, -160], -50)
+  resurrection: (initiator: DamageCalculatorBattleSide) => {
+    const BONUS_PER_POWER_POINT = -50
+    return getSpellDamage(initiator, 'earth', [-40, -80, -160], BONUS_PER_POWER_POINT)
   },
 }
 

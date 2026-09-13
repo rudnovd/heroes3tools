@@ -1,6 +1,7 @@
 import type { ReactiveHead, UseHeadInput } from '@unhead/vue'
 import type { Locale } from 'vue-i18n'
 import { useDark, useLocalStorage } from '@vueuse/core'
+import { getAppLocale } from './i18n'
 
 export const isDark = useDark({
   selector: 'body',
@@ -13,7 +14,7 @@ export const isDark = useDark({
   },
 })
 
-export const selectedLocale = useLocalStorage<Locale | null>('locale', null, {
+export const selectedLocale = useLocalStorage<Locale | null>('locale', getAppLocale(), {
   listenToStorageChanges: false,
 })
 
