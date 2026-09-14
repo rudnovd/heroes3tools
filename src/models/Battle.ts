@@ -6,7 +6,7 @@ import { Effects } from '@/modules/effects'
 import { Modificators } from '@/modules/modificators'
 import { spellsFunctionsMap } from '@/modules/spells'
 import { CreatureInstance } from './Creature'
-import { Creatures, Heroes, SecondarySkills, Spells } from './enums'
+import { Creatures, SecondarySkills, Spells } from './enums'
 
 export type BattleSide = 'attacker' | 'defender'
 
@@ -211,11 +211,15 @@ export class Battle {
 
     const { interference } = attacker.hero.skills
     if (interference) {
+      const MIN_POWER = 1
       defender.hero.stats.power -= (defender.hero.stats.power / 100) * interference * 10
-      if (attacker.hero.id === Heroes.Giselle) {
+      if (attacker.hero.specialtySkill === SecondarySkills.Interference) {
         defender.hero.stats.power -= (defender.hero.stats.power / 100) * attacker.hero.level * 5
       }
       defender.hero.stats.power = Math.ceil(defender.hero.stats.power)
+      if (defender.hero.stats.power < MIN_POWER) {
+        defender.hero.stats.power = MIN_POWER
+      }
     }
 
     return attacker

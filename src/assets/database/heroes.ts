@@ -1536,6 +1536,7 @@ export const heroes: Array<Hero> = [
       interference: SkillLevels.Advanced,
     },
     classId: Classes.Ranger,
+    specialtySkill: SecondarySkills.Interference,
   },
   {
     id: 162,
