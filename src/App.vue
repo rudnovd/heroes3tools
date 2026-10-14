@@ -19,43 +19,16 @@
 </template>
 
 <script setup lang="ts">
-import { whenever } from '@vueuse/core'
-import { useRegisterSW } from 'virtual:pwa-register/vue'
-import { computed, defineAsyncComponent, provide, ref, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { defineAsyncComponent, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '@/store'
-import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
+import { selectedLocale } from '@/utilities'
 import { getAppLocale } from './i18n'
 
-const BaseNotification = defineAsyncComponent(() => import('@/components/base/BaseNotification.vue'))
-
-const keepAliveComponents = ['DamageCalculatorPage', 'MagicCalculatorPage', 'CreaturesLibraryPage']
+const IconArrowLeft = defineAsyncComponent(() => import('~icons/mdi/arrow-left'))
 
 const router = useRouter()
-const { t } = useI18n()
 const store = useStore()
-const { updateServiceWorker, needRefresh } = useRegisterSW({ immediate: false })
-provide('needRefresh', needRefresh)
-
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => (isDark.value = matches))
-
-const isNewVersionNotificationActive = ref(false)
-provide('isNewVersionNotificationActive', isNewVersionNotificationActive)
-whenever(needRefresh, () => (isNewVersionNotificationActive.value = true), { immediate: true, once: true })
-const notificationsButtons = computed(() => [
-  {
-    text: t('common.dismiss'),
-    textColor: 'rgb(255, 255, 255)',
-    onClick: () => { isNewVersionNotificationDisabled.value = true },
-  },
-  {
-    text: t('common.update'),
-    textColor: 'rgb(255, 255, 255)',
-    onClick: () => { updateServiceWorker(true) },
-  },
-])
-
 // Collect initial data about game
 const stop = watch(router.currentRoute, ({ path }) => {
   if (!store.isDataLoaded && ['/damage', '/magic', '/creatures'].includes(path)) {

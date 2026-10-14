@@ -9,21 +9,6 @@ import VueRouter from 'vue-router/vite'
 import packageJson from './package.json' with { type: 'json' }
 
 const pwaOptions: Partial<VitePWAOptions> = {
-  disable: process.env.VITE_IS_TAURI_BUILD === 'true',
-  base: '/',
-  includeAssets: [
-    'favicon.svg',
-    'favicon.ico',
-    'robots.txt',
-    'sitemap.txt',
-    'favicon-apple.png',
-    'favicon-192.png',
-    'favicon-maskable-192.png',
-    'favicon-512.png',
-  ],
-  strategies: 'injectManifest',
-  srcDir: 'src',
-  filename: 'sw.ts',
   manifest: {
     name: 'Heroes 3 tools',
     short_name: 'Heroes 3 tools',
@@ -32,7 +17,6 @@ const pwaOptions: Partial<VitePWAOptions> = {
     orientation: 'portrait',
     theme_color: '#c0b675',
     background_color: '#c0b675',
-    start_url: '/',
     id: '/',
     icons: [
       {
@@ -53,9 +37,16 @@ const pwaOptions: Partial<VitePWAOptions> = {
       },
     ],
   },
-  workbox: {
-    sourcemap: true,
-  },
+  includeAssets: [
+    'favicon.svg',
+    'favicon.ico',
+    'robots.txt',
+    'sitemap.txt',
+    'favicon-apple.png',
+    'favicon-192.png',
+    'favicon-maskable-192.png',
+    'favicon-512.png',
+  ],
 }
 
 const host = process.env.TAURI_DEV_HOST
