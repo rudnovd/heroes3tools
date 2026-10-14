@@ -12,7 +12,7 @@
       @delete-tab="deleteCalculator($event)"
       @select-tab="activeIndex = $event"
     />
-    <main v-if="calculators.length">
+    <section v-if="calculators.length">
       <TransitionGroup name="calculator-change-tab">
         <MagicCalculator
           v-for="(calculator, index) in calculators"
@@ -21,53 +21,40 @@
           :battle-value="calculator"
         />
       </TransitionGroup>
-    </main>
-    <PageFooter :about="{ text: t('components.damageCalculatorPage.about') }" border="none">
-      <template #aboutModal>
-        <p>{{ t('components.damageCalculatorPage.aboutModal') }}</p>
-      </template>
-    </PageFooter>
+    </section>
+    <PageFooter border="none" />
   </section>
 </template>
 
 <script setup lang="ts">
 import type { Ref } from 'vue'
+import type { HeadData } from '@/utilities'
 import { useHead } from '@unhead/vue'
 import { defineAsyncComponent, ref, useId } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import CalculatorTabs from '@/components/CalculatorTabs.vue'
+import MagicCalculator from '@/components/MagicCalculator.vue'
 import { getAppLocale } from '@/i18n'
 import { Battle } from '@/models/Battle'
 import { getHead } from '@/utilities'
-import MagicCalculator from '../components/MagicCalculator.vue'
 
 const PageFooter = defineAsyncComponent(() => import('@/components/PageFooter.vue'))
 
 definePage({
-  meta: {
-    head: {
-      en: {
-        title: 'Magic calculator',
-        description: 'Magic calculator helps calculate damage dealt from hero casted spells',
-        image: 'https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true',
-        locale: 'en_US',
-        url: 'https://heroes3tools.netlify.app/magic-calculator',
-      },
-      ru: {
-        title: 'Калькулятор магии',
-        description: 'Калькулятор магии помогает рассчитать урон, наносимый заклинаниями героя',
-        image: 'https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true',
-        locale: 'ru_RU',
-        url: 'https://heroes3tools.netlify.app/ru/magic-calculator',
-      },
-    },
+  beforeEnter: async (to) => {
+    const head = await import(`@/assets/head/${getAppLocale()}/magic.ts`) as { default: HeadData }
+    if (head.default) {
+      to.meta.head = head.default
+    }
   },
 })
-const router = useRouter()
-useHead(getHead(router.currentRoute.value.meta.head[getAppLocale()]))
-
-const { t } = useI18n()
+const route = useRoute('/[[locale]]/magic')
+if (route.meta.head) {
+  useHead(
+    getHead(route.meta.head),
+    { onRendered() { document.documentElement.dataset.prerenderReady = window.location.pathname } },
+  )
+}
 
 const calculators = ref<Array<Battle>>([new Battle()]) as Ref<Array<Battle>>
 const activeIndex = ref(0)
@@ -97,17 +84,13 @@ function deleteCalculator(index: number) {
 }
 </script>
 
-<style lang="scss" scoped>
-@use '@/styles/mixins';
+<style>
 .magic-calculator-page {
   display: grid;
   min-width: 300px;
   max-width: 1920px;
-  padding: 0 8px;
+  padding-inline: 0.5rem;
   margin: 0 auto;
-  @include mixins.media-medium {
-    padding: 0 24px;
-  }
 }
 .calculator-change-tab-enter-active,
 .calculator-change-tab-leave-active {

@@ -22,7 +22,8 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "start": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
+    "typecheck": "vue-tsc",
     "build:app": "vue-tsc && cross-env VITE_IS_TAURI=true vite build",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
@@ -32,6 +33,7 @@
     "lint:fix": "cross-env NODE_ENV=production eslint --fix .",
     "stylelint": "stylelint '**/*{.scss,.vue}'",
     "stylelint:fix": "stylelint '**/*{.scss,.vue}' --fix",
+    "prerender": "node scripts/prerender.mjs",
     "prerelease": "pnpm run build"
   },
   "dependencies": {
@@ -59,7 +61,7 @@
     "cross-env": "^10.1.0",
     "eslint": "^10.10.0",
     "eslint-plugin-format": "^2.0.1",
-    "husky": "^9.1.7",
+    "playwright": "^1.63.0",
     "postcss-html": "^2.0.0",
     "stylelint": "^17.15.0",
     "stylelint-config-recess-order": "^7.8.0",

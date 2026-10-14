@@ -31,7 +31,8 @@ const router = useRouter()
 const store = useStore()
 // Collect initial data about game
 const stop = watch(router.currentRoute, ({ path }) => {
-  if (!store.isDataLoaded && ['/damage', '/magic', '/creatures'].includes(path)) {
+  const isPreloadRoute = path.includes('damage') || path.includes('magic') || path.includes('creatures')
+  if (!store.isDataLoaded && isPreloadRoute) {
     store.loadData(selectedLocale.value ?? getAppLocale())
     stop()
   }
