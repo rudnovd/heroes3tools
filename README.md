@@ -2,7 +2,7 @@
 
 Heroes 3 Tools - a set of utilities to simplify in-game calculations for [Heroes of Might and Magic III: Horn of The Abyss](https://h3hota.com/), including damage calculators, stat comparisons, and more.
 
-![Damage Calculator image](https://raw.githubusercontent.com/rudnovd/heroes3tools/master/docs/calculator-image.png)
+![Damage Calculator image](https://raw.githubusercontent.com/rudnovd/heroes3tools/master/docs/damage-calculator.jpg)
 
 ## Copyright
 
