@@ -1,47 +1,40 @@
 <template>
-  <div :id="creature.name.replaceAll(' ', '')" class="creature-card" @click="emit('click', creature)">
+  <div :id="creature.name.replaceAll(' ', '')" class="creature-card">
     <div class="creature-image">
-      <ObjectPortrait :file="{ name: creature.id, alt: creature.name }" folder="/images/creatures/models" />
+      <img :src="`/images/creatures/models/${creature.id}.webp`" :alt="creature.name" draggable="false">
     </div>
-
     <div class="creature-info">
       <div class="creature-name">
         {{ creature.name }}
       </div>
-
       <div v-for="parameter of parameters" :key="parameter" class="parameter">
-        <span>{{ t(`data.${parameter}`) }}:</span>
+        <span>{{ $t(`data.${parameter}`) }}:</span>
         <span>{{ creature[parameter] }}</span>
       </div>
-
       <div class="parameter">
-        <span>{{ t('data.damage') }}:</span>
+        <span>{{ $t('data.damage') }}:</span>
         <span v-if="creature.minDamage !== creature.maxDamage">
           {{ creature.minDamage }} — {{ creature.maxDamage }}
         </span>
         <span v-else>{{ creature.maxDamage }}</span>
       </div>
-
       <div class="parameter">
-        <span>{{ t('data.aiValue') }}:</span>
+        <span>{{ $t('data.aiValue') }}:</span>
         <span>{{ creature.aiValue }}</span>
       </div>
-
       <div class="parameter">
-        <span>{{ t('data.cost') }}:</span>
+        <span>{{ $t('data.cost') }}:</span>
         <div class="paramater-with-resources">
           <div v-for="(value, key) in creature.cost" :key="key">
-            <ObjectPortrait height="18px" :file="{ name: key, alt: key }" folder="/images/resources" />
+            <img height="18px" :src="`/images/resources/${key}.webp`" :alt="key">
             <span>{{ value }}</span>
           </div>
         </div>
       </div>
-
       <div class="parameter">
-        <span>{{ t('data.growth') }}:</span>
+        <span>{{ $t('data.growth') }}:</span>
         <span>{{ creature.growth }}</span>
       </div>
-
       <div v-if="creature.description" class="creature-description">
         {{ creature.description }}
       </div>
@@ -51,127 +44,89 @@
 
 <script setup lang="ts">
 import type { Creature } from '@/models/Creature'
-import { useI18n } from 'vue-i18n'
-import ObjectPortrait from '../ObjectPortrait.vue'
 
 defineProps<{ creature: Creature }>()
-const emit = defineEmits<{ click: [creature: Creature] }>()
 
-const { t } = useI18n()
 type CreatureParameter = 'attack' | 'defense' | 'health' | 'speed'
 const parameters: Array<CreatureParameter> = ['attack', 'defense', 'health', 'speed']
 </script>
 
-<style lang="scss" scoped>
-@use '@/styles/mixins';
+<style>
 .creature-card {
   display: grid;
   grid-template-columns: 105px 1fr;
   gap: 4px;
-  border-right: 1px solid var(--color-text);
-  border-bottom: 1px solid var(--color-text);
-  transition:
-    background 0.2s linear,
-    border-right 0.2s linear,
-    border-bottom 0.2s linear;
-  @include mixins.media-medium {
+  background: var(--color-bg-deep);
+  border: 1px solid var(--color-text);
+  @media screen and (width >= 768px) {
     grid-template-columns: 150px 1fr;
   }
-  &:hover {
-    background: var(--color-bg-deep);
-  }
-}
-@include mixins.dark-scheme {
-  .creature-card {
-    border-right: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-  }
-}
-.creature-image {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    content: '';
-    background: url('/images/pages/home/links-background.webp');
-    filter: brightness(110%);
-  }
-  picture {
-    filter: drop-shadow(1px 1px 1px rgb(255 255 255 / 30%));
-  }
-}
-.creature-name {
-  grid-column: 1 / -1;
-  text-align: center;
-  border-bottom: 1px solid var(--color-border);
-  transition: border-bottom 0.2s linear;
-}
-.creature-info {
-  display: grid;
-  grid-template-rows: repeat(5, minmax(30px, auto)) 1fr;
-  grid-template-columns: 100%;
-  @include mixins.media-medium {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-.parameter {
-  display: grid;
-  grid-template-columns: minmax(120px, 2fr) 4fr;
-  align-items: center;
-  padding-left: 4px;
-  border-bottom: 1px solid var(--color-border);
-  transition:
-    border-bottom 0.2s linear,
-    border-right 0.2s linear;
-  &:last-child {
-    border-bottom: none;
-  }
-  span:first-child {
-    text-transform: capitalize;
-  }
-  @include mixins.media-small {
-    grid-template-columns: 2fr 4fr;
-    &:nth-last-child(-n + 2) {
-      border-bottom: 1px solid var(--color-border);
-    }
-  }
-  @include mixins.media-medium {
-    grid-template-columns: 125px 1fr;
-    &:nth-child(even) {
-      border-right: 1px solid var(--color-border);
-    }
-  }
-}
-.creature-description {
-  grid-column: 1 / -1;
-  padding-left: 4px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.creature-card.selected {
-  box-shadow: 0 0 5px var(--color-bg-deep);
-  .creature-info {
-    background: var(--color-bg-deep);
-  }
-}
-.paramater-with-resources {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-  div {
+  .creature-image {
     display: flex;
-    gap: 4px;
     align-items: center;
+    justify-content: center;
+    background: url('/images/pages/home/links-background.webp');
   }
-  picture {
+  .creature-name {
+    grid-column: 1 / -1;
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+    transition: border-bottom 0.2s linear;
+  }
+  .creature-info {
+    display: grid;
+    grid-template-rows: repeat(5, minmax(30px, auto)) 1fr;
+    grid-template-columns: 100%;
+    @media screen and (width >= 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .parameter {
+    display: grid;
+    grid-template-columns: minmax(120px, 2fr) 4fr;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    transition:
+      border-bottom 0.2s linear,
+      border-right 0.2s linear;
+    &:last-child {
+      border-bottom: none;
+    }
+    span:first-child {
+      text-transform: capitalize;
+    }
+    @media screen and (width >= 576px) {
+      grid-template-columns: 2fr 4fr;
+      &:nth-last-child(-n + 2) {
+        border-bottom: 1px solid var(--color-border);
+      }
+    }
+    @media screen and (width >= 768px) {
+      grid-template-columns: 125px 1fr;
+      &:nth-child(even) {
+        border-right: 1px solid var(--color-border);
+      }
+    }
+  }
+  .creature-description {
+    grid-column: 1 / -1;
+    padding-left: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .paramater-with-resources {
     display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    div {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    picture {
+      display: flex;
+    }
   }
 }
 </style>

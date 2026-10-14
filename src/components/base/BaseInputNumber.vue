@@ -1,7 +1,7 @@
 <template>
   <input
     :value="currentValue"
-    class="input-number"
+    class="base-input-number"
     type="number"
     name="input-number"
     :min="min"
@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { useDebounce } from '@vueuse/core'
+import { refDebounced } from '@vueuse/core'
 import { ref, watch } from 'vue'
 
 const props = withDefaults(
@@ -32,11 +32,11 @@ const emit = defineEmits<{ input: [number: number] }>()
 
 const currentValue = ref(props.value)
 const previousValue = ref(0)
-const debouncedValue = useDebounce(currentValue, props.debounce)
+const debouncedValue = refDebounced(currentValue, props.debounce)
 
 watch(
   () => props.value,
-  (newValue) => { currentValue.value = newValue },
+  (newValue) => { currentValue.value = Number.isNaN(newValue) ? props.min : newValue },
 )
 
 watch(debouncedValue, () => emit('input', debouncedValue.value))
@@ -59,17 +59,16 @@ function onInput(event: Event) {
 }
 </script>
 
-<style lang="scss" scoped>
-.input-number {
+<style>
+.base-input-number {
   width: 100%;
   padding: 0.25rem 0.5rem;
   font-family: inherit;
   font-size: inherit;
-  font-size: 0.875rem;
   line-height: 1.5;
   color: var(--color-text);
-  background: var(--color-bg);
+  background: var(--color-bg-deep);
   border: 1px solid var(--color-border);
-  border-radius: 0.2rem;
+  border-radius: 4px;
 }
 </style>

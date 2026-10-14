@@ -8,24 +8,22 @@
       <section class="title">
         <h2>{{ t(`data.${sideName}`) }}</h2>
         <PickCreatureButton :color="sideName" @select="onSelectCreature(side, $event)">
-          {{ side.activeCreature ? side.activeCreature.name : t('components.damageCalculator.pickCreature') }}
+          {{ side.activeCreature ? side.activeCreature.name : $t('components.damageCalculator.pickCreature') }}
         </PickCreatureButton>
       </section>
-
       <section class="main">
         <div class="creature">
           <!-- Creature portrait -->
           <button v-if="side.activeCreature" class="creature-button">
-            <ObjectPortrait
-              :file="{ name: side.activeCreature.id, alt: side.activeCreature.name }"
+            <img
               class="creature-img"
-              folder="/images/creatures/portraits/big"
-              :width="58"
-              :height="64"
-            />
+              :src="`/images/creatures/portraits/big/${side.activeCreature.id}.webp`"
+              :alt="side.activeCreature.name"
+              width="58px"
+              height="64px"
+            >
           </button>
         </div>
-
         <div class="hero">
           <SelectHero
             :value="side.hero"
@@ -33,11 +31,10 @@
             @select="onSelectHero(side, $event)"
             @clear="side.hero = null"
           />
-
           <div v-if="side.hero" class="hero-parameters">
             <div>
-              <label :for="`${sideName}-hero-level-input-${id}`" class="stat-name">
-                {{ t('data.level') }}
+              <label :for="`${sideName}-hero-level-input-${id}`">
+                {{ $t('data.level') }}
               </label>
               <BaseInputNumber
                 :id="`${sideName}-hero-level-input-${id}`"
@@ -47,7 +44,6 @@
                 @input="side.hero.level = $event"
               />
             </div>
-
             <InputHeroStat
               v-for="stat in ['power']"
               :key="`attacker-hero-${stat}`"
@@ -59,43 +55,38 @@
           </div>
         </div>
       </section>
-
       <section v-if="side.hero" class="skills">
-        <SelectSkillButtons
+        <SkillsForm
           v-for="(skill, key) in skills"
           :key="`${sideName}-skill-${key}-buttons`"
+          v-model="side.hero.skills[key]"
           :color="sideName"
           :name="skill"
-          :value="side.hero.skills[key] || 0"
           :levels="levels.slice(1, levels.length)"
-          @click="side.hero.skills[key] = $event"
         />
       </section>
-
       <section v-if="hasOtherSideCreature(sideName)" class="spell">
-        <div>{{ t('data.target') }}: {{ getSpellTargets(sideName) }}</div>
+        <div>{{ $t('data.target') }}: {{ getSpellTargets(sideName) }}</div>
         <BaseSelect
           :value="selectedSpell[sideName]"
           :options="spells"
-          :placeholder="t('components.magicCalculator.selectSpell')"
+          :placeholder="$t('components.magicCalculator.selectSpell')"
           virtual-scroll
           @select="onSelectSpell(sideName, $event)"
           @clear="selectedSpell[sideName] = null"
         >
           <template #selected="{ selected }">
-            <ObjectPortrait folder="/images/spells" :file="{ name: selected.id, alt: selected.name }" width="46px" />
+            <img :src="`/images/spells/${selected.id}.webp`" :alt="selected.name" width="46px">
             {{ selected.name }}
           </template>
-
           <template #option="{ option }">
-            <ObjectPortrait folder="/images/spells" :file="{ name: option.id, alt: option.name }" width="46px" />
+            <img :src="`/images/spells/${option.id}.webp`" :alt="option.name" width="46px">
             {{ option.name }}
           </template>
         </BaseSelect>
       </section>
-
       <section v-if="side.activeCreature" class="spells-effects">
-        <span>{{ t('data.effects') }}:</span>
+        <span>{{ $t('data.effects') }}:</span>
         <SpellCard
           v-for="spell in spellsEffects"
           :key="spell.id"
@@ -104,23 +95,19 @@
           @click="onSelectCreatureEffect(side, spell)"
         />
       </section>
-
-      <section v-show="selectedSpell[sideName]" class="damage">
-        <!-- Damage result -->
-        <strong v-show="spellDamages[sideName] >= 0">
-          {{ t('components.damageCalculator.damage') }}:
-          {{ spellDamages[sideName] }}
-        </strong>
-
-        <!-- Kills result -->
-        <strong>
+      <section v-show="selectedSpell[sideName]" class="results">
+        <div v-show="spellDamages[sideName] >= 0" class="results-text">
+          {{ $t('components.damageCalculator.damage') }}:
+          <span class="tabular-num">{{ spellDamages[sideName] }}</span>
+        </div>
+        <div class="results-text">
           {{
             spellDamages[sideName] >= 0
-              ? t('components.damageCalculator.kills')
-              : t('components.damageCalculator.heals')
+              ? $t('components.damageCalculator.kills')
+              : $t('components.damageCalculator.heals')
           }}:
-          {{ getSpellKillsValue(sideName) }}
-        </strong>
+          <span class="tabular-num">{{ getSpellKillsValue(sideName) }}</span>
+        </div>
       </section>
     </section>
   </section>
@@ -150,10 +137,9 @@ const spellsTargets = {
   self: [Spells.AnimateDead, Spells.Cure, Spells.Resurrection],
 }
 
-const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
 const BaseInputNumber = defineAsyncComponent(() => import('@/components/base/BaseInputNumber.vue'))
 const InputHeroStat = defineAsyncComponent(() => import('@/components/damageCalculator/InputHeroStat.vue'))
-const SelectSkillButtons = defineAsyncComponent(() => import('@/components/damageCalculator/SelectSkillButtons.vue'))
+const SkillsForm = defineAsyncComponent(() => import('@/components/damageCalculator/SkillsForm.vue'))
 const SpellCard = defineAsyncComponent(() => import('@/components/SpellCard.vue'))
 const BaseSelect = defineAsyncComponent(() => import('@/components/base/BaseSelect.vue'))
 
@@ -334,193 +320,174 @@ function getSpellTargets(sideName: BattleSide) {
 }
 </script>
 
-<style lang="scss" scoped>
-@use '@/styles/mixins';
+<style>
 .magic-calculator {
   display: grid;
   grid-template-rows: minmax(50vh, 1fr) 1fr;
   grid-template-columns: 100%;
-  contain-intrinsic-size: 80vh;
-  content-visibility: auto;
-  box-shadow: 0 0 3px rgb(170 170 170 / 50%);
-  @include mixins.media-large {
+  background-color: var(--color-bg-deep);
+  box-shadow: 0 0 3px var(--color-border);
+  @media screen and (width >= 1280px) {
     grid-template-rows: minmax(80vh, auto);
     grid-template-columns: 50% 50%;
   }
-  @include mixins.media-maximum {
+  @media screen and (width >= 1920px) {
     grid-template-rows: minmax(84vh, auto);
   }
-}
-.attacker,
-.defender {
-  display: grid;
-  grid-template-rows: repeat(5, min-content) auto;
-  gap: 1rem;
-  padding: 10px;
-  @include mixins.media-large {
-    padding: 20px;
-  }
-}
-.title {
-  display: grid;
-  grid-template-areas: 'title button';
-  column-gap: 0.5rem;
-  align-items: center;
-  & > h2 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-.main {
-  display: grid;
-  column-gap: 0.5rem;
-}
-.creature {
-  display: grid;
-  gap: 0.5rem;
-  .creature-input {
-    width: 65px;
-    height: 32px;
-  }
-}
-.hero {
-  display: grid;
-  grid-template-columns: auto;
-  grid-auto-rows: auto auto;
-  gap: 1rem;
-}
-.skills {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem 0;
-  @include mixins.media-medium {
-    grid-template-columns: 1fr 1fr;
+  .attacker,
+  .defender {
+    display: grid;
+    grid-template-rows: repeat(5, min-content) auto;
     gap: 1rem;
-  }
-}
-.hero-parameters {
-  display: grid;
-  grid-auto-columns: max-content;
-  grid-auto-flow: column;
-  gap: 8px;
-  justify-content: flex-end;
-  & > div {
-    width: 100px;
-  }
-  .parameter-attack {
-    margin-left: auto;
-  }
-}
-.spell {
-  display: grid;
-  grid-template-areas: 'target select';
-  grid-template-columns: minmax(auto, 40%) 1fr;
-  gap: 8px;
-  align-items: center;
-  div:nth-child(1) {
-    font-size: 0.9rem;
-  }
-}
-.spells-effects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 8px;
-  & > span {
-    grid-column: 1 / -1;
-  }
-}
-.attacker {
-  border-bottom: 1px solid var(--color-border);
-  @include mixins.media-large {
-    border-right: 1px solid var(--color-border);
-    border-bottom: 0;
+    padding: 0.5rem;
   }
   .title {
-    grid-template-columns: minmax(auto, 40%) 1fr;
+    display: grid;
+    grid-template-areas: 'title button';
+    column-gap: 0.5rem;
+    align-items: center;
+    & > h2 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
   .main {
-    grid-template-columns: minmax(auto, 40%) 1fr;
-  }
-}
-.defender {
-  .title {
-    grid-template-areas: 'button title';
-    grid-template-columns: 1fr minmax(auto, 40%);
-  }
-  .title > h2 {
-    grid-area: title;
-    text-align: right;
-  }
-  .main {
-    grid-template-areas: 'hero creature';
-    grid-template-columns: auto minmax(auto, 40%);
+    display: grid;
+    column-gap: 0.5rem;
   }
   .creature {
-    grid-area: creature;
-    justify-content: end;
-  }
-  .spell {
-    grid-template-columns: 1fr minmax(auto, 40%);
-    div:nth-child(1) {
-      grid-area: select;
+    display: grid;
+    gap: 0.5rem;
+    .creature-input {
+      width: 65px;
+      height: 32px;
     }
-    div:nth-child(2) {
-      grid-area: target;
+  }
+  .hero {
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-rows: auto auto;
+    gap: 1rem;
+  }
+  .skills {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem 0;
+    @media screen and (width >= 768px) {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
     }
   }
   .hero-parameters {
-    justify-content: flex-start;
-  }
-}
-.creature-button {
-  position: relative;
-  z-index: 1;
-  display: block;
-  width: 58px;
-  height: 64px;
-  padding: 0;
-  overflow: hidden;
-  &::after {
-    position: absolute;
-    top: -50%;
-    bottom: -50%;
-    z-index: -1;
-    width: 1.25em;
-    content: '';
-    background-color: hsl(0deg 0% 100% / 20%);
-    transform: translate3d(-525%, 0, 0) rotate(35deg);
-  }
-  &:hover::after {
-    transform: translate3d(200%, 0, 0) rotate(35deg);
-    transition: transform 0.45s ease-in-out;
-  }
-}
-.creature-img {
-  position: relative;
-  z-index: -1;
-}
-.unit-effect-checkbox {
-  margin-bottom: 1rem;
-}
-.select-skill-buttons {
-  @include mixins.media-large {
-    &:nth-child(even) {
-      text-align: center;
+    display: grid;
+    grid-auto-columns: max-content;
+    grid-auto-flow: column;
+    gap: 8px;
+    justify-content: flex-end;
+    & > div {
+      width: 100px;
+    }
+    .parameter-attack {
+      margin-left: auto;
     }
   }
-}
-.damage {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: flex-end;
-  justify-content: flex-end;
-  font-size: 1.2rem;
-  text-align: right;
-}
-.stat-name {
-  display: block;
-  margin-bottom: 10px;
+  .spell {
+    display: grid;
+    grid-template-areas: 'target select';
+    grid-template-columns: minmax(auto, 50%) 1fr;
+    gap: 8px;
+    align-items: center;
+    div:nth-child(1) {
+      font-size: 0.9rem;
+    }
+  }
+  .spells-effects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 8px;
+    & > span {
+      grid-column: 1 / -1;
+    }
+  }
+  .attacker {
+    border-bottom: 1px solid var(--color-border);
+    @media screen and (width >= 1280px) {
+      border-right: 1px solid var(--color-border);
+      border-bottom: 0;
+    }
+    .title {
+      grid-template-columns: minmax(auto, 50%) 1fr;
+    }
+    .main {
+      grid-template-columns: minmax(auto, 50%) 1fr;
+    }
+  }
+  .defender {
+    .title {
+      grid-template-areas: 'button title';
+      grid-template-columns: 1fr minmax(auto, 50%);
+    }
+    .title > h2 {
+      grid-area: title;
+      text-align: right;
+    }
+    .main {
+      grid-template-areas: 'hero creature';
+      grid-template-columns: auto minmax(auto, 50%);
+    }
+    .creature {
+      grid-area: creature;
+      justify-content: end;
+    }
+    .spell {
+      grid-template-columns: 1fr minmax(auto, 50%);
+    }
+    .hero-parameters {
+      justify-content: flex-start;
+    }
+  }
+  .creature-button {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 58px;
+    height: 64px;
+    padding: 0;
+    overflow: hidden;
+    &::after {
+      position: absolute;
+      top: -50%;
+      bottom: -50%;
+      z-index: -1;
+      width: 1.25em;
+      content: '';
+      background-color: hsl(0deg 0% 100% / 20%);
+      transform: translate3d(-525%, 0, 0) rotate(35deg);
+    }
+    &:hover::after {
+      transform: translate3d(200%, 0, 0) rotate(35deg);
+      transition: transform 0.45s ease-in-out;
+    }
+  }
+  .creature-img {
+    position: relative;
+    z-index: -1;
+  }
+  .unit-effect-checkbox {
+    margin-bottom: 1rem;
+  }
+  .results {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 1.2rem;
+    text-align: right;
+    .results-text {
+      font-weight: 600;
+    }
+  }
 }
 </style>

@@ -1,114 +1,64 @@
 <template>
-  <header>
-    <router-link
-      v-show="router.currentRoute.value.path !== '/'"
-      class="return-home"
-      to="/"
-    >
-      <img
-        src="@/assets/icons/arrow_back.svg"
-        alt="back"
-        width="16"
-        height="16"
-      >
-      {{ t('common.homePage') }}
-    </router-link>
+  <header class="navigation-header">
+    <nav>
+      <router-link v-show="router.currentRoute.value.path !== '/'" class="return-home" to="/">
+        <IconArrowLeft />
+        {{ $t('common.homePage') }}
+      </router-link>
+    </nav>
   </header>
-
-  <RouterView v-slot="{ Component }">
-    <Transition
-      name="router"
-      mode="out-in"
-    >
-      <KeepAlive :include="keepAliveComponents">
-        <component :is="Component" />
-      </KeepAlive>
-    </Transition>
-  </RouterView>
-
-  <BaseNotification
-    v-if="isNewVersionNotificationActive && !isNewVersionNotificationDisabled"
-    show
-    :buttons="notificationsButtons"
-  >
-    {{ t('common.newVersionAvailable') }}
-  </BaseNotification>
+  <main>
+    <RouterView v-slot="{ Component }">
+      <Transition name="router" mode="out-in">
+        <KeepAlive>
+          <component :is="Component" />
+        </KeepAlive>
+      </Transition>
+    </RouterView>
+  </main>
 </template>
 
 <script setup lang="ts">
-import { whenever } from '@vueuse/core'
-import { useRegisterSW } from 'virtual:pwa-register/vue'
-import { computed, defineAsyncComponent, provide, ref, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { defineAsyncComponent, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '@/store'
-import { isDark, isNewVersionNotificationDisabled, selectedLocale } from '@/utilities'
+import { selectedLocale } from '@/utilities'
 import { getAppLocale } from './i18n'
 
-const BaseNotification = defineAsyncComponent(() => import('@/components/base/BaseNotification.vue'))
-
-const keepAliveComponents = ['DamageCalculatorPage', 'MagicCalculatorPage', 'CreaturesLibraryPage']
+const IconArrowLeft = defineAsyncComponent(() => import('~icons/mdi/arrow-left'))
 
 const router = useRouter()
-const { t } = useI18n()
 const store = useStore()
-const { updateServiceWorker, needRefresh } = useRegisterSW({ immediate: false })
-provide('needRefresh', needRefresh)
-
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => (isDark.value = matches))
-
-const isNewVersionNotificationActive = ref(false)
-provide('isNewVersionNotificationActive', isNewVersionNotificationActive)
-whenever(needRefresh, () => (isNewVersionNotificationActive.value = true), { immediate: true, once: true })
-const notificationsButtons = computed(() => [
-  {
-    text: t('common.dismiss'),
-    textColor: 'rgb(255, 255, 255)',
-    onClick: () => { isNewVersionNotificationDisabled.value = true },
-  },
-  {
-    text: t('common.update'),
-    textColor: 'rgb(255, 255, 255)',
-    onClick: () => { updateServiceWorker(true) },
-  },
-])
-
 // Collect initial data about game
 const stop = watch(router.currentRoute, ({ path }) => {
-  if (!store.isDataLoaded && ['/damage', '/magic', '/creatures'].includes(path)) {
+  const isPreloadRoute = path.includes('damage') || path.includes('magic') || path.includes('creatures')
+  if (!store.isDataLoaded && isPreloadRoute) {
     store.loadData(selectedLocale.value ?? getAppLocale())
     stop()
   }
 })
 </script>
 
-<style lang="scss">
-@use './styles/main';
-@use './styles/fonts';
-</style>
-
-<style lang="scss" scoped>
-@use '@/styles/mixins';
-header {
-  height: 1.5rem;
-  padding-left: 5px;
-  margin-bottom: 0.5rem;
-}
-.return-home {
-  display: inline-flex;
-  align-items: center;
-  font-size: 1rem;
-  color: var(--color-link);
-  text-decoration: none;
-  opacity: 0.7;
-  transition: opacity 0.15s;
-  &:hover {
-    opacity: 1;
+<style>
+@import url('@/assets/styles/root.css');
+@import url('@/assets/styles/fonts.css');
+.navigation-header {
+  header {
+    height: 1.5rem;
+    padding-left: 5px;
+    margin-bottom: 0.5rem;
   }
-  &::before {
-    width: 2rem;
-    height: 2rem;
-    background: url('@/assets/icons/arrow_back.svg');
+  .return-home {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--color-link);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.15s;
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 .router-enter-active,
@@ -122,12 +72,5 @@ header {
 .router-link-enter-from,
 .router-link-leave-to {
   display: none;
-}
-@include mixins.dark-scheme {
-  .return-home {
-    img {
-      filter: invert(1);
-    }
-  }
 }
 </style>

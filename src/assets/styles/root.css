@@ -1,0 +1,114 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+:root {
+  font-synthesis: none;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+
+  --color-attacker: rgb(0 185 30);
+  --color-attacker-text: var(--color-text);
+  --color-attacker-hover: rgb(0 145 24);
+  --color-defender: rgb(220 56 72);
+  --color-defender-hover: rgb(175 40 55);
+  --color-defender-text: var(--color-text);
+  @media (prefers-color-scheme: light) {
+    --color-text: oklch(21.01% 0.0318 264.66deg);
+    --color-bg: oklch(97.83% 0.004 106.47deg);
+    --color-bg-deep: oklch(100% 0 0deg);
+    --color-border: oklch(92.76% 0.0058 264.53deg);
+    --color-link: rgb(108 117 125);
+  }
+  @media (prefers-color-scheme: dark) {
+    --color-text: oklch(100% 0.0001 271.152deg);
+    --color-bg: oklch(17.73% 0.0089 264.32deg);
+    --color-bg-deep: oklch(22.5% 0.0132 258.37deg);
+    --color-border: oklch(33.44% 0.0239 258.36deg);
+    --color-link: rgb(165 165 165);
+  }
+}
+html {
+  color: var(--color-text);
+  accent-color: var(--color-text);
+  background: var(--color-bg);
+}
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  transition:
+    background-color 0.2s linear,
+    color 0.2s linear;
+}
+html,
+body,
+#app {
+  line-height: 1.5;
+}
+body.no-scroll {
+  overflow: hidden;
+}
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: bold;
+  text-wrap: balance;
+}
+h1 {
+  font-size: clamp(2rem, 10vw, 3rem);
+}
+h2 {
+  font-size: clamp(1.6rem, 8vw, 2rem);
+}
+h3 {
+  font-size: clamp(1.4rem, 5vw, 1.6rem);
+}
+h4 {
+  font-size: 1.2rem;
+}
+p {
+  white-space: pre-line;
+}
+strong {
+  font-weight: bold;
+}
+button {
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  background: none;
+  border: none;
+  transition:
+    color 0.2s linear,
+    background 0.2s linear,
+    border 0.2s linear;
+}
+input {
+  transition:
+    color 0.2s linear,
+    background 0.2s linear,
+    border 0.2s linear;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.tabular-num {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+fieldset {
+  border-color: var(--color-border);
+}

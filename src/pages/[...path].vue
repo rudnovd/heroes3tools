@@ -1,24 +1,18 @@
 <template>
-  <main class="error-page">
+  <section class="error-page">
     <div class="error-window">
       <div>
-        <span>{{ t('components.errorPage.data.nothingHere') }}</span>
-        <span>{{ t('components.errorPage.data.whereCouldItBe') }}</span>
+        <span>{{ $t('components.errorPage.data.nothingHere') }}</span>
+        <span>{{ $t('components.errorPage.data.whereCouldItBe') }}</span>
       </div>
       <router-link class="home-link" to="/">
-        {{ t('components.errorPage.returnToHomeButton') }}
+        {{ $t('components.errorPage.returnToHomeButton') }}
       </router-link>
     </div>
-  </main>
+  </section>
 </template>
 
-<script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n()
-</script>
-
-<style lang="scss" scoped>
+<style>
 .error-page {
   display: flex;
   align-items: center;
@@ -55,7 +49,7 @@ const { t } = useI18n()
   color: rgb(255 255 255);
   text-align: center;
   background: url('/images/windows/base-dark-bg.webp');
-  border: 1px solid black;
+  border: 1px solid var(--color-border);
   transition: border-color 0.25s;
   &:hover {
     border-color: rgb(255 255 255 / 50%);

@@ -9,7 +9,7 @@
     "types": [
       "vite/client",
       "vite-plugin-pwa/client",
-      "@intlify/unplugin-vue-i18n/messages"
+      "unplugin-icons/types/vue"
     ],
     "noUnusedLocals": true,
     "noUnusedParameters": true,

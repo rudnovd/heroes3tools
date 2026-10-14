@@ -1,94 +1,41 @@
-import type { ReactiveHead, UseHeadInput } from '@unhead/vue'
+import type { ReactiveHead } from '@unhead/vue'
 import type { Locale } from 'vue-i18n'
-import { useDark, useLocalStorage } from '@vueuse/core'
-import { getAppLocale } from './i18n'
-
-export const isDark = useDark({
-  selector: 'body',
-  attribute: 'color-scheme',
-  valueDark: 'dark',
-  valueLight: 'light',
-  onChanged: (isDark) => {
-    document.querySelector('html')!.style.colorScheme = isDark ? 'dark' : 'light'
-    document.querySelector('body')!.setAttribute('color-scheme', isDark ? 'dark' : 'light')
-  },
-})
+import { useLocalStorage } from '@vueuse/core'
+import { AVAILABLE_LOCALES, getAppLocale } from './i18n'
 
 export const selectedLocale = useLocalStorage<Locale | null>('locale', getAppLocale(), {
   listenToStorageChanges: false,
 })
-
 export const isNewVersionNotificationDisabled = useLocalStorage('isNewVersionNotificationDisabled', false)
 
-const metaSharedProperties = [
-  { name: 'creator', content: 'https://github.com/rudnovd' },
-  { name: 'format-detection', content: 'telephone=no' },
-  { property: 'og:site:name', content: 'Heroes 3 tools' },
-  { property: 'og:type', content: 'website' },
-] as const
-
-export const metaEmptyProperties: UseHeadInput = {
-  title: 'Heroes 3 tools',
-  meta: [
-    ...metaSharedProperties,
-    { name: 'application-name', content: 'Heroes 3 tools' },
-    {
-      name: 'description',
-      content:
-        'Tools to make playing Heroes of Might and Magic III: Horn of The Abyss easier: damage calculator, magic calculator, creature library',
-    },
-    {
-      property: 'og:description',
-      content:
-        'Tools to make playing Heroes of Might and Magic III: Horn of The Abyss easier: damage calculator, magic calculator, creature library',
-    },
-    { property: 'og:url', content: 'https://heroes3tools.netlify.app' },
-    {
-      property: 'og:image',
-      content: 'https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true',
-    },
-    { property: 'og:locale', content: 'en_US' },
-    { property: 'og:locale:alternate', content: 'ru_RU' },
-    { property: 'og:title', content: 'Heroes 3 tools' },
-    {
-      name: 'twitter:description',
-      content:
-        'Tools to make playing Heroes of Might and Magic III: Horn of The Abyss easier: damage calculator, magic calculator, creature library',
-    },
-    {
-      name: 'twitter:image',
-      content: 'https://github.com/rudnovd/heroes3tools/blob/master/docs/calculator-image.png?raw=true',
-    },
-    { name: 'twitter:title', content: 'Heroes 3 tools' },
-  ],
-} as const
-
-export function getHead({
-  title,
-  description,
-  image,
-  locale,
-  url,
-}: {
+export interface HeadData {
   title: string
   description: string
   image: string
-  locale: string
   url: string
-}): ReactiveHead {
+}
+export function getHead({ title, description, image, url }: HeadData): ReactiveHead {
+  const appLocale = getAppLocale()
   return {
-    ...metaSharedProperties,
     title,
-    titleTemplate: '%s | Heroes 3 tools',
+    titleTemplate: title === 'Heroes 3 tools' ? '%s' : '%s | Heroes 3 tools',
+    link: [
+      { rel: 'canonical', href: url },
+    ],
     meta: [
-      { name: 'application-name', content: title },
-      { name: 'description', content: description },
       { property: 'og:title', content: title },
+      { name: 'description', content: description },
       { property: 'og:description', content: description },
-      { property: 'og:url', content: url },
       { property: 'og:image', content: image },
-      { property: 'og:locale', content: locale },
-      { property: 'og:locale:alternate', content: locale === 'en_US' ? 'ru_RU' : 'en_US' },
+      { property: 'og:image:alt', content: title },
+      { property: 'og:image:type', content: 'webp' },
+      { property: 'og:image:width', content: '1280' },
+      { property: 'og:image:height', content: '640' },
+      { property: 'og:url', content: url },
+      { property: 'og:locale', content: appLocale },
+      ...AVAILABLE_LOCALES
+        .filter(locale => locale !== appLocale)
+        .map(locale => ({ property: 'og:locale:alternate', content: locale })),
       { name: 'twitter:title', content: title },
       { name: 'twitter:description', content: description },
       { name: 'twitter:image', content: image },

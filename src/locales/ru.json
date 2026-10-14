@@ -1,6 +1,83 @@
 {
+  "pages": {
+    "damageCalculator": "Калькулятор Урона",
+    "creaturesLibrary": "Библиотека существ",
+    "magicCalculator": "Калькулятор Магии",
+    "pageNotFound": "Страница не найдена"
+  },
+  "components": {
+    "base": {
+      "baseSelect": {
+        "selectOptions": "Выбрать опции",
+        "noOptions": "Нет опций",
+        "noOptionsFound": "Опций не найдено"
+      }
+    },
+    "selectHero": {
+      "placeholder": "Выбрать героя"
+    },
+    "selectTerrain": {
+      "placeholder": "Выбрать местность"
+    },
+    "selectUnitModal": {
+      "selectCreature": "Выбрать существо",
+      "searchCreature": "Поиск существа",
+      "creatureNotFound": "Существо не найдено"
+    },
+    "damageCalculator": {
+      "pickCreature": "Выбрать существо",
+      "damage": "Урон",
+      "kills": "Убийств",
+      "heals": "Излечит",
+      "effectGroups": {
+        "attack": "Атака",
+        "defense": "Защита",
+        "weakening": "Ослабление"
+      }
+    },
+    "magicCalculator": {
+      "selectSpell": "Выбрать заклинание"
+    },
+    "pageFooter": {
+      "license": "Лицензия",
+      "language": "Язык",
+      "foundAnError": "Нашли ошибку?",
+      "sourceCode": "Исходный код",
+      "appVersion": "Версия приложения",
+      "hotaVersion": "Версия HotA",
+      "feedback": "Обратная связь",
+      "downloadOfflineVersion": "Скачать оффлайн версию"
+    },
+    "errorPage": {
+      "returnToHomeButton": "Вернуться на Главную страницу",
+      "data": {
+        "nothingHere": "Здесь ничего нет.",
+        "whereCouldItBe": "И куда подевалось?"
+      }
+    },
+    "howToUse": {
+      "finishTheTour": "Завершить экскурсию",
+      "howToUse": "Как пользоваться"
+    }
+  },
+  "data": {
+    "attacker": "Атакующий",
+    "defender": "Защищающийся",
+    "power": "Сила Магии",
+    "knowledge": "Знание",
+    "level": "Уровень",
+    "attack": "Атака",
+    "defense": "Защита",
+    "health": "Здоровье",
+    "damage": "Урон",
+    "cost": "Стоимость",
+    "speed": "Скорость",
+    "aiValue": "Значение ИИ",
+    "growth": "Прирост",
+    "target": "Цель",
+    "effects": "Эффекты"
+  },
   "common": {
-    "dismiss": "Отклонить",
     "homePage": "Главная страница",
     "howToUseSteps": {
       "damage": "Значения урона отображаются здесь",
@@ -9,105 +86,7 @@
       "selectDefenderCreature": "Нажмите, чтобы выбрать защищающееся существо",
       "selectDefenderHero": "Нажмите, чтобы выбрать защищающегося героя"
     },
-    "update": "Обновить",
-    "newVersionAvailable": "Доступна новая версия",
     "neutralCreatures": "Нейтральные существа",
     "neutralTown": "Нейтральные"
-  },
-  "components": {
-    "base": {
-      "baseSelect": {
-        "noOptions": "Нет опций",
-        "noOptionsFound": "Опций не найдено",
-        "selectOptions": "Выбрать опции"
-      }
-    },
-    "damageCalculator": {
-      "damage": "Урон",
-      "heals": "Излечит",
-      "kills": "Убийств",
-      "pickCreature": "Выбрать существо"
-    },
-    "damageCalculatorFooter": {
-      "about": "О калькуляторе",
-      "data": [
-        "Heroes 3 tools",
-        "Heroes 3 tools - Набор инструментов для упрощения расчётов в игре Heroes of Might and Magic III: Horn of The Abyss.",
-        "Об идеях и улучшениях пишите на {email}"
-      ],
-      "errorForm": "эту форму"
-    },
-    "damageCalculatorPage": {
-      "about": "О Калькуляторе Урона",
-      "aboutModal": "Heroes 3 tools\n\nHeroes 3 tools - Набор инструментов для упрощения расчётов в игре Heroes of Might and Magic III: Horn of The Abyss.\n\nОб идеях и улучшениях пишите на 7fudz69mu{'@'}mozmail.com"
-    },
-    "errorPage": {
-      "data": {
-        "nothingHere": "Здесь ничего нет.",
-        "whereCouldItBe": "И куда подевалось?"
-      },
-      "returnToHomeButton": "Вернуться на Главную страницу"
-    },
-    "homePage": {
-      "aboutModal": "Heroes 3 tools\n\nHeroes 3 tools - Набор инструментов для упрощения расчётов в игре Heroes of Might and Magic III: Horn of The Abyss.\n\nОб идеях и улучшениях пишите на 7fudz69mu{'@'}mozmail.com"
-    },
-    "howToUse": {
-      "finishTheTour": "Завершить экскурсию",
-      "howToUse": "Как пользоваться"
-    },
-    "magicCalculator": {
-      "selectSpell": "Выбрать заклинание"
-    },
-    "pageFooter": {
-      "about": "О проекте",
-      "appVersion": "Версия приложения",
-      "hotaVersion": "Версия HotA",
-      "foundAnError": "Нашли ошибку?",
-      "howToUse": "Как пользоваться",
-      "language": "Язык",
-      "license": "Лицензия MIT\n\nАвторское право (c) 2026 https://github.com/rudnovd\n\nДанная лицензия разрешает лицам, получившим копию данного программного обеспечения и сопутствующей документации (в дальнейшем именуемыми «Программное обеспечение»), безвозмездно использовать Программное обеспечение без ограничений, включая неограниченное право на использование, копирование, изменение, слияние, публикацию, распространение, сублицензирование и/или продажу копий Программного обеспечения, а также лицам, которым предоставляется данное Программное обеспечение, при соблюдении следующих условий:\n\nУказанное выше уведомление об авторском праве и данные условия должны быть включены во все копии или значимые части данного Программного обеспечения.\n\nДАННОЕ ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ПРЕДОСТАВЛЯЕТСЯ «КАК ЕСТЬ», БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ, ЯВНО ВЫРАЖЕННЫХ ИЛИ ПОДРАЗУМЕВАЕМЫХ, ВКЛЮЧАЯ ГАРАНТИИ ТОВАРНОЙ ПРИГОДНОСТИ, СООТВЕТСТВИЯ ПО ЕГО КОНКРЕТНОМУ НАЗНАЧЕНИЮ И ОТСУТСТВИЯ НАРУШЕНИЙ, НО НЕ ОГРАНИЧИВАЯСЬ ИМИ. НИ В КАКОМ СЛУЧАЕ АВТОРЫ ИЛИ ПРАВООБЛАДАТЕЛИ НЕ НЕСУТ ОТВЕТСТВЕННОСТИ ПО КАКИМ-ЛИБО ИСКАМ, ЗА УЩЕРБ ИЛИ ПО ИНЫМ ТРЕБОВАНИЯМ, В ТОМ ЧИСЛЕ, ПРИ ДЕЙСТВИИ КОНТРАКТА, ДЕЛИКТЕ ИЛИ ИНОЙ СИТУАЦИИ, ВОЗНИКШИМ ИЗ-ЗА ИСПОЛЬЗОВАНИЯ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ ИЛИ ИНЫХ ДЕЙСТВИЙ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ.",
-      "licenseInformation": "Информация о лицензии",
-      "sourceCode": "Исходный код",
-      "feedback": "Обратная связь",
-      "downloadOfflineVersion": "Скачать оффлайн версию"
-    },
-    "selectHero": {
-      "placeholder": "Выбрать героя"
-    },
-    "selectTerrain": {
-      "placeholder": "Выбрать территорию"
-    },
-    "selectUnitModal": {
-      "searchCreature": "Поиск существа"
-    }
-  },
-  "data": {
-    "aiValue": "Значение ИИ",
-    "attack": "Атака",
-    "attacker": "Атакующий",
-    "cost": "Стоимость",
-    "damage": "Урон",
-    "defender": "Защищающийся",
-    "defense": "Защита",
-    "effects": "Эффекты",
-    "growth": "Прирост",
-    "health": "Здоровье",
-    "knowledge": "Знание",
-    "level": "Уровень",
-    "power": "Сила Магии",
-    "speed": "Скорость",
-    "target": "Цель"
-  },
-  "extra": {
-    "dismiss": "Отклонить",
-    "newContentIsAvailable": "Доступен новый контент",
-    "updateApp": "Обновить приложение"
-  },
-  "pages": {
-    "creaturesLibrary": "Библиотека существ",
-    "damageCalculator": "Калькулятор Урона",
-    "home": "Heroes 3 tools",
-    "magicCalculator": "Калькулятор Магии",
-    "pageNotFound": "Страница не найдена"
   }
 }

@@ -8,23 +8,21 @@
       <section class="title">
         <h2>{{ t(`data.${sideName}`) }}</h2>
         <PickCreatureButton :color="sideName" @select="onSelectCreature(side, $event)">
-          {{ side.activeCreature ? side.activeCreature.name : t('components.damageCalculator.pickCreature') }}
+          {{ side.activeCreature ? side.activeCreature.name : $t('components.damageCalculator.pickCreature') }}
         </PickCreatureButton>
       </section>
-
       <section class="main">
         <div class="creature">
           <!-- Creature portrait -->
           <button v-if="side.activeCreature" class="creature-button">
-            <ObjectPortrait
-              :file="{ name: side.activeCreature.id, alt: side.activeCreature.name }"
+            <img
               class="creature-img"
-              folder="/images/creatures/portraits/big"
-              :width="58"
-              :height="64"
-            />
+              :src="`/images/creatures/portraits/big/${side.activeCreature.id}.webp`"
+              :alt="side.activeCreature.name"
+              width="58px"
+              height="64px"
+            >
           </button>
-
           <!-- Input creatures count -->
           <BaseInputNumber
             v-if="side.activeCreature"
@@ -37,7 +35,6 @@
             @input="side.activeCreature.count = $event"
           />
         </div>
-
         <div class="hero">
           <SelectHero
             :value="side.hero"
@@ -45,11 +42,10 @@
             @select="onSelectHero(side, $event)"
             @clear="side.hero = null"
           />
-
           <div v-if="side.hero" class="hero-parameters">
             <div>
               <label :for="`${sideName}-hero-level-input-${id}`" class="stat-name">
-                {{ t('data.level') }}
+                {{ $t('data.level') }}
               </label>
               <BaseInputNumber
                 :id="`${sideName}-hero-level-input-${id}`"
@@ -59,7 +55,6 @@
                 @input="side.hero.level = $event"
               />
             </div>
-
             <InputHeroStat
               v-for="stat in ['attack', 'defense']"
               :key="`attacker-hero-${stat}`"
@@ -71,58 +66,60 @@
           </div>
         </div>
       </section>
-
       <section v-if="side.hero" class="skills">
-        <SelectSkillButtons
+        <SkillsForm
           v-for="(skill, key) in skills"
           :key="`${sideName}-skill-${key}-buttons`"
+          v-model="side.hero.skills[key]"
           :color="sideName"
           :name="skill"
-          :value="side.hero.skills[key] || 0"
           :levels="levels.slice(1, levels.length)"
-          @click="side.hero.skills[key] = $event"
         />
       </section>
-
       <section v-if="side.activeCreature" class="effects">
-        <div v-for="(effectGroup, i) in effects" :key="`attacker-effects-group-${i}`">
-          <template v-for="effect in effectGroup" :key="`attacker-effect-${effect}`">
-            <BaseCheckbox
-              :color="sideName"
-              :value="isEffectEnabled(side, effect)"
-              :label="effect.name"
-              @change="onSelectCreatureEffect(side, effect, $event)"
-            />
-          </template>
+        <fieldset v-for="group in effects" :key="`attacker-effects-group-${group.title}`" class="effects__group" :class="`color-${sideName}`">
+          <legend class="skill-name">
+            <span>{{ group.title }}</span>
+          </legend>
+          <ul class="skills-form__list">
+            <li v-for="effect in group.spells" :key="`attacker-effect-${effect}`">
+              <BaseCheckbox
+                :color="sideName"
+                :model-value="isEffectEnabled(side, effect)"
+                :label="effect.name"
+                @change="onSelectCreatureEffect(side, effect, $event)"
+              />
+            </li>
+          </ul>
+        </fieldset>
+      </section>
+      <section v-if="side.activeCreature && side.activeCreature.count" class="results">
+        <div class="results-text">
+          {{ $t('components.damageCalculator.damage') }}:
+          <span class="tabular-num">
+            {{
+              getTotalResultString(
+                side.activeCreature.calculation.minDamage,
+                side.activeCreature.calculation.maxDamage,
+                side.activeCreature.calculation.averageDamage,
+              )
+            }}
+          </span>
+        </div>
+        <div class="results-text">
+          {{ $t('components.damageCalculator.kills') }}:
+          <span class="tabular-num">
+            {{
+              getTotalResultString(
+                side.activeCreature.calculation.minKills,
+                side.activeCreature.calculation.maxKills,
+                side.activeCreature.calculation.averageKills,
+              )
+            }}
+          </span>
         </div>
       </section>
-
-      <section v-if="side.activeCreature" class="damage">
-        <strong>
-          <!-- Damage result -->
-          {{ t('components.damageCalculator.damage') }}:
-          {{
-            getTotalResultString(
-              side.activeCreature.calculation.minDamage,
-              side.activeCreature.calculation.maxDamage,
-              side.activeCreature.calculation.averageDamage,
-            )
-          }}
-        </strong>
-        <strong>
-          <!-- Kills result -->
-          {{ t('components.damageCalculator.kills') }}:
-          {{
-            getTotalResultString(
-              side.activeCreature.calculation.minKills,
-              side.activeCreature.calculation.maxKills,
-              side.activeCreature.calculation.averageKills,
-            )
-          }}
-        </strong>
-      </section>
     </section>
-
     <div class="calculator-footer">
       <div class="select-terrain">
         <SelectTerrain
@@ -155,10 +152,9 @@ import { useStore } from '@/store'
 const props = defineProps<{
   battleValue: Battle
 }>()
-const ObjectPortrait = defineAsyncComponent(() => import('@/components/ObjectPortrait.vue'))
 const BaseInputNumber = defineAsyncComponent(() => import('@/components/base/BaseInputNumber.vue'))
 const InputHeroStat = defineAsyncComponent(() => import('@/components/damageCalculator/InputHeroStat.vue'))
-const SelectSkillButtons = defineAsyncComponent(() => import('@/components/damageCalculator/SelectSkillButtons.vue'))
+const SkillsForm = defineAsyncComponent(() => import('@/components/damageCalculator/SkillsForm.vue'))
 const BaseCheckbox = defineAsyncComponent(() => import('@/components/base/BaseCheckbox.vue'))
 
 const { t } = useI18n()
@@ -188,14 +184,18 @@ const skills = computed(() => {
     .forEach((skill, index) => { skills[damageCalculatorSkills[index]] = skill.name })
   return skills
 })
-const effects = computed(() => [store.attackPositiveEffects, store.defensePositiveEffects, store.attackNegativeEffects])
+const effects = computed(() => {
+  return [
+    { title: t('components.damageCalculator.effectGroups.attack'), spells: store.attackPositiveEffects },
+    { title: t('components.damageCalculator.effectGroups.defense'), spells: store.defensePositiveEffects },
+    { title: t('components.damageCalculator.effectGroups.weakening'), spells: store.attackNegativeEffects },
+  ]
+})
 
 // Return string of total damage or total kills
 function getTotalResultString(min: number, max: number, average: number) {
-  if (min !== max)
-    return `${min} — ${max} (~ ${average})`
-  if (min === max)
-    return min
+  if (min !== max) return `${min} — ${max} (~ ${average})`
+  if (min === max) return min
   return 0
 }
 
@@ -212,9 +212,7 @@ function onSelectHero(side: DamageCalculatorBattleSide, hero: Hero) {
 }
 
 function onSelectCreatureEffect(side: DamageCalculatorBattleSide, spell: Spell, effectEnabled: boolean) {
-  if (!side.activeCreature)
-    return
-
+  if (!side.activeCreature) return
   if (!effectEnabled) {
     side.activeCreature.effects.push(spell)
   }
@@ -233,184 +231,180 @@ function onSelectTerrain(terrain: Terrain | null) {
 }
 </script>
 
-<style lang="scss" scoped>
-@use '@/styles/mixins';
+<style>
 .damage-calculator {
   display: grid;
   grid-template-rows: minmax(50vh, 1fr) 1fr;
   grid-template-columns: 100%;
-  box-shadow: 0 0 3px rgb(170 170 170 / 50%);
-  @include mixins.media-large {
+  background-color: var(--color-bg-deep);
+  box-shadow: 0 0 3px var(--color-border);
+  @media screen and (width >= 1280px) {
     grid-template-rows: minmax(80vh, auto) 1fr;
     grid-template-columns: 50% 50%;
   }
-  @include mixins.media-maximum {
+  @media screen and (width >= 1920px) {
     grid-template-rows: minmax(84vh, auto) 1fr;
   }
-}
-.attacker,
-.defender {
-  display: grid;
-  grid-template-rows: repeat(4, min-content) auto;
-  gap: 1rem;
-  padding: 10px;
-  @include mixins.media-large {
-    padding: 20px;
-  }
-}
-.title {
-  display: grid;
-  grid-template-areas: 'title button';
-  column-gap: 0.5rem;
-  align-items: center;
-  & > h2 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-.main {
-  display: grid;
-  column-gap: 0.5rem;
-}
-.creature {
-  display: grid;
-  gap: 0.5rem;
-  .creature-input {
-    width: 65px;
-    height: 32px;
-  }
-}
-.hero {
-  display: grid;
-  grid-template-columns: auto;
-  grid-auto-rows: auto auto;
-  gap: 1rem;
-}
-.effects {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding-left: 4px;
-  & > div {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: break-all;
-  }
-}
-.skills {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem 0;
-  @include mixins.media-medium {
-    grid-template-columns: 1fr 1fr;
+  .attacker,
+  .defender {
+    display: grid;
+    grid-template-rows: repeat(4, min-content) auto;
     gap: 1rem;
-  }
-}
-.attacker {
-  border-bottom: 1px solid var(--color-border);
-  transition:
-    border-bottom 0.2s linear,
-    border-right 0.2s linear;
-  @include mixins.media-large {
-    border-right: 1px solid var(--color-border);
-    border-bottom: 0;
+    padding: 0.5rem;
   }
   .title {
-    grid-template-columns: minmax(auto, 40%) 1fr;
-  }
-  .main {
-    grid-template-columns: minmax(auto, 40%) 1fr;
-  }
-}
-.defender {
-  .title {
-    grid-template-areas: 'button title';
-    grid-template-columns: 1fr minmax(auto, 40%);
-  }
-  .title > h2 {
-    grid-area: title;
-    text-align: right;
-  }
-  .main {
-    grid-template-areas: 'hero creature';
-    grid-template-columns: auto minmax(auto, 40%);
-  }
-  .creature {
-    grid-area: creature;
-    justify-content: end;
-  }
-}
-.creature-button {
-  position: relative;
-  z-index: 1;
-  display: block;
-  width: 58px;
-  height: 64px;
-  padding: 0;
-  overflow: hidden;
-  &::after {
-    position: absolute;
-    top: -50%;
-    bottom: -50%;
-    z-index: -1;
-    width: 1.25em;
-    content: '';
-    background-color: hsl(0deg 0% 100% / 20%);
-    transform: translate3d(-525%, 0, 0) rotate(35deg);
-  }
-  &:hover::after {
-    transform: translate3d(200%, 0, 0) rotate(35deg);
-    transition: transform 0.45s ease-in-out;
-  }
-}
-.creature-img {
-  position: relative;
-  z-index: -1;
-}
-.unit-effect-checkbox {
-  margin-bottom: 1rem;
-}
-.select-skill-buttons {
-  @include mixins.media-large {
-    &:nth-child(even) {
-      text-align: center;
+    display: grid;
+    grid-template-areas: 'title button';
+    column-gap: 0.5rem;
+    align-items: center;
+    & > h2 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
-}
-.hero-parameters {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-flow: column;
-  gap: 8px;
-  & > div {
-    width: 64px;
+  .main {
+    display: grid;
+    column-gap: 0.5rem;
   }
-  .parameter-attack {
-    margin-left: auto;
+  .creature {
+    display: grid;
+    gap: 0.5rem;
+    .creature-input {
+      width: 65px;
+      height: 32px;
+    }
   }
-}
-.damage {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: flex-end;
-  justify-content: flex-end;
-  font-size: 1.5rem;
-  text-align: right;
-}
-.stat-name {
-  display: block;
-  margin-bottom: 10px;
-}
-.calculator-footer {
-  display: flex;
-  grid-column: 1 / -1;
-  justify-content: flex-end;
-  padding: 5px;
-  border-top: 1px solid var(--color-border);
-  transition: border-top 0.2s linear;
-}
-.select-terrain {
-  width: 300px;
+  .hero {
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-rows: auto auto;
+    gap: 1rem;
+  }
+  .effects {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    & > div {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-all;
+    }
+    .effects__group {
+      .skill-name {
+        padding-inline: 4px;
+      }
+      &.color-attacker .skill-name {
+        background: var(--color-attacker);
+      }
+      &.color-defender .skill-name {
+        background: var(--color-defender);
+      }
+    }
+  }
+  .skills {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem 0;
+    @media screen and (width >= 768px) {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+  }
+  .attacker {
+    border-bottom: 1px solid var(--color-border);
+    transition:
+      border-bottom 0.2s linear,
+      border-right 0.2s linear;
+    @media screen and (width >= 1280px) {
+      border-right: 1px solid var(--color-border);
+      border-bottom: 0;
+    }
+    .title {
+      grid-template-columns: minmax(auto, 50%) 1fr;
+    }
+    .main {
+      grid-template-columns: minmax(auto, 50%) 1fr;
+    }
+  }
+  .defender {
+    .title {
+      grid-template-areas: 'button title';
+      grid-template-columns: 1fr minmax(auto, 50%);
+    }
+    .title > h2 {
+      grid-area: title;
+      text-align: right;
+    }
+    .main {
+      grid-template-areas: 'hero creature';
+      grid-template-columns: auto minmax(auto, 50%);
+    }
+    .creature {
+      grid-area: creature;
+      justify-content: end;
+    }
+  }
+  .creature-button {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 58px;
+    height: 64px;
+    padding: 0;
+    overflow: hidden;
+    &::after {
+      position: absolute;
+      top: -50%;
+      bottom: -50%;
+      z-index: -1;
+      width: 1.25em;
+      content: '';
+      background-color: hsl(0deg 0% 100% / 20%);
+      transform: translate3d(-525%, 0, 0) rotate(35deg);
+    }
+    &:hover::after {
+      transform: translate3d(200%, 0, 0) rotate(35deg);
+      transition: transform 0.45s ease-in-out;
+    }
+  }
+  .unit-effect-checkbox {
+    margin-bottom: 1rem;
+  }
+  .hero-parameters {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: column;
+    gap: 8px;
+    & > div {
+      width: 64px;
+    }
+    .parameter-attack {
+      margin-left: auto;
+    }
+  }
+  .results {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 1.5rem;
+    text-align: right;
+    .results-text {
+      font-weight: 600;
+    }
+  }
+  .calculator-footer {
+    display: flex;
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+    padding: 5px;
+    border-top: 1px solid var(--color-border);
+    transition: border-top 0.2s linear;
+  }
+  .select-terrain {
+    width: 300px;
+  }
 }
 </style>

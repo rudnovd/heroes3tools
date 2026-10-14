@@ -1,5 +1,5 @@
 <template>
-  <div class="select">
+  <div class="base-select">
     <div class="container">
       <div class="selected" @click="open">
         <input
@@ -20,7 +20,6 @@
       <button v-if="selectedValue" class="clear-button" @click="onClear" />
       <button class="caret" :class="{ 'is-open': opened }" @click="opened = !opened" />
     </div>
-
     <Transition name="fade">
       <div
         v-if="opened"
@@ -44,16 +43,14 @@
         </ul>
       </div>
     </Transition>
-
     <div v-if="opened && !options.length" class="no-options">
       <slot name="noOptions">
-        {{ t('components.base.baseSelect.noOptions') }}
+        {{ $t('components.base.baseSelect.noOptions') }}
       </slot>
     </div>
-
     <div v-if="opened && search.length && !optionsList.length" class="no-options">
       <slot name="noOptionsFound">
-        {{ t('components.base.baseSelect.noOptionsFound') }}
+        {{ $t('components.base.baseSelect.noOptionsFound') }}
       </slot>
     </div>
   </div>
@@ -63,7 +60,6 @@
 import type { Ref } from 'vue'
 import { onClickOutside, useVirtualList } from '@vueuse/core'
 import { computed, nextTick, ref, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
 import { i18n } from '@/i18n'
 
 const props = withDefaults(
@@ -95,8 +91,6 @@ const emit = defineEmits<{
   select: [option: T]
   clear: []
 }>()
-
-const { t } = useI18n()
 
 const opened = ref(false)
 const selectedValue: Ref<T | null> = ref(null)
@@ -180,124 +174,126 @@ onClickOutside(virtualScrollContainer.ref, () => {
 })
 </script>
 
-<style lang="scss" scoped>
-.select {
+<style>
+.base-select {
+  --select-height: v-bind(height);
   position: relative;
   width: 100%;
-  height: v-bind(height);
-  line-height: v-bind(height);
+  height: var(--select-height);
+  line-height: var(--select-height);
   outline: none;
+  background-color: var(--color-bg-deep);
   border: 1px solid var(--color-border);
-  border-radius: 4px;
-}
-.container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-flow: column;
-  gap: 16px;
-  align-items: center;
-  height: inherit;
-  padding-right: 16px;
-}
-.search {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  padding-left: 8px;
-  font: inherit;
-  color: var(--color-text);
-  outline: none;
-  background-color: var(--color-bg);
-  border: 0;
-  &::placeholder {
+  border-radius: 2px;
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-flow: column;
+    gap: 16px;
+    align-items: center;
+    height: inherit;
+    padding-right: 16px;
+  }
+  .search {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    padding-left: 8px;
+    font: inherit;
     color: var(--color-text);
+    outline: none;
+    background-color: var(--color-bg-deep);
+    border: 0;
+    &::placeholder {
+      color: var(--color-text);
+    }
   }
-}
-.caret {
-  position: relative;
-  flex-grow: 0;
-  flex-shrink: 0;
-  width: 0.625rem;
-  height: 1.125rem;
-  height: 100%;
-  background-color: #999;
-  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E");
-  mask-repeat: no-repeat;
-  mask-position: center;
-  transform: rotate(0deg);
-  transition: 0.3s transform;
-  &.is-open {
-    pointer-events: auto;
-    transform: rotate(180deg);
+  .caret {
+    position: relative;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 0.625rem;
+    height: 1.125rem;
+    height: 100%;
+    background-color: #999;
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    transform: rotate(0deg);
+    transition: 0.3s transform;
+    &.is-open {
+      pointer-events: auto;
+      transform: rotate(180deg);
+    }
   }
-}
-.selected-value {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  padding: 0 8px;
-}
-.clear-button {
-  display: inline-block;
-  width: 0.625rem;
-  height: 1.125rem;
-  height: 100%;
-  background-color: #999;
-  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E");
-  mask-repeat: no-repeat;
-  mask-position: center;
-  transition: 0.3s;
-  &:hover {
-    background-color: var(--color-text);
+  .selected-value {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 8px;
   }
-}
-.items {
-  position: absolute;
-  right: 0;
-  left: 0;
-  z-index: 10;
-  max-height: v-bind('optionsMaxHeight');
-  overflow-y: auto;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-top-width: 0;
-  &.top {
-    transform: translate(0, calc(-301px - v-bind(height)));
+  .clear-button {
+    display: inline-block;
+    width: 0.625rem;
+    height: 1.125rem;
+    height: 100%;
+    background-color: #999;
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    transition: 0.3s;
+    &:hover {
+      background-color: var(--color-text);
+    }
   }
-}
-.option-item {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  width: 100%;
-  height: v-bind(height);
-  padding-left: 8px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: background 0.1s;
-  &:hover {
-    background: var(--color-bg-deep);
+  .items {
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    max-height: 300px;
+    overflow-y: auto;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-top-width: 0;
+    &.top {
+      transform: translate(0, calc(-301px - var(--select-height)));
+    }
   }
-  &.selected {
-    background: #26c08e;
+  .option-item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    height: var(--select-height);
+    padding-left: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.1s;
+    &:hover {
+      background: var(--color-bg-deep);
+    }
+    &.selected {
+      background: var(--color-attacker);
+    }
   }
-}
-.no-options {
-  padding-left: 8px;
-  border: 1px solid var(--color-border);
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+  .no-options {
+    padding-left: 8px;
+    border: 1px solid var(--color-border);
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.2s ease;
+  }
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
 }
 </style>

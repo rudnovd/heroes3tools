@@ -67,8 +67,7 @@ export const useStore = defineStore('data', {
           const originalData = await import(`./assets/database/${table}.ts`)
           this[table] = originalData[table]
         }
-        if (locale === 'en')
-          return
+        if (locale === 'en') return
 
         // load translation data
         const data = await import(`./assets/database/locales/${locale}/${table}.ts`)

@@ -2,9 +2,7 @@ import type { Config } from 'stylelint'
 
 export default {
   extends: [
-    'stylelint-config-standard-scss',
-    'stylelint-config-recommended-scss',
-    'stylelint-config-recommended-vue/scss',
+    'stylelint-config-standard',
     'stylelint-config-recess-order',
   ],
   plugins: [

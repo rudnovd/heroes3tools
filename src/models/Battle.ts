@@ -352,8 +352,8 @@ export class Battle {
     rangePenalty = 1 - rangePenalty
     const totalBonus = damageBonus * defenseBonus * defenseMagicBonus * rangePenalty
 
-    const minDamage = Math.floor(attacker.minDamage * totalBonus * attacker.count)
-    const maxDamage = Math.floor(attacker.maxDamage * totalBonus * attacker.count)
+    const minDamage = Math.floor(attacker.minDamage * totalBonus * attacker.count * attacker.hits)
+    const maxDamage = Math.floor(attacker.maxDamage * totalBonus * attacker.count * attacker.hits)
     const averageDamage = Math.floor((minDamage + maxDamage) / 2)
 
     return {
