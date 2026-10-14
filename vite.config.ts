@@ -1,9 +1,9 @@
 import type { VitePWAOptions } from 'vite-plugin-pwa'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
-import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import vue from '@vitejs/plugin-vue'
-import { defineConfig } from 'vite'
+import Icons from 'unplugin-icons/vite'
+import { defineConfig, loadEnv } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import VueRouter from 'vue-router/vite'
 import packageJson from './package.json' with { type: 'json' }
@@ -52,35 +52,39 @@ const pwaOptions: Partial<VitePWAOptions> = {
 const host = process.env.TAURI_DEV_HOST
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    VueRouter(),
-    vue(),
-    VitePWA(pwaOptions),
-    VueI18nPlugin({ include: fileURLToPath(new URL('locales/*.json', import.meta.url)) }),
-  ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('src', import.meta.url)),
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
+  const IS_TAURI = env.VITE_IS_TAURI_BUILD === 'true'
+  return {
+    plugins: [
+      VueRouter({ importMode: IS_TAURI ? 'sync' : 'async' }),
+      vue(),
+      VitePWA({ ...pwaOptions, disable: IS_TAURI }),
+      Icons(),
+    ],
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('src', import.meta.url)),
+      },
     },
-  },
-  define: {
-    'import.meta.env.VITE_APP_VERSION': JSON.stringify(packageJson.version),
-  },
-  clearScreen: false, // prevent Vite from obscuring rust errors
-  server: {
-    port: 1420,
-    strictPort: true,
-    host: host || false,
-    hmr: host
-      ? {
-          protocol: 'ws',
-          host,
-          port: 1421,
-        }
-      : undefined,
-    watch: {
-      ignored: ['**/src-tauri/**'],
+    define: {
+      'import.meta.env.VITE_APP_VERSION': JSON.stringify(packageJson.version),
     },
-  },
+    clearScreen: !IS_TAURI,
+    server: {
+      port: 1420,
+      strictPort: IS_TAURI,
+      host: host || false,
+      hmr: host
+        ? {
+            protocol: 'ws',
+            host,
+            port: 1421,
+          }
+        : undefined,
+      watch: {
+        ignored: ['**/src-tauri/**'],
+      },
+    },
+  }
 })
