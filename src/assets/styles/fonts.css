@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('@/assets/fonts/opensans/open-sans-v44-cyrillic_latin-regular.woff2') format('woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('@/assets/fonts/opensans/open-sans-v44-cyrillic_latin-500.woff2') format('woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('@/assets/fonts/opensans/open-sans-v44-cyrillic_latin-600.woff2') format('woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('@/assets/fonts/opensans/open-sans-v44-cyrillic_latin-700.woff2') format('woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: url('@/assets/fonts/opensans/open-sans-v44-cyrillic_latin-800.woff2') format('woff2');
+  font-display: swap;
+}
