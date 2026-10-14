@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.12.0](https://github.com/rudnovd/heroes3tools/compare/v2.11.2...v2.12.0) (2026-10-14)
+
+
+### Features
+
+* **pwa:** use `generateSW` strategy ([6002eaa](https://github.com/rudnovd/heroes3tools/commit/6002eaa9957d6f5c72cf799837c54c6b944f2e22))
+* remove scss, refactor components ([ff49e6d](https://github.com/rudnovd/heroes3tools/commit/ff49e6df81fa45467f6c0166310658a7fd09e953))
+* update `unhead` usage, add prerender routes command ([6255b8d](https://github.com/rudnovd/heroes3tools/commit/6255b8d2084f9fe27f56c950a5e73ff18b8972d7))
+
+
+### Bug Fixes
+
+* **Battle:** adjust damage calculation to include attacker hits ([f924e61](https://github.com/rudnovd/heroes3tools/commit/f924e6121bb01ffec96a46b116339c2189c086bf))
+
 ## [2.11.2](https://github.com/rudnovd/heroes3tools/compare/v2.11.1...v2.11.2) (2026-09-14)
 
 
