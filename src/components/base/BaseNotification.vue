@@ -54,7 +54,7 @@ function onClick(button: BaseNotificationButtonProp) {
 }
 </script>
 
-<style lang="scss" scoped>
+<style>
 .notification-container {
   position: fixed;
   right: 0;

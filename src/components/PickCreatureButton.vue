@@ -7,7 +7,7 @@
     <slot />
   </button>
 
-  <SelectUnitModal :show="showSelectUnitModal" @close="showSelectUnitModal = false" @select="$emit('select', $event)" />
+  <SelectUnitModal v-model="showSelectUnitModal" @close="showSelectUnitModal = false" @select="$emit('select', $event)" />
 </template>
 
 <script setup lang="ts">
@@ -16,18 +16,13 @@ import type { Creature } from '@/models/Creature'
 import { defineAsyncComponent, ref } from 'vue'
 
 defineProps<{ color: BattleSide }>()
-
 defineEmits<{ click: [], select: [creature: Creature] }>()
 
 const SelectUnitModal = defineAsyncComponent(() => import('@/components/SelectUnitModal.vue'))
-
 const showSelectUnitModal = ref(false)
 </script>
 
-<style lang="scss" scoped>
-@use 'sass:map';
-@use 'sass:color';
-@use '@/styles/variables';
+<style>
 .pick-creature-button {
   position: relative;
   z-index: 1;
@@ -36,7 +31,7 @@ const showSelectUnitModal = ref(false)
   font-size: 0.875rem;
   font-weight: bold;
   line-height: 1.5;
-  border-radius: 5px;
+  border-radius: 4px;
   &:hover {
     cursor: pointer;
   }
@@ -45,7 +40,7 @@ const showSelectUnitModal = ref(false)
     inset: 0;
     z-index: -1;
     content: '';
-    border-radius: 5px;
+    border-radius: 4px;
     transform: scaleX(0);
     transition: transform 0.25s ease-in-out;
   }
@@ -53,7 +48,12 @@ const showSelectUnitModal = ref(false)
     transform: scaleX(1);
   }
   &.color-attacker {
+    color: var(--color-attacker-text);
+    background-color: var(--color-attacker);
+    border: 1px solid var(--color-attacker);
     &::before {
+      background-color: var(--color-attacker-hover);
+      border: 1px solid var(--color-attacker-hover);
       transform-origin: center right;
     }
     &:hover::before {
@@ -61,22 +61,16 @@ const showSelectUnitModal = ref(false)
     }
   }
   &.color-defender {
+    color: var(--color-defender-text);
+    background-color: var(--color-defender);
+    border: 1px solid var(--color-defender);
     &::before {
+      background-color: var(--color-defender-hover);
+      border: 1px solid var(--color-defender-hover);
       transform-origin: center left;
     }
     &:hover::before {
       transform-origin: center right;
-    }
-  }
-}
-@each $color, $color-value in variables.$calculator-colors {
-  .color-#{$color} {
-    color: map.get(variables.$calculator-colors-text, $color);
-    background-color: $color-value;
-    border: 1px solid $color-value;
-    &::before {
-      background-color: color.adjust($color-value, $red: -10, $green: -10, $blue: -10);
-      border: 1px solid color.adjust($color-value, $red: -10, $green: -10, $blue: -10);
     }
   }
 }

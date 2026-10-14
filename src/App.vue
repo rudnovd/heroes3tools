@@ -1,38 +1,21 @@
 <template>
-  <header>
-    <router-link
-      v-show="router.currentRoute.value.path !== '/'"
-      class="return-home"
-      to="/"
-    >
-      <img
-        src="@/assets/icons/arrow_back.svg"
-        alt="back"
-        width="16"
-        height="16"
-      >
-      {{ t('common.homePage') }}
-    </router-link>
+  <header class="navigation-header">
+    <nav>
+      <router-link v-show="router.currentRoute.value.path !== '/'" class="return-home" to="/">
+        <IconArrowLeft />
+        {{ $t('common.homePage') }}
+      </router-link>
+    </nav>
   </header>
-
-  <RouterView v-slot="{ Component }">
-    <Transition
-      name="router"
-      mode="out-in"
-    >
-      <KeepAlive :include="keepAliveComponents">
-        <component :is="Component" />
-      </KeepAlive>
-    </Transition>
-  </RouterView>
-
-  <BaseNotification
-    v-if="isNewVersionNotificationActive && !isNewVersionNotificationDisabled"
-    show
-    :buttons="notificationsButtons"
-  >
-    {{ t('common.newVersionAvailable') }}
-  </BaseNotification>
+  <main>
+    <RouterView v-slot="{ Component }">
+      <Transition name="router" mode="out-in">
+        <KeepAlive>
+          <component :is="Component" />
+        </KeepAlive>
+      </Transition>
+    </RouterView>
+  </main>
 </template>
 
 <script setup lang="ts">
@@ -82,33 +65,26 @@ const stop = watch(router.currentRoute, ({ path }) => {
 })
 </script>
 
-<style lang="scss">
-@use './styles/main';
-@use './styles/fonts';
-</style>
-
-<style lang="scss" scoped>
-@use '@/styles/mixins';
-header {
-  height: 1.5rem;
-  padding-left: 5px;
-  margin-bottom: 0.5rem;
-}
-.return-home {
-  display: inline-flex;
-  align-items: center;
-  font-size: 1rem;
-  color: var(--color-link);
-  text-decoration: none;
-  opacity: 0.7;
-  transition: opacity 0.15s;
-  &:hover {
-    opacity: 1;
+<style>
+@import url('@/assets/styles/root.css');
+@import url('@/assets/styles/fonts.css');
+.navigation-header {
+  header {
+    height: 1.5rem;
+    padding-left: 5px;
+    margin-bottom: 0.5rem;
   }
-  &::before {
-    width: 2rem;
-    height: 2rem;
-    background: url('@/assets/icons/arrow_back.svg');
+  .return-home {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--color-link);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.15s;
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 .router-enter-active,
@@ -122,12 +98,5 @@ header {
 .router-link-enter-from,
 .router-link-leave-to {
   display: none;
-}
-@include mixins.dark-scheme {
-  .return-home {
-    img {
-      filter: invert(1);
-    }
-  }
 }
 </style>

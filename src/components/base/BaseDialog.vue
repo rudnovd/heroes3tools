@@ -1,45 +1,79 @@
 <template>
-  <teleport to="body">
-    <transition name="transition-dialog">
-      <div v-if="show" class="dialog-area" role="dialog">
-        <div ref="baseDialogRef" class="base-dialog" :class="`base-dialog-${size}`">
-          <div class="modal-content">
-            <div class="header">
-              <slot name="header" />
-              <CloseButton @click="$emit('close')" />
-            </div>
-
-            <slot name="content" class="content" />
-          </div>
-        </div>
-      </div>
-    </transition>
-  </teleport>
+  <dialog
+    v-bind="$attrs"
+    ref="dialogElement"
+    class="base-dialog"
+    :class="[`size--${size}`]"
+    @close="close"
+    @cancel="cancel"
+  >
+    <header v-if="title && closable" class="base-dialog__header">
+      <slot name="header">
+        <h2 v-if="title">
+          {{ title }}
+        </h2>
+      </slot>
+      <button
+        v-if="title && closable"
+        type="button"
+        class="base-dialog__close-button"
+        @click="close"
+      >
+        <IconClose />
+      </button>
+    </header>
+    <div class="base-dialog__content">
+      <slot />
+    </div>
+    <footer v-if="$slots.footer" class="base-dialog__footer">
+      <slot name="footer" />
+    </footer>
+  </dialog>
 </template>
 
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
-import { ref, watch } from 'vue'
-import CloseButton from '@/components/buttons/CloseButton.vue'
+import { nextTick, useTemplateRef, watch } from 'vue'
+import IconClose from '~icons/mdi/close'
 
-const props = withDefaults(
-  defineProps<{
-    show: boolean
-    size?: 'small' | 'medium' | 'large' | 'maximum'
-  }>(),
-  {
-    size: 'medium',
-  },
-)
-const emit = defineEmits<{ close: [] }>()
+interface Props {
+  title?: string
+  closable?: boolean
+  size?: 'small' | 'medium' | 'large'
+}
+defineOptions({ inheritAttrs: false })
+withDefaults(defineProps<Props>(), { title: '', closable: true, size: 'medium' })
+const model = defineModel<boolean>({ required: true })
 
-const baseDialogRef = ref(null)
-onClickOutside(baseDialogRef, () => emit('close'))
+const dialogRef = useTemplateRef('dialogElement')
+
+function close() {
+  model.value = false
+}
+function cancel() {
+  model.value = false
+}
+watch(model, async (open) => {
+  await nextTick()
+  if (!dialogRef.value) {
+    return
+  }
+  if (open && !dialogRef.value.open) {
+    dialogRef.value.showModal()
+  }
+  if (!open && dialogRef.value.open) {
+    dialogRef.value.close()
+  }
+}, { immediate: true })
+
+onClickOutside(dialogRef, () => {
+  model.value = false
+})
 
 watch(
-  () => props.show,
-  (newShowState) => {
-    if (newShowState) {
+  () => model,
+  (isVisible) => {
+    if (isVisible) {
       const scrollbarWidth = window.innerWidth - document.body.clientWidth
       document.body.style.paddingRight = `${scrollbarWidth}px`
       document.body.classList.add('no-scroll')
@@ -54,74 +88,58 @@ watch(
 )
 </script>
 
-<style lang="scss" scoped>
-@use 'sass:map';
-@use '@/styles/variables';
-.dialog-area {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 50;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  outline: 0;
-  background: rgb(0 0 0 / 50%);
-}
+<style>
 .base-dialog {
-  position: relative;
-  width: 90%;
-  min-width: 320px;
-  min-height: 150px;
-  margin: 2rem auto;
-  overflow: hidden;
-  outline: 0;
-  background-color: var(--color-bg-deep);
-  border-radius: 0.3rem;
-  &-small {
-    max-width: map.get(variables.$grid-breakpoints, 'small');
-  }
-  &-medium {
-    max-width: map.get(variables.$grid-breakpoints, 'medium');
-  }
-  &-large {
-    max-width: map.get(variables.$grid-breakpoints, 'large');
-  }
-  &-maximum {
-    max-width: map.get(variables.$grid-breakpoints, 'maximum');
-  }
-}
-.modal-content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  height: 100%;
-  padding: 24px;
-  pointer-events: auto;
-  background-clip: padding-box;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-}
-.header {
-  display: flex;
-  margin-bottom: 10px;
-  .close-button {
+  min-width: 300px;
+  padding: 0;
+  outline: none;
+  background: var(--color-bg-deep);
+  border-color: var(--color-border);
+  border-radius: 4px;
+  &.size--small {
+    max-width: calc(60% - 2em - 6px);
+  }
+  &.size--medium {
+    max-width: calc(80% - 2em - 6px);
+  }
+  &.size--large {
+    max-width: calc(100% - 2em - 6px);
+  }
+  &.fullscreen {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+  }
+  &::backdrop {
+    background-color: oklch(from black l c h / 60%);
+  }
+  .base-dialog__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-text);
+    h2 {
+      margin: 0;
+      font-size: 1.3em;
+    }
+  }
+  .base-dialog__close-button {
+    padding: 0;
     margin-left: auto;
+    font-size: 1.2rem;
   }
-}
-.transition-dialog-enter-active,
-.transition-dialog-leave-active {
-  transition: opacity 0.25s ease-in-out;
-  .base-dialog {
-    transition: transform 0.25s ease-in-out;
+  .base-dialog__content {
+    padding-block: 1rem;
+    padding-inline: 1rem;
   }
-}
-.transition-dialog-enter-from,
-.transition-dialog-leave-to {
-  opacity: 0;
-  .base-dialog {
-    transform: translateY(-32px);
+  .base-dialog__footer {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    padding: 1rem;
+    border-top: 1px solid var(--color-text);
   }
 }
 </style>
