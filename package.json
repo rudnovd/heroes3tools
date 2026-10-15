@@ -35,6 +35,7 @@
     "stylelint:fix": "stylelint '**/*{.scss,.vue}' --fix",
     "prerender": "node scripts/prerender.mjs",
     "prerelease": "pnpm run build"
+    "updates:install": "pnpm update --interactive --latest",
   },
   "dependencies": {
     "@tauri-apps/api": "^2.11.1",
