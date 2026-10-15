@@ -31,7 +31,7 @@ const showSelectUnitModal = ref(false)
   font-size: 0.875rem;
   font-weight: bold;
   line-height: 1.5;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   &:hover {
     cursor: pointer;
   }
@@ -40,7 +40,7 @@ const showSelectUnitModal = ref(false)
     inset: 0;
     z-index: -1;
     content: '';
-    border-radius: 4px;
+    border-radius: 0.25rem;
     transform: scaleX(0);
     transition: transform 0.25s ease-in-out;
   }

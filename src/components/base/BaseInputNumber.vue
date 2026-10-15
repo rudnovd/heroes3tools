@@ -69,6 +69,6 @@ function onInput(event: Event) {
   color: var(--color-text);
   background: var(--color-bg-deep);
   border: 1px solid var(--color-border);
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 </style>

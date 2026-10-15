@@ -64,7 +64,7 @@ function onClick(button: BaseNotificationButtonProp) {
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-end;
-  margin-bottom: 28px;
+  margin-bottom: 1.75rem;
   line-height: 1.5;
   pointer-events: none;
 }
@@ -78,22 +78,22 @@ function onClick(button: BaseNotificationButtonProp) {
   flex-direction: column;
   gap: 0.5rem;
   align-items: center;
-  min-width: 100px;
-  min-height: 50px;
+  min-width: 6.25rem;
+  min-height: 3.125rem;
   padding: 1rem;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  margin-right: 0.625rem;
+  margin-bottom: 0.625rem;
   line-height: 1.5;
   pointer-events: all;
   background: url('/images/windows/base-bg.webp');
-  border-radius: 4px;
+  border-radius: 0.25rem;
   box-shadow:
-    0 0 0 2px rgb(0 0 0),
-    0 0 0 3px rgb(124 111 64),
-    0 0 0 4px rgb(255 251 139),
-    0 0 0 5px rgb(138 121 74),
-    0 0 0 6px rgb(114 90 44),
-    0 0 0 7px rgb(33 27 23);
+    0 0 0 0.125rem rgb(0 0 0),
+    0 0 0 0.1875rem rgb(124 111 64),
+    0 0 0 0.25rem rgb(255 251 139),
+    0 0 0 0.3125rem rgb(138 121 74),
+    0 0 0 0.375rem rgb(114 90 44),
+    0 0 0 0.4375rem rgb(33 27 23);
 }
 .notification-slot {
   color: rgb(255 255 255);
@@ -108,7 +108,7 @@ function onClick(button: BaseNotificationButtonProp) {
   text-transform: lowercase;
   background: url('/images/windows/base-dark-bg.webp');
   border: 1px solid rgb(0 0 0);
-  border-radius: 4px;
+  border-radius: 0.25rem;
   transition: border-color 0.25s;
   &:hover {
     border-color: rgb(255 255 255 / 50%);
@@ -120,6 +120,6 @@ function onClick(button: BaseNotificationButtonProp) {
 }
 .notification-enter-from,
 .notification-leave-to {
-  transform: translateY(150px);
+  transform: translateY(9.375rem);
 }
 </style>

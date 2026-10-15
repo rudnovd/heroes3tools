@@ -50,7 +50,7 @@ function changeLevel(event: Event) {
 <style>
 .skills-form {
   .skill-name {
-    padding-inline: 4px;
+    padding-inline: 0.25rem;
   }
   .skills-form__list {
     display: grid;
@@ -63,7 +63,7 @@ function changeLevel(event: Event) {
         width: 1px;
         height: 1px;
         padding: 0;
-        margin: -1px;
+        margin: -0.0625rem;
         overflow: hidden;
         white-space: nowrap;
         border: 0;

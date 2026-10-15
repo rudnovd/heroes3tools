@@ -237,7 +237,7 @@ function onSelectTerrain(terrain: Terrain | null) {
   grid-template-rows: minmax(50vh, 1fr) 1fr;
   grid-template-columns: 100%;
   background-color: var(--color-bg-deep);
-  box-shadow: 0 0 3px var(--color-border);
+  box-shadow: 0 0 0.1875rem var(--color-border);
   @media screen and (width >= 1280px) {
     grid-template-rows: minmax(80vh, auto) 1fr;
     grid-template-columns: 50% 50%;
@@ -271,8 +271,8 @@ function onSelectTerrain(terrain: Terrain | null) {
     display: grid;
     gap: 0.5rem;
     .creature-input {
-      width: 65px;
-      height: 32px;
+      width: 4.0625rem;
+      height: 2rem;
     }
   }
   .hero {
@@ -292,7 +292,7 @@ function onSelectTerrain(terrain: Terrain | null) {
     }
     .effects__group {
       .skill-name {
-        padding-inline: 4px;
+        padding-inline: 0.25rem;
       }
       &.color-attacker .skill-name {
         background: var(--color-attacker);
@@ -349,8 +349,8 @@ function onSelectTerrain(terrain: Terrain | null) {
     position: relative;
     z-index: 1;
     display: block;
-    width: 58px;
-    height: 64px;
+    width: 3.625rem;
+    height: 4rem;
     padding: 0;
     overflow: hidden;
     &::after {
@@ -375,9 +375,9 @@ function onSelectTerrain(terrain: Terrain | null) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-auto-flow: column;
-    gap: 8px;
+    gap: 0.5rem;
     & > div {
-      width: 64px;
+      width: 4rem;
     }
     .parameter-attack {
       margin-left: auto;
@@ -399,12 +399,12 @@ function onSelectTerrain(terrain: Terrain | null) {
     display: flex;
     grid-column: 1 / -1;
     justify-content: flex-end;
-    padding: 5px;
+    padding: 0.3125rem;
     border-top: 1px solid var(--color-border);
     transition: border-top 0.2s linear;
   }
   .select-terrain {
-    width: 300px;
+    width: 18.75rem;
   }
 }
 </style>

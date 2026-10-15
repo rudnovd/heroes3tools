@@ -160,7 +160,7 @@ function onClose() {
     user-select: none;
   }
   .search-input {
-    max-width: 300px;
+    max-width: 18.75rem;
     padding: 0.25rem 0.5rem;
     font-family: inherit;
     font-size: inherit;
@@ -169,7 +169,7 @@ function onClose() {
     color: var(--color-text);
     background-color: var(--color-bg-deep);
     border: 1px solid var(--color-border);
-    border-radius: 4px;
+    border-radius: 0.25rem;
     transition:
       color 0.2s linear,
       background-color 0.2s linear,
@@ -178,26 +178,26 @@ function onClose() {
   .units {
     display: flex;
     flex-flow: column wrap;
-    gap: 4px;
+    gap: 0.25rem;
   }
   .search-units {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 0.5rem;
   }
   .town {
     display: flex;
     flex-flow: row wrap;
-    gap: 8px;
+    gap: 0.5rem;
   }
   .creature-button {
-    border-radius: 4px;
+    border-radius: 0.25rem;
     transition:
       box-shadow 0.25s,
       transform 0.25s;
     &:hover {
-      box-shadow: 0 0 4px 2px var(--color-text);
-      transform: translateY(-2px);
+      box-shadow: 0 0 0.25rem 0.125rem var(--color-text);
+      transform: translateY(-0.125rem);
     }
   }
 }

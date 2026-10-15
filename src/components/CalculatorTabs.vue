@@ -71,19 +71,19 @@ function calculatorTitle(attacker: string | null, defender: string | null) {
   align-items: center;
   .calculator-tabs__list {
     display: grid;
-    grid-template-rows: repeat(auto-fit, 36px);
+    grid-template-rows: repeat(auto-fit, 2.25rem);
     grid-template-columns: repeat(2, 1fr);
-    gap: 4px;
+    gap: 0.25rem;
     justify-content: flex-start;
     user-select: none;
     @media screen and (width >= 576px) {
       grid-template-columns: repeat(3, 1fr);
     }
     @media screen and (width >= 768px) {
-      grid-template-columns: repeat(auto-fit, 200px);
+      grid-template-columns: repeat(auto-fit, 12.5rem);
     }
     @media screen and (width >= 1280px) {
-      grid-template-columns: repeat(auto-fit, 300px);
+      grid-template-columns: repeat(auto-fit, 18.75rem);
     }
   }
   .tab {
@@ -93,11 +93,11 @@ function calculatorTitle(attacker: string | null, defender: string | null) {
     height: 2rem;
     background: var(--color-bg-deep);
     border: none;
-    border-radius: 4px 4px 0 0;
+    border-radius: 0.25rem 0.25rem 0 0;
     opacity: 0.5;
     &.active,
     &:hover {
-      box-shadow: 0 0 5px rgb(170 170 170);
+      box-shadow: 0 0 0.3125rem rgb(170 170 170);
       opacity: 1;
     }
   }
