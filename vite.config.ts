@@ -54,7 +54,7 @@ const host = process.env.TAURI_DEV_HOST
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
-  const IS_TAURI = env.VITE_IS_TAURI_BUILD === 'true'
+  const IS_TAURI = env.VITE_IS_TAURI === 'true'
   return {
     plugins: [
       VueRouter({ importMode: IS_TAURI ? 'sync' : 'async' }),
