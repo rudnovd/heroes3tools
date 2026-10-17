@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.12.1](https://github.com/rudnovd/heroes3tools/compare/v2.12.0...v2.12.1) (2026-10-17)
+
+
+### Bug Fixes
+
+* **env:** fix Tauri variable name ([a09f966](https://github.com/rudnovd/heroes3tools/commit/a09f9666e1dcfca87fb663bbab4b3f61b18567f2))
+
 ## [2.12.0](https://github.com/rudnovd/heroes3tools/compare/v2.11.2...v2.12.0) (2026-10-14)
 
 
