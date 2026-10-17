@@ -6,7 +6,6 @@ import { AVAILABLE_LOCALES, getAppLocale } from './i18n'
 export const selectedLocale = useLocalStorage<Locale | null>('locale', getAppLocale(), {
   listenToStorageChanges: false,
 })
-export const isNewVersionNotificationDisabled = useLocalStorage('isNewVersionNotificationDisabled', false)
 
 export interface HeadData {
   title: string
