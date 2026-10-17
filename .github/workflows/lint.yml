@@ -31,11 +31,14 @@ jobs:
         if: github.event_name == 'pull_request'
         run: pnpm exec commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
 
+      - name: check types
+        run: pnpm run typecheck
+
       - name: run eslint
-        run: pnpm run lint
+        run: pnpm run lint:eslint
 
       - name: run stylelint
-        run: pnpm run stylelint
+        run: pnpm run lint:stylelint
 
       - name: run tests
         run: pnpm run test

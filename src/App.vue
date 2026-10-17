@@ -45,7 +45,7 @@ const stop = watch(router.currentRoute, ({ path }) => {
 .navigation-header {
   header {
     height: 1.5rem;
-    padding-left: 5px;
+    padding-left: 0.3125rem;
     margin-bottom: 0.5rem;
   }
   .return-home {

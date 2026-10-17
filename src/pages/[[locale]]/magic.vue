@@ -87,8 +87,8 @@ function deleteCalculator(index: number) {
 <style>
 .magic-calculator-page {
   display: grid;
-  min-width: 300px;
-  max-width: 1920px;
+  min-width: 18.75rem;
+  max-width: 120rem;
   padding-inline: 0.5rem;
   margin: 0 auto;
 }

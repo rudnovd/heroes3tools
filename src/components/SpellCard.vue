@@ -21,11 +21,11 @@ defineEmits<{ click: [spell: Spell] }>()
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: 128px;
+  max-height: 8rem;
   background: url('/images/windows/book-bg.webp');
   background-position: center;
-  border: 2px solid transparent;
-  border-radius: 4px;
+  border: 0.125rem solid transparent;
+  border-radius: 0.25rem;
   transition: border 0.1s linear;
   &.selected-spell {
     border-color: var(--color-text);
@@ -34,15 +34,15 @@ defineEmits<{ click: [spell: Spell] }>()
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-rows: 70px 1fr;
+    grid-template-rows: 4.375rem 1fr;
     place-items: center center;
     width: 100%;
     height: 100%;
-    padding: 8px;
+    padding: 0.5rem;
     font-size: 0.7rem;
     font-weight: bold;
     color: rgb(241 220 123);
-    text-shadow: 0 0 3px #000;
+    text-shadow: 0 0 0.1875rem #000;
   }
 }
 </style>

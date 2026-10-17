@@ -24,19 +24,19 @@
   grid-template-rows: 1fr auto;
   align-items: center;
   justify-content: center;
-  min-width: 300px;
-  min-height: 300px;
+  min-width: 18.75rem;
+  min-height: 18.75rem;
   font-weight: 600;
   color: rgb(255 255 255);
   background: url('/images/windows/base-bg.webp');
   box-shadow:
-    0 0 0 2px rgb(0 0 0),
-    0 0 0 3px rgb(124 111 64),
-    0 0 0 4px rgb(255 251 139),
-    0 0 0 5px rgb(138 121 74),
-    0 0 0 6px rgb(114 90 44),
-    0 0 0 7px rgb(33 27 23),
-    20px 20px 0 0 rgb(33 27 23 / 80%);
+    0 0 0 0.125rem rgb(0 0 0),
+    0 0 0 0.1875rem rgb(124 111 64),
+    0 0 0 0.25rem rgb(255 251 139),
+    0 0 0 0.3125rem rgb(138 121 74),
+    0 0 0 0.375rem rgb(114 90 44),
+    0 0 0 0.4375rem rgb(33 27 23),
+    1.25rem 1.25rem 0 0 rgb(33 27 23 / 80%);
   & > div {
     display: flex;
     flex-direction: column;
@@ -44,8 +44,8 @@
   }
 }
 .home-link {
-  padding: 8px;
-  margin-bottom: 16px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
   color: rgb(255 255 255);
   text-align: center;
   background: url('/images/windows/base-dark-bg.webp');

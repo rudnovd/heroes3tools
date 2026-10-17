@@ -147,12 +147,12 @@ function onSelectCreature(creature: Creature) {
 
 <style>
 .creatures-library-page {
-  min-width: 320px;
-  max-width: 1920px;
-  padding: 0 8px 16px;
+  min-width: 20rem;
+  max-width: 120rem;
+  padding: 0 0.5rem 1rem;
   margin: 0 auto;
   @media screen and (width >= 768px) {
-    padding: 0 24px 16px;
+    padding: 0 1.5rem 1rem;
   }
   .library-header {
     display: flex;
@@ -160,10 +160,10 @@ function onSelectCreature(creature: Creature) {
   }
   .search-creature {
     position: fixed;
-    right: 16px;
+    right: 1rem;
     input {
-      width: 120px;
-      height: 32px;
+      width: 7.5rem;
+      height: 2rem;
       padding: 0.25rem 0.5rem;
       font-family: inherit;
       font-size: inherit;
@@ -172,7 +172,7 @@ function onSelectCreature(creature: Creature) {
       color: var(--color-text);
       background: var(--color-bg-deep);
       border: 1px solid var(--color-text);
-      border-radius: 4px;
+      border-radius: 0.25rem;
       transition: opacity 0.25s;
       transition:
         color 0.2s linear,
@@ -182,14 +182,14 @@ function onSelectCreature(creature: Creature) {
         opacity: 1;
       }
       @media screen and (width >= 768px) {
-        width: 170px;
+        width: 10.625rem;
       }
     }
   }
   .towns-anchors {
     display: grid;
-    grid-template-columns: repeat(4, 80px);
-    gap: 5px;
+    grid-template-columns: repeat(4, 5rem);
+    gap: 0.3125rem;
     img {
       cursor: pointer;
       &:hover {

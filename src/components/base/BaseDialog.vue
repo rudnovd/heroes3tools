@@ -91,20 +91,20 @@ watch(
 <style>
 .base-dialog {
   width: 100%;
-  min-width: 300px;
+  min-width: 18.75rem;
   padding: 0;
   outline: none;
   background: var(--color-bg-deep);
   border-color: var(--color-border);
-  border-radius: 4px;
+  border-radius: 0.25rem;
   &.size--small {
-    max-width: calc(60% - 2em - 6px);
+    max-width: calc(60% - 2em - 0.375rem);
   }
   &.size--medium {
-    max-width: calc(80% - 2em - 6px);
+    max-width: calc(80% - 2em - 0.375rem);
   }
   &.size--large {
-    max-width: calc(100% - 2em - 6px);
+    max-width: calc(100% - 2em - 0.375rem);
   }
   &.fullscreen {
     max-width: 100%;
@@ -136,7 +136,7 @@ watch(
   }
   .base-dialog__footer {
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
     justify-content: flex-end;
     padding: 1rem;
     border-top: 1px solid var(--color-text);

@@ -184,15 +184,15 @@ onClickOutside(virtualScrollContainer.ref, () => {
   outline: none;
   background-color: var(--color-bg-deep);
   border: 1px solid var(--color-border);
-  border-radius: 2px;
+  border-radius: 0.125rem;
   .container {
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-flow: column;
-    gap: 16px;
+    gap: 1rem;
     align-items: center;
     height: inherit;
-    padding-right: 16px;
+    padding-right: 1rem;
   }
   .search {
     position: absolute;
@@ -200,7 +200,7 @@ onClickOutside(virtualScrollContainer.ref, () => {
     width: 100%;
     height: 100%;
     padding: 0;
-    padding-left: 8px;
+    padding-left: 0.5rem;
     font: inherit;
     color: var(--color-text);
     outline: none;
@@ -230,11 +230,11 @@ onClickOutside(virtualScrollContainer.ref, () => {
   }
   .selected-value {
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
     align-items: center;
     width: 100%;
     height: 100%;
-    padding: 0 8px;
+    padding: 0 0.5rem;
   }
   .clear-button {
     display: inline-block;
@@ -255,22 +255,22 @@ onClickOutside(virtualScrollContainer.ref, () => {
     right: 0;
     left: 0;
     z-index: 10;
-    max-height: 300px;
+    max-height: 18.75rem;
     overflow-y: auto;
     background: var(--color-bg);
     border: 1px solid var(--color-border);
     border-top-width: 0;
     &.top {
-      transform: translate(0, calc(-301px - var(--select-height)));
+      transform: translate(0, calc(-18.8125rem - var(--select-height)));
     }
   }
   .option-item {
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
     align-items: center;
     width: 100%;
     height: var(--select-height);
-    padding-left: 8px;
+    padding-left: 0.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -284,7 +284,7 @@ onClickOutside(virtualScrollContainer.ref, () => {
     }
   }
   .no-options {
-    padding-left: 8px;
+    padding-left: 0.5rem;
     border: 1px solid var(--color-border);
   }
   .fade-enter-active,

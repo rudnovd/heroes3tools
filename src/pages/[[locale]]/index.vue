@@ -76,8 +76,8 @@ const pages = computed(() => [
 .index-page {
   display: grid;
   grid-template-rows: min-content 1fr min-content;
-  gap: 16px;
-  min-width: 300px;
+  gap: 1rem;
+  min-width: 18.75rem;
   min-height: calc(100dvh - env(safe-area-inset-bottom));
   margin: 0 auto;
   @media screen and (width >= 768px) {
@@ -85,14 +85,14 @@ const pages = computed(() => [
     padding-bottom: unset;
   }
   @media screen and (width >= 1280px) {
-    grid-template-rows: 1fr 2fr 30px;
+    grid-template-rows: 1fr 2fr 1.875rem;
   }
   .page-title {
     display: flex;
     align-items: flex-end;
     justify-content: center;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0.125rem;
   }
   .pages-list {
     display: grid;
@@ -100,27 +100,27 @@ const pages = computed(() => [
     grid-auto-rows: min-content;
     gap: 1rem;
     place-items: start center;
-    padding: 0 16px 16px;
+    padding: 0 1rem 1rem;
     @media screen and (width >= 768px) {
-      grid-template-columns: repeat(2, minmax(300px, 1fr));
+      grid-template-columns: repeat(2, minmax(18.75rem, 1fr));
       justify-content: center;
     }
     @media screen and (width >= 1280px) {
-      grid-template-columns: repeat(3, minmax(300px, 400px));
+      grid-template-columns: repeat(3, minmax(18.75rem, 25rem));
       gap: 3rem;
       padding: 0;
     }
     .pages-list__item {
       width: 100%;
-      max-width: 400px;
+      max-width: 25rem;
       user-select: none;
       box-shadow:
-        0 0 0 2px rgb(0 0 0),
-        0 0 0 3px rgb(124 111 64),
-        0 0 0 4px rgb(255 251 139),
-        0 0 0 5px rgb(138 121 74),
-        0 0 0 6px rgb(114 90 44),
-        0 0 0 7px rgb(33 27 23);
+        0 0 0 0.125rem rgb(0 0 0),
+        0 0 0 0.1875rem rgb(124 111 64),
+        0 0 0 0.25rem rgb(255 251 139),
+        0 0 0 0.3125rem rgb(138 121 74),
+        0 0 0 0.375rem rgb(114 90 44),
+        0 0 0 0.4375rem rgb(33 27 23);
       transition:
         filter 0.5s,
         box-shadow 0.5s,
@@ -132,7 +132,7 @@ const pages = computed(() => [
         color: oklch(100% 0.0001 271.152deg);
         text-decoration: none;
         background: url('/images/pages/home/links-background.webp');
-        background-position-y: -1px;
+        background-position-y: -0.0625rem;
         transition: transform 0.15s linear;
       }
       .pages-list__item-img {
@@ -148,17 +148,17 @@ const pages = computed(() => [
       }
       &:hover {
         box-shadow:
-          0 0 0 2px rgb(0 0 0),
-          0 0 0 3px rgb(124 111 64),
-          0 0 0 6px rgb(255 251 139),
-          0 0 0 5px rgb(138 121 74),
-          0 0 0 6px rgb(114 90 44),
-          0 0 0 7px rgb(33 27 23);
+          0 0 0 0.125rem rgb(0 0 0),
+          0 0 0 0.1875rem rgb(124 111 64),
+          0 0 0 0.375rem rgb(255 251 139),
+          0 0 0 0.3125rem rgb(138 121 74),
+          0 0 0 0.375rem rgb(114 90 44),
+          0 0 0 0.4375rem rgb(33 27 23);
         filter: contrast(110%);
-        transform: translateY(-5px);
+        transform: translateY(-0.3125rem);
         .pages-list__item-title {
           text-decoration: underline;
-          transform: translateY(-2px);
+          transform: translateY(-0.125rem);
         }
       }
     }

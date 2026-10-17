@@ -103,10 +103,10 @@ const hotaChangelogLink = `https://download.h3hota.com/upd/changelogs/${selected
   --border: v-bind(border);
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 0.5rem;
   justify-content: space-between;
-  min-width: 300px;
-  padding: 4px 8px;
+  min-width: 18.75rem;
+  padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   color: var(--color-link);
   border-top: var(--border);
@@ -118,7 +118,7 @@ const hotaChangelogLink = `https://download.h3hota.com/upd/changelogs/${selected
     a,
     button {
       display: flex;
-      gap: 2px;
+      gap: 0.125rem;
       align-items: center;
       color: inherit;
       text-decoration: none;

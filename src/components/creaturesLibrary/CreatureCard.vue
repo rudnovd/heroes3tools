@@ -54,12 +54,12 @@ const parameters: Array<CreatureParameter> = ['attack', 'defense', 'health', 'sp
 <style>
 .creature-card {
   display: grid;
-  grid-template-columns: 105px 1fr;
-  gap: 4px;
+  grid-template-columns: 6.5625rem 1fr;
+  gap: 0.25rem;
   background: var(--color-bg-deep);
   border: 1px solid var(--color-text);
   @media screen and (width >= 768px) {
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: 9.375rem 1fr;
   }
   .creature-image {
     display: flex;
@@ -75,7 +75,7 @@ const parameters: Array<CreatureParameter> = ['attack', 'defense', 'health', 'sp
   }
   .creature-info {
     display: grid;
-    grid-template-rows: repeat(5, minmax(30px, auto)) 1fr;
+    grid-template-rows: repeat(5, minmax(1.875rem, auto)) 1fr;
     grid-template-columns: 100%;
     @media screen and (width >= 768px) {
       grid-template-columns: 1fr 1fr;
@@ -83,7 +83,7 @@ const parameters: Array<CreatureParameter> = ['attack', 'defense', 'health', 'sp
   }
   .parameter {
     display: grid;
-    grid-template-columns: minmax(120px, 2fr) 4fr;
+    grid-template-columns: minmax(7.5rem, 2fr) 4fr;
     align-items: center;
     border-bottom: 1px solid var(--color-border);
     transition:
@@ -102,7 +102,7 @@ const parameters: Array<CreatureParameter> = ['attack', 'defense', 'health', 'sp
       }
     }
     @media screen and (width >= 768px) {
-      grid-template-columns: 125px 1fr;
+      grid-template-columns: 7.8125rem 1fr;
       &:nth-child(even) {
         border-right: 1px solid var(--color-border);
       }
@@ -110,18 +110,18 @@ const parameters: Array<CreatureParameter> = ['attack', 'defense', 'health', 'sp
   }
   .creature-description {
     grid-column: 1 / -1;
-    padding-left: 4px;
+    padding-left: 0.25rem;
     overflow: hidden;
     text-overflow: ellipsis;
   }
   .paramater-with-resources {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 0.5rem;
     align-items: center;
     div {
       display: flex;
-      gap: 4px;
+      gap: 0.25rem;
       align-items: center;
     }
     picture {

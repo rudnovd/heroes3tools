@@ -326,7 +326,7 @@ function getSpellTargets(sideName: BattleSide) {
   grid-template-rows: minmax(50vh, 1fr) 1fr;
   grid-template-columns: 100%;
   background-color: var(--color-bg-deep);
-  box-shadow: 0 0 3px var(--color-border);
+  box-shadow: 0 0 0.1875rem var(--color-border);
   @media screen and (width >= 1280px) {
     grid-template-rows: minmax(80vh, auto);
     grid-template-columns: 50% 50%;
@@ -360,8 +360,8 @@ function getSpellTargets(sideName: BattleSide) {
     display: grid;
     gap: 0.5rem;
     .creature-input {
-      width: 65px;
-      height: 32px;
+      width: 4.0625rem;
+      height: 2rem;
     }
   }
   .hero {
@@ -383,10 +383,10 @@ function getSpellTargets(sideName: BattleSide) {
     display: grid;
     grid-auto-columns: max-content;
     grid-auto-flow: column;
-    gap: 8px;
+    gap: 0.5rem;
     justify-content: flex-end;
     & > div {
-      width: 100px;
+      width: 6.25rem;
     }
     .parameter-attack {
       margin-left: auto;
@@ -396,7 +396,7 @@ function getSpellTargets(sideName: BattleSide) {
     display: grid;
     grid-template-areas: 'target select';
     grid-template-columns: minmax(auto, 50%) 1fr;
-    gap: 8px;
+    gap: 0.5rem;
     align-items: center;
     div:nth-child(1) {
       font-size: 0.9rem;
@@ -404,8 +404,8 @@ function getSpellTargets(sideName: BattleSide) {
   }
   .spells-effects {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+    gap: 0.5rem;
     & > span {
       grid-column: 1 / -1;
     }
@@ -451,8 +451,8 @@ function getSpellTargets(sideName: BattleSide) {
     position: relative;
     z-index: 1;
     display: block;
-    width: 58px;
-    height: 64px;
+    width: 3.625rem;
+    height: 4rem;
     padding: 0;
     overflow: hidden;
     &::after {
